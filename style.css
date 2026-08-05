@@ -1739,11 +1739,51 @@ pre { color: #e2e8f0; }
 }
 
 @media (max-width: 768px) {
+  /* Prevent horizontal page overflow */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  /* Header Optimization: Hide bulky consultation button in mobile navbar to prevent squeezing */
   .nav-links { display: none; }
+  .nav-actions .open-consultation-btn { display: none !important; }
   .mobile-toggle { display: flex; }
-  .hero-section { padding: 6.5rem 0 3rem; min-height: auto; }
+  .navbar-header { height: 62px; padding: 0 0.8rem; }
+  .nav-container { width: 100%; justify-content: space-between; }
+  .nav-actions { gap: 0.5rem; }
+
+  /* Dead-Centered Entry Reveal Overlay */
+  .intro-overlay {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  .intro-canvas {
+    margin: auto;
+  }
+  .split-slashes.separated .left-slash { transform: translateX(-50px) scale(0.75); }
+  .split-slashes.separated .right-slash { transform: translateX(50px) scale(0.75); }
+  .elavate-spark-text { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+  .final-brand-text { font-size: clamp(2rem, 9vw, 3rem); }
+
+  /* Hero Section */
+  .hero-section { padding: 5.5rem 0 2.5rem; min-height: auto; }
   .hero-cta-group { flex-direction: column; width: 100%; gap: 0.8rem; }
   .hero-cta-group button, .hero-cta-group a { width: 100%; text-align: center; justify-content: center; }
+  
+  /* Features, Portfolio & Comments Grid */
   .features-grid, .portfolio-grid, .comments-grid { grid-template-columns: 1fr !important; gap: 1.2rem; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .landing-banner { flex-direction: column; text-align: center; }
@@ -1752,16 +1792,17 @@ pre { color: #e2e8f0; }
   .form-grid { grid-template-columns: 1fr; }
   .tab-content-container { padding: 1.2rem; }
   .estimator-box { padding: 1.2rem; }
-  .split-slashes.separated .left-slash { transform: translateX(-60px) scale(0.8); }
-  .split-slashes.separated .right-slash { transform: translateX(60px) scale(0.8); }
-  .elavate-spark-text { font-size: clamp(2rem, 9vw, 3rem); }
-  .final-brand-text { font-size: clamp(2.2rem, 10vw, 3.2rem); }
 
+  /* Floating AI Buddy Widget & Tooltip */
   .chatbot-container.buddy-mode {
     top: auto;
     bottom: 1.2rem;
     right: 1rem;
     transform: none;
+    z-index: 9999;
+  }
+  .chatbot-tooltip {
+    display: none !important; /* Hide floating text bubble on mobile to avoid card overlap */
   }
   .chatbot-window {
     right: 0;
@@ -1777,11 +1818,12 @@ pre { color: #e2e8f0; }
 }
 
 @media (max-width: 480px) {
-  .container { width: 94%; padding: 0 0.5rem; }
-  .metrics-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
-  .metric-card { padding: 0.9rem 0.5rem; }
-  .metric-value { font-size: 1.35rem; }
-  .hero-title { font-size: 1.65rem; }
+  .container { width: 92%; padding: 0 0.5rem; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; width: 100%; }
+  .metric-card { padding: 0.75rem 0.4rem; text-align: center; }
+  .metric-value { font-size: 1.25rem; white-space: nowrap; }
+  .metric-label { font-size: 0.72rem; }
+  .hero-title { font-size: 1.6rem; line-height: 1.25; }
   .brand-logo .logo-text { font-size: 1.15rem; }
   .featured-testimonial-card { padding: 1.2rem 0.8rem; }
   .testimonial-quote { font-size: 0.95rem; }
