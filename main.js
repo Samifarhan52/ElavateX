@@ -1,7 +1,7 @@
 /**
  * ElavateX - Master Client Logic
  * Features: Black Carpet Wipe, Cinematic Intro, Live Case Studies, Testomiles, Admin Portal, Live Firebase Cloud Firestore
- * Brand: ElavateX | Domain: ElavateX.com | WhatsApp: 7676808068
+ * Brand: ElavateX | Domain: ElavateX.com
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,13 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 0. Black Carpet Page Transition Overlay System
+    // 0. Top Progress Loading Bar System (Professional Route Indicator)
     // ----------------------------------------------------------------------
-    const carpetWipe = document.getElementById('black-carpet-wipe');
+    const loadingBar = document.getElementById('top-loading-bar');
     const transitionLinks = document.querySelectorAll('a[href^="#"], .drawer-link, .nav-link');
 
-    function executeBlackCarpetWipe(targetId) {
-        if (!carpetWipe) {
+    function executeScrollWithLoadingBar(targetId) {
+        if (!loadingBar) {
             if (targetId) {
                 const elem = document.querySelector(targetId);
                 if (elem) elem.scrollIntoView({ behavior: 'smooth' });
@@ -42,23 +42,41 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        carpetWipe.classList.remove('wiping-out');
-        carpetWipe.classList.add('wiping-in');
+        // Reset and show loading bar immediately
+        gsap.killTweensOf(loadingBar);
+        gsap.set(loadingBar, { width: "0%", opacity: 1 });
 
-        setTimeout(() => {
-            if (targetId && targetId !== '#') {
-                const targetElem = document.querySelector(targetId);
-                if (targetElem) {
-                    targetElem.scrollIntoView({ behavior: 'auto' });
-                }
+        // Scroll to the target element immediately and smoothly
+        if (targetId && targetId !== '#') {
+            const targetElem = document.querySelector(targetId);
+            if (targetElem) {
+                targetElem.scrollIntoView({ behavior: 'smooth' });
             }
-            carpetWipe.classList.remove('wiping-in');
-            carpetWipe.classList.add('wiping-out');
+        }
 
-            setTimeout(() => {
-                carpetWipe.classList.remove('wiping-out');
-            }, 600);
-        }, 300);
+        // Animate the top loading bar progress in sync with smooth scroll
+        gsap.to(loadingBar, {
+            width: "60%",
+            duration: 0.35,
+            ease: "power1.out",
+            onComplete: () => {
+                gsap.to(loadingBar, {
+                    width: "100%",
+                    duration: 0.4,
+                    ease: "power1.in",
+                    onComplete: () => {
+                        gsap.to(loadingBar, {
+                            opacity: 0,
+                            duration: 0.3,
+                            ease: "power2.out",
+                            onComplete: () => {
+                                gsap.set(loadingBar, { width: "0%" });
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
     transitionLinks.forEach(link => {
@@ -69,67 +87,251 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (href === '#admin') {
                     openAdminGateway();
                 } else {
-                    executeBlackCarpetWipe(href);
+                    executeScrollWithLoadingBar(href);
                 }
             }
         });
     });
 
     // ----------------------------------------------------------------------
-    // 1. Cinematic Entry Reveal Animation Sequence
-    // Sequence: Single X -> Split / & \ -> Elavate Spark -> Merge ElavateX -> Reveal Site
+    // 1. Cinematic Entry Reveal Animation Sequence (Billion-Dollar Company V3)
+    // Ambient Glow -> Floating Particles -> Liquid Light Ribbons -> Wireframe
+    // -> Metallic glass morph -> Brand text emerge -> Navbar Flight Morph
     // ----------------------------------------------------------------------
     const introOverlay = document.getElementById('intro-overlay');
     const skipIntroBtn = document.getElementById('skip-intro-btn');
+    const ambientGlow = document.getElementById('intro-ambient-glow');
+    const particlesContainer = document.getElementById('intro-particles-container');
+    const logoStage = document.getElementById('intro-logo-stage');
+    const logo3dWrapper = document.getElementById('intro-logo-3d-wrapper');
+    const logoMark = document.getElementById('intro-logo-mark-container');
+    const logoRender = document.getElementById('intro-logo-render');
+    const logoWireframe = document.querySelector('.logo-path-wireframe');
+    const logoGlint = document.getElementById('logo-glint');
+    const brandText = document.getElementById('intro-brand-text');
+    const letters = brandText ? brandText.querySelectorAll('.letter') : [];
+    const ribbons = document.querySelectorAll('.light-ribbon');
 
-    const xSoloChar = document.getElementById('x-solo-char');
-    const splitSlashes = document.getElementById('split-slashes');
-    const introElavateWrapper = document.getElementById('intro-elavate-wrapper');
-    const introFinalWrapper = document.getElementById('intro-final-wrapper');
-    const glowBgBurst = document.querySelector('.glow-bg-burst');
+    let tl;
 
-    function finishIntro() {
+    function finishIntro(instant = false) {
+        if (tl) tl.kill();
+        
+        // Ensure all elements are fully visible and active
+        const navbar = document.querySelector('.navbar-header');
+        const navLogo = document.querySelector('.navbar-header .brand-logo');
+        const heroElements = ['.hero-badge', '.hero-title', '.hero-subtitle', '.hero-cta-group', '.metrics-grid'];
+        
+        gsap.set(navbar, { opacity: 1, y: 0 });
+        gsap.set(navLogo, { opacity: 1 });
+        gsap.set(heroElements, { opacity: 1, y: 0 });
+        
         if (introOverlay) {
+            introOverlay.style.display = 'none';
             introOverlay.classList.add('hidden');
         }
     }
 
     if (skipIntroBtn) {
-        skipIntroBtn.addEventListener('click', finishIntro);
+        skipIntroBtn.addEventListener('click', () => finishIntro(true));
     }
 
     if (introOverlay && !sessionStorage.getItem('elavatex_intro_played')) {
         sessionStorage.setItem('elavatex_intro_played', 'true');
-        
-        setTimeout(() => {
-            if (xSoloChar) xSoloChar.classList.add('active');
-            if (glowBgBurst) glowBgBurst.style.opacity = '0.7';
-        }, 100);
 
-        setTimeout(() => {
-            if (xSoloChar) xSoloChar.style.opacity = '0';
-            if (splitSlashes) {
-                splitSlashes.classList.add('active');
-                setTimeout(() => splitSlashes.classList.add('separated'), 100);
+        if (logoStage && logo3dWrapper && logoMark && logoRender && logoWireframe && brandText && letters.length > 0 && ribbons.length > 0) {
+            
+            // 1. Prepare Initial States (Progressive Enhancement - hide only if timeline is running)
+            gsap.set('.navbar-header', { opacity: 0, y: -20 });
+            gsap.set('.navbar-header .brand-logo', { opacity: 0 });
+            gsap.set(['.hero-badge', '.hero-title', '.hero-subtitle', '.hero-cta-group', '.metrics-grid'], { opacity: 0, y: 35 });
+            
+            // Generate Floating Particles
+            if (particlesContainer) {
+                const count = 18;
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'intro-particle';
+                    const size = Math.random() * 3 + 2; // 2px to 5px
+                    const px = Math.random() * 100;
+                    const py = Math.random() * 100;
+                    const opacity = Math.random() * 0.4 + 0.1;
+                    
+                    gsap.set(particle, {
+                        width: size,
+                        height: size,
+                        left: `${px}%`,
+                        top: `${py}%`,
+                        opacity: opacity
+                    });
+                    particlesContainer.appendChild(particle);
+                    
+                    // Endless floating drift
+                    gsap.to(particle, {
+                        x: (Math.random() - 0.5) * 80,
+                        y: (Math.random() - 0.5) * 80,
+                        opacity: Math.random() * 0.5 + 0.1,
+                        duration: Math.random() * 12 + 12,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut"
+                    });
+                }
             }
-        }, 900);
 
-        setTimeout(() => {
-            if (introElavateWrapper) introElavateWrapper.classList.add('active');
-        }, 1600);
+            // Set initial paths offset length for draw-in effect
+            ribbons.forEach(ribbon => {
+                const len = ribbon.getTotalLength();
+                gsap.set(ribbon, { strokeDasharray: len, strokeDashoffset: len, opacity: 0 });
+            });
+            const wireframeLen = logoWireframe.getTotalLength();
+            gsap.set(logoWireframe, { strokeDasharray: wireframeLen, strokeDashoffset: wireframeLen, opacity: 0 });
 
-        setTimeout(() => {
-            if (splitSlashes) splitSlashes.style.opacity = '0';
-            if (introElavateWrapper) introElavateWrapper.style.opacity = '0';
-            if (introFinalWrapper) introFinalWrapper.classList.add('active');
-            if (glowBgBurst) glowBgBurst.style.opacity = '1';
-        }, 2600);
+            // Horizontal Centering Math for Logo Mark
+            const W_t = brandText.offsetWidth || 180;
+            const Gap = 16;
+            const initShift = (W_t + Gap) / 2;
 
-        setTimeout(() => {
-            finishIntro();
-        }, 3600);
+            // Set initial 3D transforms for Logo wrapper
+            gsap.set(logo3dWrapper, { x: initShift, rotateY: -12, rotateX: 6 });
+            gsap.set(logoStage, { scale: 0.9 });
+            gsap.set(letters, { opacity: 0, x: -140, z: -50, filter: "blur(12px)" });
+
+            // Initialize Master Timeline
+            tl = gsap.timeline();
+
+            // Scene 1 — Darkness & Volumetric Ambient Glow
+            tl.to(ambientGlow, {
+                opacity: 0.7,
+                scale: 1.0,
+                duration: 2.2,
+                ease: "power2.out"
+            }, 0)
+            .to(logoStage, {
+                scale: 1.0,
+                duration: 4.8, // Slow camera push forward
+                ease: "power1.out"
+            }, 0)
+
+            // Scene 2 — Light Creates Geometry (Liquid light ribbons draw in)
+            .to(ribbons, {
+                opacity: (i, target) => {
+                    if (target.classList.contains('ribbon-core')) return 1;
+                    if (target.classList.contains('ribbon-mid')) return 0.6;
+                    return 0.25;
+                },
+                strokeDashoffset: 0,
+                duration: 2.0,
+                ease: "power2.inOut",
+                stagger: 0.05
+            }, 0.5)
+            // Logo wireframe path ignites from ribbon intersection
+            .to(logoWireframe, {
+                opacity: 0.8,
+                strokeDashoffset: 0,
+                duration: 2.0,
+                ease: "power2.inOut"
+            }, 1.5)
+            // Dissolve active drawing ribbons
+            .to(ribbons, {
+                opacity: 0,
+                duration: 1.0,
+                ease: "power2.out"
+            }, 2.4)
+
+            // Scene 3 — Material Reveal (Wireframe solidifies into metallic/glass shape)
+            .to(logoRender, {
+                opacity: 1,
+                duration: 1.6,
+                ease: "power2.out"
+            }, 2.6)
+            .to(logoWireframe, {
+                opacity: 0,
+                duration: 1.2,
+                ease: "power2.out"
+            }, 2.6)
+
+            // Scene 4 — Brand Reveal (Letters emerge behind logo mark with parallax)
+            .to(logo3dWrapper, {
+                x: 0,
+                duration: 1.5,
+                ease: "expo.inOut"
+            }, 3.4)
+            .to(letters, {
+                opacity: 1,
+                x: 0,
+                z: 0,
+                filter: "blur(0px)",
+                stagger: 0.08,
+                duration: 1.3,
+                ease: "power3.out"
+            }, 3.6)
+
+            // Scene 5 — Camera Showcase & Glint reflection sweep
+            .to(logo3dWrapper, {
+                rotateY: 10,
+                rotateX: -5,
+                duration: 3.5,
+                ease: "power1.inOut"
+            }, 3.4)
+            .to(logoGlint, {
+                backgroundPosition: "150% 150%",
+                duration: 2.2,
+                ease: "power2.inOut"
+            }, 3.8)
+
+            // Scene 6 — Seamless Flight Transition to Navbar Logo
+            .to(introOverlay, {
+                opacity: 0,
+                duration: 1.2,
+                ease: "power2.inOut",
+                onStart: () => {
+                    const navLogo = document.querySelector('.navbar-header .brand-logo');
+                    if (navLogo && logoStage) {
+                        const navRect = navLogo.getBoundingClientRect();
+                        const introRect = logoStage.getBoundingClientRect();
+                        
+                        const dx = navRect.left - introRect.left;
+                        const dy = navRect.top - introRect.top;
+                        const scale = navRect.width / introRect.width;
+                        
+                        // Fly logo stage to navbar bounds
+                        gsap.to(logoStage, {
+                            x: dx,
+                            y: dy,
+                            scale: scale,
+                            transformOrigin: "left top",
+                            duration: 1.2,
+                            ease: "power3.inOut"
+                        });
+                        
+                        // Reveal navbar header container
+                        const navbar = document.querySelector('.navbar-header');
+                        if (navbar) {
+                            gsap.fromTo(navbar, 
+                                { opacity: 0, y: -20 },
+                                { opacity: 1, y: 0, duration: 1.2, ease: "power2.out" }
+                            );
+                        }
+                        
+                        // Stagger fade up landing content elements
+                        gsap.fromTo(['.hero-badge', '.hero-title', '.hero-subtitle', '.hero-cta-group', '.metrics-grid'],
+                            { opacity: 0, y: 35 },
+                            { opacity: 1, y: 0, stagger: 0.15, duration: 1.4, ease: "power3.out" }
+                        );
+                    }
+                },
+                onComplete: () => {
+                    finishIntro(true);
+                }
+            }, 6.0);
+        } else {
+            // Fallback if elements not found
+            finishIntro(true);
+        }
     } else if (introOverlay) {
         introOverlay.style.display = 'none';
+        introOverlay.classList.add('hidden');
     }
 
     // ----------------------------------------------------------------------
@@ -214,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const smokePlayBtn = document.getElementById('smoke-play-btn');
     if (smokePlayBtn) {
         smokePlayBtn.addEventListener('click', () => {
-            executeBlackCarpetWipe('#digital-marketing');
+            executeScrollWithLoadingBar('#digital-marketing');
         });
     }
 
@@ -377,26 +579,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (query.includes('web') || query.includes('website') || query.includes('react') || query.includes('next') || query.includes('site')) {
-            return `🌐 <strong>Web Development at ElavateX:</strong><br>We engineer high-converting, sub-second websites using React, Next.js, and Vite with 100/100 Core Web Vitals performance.<br><br>👉 <a href="#web-dev" onclick="document.getElementById('chatbot-container').classList.remove('open')">View Web Dev Showcase &rarr;</a><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20have%20a%20Web%20Dev%20inquiry" target="_blank">Chat on WhatsApp (7676808068)</a>`;
+            return `🌐 <strong>Web Development at ElavateX:</strong><br>We engineer high-converting, sub-second websites using React, Next.js, and Vite with 100/100 Core Web Vitals performance.<br><br>👉 <a href="#web-dev" onclick="document.getElementById('chatbot-container').classList.remove('open')">View Web Dev Showcase &rarr;</a><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20have%20a%20Web%20Dev%20inquiry" target="_blank">Connect on WhatsApp</a>`;
         }
 
         if (query.includes('app') || query.includes('mobile') || query.includes('ios') || query.includes('android') || query.includes('flutter')) {
-            return `📱 <strong>Application Development:</strong><br>We build cross-platform iOS & Android mobile apps using Flutter and React Native with 60FPS UI animations and real-time cloud backends.<br><br>👉 <a href="#app-dev" onclick="document.getElementById('chatbot-container').classList.remove('open')">Explore Mobile App Dev &rarr;</a><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20have%20an%20App%20Dev%20inquiry" target="_blank">Chat on WhatsApp (7676808068)</a>`;
+            return `📱 <strong>Application Development:</strong><br>We build cross-platform iOS & Android mobile apps using Flutter and React Native with 60FPS UI animations and real-time cloud backends.<br><br>👉 <a href="#app-dev" onclick="document.getElementById('chatbot-container').classList.remove('open')">Explore Mobile App Dev &rarr;</a><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20have%20an%20App%20Dev%20inquiry" target="_blank">Connect on WhatsApp</a>`;
         }
 
         if (query.includes('social') || query.includes('marketing') || query.includes('insta') || query.includes('instagram') || query.includes('ads') || query.includes('media')) {
-            return `🔥 <strong>Social Media & Digital Marketing:</strong><br>We manage Instagram content curation, motion Reels, and high-ROAS Meta & Google Ad campaigns.<br><br><strong>Instagram Profile:</strong> <a href="https://instagram.com/ElavateX.dev" target="_blank">@ElavateX.dev</a><br>👉 <a href="#digital-marketing" onclick="document.getElementById('chatbot-container').classList.remove('open')">View Marketing Strategy &rarr;</a>`;
+            return `🔥 <strong>Social Media & Digital Marketing:</strong><br>We manage Instagram content curation, motion Reels, and high-ROAS Meta & Google Ad campaigns.<br><br><strong>Instagram Profile:</strong> <a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank">@elavatex_dev</a><br>👉 <a href="#digital-marketing" onclick="document.getElementById('chatbot-container').classList.remove('open')">View Marketing Strategy &rarr;</a>`;
         }
 
         if (query.includes('contact') || query.includes('phone') || query.includes('number') || query.includes('whatsapp') || query.includes('email') || query.includes('detail')) {
-            return `📞 <strong>ElavateX Contact Information:</strong><br>&bull; <strong>WhatsApp:</strong> <a href="https://wa.me/917676808068" target="_blank">+91 7676808068</a><br>&bull; <strong>Instagram:</strong> <a href="https://instagram.com/ElavateX.dev" target="_blank">@ElavateX.dev</a><br>&bull; <strong>Official Website:</strong> ElavateX.com`;
+            return `📞 <strong>ElavateX Contact Information:</strong><br>&bull; <strong>WhatsApp:</strong> <a href="https://wa.me/917676808068" target="_blank">Connect via WhatsApp</a><br>&bull; <strong>Instagram:</strong> <a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank">@elavatex_dev</a><br>&bull; <strong>Official Website:</strong> ElavateX.com`;
         }
 
         if (query.includes('book') || query.includes('call') || query.includes('consultation') || query.includes('quote') || query.includes('price') || query.includes('cost') || query.includes('estimate')) {
-            return `📅 <strong>Book Your Free Strategy Consultation:</strong><br>You can calculate an instant estimate with our <a href="#estimator" onclick="document.getElementById('chatbot-container').classList.remove('open')">Project Estimator</a> or chat directly on WhatsApp:<br><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20book%20a%20free%20call" target="_blank">Click Here to Chat on WhatsApp (7676808068)</a>`;
+            return `📅 <strong>Book Your Free Strategy Consultation:</strong><br>You can book a free strategic consultation call or chat directly on WhatsApp:<br><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20book%20a%20free%20call" target="_blank">Click Here to Connect on WhatsApp</a>`;
         }
 
-        return `👋 Thank you for asking! At <strong>ElavateX</strong>, we help brands scale through Web Development, Mobile Apps, and Social Media Marketing.<br><br>Would you like to <strong>Book a Call</strong> or reach us directly on <strong>WhatsApp (+91 7676808068)</strong>?`;
+        return `👋 Thank you for asking! At <strong>ElavateX</strong>, we help brands scale through Web Development, Mobile Apps, and Social Media Marketing.<br><br>Would you like to <strong>Book a Call</strong> or reach us directly on <strong>WhatsApp</strong>?`;
     }
 
     function appendUserMessage(text) {
@@ -496,80 +698,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ----------------------------------------------------------------------
-    // 8. Interactive Project Cost Estimator
-    // ----------------------------------------------------------------------
-    const serviceTypeChips = document.querySelectorAll('#est-service-type .chip');
-    const scopeTypeChips = document.querySelectorAll('#est-scope-type .chip');
-    const addonCheckboxes = document.querySelectorAll('.est-addon');
-    const totalPriceEl = document.getElementById('est-total-price');
-    const timelineEl = document.getElementById('est-timeline');
 
-    function calculateEstimate() {
-        let baseCost = 499;
-        let multiplier = 1.0;
-        let addonsTotal = 0;
-
-        const activeService = document.querySelector('#est-service-type .chip.active');
-        if (activeService) {
-            baseCost = parseFloat(activeService.getAttribute('data-base')) || 499;
-        }
-
-        const activeScope = document.querySelector('#est-scope-type .chip.active');
-        if (activeScope) {
-            multiplier = parseFloat(activeScope.getAttribute('data-mult')) || 1.0;
-        }
-
-        addonCheckboxes.forEach(cb => {
-            if (cb.checked) {
-                addonsTotal += parseFloat(cb.value) || 0;
-            }
-        });
-
-        const finalPrice = Math.round((baseCost * multiplier) + addonsTotal);
-        if (totalPriceEl) totalPriceEl.textContent = `$${finalPrice}`;
-
-        if (timelineEl) {
-            if (multiplier <= 1.0) {
-                timelineEl.textContent = 'Estimated Timeline: 1 - 2 Weeks';
-            } else if (multiplier <= 1.8) {
-                timelineEl.textContent = 'Estimated Timeline: 2 - 4 Weeks';
-            } else {
-                timelineEl.textContent = 'Estimated Timeline: 4 - 8 Weeks';
-            }
-        }
-    }
-
-    serviceTypeChips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            serviceTypeChips.forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-            calculateEstimate();
-        });
-    });
-
-    scopeTypeChips.forEach(chip => {
-        chip.addEventListener('click', () => {
-            scopeTypeChips.forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-            calculateEstimate();
-        });
-    });
-
-    addonCheckboxes.forEach(cb => {
-        cb.addEventListener('change', calculateEstimate);
-    });
-
-    calculateEstimate();
 
     // ----------------------------------------------------------------------
-    // 9. Consultation & Book a Call Modal Dialog
+    // 9. Consultation & Book a Call Modal Dialog (Multi-step Flow)
     // ----------------------------------------------------------------------
     const consultationModal = document.getElementById('consultation-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
     const openConsultationBtns = document.querySelectorAll('.open-consultation-btn');
     const consultationForm = document.getElementById('consultation-form');
     const formServiceSelect = document.getElementById('form-service');
+
+    // Step elements
+    const modalStepSelector = document.getElementById('modal-step-selector');
+    const modalStepForm = document.getElementById('modal-step-form');
+    const modalStepSuccess = document.getElementById('modal-step-success');
+    const channelOptCallback = document.getElementById('channel-opt-callback');
+    const channelOptReserved = document.getElementById('channel-opt-reserved');
+    const modalBackBtn = document.getElementById('modal-back-btn');
+    
+    // Form conditional elements
+    const formChannel = document.getElementById('form-channel');
+    const formReservedExclusive = document.getElementById('form-reserved-exclusive');
+    const formDate = document.getElementById('form-date');
+    const formTimeSlot = document.getElementById('form-time-slot');
+    const formFlowBadge = document.getElementById('form-flow-badge');
 
     function openModal(preselectService) {
         if (preselectService && formServiceSelect) {
@@ -580,6 +733,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+        
+        // Always reset to Step 1 (Channel Selection) when opening
+        if (modalStepSelector && modalStepForm && modalStepSuccess) {
+            modalStepSelector.classList.add('active');
+            modalStepForm.classList.remove('active');
+            modalStepSuccess.classList.remove('active');
+        }
+
         if (consultationModal) {
             consultationModal.showModal();
         }
@@ -589,6 +750,49 @@ document.addEventListener('DOMContentLoaded', () => {
         if (consultationModal) {
             consultationModal.close();
         }
+    }
+
+    // Step navigation actions
+    if (channelOptCallback) {
+        channelOptCallback.addEventListener('click', () => {
+            if (formChannel) formChannel.value = "Direct Callback";
+            if (formFlowBadge) formFlowBadge.textContent = "DIRECT PHONE CALLBACK";
+            if (formReservedExclusive) formReservedExclusive.style.display = "none";
+            if (formServiceSelect) formServiceSelect.required = false;
+            if (formDate) formDate.required = false;
+            if (formTimeSlot) formTimeSlot.required = false;
+            
+            if (modalStepSelector && modalStepForm) {
+                modalStepSelector.classList.remove('active');
+                modalStepForm.classList.add('active');
+            }
+        });
+    }
+
+    if (channelOptReserved) {
+        channelOptReserved.addEventListener('click', () => {
+            if (formChannel) formChannel.value = "In-Person / Reserved Slot";
+            if (formFlowBadge) formFlowBadge.textContent = "RESERVED ADVISORY SLOT";
+            if (formReservedExclusive) formReservedExclusive.style.display = "block";
+            if (formServiceSelect) formServiceSelect.required = true;
+            if (formDate) formDate.required = true;
+            if (formTimeSlot) formTimeSlot.required = true;
+            
+            if (modalStepSelector && modalStepForm) {
+                modalStepSelector.classList.remove('active');
+                modalStepForm.classList.add('active');
+            }
+        });
+    }
+
+    if (modalBackBtn) {
+        modalBackBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (modalStepSelector && modalStepForm) {
+                modalStepForm.classList.remove('active');
+                modalStepSelector.classList.add('active');
+            }
+        });
     }
 
     openConsultationBtns.forEach(btn => {
@@ -612,6 +816,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Phone / WhatsApp validation & formatting (Digits-only, max 10 characters)
+    const phoneInput = document.getElementById('form-phone');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+        });
+    }
+
+    // Date validation setup (Set minimum select value to today dynamically and enable visual click popup)
+    if (formDate) {
+        const todayStr = new Date().toLocaleDateString('en-CA'); // Matches YYYY-MM-DD local format
+        formDate.setAttribute('min', todayStr);
+
+        formDate.addEventListener('click', () => {
+            if (typeof formDate.showPicker === 'function') {
+                formDate.showPicker();
+            }
+        });
+    }
+
     // Form Submission -> Firebase Dispatch & WhatsApp
     if (consultationForm) {
         consultationForm.addEventListener('submit', (e) => {
@@ -619,26 +843,74 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = document.getElementById('form-name').value;
             const email = document.getElementById('form-email').value;
             const phone = document.getElementById('form-phone').value;
-            const service = document.getElementById('form-service').value;
-            const message = document.getElementById('form-message').value;
+            
+            const channel = formChannel ? formChannel.value : "Direct Callback";
 
-            const leadObj = { name, email, phone, service, message };
+            // Enforce exactly 10-digit number validation check
+            if (phone.length !== 10) {
+                alert("Please enter a valid 10-digit phone number.");
+                return;
+            }
+
+            let leadObj;
+            let formatDetailsText = `*Consultation Format:* ${channel}\n`;
+
+            if (channel === 'In-Person / Reserved Slot') {
+                const service = formServiceSelect ? formServiceSelect.value : "";
+                const date = formDate ? formDate.value : "";
+                const timeSlot = formTimeSlot ? formTimeSlot.value : "";
+                const message = document.getElementById('form-message') ? document.getElementById('form-message').value : "";
+
+                // Date validation (No past dates allowed)
+                if (date) {
+                    const selectedDate = new Date(date);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    selectedDate.setHours(0, 0, 0, 0);
+                    if (selectedDate < today) {
+                        alert("Please select a current or future date for the consultation.");
+                        return;
+                    }
+                } else {
+                    alert("Please select a preferred date.");
+                    return;
+                }
+
+                leadObj = { name, email, phone, service, date, timeSlot, message, channel };
+                
+                formatDetailsText += `*Service Requested:* ${service}\n` +
+                                     `*Preferred Date:* ${date}\n` +
+                                     `*Preferred Slot:* ${timeSlot}\n` +
+                                     `*Project Overview:* ${message || 'N/A'}\n`;
+            } else {
+                leadObj = { name, email, phone, channel };
+            }
+
             dispatchLeadToFirebase(leadObj);
 
+            // Construct rich WhatsApp text
             const waText = encodeURIComponent(
                 `*New Consultation Booking (ElavateX.com)*\n\n` +
                 `*Name:* ${name}\n` +
                 `*Email:* ${email}\n` +
                 `*Phone:* ${phone}\n` +
-                `*Service Requested:* ${service}\n` +
-                `*Project Overview:* ${message || 'N/A'}\n\n` +
-                `Sent via website: ElavateX.com`
+                formatDetailsText +
+                `\nSent via website: ElavateX.com`
             );
 
             const whatsappUrl = `https://wa.me/917676808068?text=${waText}`;
 
-            closeModal();
-            window.open(whatsappUrl, '_blank');
+            // Transition to Step 3: Success Screen inside the modal
+            if (modalStepForm && modalStepSuccess) {
+                modalStepForm.classList.remove('active');
+                modalStepSuccess.classList.add('active');
+            }
+
+            // Redirect to WhatsApp after 2 seconds delay
+            setTimeout(() => {
+                closeModal();
+                window.open(whatsappUrl, '_blank');
+            }, 2000);
         });
     }
 
@@ -676,4 +948,415 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mobileDrawer) mobileDrawer.classList.remove('open');
         });
     });
+
+    // ----------------------------------------------------------------------
+    // 10.5 Delegated Social Links Premium Click Animations & Coming Soon Toasts
+    // ----------------------------------------------------------------------
+    function showToast(message) {
+        const existingToast = document.querySelector('.custom-toast');
+        if (existingToast) existingToast.remove();
+
+        const toast = document.createElement('div');
+        toast.className = 'custom-toast';
+        toast.innerHTML = `<span>${message}</span>`;
+        document.body.appendChild(toast);
+
+        // Center on screen horizontally and slide up
+        gsap.fromTo(toast,
+            { opacity: 0, y: 30, scale: 0.9, x: "-50%" },
+            { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power2.out" }
+        );
+
+        setTimeout(() => {
+            gsap.to(toast, {
+                opacity: 0,
+                y: -15,
+                duration: 0.25,
+                ease: "power2.in",
+                onComplete: () => toast.remove()
+            });
+        }, 2200);
+    }
+
+    document.addEventListener('click', (e) => {
+        // 1. Instagram Redirect Animations
+        const instaLink = e.target.closest('a[href*="instagram.com/elavatex_dev"]');
+        if (instaLink) {
+            e.preventDefault();
+            const targetUrl = instaLink.getAttribute('href');
+            const isIconBtn = instaLink.classList.contains('social-icon-btn');
+
+            if (isIconBtn) {
+                gsap.timeline({
+                    onComplete: () => {
+                        window.open(targetUrl, '_blank');
+                    }
+                })
+                .to(instaLink, {
+                    rotateY: 360,
+                    scale: 1.3,
+                    backgroundColor: "#e1306c",
+                    color: "#ffffff",
+                    boxShadow: "0 0 20px rgba(225, 48, 108, 0.6)",
+                    duration: 0.55,
+                    ease: "back.out(1.7)"
+                })
+                .to(instaLink, {
+                    scale: 1,
+                    rotateY: 360,
+                    boxShadow: "0 0 0px rgba(0,0,0,0)",
+                    duration: 0.15,
+                    clearProps: "all"
+                });
+            } else {
+                gsap.timeline({
+                    onComplete: () => {
+                        window.open(targetUrl, '_blank');
+                    }
+                })
+                .to(instaLink, {
+                    scale: 1.08,
+                    color: "#e1306c",
+                    textShadow: "0 0 8px rgba(225, 48, 108, 0.4)",
+                    x: 6,
+                    duration: 0.22,
+                    ease: "power2.out"
+                })
+                .to(instaLink, {
+                    scale: 1,
+                    x: 0,
+                    duration: 0.2,
+                    ease: "power2.in",
+                    clearProps: "all"
+                });
+            }
+            return;
+        }
+
+        // 2. Facebook placeholder click
+        const facebookBtn = e.target.closest('.social-icon-btn.facebook');
+        if (facebookBtn) {
+            e.preventDefault();
+            showToast("Facebook channel is coming soon!");
+            gsap.timeline()
+                .to(facebookBtn, { x: -4, duration: 0.05, repeat: 5, yoyo: true })
+                .to(facebookBtn, { x: 0, duration: 0.05 });
+            return;
+        }
+
+        // 3. LinkedIn placeholder click
+        const linkedinBtn = e.target.closest('.social-icon-btn.linkedin');
+        if (linkedinBtn) {
+            e.preventDefault();
+            showToast("LinkedIn profile is coming soon!");
+            gsap.timeline()
+                .to(linkedinBtn, { x: -4, duration: 0.05, repeat: 5, yoyo: true })
+                .to(linkedinBtn, { x: 0, duration: 0.05 });
+            return;
+        }
+    });
+
+    // ===================================================================
+    // 11. PREMIUM SCROLL REVEAL ANIMATIONS (GSAP + ScrollTrigger)
+    // ===================================================================
+    if (window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const mm = gsap.matchMedia();
+
+        // A. Desktop & Tablet Flow (Rich aesthetics: clip-paths, blurs, 3D rotates)
+        mm.add("(min-width: 769px)", () => {
+            // Text sliding clip-path reveal for section headings
+            gsap.utils.toArray('.section-header, .landing-header').forEach(header => {
+                const sub = header.querySelector('.section-subtitle, .service-badge');
+                const title = header.querySelector('.section-title, h2');
+                const desc = header.querySelector('.section-desc, p');
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: header,
+                        start: "top 88%",
+                        end: "bottom 12%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                });
+
+                if (sub) {
+                    tl.fromTo(sub, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
+                }
+                if (title) {
+                    tl.fromTo(title, 
+                        { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", y: 28 },
+                        { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", y: 0, duration: 0.8, ease: "power3.out" },
+                        "-=0.35"
+                    );
+                }
+                if (desc) {
+                    tl.fromTo(desc, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.35");
+                }
+            });
+
+            // Services Overview switcher (#services-overview)
+            gsap.fromTo(".services-tab-buttons", 
+                { opacity: 0, scale: 0.96 },
+                { 
+                    opacity: 1, scale: 1, duration: 0.75, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".services-tab-buttons",
+                        start: "top 90%",
+                        end: "bottom 10%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            gsap.fromTo(".tab-content-container",
+                { scale: 0.96, filter: "blur(10px)", opacity: 0 },
+                {
+                    scale: 1, filter: "blur(0px)", opacity: 1, duration: 1.1, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".tab-content-container",
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            // Web Development Feature Grid (#web-dev)
+            gsap.fromTo("#web-dev .feature-card",
+                { x: -50, opacity: 0, rotate: -2, transformPerspective: 1000 },
+                {
+                    x: 0, opacity: 1, rotate: 0, stagger: 0.15, duration: 0.8, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#web-dev .features-grid",
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            gsap.fromTo("#web-dev .landing-banner",
+                { scale: 0.96, filter: "blur(8px)", opacity: 0 },
+                {
+                    scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.9, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#web-dev .landing-banner",
+                        start: "top 88%",
+                        end: "bottom 12%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            // Application Development Feature Grid (#app-dev)
+            gsap.fromTo("#app-dev .feature-card",
+                { y: 60, opacity: 0, rotateX: -12, transformPerspective: 1000 },
+                {
+                    y: 0, opacity: 1, rotateX: 0, stagger: 0.15, duration: 0.9, ease: "back.out(1.1)",
+                    scrollTrigger: {
+                        trigger: "#app-dev .features-grid",
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            gsap.fromTo("#app-dev .landing-banner",
+                { x: 80, opacity: 0 },
+                {
+                    x: 0, opacity: 1, duration: 0.85, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#app-dev .landing-banner",
+                        start: "top 88%",
+                        end: "bottom 12%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            // Social Media & Marketing Grid (#digital-marketing)
+            gsap.fromTo("#digital-marketing .feature-card",
+                { x: 50, y: 15, opacity: 0, rotate: 1.5 },
+                {
+                    x: 0, y: 0, opacity: 1, rotate: 0, stagger: 0.15, duration: 0.8, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#digital-marketing .features-grid",
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            gsap.fromTo("#digital-marketing .landing-banner",
+                { y: 50, opacity: 0 },
+                {
+                    y: 0, opacity: 1, duration: 0.85, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#digital-marketing .landing-banner",
+                        start: "top 88%",
+                        end: "bottom 12%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            // Case Studies Grid (#portfolio)
+            gsap.fromTo("#portfolio .portfolio-card",
+                { y: 80, scale: 0.95, opacity: 0, rotate: 1.5 },
+                {
+                    y: 0, scale: 1, opacity: 1, rotate: 0, stagger: 0.18, duration: 0.9, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#portfolio .portfolio-grid",
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            // Testimonials Section (#testimonials)
+            gsap.fromTo(".featured-testimonial-card",
+                { x: -70, opacity: 0 },
+                {
+                    x: 0, opacity: 1, duration: 0.9, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".featured-testimonial-card",
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            gsap.fromTo(".add-comment-box",
+                { x: 70, opacity: 0 },
+                {
+                    x: 0, opacity: 1, duration: 0.9, ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".add-comment-box",
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            // Bottom CTA Box
+            gsap.fromTo(".cta-box",
+                { scale: 0.92, opacity: 0 },
+                {
+                    scale: 1, opacity: 1, duration: 0.95, ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: ".cta-box",
+                        start: "top 88%",
+                        end: "bottom 12%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+        });
+
+        // B. Mobile Flow (Fast, optimized, y-translation and opacity only, no filters)
+        mm.add("(max-width: 768px)", () => {
+            gsap.utils.toArray('.section-header, .landing-header').forEach(header => {
+                gsap.fromTo(header,
+                    { opacity: 0, y: 15 },
+                    {
+                        opacity: 1, y: 0, duration: 0.5, ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: header,
+                            start: "top 92%",
+                            end: "bottom 8%",
+                            toggleActions: "play reverse play reverse"
+                        }
+                    }
+                );
+            });
+
+            gsap.fromTo(".tab-content-container",
+                { opacity: 0, y: 25 },
+                {
+                    opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".tab-content-container",
+                        start: "top 85%",
+                        end: "bottom 15%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            // Group all grids for lightweight stagger fade
+            ['#web-dev', '#app-dev', '#digital-marketing'].forEach(secId => {
+                gsap.fromTo(`${secId} .feature-card`,
+                    { opacity: 0, y: 25 },
+                    {
+                        opacity: 1, y: 0, stagger: 0.1, duration: 0.55, ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: `${secId} .features-grid`,
+                            start: "top 85%",
+                            end: "bottom 15%",
+                            toggleActions: "play reverse play reverse"
+                        }
+                    }
+                );
+
+                gsap.fromTo(`${secId} .landing-banner`,
+                    { opacity: 0, y: 20 },
+                    {
+                        opacity: 1, y: 0, duration: 0.55, ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: `${secId} .landing-banner`,
+                            start: "top 90%",
+                            end: "bottom 10%",
+                            toggleActions: "play reverse play reverse"
+                        }
+                    }
+                );
+            });
+
+            gsap.fromTo("#portfolio .portfolio-card",
+                { opacity: 0, y: 25 },
+                {
+                    opacity: 1, y: 0, stagger: 0.1, duration: 0.55, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#portfolio .portfolio-grid",
+                        start: "top 85%",
+                        end: "bottom 15%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            gsap.fromTo([".featured-testimonial-card", ".add-comment-box"],
+                { opacity: 0, y: 25 },
+                {
+                    opacity: 1, y: 0, stagger: 0.12, duration: 0.6, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#testimonials",
+                        start: "top 85%",
+                        end: "bottom 15%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+
+            gsap.fromTo(".cta-box",
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".cta-box",
+                        start: "top 92%",
+                        end: "bottom 8%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                }
+            );
+        });
+    }
 });
