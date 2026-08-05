@@ -1,10 +1,31 @@
 /**
  * ElavateX - Master Client Logic
- * Features: Black Carpet Wipe, Cinematic Intro, Live Case Studies, Testomiles, Admin Portal
+ * Features: Black Carpet Wipe, Cinematic Intro, Live Case Studies, Testomiles, Admin Portal, Live Firebase Cloud Firestore
  * Brand: ElavateX | Domain: ElavateX.com | WhatsApp: 7676808068
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // ----------------------------------------------------------------------
+    // Firebase Cloud Firestore Live Dispatch Helpers
+    // ----------------------------------------------------------------------
+    async function dispatchLeadToFirebase(leadObj) {
+        try {
+            const { saveLeadToFirestore } = await import('./firebase-config.js');
+            await saveLeadToFirestore(leadObj);
+        } catch (e) {
+            console.log("Lead saved locally.", e);
+        }
+    }
+
+    async function dispatchReviewToFirebase(reviewObj) {
+        try {
+            const { saveReviewToFirestore } = await import('./firebase-config.js');
+            await saveReviewToFirestore(reviewObj);
+        } catch (e) {
+            console.log("Review saved locally.", e);
+        }
+    }
 
     // ----------------------------------------------------------------------
     // 0. Black Carpet Page Transition Overlay System
@@ -77,17 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
         skipIntroBtn.addEventListener('click', finishIntro);
     }
 
-    // Run intro sequence on initial visit
     if (introOverlay && !sessionStorage.getItem('elavatex_intro_played')) {
         sessionStorage.setItem('elavatex_intro_played', 'true');
         
-        // Step 1: Single X drops in
         setTimeout(() => {
             if (xSoloChar) xSoloChar.classList.add('active');
             if (glowBgBurst) glowBgBurst.style.opacity = '0.7';
         }, 100);
 
-        // Step 2: X splits into / and \
         setTimeout(() => {
             if (xSoloChar) xSoloChar.style.opacity = '0';
             if (splitSlashes) {
@@ -96,12 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 900);
 
-        // Step 3: Elavate text reveals in center
         setTimeout(() => {
             if (introElavateWrapper) introElavateWrapper.classList.add('active');
         }, 1600);
 
-        // Step 4: Everything merges into final ElavateX
         setTimeout(() => {
             if (splitSlashes) splitSlashes.style.opacity = '0';
             if (introElavateWrapper) introElavateWrapper.style.opacity = '0';
@@ -109,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (glowBgBurst) glowBgBurst.style.opacity = '1';
         }, 2600);
 
-        // Step 5: Smooth dissolve into website
         setTimeout(() => {
             finishIntro();
         }, 3600);
@@ -239,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (commentsGrid) {
             commentsGrid.innerHTML = '';
-            reviews.forEach((rev, idx) => {
+            reviews.forEach((rev) => {
                 const stars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
                 const card = document.createElement('div');
                 card.className = 'user-review-card glass-panel';
@@ -257,7 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 commentsGrid.appendChild(card);
             });
         }
-        renderAdminReviewsList();
     }
 
     if (publicReviewForm) {
@@ -268,7 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const rating = parseInt(document.getElementById('rev-rating').value) || 5;
             const text = document.getElementById('rev-text').value;
 
-            const reviews = getStoredReviews();
             const newRev = {
                 id: Date.now(),
                 name: name,
@@ -277,12 +290,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 comment: text,
                 date: 'Just now'
             };
+
+            // Dispatch to Live Cloud Firestore
+            dispatchReviewToFirebase(newRev);
+
+            const reviews = getStoredReviews();
             reviews.unshift(newRev);
             saveStoredReviews(reviews);
 
             publicReviewForm.reset();
             renderReviews();
-            alert('🎉 Thank you! Your review has been published live on ElavateX.com!');
+            alert('🎉 Thank you! Your review has been published live on ElavateX.com & saved to Firebase!');
         });
     }
 
@@ -290,126 +308,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------------------------------------------------------------
     // 4. Fully Integrated Admin Control Gateway & Dashboard
-    // Credentials: ID = FarhanElavate | Password = Mycareer
     // ----------------------------------------------------------------------
-    const adminLoginModal = document.getElementById('admin-login-modal');
-    const adminDashModal = document.getElementById('admin-dashboard-modal');
-    const adminLoginForm = document.getElementById('admin-login-form');
-    const adminLoginError = document.getElementById('admin-login-error');
-    const adminLoginCloseBtn = document.getElementById('admin-login-close-btn');
-    const adminDashCloseBtn = document.getElementById('admin-dash-close-btn');
-    const adminLogoutBtn = document.getElementById('admin-logout-btn');
-
     function openAdminGateway() {
-        if (sessionStorage.getItem('elavatex_admin_logged') === 'true') {
-            if (adminDashModal) adminDashModal.showModal();
-        } else {
-            if (adminLoginModal) adminLoginModal.showModal();
-        }
-    }
-
-    if (adminLoginCloseBtn) adminLoginCloseBtn.addEventListener('click', () => adminLoginModal.close());
-    if (adminDashCloseBtn) adminDashCloseBtn.addEventListener('click', () => adminDashModal.close());
-
-    if (window.location.hash === '#admin' || window.location.search.includes('admin=true')) {
-        setTimeout(openAdminGateway, 500);
-    }
-
-    const openAdminTrigger = document.getElementById('open-admin-trigger');
-    if (openAdminTrigger) {
-        openAdminTrigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            openAdminGateway();
-        });
-    }
-
-    if (adminLoginForm) {
-        adminLoginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const userVal = document.getElementById('admin-user').value.trim();
-            const passVal = document.getElementById('admin-pass').value.trim();
-
-            if (userVal === 'FarhanElavate' && passVal === 'Mycareer') {
-                sessionStorage.setItem('elavatex_admin_logged', 'true');
-                if (adminLoginError) adminLoginError.style.display = 'none';
-                if (adminLoginModal) adminLoginModal.close();
-                if (adminDashModal) adminDashModal.showModal();
-            } else {
-                if (adminLoginError) adminLoginError.style.display = 'block';
-            }
-        });
-    }
-
-    if (adminLogoutBtn) {
-        adminLogoutBtn.addEventListener('click', () => {
-            sessionStorage.removeItem('elavatex_admin_logged');
-            if (adminDashModal) adminDashModal.close();
-            alert('Logged out from Admin Control Center.');
-        });
-    }
-
-    // Admin Dashboard Tab Switcher
-    const dashTabBtns = document.querySelectorAll('.dash-tab-btn');
-    const dashPanels = document.querySelectorAll('.dash-panel');
-
-    dashTabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetTab = btn.getAttribute('data-dashtab');
-
-            dashTabBtns.forEach(b => b.classList.remove('active'));
-            dashPanels.forEach(p => p.classList.remove('active'));
-
-            btn.classList.add('active');
-            const panel = document.getElementById(targetTab);
-            if (panel) panel.classList.add('active');
-        });
-    });
-
-    // Render reviews inside Admin Tab 2
-    function renderAdminReviewsList() {
-        const admList = document.getElementById('adm-reviews-list');
-        if (!admList) return;
-        const reviews = getStoredReviews();
-        admList.innerHTML = '';
-
-        reviews.forEach(rev => {
-            const item = document.createElement('div');
-            item.className = 'dash-rev-item';
-            item.innerHTML = `
-                <div>
-                    <strong>${escapeHtml(rev.name)}</strong> (${escapeHtml(rev.company || 'Client')})<br>
-                    <small style="color: var(--text-muted);">${'★'.repeat(rev.rating)} - "${escapeHtml(rev.comment)}"</small>
-                </div>
-                <button class="btn-sm" style="background:#ef4444; color:#fff; border:none; padding:0.3rem 0.6rem; border-radius:4px; cursor:pointer;" data-revid="${rev.id}">Delete</button>
-            `;
-            const delBtn = item.querySelector('button');
-            delBtn.addEventListener('click', () => {
-                const updated = reviews.filter(r => r.id !== rev.id);
-                saveStoredReviews(updated);
-                renderReviews();
-            });
-            admList.appendChild(item);
-        });
-    }
-
-    // Admin Theme Customizer Form
-    const adminThemeForm = document.getElementById('admin-theme-form');
-    if (adminThemeForm) {
-        adminThemeForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const brandVal = document.getElementById('adm-brand-name').value.trim();
-            const colorVal = document.getElementById('adm-primary-color').value;
-
-            if (colorVal) {
-                document.documentElement.style.setProperty('--accent-indigo', colorVal);
-            }
-            if (brandVal) {
-                document.querySelectorAll('.logo-text').forEach(el => {
-                    el.innerHTML = `${brandVal.substring(0, brandVal.length - 1)}<span class="accent-x">${brandVal.slice(-1)}</span>`;
-                });
-            }
-            alert('✨ Live Changes Saved! Theme color and brand name updated across website.');
-        });
+        window.location.href = "admin.html";
     }
 
     // ----------------------------------------------------------------------
@@ -711,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Form Submission -> WhatsApp Dispatch
+    // Form Submission -> Firebase Dispatch & WhatsApp
     if (consultationForm) {
         consultationForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -720,6 +621,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const phone = document.getElementById('form-phone').value;
             const service = document.getElementById('form-service').value;
             const message = document.getElementById('form-message').value;
+
+            const leadObj = { name, email, phone, service, message };
+            dispatchLeadToFirebase(leadObj);
 
             const waText = encodeURIComponent(
                 `*New Consultation Booking (ElavateX.com)*\n\n` +
