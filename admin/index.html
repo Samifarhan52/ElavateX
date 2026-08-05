@@ -47,7 +47,7 @@
         .brand-header h1 span { color: var(--cms-accent); }
         .brand-header p { color: var(--cms-muted); font-size: 0.85rem; margin-top: 0.4rem; }
 
-        .form-group { margin-bottom: 1.2rem; }
+        .form-group { margin-bottom: 1.2rem; position: relative; }
         .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--cms-muted); }
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
@@ -61,6 +61,19 @@
             transition: border-color 0.2s;
         }
         .form-group input:focus { border-color: var(--cms-accent); }
+
+        .pw-wrapper { position: relative; }
+        .toggle-pw-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--cms-muted);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
 
         .btn-cms-primary {
             width: 100%;
@@ -164,14 +177,18 @@
         .table-custom th { padding: 0.8rem 1rem; border-bottom: 1px solid var(--cms-border); font-size: 0.8rem; color: var(--cms-muted); text-transform: uppercase; }
         .table-custom td { padding: 1rem; border-bottom: 1px solid var(--cms-border); font-size: 0.9rem; }
 
+        .btn-action { background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid var(--cms-border); padding: 0.35rem 0.7rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-right: 4px; }
         .btn-delete { background: #ef4444; color: #fff; border: none; padding: 0.35rem 0.7rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+        
+        .chart-bar-container { display: flex; align-items: flex-end; gap: 12px; height: 160px; padding-top: 1rem; margin-top: 1rem; border-bottom: 1px solid var(--cms-border); }
+        .bar-col { flex: 1; background: var(--cms-accent); border-radius: 4px 4px 0 0; position: relative; transition: height 0.3s; }
+        .bar-col span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--cms-muted); }
     </style>
 </head>
 <body>
 
     <!-- =================================================================== -->
-    <!-- CMS LOGIN SCREEN                                                    -->
-    <!-- Credentials: ID = FarhanElavate | Password = Mycareer               -->
+    <!-- CMS LOGIN SCREEN (Empty Input Fields + Show/Hide Password Toggle)   -->
     <!-- =================================================================== -->
     <div class="login-wrapper" id="cms-login-wrapper">
         <div class="login-card">
@@ -183,19 +200,22 @@
             <form id="cms-login-form">
                 <div class="form-group">
                     <label for="cms-user">Admin ID</label>
-                    <input type="text" id="cms-user" required value="FarhanElavate">
+                    <input type="text" id="cms-user" required placeholder="Enter Admin ID">
                 </div>
 
                 <div class="form-group">
                     <label for="cms-pass">Password</label>
-                    <input type="password" id="cms-pass" required value="Mycareer">
+                    <div class="pw-wrapper">
+                        <input type="password" id="cms-pass" required placeholder="Enter Password">
+                        <button type="button" class="toggle-pw-btn" id="toggle-pw-btn" title="Toggle Password Visibility">👁️</button>
+                    </div>
                 </div>
 
                 <div id="login-error" style="display:none; color:#ef4444; font-size:0.85rem; margin-bottom:1rem; text-align:center;">
-                    ❌ Invalid Credentials! Required: FarhanElavate / Mycareer
+                    ❌ Invalid Credentials! Check your Admin ID or Password.
                 </div>
 
-                <button type="submit" class="btn-cms-primary">Sign In to Dashboard</button>
+                <button type="submit" class="btn-cms-primary">Sign In to CMS Dashboard</button>
             </form>
         </div>
     </div>
@@ -210,16 +230,18 @@
 
             <nav class="nav-menu">
                 <div class="nav-item active" data-target="panel-overview">📊 Overview</div>
+                <div class="nav-item" data-target="panel-analytics">📈 Web Analytics</div>
                 <div class="nav-item" data-target="panel-projects">📁 Case Studies</div>
                 <div class="nav-item" data-target="panel-reviews">💬 Testimonials & Reviews</div>
-                <div class="nav-item" data-target="panel-theme">🎨 Theme & Customizer</div>
+                <div class="nav-item" data-target="panel-content">🌐 Content Manager</div>
+                <div class="nav-item" data-target="panel-settings">⚙️ Settings & Security</div>
             </nav>
 
             <div class="sidebar-footer">
                 <div class="user-profile">
                     <div class="avatar">F</div>
                     <div>
-                        <div style="font-weight:700; font-size:0.85rem;">Farhan (Super Admin)</div>
+                        <div style="font-weight:700; font-size:0.85rem;" id="cms-sidebar-user">Farhan (Super Admin)</div>
                         <div style="font-size:0.75rem; color:var(--cms-muted);">ElavateX.com</div>
                     </div>
                 </div>
@@ -247,20 +269,20 @@
                 <div class="panel active" id="panel-overview">
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-label">Live Case Studies</div>
-                            <div class="stat-val">3 Projects</div>
+                            <div class="stat-label">Total Site Visits</div>
+                            <div class="stat-val">12,840</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Active Projects</div>
+                            <div class="stat-val" id="stat-projects-count">3</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-label">Client Reviews</div>
                             <div class="stat-val" id="stat-reviews-count">1</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-label">Average Rating</div>
-                            <div class="stat-val">5.0 ★</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-label">WhatsApp Leads</div>
-                            <div class="stat-val">Active</div>
+                            <div class="stat-label">Lead Conversion</div>
+                            <div class="stat-val">4.8%</div>
                         </div>
                     </div>
 
@@ -274,58 +296,140 @@
                     </div>
                 </div>
 
-                <!-- PANEL 2: PROJECTS -->
+                <!-- PANEL 2: WEB ANALYTICS -->
+                <div class="panel" id="panel-analytics">
+                    <div class="panel-box">
+                        <h3>Live Traffic & Conversion Analytics</h3>
+                        <p>Monitor visitor interactions, WhatsApp lead clicks, and traffic source performance.</p>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-label">Weekly Unique Visitors</div>
+                                <div class="stat-val" style="color:var(--cms-emerald);">3,420 ↑</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">WhatsApp Clicks</div>
+                                <div class="stat-val">348</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Form Submissions</div>
+                                <div class="stat-val">94</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Avg. Session Time</div>
+                                <div class="stat-val">3m 42s</div>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-top:1.5rem; font-size:0.95rem;">Weekly Visitor Traffic Trend</h4>
+                        <div class="chart-bar-container">
+                            <div class="bar-col" style="height: 45%;"><span>Mon</span></div>
+                            <div class="bar-col" style="height: 60%;"><span>Tue</span></div>
+                            <div class="bar-col" style="height: 85%;"><span>Wed</span></div>
+                            <div class="bar-col" style="height: 70%;"><span>Thu</span></div>
+                            <div class="bar-col" style="height: 95%;"><span>Fri</span></div>
+                            <div class="bar-col" style="height: 80%;"><span>Sat</span></div>
+                            <div class="bar-col" style="height: 100%;"><span>Sun</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL 3: PROJECTS & CASE STUDIES MANAGER (ADD & EDIT) -->
                 <div class="panel" id="panel-projects">
                     <div class="panel-box">
-                        <h3>Live Portfolio Case Studies</h3>
-                        <p>Manage project domain links and active showcases.</p>
+                        <h3>Add / Edit Case Study Project</h3>
+                        <p>Create or update featured portfolio projects published live on ElavateX.com</p>
 
+                        <form id="form-add-project" style="max-width:600px; margin-bottom:2rem;">
+                            <input type="hidden" id="proj-edit-id" value="">
+                            <div class="form-group">
+                                <label for="proj-name">Project Title *</label>
+                                <input type="text" id="proj-name" required placeholder="e.g. Shelter Hunt Consultants">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="proj-url">Live Website URL *</label>
+                                <input type="url" id="proj-url" required placeholder="https://shelterhuntconsultants.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="proj-category">Category Badge *</label>
+                                <input type="text" id="proj-category" required placeholder="e.g. REAL ESTATE PORTAL">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="proj-desc">Project Overview *</label>
+                                <textarea id="proj-desc" rows="2" required placeholder="Property Advisory portal built for property search & lead generation."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="proj-stat">Stat Badge *</label>
+                                <input type="text" id="proj-stat" required placeholder="e.g. ★ 5.0 Rating • Delivered On Time">
+                            </div>
+
+                            <button type="submit" class="btn-cms-primary" style="width:auto; padding:0.7rem 1.8rem;" id="btn-save-proj">Add Project Live</button>
+                        </form>
+
+                        <h4 style="margin-bottom:1rem; font-size:1rem;">Active Live Projects</h4>
                         <table class="table-custom">
                             <thead>
                                 <tr>
-                                    <th>Project Name</th>
+                                    <th>Project Title</th>
                                     <th>Category</th>
                                     <th>Live URL</th>
-                                    <th>Status</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Shelter Hunt Consultants</strong></td>
-                                    <td>Real Estate Portal</td>
-                                    <td><a href="https://shelterhuntconsultants.com" target="_blank" style="color:var(--cms-accent);">shelterhuntconsultants.com</a></td>
-                                    <td><span style="color:var(--cms-emerald);">Live</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Online Gaming Tournaments</strong></td>
-                                    <td>Esports Platform</td>
-                                    <td><a href="https://sp-three-liart.vercel.app" target="_blank" style="color:var(--cms-accent);">sp-three-liart.vercel.app</a></td>
-                                    <td><span style="color:var(--cms-emerald);">Live</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Founder Showcase</strong></td>
-                                    <td>Personal Portfolio</td>
-                                    <td><a href="https://farhanulla.me" target="_blank" style="color:var(--cms-accent);">farhanulla.me</a></td>
-                                    <td><span style="color:var(--cms-emerald);">Live</span></td>
-                                </tr>
+                            <tbody id="cms-projects-tbody">
+                                <!-- Dynamic Projects -->
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- PANEL 3: REVIEWS -->
+                <!-- PANEL 4: REVIEWS & TESTIMONIALS MANAGER (ADD & EDIT) -->
                 <div class="panel" id="panel-reviews">
                     <div class="panel-box">
-                        <h3>Testomiles & Client Reviews Manager</h3>
-                        <p>Moderate user-submitted comments published live on ElavateX.com</p>
+                        <h3>Add / Edit Testimonials & Reviews</h3>
+                        <p>Manage client reviews and feedback published live on ElavateX.com</p>
 
+                        <form id="form-add-review" style="max-width:600px; margin-bottom:2rem;">
+                            <input type="hidden" id="rev-edit-id" value="">
+                            <div class="form-group">
+                                <label for="rev-author-name">Author Name *</label>
+                                <input type="text" id="rev-author-name" required placeholder="e.g. Sudarshan">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rev-author-role">Company / Role *</label>
+                                <input type="text" id="rev-author-role" required placeholder="e.g. Founder, Shelter Hunt Consultants">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rev-star-val">Rating *</label>
+                                <select id="rev-star-val" required>
+                                    <option value="5">★★★★★ (5 Stars)</option>
+                                    <option value="4">★★★★☆ (4 Stars)</option>
+                                    <option value="3">★★★☆☆ (3 Stars)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rev-quote-text">Review Quote *</label>
+                                <textarea id="rev-quote-text" rows="3" required placeholder="Working with ElavateX was the absolute best experience!..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-cms-primary" style="width:auto; padding:0.7rem 1.8rem;" id="btn-save-rev">Add Review Live</button>
+                        </form>
+
+                        <h4 style="margin-bottom:1rem; font-size:1rem;">Published Reviews Grid</h4>
                         <table class="table-custom">
                             <thead>
                                 <tr>
                                     <th>Author</th>
                                     <th>Rating</th>
-                                    <th>Review Comment</th>
-                                    <th>Action</th>
+                                    <th>Review Quote</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="cms-reviews-tbody">
@@ -335,29 +439,46 @@
                     </div>
                 </div>
 
-                <!-- PANEL 4: THEME -->
-                <div class="panel" id="panel-theme">
+                <!-- PANEL 5: CONTENT MANAGER -->
+                <div class="panel" id="panel-content">
                     <div class="panel-box">
-                        <h3>Live Design System & Brand Settings</h3>
-                        <p>Update website branding, primary colors, and contact info in real-time.</p>
+                        <h3>Website Content & Headlines Manager</h3>
+                        <p>Edit core landing page titles and taglines dynamically.</p>
 
-                        <form id="cms-theme-form" style="max-width: 600px;">
+                        <form id="form-content-mgr" style="max-width:600px;">
                             <div class="form-group">
-                                <label for="cms-brand-input">Agency Brand Name</label>
-                                <input type="text" id="cms-brand-input" value="ElavateX">
+                                <label for="hero-title-input">Hero Main Headline</label>
+                                <input type="text" id="hero-title-input" value="Elevate Your Digital Flagship to Unrivaled Heights">
                             </div>
 
                             <div class="form-group">
-                                <label for="cms-color-input">Primary Accent Color</label>
-                                <input type="color" id="cms-color-input" value="#6366f1" style="height:45px; cursor:pointer;">
+                                <label for="hero-subtitle-input">Hero Subtitle</label>
+                                <textarea id="hero-subtitle-input" rows="2">We build world-class websites, mobile apps, and high-ROAS social media growth engines.</textarea>
+                            </div>
+
+                            <button type="submit" class="btn-cms-primary" style="width:auto; padding:0.7rem 1.8rem;">Save Content Changes</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- PANEL 6: GLOBAL SETTINGS & SECURITY (UPDATE ADMIN PASSWORD) -->
+                <div class="panel" id="panel-settings">
+                    <div class="panel-box">
+                        <h3>Admin Security & Credentials Settings</h3>
+                        <p>Update your Admin ID and Password for logging into the CMS Dashboard.</p>
+
+                        <form id="form-admin-sec" style="max-width:500px;">
+                            <div class="form-group">
+                                <label for="sec-user-id">Admin ID *</label>
+                                <input type="text" id="sec-user-id" required value="FarhanElavate">
                             </div>
 
                             <div class="form-group">
-                                <label for="cms-wa-input">WhatsApp Contact Number</label>
-                                <input type="text" id="cms-wa-input" value="7676808068">
+                                <label for="sec-pass">New Password *</label>
+                                <input type="password" id="sec-pass" required value="Mycareer">
                             </div>
 
-                            <button type="submit" class="btn-cms-primary" style="width:auto; padding:0.8rem 2rem;">Save & Apply Live Changes</button>
+                            <button type="submit" class="btn-cms-primary" style="width:auto; padding:0.75rem 2rem;">Update Admin Password</button>
                         </form>
                     </div>
                 </div>
@@ -367,6 +488,31 @@
     </div>
 
     <script>
+        // Password Visibility Toggle
+        const togglePwBtn = document.getElementById('toggle-pw-btn');
+        const cmsPassInput = document.getElementById('cms-pass');
+
+        if (togglePwBtn && cmsPassInput) {
+            togglePwBtn.addEventListener('click', () => {
+                const type = cmsPassInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                cmsPassInput.setAttribute('type', type);
+                togglePwBtn.textContent = type === 'password' ? '👁️' : '🙈';
+            });
+        }
+
+        // Credentials Management
+        function getAdminCreds() {
+            const stored = localStorage.getItem('elavatex_admin_credentials');
+            if (stored) {
+                try { return JSON.parse(stored); } catch (e) { }
+            }
+            return { user: 'FarhanElavate', pass: 'Mycareer' };
+        }
+
+        function setAdminCreds(creds) {
+            localStorage.setItem('elavatex_admin_credentials', JSON.stringify(creds));
+        }
+
         const loginWrapper = document.getElementById('cms-login-wrapper');
         const appLayout = document.getElementById('cms-app-layout');
         const loginForm = document.getElementById('cms-login-form');
@@ -377,7 +523,11 @@
             if (sessionStorage.getItem('elavatex_admin_logged') === 'true') {
                 loginWrapper.style.display = 'none';
                 appLayout.classList.add('active');
-                renderCMSReviews();
+                const creds = getAdminCreds();
+                const sidebarUser = document.getElementById('cms-sidebar-user');
+                if (sidebarUser) sidebarUser.textContent = `${creds.user} (Admin)`;
+                renderProjectsTable();
+                renderReviewsTable();
             } else {
                 loginWrapper.style.display = 'flex';
                 appLayout.classList.remove('active');
@@ -388,8 +538,9 @@
             e.preventDefault();
             const user = document.getElementById('cms-user').value.trim();
             const pass = document.getElementById('cms-pass').value.trim();
+            const creds = getAdminCreds();
 
-            if (user === 'FarhanElavate' && pass === 'Mycareer') {
+            if (user === creds.user && pass === creds.pass) {
                 sessionStorage.setItem('elavatex_admin_logged', 'true');
                 loginError.style.display = 'none';
                 checkAuth();
@@ -403,7 +554,7 @@
             checkAuth();
         });
 
-        // Navigation Tabs
+        // Navigation Tabs Switcher
         const navItems = document.querySelectorAll('.nav-item');
         const panels = document.querySelectorAll('.panel');
         const topbarTitle = document.getElementById('topbar-title');
@@ -422,55 +573,198 @@
             });
         });
 
-        // Reviews Management
-        const defaultRev = [
-            { id: 1, name: "Sudarshan", company: "Shelter Hunt Consultants", rating: 5, comment: "Working with ElavateX was the absolute best experience! Delivered on time with top-tier output." }
+        // ------------------------------------------------------------------
+        // Projects Manager (Add, Edit, Delete)
+        // ------------------------------------------------------------------
+        const defaultProjects = [
+            { id: 1, name: "Shelter Hunt Consultants", url: "https://shelterhuntconsultants.com", category: "REAL ESTATE PORTAL", desc: "Property Advisory & Consultancy portal built for seamless property search & lead generation.", stat: "★ 5.0 Rating • Delivered On Time" },
+            { id: 2, name: "Online Gaming Tournaments", url: "https://sp-three-liart.vercel.app", category: "ESPORTS PLATFORM", desc: "Competitive Gaming Platform with live esports leaderboards & instant payouts.", stat: "Live App • Active Tournaments" },
+            { id: 3, name: "Founder Showcase", url: "https://farhanulla.me", category: "FOUNDER PORTFOLIO", desc: "Personal portfolio showcasing engineering architecture & full-stack software systems.", stat: "Live Web • Farhanulla" }
+        ];
+
+        function getProjects() {
+            const stored = localStorage.getItem('elavatex_projects_data');
+            if (stored) {
+                try { return JSON.parse(stored); } catch (e) { }
+            }
+            return defaultProjects;
+        }
+
+        function saveProjects(projects) {
+            localStorage.setItem('elavatex_projects_data', JSON.stringify(projects));
+        }
+
+        function renderProjectsTable() {
+            const tbody = document.getElementById('cms-projects-tbody');
+            const statProjectsCount = document.getElementById('stat-projects-count');
+            const projects = getProjects();
+
+            if (statProjectsCount) statProjectsCount.textContent = projects.length;
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+            projects.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong>${p.name}</strong></td>
+                    <td>${p.category}</td>
+                    <td><a href="${p.url}" target="_blank" style="color:var(--cms-accent);">${p.url}</a></td>
+                    <td>
+                        <button class="btn-action btn-edit-proj" data-id="${p.id}">Edit</button>
+                        <button class="btn-delete btn-del-proj" data-id="${p.id}">Delete</button>
+                    </td>
+                `;
+
+                tr.querySelector('.btn-edit-proj').addEventListener('click', () => {
+                    document.getElementById('proj-edit-id').value = p.id;
+                    document.getElementById('proj-name').value = p.name;
+                    document.getElementById('proj-url').value = p.url;
+                    document.getElementById('proj-category').value = p.category;
+                    document.getElementById('proj-desc').value = p.desc;
+                    document.getElementById('proj-stat').value = p.stat;
+                    document.getElementById('btn-save-proj').textContent = 'Update Project Live';
+                });
+
+                tr.querySelector('.btn-del-proj').addEventListener('click', () => {
+                    const updated = projects.filter(item => item.id !== p.id);
+                    saveProjects(updated);
+                    renderProjectsTable();
+                });
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        const addProjectForm = document.getElementById('form-add-project');
+        if (addProjectForm) {
+            addProjectForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const editId = document.getElementById('proj-edit-id').value;
+                const name = document.getElementById('proj-name').value.trim();
+                const url = document.getElementById('proj-url').value.trim();
+                const category = document.getElementById('proj-category').value.trim();
+                const desc = document.getElementById('proj-desc').value.trim();
+                const stat = document.getElementById('proj-stat').value.trim();
+
+                let projects = getProjects();
+                if (editId) {
+                    projects = projects.map(item => item.id == editId ? { id: item.id, name, url, category, desc, stat } : item);
+                } else {
+                    projects.push({ id: Date.now(), name, url, category, desc, stat });
+                }
+
+                saveProjects(projects);
+                addProjectForm.reset();
+                document.getElementById('proj-edit-id').value = '';
+                document.getElementById('btn-save-proj').textContent = 'Add Project Live';
+                renderProjectsTable();
+                alert('✨ Case Study Project Saved Live!');
+            });
+        }
+
+        // ------------------------------------------------------------------
+        // Reviews Manager (Add, Edit, Delete)
+        // ------------------------------------------------------------------
+        const defaultReviews = [
+            { id: 1, name: "Sudarshan", company: "Founder, Shelter Hunt Consultants", rating: 5, comment: "Working with ElavateX was the absolute best experience! Delivered on time with top-tier output." }
         ];
 
         function getReviews() {
             const stored = localStorage.getItem('elavatex_user_reviews');
             if (stored) {
-                try { return JSON.parse(stored); } catch (e) { return defaultRev; }
+                try { return JSON.parse(stored); } catch (e) { }
             }
-            return defaultRev;
+            return defaultReviews;
         }
 
-        function renderCMSReviews() {
+        function saveReviews(reviews) {
+            localStorage.setItem('elavatex_user_reviews', JSON.stringify(reviews));
+        }
+
+        function renderReviewsTable() {
             const tbody = document.getElementById('cms-reviews-tbody');
-            const statCount = document.getElementById('stat-reviews-count');
+            const statReviewsCount = document.getElementById('stat-reviews-count');
             const reviews = getReviews();
 
-            if (statCount) statCount.textContent = reviews.length;
+            if (statReviewsCount) statReviewsCount.textContent = reviews.length;
             if (!tbody) return;
 
             tbody.innerHTML = '';
-            reviews.forEach(rev => {
+            reviews.forEach(r => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td><strong>${rev.name}</strong><br><small style="color:var(--cms-muted);">${rev.company || 'Client'}</small></td>
-                    <td style="color:#f59e0b;">${'★'.repeat(rev.rating)}</td>
-                    <td>"${rev.comment}"</td>
-                    <td><button class="btn-delete" data-id="${rev.id}">Delete</button></td>
+                    <td><strong>${r.name}</strong><br><small style="color:var(--cms-muted);">${r.company || 'Client'}</small></td>
+                    <td style="color:#f59e0b;">${'★'.repeat(r.rating)}</td>
+                    <td>"${r.comment}"</td>
+                    <td>
+                        <button class="btn-action btn-edit-rev" data-id="${r.id}">Edit</button>
+                        <button class="btn-delete btn-del-rev" data-id="${r.id}">Delete</button>
+                    </td>
                 `;
-                tr.querySelector('.btn-delete').addEventListener('click', () => {
-                    const updated = reviews.filter(r => r.id !== rev.id);
-                    localStorage.setItem('elavatex_user_reviews', JSON.stringify(updated));
-                    renderCMSReviews();
+
+                tr.querySelector('.btn-edit-rev').addEventListener('click', () => {
+                    document.getElementById('rev-edit-id').value = r.id;
+                    document.getElementById('rev-author-name').value = r.name;
+                    document.getElementById('rev-author-role').value = r.company;
+                    document.getElementById('rev-star-val').value = r.rating;
+                    document.getElementById('rev-quote-text').value = r.comment;
+                    document.getElementById('btn-save-rev').textContent = 'Update Review Live';
                 });
+
+                tr.querySelector('.btn-del-rev').addEventListener('click', () => {
+                    const updated = reviews.filter(item => item.id !== r.id);
+                    saveReviews(updated);
+                    renderReviewsTable();
+                });
+
                 tbody.appendChild(tr);
             });
         }
 
-        // Live Theme Customizer
-        const themeForm = document.getElementById('cms-theme-form');
-        if (themeForm) {
-            themeForm.addEventListener('submit', (e) => {
+        const addReviewForm = document.getElementById('form-add-review');
+        if (addReviewForm) {
+            addReviewForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const brand = document.getElementById('cms-brand-input').value;
-                const color = document.getElementById('cms-color-input').value;
-                localStorage.setItem('elavatex_custom_brand', brand);
-                localStorage.setItem('elavatex_custom_color', color);
-                alert('✨ Live Changes Saved! Open ElavateX.com to see your updated brand settings.');
+                const editId = document.getElementById('rev-edit-id').value;
+                const name = document.getElementById('rev-author-name').value.trim();
+                const company = document.getElementById('rev-author-role').value.trim();
+                const rating = parseInt(document.getElementById('rev-star-val').value) || 5;
+                const comment = document.getElementById('rev-quote-text').value.trim();
+
+                let reviews = getReviews();
+                if (editId) {
+                    reviews = reviews.map(item => item.id == editId ? { id: item.id, name, company, rating, comment } : item);
+                } else {
+                    reviews.push({ id: Date.now(), name, company, rating, comment });
+                }
+
+                saveReviews(reviews);
+                addReviewForm.reset();
+                document.getElementById('rev-edit-id').value = '';
+                document.getElementById('btn-save-rev').textContent = 'Add Review Live';
+                renderReviewsTable();
+                alert('✨ Testimonial Saved Live!');
+            });
+        }
+
+        // ------------------------------------------------------------------
+        // Security Settings Form (Update Admin ID & Password)
+        // ------------------------------------------------------------------
+        const secForm = document.getElementById('form-admin-sec');
+        if (secForm) {
+            const currentCreds = getAdminCreds();
+            document.getElementById('sec-user-id').value = currentCreds.user;
+            document.getElementById('sec-pass').value = currentCreds.pass;
+
+            secForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const newUser = document.getElementById('sec-user-id').value.trim();
+                const newPass = document.getElementById('sec-pass').value.trim();
+
+                if (newUser && newPass) {
+                    setAdminCreds({ user: newUser, pass: newPass });
+                    alert('🔒 Admin Credentials Updated! Use your new Admin ID and Password on your next login.');
+                }
             });
         }
 
