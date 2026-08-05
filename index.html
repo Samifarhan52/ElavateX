@@ -18,6 +18,37 @@
 <body class="light-theme">
 
     <!-- =================================================================== -->
+    <!-- CINEMATIC ENTRY REVEAL OVERLAY                                      -->
+    <!-- Single X -> Split Slash / & \ -> Elavate Spark -> Merge ElavateX    -->
+    <!-- =================================================================== -->
+    <div id="intro-overlay" class="intro-overlay">
+        <button class="skip-intro-btn" id="skip-intro-btn">Skip &rarr;</button>
+        <div class="intro-canvas">
+            <div class="glow-bg-burst"></div>
+            
+            <!-- Phase 1 & 2: X character and splitting slashes -->
+            <div class="intro-x-wrapper" id="intro-x-wrapper">
+                <span class="x-solo-char" id="x-solo-char">X</span>
+                <div class="split-slashes" id="split-slashes">
+                    <span class="slash-char left-slash" id="left-slash">/</span>
+                    <span class="slash-char right-slash" id="right-slash">\</span>
+                </div>
+            </div>
+
+            <!-- Phase 3: Elavate text reveal with spark glow -->
+            <div class="intro-elavate-wrapper" id="intro-elavate-wrapper">
+                <span class="elavate-spark-text">Elavate</span>
+                <span class="spark-glow-dot"></span>
+            </div>
+
+            <!-- Phase 4: Final Merged Brand ElavateX -->
+            <div class="intro-final-wrapper" id="intro-final-wrapper">
+                <span class="final-brand-text">Elavate<span class="brand-x-spark">X</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
     <!-- HEADER / NAVIGATION BAR                                             -->
     <!-- =================================================================== -->
     <header class="navbar-header" id="navbar">

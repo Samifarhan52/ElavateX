@@ -1,9 +1,73 @@
 /**
- * ElavateX - Master Client Logic (Dual Theme & 24/7 AI Buddy Edition)
+ * ElavateX - Master Client Logic (Cinematic Entry Reveal & Dual Theme & 24/7 AI Buddy)
  * Brand: ElavateX | Domain: ElavateX.com | WhatsApp: 7676808068
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // ----------------------------------------------------------------------
+    // Entry Reveal Animation Sequence
+    // Sequence: Single X -> Split / & \ -> Elavate Spark -> Merge ElavateX -> Reveal Site
+    // ----------------------------------------------------------------------
+    const introOverlay = document.getElementById('intro-overlay');
+    const skipIntroBtn = document.getElementById('skip-intro-btn');
+
+    const xSoloChar = document.getElementById('x-solo-char');
+    const splitSlashes = document.getElementById('split-slashes');
+    const introElavateWrapper = document.getElementById('intro-elavate-wrapper');
+    const introFinalWrapper = document.getElementById('intro-final-wrapper');
+    const glowBgBurst = document.querySelector('.glow-bg-burst');
+
+    function finishIntro() {
+        if (introOverlay) {
+            introOverlay.classList.add('hidden');
+        }
+    }
+
+    if (skipIntroBtn) {
+        skipIntroBtn.addEventListener('click', finishIntro);
+    }
+
+    // Run intro sequence on initial visit
+    if (introOverlay && !sessionStorage.getItem('elavatex_intro_played')) {
+        sessionStorage.setItem('elavatex_intro_played', 'true');
+        
+        // Step 1: Single X drops in
+        setTimeout(() => {
+            if (xSoloChar) xSoloChar.classList.add('active');
+            if (glowBgBurst) glowBgBurst.style.opacity = '0.7';
+        }, 100);
+
+        // Step 2: X splits into / and \
+        setTimeout(() => {
+            if (xSoloChar) xSoloChar.style.opacity = '0';
+            if (splitSlashes) {
+                splitSlashes.classList.add('active');
+                setTimeout(() => splitSlashes.classList.add('separated'), 100);
+            }
+        }, 900);
+
+        // Step 3: Elavate text reveals in center
+        setTimeout(() => {
+            if (introElavateWrapper) introElavateWrapper.classList.add('active');
+        }, 1600);
+
+        // Step 4: Everything merges into final ElavateX
+        setTimeout(() => {
+            if (splitSlashes) splitSlashes.style.opacity = '0';
+            if (introElavateWrapper) introElavateWrapper.style.opacity = '0';
+            if (introFinalWrapper) introFinalWrapper.classList.add('active');
+            if (glowBgBurst) glowBgBurst.style.opacity = '1';
+        }, 2600);
+
+        // Step 5: Smooth dissolve into website
+        setTimeout(() => {
+            finishIntro();
+        }, 3600);
+    } else if (introOverlay) {
+        introOverlay.style.display = 'none';
+    }
+
     // ----------------------------------------------------------------------
     // 0. Dark / Light Theme Mode Toggle Engine
     // ----------------------------------------------------------------------
