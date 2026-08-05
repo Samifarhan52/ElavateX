@@ -1,5 +1,6 @@
 /**
- * ElavateX - Master Client Logic (Black Carpet Transition & Ethereal Smoke Edition)
+ * ElavateX - Master Client Logic
+ * Features: Black Carpet Wipe, Cinematic Intro, Live Case Studies, Testomiles, Admin Portal
  * Brand: ElavateX | Domain: ElavateX.com | WhatsApp: 7676808068
  */
 
@@ -44,7 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const href = link.getAttribute('href');
             if (href && href.startsWith('#') && href.length > 1) {
                 e.preventDefault();
-                executeBlackCarpetWipe(href);
+                if (href === '#admin') {
+                    openAdminGateway();
+                } else {
+                    executeBlackCarpetWipe(href);
+                }
             }
         });
     });
@@ -199,13 +204,221 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 3. Dark / Light Theme Mode Toggle Engine
+    // 3. Testimonials & Live User Comments System (Testomile)
+    // ----------------------------------------------------------------------
+    const defaultReviews = [
+        {
+            id: 1,
+            name: "Sudarshan",
+            company: "Founder, Shelter Hunt Consultants (shelterhuntconsultants.com)",
+            rating: 5,
+            comment: "Working with ElavateX was the absolute best experience! They delivered Shelter Hunt Consultants ahead of schedule with top-tier output, 100% responsiveness, and exceptional quality. Highly recommended!",
+            date: "Recent"
+        }
+    ];
+
+    function getStoredReviews() {
+        const stored = localStorage.getItem('elavatex_user_reviews');
+        if (stored) {
+            try { return JSON.parse(stored); } catch (e) { return defaultReviews; }
+        }
+        return defaultReviews;
+    }
+
+    function saveStoredReviews(reviews) {
+        localStorage.setItem('elavatex_user_reviews', JSON.stringify(reviews));
+    }
+
+    const commentsGrid = document.getElementById('comments-grid');
+    const reviewsCountEl = document.getElementById('reviews-count');
+    const publicReviewForm = document.getElementById('public-review-form');
+
+    function renderReviews() {
+        const reviews = getStoredReviews();
+        if (reviewsCountEl) reviewsCountEl.textContent = reviews.length;
+
+        if (commentsGrid) {
+            commentsGrid.innerHTML = '';
+            reviews.forEach((rev, idx) => {
+                const stars = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+                const card = document.createElement('div');
+                card.className = 'user-review-card glass-panel';
+                card.innerHTML = `
+                    <div class="star-rating" style="font-size: 1.1rem;">${stars}</div>
+                    <p class="review-text" style="font-size: 0.95rem; margin-bottom: 1rem;">"${escapeHtml(rev.comment)}"</p>
+                    <div class="testimonial-author" style="justify-content: flex-start;">
+                        <div class="author-avatar" style="width: 36px; height: 36px; font-size: 0.95rem;">${escapeHtml(rev.name.charAt(0).toUpperCase())}</div>
+                        <div class="author-info">
+                            <div class="author-name" style="font-size: 0.95rem;">${escapeHtml(rev.name)}</div>
+                            <div class="author-role" style="font-size: 0.8rem;">${escapeHtml(rev.company || 'Client')}</div>
+                        </div>
+                    </div>
+                `;
+                commentsGrid.appendChild(card);
+            });
+        }
+        renderAdminReviewsList();
+    }
+
+    if (publicReviewForm) {
+        publicReviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('rev-name').value;
+            const company = document.getElementById('rev-company').value;
+            const rating = parseInt(document.getElementById('rev-rating').value) || 5;
+            const text = document.getElementById('rev-text').value;
+
+            const reviews = getStoredReviews();
+            const newRev = {
+                id: Date.now(),
+                name: name,
+                company: company || 'Valued Client',
+                rating: rating,
+                comment: text,
+                date: 'Just now'
+            };
+            reviews.unshift(newRev);
+            saveStoredReviews(reviews);
+
+            publicReviewForm.reset();
+            renderReviews();
+            alert('🎉 Thank you! Your review has been published live on ElavateX.com!');
+        });
+    }
+
+    renderReviews();
+
+    // ----------------------------------------------------------------------
+    // 4. Fully Integrated Admin Control Gateway & Dashboard
+    // Credentials: ID = FarhanElavate | Password = Mycareer
+    // ----------------------------------------------------------------------
+    const adminLoginModal = document.getElementById('admin-login-modal');
+    const adminDashModal = document.getElementById('admin-dashboard-modal');
+    const adminLoginForm = document.getElementById('admin-login-form');
+    const adminLoginError = document.getElementById('admin-login-error');
+    const adminLoginCloseBtn = document.getElementById('admin-login-close-btn');
+    const adminDashCloseBtn = document.getElementById('admin-dash-close-btn');
+    const adminLogoutBtn = document.getElementById('admin-logout-btn');
+
+    function openAdminGateway() {
+        if (sessionStorage.getItem('elavatex_admin_logged') === 'true') {
+            if (adminDashModal) adminDashModal.showModal();
+        } else {
+            if (adminLoginModal) adminLoginModal.showModal();
+        }
+    }
+
+    if (adminLoginCloseBtn) adminLoginCloseBtn.addEventListener('click', () => adminLoginModal.close());
+    if (adminDashCloseBtn) adminDashCloseBtn.addEventListener('click', () => adminDashModal.close());
+
+    if (window.location.hash === '#admin' || window.location.search.includes('admin=true')) {
+        setTimeout(openAdminGateway, 500);
+    }
+
+    const openAdminTrigger = document.getElementById('open-admin-trigger');
+    if (openAdminTrigger) {
+        openAdminTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            openAdminGateway();
+        });
+    }
+
+    if (adminLoginForm) {
+        adminLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userVal = document.getElementById('admin-user').value.trim();
+            const passVal = document.getElementById('admin-pass').value.trim();
+
+            if (userVal === 'FarhanElavate' && passVal === 'Mycareer') {
+                sessionStorage.setItem('elavatex_admin_logged', 'true');
+                if (adminLoginError) adminLoginError.style.display = 'none';
+                if (adminLoginModal) adminLoginModal.close();
+                if (adminDashModal) adminDashModal.showModal();
+            } else {
+                if (adminLoginError) adminLoginError.style.display = 'block';
+            }
+        });
+    }
+
+    if (adminLogoutBtn) {
+        adminLogoutBtn.addEventListener('click', () => {
+            sessionStorage.removeItem('elavatex_admin_logged');
+            if (adminDashModal) adminDashModal.close();
+            alert('Logged out from Admin Control Center.');
+        });
+    }
+
+    // Admin Dashboard Tab Switcher
+    const dashTabBtns = document.querySelectorAll('.dash-tab-btn');
+    const dashPanels = document.querySelectorAll('.dash-panel');
+
+    dashTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.getAttribute('data-dashtab');
+
+            dashTabBtns.forEach(b => b.classList.remove('active'));
+            dashPanels.forEach(p => p.classList.remove('active'));
+
+            btn.classList.add('active');
+            const panel = document.getElementById(targetTab);
+            if (panel) panel.classList.add('active');
+        });
+    });
+
+    // Render reviews inside Admin Tab 2
+    function renderAdminReviewsList() {
+        const admList = document.getElementById('adm-reviews-list');
+        if (!admList) return;
+        const reviews = getStoredReviews();
+        admList.innerHTML = '';
+
+        reviews.forEach(rev => {
+            const item = document.createElement('div');
+            item.className = 'dash-rev-item';
+            item.innerHTML = `
+                <div>
+                    <strong>${escapeHtml(rev.name)}</strong> (${escapeHtml(rev.company || 'Client')})<br>
+                    <small style="color: var(--text-muted);">${'★'.repeat(rev.rating)} - "${escapeHtml(rev.comment)}"</small>
+                </div>
+                <button class="btn-sm" style="background:#ef4444; color:#fff; border:none; padding:0.3rem 0.6rem; border-radius:4px; cursor:pointer;" data-revid="${rev.id}">Delete</button>
+            `;
+            const delBtn = item.querySelector('button');
+            delBtn.addEventListener('click', () => {
+                const updated = reviews.filter(r => r.id !== rev.id);
+                saveStoredReviews(updated);
+                renderReviews();
+            });
+            admList.appendChild(item);
+        });
+    }
+
+    // Admin Theme Customizer Form
+    const adminThemeForm = document.getElementById('admin-theme-form');
+    if (adminThemeForm) {
+        adminThemeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const brandVal = document.getElementById('adm-brand-name').value.trim();
+            const colorVal = document.getElementById('adm-primary-color').value;
+
+            if (colorVal) {
+                document.documentElement.style.setProperty('--accent-indigo', colorVal);
+            }
+            if (brandVal) {
+                document.querySelectorAll('.logo-text').forEach(el => {
+                    el.innerHTML = `${brandVal.substring(0, brandVal.length - 1)}<span class="accent-x">${brandVal.slice(-1)}</span>`;
+                });
+            }
+            alert('✨ Live Changes Saved! Theme color and brand name updated across website.');
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // 5. Dark / Light Theme Mode Toggle Engine
     // ----------------------------------------------------------------------
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const drawerThemeToggleBtn = document.getElementById('drawer-theme-toggle-btn');
     const htmlEl = document.documentElement;
 
-    // Load saved theme (default to warm editorial beige 'light' mode)
     const savedTheme = localStorage.getItem('elavatex_theme') || 'light';
     setTheme(savedTheme);
 
@@ -232,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (drawerThemeToggleBtn) drawerThemeToggleBtn.addEventListener('click', toggleTheme);
 
     // ----------------------------------------------------------------------
-    // 4. 24/7 AI Growth Buddy Chatbot Engine
+    // 6. 24/7 AI Growth Buddy Chatbot Engine
     // ----------------------------------------------------------------------
     const chatbotContainer = document.getElementById('chatbot-container');
     const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
@@ -243,7 +456,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatChips = document.querySelectorAll('.chat-chip');
     const chatbotTooltip = document.getElementById('chatbot-tooltip');
 
-    // Toggle Chatbot Window
     function toggleChatbot() {
         if (chatbotContainer) {
             chatbotContainer.classList.toggle('open');
@@ -256,9 +468,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chatbotToggleBtn) chatbotToggleBtn.addEventListener('click', toggleChatbot);
     if (chatCloseBtn) chatCloseBtn.addEventListener('click', toggleChatbot);
 
-    // Knowledge Base Response Engine
     function getBotResponse(userMsg) {
         const query = userMsg.toLowerCase();
+
+        if (query.includes('shelter') || query.includes('sudarshan') || query.includes('case') || query.includes('portfolio') || query.includes('game') || query.includes('esports')) {
+            return `💼 <strong>Featured Client Projects:</strong><br>&bull; <a href="https://shelterhuntconsultants.com" target="_blank">Shelter Hunt Consultants (shelterhuntconsultants.com)</a><br>&bull; <a href="https://sp-three-liart.vercel.app" target="_blank">Online Games Tournaments (sp-three-liart.vercel.app)</a><br>&bull; <a href="https://farhanulla.me" target="_blank">Farhanulla Portfolio (farhanulla.me)</a>`;
+        }
 
         if (query.includes('web') || query.includes('website') || query.includes('react') || query.includes('next') || query.includes('site')) {
             return `🌐 <strong>Web Development at ElavateX:</strong><br>We engineer high-converting, sub-second websites using React, Next.js, and Vite with 100/100 Core Web Vitals performance.<br><br>👉 <a href="#web-dev" onclick="document.getElementById('chatbot-container').classList.remove('open')">View Web Dev Showcase &rarr;</a><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20have%20a%20Web%20Dev%20inquiry" target="_blank">Chat on WhatsApp (7676808068)</a>`;
@@ -360,7 +575,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 5. Services Overview Tab Switcher
+    // 7. Services Overview Tab Switcher
     // ----------------------------------------------------------------------
     const tabButtons = document.querySelectorAll('.service-tab-btn');
     const tabPanels = document.querySelectorAll('.tab-panel');
@@ -381,7 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------------------------
-    // 6. Interactive Project Cost Estimator
+    // 8. Interactive Project Cost Estimator
     // ----------------------------------------------------------------------
     const serviceTypeChips = document.querySelectorAll('#est-service-type .chip');
     const scopeTypeChips = document.querySelectorAll('#est-scope-type .chip');
@@ -447,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateEstimate();
 
     // ----------------------------------------------------------------------
-    // 7. Consultation & Book a Call Modal Dialog
+    // 9. Consultation & Book a Call Modal Dialog
     // ----------------------------------------------------------------------
     const consultationModal = document.getElementById('consultation-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
@@ -524,7 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 8. Header Navbar Scroll & Mobile Menu Drawer
+    // 10. Header Navbar Scroll & Mobile Menu Drawer
     // ----------------------------------------------------------------------
     const navbar = document.getElementById('navbar');
     const mobileToggle = document.getElementById('mobile-toggle');

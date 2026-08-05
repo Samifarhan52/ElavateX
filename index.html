@@ -597,50 +597,134 @@ agencyApp.<span class="fn">deployToProduction</span>();</code></pre>
         </section>
 
         <!-- =================================================================== -->
-        <!-- PORTFOLIO SHOWCASE                                                  -->
+        <!-- PORTFOLIO & REAL CASE STUDIES                                       -->
         <!-- =================================================================== -->
         <section class="section-portfolio" id="portfolio">
             <div class="container">
                 <div class="section-header text-center">
                     <span class="section-subtitle">PROVEN CASE STUDIES</span>
-                    <h2 class="section-title">Client Case Studies</h2>
-                    <p class="section-desc">Take a look at recent digital solutions engineered by ElavateX.</p>
+                    <h2 class="section-title">Featured Client Projects</h2>
+                    <p class="section-desc">Explore live applications and platforms engineered by ElavateX. Click any card to launch the live site.</p>
                 </div>
 
-                <div class="portfolio-grid">
-                    <div class="portfolio-card glass-panel">
-                        <div class="portfolio-img-box img-web">
-                            <div class="tag-badge">Web Development</div>
+                <div class="portfolio-grid" id="portfolio-grid">
+                    <!-- Project 1: Shelter Hunt Consultants -->
+                    <a href="https://shelterhuntconsultants.com" target="_blank" rel="noopener" class="portfolio-card glass-panel real-project-card">
+                        <div class="portfolio-img-box img-shelterhunt">
+                            <div class="tag-badge">REAL ESTATE PORTAL</div>
+                            <div class="external-link-icon">↗</div>
                         </div>
                         <div class="portfolio-content">
-                            <h3>FinTech SaaS Application</h3>
-                            <p>Architected a high-speed trading dashboard with sub-second execution speeds.</p>
-                            <div class="project-stat">+240% User Retention</div>
+                            <div class="project-domain">shelterhuntconsultants.com</div>
+                            <h3>Shelter Hunt Consultants</h3>
+                            <p>Property Advisory & Consultancy portal built for seamless property discovery and lead generation.</p>
+                            <div class="project-stat">★ 5.0 Rating &bull; Delivered On Time</div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="portfolio-card glass-panel">
-                        <div class="portfolio-img-box img-app">
-                            <div class="tag-badge cyan">Application Dev</div>
+                    <!-- Project 2: Online Games Tournaments -->
+                    <a href="https://sp-three-liart.vercel.app" target="_blank" rel="noopener" class="portfolio-card glass-panel real-project-card">
+                        <div class="portfolio-img-box img-esports">
+                            <div class="tag-badge cyan">ESPORTS PLATFORM</div>
+                            <div class="external-link-icon">↗</div>
                         </div>
                         <div class="portfolio-content">
-                            <h3>HealthTech Mobile Platform</h3>
-                            <p>Cross-platform Flutter application with live vital monitoring and video consultations.</p>
-                            <div class="project-stat">4.9 Star Rating (App Store)</div>
+                            <div class="project-domain">sp-three-liart.vercel.app</div>
+                            <h3>Online Gaming Tournaments</h3>
+                            <p>Competitive Gaming Platform with live esports leaderboards, match brackets, and instant payout systems.</p>
+                            <div class="project-stat">Live App &bull; Active Tournaments</div>
                         </div>
-                    </div>
+                    </a>
 
-                    <div class="portfolio-card glass-panel">
-                        <div class="portfolio-img-box img-social">
-                            <div class="tag-badge violet">Digital Marketing</div>
+                    <!-- Project 3: Farhanulla Portfolio -->
+                    <a href="https://farhanulla.me" target="_blank" rel="noopener" class="portfolio-card glass-panel real-project-card">
+                        <div class="portfolio-img-box img-farhan">
+                            <div class="tag-badge violet">FOUNDER PORTFOLIO</div>
+                            <div class="external-link-icon">↗</div>
                         </div>
                         <div class="portfolio-content">
-                            <h3>E-Commerce Growth Campaign</h3>
-                            <p>Complete Instagram overhaul (@ElavateX.dev style strategy) driving viral reel reach and Meta ads expansion.</p>
-                            <div class="project-stat">5.4x ROAS on Paid Ads</div>
+                            <div class="project-domain">farhanulla.me</div>
+                            <h3>Founder & Architect Showcase</h3>
+                            <p>Personal portfolio showcasing engineering architecture, web apps, and full-stack software systems.</p>
+                            <div class="project-stat">Live Web &bull; Farhanulla</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- TESTIMONIALS & LIVE CLIENT REVIEWS (TESTOMILE)                      -->
+        <!-- =================================================================== -->
+        <section class="section-testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">CLIENT FEEDBACK & TESTOMILE</span>
+                    <h2 class="section-title">What Our Clients Say</h2>
+                    <p class="section-desc">Read real reviews from founders and submit your own feedback live on our website.</p>
+                </div>
+
+                <!-- Featured Client Review (Sudarshan - Shelter Hunt Consultants) -->
+                <div class="featured-testimonial-card glass-panel">
+                    <div class="testimonial-badge-top">FEATURED 5-STAR REVIEW</div>
+                    <div class="star-rating">★★★★★</div>
+                    <blockquote class="testimonial-quote">
+                        "Working with <strong>ElavateX</strong> was the absolute best experience! They delivered <strong>Shelter Hunt Consultants</strong> ahead of schedule with top-tier output, 100% responsiveness, and exceptional quality. Highly recommended!"
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <div class="author-name">Sudarshan</div>
+                            <div class="author-role">Founder, <a href="https://shelterhuntconsultants.com" target="_blank">Shelter Hunt Consultants</a> (shelterhuntconsultants.com)</div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Live User Submitted Comments Grid -->
+                <div class="user-comments-section">
+                    <h3 class="comments-title">Live Client Reviews (<span id="reviews-count">1</span>)</h3>
+                    <div class="comments-grid" id="comments-grid">
+                        <!-- Dynamic Comments Append Here -->
+                    </div>
+
+                    <!-- Add Comment Form -->
+                    <div class="add-comment-box glass-panel">
+                        <h3>Leave Your Live Feedback / Review</h3>
+                        <p class="form-desc">Share your experience working with ElavateX. Your review will be published live immediately!</p>
+
+                        <form id="public-review-form" class="public-review-form">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="rev-name">Your Name *</label>
+                                    <input type="text" id="rev-name" required placeholder="e.g. Alex Morgan">
+                                </div>
+                                <div class="form-group">
+                                    <label for="rev-company">Company / Role</label>
+                                    <input type="text" id="rev-company" placeholder="e.g. Founder at TechCorp">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rev-rating">Star Rating *</label>
+                                <select id="rev-rating" required>
+                                    <option value="5">★★★★★ (5 Stars - Exceptional)</option>
+                                    <option value="4">★★★★☆ (4 Stars - Great)</option>
+                                    <option value="3">★★★☆☆ (3 Stars - Good)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="rev-text">Your Review / Comment *</label>
+                                <textarea id="rev-text" rows="3" required placeholder="Tell us about your experience working with ElavateX..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-glow">
+                                <span>Publish Live Review</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -765,11 +849,138 @@ agencyApp.<span class="fn">deployToProduction</span>();</code></pre>
                 <div class="footer-legal">
                     <a href="#hero">Privacy Policy</a> &bull; 
                     <a href="#hero">Terms of Service</a> &bull; 
-                    <a href="https://instagram.com/ElavateX.dev" target="_blank">@ElavateX.dev</a>
+                    <a href="https://instagram.com/ElavateX.dev" target="_blank">@ElavateX.dev</a> &bull; 
+                    <a href="#admin" id="open-admin-trigger" class="admin-portal-link">⚙️ Admin Portal</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- =================================================================== -->
+    <!-- ADMIN LOGIN GATEWAY MODAL                                          -->
+    <!-- Credentials: ID = FarhanElavate | Password = Mycareer               -->
+    <!-- =================================================================== -->
+    <dialog class="glass-modal admin-modal" id="admin-login-modal">
+        <div class="modal-content admin-card-box">
+            <button class="modal-close" id="admin-login-close-btn">&times;</button>
+            <div class="modal-header text-center">
+                <div class="pill-tag text-purple">SECURE ADMIN GATEWAY</div>
+                <h3 class="modal-title">ElavateX Admin Portal</h3>
+                <p class="modal-subtitle">Enter your admin credentials to access live site configuration.</p>
+            </div>
+
+            <form id="admin-login-form" class="modal-form">
+                <div class="form-group">
+                    <label for="admin-user">Admin ID *</label>
+                    <input type="text" id="admin-user" required placeholder="FarhanElavate" value="FarhanElavate">
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-pass">Password *</label>
+                    <input type="password" id="admin-pass" required placeholder="Enter password" value="Mycareer">
+                </div>
+
+                <div id="admin-login-error" class="admin-login-error" style="display:none; color: #ef4444; font-size: 0.85rem; margin-bottom: 0.8rem; font-weight: 600;">
+                    ❌ Invalid Credentials! Required: FarhanElavate / Mycareer
+                </div>
+
+                <button type="submit" class="btn-glow w-full">
+                    <span>Login to Admin Control Center</span>
+                </button>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- =================================================================== -->
+    <!-- LIVE ADMIN CONTROL CENTER DASHBOARD MODAL                          -->
+    <!-- Allows live customization of website colors, logo, reviews, etc.   -->
+    <!-- =================================================================== -->
+    <dialog class="glass-modal admin-dashboard-modal" id="admin-dashboard-modal">
+        <div class="modal-content admin-dashboard-box">
+            <div class="admin-dash-header">
+                <div class="dash-brand">
+                    <span class="badge-admin">ADMIN CONTROL CENTER</span>
+                    <h2>ElavateX Live Website Engine</h2>
+                </div>
+                <div class="dash-actions">
+                    <button class="btn-sm btn-glass" id="admin-logout-btn">Logout</button>
+                    <button class="modal-close" id="admin-dash-close-btn">&times;</button>
+                </div>
+            </div>
+
+            <div class="admin-dash-tabs">
+                <button class="dash-tab-btn active" data-dashtab="tab-theme">🎨 Theme & Colors</button>
+                <button class="dash-tab-btn" data-dashtab="tab-reviews">💬 Manage Reviews</button>
+                <button class="dash-tab-btn" data-dashtab="tab-projects">📁 Manage Projects</button>
+            </div>
+
+            <!-- Tab 1: Theme & Brand Colors -->
+            <div class="dash-panel active" id="tab-theme">
+                <h3>Live Website Customization</h3>
+                <p class="dash-desc">Changes applied here dynamically update the live website immediately.</p>
+
+                <form id="admin-theme-form" class="admin-dash-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="adm-brand-name">Agency Brand Name</label>
+                            <input type="text" id="adm-brand-name" value="ElavateX">
+                        </div>
+                        <div class="form-group">
+                            <label for="adm-whatsapp">WhatsApp Contact Number</label>
+                            <input type="text" id="adm-whatsapp" value="7676808068">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="adm-instagram">Instagram Handle</label>
+                            <input type="text" id="adm-instagram" value="@ElavateX.dev">
+                        </div>
+                        <div class="form-group">
+                            <label for="adm-primary-color">Primary Brand Accent Color</label>
+                            <input type="color" id="adm-primary-color" value="#6366f1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Default Website Theme Mode</label>
+                        <div class="option-chips" id="adm-theme-chips">
+                            <button type="button" class="chip active" data-admtheme="light">Warm Editorial Beige (#f6f1eb)</button>
+                            <button type="button" class="chip" data-admtheme="dark">Obsidian Dark (#090a0f)</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-glow">
+                        <span>Save & Apply Live Changes</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tab 2: Manage Reviews -->
+            <div class="dash-panel" id="tab-reviews">
+                <h3>Client Reviews & Testomiles</h3>
+                <div class="dash-reviews-list" id="adm-reviews-list">
+                    <!-- Dynamic List of Reviews with Delete option -->
+                </div>
+            </div>
+
+            <!-- Tab 3: Manage Projects -->
+            <div class="dash-panel" id="tab-projects">
+                <h3>Manage Case Studies & Links</h3>
+                <div class="dash-projects-list">
+                    <div class="dash-proj-item">
+                        <strong>Project 1:</strong> Shelter Hunt Consultants (<a href="https://shelterhuntconsultants.com" target="_blank">shelterhuntconsultants.com</a>)
+                    </div>
+                    <div class="dash-proj-item">
+                        <strong>Project 2:</strong> Online Games Tournaments (<a href="https://sp-three-liart.vercel.app" target="_blank">sp-three-liart.vercel.app</a>)
+                    </div>
+                    <div class="dash-proj-item">
+                        <strong>Project 3:</strong> Founder Showcase (<a href="https://farhanulla.me" target="_blank">farhanulla.me</a>)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
 
     <!-- =================================================================== -->
     <!-- INTERACTIVE CONSULTATION / BOOK A CALL MODAL DIALOG               -->
