@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>ElavateX | Premier Digital Engineering & Growth Agency | ElavateX.com</title>
+    <meta name="description" content="ElavateX is a world-class digital agency specializing in Web Development, Mobile Applications, and Social Media Marketing. Transform your brand today at ElavateX.com.">
+    <meta name="keywords" content="ElavateX, ElavateX.com, Web Development, Application Development, Digital Marketing, Social Media Management, Digital Agency India">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+
+    <!-- =================================================================== -->
+    <!-- HEADER / NAVIGATION BAR                                             -->
+    <!-- =================================================================== -->
+    <header class="navbar-header" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="brand-logo">
+                <span class="logo-mark">
+                    <svg viewBox="0 0 40 40" class="logo-x-icon">
+                        <path d="M 8,6 L 20,20 L 8,34 L 14,34 L 23,23 L 32,34 L 38,34 L 26,20 L 38,6 L 32,6 L 23,17 L 14,6 Z" fill="url(#nav-x-grad)" />
+                        <defs>
+                            <linearGradient id="nav-x-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#6366f1" />
+                                <stop offset="100%" stop-color="#06b6d4" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <span class="logo-text">Elavate<span class="accent-x">X</span></span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#services-overview" class="nav-link active">Overview</a>
+                <a href="#web-dev" class="nav-link">Web Dev</a>
+                <a href="#app-dev" class="nav-link">App Dev</a>
+                <a href="#digital-marketing" class="nav-link">Social Media</a>
+                <a href="#estimator" class="nav-link">Estimator</a>
+                <a href="#portfolio" class="nav-link">Work</a>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Dark / Light Theme Toggle Button -->
+                <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Light and Dark Theme" title="Switch Light/Dark Mode">
+                    <span class="theme-icon-sun">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    </span>
+                    <span class="theme-icon-moon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </span>
+                </button>
+
+                <button class="btn-primary btn-sm open-consultation-btn">
+                    Get Free Consultation
+                </button>
+
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div class="drawer-header">
+            <div class="brand-logo">Elavate<span class="accent-x">X</span></div>
+            <button class="theme-toggle-btn mobile-theme-btn" id="drawer-theme-toggle-btn" aria-label="Toggle Theme">
+                <span class="theme-icon-sun">☀️</span>
+                <span class="theme-icon-moon">🌙</span>
+            </button>
+            <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
+        </div>
+        <div class="drawer-links">
+            <a href="#services-overview" class="drawer-link">Overview</a>
+            <a href="#web-dev" class="drawer-link">Web Development</a>
+            <a href="#app-dev" class="drawer-link">Application Development</a>
+            <a href="#digital-marketing" class="drawer-link">Social Media Management</a>
+            <a href="#estimator" class="drawer-link">Project Estimator</a>
+            <a href="#portfolio" class="drawer-link">Case Studies</a>
+            <hr class="drawer-divider">
+            <button class="btn-primary open-consultation-btn w-full">Book a Call</button>
+            <a href="https://wa.me/917676808068" target="_blank" class="btn-whatsapp-outline w-full text-center margin-top-sm">
+                <span>WhatsApp: 7676808068</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- =================================================================== -->
+        <!-- HERO SECTION                                                        -->
+        <!-- =================================================================== -->
+        <section class="hero-section" id="hero">
+            <div class="hero-bg-lights">
+                <div class="hero-glow-blob blob-left"></div>
+                <div class="hero-glow-blob blob-right"></div>
+                <div class="hero-grid-pattern"></div>
+            </div>
+
+            <div class="container hero-container">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    <span class="badge-text">Official Agency Hub &bull; ElavateX.com</span>
+                </div>
+
+                <h1 class="hero-title">
+                    Architecting <span class="gradient-text">High-Converting</span> Digital Products That Scale.
+                </h1>
+
+                <p class="hero-subtitle">
+                    At <strong>ElavateX</strong>, we combine high-performance Web Engineering, cross-platform Mobile Apps, and data-driven Social Media Management into unstoppable growth engines for ambitious brands.
+                </p>
+
+                <div class="hero-cta-group">
+                    <button class="btn-glow open-consultation-btn" id="hero-btn-book-call">
+                        <span>Book a Call Now</span>
+                        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+
+                    <button class="btn-glass open-consultation-btn" id="hero-btn-free-consult">
+                        <span>Get Free Consultation</span>
+                    </button>
+
+                    <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20discuss%20a%20project%20via%20ElavateX.com" target="_blank" rel="noopener" class="btn-whatsapp-pill" id="hero-btn-wa">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                        <span>WhatsApp: 7676808068</span>
+                    </a>
+                </div>
+
+                <!-- Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card glass-panel">
+                        <div class="metric-number">99.4%</div>
+                        <div class="metric-label">Client Retention</div>
+                    </div>
+                    <div class="metric-card glass-panel">
+                        <div class="metric-number">150+</div>
+                        <div class="metric-label">Projects Deployed</div>
+                    </div>
+                    <div class="metric-card glass-panel">
+                        <div class="metric-number">3.8x</div>
+                        <div class="metric-label">Average Revenue ROI</div>
+                    </div>
+                    <div class="metric-card glass-panel">
+                        <div class="metric-number">24/7</div>
+                        <div class="metric-label">Dedicated Support</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- SERVICES INTERACTIVE OVERVIEW SWITCHER                              -->
+        <!-- =================================================================== -->
+        <section class="section-overview" id="services-overview">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">OUR CAPABILITIES</span>
+                    <h2 class="section-title">Built for Industry Leadership</h2>
+                    <p class="section-desc">Switch between our specialized domains to explore how ElavateX transforms ideas into high-revenue digital assets.</p>
+                </div>
+
+                <div class="services-tab-buttons">
+                    <button class="service-tab-btn active" data-tab="tab-web">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        <span>Web Development</span>
+                    </button>
+                    <button class="service-tab-btn" data-tab="tab-app">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                        <span>Application Development</span>
+                    </button>
+                    <button class="service-tab-btn" data-tab="tab-marketing">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <span>Social Media Management</span>
+                    </button>
+                </div>
+
+                <!-- Tab Preview Panels -->
+                <div class="tab-content-container glass-panel">
+                    <!-- Tab 1: Web Dev -->
+                    <div class="tab-panel active" id="tab-web">
+                        <div class="tab-grid">
+                            <div class="tab-info">
+                                <div class="pill-tag">MODERN TECH STACK</div>
+                                <h3>High-Performance Web Applications & Frontends</h3>
+                                <p>We craft custom React, Next.js, and Vite web applications designed for maximum conversion, sub-second load times, and bulletproof security.</p>
+                                <ul class="check-list">
+                                    <li>Custom React / Next.js / Vite Architecture</li>
+                                    <li>Interactive Animations & Clean Glass UX</li>
+                                    <li>100/100 Core Web Vitals & SEO Optimization</li>
+                                    <li>Headless CMS & Custom API Integrations</li>
+                                </ul>
+                                <div class="tab-cta">
+                                    <a href="#web-dev" class="btn-secondary">View Web Dev Details &rarr;</a>
+                                    <button class="btn-primary open-consultation-btn" data-service="Web Development">Book Web Dev Call</button>
+                                </div>
+                            </div>
+                            <div class="tab-visual">
+                                <div class="code-preview-box">
+                                    <div class="code-header">
+                                        <span class="dot red"></span>
+                                        <span class="dot yellow"></span>
+                                        <span class="dot green"></span>
+                                        <span class="title">ElavateX_Core.ts</span>
+                                    </div>
+                                    <pre><code><span class="kwd">import</span> { <span class="cls">ElavateX</span> } <span class="kwd">from</span> <span class="str">'@elavatex/engine'</span>;
+
+<span class="kwd">const</span> agencyApp = <span class="kwd">new</span> <span class="cls">ElavateX</span>({
+  domain: <span class="str">'ElavateX.com'</span>,
+  performance: <span class="str">'100/100 Lighthouse'</span>,
+  conversionRate: <span class="str">'+350%'</span>
+});
+
+agencyApp.<span class="fn">deployToProduction</span>();</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: App Dev -->
+                    <div class="tab-panel" id="tab-app">
+                        <div class="tab-grid">
+                            <div class="tab-info">
+                                <div class="pill-tag">CROSS-PLATFORM MOBILE</div>
+                                <h3>Silky-Smooth iOS & Android Applications</h3>
+                                <p>We build mobile applications using Flutter and React Native that deliver 60FPS native performance, offline support, and intuitive user experiences.</p>
+                                <ul class="check-list">
+                                    <li>Cross-Platform iOS & Android Development</li>
+                                    <li>Native API & Hardware Acceleration</li>
+                                    <li>Real-Time Firebase & Cloud Backend</li>
+                                    <li>App Store & Google Play Publishing</li>
+                                </ul>
+                                <div class="tab-cta">
+                                    <a href="#app-dev" class="btn-secondary">View App Dev Details &rarr;</a>
+                                    <button class="btn-primary open-consultation-btn" data-service="Application Development">Book App Dev Call</button>
+                                </div>
+                            </div>
+                            <div class="tab-visual">
+                                <div class="app-mockup-frame">
+                                    <div class="notch"></div>
+                                    <div class="app-screen">
+                                        <div class="screen-header">
+                                            <span>ElavateX Mobile</span>
+                                            <span class="badge-live">LIVE</span>
+                                        </div>
+                                        <div class="screen-card">
+                                            <div class="sc-title">Active App Users</div>
+                                            <div class="sc-value">84,520</div>
+                                            <div class="sc-bar"></div>
+                                        </div>
+                                        <div class="screen-card alt">
+                                            <div class="sc-title">User Satisfaction</div>
+                                            <div class="sc-value">4.9 / 5.0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Social Media & Marketing -->
+                    <div class="tab-panel" id="tab-marketing">
+                        <div class="tab-grid">
+                            <div class="tab-info">
+                                <div class="pill-tag">DIGITAL MARKETING</div>
+                                <h3>Strategic Social Media & High-ROAS Ads</h3>
+                                <p>Dominate your market across Instagram, Meta Ads, and Google. We curate viral content calendars, motion graphic reels, and targeted ad funnels.</p>
+                                <ul class="check-list">
+                                    <li>Instagram Growth & Content Creation (@ElavateX.dev)</li>
+                                    <li>High-ROAS Meta & Google Paid Ad Campaigns</li>
+                                    <li>Motion Graphics & Reel Content Production</li>
+                                    <li>Direct Lead Funnels to WhatsApp (7676808068)</li>
+                                </ul>
+                                <div class="tab-cta">
+                                    <a href="#digital-marketing" class="btn-secondary">View Marketing Details &rarr;</a>
+                                    <button class="btn-primary open-consultation-btn" data-service="Social Media Management">Book Marketing Call</button>
+                                </div>
+                            </div>
+                            <div class="tab-visual">
+                                <div class="marketing-dashboard-mock">
+                                    <div class="dash-row">
+                                        <div class="dash-badge">Instagram: @ElavateX.dev</div>
+                                        <div class="dash-badge status">Active Campaign</div>
+                                    </div>
+                                    <div class="growth-chart">
+                                        <div class="bar h40"></div>
+                                        <div class="bar h60"></div>
+                                        <div class="bar h80"></div>
+                                        <div class="bar h100 glow"></div>
+                                    </div>
+                                    <div class="dash-stat">
+                                        <span>Reach Velocity:</span>
+                                        <strong>+540% Growth</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- LANDING SECTION 1: WEB DEVELOPMENT                                  -->
+        <!-- =================================================================== -->
+        <section class="landing-section" id="web-dev">
+            <div class="container">
+                <div class="landing-header">
+                    <div class="service-badge indigo">LANDING PAGE &bull; WEB DEVELOPMENT</div>
+                    <h2>Web Engineering Designed to Convert</h2>
+                    <p>We build digital flagships designed to outperform competitors and convert visitors into long-term clients.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card glass-panel">
+                        <div class="feature-icon indigo-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        </div>
+                        <h3>Ultra-Fast Core Web Vitals</h3>
+                        <p>Zero bloat architecture, instant page transitions, perfect 100/100 Lighthouse scores, and fast initial paint.</p>
+                    </div>
+
+                    <div class="feature-card glass-panel">
+                        <div class="feature-icon violet-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3>Enterprise-Grade Security</h3>
+                        <p>Hardened against vulnerabilities with strict CORS, CSP policies, SSL encryption, and safe data pipelines.</p>
+                    </div>
+
+                    <div class="feature-card glass-panel">
+                        <div class="feature-icon cyan-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                        </div>
+                        <h3>Custom Web Application APIs</h3>
+                        <p>Integrations with payment systems, CRM tools, database backends, and cloud microservices.</p>
+                    </div>
+                </div>
+
+                <div class="landing-banner glass-panel">
+                    <div class="banner-content">
+                        <h3>Ready to Upgrade Your Website?</h3>
+                        <p>Get a personalized quote and technical roadmap tailored specifically to your business goals.</p>
+                    </div>
+                    <div class="banner-actions">
+                        <button class="btn-glow open-consultation-btn" data-service="Web Development">Get Free Web Consultation</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- LANDING SECTION 2: APPLICATION DEVELOPMENT                          -->
+        <!-- =================================================================== -->
+        <section class="landing-section" id="app-dev">
+            <div class="container">
+                <div class="landing-header">
+                    <div class="service-badge cyan">LANDING PAGE &bull; APPLICATION DEVELOPMENT</div>
+                    <h2>Cross-Platform Mobile Apps Engineered for Scale</h2>
+                    <p>Turn your app idea into a top-rated iOS and Android application with fluid 60FPS UI animations and reliable backends.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card glass-panel">
+                        <div class="feature-icon cyan-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                        </div>
+                        <h3>iOS & Android (Flutter / React Native)</h3>
+                        <p>Single codebase targeting both major mobile app stores while maintaining native performance and feel.</p>
+                    </div>
+
+                    <div class="feature-card glass-panel">
+                        <div class="feature-icon indigo-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+                        </div>
+                        <h3>Real-Time Cloud & Firebase Sync</h3>
+                        <p>Instant push notifications, real-time messaging, secure user auth, and encrypted data synchronization.</p>
+                    </div>
+
+                    <div class="feature-card glass-panel">
+                        <div class="feature-icon emerald-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                        </div>
+                        <h3>Intuitive Micro-Interactions</h3>
+                        <p>Tactile feedback, smooth gesture navigation, and clean UX that keeps app users coming back daily.</p>
+                    </div>
+                </div>
+
+                <div class="landing-banner glass-panel">
+                    <div class="banner-content">
+                        <h3>Have a Mobile App Concept?</h3>
+                        <p>Let's map out your app MVP architecture and release roadmap together.</p>
+                    </div>
+                    <div class="banner-actions">
+                        <button class="btn-glow open-consultation-btn" data-service="Application Development">Book App Strategy Session</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- LANDING SECTION 3: SOCIAL MEDIA MANAGEMENT                         -->
+        <!-- =================================================================== -->
+        <section class="landing-section" id="digital-marketing">
+            <div class="container">
+                <div class="landing-header">
+                    <div class="service-badge violet">LANDING PAGE &bull; SOCIAL MEDIA & DIGITAL MARKETING</div>
+                    <h2>Dominate Social Feeds & Scale Brand Authority</h2>
+                    <p>We transform silent social media channels into thriving customer pipelines through targeted campaigns and creative content.</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card glass-panel">
+                        <div class="feature-icon violet-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </div>
+                        <h3>Instagram Strategy (@ElavateX.dev)</h3>
+                        <p>End-to-end management: aesthetic feed curation, viral Reels creation, targeted hashtag strategies, and audience engagement.</p>
+                    </div>
+
+                    <div class="feature-card glass-panel">
+                        <div class="feature-icon indigo-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <h3>Paid Meta & Google Ad Campaigns</h3>
+                        <p>Data-driven ad management engineered for high return on ad spend (ROAS) and qualified lead acquisition.</p>
+                    </div>
+
+                    <div class="feature-card glass-panel">
+                        <div class="feature-icon cyan-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                        </div>
+                        <h3>Lead Generation & WhatsApp Funnels</h3>
+                        <p>Direct lead funnel setup driving interested prospects straight to your WhatsApp (7676808068).</p>
+                    </div>
+                </div>
+
+                <div class="landing-banner glass-panel">
+                    <div class="banner-content">
+                        <h3>Want More Followers & Client Leads?</h3>
+                        <p>Claim a free social media audit and custom growth strategy for your brand.</p>
+                    </div>
+                    <div class="banner-actions">
+                        <button class="btn-glow open-consultation-btn" data-service="Social Media Management">Get Free Audit & Call</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- INTERACTIVE PROJECT COST ESTIMATOR                                  -->
+        <!-- =================================================================== -->
+        <section class="section-estimator" id="estimator">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">TRANSPARENT PRICING</span>
+                    <h2 class="section-title">Instant Project Estimator</h2>
+                    <p class="section-desc">Select your desired options to calculate an instant estimated investment scope and delivery timeline.</p>
+                </div>
+
+                <div class="estimator-box glass-panel">
+                    <div class="estimator-grid">
+                        <div class="est-options">
+                            <div class="est-group">
+                                <label class="est-label">1. Primary Service Category</label>
+                                <div class="option-chips" id="est-service-type">
+                                    <button class="chip active" data-value="web" data-base="499">Web Development</button>
+                                    <button class="chip" data-value="app" data-base="799">Mobile App Dev</button>
+                                    <button class="chip" data-value="marketing" data-base="349">Social Media Marketing</button>
+                                </div>
+                            </div>
+
+                            <div class="est-group">
+                                <label class="est-label">2. Project Scope / Scale</label>
+                                <div class="option-chips" id="est-scope-type">
+                                    <button class="chip active" data-mult="1.0">Startup / MVP</button>
+                                    <button class="chip" data-mult="1.8">Growing Business</button>
+                                    <button class="chip" data-mult="3.0">Enterprise Grade</button>
+                                </div>
+                            </div>
+
+                            <div class="est-group">
+                                <label class="est-label">3. Add-on Options</label>
+                                <div class="checkbox-options">
+                                    <label class="cb-card">
+                                        <input type="checkbox" value="150" class="est-addon" checked>
+                                        <span>Custom Glassmorphic Animations</span>
+                                    </label>
+                                    <label class="cb-card">
+                                        <input type="checkbox" value="200" class="est-addon" checked>
+                                        <span>SEO & Core Web Vitals Optimization</span>
+                                    </label>
+                                    <label class="cb-card">
+                                        <input type="checkbox" value="250" class="est-addon">
+                                        <span>WhatsApp Automation & Funnel</span>
+                                    </label>
+                                    <label class="cb-card">
+                                        <input type="checkbox" value="300" class="est-addon">
+                                        <span>Monthly Maintenance & Growth</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="est-summary">
+                            <div class="summary-card glass-panel">
+                                <div class="sum-title">Estimated Investment</div>
+                                <div class="sum-price" id="est-total-price">$649</div>
+                                <div class="sum-timeline" id="est-timeline">Estimated Timeline: 1 - 2 Weeks</div>
+                                <p class="sum-note">*Final proposal tailored during your free consultation call.</p>
+
+                                <button class="btn-glow w-full open-consultation-btn">
+                                    <span>Lock In Estimate & Book Call</span>
+                                </button>
+
+                                <a href="https://wa.me/917676808068" target="_blank" class="btn-whatsapp-outline w-full text-center margin-top-sm">
+                                    <span>Discuss via WhatsApp (7676808068)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- PORTFOLIO SHOWCASE                                                  -->
+        <!-- =================================================================== -->
+        <section class="section-portfolio" id="portfolio">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle">PROVEN CASE STUDIES</span>
+                    <h2 class="section-title">Client Case Studies</h2>
+                    <p class="section-desc">Take a look at recent digital solutions engineered by ElavateX.</p>
+                </div>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-card glass-panel">
+                        <div class="portfolio-img-box img-web">
+                            <div class="tag-badge">Web Development</div>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3>FinTech SaaS Application</h3>
+                            <p>Architected a high-speed trading dashboard with sub-second execution speeds.</p>
+                            <div class="project-stat">+240% User Retention</div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-card glass-panel">
+                        <div class="portfolio-img-box img-app">
+                            <div class="tag-badge cyan">Application Dev</div>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3>HealthTech Mobile Platform</h3>
+                            <p>Cross-platform Flutter application with live vital monitoring and video consultations.</p>
+                            <div class="project-stat">4.9 Star Rating (App Store)</div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-card glass-panel">
+                        <div class="portfolio-img-box img-social">
+                            <div class="tag-badge violet">Digital Marketing</div>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3>E-Commerce Growth Campaign</h3>
+                            <p>Complete Instagram overhaul (@ElavateX.dev style strategy) driving viral reel reach and Meta ads expansion.</p>
+                            <div class="project-stat">5.4x ROAS on Paid Ads</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- BOTTOM CTA BANNER                                                  -->
+        <!-- =================================================================== -->
+        <section class="section-cta">
+            <div class="container">
+                <div class="cta-box glass-panel text-center">
+                    <h2 class="cta-title">Ready to Elevate Your Business with <span class="gradient-text">ElavateX</span>?</h2>
+                    <p class="cta-subtitle">Don't settle for mediocre digital presence. Partner with innovators who deliver measurable revenue growth.</p>
+                    
+                    <div class="cta-btn-group">
+                        <button class="btn-glow btn-lg open-consultation-btn">
+                            <span>Book a Call Now</span>
+                        </button>
+                        <button class="btn-glass btn-lg open-consultation-btn">
+                            <span>Get Free Consultation</span>
+                        </button>
+                        <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20a%20free%20consultation" target="_blank" class="btn-whatsapp-pill btn-lg">
+                            <span>WhatsApp: 7676808068</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =================================================================== -->
+    <!-- FOOTER                                                              -->
+    <!-- =================================================================== -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Col 1: Brand -->
+                <div class="footer-col brand-col">
+                    <a href="#hero" class="brand-logo">
+                        <span class="logo-text">Elavate<span class="accent-x">X</span></span>
+                    </a>
+                    <p class="footer-desc">
+                        Official digital agency portal: <strong>ElavateX.com</strong>.<br>
+                        Specializing in Web Development, Mobile Applications, and Social Media Management.
+                    </p>
+                    <div class="contact-meta">
+                        <div class="meta-item">
+                            <strong>WhatsApp:</strong> <a href="https://wa.me/917676808068" target="_blank">+91 7676808068</a>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Instagram:</strong> <a href="https://instagram.com/ElavateX.dev" target="_blank">@ElavateX.dev</a>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Web Domain:</strong> <a href="http://ElavateX.com" target="_blank">ElavateX.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Col 2: Services -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#web-dev">Web Development</a></li>
+                        <li><a href="#app-dev">Application Development</a></li>
+                        <li><a href="#digital-marketing">Social Media Management</a></li>
+                        <li><a href="#digital-marketing">Meta & Google Paid Ads</a></li>
+                        <li><a href="#estimator">Project Estimator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Quick Action -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Action</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="open-consultation-btn">Book a Call</a></li>
+                        <li><a href="#" class="open-consultation-btn">Get Free Consultation</a></li>
+                        <li><a href="https://wa.me/917676808068" target="_blank">WhatsApp Direct Chat</a></li>
+                        <li><a href="https://instagram.com/ElavateX.dev" target="_blank">Instagram (@ElavateX.dev)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Social Media Icons -->
+                <div class="footer-col social-col">
+                    <h4 class="footer-heading">Connect With Us</h4>
+                    <p class="footer-social-desc">Follow our journey and stay updated with the latest digital trends.</p>
+
+                    <div class="social-icons-wrapper">
+                        <!-- Instagram (Given: ElavateX.dev) -->
+                        <a href="https://instagram.com/ElavateX.dev" target="_blank" rel="noopener" class="social-icon-btn instagram" title="Instagram: @ElavateX.dev">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+
+                        <!-- WhatsApp (Given: 7676808068) -->
+                        <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20reaching%20out%20from%20ElavateX.com" target="_blank" rel="noopener" class="social-icon-btn whatsapp" title="WhatsApp: 7676808068">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                            </svg>
+                        </a>
+
+                        <!-- Facebook (Placeholder) -->
+                        <a href="#" class="social-icon-btn facebook" title="Facebook Page">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.14h-3v4h3v12h5v-12h3.85l.42-4z"/>
+                            </svg>
+                        </a>
+
+                        <!-- LinkedIn (Placeholder) -->
+                        <a href="#" class="social-icon-btn linkedin" title="LinkedIn Profile">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>ElavateX</strong> (ElavateX.com). All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="#hero">Privacy Policy</a> &bull; 
+                    <a href="#hero">Terms of Service</a> &bull; 
+                    <a href="https://instagram.com/ElavateX.dev" target="_blank">@ElavateX.dev</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =================================================================== -->
+    <!-- INTERACTIVE CONSULTATION / BOOK A CALL MODAL DIALOG               -->
+    <!-- =================================================================== -->
+    <dialog class="glass-modal" id="consultation-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close-btn" aria-label="Close Modal">&times;</button>
+            
+            <div class="modal-header">
+                <div class="pill-tag text-purple">FREE CONSULTATION & BOOKING</div>
+                <h3 class="modal-title">Elevate Your Business With <span class="gradient-text">ElavateX</span></h3>
+                <p class="modal-subtitle">Fill out your details below or book directly via WhatsApp (7676808068).</p>
+            </div>
+
+            <form id="consultation-form" class="modal-form">
+                <div class="form-group">
+                    <label for="form-name">Full Name *</label>
+                    <input type="text" id="form-name" required placeholder="John Doe">
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="form-email">Email Address *</label>
+                        <input type="email" id="form-email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-phone">Phone / WhatsApp *</label>
+                        <input type="tel" id="form-phone" required placeholder="+91 9876543210">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="form-service">Required Service *</label>
+                    <select id="form-service" required>
+                        <option value="Web Development">Web Development (React / Next.js / Custom)</option>
+                        <option value="Application Development">Application Development (iOS & Android)</option>
+                        <option value="Social Media Management">Social Media Management (Digital Marketing)</option>
+                        <option value="Full Stack Agency Package">All-in-One Full Digital Package</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="form-message">Project Overview / Goals</label>
+                    <textarea id="form-message" rows="3" placeholder="Tell us about your project requirements..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-glow w-full" id="submit-form-btn">
+                        <span>Submit & Dispatch to WhatsApp</span>
+                    </button>
+                    
+                    <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20book%20a%20call" target="_blank" class="btn-whatsapp-outline w-full text-center margin-top-xs">
+                        <span>Or Direct Chat on WhatsApp (7676808068)</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- =================================================================== -->
+    <!-- 24/7 FLOATING AI BUDDY CHATBOT WIDGET                               -->
+    <!-- =================================================================== -->
+    <div id="chatbot-container" class="chatbot-container buddy-mode">
+        <!-- Floating Teaser Tooltip -->
+        <div class="chatbot-tooltip" id="chatbot-tooltip">
+            💬 <strong>Need Help?</strong> Ask ElavateX AI Buddy!
+        </div>
+
+        <!-- Unique Mid-Screen Hovering AI Buddy Trigger Button -->
+        <button class="chatbot-toggle-btn" id="chatbot-toggle-btn" aria-label="Open ElavateX AI Buddy Assistant">
+            <span class="pulse-aura"></span>
+            <div class="buddy-badge-label">
+                <span class="buddy-spark">⚡</span> AI Buddy
+            </div>
+            <div class="icon-box">
+                <!-- Friendly Robot SVG -->
+                <svg class="icon-chat" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="10" rx="3"/>
+                    <circle cx="12" cy="5" r="2"/>
+                    <path d="M12 7v4"/>
+                    <line x1="8" y1="15" x2="8" y2="17" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="16" y1="15" x2="16" y2="17" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M9 18h6"/>
+                </svg>
+                <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </div>
+            <span class="online-indicator"></span>
+        </button>
+
+        <!-- Glassmorphic AI Buddy Chat Window -->
+        <div class="chatbot-window glass-panel" id="chatbot-window">
+            <!-- Header -->
+            <div class="chat-header">
+                <div class="chat-avatar">
+                    <span class="avatar-icon">🤖</span>
+                    <span class="avatar-status"></span>
+                </div>
+                <div class="chat-meta">
+                    <div class="chat-name">ElavateX AI Buddy</div>
+                    <div class="chat-status">
+                        <span class="status-dot"></span> Hovering 24/7 &bull; Instant Help
+                    </div>
+                </div>
+                <button class="chat-close-btn" id="chat-close-btn" aria-label="Close Chatbot">&times;</button>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-msg msg-bot">
+                    <div class="msg-bubble">
+                        👋 <strong>Hey friend! I'm your ElavateX AI Buddy!</strong><br>
+                        I hover right here alongside you as you explore. Ask me anything about our Web Engineering, Mobile Apps, or Digital Marketing services! <br><br>
+                        Select an option or type your question:
+                    </div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+
+            <!-- Scrollable Inquiry Quick Action Chips -->
+            <div class="chat-chips-scroll" id="chat-chips">
+                <button class="chat-chip" data-query="Web Development">🌐 Web Development</button>
+                <button class="chat-chip" data-query="Application Development">📱 Mobile App Dev</button>
+                <button class="chat-chip" data-query="Social Media Management">🔥 Social Media Growth</button>
+                <button class="chat-chip" data-query="Contact Info & WhatsApp">📞 Contact Details</button>
+                <button class="chat-chip" data-query="Book a Call">📅 Book Free Call</button>
+            </div>
+
+            <!-- Message Input Bar -->
+            <form class="chat-input-bar" id="chat-form">
+                <input type="text" id="chat-input" placeholder="Ask AI Buddy a question..." autocomplete="off">
+                <button type="submit" class="chat-send-btn" id="chat-send-btn" aria-label="Send Query">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JS Script -->
+    <script src="main.js"></script>
+</body>
+</html>
