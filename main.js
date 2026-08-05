@@ -1075,8 +1075,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: header,
-                        start: "top 88%",
-                        end: "bottom 12%",
+                        start: "top 90%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 });
@@ -1098,13 +1098,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Services Overview switcher (#services-overview)
             gsap.fromTo(".services-tab-buttons", 
-                { opacity: 0, scale: 0.96 },
+                { y: 30, opacity: 0 },
                 { 
-                    opacity: 1, scale: 1, duration: 0.75, ease: "power2.out",
+                    y: 0, opacity: 1, duration: 0.75, ease: "power3.out",
                     scrollTrigger: {
                         trigger: ".services-tab-buttons",
                         start: "top 90%",
-                        end: "bottom 10%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1116,8 +1116,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     scale: 1, filter: "blur(0px)", opacity: 1, duration: 1.1, ease: "power3.out",
                     scrollTrigger: {
                         trigger: ".tab-content-container",
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 85%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1130,8 +1130,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     x: 0, opacity: 1, rotate: 0, stagger: 0.15, duration: 0.8, ease: "power2.out",
                     scrollTrigger: {
                         trigger: "#web-dev .features-grid",
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 85%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1143,8 +1143,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.9, ease: "power3.out",
                     scrollTrigger: {
                         trigger: "#web-dev .landing-banner",
-                        start: "top 88%",
-                        end: "bottom 12%",
+                        start: "top 90%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1157,8 +1157,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     y: 0, opacity: 1, rotateX: 0, stagger: 0.15, duration: 0.9, ease: "back.out(1.1)",
                     scrollTrigger: {
                         trigger: "#app-dev .features-grid",
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 85%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1170,8 +1170,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     x: 0, opacity: 1, duration: 0.85, ease: "power3.out",
                     scrollTrigger: {
                         trigger: "#app-dev .landing-banner",
-                        start: "top 88%",
-                        end: "bottom 12%",
+                        start: "top 90%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1184,8 +1184,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     x: 0, y: 0, opacity: 1, rotate: 0, stagger: 0.15, duration: 0.8, ease: "power3.out",
                     scrollTrigger: {
                         trigger: "#digital-marketing .features-grid",
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 85%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1197,8 +1197,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     y: 0, opacity: 1, duration: 0.85, ease: "power3.out",
                     scrollTrigger: {
                         trigger: "#digital-marketing .landing-banner",
-                        start: "top 88%",
-                        end: "bottom 12%",
+                        start: "top 90%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1211,8 +1211,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     y: 0, scale: 1, opacity: 1, rotate: 0, stagger: 0.18, duration: 0.9, ease: "power3.out",
                     scrollTrigger: {
                         trigger: "#portfolio .portfolio-grid",
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 85%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1225,8 +1225,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     x: 0, opacity: 1, duration: 0.9, ease: "power3.out",
                     scrollTrigger: {
                         trigger: ".featured-testimonial-card",
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 85%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1238,8 +1238,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     x: 0, opacity: 1, duration: 0.9, ease: "power3.out",
                     scrollTrigger: {
                         trigger: ".add-comment-box",
-                        start: "top 80%",
-                        end: "bottom 20%",
+                        start: "top 85%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1252,12 +1252,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     scale: 1, opacity: 1, duration: 0.95, ease: "power4.out",
                     scrollTrigger: {
                         trigger: ".cta-box",
-                        start: "top 88%",
-                        end: "bottom 12%",
+                        start: "top 95%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
             );
+
+            // Cleanup function: remove all animation styling when leaving desktop view
+            return () => {
+                gsap.set([
+                    '.section-header', '.landing-header', '.section-subtitle', '.service-badge', '.section-title', 'h2', '.section-desc', 'p',
+                    '.services-tab-buttons', '.tab-content-container',
+                    '#web-dev .feature-card', '#web-dev .landing-banner',
+                    '#app-dev .feature-card', '#app-dev .landing-banner',
+                    '#digital-marketing .feature-card', '#digital-marketing .landing-banner',
+                    '#portfolio .portfolio-card',
+                    '.featured-testimonial-card', '.add-comment-box',
+                    '.cta-box'
+                ], { clearProps: "all" });
+            };
         });
 
         // B. Mobile Flow (Fast, optimized, y-translation and opacity only, no filters)
@@ -1269,8 +1283,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         opacity: 1, y: 0, duration: 0.5, ease: "power2.out",
                         scrollTrigger: {
                             trigger: header,
-                            start: "top 92%",
-                            end: "bottom 8%",
+                            start: "top 95%",
+                            end: "bottom 0%",
                             toggleActions: "play reverse play reverse"
                         }
                     }
@@ -1283,8 +1297,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
                     scrollTrigger: {
                         trigger: ".tab-content-container",
-                        start: "top 85%",
-                        end: "bottom 15%",
+                        start: "top 90%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1298,8 +1312,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         opacity: 1, y: 0, stagger: 0.1, duration: 0.55, ease: "power2.out",
                         scrollTrigger: {
                             trigger: `${secId} .features-grid`,
-                            start: "top 85%",
-                            end: "bottom 15%",
+                            start: "top 90%",
+                            end: "bottom 0%",
                             toggleActions: "play reverse play reverse"
                         }
                     }
@@ -1311,8 +1325,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         opacity: 1, y: 0, duration: 0.55, ease: "power2.out",
                         scrollTrigger: {
                             trigger: `${secId} .landing-banner`,
-                            start: "top 90%",
-                            end: "bottom 10%",
+                            start: "top 95%",
+                            end: "bottom 0%",
                             toggleActions: "play reverse play reverse"
                         }
                     }
@@ -1325,8 +1339,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     opacity: 1, y: 0, stagger: 0.1, duration: 0.55, ease: "power2.out",
                     scrollTrigger: {
                         trigger: "#portfolio .portfolio-grid",
-                        start: "top 85%",
-                        end: "bottom 15%",
+                        start: "top 90%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1338,8 +1352,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     opacity: 1, y: 0, stagger: 0.12, duration: 0.6, ease: "power2.out",
                     scrollTrigger: {
                         trigger: "#testimonials",
-                        start: "top 85%",
-                        end: "bottom 15%",
+                        start: "top 90%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -1351,12 +1365,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
                     scrollTrigger: {
                         trigger: ".cta-box",
-                        start: "top 92%",
-                        end: "bottom 8%",
+                        start: "top 95%",
+                        end: "bottom 0%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
             );
+
+            // Cleanup function: remove all mobile animations styles when leaving mobile view
+            return () => {
+                gsap.set([
+                    '.section-header', '.landing-header',
+                    '.tab-content-container',
+                    '.feature-card', '.landing-banner',
+                    '#portfolio .portfolio-card',
+                    '.featured-testimonial-card', '.add-comment-box',
+                    '.cta-box'
+                ], { clearProps: "all" });
+            };
         });
     }
 });

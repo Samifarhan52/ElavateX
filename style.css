@@ -48,6 +48,8 @@
 
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --section-padding-desktop: 5.5rem 0;
+  --section-padding-mobile: 3.5rem 0;
 }
 
 /* Dark Theme Overrides (Active when data-theme="dark") */
@@ -1984,6 +1986,13 @@ body.light-theme .buddy-icon-dark { display: none; }
     width: 100% !important;
   }
 
+  .container {
+    width: 100% !important;
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
+    box-sizing: border-box !important;
+  }
+
   /* Header Optimization: Hide bulky consultation button in mobile navbar to prevent squeezing */
   .nav-links { display: none; }
   .nav-actions .open-consultation-btn { display: none !important; }
@@ -2013,18 +2022,95 @@ body.light-theme .buddy-icon-dark { display: none; }
     margin: auto;
   }
 
-  /* Hero Section */
+  /* Hero Section responsive sizing */
   .hero-section { padding: 5.5rem 0 2.5rem; min-height: auto; }
+  .hero-title {
+    font-size: clamp(1.8rem, 6vw, 3rem) !important;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+  .hero-subtitle {
+    font-size: 0.95rem !important;
+    margin-bottom: 1.8rem !important;
+    padding: 0 0.5rem;
+  }
   .hero-cta-group { flex-direction: column; width: 100%; gap: 0.8rem; }
-  .hero-cta-group button, .hero-cta-group a { width: 100%; text-align: center; justify-content: center; }
+  .hero-cta-group button, .hero-cta-group a { width: 100% !important; text-align: center; justify-content: center; }
   
   /* Features, Portfolio & Comments Grid */
   .features-grid, .portfolio-grid, .comments-grid { grid-template-columns: 1fr !important; gap: 1.2rem; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .landing-banner { flex-direction: column; text-align: center; }
+  
+  /* Landing Banner responsive styling */
+  .landing-banner { 
+    flex-direction: column !important; 
+    text-align: center !important; 
+    padding: 1.5rem 1.2rem !important;
+    gap: 1.2rem !important;
+  }
+  .landing-banner button,
+  .landing-banner a {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-  .form-grid { grid-template-columns: 1fr; }
-  .tab-content-container { padding: 1.2rem; }
+  .form-grid { grid-template-columns: 1fr !important; }
+  
+  /* Tab contents mobile spacing */
+  .tab-content-container { padding: 1.2rem !important; }
+  .services-tab-buttons { gap: 0.5rem !important; }
+  .service-tab-btn { padding: 0.55rem 1rem !important; font-size: 0.8rem !important; }
+
+  /* Code Pre Wrapping & Scroll bar fix */
+  .code-preview-box {
+    padding: 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .code-preview-box pre {
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
+    overflow-x: auto !important;
+    margin: 0 !important;
+  }
+
+  /* Modal responsive spacing */
+  .modal-content {
+    padding: 1.5rem 1.1rem !important;
+  }
+  .modal-header {
+    padding-right: 2rem !important;
+  }
+  .modal-header h3 {
+    font-size: 1.25rem !important;
+  }
+  .modal-form label {
+    font-size: 0.76rem !important;
+  }
+  .modal-form input,
+  .modal-form select,
+  .modal-form textarea {
+    padding: 0.6rem 0.8rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .cta-box {
+    padding: 2.2rem 1.2rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .featured-testimonial-card {
+    padding: 1.6rem 1.2rem !important;
+    margin-bottom: 2rem !important;
+  }
+  .add-comment-box {
+    padding: 1.4rem 1.2rem !important;
+  }
+
+  .section-testimonials {
+    padding: var(--section-padding-mobile) !important;
+  }
 
   /* Floating AI Buddy Widget & Tooltip */
   .chatbot-container.buddy-mode {
@@ -2046,7 +2132,20 @@ body.light-theme .buddy-icon-dark { display: none; }
     max-height: 75vh;
   }
   .chatbot-container.open .chatbot-window {
-    transform: translateY(0) scale(1);
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    pointer-events: all !important;
+    visibility: visible !important;
+  }
+
+  /* Secure horizontal containment on all sections to prevent pixel-leak stretching */
+  .hero-section,
+  .section-overview,
+  .landing-section,
+  .section-testimonials,
+  .cta-section,
+  footer {
+    overflow: hidden !important;
   }
 }
 
