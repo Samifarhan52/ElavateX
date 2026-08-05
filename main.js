@@ -1,12 +1,56 @@
 /**
- * ElavateX - Master Client Logic (Cinematic Entry Reveal & Dual Theme & 24/7 AI Buddy)
+ * ElavateX - Master Client Logic (Black Carpet Transition & Ethereal Smoke Edition)
  * Brand: ElavateX | Domain: ElavateX.com | WhatsApp: 7676808068
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // ----------------------------------------------------------------------
-    // Entry Reveal Animation Sequence
+    // 0. Black Carpet Page Transition Overlay System
+    // ----------------------------------------------------------------------
+    const carpetWipe = document.getElementById('black-carpet-wipe');
+    const transitionLinks = document.querySelectorAll('a[href^="#"], .drawer-link, .nav-link');
+
+    function executeBlackCarpetWipe(targetId) {
+        if (!carpetWipe) {
+            if (targetId) {
+                const elem = document.querySelector(targetId);
+                if (elem) elem.scrollIntoView({ behavior: 'smooth' });
+            }
+            return;
+        }
+
+        carpetWipe.classList.remove('wiping-out');
+        carpetWipe.classList.add('wiping-in');
+
+        setTimeout(() => {
+            if (targetId && targetId !== '#') {
+                const targetElem = document.querySelector(targetId);
+                if (targetElem) {
+                    targetElem.scrollIntoView({ behavior: 'auto' });
+                }
+            }
+            carpetWipe.classList.remove('wiping-in');
+            carpetWipe.classList.add('wiping-out');
+
+            setTimeout(() => {
+                carpetWipe.classList.remove('wiping-out');
+            }, 600);
+        }, 300);
+    }
+
+    transitionLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#') && href.length > 1) {
+                e.preventDefault();
+                executeBlackCarpetWipe(href);
+            }
+        });
+    });
+
+    // ----------------------------------------------------------------------
+    // 1. Cinematic Entry Reveal Animation Sequence
     // Sequence: Single X -> Split / & \ -> Elavate Spark -> Merge ElavateX -> Reveal Site
     // ----------------------------------------------------------------------
     const introOverlay = document.getElementById('intro-overlay');
@@ -69,7 +113,93 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 0. Dark / Light Theme Mode Toggle Engine
+    // 2. Ethereal Glassy Smoke Canvas Animation Engine
+    // ----------------------------------------------------------------------
+    const smokeCanvas = document.getElementById('smoke-canvas');
+    if (smokeCanvas) {
+        const ctx = smokeCanvas.getContext('2d');
+        let width = smokeCanvas.width = smokeCanvas.parentElement.clientWidth;
+        let height = smokeCanvas.height = smokeCanvas.parentElement.clientHeight;
+
+        window.addEventListener('resize', () => {
+            if (smokeCanvas.parentElement) {
+                width = smokeCanvas.width = smokeCanvas.parentElement.clientWidth;
+                height = smokeCanvas.height = smokeCanvas.parentElement.clientHeight;
+            }
+        });
+
+        class SmokeParticle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = height + Math.random() * 50;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = -(Math.random() * 0.8 + 0.4);
+                this.radius = Math.random() * 40 + 30;
+                this.alpha = 0;
+                this.maxAlpha = Math.random() * 0.25 + 0.1;
+                this.growth = Math.random() * 0.2 + 0.05;
+                this.color = Math.random() > 0.5 ? '99, 102, 241' : '6, 182, 212';
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.radius += this.growth;
+
+                if (this.y < height * 0.7 && this.alpha < this.maxAlpha) {
+                    this.alpha += 0.005;
+                } else if (this.y < height * 0.3) {
+                    this.alpha -= 0.005;
+                }
+
+                if (this.y < -this.radius || this.alpha <= 0) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.beginPath();
+                const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+                grad.addColorStop(0, `rgba(${this.color}, ${Math.max(0, this.alpha)})`);
+                grad.addColorStop(1, `rgba(${this.color}, 0)`);
+                ctx.fillStyle = grad;
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        const particles = [];
+        for (let i = 0; i < 25; i++) {
+            particles.push(new SmokeParticle());
+        }
+
+        function animateSmoke() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateSmoke);
+        }
+
+        animateSmoke();
+    }
+
+    const smokePlayBtn = document.getElementById('smoke-play-btn');
+    if (smokePlayBtn) {
+        smokePlayBtn.addEventListener('click', () => {
+            executeBlackCarpetWipe('#digital-marketing');
+        });
+    }
+
+    // ----------------------------------------------------------------------
+    // 3. Dark / Light Theme Mode Toggle Engine
     // ----------------------------------------------------------------------
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const drawerThemeToggleBtn = document.getElementById('drawer-theme-toggle-btn');
@@ -102,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (drawerThemeToggleBtn) drawerThemeToggleBtn.addEventListener('click', toggleTheme);
 
     // ----------------------------------------------------------------------
-    // 1. 24/7 AI Growth Buddy Chatbot Engine
+    // 4. 24/7 AI Growth Buddy Chatbot Engine
     // ----------------------------------------------------------------------
     const chatbotContainer = document.getElementById('chatbot-container');
     const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
@@ -230,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 2. Services Overview Tab Switcher
+    // 5. Services Overview Tab Switcher
     // ----------------------------------------------------------------------
     const tabButtons = document.querySelectorAll('.service-tab-btn');
     const tabPanels = document.querySelectorAll('.tab-panel');
@@ -251,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------------------------
-    // 3. Interactive Project Cost Estimator
+    // 6. Interactive Project Cost Estimator
     // ----------------------------------------------------------------------
     const serviceTypeChips = document.querySelectorAll('#est-service-type .chip');
     const scopeTypeChips = document.querySelectorAll('#est-scope-type .chip');
@@ -317,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateEstimate();
 
     // ----------------------------------------------------------------------
-    // 4. Consultation & Book a Call Modal Dialog
+    // 7. Consultation & Book a Call Modal Dialog
     // ----------------------------------------------------------------------
     const consultationModal = document.getElementById('consultation-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
@@ -394,7 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 5. Header Navbar Scroll & Mobile Menu Drawer
+    // 8. Header Navbar Scroll & Mobile Menu Drawer
     // ----------------------------------------------------------------------
     const navbar = document.getElementById('navbar');
     const mobileToggle = document.getElementById('mobile-toggle');
