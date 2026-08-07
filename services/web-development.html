@@ -95,28 +95,68 @@
     <!-- MAIN CONTENT -->
     <main>
         
-        <!-- Hero Section -->
-        <section class="hero-section" style="padding: 10rem 0 6rem;">
+        <!-- Hero Section with Interactive Animated Browser & Code Showcase -->
+        <section class="hero-section" style="padding: 9rem 0 5rem;">
             <div class="hero-bg-lights">
                 <div class="light-orb orb-indigo"></div>
                 <div class="light-orb orb-violet"></div>
             </div>
             <div class="container reveal-item">
-                <div class="text-center" style="max-width: 880px; margin: 0 auto;">
-                    <div class="service-badge violet" style="margin: 0 auto 1.5rem;">WEB ENGINEERING</div>
-                    <h1 class="hero-title" style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem;">
-                        Next-Gen Web Architecture Deployed for <span class="gradient-text">Absolute Scale</span>
-                    </h1>
-                    <p class="hero-desc" style="font-size: 1.2rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 2.5rem;">
-                        Sub-second response times, interactive glassmorphic interfaces, and clean semantic structures engineered to capture leads and turn visitors into lifelong clients.
-                    </p>
-                    <div class="cta-btn-group" style="justify-content: center;">
-                        <button class="btn-glow btn-lg open-consultation-btn">
-                            <span>Book Free Consultation</span>
-                        </button>
-                        <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20build%20a%20website" target="_blank" class="btn-whatsapp-pill btn-lg">
-                            <span>Chat on WhatsApp</span>
-                        </a>
+                <div class="hero-two-col-layout">
+                    <!-- Left: Content & Actions -->
+                    <div>
+                        <div class="service-badge violet" style="margin-bottom: 1.2rem;">WEB ENGINEERING</div>
+                        <h1 class="hero-title" style="font-size: clamp(2.2rem, 4.5vw, 3.8rem); line-height: 1.15; margin-bottom: 1.2rem;">
+                            Next-Gen Web Architecture Deployed for <span class="gradient-text">Absolute Scale</span>
+                        </h1>
+                        <p class="hero-desc" style="font-size: 1.1rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 2rem;">
+                            Sub-second response times, interactive glassmorphic interfaces, and clean semantic structures engineered to capture leads and turn visitors into lifelong clients.
+                        </p>
+                        <div class="cta-btn-group">
+                            <button class="btn-glow btn-lg open-consultation-btn">
+                                <span>Book Free Consultation ➔</span>
+                            </button>
+                            <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20build%20a%20website" target="_blank" class="btn-whatsapp-pill btn-lg">
+                                <span>WhatsApp Us 💬</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Animated Browser IDE Showcase Frame -->
+                    <div class="web-hero-mockup-frame">
+                        <div class="floating-hero-badge badge-top-right">
+                            <span style="color: #10b981;">⚡ 100/100</span> Lighthouse Speed
+                        </div>
+                        <div class="floating-hero-badge badge-bottom-left">
+                            <span style="color: #4f46e5;">🛡️ Hardened</span> SSL Security
+                        </div>
+
+                        <div class="browser-header-bar">
+                            <div class="browser-dots">
+                                <span class="dot dot-red"></span>
+                                <span class="dot dot-yellow"></span>
+                                <span class="dot dot-green"></span>
+                            </div>
+                            <div class="browser-url-bar">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                <span>https://elavatex.com/engine</span>
+                            </div>
+                        </div>
+
+                        <div class="ide-content-body">
+                            <div><span class="code-line-comment">// ElavateX Web Engineering Engine v2.4</span></div>
+                            <div><span class="code-line-keyword">import</span> { createWebProduct } <span class="code-line-keyword">from</span> <span class="code-line-str">'@elavatex/core'</span>;</div>
+                            <br>
+                            <div><span class="code-line-keyword">const</span> app = <span class="code-line-keyword">await</span> <span class="code-line-func">createWebProduct</span>({</div>
+                            <div>&nbsp;&nbsp;performance: <span class="code-line-str">'100/100 Core Web Vitals'</span>,</div>
+                            <div>&nbsp;&nbsp;responseSpeed: <span class="code-line-str">'0.2s Sub-second'</span>,</div>
+                            <div>&nbsp;&nbsp;security: <span class="code-line-str">'Strict CSP & CORS'</span>,</div>
+                            <div>&nbsp;&nbsp;conversionEngine: <span class="code-line-str">'Direct Lead Routing'</span></div>
+                            <div>});</div>
+                            <br>
+                            <div><span class="code-line-comment">// 🚀 Status: Production Live & Deployed</span></div>
+                            <div style="color: #10b981;">✔ App initialized cleanly in 240ms</div>
+                        </div>
                     </div>
                 </div>
             </div>
