@@ -677,28 +677,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
-    // ----------------------------------------------------------------------
-    // 7. Services Overview Tab Switcher
-    // ----------------------------------------------------------------------
-    const tabButtons = document.querySelectorAll('.service-tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
-
-    tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetTab = btn.getAttribute('data-tab');
-
-            tabButtons.forEach(b => b.classList.remove('active'));
-            tabPanels.forEach(p => p.classList.remove('active'));
-
-            btn.classList.add('active');
-            const activePanel = document.getElementById(targetTab);
-            if (activePanel) {
-                activePanel.classList.add('active');
-            }
-        });
-    });
-
-
 
     // ----------------------------------------------------------------------
     // 9. Consultation & Book a Call Modal Dialog (Multi-step Flow)
@@ -1059,330 +1037,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===================================================================
     // 11. PREMIUM SCROLL REVEAL ANIMATIONS (GSAP + ScrollTrigger)
     // ===================================================================
-    if (window.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
+    const revealItems = document.querySelectorAll('.reveal-item');
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -8% 0px', // Trigger slightly before entering view
+            threshold: 0.05 // Trigger when 5% is visible
+        };
 
-        const mm = gsap.matchMedia();
-
-        // A. Desktop & Tablet Flow (Rich aesthetics: clip-paths, blurs, 3D rotates)
-        mm.add("(min-width: 769px)", () => {
-            // Text sliding clip-path reveal for section headings
-            gsap.utils.toArray('.section-header, .landing-header').forEach(header => {
-                const sub = header.querySelector('.section-subtitle, .service-badge');
-                const title = header.querySelector('.section-title, h2');
-                const desc = header.querySelector('.section-desc, p');
-
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: header,
-                        start: "top 90%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                });
-
-                if (sub) {
-                    tl.fromTo(sub, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
-                }
-                if (title) {
-                    tl.fromTo(title, 
-                        { clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)", y: 28 },
-                        { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)", y: 0, duration: 0.8, ease: "power3.out" },
-                        "-=0.35"
-                    );
-                }
-                if (desc) {
-                    tl.fromTo(desc, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.35");
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                } else {
+                    // Smoothly reverse/reset when leaving the viewport
+                    entry.target.classList.remove('reveal-active');
                 }
             });
+        }, observerOptions);
 
-            // Services Overview switcher (#services-overview)
-            gsap.fromTo(".services-tab-buttons", 
-                { y: 30, opacity: 0 },
-                { 
-                    y: 0, opacity: 1, duration: 0.75, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: ".services-tab-buttons",
-                        start: "top 90%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            gsap.fromTo(".tab-content-container",
-                { scale: 0.96, filter: "blur(10px)", opacity: 0 },
-                {
-                    scale: 1, filter: "blur(0px)", opacity: 1, duration: 1.1, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: ".tab-content-container",
-                        start: "top 85%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Web Development Feature Grid (#web-dev)
-            gsap.fromTo("#web-dev .feature-card",
-                { x: -50, opacity: 0, rotate: -2, transformPerspective: 1000 },
-                {
-                    x: 0, opacity: 1, rotate: 0, stagger: 0.15, duration: 0.8, ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: "#web-dev .features-grid",
-                        start: "top 85%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            gsap.fromTo("#web-dev .landing-banner",
-                { scale: 0.96, filter: "blur(8px)", opacity: 0 },
-                {
-                    scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.9, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: "#web-dev .landing-banner",
-                        start: "top 90%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Application Development Feature Grid (#app-dev)
-            gsap.fromTo("#app-dev .feature-card",
-                { y: 60, opacity: 0, rotateX: -12, transformPerspective: 1000 },
-                {
-                    y: 0, opacity: 1, rotateX: 0, stagger: 0.15, duration: 0.9, ease: "back.out(1.1)",
-                    scrollTrigger: {
-                        trigger: "#app-dev .features-grid",
-                        start: "top 85%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            gsap.fromTo("#app-dev .landing-banner",
-                { x: 80, opacity: 0 },
-                {
-                    x: 0, opacity: 1, duration: 0.85, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: "#app-dev .landing-banner",
-                        start: "top 90%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Social Media & Marketing Grid (#digital-marketing)
-            gsap.fromTo("#digital-marketing .feature-card",
-                { x: 50, y: 15, opacity: 0, rotate: 1.5 },
-                {
-                    x: 0, y: 0, opacity: 1, rotate: 0, stagger: 0.15, duration: 0.8, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: "#digital-marketing .features-grid",
-                        start: "top 85%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            gsap.fromTo("#digital-marketing .landing-banner",
-                { y: 50, opacity: 0 },
-                {
-                    y: 0, opacity: 1, duration: 0.85, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: "#digital-marketing .landing-banner",
-                        start: "top 90%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Case Studies Grid (#portfolio)
-            gsap.fromTo("#portfolio .portfolio-card",
-                { y: 80, scale: 0.95, opacity: 0, rotate: 1.5 },
-                {
-                    y: 0, scale: 1, opacity: 1, rotate: 0, stagger: 0.18, duration: 0.9, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: "#portfolio .portfolio-grid",
-                        start: "top 85%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Testimonials Section (#testimonials)
-            gsap.fromTo(".featured-testimonial-card",
-                { x: -70, opacity: 0 },
-                {
-                    x: 0, opacity: 1, duration: 0.9, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: ".featured-testimonial-card",
-                        start: "top 85%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            gsap.fromTo(".add-comment-box",
-                { x: 70, opacity: 0 },
-                {
-                    x: 0, opacity: 1, duration: 0.9, ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: ".add-comment-box",
-                        start: "top 85%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Bottom CTA Box
-            gsap.fromTo(".cta-box",
-                { scale: 0.92, opacity: 0 },
-                {
-                    scale: 1, opacity: 1, duration: 0.95, ease: "power4.out",
-                    scrollTrigger: {
-                        trigger: ".cta-box",
-                        start: "top 95%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Cleanup function: remove all animation styling when leaving desktop view
-            return () => {
-                gsap.set([
-                    '.section-header', '.landing-header', '.section-subtitle', '.service-badge', '.section-title', 'h2', '.section-desc', 'p',
-                    '.services-tab-buttons', '.tab-content-container',
-                    '#web-dev .feature-card', '#web-dev .landing-banner',
-                    '#app-dev .feature-card', '#app-dev .landing-banner',
-                    '#digital-marketing .feature-card', '#digital-marketing .landing-banner',
-                    '#portfolio .portfolio-card',
-                    '.featured-testimonial-card', '.add-comment-box',
-                    '.cta-box'
-                ], { clearProps: "all" });
-            };
+        revealItems.forEach(item => {
+            revealObserver.observe(item);
         });
-
-        // B. Mobile Flow (Fast, optimized, y-translation and opacity only, no filters)
-        mm.add("(max-width: 768px)", () => {
-            gsap.utils.toArray('.section-header, .landing-header').forEach(header => {
-                gsap.fromTo(header,
-                    { opacity: 0, y: 15 },
-                    {
-                        opacity: 1, y: 0, duration: 0.5, ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: header,
-                            start: "top 95%",
-                            end: "bottom 0%",
-                            toggleActions: "play reverse play reverse"
-                        }
-                    }
-                );
-            });
-
-            gsap.fromTo(".tab-content-container",
-                { opacity: 0, y: 25 },
-                {
-                    opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: ".tab-content-container",
-                        start: "top 90%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Group all grids for lightweight stagger fade
-            ['#web-dev', '#app-dev', '#digital-marketing'].forEach(secId => {
-                gsap.fromTo(`${secId} .feature-card`,
-                    { opacity: 0, y: 25 },
-                    {
-                        opacity: 1, y: 0, stagger: 0.1, duration: 0.55, ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: `${secId} .features-grid`,
-                            start: "top 90%",
-                            end: "bottom 0%",
-                            toggleActions: "play reverse play reverse"
-                        }
-                    }
-                );
-
-                gsap.fromTo(`${secId} .landing-banner`,
-                    { opacity: 0, y: 20 },
-                    {
-                        opacity: 1, y: 0, duration: 0.55, ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: `${secId} .landing-banner`,
-                            start: "top 95%",
-                            end: "bottom 0%",
-                            toggleActions: "play reverse play reverse"
-                        }
-                    }
-                );
-            });
-
-            gsap.fromTo("#portfolio .portfolio-card",
-                { opacity: 0, y: 25 },
-                {
-                    opacity: 1, y: 0, stagger: 0.1, duration: 0.55, ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: "#portfolio .portfolio-grid",
-                        start: "top 90%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            gsap.fromTo([".featured-testimonial-card", ".add-comment-box"],
-                { opacity: 0, y: 25 },
-                {
-                    opacity: 1, y: 0, stagger: 0.12, duration: 0.6, ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: "#testimonials",
-                        start: "top 90%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            gsap.fromTo(".cta-box",
-                { opacity: 0, y: 20 },
-                {
-                    opacity: 1, y: 0, duration: 0.6, ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: ".cta-box",
-                        start: "top 95%",
-                        end: "bottom 0%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Cleanup function: remove all mobile animations styles when leaving mobile view
-            return () => {
-                gsap.set([
-                    '.section-header', '.landing-header',
-                    '.tab-content-container',
-                    '.feature-card', '.landing-banner',
-                    '#portfolio .portfolio-card',
-                    '.featured-testimonial-card', '.add-comment-box',
-                    '.cta-box'
-                ], { clearProps: "all" });
-            };
+    } else {
+        // Fallback for older browsers: show all items immediately
+        revealItems.forEach(item => {
+            item.classList.add('reveal-active');
         });
     }
 });

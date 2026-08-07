@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.3">
 </head>
 <body class="light-theme">
 
@@ -133,16 +133,17 @@
                 </span>
                 <span class="logo-text">Elavate<span class="accent-x">X</span></span>
             </a>
-
             <nav class="nav-links">
-                <a href="#services-overview" class="nav-link active">Overview</a>
-                <a href="#web-dev" class="nav-link">Web Dev</a>
-                <a href="#app-dev" class="nav-link">App Dev</a>
-                <a href="#digital-marketing" class="nav-link">Social Media</a>
+                <a href="#about" class="nav-link active">About</a>
+                <a href="#services-overview" class="nav-link">Services</a>
                 <a href="#portfolio" class="nav-link">Work</a>
+                <a href="#why-choose" class="nav-link">Why Us</a>
+                <a href="#testimonials" class="nav-link">Testimonials</a>
             </nav>
 
             <div class="nav-actions">
+                <button class="btn-primary btn-sm open-consultation-btn">Get Free Consultation</button>
+
                 <!-- Dark / Light Theme Toggle Button -->
                 <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Light and Dark Theme" title="Switch Light/Dark Mode">
                     <span class="theme-icon-sun">
@@ -153,11 +154,8 @@
                     </span>
                 </button>
 
-                <button class="btn-primary btn-sm open-consultation-btn">
-                    Get Free Consultation
-                </button>
-
-                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open Navigation Menu">
+                <!-- Mobile Menu Button Drawer Trigger -->
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Mobile Navigation Menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -169,19 +167,18 @@
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-drawer" id="mobile-drawer">
         <div class="drawer-header">
-            <div class="brand-logo">Elavate<span class="accent-x">X</span></div>
-            <button class="theme-toggle-btn mobile-theme-btn" id="drawer-theme-toggle-btn" aria-label="Toggle Theme">
+            <button class="theme-toggle-btn" id="drawer-theme-toggle" aria-label="Toggle Navigation Light and Dark Theme">
                 <span class="theme-icon-sun">☀️</span>
                 <span class="theme-icon-moon">🌙</span>
             </button>
             <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
         </div>
         <div class="drawer-links">
-            <a href="#services-overview" class="drawer-link">Overview</a>
-            <a href="#web-dev" class="drawer-link">Web Development</a>
-            <a href="#app-dev" class="drawer-link">Application Development</a>
-            <a href="#digital-marketing" class="drawer-link">Social Media Management</a>
-            <a href="#portfolio" class="drawer-link">Case Studies</a>
+            <a href="#about" class="drawer-link">About</a>
+            <a href="#services-overview" class="drawer-link">Services</a>
+            <a href="#portfolio" class="drawer-link">Work</a>
+            <a href="#why-choose" class="drawer-link">Why Us</a>
+            <a href="#testimonials" class="drawer-link">Testimonials</a>
             <hr class="drawer-divider">
             <button class="btn-primary open-consultation-btn w-full">Book a Call</button>
             <a href="https://wa.me/917676808068" target="_blank" class="btn-whatsapp-outline w-full text-center margin-top-sm">
@@ -223,10 +220,6 @@
                         <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </button>
 
-                    <button class="btn-glass open-consultation-btn" id="hero-btn-free-consult">
-                        <span>Get Free Consultation</span>
-                    </button>
-
                     <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20discuss%20a%20project%20via%20ElavateX.com" target="_blank" rel="noopener" class="btn-whatsapp-pill" id="hero-btn-wa">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                         <span>Connect on WhatsApp</span>
@@ -257,364 +250,157 @@
         </section>
 
         <!-- =================================================================== -->
+        <!-- BRAND SECTION 1: ABOUT ELAVATEX                                     -->
+        <!-- =================================================================== -->
+        <section class="section-about" id="about">
+            <div class="container">
+                <!-- Header: Text & Description -->
+                <div class="about-grid-header reveal-item">
+                    <div class="about-header-info">
+                        <div class="service-badge violet">ABOUT ELAVATEX</div>
+                        <h2>We Engineer Digital Growth</h2>
+                        <p class="about-desc">
+                            ElavateX is a boutique digital agency built on a single premise: engineering excellence must meet high-converting design. We discard templates and boilerplate packages to write custom React, Next.js, and Swift solutions tailored specifically to achieve product-market fit and generate leads.
+                        </p>
+                    </div>
+                    <div class="about-header-action">
+                        <button class="btn-primary open-consultation-btn">Get Free Consultation</button>
+                    </div>
+                </div>
+
+                <!-- 4 Premium Feature Cards -->
+                <div class="about-features-grid">
+                    <!-- Card 1: Modern Design -->
+                    <div class="about-feature-card glass-panel reveal-item reveal-delay-1">
+                        <div class="about-feature-icon violet-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                                <polyline points="2 17 12 22 22 17"/>
+                                <polyline points="2 12 12 17 22 12"/>
+                            </svg>
+                        </div>
+                        <h3>Modern Design</h3>
+                        <p>Premium, responsive, and user-focused interfaces crafted to create lasting first impressions.</p>
+                    </div>
+
+                    <!-- Card 2: Fast Development -->
+                    <div class="about-feature-card glass-panel reveal-item reveal-delay-2">
+                        <div class="about-feature-icon gold-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                        <h3>Fast Development</h3>
+                        <p>Efficient development process with clean code, optimized performance, and timely delivery.</p>
+                    </div>
+
+                    <!-- Card 3: Scalable Solutions -->
+                    <div class="about-feature-card glass-panel reveal-item reveal-delay-3">
+                        <div class="about-feature-icon cyan-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                        <h3>Scalable Solutions</h3>
+                        <p>Future-ready websites and applications designed to grow alongside your business.</p>
+                    </div>
+
+                    <!-- Card 4: Dedicated Support -->
+                    <div class="about-feature-card glass-panel reveal-item reveal-delay-4">
+                        <div class="about-feature-icon indigo-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3>Dedicated Support</h3>
+                        <p>From planning and development to launch and post-launch assistance, we're with you every step of the way.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
         <!-- SERVICES INTERACTIVE OVERVIEW SWITCHER                              -->
         <!-- =================================================================== -->
         <section class="section-overview" id="services-overview">
             <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-subtitle">OUR CAPABILITIES</span>
-                    <h2 class="section-title">Built for Industry Leadership</h2>
-                    <p class="section-desc">Switch between our specialized domains to explore how ElavateX transforms ideas into high-revenue digital assets.</p>
+                <div class="section-header text-center reveal-item">
+                    <span class="section-subtitle">OUR SERVICES</span>
+                    <h2 class="section-title">Choose the Right Digital Solution for Your Business</h2>
+                    <p class="section-desc">Whether you're launching a startup, growing your business, or strengthening your online presence, ElavateX delivers tailored digital solutions designed for long-term success.</p>
                 </div>
 
-                <div class="services-tab-buttons">
-                    <button class="service-tab-btn active" data-tab="tab-web">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                        <span>Web Development</span>
-                    </button>
-                    <button class="service-tab-btn" data-tab="tab-app">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                        <span>Application Development</span>
-                    </button>
-                    <button class="service-tab-btn" data-tab="tab-marketing">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                        <span>Social Media Management</span>
-                    </button>
-                </div>
-
-                <!-- Tab Preview Panels -->
-                <div class="tab-content-container glass-panel">
-                    <!-- Tab 1: Web Dev -->
-                    <div class="tab-panel active" id="tab-web">
-                        <div class="tab-grid">
-                            <div class="tab-info">
-                                <div class="pill-tag">MODERN TECH STACK</div>
-                                <h3>High-Performance Web Applications & Frontends</h3>
-                                <p>We craft custom React, Next.js, and Vite web applications designed for maximum conversion, sub-second load times, and bulletproof security.</p>
-                                <ul class="check-list">
-                                    <li>Custom React / Next.js / Vite Architecture</li>
-                                    <li>Interactive Animations & Clean Glass UX</li>
-                                    <li>100/100 Core Web Vitals & SEO Optimization</li>
-                                    <li>Headless CMS & Custom API Integrations</li>
-                                </ul>
-                                <div class="tab-cta">
-                                    <a href="#web-dev" class="btn-secondary">View Web Dev Details &rarr;</a>
-                                    <button class="btn-primary open-consultation-btn" data-service="Web Development">Book Web Dev Call</button>
-                                </div>
-                            </div>
-                            <div class="tab-visual">
-                                <div class="code-preview-box">
-                                    <div class="code-header">
-                                        <span class="dot red"></span>
-                                        <span class="dot yellow"></span>
-                                        <span class="dot green"></span>
-                                        <span class="title">ElavateX_Core.ts</span>
-                                    </div>
-                                    <pre><code><span class="kwd">import</span> { <span class="cls">ElavateX</span> } <span class="kwd">from</span> <span class="str">'@elavatex/engine'</span>;
-
-<span class="kwd">const</span> agencyApp = <span class="kwd">new</span> <span class="cls">ElavateX</span>({
-  domain: <span class="str">'ElavateX.com'</span>,
-  performance: <span class="str">'100/100 Lighthouse'</span>,
-  conversionRate: <span class="str">'+350%'</span>
-});
-
-agencyApp.<span class="fn">deployToProduction</span>();</code></pre>
-                                </div>
-                            </div>
+                <div class="services-interactive-grid">
+                    <!-- Card 1: Website Development -->
+                    <a href="services/web-development.html" class="service-item-card glass-panel reveal-item reveal-delay-1" data-service="Web Development">
+                        <div class="service-card-border-glow"></div>
+                        <div class="service-icon-box violet-glow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
                         </div>
-                    </div>
-
-                    <!-- Tab 2: App Dev -->
-                    <div class="tab-panel" id="tab-app">
-                        <div class="tab-grid">
-                            <div class="tab-info">
-                                <div class="pill-tag">CROSS-PLATFORM MOBILE</div>
-                                <h3>Silky-Smooth iOS & Android Applications</h3>
-                                <p>We build mobile applications using Flutter and React Native that deliver 60FPS native performance, offline support, and intuitive user experiences.</p>
-                                <ul class="check-list">
-                                    <li>Cross-Platform iOS & Android Development</li>
-                                    <li>Native API & Hardware Acceleration</li>
-                                    <li>Real-Time Firebase & Cloud Backend</li>
-                                    <li>App Store & Google Play Publishing</li>
-                                </ul>
-                                <div class="tab-cta">
-                                    <a href="#app-dev" class="btn-secondary">View App Dev Details &rarr;</a>
-                                    <button class="btn-primary open-consultation-btn" data-service="Application Development">Book App Dev Call</button>
-                                </div>
-                            </div>
-                            <div class="tab-visual">
-                                <div class="app-mockup-frame">
-                                    <div class="notch"></div>
-                                    <div class="app-screen">
-                                        <div class="screen-header">
-                                            <span>ElavateX Mobile</span>
-                                            <span class="badge-live">LIVE</span>
-                                        </div>
-                                        <div class="screen-card">
-                                            <div class="sc-title">Active App Users</div>
-                                            <div class="sc-value">84,520</div>
-                                            <div class="sc-bar"></div>
-                                        </div>
-                                        <div class="screen-card alt">
-                                            <div class="sc-title">User Satisfaction</div>
-                                            <div class="sc-value">4.9 / 5.0</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <h3>Website Development</h3>
+                        <p>Build high-performance, responsive websites that elevate your brand, engage visitors, and convert them into customers.</p>
+                        <div class="service-explore-btn">
+                            <span>Explore Service</span>
+                            <span class="explore-arrow">&rarr;</span>
                         </div>
-                    </div>
+                    </a>
 
-                    <!-- Tab 3: Social Media & Marketing -->
-                    <div class="tab-panel" id="tab-marketing">
-                        <div class="tab-grid">
-                            <div class="tab-info">
-                                <div class="pill-tag">DIGITAL MARKETING</div>
-                                <h3>Strategic Social Media & High-ROAS Ads</h3>
-                                <p>Dominate your market across Instagram, Meta Ads, and Google. We curate viral content calendars, motion graphic reels, and targeted ad funnels.</p>
-                                <ul class="check-list">
-                                    <li>Direct Lead Funnels to WhatsApp</li>
-                                </ul>
-                                <div class="tab-cta">
-                                    <a href="#digital-marketing" class="btn-secondary">View Marketing Details &rarr;</a>
-                                    <button class="btn-primary open-consultation-btn" data-service="Social Media Management">Book Marketing Call</button>
-                                </div>
-                            </div>
-                            <div class="tab-visual">
-                                <div class="marketing-dashboard-mock">
-                                    <div class="dash-row">
-                                        <div class="dash-badge">Instagram: @elavatex_dev</div>
-                                        <div class="dash-badge status">Active Campaign</div>
-                                    </div>
-                                    <div class="growth-chart">
-                                        <div class="bar h40"></div>
-                                        <div class="bar h60"></div>
-                                        <div class="bar h80"></div>
-                                        <div class="bar h100 glow"></div>
-                                    </div>
-                                    <div class="dash-stat">
-                                        <span>Reach Velocity:</span>
-                                        <strong>+540% Growth</strong>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- Card 2: Mobile App Development -->
+                    <a href="services/mobile-app-development.html" class="service-item-card glass-panel reveal-item reveal-delay-2" data-service="Application Development">
+                        <div class="service-card-border-glow"></div>
+                        <div class="service-icon-box gold-glow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                                <line x1="12" y1="18" x2="12.01" y2="18"/>
+                            </svg>
                         </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- =================================================================== -->
-        <!-- LANDING SECTION 1: WEB DEVELOPMENT                                  -->
-        <!-- =================================================================== -->
-        <section class="landing-section" id="web-dev">
-            <div class="container">
-                <div class="landing-header">
-                    <div class="service-badge indigo">LANDING PAGE &bull; WEB DEVELOPMENT</div>
-                    <h2>Web Engineering Designed to Convert</h2>
-                    <p>We build digital flagships designed to outperform competitors and convert visitors into long-term clients.</p>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature-card glass-panel">
-                        <div class="feature-icon indigo-glow">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <h3>Mobile App Development</h3>
+                        <p>Develop powerful Android and iOS applications with seamless user experiences and scalable architecture.</p>
+                        <div class="service-explore-btn">
+                            <span>Explore Service</span>
+                            <span class="explore-arrow">&rarr;</span>
                         </div>
-                        <h3>Ultra-Fast Core Web Vitals</h3>
-                        <p>Zero bloat architecture, instant page transitions, perfect 100/100 Lighthouse scores, and fast initial paint.</p>
-                    </div>
+                    </a>
 
-                    <div class="feature-card glass-panel">
-                        <div class="feature-icon violet-glow">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <!-- Card 3: Social Media Management -->
+                    <a href="services/social-media-management.html" class="service-item-card glass-panel reveal-item reveal-delay-3" data-service="Social Media Management">
+                        <div class="service-card-border-glow"></div>
+                        <div class="service-icon-box cyan-glow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                <polyline points="17 6 23 6 23 12"/>
+                            </svg>
                         </div>
-                        <h3>Enterprise-Grade Security</h3>
-                        <p>Hardened against vulnerabilities with strict CORS, CSP policies, SSL encryption, and safe data pipelines.</p>
-                    </div>
-
-                    <div class="feature-card glass-panel">
-                        <div class="feature-icon cyan-glow">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                        <h3>Social Media Management</h3>
+                        <p>Grow your online presence through strategic content creation, branding, audience engagement, and performance-driven marketing.</p>
+                        <div class="service-explore-btn">
+                            <span>Explore Service</span>
+                            <span class="explore-arrow">&rarr;</span>
                         </div>
-                        <h3>Custom Web Application APIs</h3>
-                        <p>Integrations with payment systems, CRM tools, database backends, and cloud microservices.</p>
-                    </div>
-                </div>
-
-                <div class="landing-banner glass-panel">
-                    <div class="banner-content">
-                        <h3>Ready to Upgrade Your Website?</h3>
-                        <p>Get a personalized quote and technical roadmap tailored specifically to your business goals.</p>
-                    </div>
-                    <div class="banner-actions">
-                        <button class="btn-glow open-consultation-btn" data-service="Web Development">Get Free Web Consultation</button>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- =================================================================== -->
-        <!-- LANDING SECTION 2: APPLICATION DEVELOPMENT                          -->
-        <!-- =================================================================== -->
-        <section class="landing-section" id="app-dev">
-            <div class="container">
-                <div class="landing-header">
-                    <div class="service-badge cyan">LANDING PAGE &bull; APPLICATION DEVELOPMENT</div>
-                    <h2>Cross-Platform Mobile Apps Engineered for Scale</h2>
-                    <p>Turn your app idea into a top-rated iOS and Android application with fluid 60FPS UI animations and reliable backends.</p>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature-card glass-panel">
-                        <div class="feature-icon cyan-glow">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                        </div>
-                        <h3>iOS & Android (Flutter / React Native)</h3>
-                        <p>Single codebase targeting both major mobile app stores while maintaining native performance and feel.</p>
-                    </div>
-
-                    <div class="feature-card glass-panel">
-                        <div class="feature-icon indigo-glow">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-                        </div>
-                        <h3>Real-Time Cloud & Firebase Sync</h3>
-                        <p>Instant push notifications, real-time messaging, secure user auth, and encrypted data synchronization.</p>
-                    </div>
-
-                    <div class="feature-card glass-panel">
-                        <div class="feature-icon emerald-glow">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-                        </div>
-                        <h3>Intuitive Micro-Interactions</h3>
-                        <p>Tactile feedback, smooth gesture navigation, and clean UX that keeps app users coming back daily.</p>
-                    </div>
-                </div>
-
-                <div class="landing-banner glass-panel">
-                    <div class="banner-content">
-                        <h3>Have a Mobile App Concept?</h3>
-                        <p>Let's map out your app MVP architecture and release roadmap together.</p>
-                    </div>
-                    <div class="banner-actions">
-                        <button class="btn-glow open-consultation-btn" data-service="Application Development">Book App Strategy Session</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- =================================================================== -->
-        <!-- LANDING SECTION 3: SOCIAL MEDIA MANAGEMENT                         -->
-        <!-- =================================================================== -->
-        <section class="landing-section" id="digital-marketing">
-            <div class="container">
-                <div class="landing-header">
-                    <div class="service-badge violet">LANDING PAGE &bull; SOCIAL MEDIA & DIGITAL MARKETING</div>
-                    <h2>Dominate Social Feeds & Scale Brand Authority</h2>
-                    <p>We transform silent social media channels into thriving customer pipelines through targeted campaigns and creative content.</p>
-                </div>
-
-                <!-- Ethereal Glassy Smoke & Motion Showreel Hero Banner -->
-                <div class="social-smoke-banner glass-panel">
-                    <div class="smoke-viewport">
-                        <canvas id="smoke-canvas" class="smoke-canvas"></canvas>
-                        <div class="glass-smoke-overlay"></div>
-                        <div class="smoke-banner-badge">
-                            <span class="live-dot"></span> LIVE SHOWREEL &bull; @ElavateX.dev
-                        </div>
-                        <div class="smoke-center-play">
-                            <button class="smoke-play-btn" id="smoke-play-btn" aria-label="Play Motion Showreel">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-                            </button>
-                            <span class="play-hint">Watch Ethereal Glass & Smoke Growth Reel</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="features-grid">
-                    <div class="feature-card glass-panel">
-                        <div class="feature-icon violet-glow">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                        </div>
-                        <h3>Instagram Strategy (@elavatex_dev)</h3>
-                        <p>End-to-end management: aesthetic feed curation, viral Reels creation, targeted hashtag strategies, and audience engagement.</p>
-                    </div>
-
-                    <div class="feature-card glass-panel">
-                        <div class="feature-icon indigo-glow">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                        </div>
-                        <h3>Paid Meta & Google Ad Campaigns</h3>
-                        <p>Data-driven ad management engineered for high return on ad spend (ROAS) and qualified lead acquisition.</p>
-                    </div>
-
-                    <div class="feature-card glass-panel">
-                        <div class="feature-icon cyan-glow">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                        </div>
-                        <h3>Lead Generation & WhatsApp Funnels</h3>
-                        <p>Direct lead funnel setup driving interested prospects straight to your WhatsApp.</p>
-                    </div>
-                </div>
-
-                <!-- Social Media E-Commerce & Product Cards Showcase -->
-                <div class="social-products-showcase margin-top-lg" style="margin-top: 3rem; margin-bottom: 2rem;">
-                    <div class="section-header text-center" style="margin-bottom: 2rem;">
-                        <span class="section-subtitle text-purple">GROWTH PACKAGES & E-COMMERCE PRODUCTS</span>
-                        <h3>Social Media Product & Campaign Packages</h3>
-                        <p>Explore specialized growth modules curated for e-commerce brands, creators, and enterprise businesses.</p>
-                    </div>
-
-                    <div class="features-grid">
-                        <div class="feature-card glass-panel product-pkg-card">
-                            <div class="tag-badge violet">CREATOR ESSENTIALS</div>
-                            <h4 style="margin-top: 0.8rem; font-size: 1.2rem;">Viral Reels & Content Pack</h4>
-                            <p>12 High-Definition Motion Reels per month + Custom Glassmorphic Graphic Assets + Trending Audio Strategy.</p>
-                            <div class="project-stat" style="margin-top: 1rem;">@ElavateX.dev Curation</div>
-                        </div>
-
-                        <div class="feature-card glass-panel product-pkg-card">
-                            <div class="tag-badge cyan">SCALE-UP BUSINESS</div>
-                            <h4 style="margin-top: 0.8rem; font-size: 1.2rem;">Meta & Google High-ROAS Ads</h4>
-                            <p>Full ad creative design, A/B audience targeting, retargeting funnels, and weekly performance dashboards.</p>
-                            <div class="project-stat" style="margin-top: 1rem;">5.4x Target ROAS</div>
-                        </div>
-
-                        <div class="feature-card glass-panel product-pkg-card">
-                            <div class="tag-badge emerald">ENTERPRISE 360</div>
-                            <h4 style="margin-top: 0.8rem; font-size: 1.2rem;">Full-Funnel WhatsApp Growth</h4>
-                            <p>Direct ad-to-WhatsApp conversion funnel with 24/7 automated chatbot lead capture.</p>
-                            <div class="project-stat" style="margin-top: 1rem;">Instant Lead Routing</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="landing-banner glass-panel">
-                    <div class="banner-content">
-                        <h3>Want More Followers & Client Leads?</h3>
-                        <p>Claim a free social media audit and custom growth strategy for your brand.</p>
-                    </div>
-                    <div class="banner-actions">
-                        <button class="btn-glow open-consultation-btn" data-service="Social Media Management">Get Free Audit & Call</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-
-        <!-- =================================================================== -->
         <!-- PORTFOLIO & REAL CASE STUDIES                                       -->
         <!-- =================================================================== -->
         <section class="section-portfolio" id="portfolio">
             <div class="container">
-                <div class="section-header text-center">
+                <div class="section-header text-center reveal-item">
                     <span class="section-subtitle">PROVEN CASE STUDIES</span>
                     <h2 class="section-title">Featured Client Projects</h2>
                     <p class="section-desc">Explore live applications and platforms engineered by ElavateX. Click any card to launch the live site.</p>
                 </div>
 
-                <div class="portfolio-grid" id="portfolio-grid">
+                <div class="portfolio-grid reveal-item reveal-delay-1" id="portfolio-grid">
                     <!-- Project 1: Shelter Hunt Consultants -->
                     <a href="https://shelterhuntconsultants.com" target="_blank" rel="noopener" class="portfolio-card glass-panel real-project-card">
                         <div class="portfolio-img-box img-shelterhunt">
@@ -661,43 +447,75 @@ agencyApp.<span class="fn">deployToProduction</span>();</code></pre>
         </section>
 
         <!-- =================================================================== -->
+        <!-- BRAND SECTION 4: WHY CHOOSE ELAVATEX                                -->
+        <!-- =================================================================== -->
+        <section class="section-why" id="why-choose">
+            <div class="container">
+                <div class="landing-header reveal-item">
+                    <div class="service-badge cyan">THE ELAVATEX DIFFERENCE</div>
+                    <h2>Why Strategic Businesses Partner With Us</h2>
+                    <p>We combine high-performance software engineering with growth-marketing logic to drive real revenue.</p>
+                </div>
+
+                <div class="why-grid">
+                    <div class="why-card glass-panel reveal-item">
+                        <div class="why-icon violet-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </div>
+                        <h3>Conversion-First Code</h3>
+                        <p>We reject simple templates. Every project is engineered from scratch, designed to load instantly and turn visitors into active clients.</p>
+                    </div>
+
+                    <div class="why-card glass-panel reveal-item reveal-delay-1">
+                        <div class="why-icon indigo-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                        <h3>Hardened Security</h3>
+                        <p>Protect your brand data. We implement military-grade CORS headers, Content Security Policies (CSP), and secure database logic.</p>
+                    </div>
+
+                    <div class="why-card glass-panel reveal-item reveal-delay-2">
+                        <div class="why-icon cyan-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        </div>
+                        <h3>Direct Lead Routing</h3>
+                        <p>Accelerate your sales funnel. We integrate direct lead pipelines straight to your business CRM or WhatsApp inbox to close deals in seconds.</p>
+                    </div>
+
+                    <div class="why-card glass-panel reveal-item reveal-delay-3">
+                        <div class="why-icon emerald-glow">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        </div>
+                        <h3>Real-Time Tracking</h3>
+                        <p>Total transparency. Access custom project tracking panels to monitor live traffic performance, feedback pipelines, and milestones.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
         <!-- TESTIMONIALS & LIVE CLIENT REVIEWS (TESTOMILE)                      -->
         <!-- =================================================================== -->
         <section class="section-testimonials" id="testimonials">
             <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-subtitle">CLIENT FEEDBACK & TESTOMILE</span>
+                <div class="section-header text-center reveal-item">
+                    <span class="section-subtitle">CLIENT FEEDBACK & REVIEWS</span>
                     <h2 class="section-title">What Our Clients Say</h2>
                     <p class="section-desc">Read real reviews from founders and submit your own feedback live on our website.</p>
                 </div>
 
-                <!-- Featured Client Review (Sudarshan - Shelter Hunt Consultants) -->
-                <div class="featured-testimonial-card glass-panel">
-                    <div class="testimonial-badge-top">FEATURED 5-STAR REVIEW</div>
-                    <div class="star-rating">★★★★★</div>
-                    <blockquote class="testimonial-quote">
-                        "Working with <strong>ElavateX</strong> was the absolute best experience! They delivered <strong>Shelter Hunt Consultants</strong> ahead of schedule with top-tier output, 100% responsiveness, and exceptional quality. Highly recommended!"
-                    </blockquote>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
-                        <div class="author-info">
-                            <div class="author-name">Sudarshan</div>
-                            <div class="author-role">Founder, <a href="https://shelterhuntconsultants.com" target="_blank">Shelter Hunt Consultants</a> (shelterhuntconsultants.com)</div>
+                <div class="testimonials-split-grid reveal-item reveal-delay-1">
+                    <!-- Left: Dynamic Comments List -->
+                    <div class="comments-column">
+                        <h3 class="comments-title">Live Client Reviews (<span id="reviews-count">1</span>)</h3>
+                        <div class="comments-grid" id="comments-grid">
+                            <!-- Dynamic Comments Render Here -->
                         </div>
                     </div>
-                </div>
 
-                <!-- Live User Submitted Comments Grid -->
-                <div class="user-comments-section">
-                    <h3 class="comments-title">Live Client Reviews (<span id="reviews-count">1</span>)</h3>
-                    <div class="comments-grid" id="comments-grid">
-                        <!-- Dynamic Comments Append Here -->
-                    </div>
-
-                    <!-- Add Comment Form -->
                     <div class="add-comment-box glass-panel">
-                        <h3>Leave Your Live Feedback / Review</h3>
-                        <p class="form-desc">Share your experience working with ElavateX. Your review will be published live immediately!</p>
+                        <h3>Submit a Client Review</h3>
+                        <p class="form-desc">We value your partnership. Submit your feedback to be featured live on our website board.</p>
 
                         <form id="public-review-form" class="public-review-form">
                             <div class="form-grid">
@@ -725,22 +543,22 @@ agencyApp.<span class="fn">deployToProduction</span>();</code></pre>
                                 <textarea id="rev-text" rows="3" required placeholder="Tell us about your experience working with ElavateX..."></textarea>
                             </div>
 
-                            <button type="submit" class="btn-glow">
-                                <span>Publish Live Review</span>
+                            <button type="submit" class="btn-submit-review">
+                                <span>Submit Feedback</span>
                             </button>
                         </form>
                     </div>
                 </div>
 
             </div>
-        </section>
+
 
         <!-- =================================================================== -->
         <!-- BOTTOM CTA BANNER                                                  -->
         <!-- =================================================================== -->
         <section class="section-cta">
             <div class="container">
-                <div class="cta-box glass-panel text-center">
+                <div class="cta-box glass-panel text-center reveal-item">
                     <h2 class="cta-title">Ready to Elevate Your Business with <span class="gradient-text">ElavateX</span>?</h2>
                     <p class="cta-subtitle">Don't settle for mediocre digital presence. Partner with innovators who deliver measurable revenue growth.</p>
                     
@@ -793,10 +611,10 @@ agencyApp.<span class="fn">deployToProduction</span>();</code></pre>
                 <div class="footer-col">
                     <h4 class="footer-heading">Services</h4>
                     <ul class="footer-links">
-                        <li><a href="#web-dev">Web Development</a></li>
-                        <li><a href="#app-dev">Application Development</a></li>
-                        <li><a href="#digital-marketing">Social Media Management</a></li>
-                        <li><a href="#digital-marketing">Meta & Google Paid Ads</a></li>
+                        <li><a href="#services-overview">Web Development</a></li>
+                        <li><a href="#services-overview">Application Development</a></li>
+                        <li><a href="#services-overview">Social Media Management</a></li>
+                        <li><a href="#services-overview">Meta & Google Paid Ads</a></li>
                     </ul>
                 </div>
 
@@ -1303,8 +1121,7 @@ agencyApp.<span class="fn">deployToProduction</span>();</code></pre>
 
     <!-- GSAP Libraries CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- JS Script -->
-    <script src="main.js"></script>
+    <script src="main.js?v=1.3"></script>
 </body>
 </html>

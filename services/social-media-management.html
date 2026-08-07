@@ -1,0 +1,2713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Management - ElavateX Digital Growth</title>
+    
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description" content="Build an unforgettable brand online. ElavateX engineers high-performing social media campaigns, short-form reels, content strategy, and paid ads.">
+    
+    <!-- Google Fonts: Outfit, Inter, Syne, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Syne:wght@700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Unified CSS Stylesheet -->
+    <link rel="stylesheet" href="../style.css?v=1.3">
+
+    <!-- Handcrafted UI/UX Styles (Awwwards/Cuberto Inspired) -->
+    <style>
+        :root {
+            --font-display: 'Syne', sans-serif;
+            --accent-pink: #ec4899;
+            --accent-purple-glow: rgba(168, 85, 247, 0.45);
+            --bg-smm-grad: linear-gradient(180deg, rgba(15, 17, 23, 0) 0%, rgba(236, 72, 153, 0.05) 50%, rgba(99, 102, 241, 0.03) 100%);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* ------------------ Custom Header / Navigation ------------------ */
+        .navbar-header {
+            background: rgba(var(--bg-dark), 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* ------------------ Section 1: Hero ------------------ */
+        .smm-hero {
+            padding: 10rem 0 6rem;
+            position: relative;
+            background: var(--bg-smm-grad);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .smm-hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--radius-full);
+            color: var(--accent-pink);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title-large {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 5.5vw, 5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 1.8rem;
+            color: var(--text-main);
+        }
+
+        .hero-title-large .gradient-text-pink {
+            background: linear-gradient(135deg, #f43f5e 0%, #d946ef 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc-large {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 2.8rem;
+            max-width: 600px;
+        }
+
+        .hero-button-group {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+            position: relative;
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .btn-smm-primary {
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            color: #fff;
+            font-weight: 700;
+            padding: 1.1rem 2.2rem;
+            border-radius: var(--radius-full);
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-smm-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
+        }
+
+        .btn-smm-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-glass);
+            font-weight: 600;
+            padding: 1.1rem 2.2rem;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .btn-smm-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--text-main);
+        }
+
+        /* ------------------ Instagram Mockup (Alive) ------------------ */
+        .instagram-mockup-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1200px;
+        }
+
+        .phone-frame {
+            width: 320px;
+            height: 640px;
+            background: #000;
+            border-radius: 40px;
+            border: 12px solid #1e293b;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(99, 102, 241, 0.15);
+            overflow: hidden;
+            position: relative;
+            transform: rotateY(-10deg) rotateX(10deg);
+            transition: transform 0.5s ease;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .phone-frame:hover {
+            transform: rotateY(-3deg) rotateX(3deg) scale(1.02);
+        }
+
+        /* Phone Screen Elements */
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 25px;
+            background: #1e293b;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            z-index: 100;
+        }
+
+        .insta-header {
+            padding: 2.2rem 1rem 0.8rem;
+            background: #000;
+            border-bottom: 1px solid #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .insta-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .insta-icons {
+            display: flex;
+            gap: 1rem;
+            opacity: 0.85;
+        }
+
+        .insta-feed {
+            height: calc(100% - 90px);
+            overflow-y: hidden;
+            position: relative;
+            background: #000;
+        }
+
+        /* Mockup Post card */
+        .insta-post {
+            width: 100%;
+            background: #000;
+        }
+
+        .post-author {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            gap: 0.5rem;
+        }
+
+        .author-pfp {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            border: 2px solid #000;
+            outline: 2px solid #ec4899;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .author-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .post-image-box {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .post-graphic {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .post-graphic svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.8rem;
+            color: #ec4899;
+        }
+
+        .post-graphic span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.3px;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .actions-left {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .post-likes {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0 0.75rem;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .post-caption {
+            font-size: 0.78rem;
+            padding: 0 0.75rem;
+            line-height: 1.4;
+            color: #cbd5e1;
+        }
+
+        .post-caption strong {
+            color: #fff;
+        }
+
+        /* Floating Comments */
+        .floating-comments-container {
+            position: absolute;
+            bottom: 40px;
+            left: 10px;
+            right: 10px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            pointer-events: none;
+        }
+
+        .mini-comment-card {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 0.6rem 0.9rem;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideInComment 4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        }
+
+        .mini-comment-card:nth-child(2) {
+            animation-delay: 1.3s;
+        }
+
+        .mini-comment-card:nth-child(3) {
+            animation-delay: 2.6s;
+        }
+
+        /* Push Notifications */
+        .push-notification {
+            position: absolute;
+            top: 75px;
+            left: 12px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.95);
+            border-left: 4px solid #ec4899;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-size: 0.75rem;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+            transform: translateY(-100px);
+            opacity: 0;
+            animation: slideInNotification 6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        }
+
+        /* Decorative Floating Elements around Mockup */
+        .hero-decor-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: -1;
+            top: 20%;
+            right: 10%;
+        }
+
+        /* ------------------ Section 2: Platforms Showcase ------------------ */
+        .smm-platforms {
+            padding: var(--section-padding-desktop);
+            border-top: 1px solid var(--border-glass);
+            position: relative;
+        }
+
+        .smm-showcase-container {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1.5rem 0.5rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .smm-showcase-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .platform-card-horizontal {
+            flex: 0 0 320px;
+            scroll-snap-align: start;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 2.2rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 240px;
+        }
+
+        .platform-card-horizontal:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-glass-glow);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.1);
+        }
+
+        .platform-card-horizontal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--platform-color, #ec4899), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .platform-card-horizontal:hover::after {
+            opacity: 1;
+        }
+
+        .platform-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            background: var(--platform-bg, #ec4899);
+            box-shadow: 0 6px 15px rgba(15, 23, 42, 0.1);
+        }
+
+        .platform-card-horizontal h3 {
+            font-family: var(--font-primary);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+        }
+
+        .platform-card-horizontal p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        /* ------------------ Section 3: Services Timeline ------------------ */
+        .smm-services {
+            padding: var(--section-padding-desktop);
+            border-top: 1px solid var(--border-glass);
+            position: relative;
+        }
+
+        .smm-timeline {
+            position: relative;
+            max-width: 1100px;
+            margin: 4rem auto 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-bottom: 8rem;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Alternate timeline alignments */
+        .timeline-item.alt {
+            direction: rtl;
+        }
+
+        .timeline-item.alt > * {
+            direction: ltr; /* Reset text direction inside */
+        }
+
+        .timeline-content-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .timeline-num {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--accent-pink);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            display: block;
+        }
+
+        .timeline-content-block h3 {
+            font-family: var(--font-primary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .timeline-content-block p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
+        }
+
+        /* Custom Unique Layouts for each timeline block image/illustration */
+        .timeline-visual {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+        }
+
+        /* 1. Content Strategy - Grid design */
+        .visual-strategy {
+            background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .strategy-pillar {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--border-glass);
+            border-radius: 12px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .strategy-pillar:hover {
+            border-color: var(--accent-pink);
+            background: rgba(236, 72, 153, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .strategy-pillar svg {
+            width: 32px;
+            height: 32px;
+            color: var(--accent-pink);
+        }
+
+        .strategy-pillar span {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* 2. Graphic Design - Overlapping items */
+        .visual-design {
+            background: radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 60%);
+        }
+
+        .design-canvas {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .canvas-bg-shape {
+            position: absolute;
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            width: 140px;
+            height: 140px;
+            border-radius: 30px;
+            top: 20%;
+            left: 20%;
+            opacity: 0.85;
+            box-shadow: 0 15px 30px rgba(236, 72, 153, 0.25);
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .canvas-card-top {
+            position: absolute;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass-glow);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.2rem;
+            width: 200px;
+            top: 35%;
+            right: 15%;
+            box-shadow: var(--shadow-card);
+            z-index: 5;
+            animation: float 5s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+
+        .canvas-card-top .palette {
+            display: flex;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+        }
+
+        .canvas-card-top .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        /* 3. Reels Editing - Mock editing screen */
+        .visual-reels {
+            background: #090a0f;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0;
+        }
+
+        .mock-editor {
+            width: 80%;
+            height: 85%;
+            background: #121520;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: none;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+
+        .editor-top {
+            height: 40px;
+            background: #0c0e14;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            gap: 0.4rem;
+        }
+
+        .editor-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ef4444;
+        }
+        .editor-dot:nth-child(2) { background: #eab308; }
+        .editor-dot:nth-child(3) { background: #22c55e; }
+
+        .editor-preview {
+            flex: 1;
+            background: #000;
+            margin: 0.6rem;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-waveform {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            height: 25px;
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+        }
+
+        .wave-bar {
+            flex: 1;
+            height: 40%;
+            background: #8b5cf6;
+            border-radius: 1px;
+            animation: audioActive 1.2s ease-in-out infinite alternate;
+        }
+        .wave-bar:nth-child(even) {
+            animation-duration: 0.8s;
+            background: #ec4899;
+        }
+
+        /* 4. Ad Creatives - Split view */
+        .visual-ads {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.02) 0%, rgba(6, 182, 212, 0.03) 100%);
+        }
+
+        .ads-split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .ad-variant-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 1.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ad-variant-box.winner {
+            border-color: var(--accent-emerald);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.1);
+        }
+
+        .ad-badge-top {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-emerald);
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .ad-ctr-num {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-top: 1rem;
+            color: var(--text-main);
+        }
+
+        /* 5. Campaign Planning - Calendar grid */
+        .visual-campaign {
+            background: radial-gradient(circle at top, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+        }
+
+        .campaign-calendar {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 0.8rem;
+        }
+
+        .calendar-cell {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 0.6rem;
+            position: relative;
+            min-height: 50px;
+        }
+
+        .calendar-cell.filled {
+            background: linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(139,92,246,0.08) 100%);
+            border-color: rgba(236,72,153,0.3);
+        }
+
+        .calendar-cell.filled::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            right: 8px;
+            height: 5px;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #ec4899, #8b5cf6);
+        }
+
+        /* 6. Monthly Reporting - Chart preview */
+        .visual-reporting {
+            background: #0d0f16;
+        }
+
+        .reporting-chart-box {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .chart-bars-wrap {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.8rem;
+            height: 120px;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, rgba(99, 102, 241, 0.2), #6366f1);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            height: 30%;
+            transition: height 1s ease;
+            position: relative;
+        }
+
+        .chart-bar:hover {
+            background: var(--accent-pink);
+        }
+
+        .chart-bar:nth-child(2) { height: 50%; }
+        .chart-bar:nth-child(3) { height: 45%; }
+        .chart-bar:nth-child(4) { height: 80%; }
+        .chart-bar:nth-child(5) { height: 95%; }
+
+        /* ------------------ Section 4: Creative Workflow ------------------ */
+        .smm-workflow {
+            padding: var(--section-padding-desktop);
+            border-top: 1px solid var(--border-glass);
+            position: relative;
+            background: rgba(255,255,255,0.01);
+        }
+
+        .workflow-timeline-wrapper {
+            position: relative;
+            max-width: 1000px;
+            margin: 5rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        /* SVG Line Connecting nodes */
+        .workflow-svg-line {
+            position: absolute;
+            top: 25px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .workflow-svg-line line {
+            stroke: var(--border-glass);
+            stroke-width: 4;
+            stroke-dasharray: 8 8;
+        }
+
+        .workflow-svg-line .active-pulse-line {
+            stroke: url(#workflow-glow-grad);
+            stroke-width: 4;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: animateStroke 5s linear infinite;
+        }
+
+        .workflow-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            position: relative;
+            z-index: 5;
+        }
+
+        .workflow-step-node {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-surface);
+            border: 2px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-bottom: 1.5rem;
+            position: relative;
+            box-shadow: var(--shadow-card);
+        }
+
+        .workflow-step-node:hover .step-circle {
+            border-color: var(--accent-pink);
+            color: #fff;
+            background: var(--accent-pink);
+            transform: scale(1.15);
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+        }
+
+        .step-title {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-arrow-mini {
+            font-size: 0.75rem;
+            color: var(--accent-pink);
+            margin-bottom: 0.2rem;
+            font-family: var(--font-mono);
+        }
+
+        /* ------------------ Section 6: Why Businesses Choose Us ------------------ */
+        .smm-why-us {
+            padding: var(--section-padding-desktop);
+            border-top: 1px solid var(--border-glass);
+            position: relative;
+        }
+
+        .why-features-grid-large {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.2rem;
+            margin-top: 4rem;
+        }
+
+        .why-feature-block {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-feature-block:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-glass-glow);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.05);
+        }
+
+        .why-block-info h3 {
+            font-family: var(--font-primary);
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.4px;
+        }
+
+        .why-block-info p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        /* Premium SVG Illustrations for blocks */
+        .why-illustration-wrap {
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ------------------ Section 7: Pricing ------------------ */
+        .smm-pricing {
+            padding: var(--section-padding-desktop);
+            border-top: 1px solid var(--border-glass);
+            position: relative;
+            background: linear-gradient(180deg, rgba(15, 17, 23, 0) 0%, rgba(99, 102, 241, 0.02) 100%);
+        }
+
+        .pricing-cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.2rem;
+            align-items: stretch;
+            margin-top: 4.5rem;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-card-smm {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 3.5rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .pricing-card-smm::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            padding: 2px;
+            background: linear-gradient(135deg, transparent 80%, var(--accent-pink) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.3;
+            transition: opacity 0.4s ease;
+        }
+
+        .pricing-card-smm:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.15);
+        }
+
+        .pricing-card-smm:hover::before {
+            opacity: 1;
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #38bdf8 100%);
+        }
+
+        /* Popular card layout overrides */
+        .pricing-card-smm.popular {
+            border-color: rgba(236, 72, 153, 0.35);
+            background: radial-gradient(circle at top right, rgba(236, 72, 153, 0.05) 0%, var(--bg-surface) 60%);
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.08);
+        }
+
+        .pricing-card-smm.popular:hover {
+            transform: scale(1.03) translateY(-10px);
+            box-shadow: 0 25px 55px rgba(236, 72, 153, 0.15);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: 25px;
+            right: -30px;
+            background: linear-gradient(90deg, #ec4899 0%, #8b5cf6 100%);
+            color: #fff;
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            font-weight: 800;
+            padding: 0.4rem 2.5rem;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(236, 72, 153, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-plan-title {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .popular .pricing-plan-title {
+            color: var(--accent-pink);
+        }
+
+        .pricing-plan-price {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            letter-spacing: -1.5px;
+        }
+
+        .pricing-plan-period {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 2.2rem;
+            display: block;
+        }
+
+        .pricing-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 3rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex-grow: 1;
+        }
+
+        .pricing-feature-item {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .pricing-feature-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-pink);
+            flex-shrink: 0;
+        }
+
+        .pricing-card-smm.popular .pricing-feature-item svg {
+            color: #8b5cf6;
+        }
+
+        .pricing-card-smm .btn-smm-primary,
+        .pricing-card-smm .btn-smm-secondary {
+            width: 100%;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        /* ------------------ Section 8: FAQ Accordion ------------------ */
+        .smm-faq {
+            padding: var(--section-padding-desktop);
+            border-top: 1px solid var(--border-glass);
+            position: relative;
+        }
+
+        .faq-accordion-wrap {
+            max-width: 800px;
+            margin: 4rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .faq-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-item:hover {
+            border-color: var(--border-glass-glow);
+        }
+
+        .faq-header {
+            padding: 1.8rem 2.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-header h3 {
+            font-family: var(--font-primary);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-main);
+            padding-right: 1.5rem;
+        }
+
+        .faq-icon-toggle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-icon-toggle svg {
+            width: 14px;
+            height: 14px;
+            color: var(--text-main);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-content {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-content-inner {
+            padding: 0 2.2rem 1.8rem;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            border-top: 1px solid transparent;
+        }
+
+        /* Active states */
+        .faq-item.active {
+            border-color: var(--border-glass-glow);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.03);
+        }
+
+        .faq-item.active .faq-icon-toggle {
+            background: var(--accent-pink);
+            border-color: var(--accent-pink);
+        }
+
+        .faq-item.active .faq-icon-toggle svg {
+            transform: rotate(45deg);
+            color: #fff;
+        }
+
+        /* ------------------ Section 9: Final CTA ------------------ */
+        .smm-cta {
+            padding: 7rem 0;
+            border-top: 1px solid var(--border-glass);
+            position: relative;
+            background: radial-gradient(circle at bottom right, rgba(236,72,153,0.04) 0%, transparent 60%);
+        }
+
+        .smm-cta-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .smm-cta-box::before {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 70%);
+            top: -50px;
+            left: -50px;
+            filter: blur(30px);
+        }
+
+        .smm-cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.2rem;
+        }
+
+        .smm-cta-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ------------------ Keyframe Animations ------------------ */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes audioActive {
+            0% { height: 20%; }
+            100% { height: 95%; }
+        }
+
+        @keyframes slideInComment {
+            0% { transform: translateY(20px); opacity: 0; }
+            10% { transform: translateY(0); opacity: 1; }
+            90% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-10px); opacity: 0; }
+        }
+
+        @keyframes slideInNotification {
+            0% { transform: translateY(-100px); opacity: 0; }
+            5% { transform: translateY(0); opacity: 1; }
+            35% { transform: translateY(0); opacity: 1; }
+            40% { transform: translateY(-100px); opacity: 0; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+
+        @keyframes animateStroke {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* ------------------ Responsive Styles ------------------ */
+        @media (max-width: 991px) {
+            .smm-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 5rem;
+                text-align: center;
+            }
+
+            .hero-desc-large {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-button-group {
+                justify-content: center;
+            }
+
+            .timeline-item, .timeline-item.alt {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .timeline-item.alt {
+                direction: ltr;
+            }
+
+            .why-features-grid-large {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-cards-container {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+            }
+
+            .pricing-card-smm.popular {
+                transform: none;
+            }
+
+            .pricing-card-smm.popular:hover {
+                transform: translateY(-10px);
+            }
+
+            .workflow-steps-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2.5rem 1rem;
+            }
+
+            .workflow-svg-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-button-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-button-group > div, 
+            .hero-button-group button, 
+            .hero-button-group a {
+                width: 100%;
+            }
+
+            .workflow-steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .smm-cta-box {
+                padding: 4rem 1.5rem;
+            }
+
+            .why-feature-block {
+                grid-template-columns: 1fr;
+                padding: 2.2rem;
+                text-align: center;
+            }
+
+            .why-illustration-wrap {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <!-- Top progress loading bar system -->
+    <div id="top-loading-bar" class="top-loading-bar"></div>
+
+    <!-- =================================================================== -->
+    <!-- HEADER / NAVIGATION BAR                                             -->
+    <!-- =================================================================== -->
+    <header class="navbar-header" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html#hero" class="brand-logo">
+                <span class="logo-mark">
+                    <svg viewBox="0 0 40 40" class="logo-x-icon">
+                        <path d="M 8,6 L 20,20 L 8,34 L 14,34 L 23,23 L 32,34 L 38,34 L 26,20 L 38,6 L 32,6 L 23,17 L 14,6 Z" fill="url(#nav-x-grad)" />
+                        <defs>
+                            <linearGradient id="nav-x-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#6366f1" />
+                                <stop offset="100%" stop-color="#06b6d4" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <span class="logo-text">Elavate<span class="accent-x">X</span></span>
+            </a>
+            <nav class="nav-links">
+                <a href="../index.html#about" class="nav-link">About</a>
+                <a href="../index.html#services-overview" class="nav-link active">Services</a>
+                <a href="../index.html#portfolio" class="nav-link">Work</a>
+                <a href="../index.html#why-choose" class="nav-link">Why Us</a>
+                <a href="../index.html#testimonials" class="nav-link">Testimonials</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="btn-primary btn-sm open-consultation-btn">Get Free Consultation</button>
+
+                <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Light and Dark Theme" title="Switch Light/Dark Mode">
+                    <span class="theme-icon-sun">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    </span>
+                    <span class="theme-icon-moon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </span>
+                </button>
+
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Mobile Navigation Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div class="drawer-header">
+            <button class="theme-toggle-btn" id="drawer-theme-toggle" aria-label="Toggle Navigation Light and Dark Theme">
+                <span class="theme-icon-sun">☀️</span>
+                <span class="theme-icon-moon">🌙</span>
+            </button>
+            <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
+        </div>
+        <div class="drawer-links">
+            <a href="../index.html#about" class="drawer-link">About</a>
+            <a href="../index.html#services-overview" class="drawer-link">Services</a>
+            <a href="../index.html#portfolio" class="drawer-link">Work</a>
+            <a href="../index.html#why-choose" class="drawer-link">Why Us</a>
+            <a href="../index.html#testimonials" class="drawer-link">Testimonials</a>
+            <hr class="drawer-divider">
+            <button class="btn-primary open-consultation-btn w-full">Book a Call</button>
+            <a href="https://wa.me/917676808068" target="_blank" class="btn-whatsapp-outline w-full text-center margin-top-sm">
+                <span>Connect via WhatsApp</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- =================================================================== -->
+        <!-- SECTION 1: HERO                                                     -->
+        <!-- =================================================================== -->
+        <section class="smm-hero">
+            <div class="container">
+                <div class="smm-hero-grid">
+                    
+                    <div class="smm-hero-content reveal-item">
+                        <div class="hero-badge-pill">
+                            <span>✨ Social Media Management</span>
+                        </div>
+                        <h1 class="hero-title-large">
+                            Build a Brand <br><span class="gradient-text-pink">People Remember.</span>
+                        </h1>
+                        <p class="hero-desc-large">
+                            We help businesses grow their online presence through strategic content, engaging visuals, short-form videos, and consistent brand communication across major social media platforms.
+                        </p>
+                        <div class="hero-button-group">
+                            <div class="magnetic-wrap">
+                                <button class="btn-smm-primary open-consultation-btn">
+                                    <span>Get Free Consultation</span>
+                                </button>
+                            </div>
+                            <div class="magnetic-wrap">
+                                <a href="#pricing-anchor" class="btn-smm-secondary">View Packages</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="instagram-mockup-wrapper reveal-item">
+                        <div class="hero-decor-orb"></div>
+                        <div class="phone-frame">
+                            <div class="phone-notch"></div>
+                            
+                            <!-- Push Notification Box -->
+                            <div class="push-notification" id="push-notify">
+                                <div class="author-pfp">📈</div>
+                                <div>
+                                    <strong style="display:block;">ElavateX Marketing</strong>
+                                    <span>Your reel reached +124k users this hour! 🚀</span>
+                                </div>
+                            </div>
+
+                            <div class="insta-header">
+                                <span class="insta-logo">elavatex_dev</span>
+                                <div class="insta-icons">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                                </div>
+                            </div>
+                            
+                            <div class="insta-feed">
+                                <div class="insta-post">
+                                    <div class="post-author">
+                                        <div class="author-pfp">EX</div>
+                                        <div>
+                                            <span class="author-name">elavatex_dev</span>
+                                            <span style="font-size:0.65rem; display:block; opacity:0.6;">Sponsored</span>
+                                        </div>
+                                    </div>
+                                    <div class="post-image-box">
+                                        <div class="post-graphic">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                            <span>WE BUILD DIGITAL PRODUCTS THAT SCALE</span>
+                                        </div>
+                                    </div>
+                                    <div class="post-actions">
+                                        <div class="actions-left">
+                                            <svg id="insta-heart" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer; transition: fill 0.3s, color 0.3s;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                        </div>
+                                    </div>
+                                    <span class="post-likes"><span id="likes-counter">42,892</span> likes</span>
+                                    <p class="post-caption">
+                                        <strong>elavatex_dev</strong> Custom engineering is the ultimate hack for brands that want to grow. Stop using templates! 💎🚀 #WebEngineering #Awwwards #Locomotive
+                                    </p>
+                                </div>
+
+                                <!-- Floating Live Comments Board -->
+                                <div class="floating-comments-container">
+                                    <div class="mini-comment-card">
+                                        <div class="author-pfp" style="outline-color:#10b981;">👨‍💻</div>
+                                        <div><strong>rahul_dev:</strong> "Absolutely stunning design!"</div>
+                                    </div>
+                                    <div class="mini-comment-card">
+                                        <div class="author-pfp" style="outline-color:#f59e0b;">👩‍🎨</div>
+                                        <div><strong>ananya_pixels:</strong> "The animations feel so fluid!"</div>
+                                    </div>
+                                    <div class="mini-comment-card">
+                                        <div class="author-pfp" style="outline-color:#3b82f6;">📈</div>
+                                        <div><strong>growth_hacker:</strong> "CTR increased by 3.4x!"</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- SECTION 2: PLATFORMS WE MANAGE                                     -->
+        <!-- =================================================================== -->
+        <section class="smm-platforms">
+            <div class="container">
+                <div class="section-header text-center reveal-item">
+                    <span class="section-subtitle">PLATFORM COVERAGE</span>
+                    <h2 class="section-title">Where We Tell Your Story</h2>
+                    <p class="section-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                        We deploy custom tailored branding templates, video algorithms, and caption formulas optimized specifically for each digital medium.
+                    </p>
+                </div>
+
+                <!-- Drag/Scroll Showcase container -->
+                <div class="smm-showcase-container reveal-item">
+                    
+                    <div class="platform-card-horizontal" style="--platform-color: #e1306c; --platform-bg: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285aeb 90%);">
+                        <div class="platform-icon">📷</div>
+                        <div>
+                            <h3>Instagram</h3>
+                            <p>Visual branding, aesthetic feed layouts, high-retention Reels, and daily interactive story loops.</p>
+                        </div>
+                    </div>
+
+                    <div class="platform-card-horizontal" style="--platform-color: #1877f2; --platform-bg: #1877f2;">
+                        <div class="platform-icon">👥</div>
+                        <div>
+                            <h3>Facebook</h3>
+                            <p>Community building, community discussions, meta campaign integrations, and targeted local ad creatives.</p>
+                        </div>
+                    </div>
+
+                    <div class="platform-card-horizontal" style="--platform-color: #0a66c2; --platform-bg: #0a66c2;">
+                        <div class="platform-icon">👔</div>
+                        <div>
+                            <h3>LinkedIn</h3>
+                            <p>Professional thought leadership, custom infographic slides, executive positioning, and b2b authority scaling.</p>
+                        </div>
+                    </div>
+
+                    <div class="platform-card-horizontal" style="--platform-color: #ff0000; --platform-bg: #ff0000;">
+                        <div class="platform-icon">🎥</div>
+                        <div>
+                            <h3>YouTube</h3>
+                            <p>Shorts optimization, eye-catching thumbnails, high-CTR hooks, and long-form video editing production.</p>
+                        </div>
+                    </div>
+
+                    <div class="platform-card-horizontal" style="--platform-color: #4285f4; --platform-bg: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #fbbd05 100%);">
+                        <div class="platform-icon">📍</div>
+                        <div>
+                            <h3>Google Business</h3>
+                            <p>Local search map scaling, optimized profile updates, structured local updates, and positive review generation.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- SECTION 3: OUR SERVICES (ZIG-ZAG TIMELINE)                         -->
+        <!-- =================================================================== -->
+        <section class="smm-services">
+            <div class="container">
+                <div class="section-header text-center reveal-item">
+                    <span class="section-subtitle">OUR CAPABILITIES</span>
+                    <h2 class="section-title">What We Do</h2>
+                    <p class="section-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Every service is fully customized. We discard boilerplate packages to engineer premium workflows that grow brands.
+                    </p>
+                </div>
+
+                <div class="smm-timeline">
+                    
+                    <!-- Item 1: Content Strategy -->
+                    <div class="timeline-item reveal-item">
+                        <div class="timeline-content-block">
+                            <span class="timeline-num">01 // VISION</span>
+                            <h3>Content Strategy</h3>
+                            <p>
+                                We construct strategic content frameworks tailored exactly to your industry. We perform competitor teardowns, target audience profiling, and develop dynamic visual guidelines that position your brand as an industry leader.
+                            </p>
+                        </div>
+                        <div class="timeline-visual visual-strategy">
+                            <div class="strategy-pillar">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                <span>competitor teardown</span>
+                            </div>
+                            <div class="strategy-pillar">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                                <span>audience profiling</span>
+                            </div>
+                            <div class="strategy-pillar">
+                                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 5a1 1 0 01.3-.7l7-7a1 1 0 011.4 0l7 7A1 1 0 0120 5v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"/></svg>
+                                <span>visual framework</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Graphic Design -->
+                    <div class="timeline-item alt reveal-item">
+                        <div class="timeline-content-block">
+                            <span class="timeline-num">02 // AESTHETICS</span>
+                            <h3>Graphic Design</h3>
+                            <p>
+                                Stunning, custom-designed graphic posts, carousels, and infographic slides that capture attention instantly. We apply elegant typography, tailored color palettes, and obsidian dark or warm beige styling that stands out in any feed.
+                            </p>
+                        </div>
+                        <div class="timeline-visual visual-design">
+                            <div class="design-canvas">
+                                <div class="canvas-bg-shape"></div>
+                                <div class="canvas-card-top">
+                                    <strong style="font-size:0.8rem; display:block; margin-bottom:0.4rem;">Typography Block</strong>
+                                    <span style="font-size:0.65rem; color:var(--text-muted);">Outfit Bold 700</span>
+                                    <div class="palette">
+                                        <div class="color-dot" style="background:#ec4899;"></div>
+                                        <div class="color-dot" style="background:#8b5cf6;"></div>
+                                        <div class="color-dot" style="background:#0f172a;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Reels Editing -->
+                    <div class="timeline-item reveal-item">
+                        <div class="timeline-content-block">
+                            <span class="timeline-num">03 // VIRALITY</span>
+                            <h3>Reels & Shorts Editing</h3>
+                            <p>
+                                Short-form video is the quickest way to grow organically. We edit high-impact, sub-second transition Reels, TikToks, and YouTube Shorts complete with clean captions, custom audio tracks, and sound effect accents that retain viewers.
+                            </p>
+                        </div>
+                        <div class="timeline-visual visual-reels">
+                            <div class="mock-editor">
+                                <div class="editor-top">
+                                    <div class="editor-dot"></div>
+                                    <div class="editor-dot"></div>
+                                    <div class="editor-dot"></div>
+                                </div>
+                                <div class="editor-preview">
+                                    <span style="font-size:1.5rem; animation: float 3s infinite;">🎬</span>
+                                    <div class="preview-waveform">
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                        <div class="wave-bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Ad Creatives -->
+                    <div class="timeline-item alt reveal-item">
+                        <div class="timeline-content-block">
+                            <span class="timeline-num">04 // CONVERSION</span>
+                            <h3>Paid Ad Creatives</h3>
+                            <p>
+                                Maximize your ROI. We engineer high-converting paid ad graphic templates and promotional video hooks specifically tested to trigger actions, lower your customer acquisition cost (CAC), and boost sales revenue.
+                            </p>
+                        </div>
+                        <div class="timeline-visual visual-ads">
+                            <div class="ads-split-grid">
+                                <div class="ad-variant-box">
+                                    <span style="font-size:0.7rem; font-family:var(--font-mono); color:var(--text-muted);">AD STYLE A</span>
+                                    <div class="ad-ctr-num" style="color:var(--text-subtle);">1.2% CTR</div>
+                                    <span style="font-size:0.65rem; color:red; font-weight:700;">Average</span>
+                                </div>
+                                <div class="ad-variant-box winner">
+                                    <div class="ad-badge-top">WINNER</div>
+                                    <span style="font-size:0.7rem; font-family:var(--font-mono); color:var(--accent-pink);">AD STYLE B</span>
+                                    <div class="ad-ctr-num" style="color:var(--accent-emerald);">4.8% CTR</div>
+                                    <span style="font-size:0.65rem; color:var(--accent-emerald); font-weight:700;">+300% Higher</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: Campaign Planning -->
+                    <div class="timeline-item reveal-item">
+                        <div class="timeline-content-block">
+                            <span class="timeline-num">05 // CONSISTENCY</span>
+                            <h3>Campaign & Event Planning</h3>
+                            <p>
+                                Consistent scheduling keeps your brand alive. We develop monthly interactive content calendars mapping out campaigns, product launches, seasonal trends, and interactive story workflows so your feeds never go silent.
+                            </p>
+                        </div>
+                        <div class="timeline-visual visual-campaign">
+                            <div class="campaign-calendar">
+                                <div class="calendar-cell filled"></div>
+                                <div class="calendar-cell"></div>
+                                <div class="calendar-cell filled"></div>
+                                <div class="calendar-cell"></div>
+                                <div class="calendar-cell"></div>
+                                <div class="calendar-cell filled"></div>
+                                <div class="calendar-cell"></div>
+                                <div class="calendar-cell filled"></div>
+                                <div class="calendar-cell filled"></div>
+                                <div class="calendar-cell"></div>
+                                <div class="calendar-cell filled"></div>
+                                <div class="calendar-cell"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6: Monthly Reporting -->
+                    <div class="timeline-item alt reveal-item">
+                        <div class="timeline-content-block">
+                            <span class="timeline-num">06 // INSIGHTS</span>
+                            <h3>Monthly Performance Analytics</h3>
+                            <p>
+                                Pure data-driven scaling. You receive structured monthly reports tracking key parameters (reach, follower acquisition, click-through-rates, message leads) and clear next steps to refine the strategy.
+                            </p>
+                        </div>
+                        <div class="timeline-visual visual-reporting">
+                            <div class="reporting-chart-box">
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                                    <span style="font-size:0.8rem; font-weight:700;">Monthly Follower Growth</span>
+                                    <span style="font-size:0.75rem; color:var(--accent-emerald); font-weight:700;">+48.2%</span>
+                                </div>
+                                <div class="chart-bars-wrap">
+                                    <div class="chart-bar"></div>
+                                    <div class="chart-bar"></div>
+                                    <div class="chart-bar"></div>
+                                    <div class="chart-bar"></div>
+                                    <div class="chart-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- SECTION 4: CREATIVE WORKFLOW                                        -->
+        <!-- =================================================================== -->
+        <section class="smm-workflow">
+            <div class="container">
+                <div class="section-header text-center reveal-item">
+                    <span class="section-subtitle">THE BLUEPRINT</span>
+                    <h2 class="section-title">Creative Workflow</h2>
+                    <p class="section-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Our structured workflow guarantees sub-second responsiveness, pixel-perfect layouts, and consistent publishing calendars.
+                    </p>
+                </div>
+
+                <div class="workflow-timeline-wrapper reveal-item">
+                    <!-- SVG connection line -->
+                    <div class="workflow-svg-line">
+                        <svg width="100%" height="100%" preserveAspectRatio="none">
+                            <line x1="5%" y1="50%" x2="95%" y2="50%" />
+                            <line class="active-pulse-line" x1="5%" y1="50%" x2="95%" y2="50%" />
+                            <defs>
+                                <linearGradient id="workflow-glow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#ec4899" />
+                                    <stop offset="50%" stop-color="#8b5cf6" />
+                                    <stop offset="100%" stop-color="#38bdf8" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <div class="workflow-steps-grid">
+                        
+                        <div class="workflow-step-node">
+                            <div class="step-circle">1</div>
+                            <span class="step-title">Discover</span>
+                            <span class="step-arrow-mini">↓</span>
+                        </div>
+
+                        <div class="workflow-step-node">
+                            <div class="step-circle">2</div>
+                            <span class="step-title">Research</span>
+                            <span class="step-arrow-mini">↓</span>
+                        </div>
+
+                        <div class="workflow-step-node">
+                            <div class="step-circle">3</div>
+                            <span class="step-title">Design</span>
+                            <span class="step-arrow-mini">↓</span>
+                        </div>
+
+                        <div class="workflow-step-node">
+                            <div class="step-circle">4</div>
+                            <span class="step-title">Create</span>
+                            <span class="step-arrow-mini">↓</span>
+                        </div>
+
+                        <div class="workflow-step-node">
+                            <div class="step-circle">5</div>
+                            <span class="step-title">Publish</span>
+                            <span class="step-arrow-mini">↓</span>
+                        </div>
+
+                        <div class="workflow-step-node">
+                            <div class="step-circle">6</div>
+                            <span class="step-title">Optimize</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- SECTION 6: WHY BUSINESSES CHOOSE ELAVATEX                           -->
+        <!-- =================================================================== -->
+        <section class="smm-why-us">
+            <div class="container">
+                <div class="section-header text-center reveal-item">
+                    <span class="section-subtitle">THE ELAVATEX EDGE</span>
+                    <h2 class="section-title">Why Choose Us?</h2>
+                    <p class="section-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                        We replace basic, automated scripts and standard grids with bespoke growth assets.
+                    </p>
+                </div>
+
+                <div class="why-features-grid-large">
+                    
+                    <!-- Block 1: Creative Designs -->
+                    <div class="why-feature-block reveal-item">
+                        <div class="why-block-info">
+                            <h3>Creative Designs</h3>
+                            <p>
+                                No templates. No Canva grids. We write and construct custom SVG shapes, elegant layered colors, and high-converting typography matching your brand identity to make your feed uniquely memorable.
+                            </p>
+                        </div>
+                        <div class="why-illustration-wrap">
+                            <!-- SVG Illustration 1 -->
+                            <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="35" stroke="url(#why-grad-1)" stroke-width="3" stroke-dasharray="6 6"/>
+                                <rect x="35" y="35" width="30" height="30" rx="6" fill="#ec4899" fill-opacity="0.15" stroke="#ec4899" stroke-width="2"/>
+                                <circle cx="35" cy="35" r="5" fill="#8b5cf6"/>
+                                <circle cx="65" cy="65" r="5" fill="#38bdf8"/>
+                                <defs>
+                                    <linearGradient id="why-grad-1" x1="0" y1="0" x2="100" y2="100">
+                                        <stop offset="0%" stop-color="#ec4899"/>
+                                        <stop offset="100%" stop-color="#8b5cf6"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Block 2: Audience Growth -->
+                    <div class="why-feature-block reveal-item">
+                        <div class="why-block-info">
+                            <h3>Audience Growth</h3>
+                            <p>
+                                Pure focus on organic reaches, conversion hooks, viral video structures, and message integrations to build communities that purchase your products.
+                            </p>
+                        </div>
+                        <div class="why-illustration-wrap">
+                            <!-- SVG Illustration 2 -->
+                            <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
+                                <path d="M20 70 L40 50 L55 60 L80 30" stroke="url(#why-grad-2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="80" cy="30" r="6" fill="#ec4899"/>
+                                <circle cx="80" cy="30" r="12" stroke="#ec4899" stroke-width="2" stroke-opacity="0.3"/>
+                                <defs>
+                                    <linearGradient id="why-grad-2" x1="0" y1="0" x2="100" y2="100">
+                                        <stop offset="0%" stop-color="#8b5cf6"/>
+                                        <stop offset="100%" stop-color="#38bdf8"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Block 3: Consistent Branding -->
+                    <div class="why-feature-block reveal-item">
+                        <div class="why-block-info">
+                            <h3>Consistent Branding</h3>
+                            <p>
+                                We guarantee that every video title, post typography, color contrast, and logo watermark aligns with your product layout, maintaining a premium brand outlook.
+                            </p>
+                        </div>
+                        <div class="why-illustration-wrap">
+                            <!-- SVG Illustration 3 -->
+                            <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
+                                <rect x="30" y="30" width="40" height="40" rx="8" stroke="url(#why-grad-3)" stroke-width="3"/>
+                                <line x1="30" y1="50" x2="70" y2="50" stroke="var(--border-glass)" stroke-width="2"/>
+                                <line x1="50" y1="30" x2="50" y2="70" stroke="var(--border-glass)" stroke-width="2"/>
+                                <circle cx="50" cy="50" r="8" fill="#ec4899"/>
+                                <defs>
+                                    <linearGradient id="why-grad-3" x1="0" y1="0" x2="100" y2="100">
+                                        <stop offset="0%" stop-color="#ec4899"/>
+                                        <stop offset="100%" stop-color="#38bdf8"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Block 4: Fast Turnaround -->
+                    <div class="why-feature-block reveal-item">
+                        <div class="why-block-info">
+                            <h3>Fast Turnaround</h3>
+                            <p>
+                                No delays. We deliver graphics, captions, calendars, and performance reports exactly on scheduled dates, resolving revisions in hours rather than days.
+                            </p>
+                        </div>
+                        <div class="why-illustration-wrap">
+                            <!-- SVG Illustration 4 -->
+                            <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
+                                <path d="M50 20 L25 55 L45 55 L35 85 L75 45 L55 45 Z" fill="url(#why-grad-4)"/>
+                                <defs>
+                                    <linearGradient id="why-grad-4" x1="0" y1="0" x2="100" y2="100">
+                                        <stop offset="0%" stop-color="#f59e0b"/>
+                                        <stop offset="100%" stop-color="#ec4899"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- SECTION 7: PRICING                                                  -->
+        <!-- =================================================================== -->
+        <section class="smm-pricing" id="pricing-anchor">
+            <div class="container">
+                <div class="section-header text-center reveal-item">
+                    <span class="section-subtitle">TRANSPARENT PACKAGES</span>
+                    <h2 class="section-title">SMM Service Plans</h2>
+                    <p class="section-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Choose a pricing tier tailored specifically to your scaling requirements.
+                    </p>
+                </div>
+
+                <div class="pricing-cards-container">
+                    
+                    <!-- Starter Plan -->
+                    <div class="pricing-card-smm reveal-item">
+                        <div class="pricing-plan-title">Starter Pack</div>
+                        <div class="pricing-plan-price">₹4,999</div>
+                        <span class="pricing-plan-period">per month</span>
+                        <ul class="pricing-features-list">
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>12–15 Premium Posters</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>2–3 Reels (15–30 sec)</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>1 Promotional Ad Video</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>Monthly Content Calendar</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>Basic Performance Report</span>
+                            </li>
+                        </ul>
+                        <button class="btn-smm-secondary open-consultation-btn">Choose Starter</button>
+                    </div>
+
+                    <!-- Growth Plan -->
+                    <div class="pricing-card-smm popular reveal-item">
+                        <div class="popular-tag">Most Popular</div>
+                        <div class="pricing-plan-title">Growth Pack</div>
+                        <div class="pricing-plan-price">₹6,999</div>
+                        <span class="pricing-plan-period">per month</span>
+                        <ul class="pricing-features-list">
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span style="font-weight:700; color:var(--text-main);">25–30 Premium Posters</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span style="font-weight:700; color:var(--text-main);">5–6 High-Impact Reels</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>2 Promotional Videos</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>Creative Captions & Hashtags</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>Monthly Analytics Report</span>
+                            </li>
+                        </ul>
+                        <button class="btn-smm-primary open-consultation-btn">Choose Growth</button>
+                    </div>
+
+                    <!-- Premium Plan -->
+                    <div class="pricing-card-smm reveal-item">
+                        <div class="pricing-plan-title">Premium Pack</div>
+                        <div class="pricing-plan-price">₹9,999</div>
+                        <span class="pricing-plan-period">per month</span>
+                        <ul class="pricing-features-list">
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>Up to 75 Posts Grid</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>10–12 High-Impact Reels</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>Priority Content Creation</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>Advanced Brand Customization</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>Weekly Performance Insights</span>
+                            </li>
+                            <li class="pricing-feature-item">
+                                <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                                <span>Dedicated Support Inbox</span>
+                            </li>
+                        </ul>
+                        <button class="btn-smm-secondary open-consultation-btn">Choose Premium</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- SECTION 8: FAQ ACCORDION                                            -->
+        <!-- =================================================================== -->
+        <section class="smm-faq">
+            <div class="container">
+                <div class="section-header text-center reveal-item">
+                    <span class="section-subtitle">FAQ</span>
+                    <h2 class="section-title">Got Questions?</h2>
+                    <p class="section-desc" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Find quick answers about our processes, contracts, and delivery details.
+                    </p>
+                </div>
+
+                <div class="faq-accordion-wrap reveal-item">
+                    
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <h3>How does the content calendar review work?</h3>
+                            <div class="faq-icon-toggle">
+                                <svg fill="none" stroke="currentColor" stroke-dasharray="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                            </div>
+                        </div>
+                        <div class="faq-content">
+                            <div class="faq-content-inner">
+                                We design and schedule all posts in a custom digital calendar board at the start of the month. You review, suggest any copy tweaks, and approve them before anything is queued for publishing.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <h3>Do you manage responding to direct message requests?</h3>
+                            <div class="faq-icon-toggle">
+                                <svg fill="none" stroke="currentColor" stroke-dasharray="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                            </div>
+                        </div>
+                        <div class="faq-content">
+                            <div class="faq-content-inner">
+                                For basic questions, we construct custom automated chat routing prompts (linking users to WhatsApp or your website CRM). For direct client inquiries, we route them instantly to your inbox.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <h3>Is there a setup fee or lock-in contract duration?</h3>
+                            <div class="faq-icon-toggle">
+                                <svg fill="none" stroke="currentColor" stroke-dasharray="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                            </div>
+                        </div>
+                        <div class="faq-content">
+                            <div class="faq-content-inner">
+                                No hidden setup fees. All packages operate on rolling monthly subscriptions. You are free to upgrade, downgrade, or cancel your renewal plan at any time without penalty.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header">
+                            <h3>How long does it take to start posting?</h3>
+                            <div class="faq-icon-toggle">
+                                <svg fill="none" stroke="currentColor" stroke-dasharray="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+                            </div>
+                        </div>
+                        <div class="faq-content">
+                            <div class="faq-content-inner">
+                                Once we complete the kickoff consultation and brand onboarding, our strategy team delivers your first content batch calendar in 5–7 business days.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- SECTION 9: FINAL CTA                                                -->
+        <!-- =================================================================== -->
+        <section class="smm-cta">
+            <div class="container">
+                <div class="smm-cta-box reveal-item">
+                    <h2 class="smm-cta-title">Ready to Grow <br>Your Brand?</h2>
+                    <p class="smm-cta-subtitle">Let's create content your audience actually wants to engage with.</p>
+                    <div class="hero-button-group">
+                        <div class="magnetic-wrap">
+                            <button class="btn-smm-primary open-consultation-btn">
+                                <span>Book Free Consultation</span>
+                            </button>
+                        </div>
+                        <div class="magnetic-wrap">
+                            <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20discuss%20social%20media%20plans" target="_blank" class="btn-smm-secondary" style="display:inline-flex; align-items:center; gap:0.6rem;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color:#10b981;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                                <span>Chat on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =================================================================== -->
+    <!-- FOOTER                                                              -->
+    <!-- =================================================================== -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <div class="footer-col brand-col">
+                    <a href="../index.html#hero" class="brand-logo">
+                        <span class="logo-text">Elavate<span class="accent-x">X</span></span>
+                    </a>
+                    <p class="footer-desc">
+                        Official digital agency portal: <strong>ElavateX.com</strong>.<br>
+                        Specializing in Web Development, Mobile Applications, and Social Media Management.
+                    </p>
+                    <div class="contact-meta">
+                        <div class="meta-item">
+                            <strong>WhatsApp:</strong> <a href="https://wa.me/917676808068" target="_blank">Connect via WhatsApp</a>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Instagram:</strong> <a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank">@elavatex_dev</a>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Web Domain:</strong> <a href="http://ElavateX.com" target="_blank">ElavateX.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html#services-overview">Web Development</a></li>
+                        <li><a href="../index.html#services-overview">Application Development</a></li>
+                        <li><a href="../index.html#services-overview">Social Media Management</a></li>
+                        <li><a href="../index.html#services-overview">Meta & Google Paid Ads</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Action</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="open-consultation-btn">Book a Call</a></li>
+                        <li><a href="#" class="open-consultation-btn">Get Free Consultation</a></li>
+                        <li><a href="https://wa.me/917676808068" target="_blank">WhatsApp Direct Chat</a></li>
+                        <li><a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank">Instagram (@elavatex_dev)</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col social-col">
+                    <h4 class="footer-heading">Connect With Us</h4>
+                    <p class="footer-social-desc">Follow our journey and stay updated with the latest digital trends.</p>
+                    <div class="social-icons-wrapper">
+                        <a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank" rel="noopener" class="social-icon-btn instagram" title="Instagram: @elavatex_dev">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20reaching%20out%20from%20ElavateX.com" target="_blank" rel="noopener" class="social-icon-btn whatsapp" title="Connect on WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 ElavateX. All rights reserved. Registered Official Agency Portal &bull; ElavateX.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE CONSULTATION / BOOK A CALL MODAL DIALOG               -->
+    <!-- =================================================================== -->
+    <dialog class="glass-modal" id="consultation-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="Close Booking Dialog">&times;</button>
+            
+            <div class="modal-grid">
+                <!-- Left Details Info Column -->
+                <div class="modal-info-panel">
+                    <div class="format-badge">CONSULTATION FORMAT</div>
+                    <h3 class="modal-info-title">Let's Discuss Your Product Roadmap</h3>
+                    
+                    <div class="info-bullets">
+                        <div class="bullet-item">
+                            <span class="bullet-ico">📞</span>
+                            <div>
+                                <h4>30-Min Strategy Call</h4>
+                                <p>We'll analyze your requirements and present an initial framework draft.</p>
+                            </div>
+                        </div>
+                        <div class="bullet-item">
+                            <span class="bullet-ico">🚀</span>
+                            <div>
+                                <h4>Interactive Blueprint</h4>
+                                <p>Get custom recommendation strategies on design, technology, and performance.</p>
+                            </div>
+                        </div>
+                        <div class="bullet-item">
+                            <span class="bullet-ico">💬</span>
+                            <div>
+                                <h4>Flexible Channels</h4>
+                                <p>Choose Google Meet, Zoom, WhatsApp call, or local face-to-face meetups.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Form Input Column -->
+                <div class="modal-form-panel">
+                    <div class="pill-tag text-purple" id="form-flow-badge">FREE CONSULTATION & BOOKING</div>
+                    <h2 class="form-title">Launch Project Request</h2>
+                    <p class="form-subtitle">Pick an exact date, time slot, budget, and specific consultation requirements.</p>
+
+                    <form id="consultation-form" class="modal-form">
+                        <!-- Step 1 Layout: Basic Info -->
+                        <div class="form-step active" data-step="1">
+                            <div class="form-group">
+                                <label for="form-name">Your Full Name / Brand Representative</label>
+                                <input type="text" id="form-name" required placeholder="e.g., Sudarshan Shetty">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-phone">WhatsApp Number (with Country Code)</label>
+                                <input type="tel" id="form-phone" required placeholder="e.g., +91 76768 08068">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email">Business Email Address</label>
+                                <input type="email" id="form-email" required placeholder="e.g., contact@shelterhunt.com">
+                            </div>
+                            <div class="form-actions-modal">
+                                <button type="button" class="btn-glow w-full next-step-btn">
+                                    <span>Proceed to Format Selection</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 Layout: Channel & Time Slot Details -->
+                        <div class="form-step" data-step="2">
+                            <div class="form-group">
+                                <label>Preferred Communication Channel</label>
+                                <div class="option-chips" id="channel-chips">
+                                    <button type="button" class="chip active" data-val="WhatsApp Chat">WhatsApp Chat</button>
+                                    <button type="button" class="chip" data-val="WhatsApp Audio Call">WhatsApp Call</button>
+                                    <button type="button" class="chip" data-val="Google Meet Call">Google Meet</button>
+                                    <button type="button" class="chip" data-val="Zoom Meeting Room">Zoom Call</button>
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="form-date">Preferred Date</label>
+                                    <input type="date" id="form-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="form-slot">Best Time Slot</label>
+                                    <select id="form-slot" required>
+                                        <option value="" disabled selected>Select slot...</option>
+                                        <option value="Morning (10:00 AM - 1:00 PM)">Morning (10 AM - 1 PM)</option>
+                                        <option value="Afternoon (1:00 PM - 5:00 PM)">Afternoon (1 PM - 5 PM)</option>
+                                        <option value="Evening (5:00 PM - 8:00 PM)">Evening (5 PM - 8 PM)</option>
+                                        <option value="Night (8:00 PM - 10:00 PM)">Night (8 PM - 10 PM)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-project-type">Project Requirement Focus</label>
+                                <select id="form-project-type" required>
+                                    <option value="" disabled selected>Select category...</option>
+                                    <option value="SaaS / Web Engineering">Web Engineering / Custom Site</option>
+                                    <option value="Mobile App Development">Mobile App (React Native/iOS)</option>
+                                    <option value="Social Media Management">Social Media Management (SMM)</option>
+                                    <option value="Full Stack Startup Roadmap">Full Stack Startup Roadmap</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-budget">Approximate Project Budget Range (INR)</label>
+                                <select id="form-budget" required>
+                                    <option value="" disabled selected>Select range...</option>
+                                    <option value="Below ₹10,000">Below ₹10,000</option>
+                                    <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
+                                    <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
+                                    <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
+                                    <option value="Above ₹1,00,000">Above ₹1,00,000 (Enterprise / Long term)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-actions-modal split-actions">
+                                <button type="button" class="btn-glass prev-step-btn">
+                                    <span>Back</span>
+                                </button>
+                                <button type="submit" class="btn-glow">
+                                    <span>Confirm & Submit Booking</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- 24/7 FLOATING AI BUDDY CHATBOT WIDGET -->
+    <div id="chatbot-container" class="chatbot-container buddy-mode">
+        <div class="chatbot-tooltip" id="chatbot-tooltip">
+            💬 <strong>Need Help?</strong> Ask ElavateX AI Buddy!
+        </div>
+
+        <button class="chatbot-toggle-btn" id="chatbot-toggle-btn" aria-label="Open ElavateX AI Buddy Assistant">
+            <span class="pulse-aura"></span>
+            <div class="buddy-icon-wrapper">
+                <svg class="buddy-icon-dark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" rx="26" fill="url(#buddy-dark-bg-grad)" />
+                    <ellipse cx="50" cy="58" rx="24" ry="8" fill="#00e5ff" opacity="0.3" filter="blur(10px)" />
+                    <ellipse cx="50" cy="62" rx="16" ry="3" fill="#0055ff" opacity="0.5" filter="blur(4px)" />
+                    <rect x="19" y="34" width="7" height="18" rx="3.5" fill="#586780" />
+                    <rect x="74" y="34" width="7" height="18" rx="3.5" fill="#586780" />
+                    <rect x="22" y="37" width="2" height="12" rx="1" fill="#2d3748" />
+                    <rect x="76" y="37" width="2" height="12" rx="1" fill="#2d3748" />
+                    <path d="M50,26 L50,18" stroke="#a0aec0" stroke-width="3" stroke-linecap="round" />
+                    <circle cx="50" cy="16" r="3.5" fill="#ffffff" />
+                    <circle cx="50" cy="16" r="5" stroke="#ffffff" stroke-width="1.5" opacity="0.5" />
+                    <rect x="24" y="26" width="52" height="32" rx="15" fill="url(#metallic-dark-head-grad)" stroke="#4a5568" stroke-width="1" />
+                    <rect x="29" y="31" width="42" height="22" rx="10" fill="#06070d" stroke="#2d3748" stroke-width="1" />
+                    <rect x="36" y="39" width="8" height="3" rx="1.5" fill="#00f0ff" />
+                    <rect x="56" y="39" width="8" height="3" rx="1.5" fill="#00f0ff" />
+                    <path d="M46,46 Q50,48.5 54,46" stroke="#00f0ff" stroke-width="2" stroke-linecap="round" fill="none" />
+                    <path d="M43,58 C43,62 57,62 57,58" fill="url(#metallic-dark-head-grad)" stroke="#4a5568" stroke-width="1" />
+                    <text x="50" y="82" font-family="'Inter', sans-serif" font-weight="800" font-size="9" letter-spacing="0.8" text-anchor="middle">
+                        <tspan fill="#00f0ff">AI</tspan><tspan fill="#ffffff"> BUDDY</tspan>
+                    </text>
+                </svg>
+                <svg class="buddy-icon-light" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" rx="26" fill="url(#buddy-light-bg-grad)" stroke="#cbd5e0" stroke-width="1" />
+                    <rect x="19" y="34" width="7" height="18" rx="3.5" fill="#a0aec0" />
+                    <rect x="74" y="34" width="7" height="18" rx="3.5" fill="#a0aec0" />
+                    <rect x="22" y="37" width="2" height="12" rx="1" fill="#e2e8f0" />
+                    <rect x="76" y="37" width="2" height="12" rx="1" fill="#e2e8f0" />
+                    <path d="M50,26 L50,18" stroke="#a0aec0" stroke-width="3" stroke-linecap="round" />
+                    <circle cx="50" cy="16" r="3.5" fill="#805ad5" />
+                    <rect x="24" y="26" width="52" height="32" rx="15" fill="url(#metallic-light-head-grad)" stroke="#cbd5e0" stroke-width="1" />
+                    <rect x="29" y="31" width="42" height="22" rx="10" fill="#0f172a" />
+                    <circle cx="40" cy="41" r="3" stroke="#00c2ff" stroke-width="2.5" fill="none" />
+                    <circle cx="60" cy="41" r="3" stroke="#00c2ff" stroke-width="2.5" fill="none" />
+                    <path d="M45,46 Q50,49.5 55,46" stroke="#00c2ff" stroke-width="2" stroke-linecap="round" fill="none" />
+                    <path d="M43,58 C43,62 57,62 57,58" fill="url(#metallic-light-head-grad)" stroke="#cbd5e0" stroke-width="1" />
+                    <text x="50" y="82" font-family="'Inter', sans-serif" font-weight="800" font-size="9" letter-spacing="0.8" text-anchor="middle">
+                        <tspan fill="#6b46c1">AI</tspan><tspan fill="#1a202c"> BUDDY</tspan>
+                    </text>
+                </svg>
+            </div>
+            <div class="buddy-close-wrapper">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </div>
+            <svg width="0" height="0" style="position: absolute;">
+                <defs>
+                    <linearGradient id="buddy-dark-bg-grad" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#0a1226" />
+                        <stop offset="100%" stop-color="#030408" />
+                    </linearGradient>
+                    <linearGradient id="buddy-light-bg-grad" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#ffffff" />
+                        <stop offset="100%" stop-color="#eaedf2" />
+                    </linearGradient>
+                    <linearGradient id="metallic-dark-head-grad" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#cbd5e0" />
+                        <stop offset="50%" stop-color="#a0aec0" />
+                        <stop offset="100%" stop-color="#718096" />
+                    </linearGradient>
+                    <linearGradient id="metallic-light-head-grad" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#f7fafc" />
+                        <stop offset="50%" stop-color="#e2e8f0" />
+                        <stop offset="100%" stop-color="#cbd5e0" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span class="online-indicator"></span>
+        </button>
+
+        <div class="chatbot-window glass-panel" id="chatbot-window">
+            <div class="chat-header">
+                <div class="chat-avatar">
+                    <span class="avatar-icon">🤖</span>
+                    <span class="avatar-status"></span>
+                </div>
+                <div class="chat-meta">
+                    <div class="chat-name">ElavateX AI Buddy</div>
+                    <div class="chat-status">
+                        <span class="status-dot"></span> Hovering 24/7 &bull; Instant Help
+                    </div>
+                </div>
+                <button class="chat-close-btn" id="chat-close-btn" aria-label="Close Chatbot">&times;</button>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-msg msg-bot">
+                    <div class="msg-bubble">
+                        👋 <strong>Hey friend! I'm your ElavateX AI Buddy!</strong><br>
+                        I hover right here alongside you as you explore. Ask me anything about our Web Engineering, Mobile Apps, or Digital Marketing services! <br><br>
+                        Select an option or type your question:
+                    </div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+
+            <div class="chat-chips-scroll" id="chat-chips">
+                <button class="chat-chip" data-query="Web Development">🌐 Web Development</button>
+                <button class="chat-chip" data-query="Application Development">📱 Mobile App Dev</button>
+                <button class="chat-chip" data-query="Social Media Management">🔥 Social Media Growth</button>
+                <button class="chat-chip" data-query="Contact Info & WhatsApp">📞 Contact Details</button>
+                <button class="chat-chip" data-query="Book a Call">📅 Book Free Call</button>
+            </div>
+
+            <form class="chat-input-bar" id="chat-form">
+                <input type="text" id="chat-input" placeholder="Ask AI Buddy a question..." autocomplete="off">
+                <button type="submit" class="chat-send-btn" id="chat-send-btn" aria-label="Send Query">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- GSAP Libraries CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <!-- Custom Page Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // ------------------ 1. Instagram Feed Mockup Live Interactions ------------------
+            const heartIcon = document.getElementById('insta-heart');
+            const likesCounter = document.getElementById('likes-counter');
+            const pushNotify = document.getElementById('push-notify');
+
+            let liked = false;
+            let currentLikes = 42892;
+
+            // Heart Click Action
+            if (heartIcon && likesCounter) {
+                heartIcon.addEventListener('click', () => {
+                    liked = !liked;
+                    if (liked) {
+                        heartIcon.style.fill = '#ec4899';
+                        heartIcon.style.color = '#ec4899';
+                        currentLikes++;
+                    } else {
+                        heartIcon.style.fill = 'none';
+                        heartIcon.style.color = '#fff';
+                        currentLikes--;
+                    }
+                    likesCounter.textContent = currentLikes.toLocaleString();
+                });
+            }
+
+            // Auto-increment Likes simulation
+            setInterval(() => {
+                if (likesCounter) {
+                    currentLikes += Math.floor(Math.random() * 3) + 1;
+                    likesCounter.textContent = currentLikes.toLocaleString();
+                }
+            }, 3000);
+
+            // Simulation of changing push notifications periodically
+            const notificationMessages = [
+                "Your reel reached +124k users this hour! 🚀",
+                "New comment from designer_pro: 'Incredible grids!'",
+                "Conversion spike: +3.4x CTR detected! 📈",
+                "+140 followers gained today organically!",
+                "Brand reputation score increased to 99.4%"
+            ];
+            let msgIndex = 0;
+            setInterval(() => {
+                if (pushNotify) {
+                    msgIndex = (msgIndex + 1) % notificationMessages.length;
+                    const textSpan = pushNotify.querySelector('div span');
+                    if (textSpan) {
+                        textSpan.textContent = notificationMessages[msgIndex];
+                    }
+                }
+            }, 6000);
+
+            // ------------------ 2. FAQ Accordion Action ------------------
+            const faqHeaders = document.querySelectorAll('.faq-header');
+            faqHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const faqItem = header.parentElement;
+                    const content = faqItem.querySelector('.faq-content');
+                    const inner = faqItem.querySelector('.faq-content-inner');
+                    
+                    // Toggle active class
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Close all other open items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-content').style.height = '0px';
+                    });
+
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                        content.style.height = inner.scrollHeight + 'px';
+                    }
+                });
+            });
+
+            // ------------------ 3. Native Scroll Reveal Animation (IntersectionObserver) ------------------
+            const revealItems = document.querySelectorAll('.reveal-item');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-active');
+                        // Optional: unobserve once animated
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealItems.forEach(item => {
+                revealObserver.observe(item);
+            });
+
+            // ------------------ 4. Magnetic Hover Button Effect ------------------
+            const magneticWraps = document.querySelectorAll('.magnetic-wrap');
+            magneticWraps.forEach(wrap => {
+                wrap.addEventListener('mousemove', (e) => {
+                    const rect = wrap.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    wrap.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+                
+                wrap.addEventListener('mouseleave', () => {
+                    wrap.style.transform = 'translate(0px, 0px)';
+                });
+            });
+
+        });
+    </script>
+
+    <!-- Unified JS Script -->
+    <script src="../main.js?v=1.3"></script>
+</body>
+</html>
