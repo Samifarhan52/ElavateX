@@ -1065,4 +1065,39 @@ document.addEventListener('DOMContentLoaded', () => {
             item.classList.add('reveal-active');
         });
     }
+
+    // ===================================================================
+    // 12. FAQ ACCORDION EXPAND / COLLAPSE ENGINE
+    // ===================================================================
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(questionBtn => {
+        questionBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const faqItem = questionBtn.closest('.faq-item');
+            if (!faqItem) return;
+            const faqAnswer = faqItem.querySelector('.faq-answer');
+            const faqIcon = questionBtn.querySelector('.faq-icon');
+
+            const isOpen = faqItem.classList.contains('active');
+
+            // Close all open FAQs for clean single-accordion feel
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+                const ans = item.querySelector('.faq-answer');
+                const ic = item.querySelector('.faq-icon');
+                if (ans) {
+                    ans.style.maxHeight = null;
+                    ans.style.padding = '0 1.8rem';
+                }
+                if (ic) ic.textContent = '+';
+            });
+
+            if (!isOpen && faqAnswer) {
+                faqItem.classList.add('active');
+                faqAnswer.style.maxHeight = (faqAnswer.scrollHeight + 40) + 'px';
+                faqAnswer.style.padding = '0.8rem 1.8rem 1.4rem';
+                if (faqIcon) faqIcon.textContent = '−';
+            }
+        });
+    });
 });
