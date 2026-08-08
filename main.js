@@ -1100,4 +1100,42 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ===================================================================
+    // 13. Progressive Disclosure (Learn More) Engine
+    // ===================================================================
+    document.body.addEventListener('click', (e) => {
+        const btn = e.target.closest('.disclosure-toggle-btn');
+        if (!btn) return;
+        
+        e.preventDefault();
+        const container = btn.closest('.expandable-text') || btn.parentElement;
+        if (!container) return;
+        
+        const disclosure = container.querySelector('.progressive-disclosure');
+        if (!disclosure) return;
+        
+        const isExpanded = disclosure.classList.contains('expanded');
+        
+        if (isExpanded) {
+            disclosure.classList.remove('expanded');
+            btn.classList.remove('active');
+            const textSpan = btn.querySelector('.btn-text');
+            if (textSpan) {
+                textSpan.textContent = 'Learn More';
+            } else {
+                btn.firstChild.textContent = 'Learn More ';
+            }
+        } else {
+            disclosure.classList.add('expanded');
+            btn.classList.add('active');
+            const textSpan = btn.querySelector('.btn-text');
+            if (textSpan) {
+                textSpan.textContent = 'Show Less';
+            } else {
+                btn.firstChild.textContent = 'Show Less ';
+            }
+        }
+    });
 });
+

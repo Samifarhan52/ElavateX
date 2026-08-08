@@ -6,6 +6,16 @@ import os
 import sys
 import mimetypes
 
+# Configure stdout and stderr to use UTF-8 encoding to support emojis on Windows
+if sys.platform.startswith('win'):
+    try:
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8')
+        if hasattr(sys.stderr, 'reconfigure'):
+            sys.stderr.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 PORT = 5000
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 

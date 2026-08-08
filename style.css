@@ -2842,3 +2842,61 @@ html, body {
     gap: 0.8rem !important;
   }
 }
+
+/* ==========================================================================
+   Progressive Disclosure (Read More) System
+   ========================================================================== */
+.progressive-disclosure {
+  display: none;
+  opacity: 0;
+}
+
+.progressive-disclosure.expanded {
+  display: inline;
+  opacity: 1;
+  animation: fadeInDisclosure 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.disclosure-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--accent-purple);
+  font-weight: 700;
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  padding: 0 4px;
+  margin-left: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.disclosure-toggle-btn:hover {
+  color: var(--accent-cyan);
+}
+
+.disclosure-toggle-btn::after {
+  content: '→';
+  font-size: 0.85rem;
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.disclosure-toggle-btn.active::after {
+  transform: rotate(90deg);
+}
+
+@keyframes fadeInDisclosure {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
