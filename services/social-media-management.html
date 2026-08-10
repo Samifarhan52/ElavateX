@@ -2541,7 +2541,7 @@
                 <div class="pricing-cards-container">
                     
                     <!-- Starter Plan -->
-                    <div class="pricing-card-smm reveal-item">
+                    <div class="pricing-card-smm reveal-item open-consultation-btn" data-service="Starter Pack (₹4,999/mo)" style="cursor:pointer;">
                         <div class="pricing-plan-title">Starter Pack</div>
                         <div class="pricing-plan-price">₹4,999</div>
                         <span class="pricing-plan-period">per month</span>
@@ -2567,11 +2567,11 @@
                                 <span>Basic Performance Report</span>
                             </li>
                         </ul>
-                        <button class="btn-smm-secondary open-consultation-btn" data-service="Social Media Management - Starter Pack (₹4,999/mo)">Choose Starter</button>
+                        <button class="btn-smm-secondary open-consultation-btn" data-service="Starter Pack (₹4,999/mo)">Choose Starter</button>
                     </div>
 
                     <!-- Growth Plan -->
-                    <div class="pricing-card-smm popular reveal-item">
+                    <div class="pricing-card-smm popular reveal-item open-consultation-btn" data-service="Growth Pack (₹6,999/mo)" style="cursor:pointer;">
                         <div class="popular-tag">Most Popular</div>
                         <div class="pricing-plan-title">Growth Pack</div>
                         <div class="pricing-plan-price">₹6,999</div>
@@ -2598,11 +2598,11 @@
                                 <span>Monthly Analytics Report</span>
                             </li>
                         </ul>
-                        <button class="btn-smm-primary open-consultation-btn" data-service="Social Media Management - Growth Pack (₹6,999/mo)">Choose Growth</button>
+                        <button class="btn-smm-primary open-consultation-btn" data-service="Growth Pack (₹6,999/mo)">Choose Growth</button>
                     </div>
 
                     <!-- Premium Plan -->
-                    <div class="pricing-card-smm reveal-item">
+                    <div class="pricing-card-smm reveal-item open-consultation-btn" data-service="Premium Pack (₹9,999/mo)" style="cursor:pointer;">
                         <div class="pricing-plan-title">Premium Pack</div>
                         <div class="pricing-plan-price">₹9,999</div>
                         <span class="pricing-plan-period">per month</span>
@@ -2632,7 +2632,7 @@
                                 <span>Dedicated Support Inbox</span>
                             </li>
                         </ul>
-                        <button class="btn-smm-secondary open-consultation-btn" data-service="Social Media Management - Premium Pack (₹9,999/mo)">Choose Premium</button>
+                        <button class="btn-smm-secondary open-consultation-btn" data-service="Premium Pack (₹9,999/mo)">Choose Premium</button>
                     </div>
 
                 </div>
@@ -2823,29 +2823,29 @@
             <div class="modal-grid">
                 <!-- Left Details Info Column -->
                 <div class="modal-info-panel">
-                    <div class="format-badge">CONSULTATION FORMAT</div>
-                    <h3 class="modal-info-title">Let's Discuss Your Product Roadmap</h3>
+                    <div class="format-badge">SMM PLAN ORDER & CONSULTATION</div>
+                    <h3 class="modal-info-title" id="smm-modal-left-title">Let's Grow Your Social Presence</h3>
                     
                     <div class="info-bullets">
                         <div class="bullet-item">
-                            <span class="bullet-ico">📞</span>
+                            <span class="bullet-ico">🚀</span>
                             <div>
-                                <h4>30-Min Strategy Call</h4>
-                                <p>We'll analyze your requirements and present an initial framework draft.</p>
+                                <h4>Tailored Content Strategy</h4>
+                                <p>Custom graphics, high-retention reels & automated publishing schedule.</p>
                             </div>
                         </div>
                         <div class="bullet-item">
-                            <span class="bullet-ico">🚀</span>
+                            <span class="bullet-ico">📈</span>
                             <div>
-                                <h4>Interactive Blueprint</h4>
-                                <p>Get custom recommendation strategies on design, technology, and performance.</p>
+                                <h4>Analytics & CTR Growth</h4>
+                                <p>Monthly reports and continuous algorithmic optimization for your brand.</p>
                             </div>
                         </div>
                         <div class="bullet-item">
                             <span class="bullet-ico">💬</span>
                             <div>
-                                <h4>Flexible Channels</h4>
-                                <p>Choose Google Meet, Zoom, WhatsApp call, or local face-to-face meetups.</p>
+                                <h4>Instant WhatsApp Support</h4>
+                                <p>Direct line to your dedicated social strategist and creative director.</p>
                             </div>
                         </div>
                     </div>
@@ -2853,53 +2853,37 @@
 
                 <!-- Right Form Input Column -->
                 <div class="modal-form-panel">
-                    <div class="pill-tag text-purple" id="form-flow-badge">FREE CONSULTATION & BOOKING</div>
-                    <h2 class="form-title">Launch Project Request</h2>
-                    <p class="form-subtitle">Pick an exact date, time slot, budget, and specific consultation requirements.</p>
+                    <div id="smm-modal-form-view">
+                        <div class="pill-tag text-purple" id="form-flow-badge" style="display:inline-block; font-weight:800; margin-bottom:0.6rem;">✨ SELECTED PLAN: Growth Pack (₹6,999/mo)</div>
+                        <h2 class="form-title">Confirm Plan Booking</h2>
+                        <p class="form-subtitle">Fill in your contact details and preferred launch date below.</p>
 
-                    <form id="consultation-form" class="modal-form">
-                        <!-- Step 1 Layout: Basic Info -->
-                        <div class="form-step active" data-step="1">
+                        <form id="consultation-form" class="modal-form">
                             <div class="form-group">
-                                <label for="form-name">Your Full Name / Brand Representative</label>
+                                <label for="form-name">Full Name / Brand Representative *</label>
                                 <input type="text" id="form-name" required placeholder="e.g., Sudarshan Shetty">
                             </div>
-                            <div class="form-group">
-                                <label for="form-phone">WhatsApp Number (with Country Code)</label>
-                                <input type="tel" id="form-phone" required placeholder="e.g., +91 76768 08068">
-                            </div>
-                            <div class="form-group">
-                                <label for="form-email">Business Email Address</label>
-                                <input type="email" id="form-email" required placeholder="e.g., contact@shelterhunt.com">
-                            </div>
-                            <div class="form-actions-modal">
-                                <button type="button" class="btn-glow w-full next-step-btn">
-                                    <span>Proceed to Format Selection</span>
-                                </button>
-                            </div>
-                        </div>
 
-                        <!-- Step 2 Layout: Channel & Time Slot Details -->
-                        <div class="form-step" data-step="2">
-                            <div class="form-group">
-                                <label>Preferred Communication Channel</label>
-                                <div class="option-chips" id="channel-chips">
-                                    <button type="button" class="chip active" data-val="WhatsApp Chat">WhatsApp Chat</button>
-                                    <button type="button" class="chip" data-val="WhatsApp Audio Call">WhatsApp Call</button>
-                                    <button type="button" class="chip" data-val="Google Meet Call">Google Meet</button>
-                                    <button type="button" class="chip" data-val="Zoom Meeting Room">Zoom Call</button>
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="form-phone">WhatsApp Number (10 Digits) *</label>
+                                    <input type="tel" id="form-phone" required placeholder="e.g. 7676808068" maxlength="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="form-email">Business Email *</label>
+                                    <input type="email" id="form-email" required placeholder="e.g. contact@shelterhunt.com">
                                 </div>
                             </div>
 
                             <div class="form-grid-2">
                                 <div class="form-group">
-                                    <label for="form-date">Preferred Date</label>
+                                    <label for="form-date">Preferred Start / Call Date *</label>
                                     <input type="date" id="form-date" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="form-slot">Best Time Slot</label>
+                                    <label for="form-slot">Best Time Slot *</label>
                                     <select id="form-slot" required>
-                                        <option value="" disabled selected>Select slot...</option>
+                                        <option value="" disabled selected>Select time slot...</option>
                                         <option value="Morning (10:00 AM - 1:00 PM)">Morning (10 AM - 1 PM)</option>
                                         <option value="Afternoon (1:00 PM - 5:00 PM)">Afternoon (1 PM - 5 PM)</option>
                                         <option value="Evening (5:00 PM - 8:00 PM)">Evening (5 PM - 8 PM)</option>
@@ -2909,38 +2893,36 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="form-project-type">Project Requirement Focus</label>
+                                <label for="form-project-type">Selected Service Plan</label>
                                 <select id="form-project-type" required>
-                                    <option value="" disabled selected>Select category...</option>
-                                    <option value="SaaS / Web Engineering">Web Engineering / Custom Site</option>
-                                    <option value="Mobile App Development">Mobile App (React Native/iOS)</option>
-                                    <option value="Social Media Management">Social Media Management (SMM)</option>
-                                    <option value="Full Stack Startup Roadmap">Full Stack Startup Roadmap</option>
+                                    <option value="Starter Pack (₹4,999/mo)">Starter Pack (₹4,999/mo)</option>
+                                    <option value="Growth Pack (₹6,999/mo)" selected>Growth Pack (₹6,999/mo)</option>
+                                    <option value="Premium Pack (₹9,999/mo)">Premium Pack (₹9,999/mo)</option>
+                                    <option value="Custom Social Media Strategy">Custom Social Media Strategy</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="form-budget">Approximate Project Budget Range (INR)</label>
-                                <select id="form-budget" required>
-                                    <option value="" disabled selected>Select range...</option>
-                                    <option value="Below ₹10,000">Below ₹10,000</option>
-                                    <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
-                                    <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
-                                    <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
-                                    <option value="Above ₹1,00,000">Above ₹1,00,000 (Enterprise / Long term)</option>
-                                </select>
+                                <label for="form-message">Brand Overview / Notes (Optional)</label>
+                                <textarea id="form-message" rows="2" placeholder="Tell us about your brand goals or social handles..."></textarea>
                             </div>
 
-                            <div class="form-actions-modal split-actions">
-                                <button type="button" class="btn-glass prev-step-btn">
-                                    <span>Back</span>
-                                </button>
-                                <button type="submit" class="btn-glow">
-                                    <span>Confirm & Submit Booking</span>
+                            <div class="form-actions-modal">
+                                <button type="submit" class="btn-smm-primary w-full" style="padding:0.85rem; font-size:1rem;">
+                                    <span>Confirm & Book Plan &rarr;</span>
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+
+                    <!-- Thank You Success Screen View -->
+                    <div id="smm-modal-success-view" style="display:none; text-align:center; padding:2.5rem 1rem;">
+                        <div style="font-size:3.5rem; margin-bottom:1rem;">🎉</div>
+                        <h2 style="font-size:1.8rem; font-weight:800; color:var(--text-main); margin-bottom:0.6rem;">Thank You!</h2>
+                        <p style="font-size:1.1rem; color:var(--accent-pink); font-weight:700; margin-bottom:1rem;">Our team will reach out soon.</p>
+                        <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.6;">Your plan booking has been saved to the Admin Dashboard.<br>Redirecting you to WhatsApp to connect with your strategist...</p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -3300,6 +3282,185 @@
 
             window.addEventListener('scroll', updateSmmScrollState, { passive: true });
             updateSmmScrollState();
+
+            // ------------------ 6. SMM Plan Booking Modal & Form Handler ------------------
+            const smmModal = document.getElementById('consultation-modal');
+            const smmModalClose = document.getElementById('modal-close');
+            const smmForm = document.getElementById('consultation-form');
+            const smmFormView = document.getElementById('smm-modal-form-view');
+            const smmSuccessView = document.getElementById('smm-modal-success-view');
+            const smmBadge = document.getElementById('form-flow-badge');
+            const smmSelect = document.getElementById('form-project-type');
+
+            let currentPlanName = "Growth Pack (₹6,999/mo)";
+
+            // Set minimum date to today
+            const formDateInput = document.getElementById('form-date');
+            if (formDateInput) {
+                const todayStr = new Date().toISOString().split('T')[0];
+                formDateInput.setAttribute('min', todayStr);
+            }
+
+            // Bind click to all open-consultation-btn elements (including pricing cards)
+            document.querySelectorAll('.open-consultation-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const planAttr = btn.getAttribute('data-service') || "Growth Pack (₹6,999/mo)";
+                    currentPlanName = planAttr;
+
+                    if (smmBadge) {
+                        smmBadge.textContent = `✨ SELECTED PLAN: ${planAttr}`;
+                    }
+
+                    if (smmSelect) {
+                        for (let i = 0; i < smmSelect.options.length; i++) {
+                            if (smmSelect.options[i].value.includes(planAttr) || planAttr.includes(smmSelect.options[i].text)) {
+                                smmSelect.selectedIndex = i;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Reset views
+                    if (smmFormView && smmSuccessView) {
+                        smmFormView.style.display = 'block';
+                        smmSuccessView.style.display = 'none';
+                    }
+
+                    if (smmModal) {
+                        smmModal.showModal();
+                    }
+                });
+            });
+
+            if (smmModalClose && smmModal) {
+                smmModalClose.addEventListener('click', () => {
+                    smmModal.close();
+                });
+            }
+
+            // Click outside backdrop to close
+            if (smmModal) {
+                smmModal.addEventListener('click', (e) => {
+                    const rect = smmModal.getBoundingClientRect();
+                    const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+                        rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+                    if (!isInDialog) {
+                        smmModal.close();
+                    }
+                });
+            }
+
+            // Enforce digits-only 10-char phone formatting
+            const phoneIn = document.getElementById('form-phone');
+            if (phoneIn) {
+                phoneIn.addEventListener('input', (e) => {
+                    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                });
+            }
+
+            // Form Submit Event with Validation, Admin Dashboard Storage & WhatsApp Redirect
+            if (smmForm) {
+                smmForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('form-name').value.trim();
+                    const phone = document.getElementById('form-phone').value.trim();
+                    const email = document.getElementById('form-email').value.trim();
+                    const date = document.getElementById('form-date').value;
+                    const slot = document.getElementById('form-slot').value;
+                    const servicePlan = smmSelect ? smmSelect.value : currentPlanName;
+                    const message = document.getElementById('form-message') ? document.getElementById('form-message').value.trim() : '';
+
+                    // 1. Validation
+                    if (!name) {
+                        alert("Please enter your full name.");
+                        return;
+                    }
+                    if (phone.length !== 10) {
+                        alert("Please enter a valid 10-digit WhatsApp phone number (e.g., 7676808068).");
+                        return;
+                    }
+                    if (!email || !email.includes('@')) {
+                        alert("Please enter a valid email address.");
+                        return;
+                    }
+                    if (!date) {
+                        alert("Please select a preferred date.");
+                        return;
+                    }
+                    const selectedDate = new Date(date);
+                    const today = new Date();
+                    today.setHours(0,0,0,0);
+                    selectedDate.setHours(0,0,0,0);
+                    if (selectedDate < today) {
+                        alert("Please select a current or future date for the consultation.");
+                        return;
+                    }
+                    if (!slot) {
+                        alert("Please select a time slot.");
+                        return;
+                    }
+
+                    // 2. Build Lead Object
+                    const leadObj = {
+                        id: Date.now(),
+                        name,
+                        email,
+                        phone,
+                        service: servicePlan,
+                        date,
+                        timeSlot: slot,
+                        message: message || "N/A",
+                        channel: "SMM Plan Booking",
+                        timestamp: new Date().toLocaleString()
+                    };
+
+                    // 3. Save to localStorage for Admin Dashboard
+                    try {
+                        const storedLeads = JSON.parse(localStorage.getItem('elavatex_leads') || '[]');
+                        storedLeads.unshift(leadObj);
+                        localStorage.setItem('elavatex_leads', JSON.stringify(storedLeads));
+                    } catch (err) {
+                        console.error(err);
+                    }
+
+                    // 4. Dispatch to Cloud Firestore
+                    try {
+                        if (typeof saveLeadToFirestore === 'function') {
+                            saveLeadToFirestore(leadObj);
+                        }
+                    } catch (err) {
+                        console.error(err);
+                    }
+
+                    // 5. Show Thank You view inside modal
+                    if (smmFormView && smmSuccessView) {
+                        smmFormView.style.display = 'none';
+                        smmSuccessView.style.display = 'block';
+                    }
+
+                    // 6. Build WhatsApp URL & redirect after 1.5s
+                    const waText = encodeURIComponent(
+                        `*New SMM Plan Booking (ElavateX.com)*\n\n` +
+                        `*Plan:* ${servicePlan}\n` +
+                        `*Name:* ${name}\n` +
+                        `*Phone:* ${phone}\n` +
+                        `*Email:* ${email}\n` +
+                        `*Preferred Date:* ${date}\n` +
+                        `*Preferred Slot:* ${slot}\n` +
+                        `*Notes:* ${message || 'N/A'}\n\n` +
+                        `Sent via website: ElavateX.com`
+                    );
+                    const waUrl = `https://wa.me/917676808068?text=${waText}`;
+
+                    setTimeout(() => {
+                        if (smmModal) smmModal.close();
+                        window.open(waUrl, '_blank');
+                    }, 1600);
+                });
+            }
 
         });
     </script>
