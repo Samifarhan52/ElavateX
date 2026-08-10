@@ -2902,9 +2902,33 @@
                                 </select>
                             </div>
 
+                            <!-- Social Handles Container -->
+                            <div class="smm-social-handles-box" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1rem; margin-bottom: 1.2rem;">
+                                <div style="font-size:0.85rem; font-weight:700; color:var(--accent-pink); margin-bottom:0.3rem; display:flex; align-items:center; gap:0.4rem;">
+                                    <span>📱</span> Existing Social Media Handles / Profiles (Optional)
+                                </div>
+                                <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.8rem;">Share your handles so our strategic team can audit your brand prior to our call.</p>
+                                
+                                <div class="form-grid-2" style="gap: 0.75rem; margin-bottom: 0.75rem;">
+                                    <div class="form-group" style="margin-bottom:0;">
+                                        <label for="form-insta-id" style="font-size:0.75rem;">Instagram Handle / Username</label>
+                                        <input type="text" id="form-insta-id" placeholder="e.g. @yourbrand">
+                                    </div>
+                                    <div class="form-group" style="margin-bottom:0;">
+                                        <label for="form-fb-id" style="font-size:0.75rem;">Facebook Page / ID</label>
+                                        <input type="text" id="form-fb-id" placeholder="e.g. facebook.com/yourbrand">
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label for="form-other-social" style="font-size:0.75rem;">LinkedIn / YouTube / Website Link</label>
+                                    <input type="text" id="form-other-social" placeholder="e.g. youtube.com/@yourbrand or website URL">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="form-message">Brand Overview / Notes (Optional)</label>
-                                <textarea id="form-message" rows="2" placeholder="Tell us about your brand goals or social handles..."></textarea>
+                                <textarea id="form-message" rows="2" placeholder="Tell us about your brand goals..."></textarea>
                             </div>
 
                             <div class="form-actions-modal">
@@ -3371,6 +3395,9 @@
                     const date = document.getElementById('form-date').value;
                     const slot = document.getElementById('form-slot').value;
                     const servicePlan = smmSelect ? smmSelect.value : currentPlanName;
+                    const instaId = document.getElementById('form-insta-id') ? document.getElementById('form-insta-id').value.trim() : '';
+                    const fbId = document.getElementById('form-fb-id') ? document.getElementById('form-fb-id').value.trim() : '';
+                    const otherSocial = document.getElementById('form-other-social') ? document.getElementById('form-other-social').value.trim() : '';
                     const message = document.getElementById('form-message') ? document.getElementById('form-message').value.trim() : '';
 
                     // 1. Validation
@@ -3412,6 +3439,9 @@
                         service: servicePlan,
                         date,
                         timeSlot: slot,
+                        instaId: instaId || "N/A",
+                        fbId: fbId || "N/A",
+                        otherSocial: otherSocial || "N/A",
                         message: message || "N/A",
                         channel: "SMM Plan Booking",
                         timestamp: new Date().toLocaleString()
@@ -3442,6 +3472,11 @@
                     }
 
                     // 6. Build WhatsApp URL & redirect after 1.5s
+                    let socialSummary = '';
+                    if (instaId) socialSummary += `*Instagram:* ${instaId}\n`;
+                    if (fbId) socialSummary += `*Facebook:* ${fbId}\n`;
+                    if (otherSocial) socialSummary += `*Other Handles/Web:* ${otherSocial}\n`;
+
                     const waText = encodeURIComponent(
                         `*New SMM Plan Booking (ElavateX.com)*\n\n` +
                         `*Plan:* ${servicePlan}\n` +
@@ -3450,6 +3485,7 @@
                         `*Email:* ${email}\n` +
                         `*Preferred Date:* ${date}\n` +
                         `*Preferred Slot:* ${slot}\n` +
+                        (socialSummary ? socialSummary : '') +
                         `*Notes:* ${message || 'N/A'}\n\n` +
                         `Sent via website: ElavateX.com`
                     );

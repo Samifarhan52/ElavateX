@@ -617,11 +617,17 @@
                 const waText = encodeURIComponent(`Hi ${l.name}, following up regarding your consultation booking for ${l.service || 'ElavateX SMM'}.`);
                 const waUrl = `https://wa.me/91${l.phone}?text=${waText}`;
 
+                let socialBadges = '';
+                if (l.instaId && l.instaId !== 'N/A') socialBadges += `<br><small style="color:#ec4899;">📸 Insta: ${l.instaId}</small>`;
+                if (l.fbId && l.fbId !== 'N/A') socialBadges += `<br><small style="color:#3b82f6;">📘 FB: ${l.fbId}</small>`;
+                if (l.otherSocial && l.otherSocial !== 'N/A') socialBadges += `<br><small style="color:#8b5cf6;">🌐 ${l.otherSocial}</small>`;
+
                 tr.innerHTML = `
                     <td>
                         <strong>${l.name}</strong><br>
                         <small style="color:var(--cms-muted);">${l.email}</small><br>
                         <small style="color:var(--cms-emerald);">📞 ${l.phone}</small>
+                        ${socialBadges}
                     </td>
                     <td><strong style="color:var(--cms-accent);">${l.service || 'SMM Consultation'}</strong></td>
                     <td>${l.date || 'N/A'}<br><small style="color:var(--cms-muted);">${l.timeSlot || ''}</small></td>
