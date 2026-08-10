@@ -864,7 +864,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 leadObj = { name, email, phone, channel };
             }
 
+            leadObj.id = Date.now();
+            leadObj.timestamp = new Date().toLocaleString();
+
             dispatchLeadToFirebase(leadObj);
+
+            // Save lead locally for Admin Dashboard
+            try {
+                const storedLeads = JSON.parse(localStorage.getItem('elavatex_leads') || '[]');
+                storedLeads.unshift(leadObj);
+                localStorage.setItem('elavatex_leads', JSON.stringify(storedLeads));
+            } catch (e) {
+                console.error("Local lead save error:", e);
+            }
 
             // Construct rich WhatsApp text
             const waText = encodeURIComponent(

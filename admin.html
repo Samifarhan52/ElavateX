@@ -245,6 +245,7 @@
 
             <nav class="nav-menu">
                 <div class="nav-item active" data-target="panel-overview">📊 Overview</div>
+                <div class="nav-item" data-target="panel-leads">📋 SMM Leads & Consultations</div>
                 <div class="nav-item" data-target="panel-analytics">📈 Web Analytics</div>
                 <div class="nav-item" data-target="panel-projects">📁 Case Studies</div>
                 <div class="nav-item" data-target="panel-reviews">💬 Testimonials & Reviews</div>
@@ -307,6 +308,30 @@
                             "Working with ElavateX was the absolute best experience! They delivered Shelter Hunt Consultants ahead of schedule with top-tier output, 100% responsiveness, and exceptional quality."
                             <footer style="margin-top:0.8rem; font-style:normal; font-weight:700; color:var(--cms-accent);">&mdash; Sudarshan (Founder, Shelter Hunt Consultants)</footer>
                         </blockquote>
+                    </div>
+                </div>
+
+                <!-- PANEL LEADS: SMM LEADS & CONSULTATION BOOKINGS -->
+                <div class="panel" id="panel-leads">
+                    <div class="panel-box">
+                        <h3>Client Leads & SMM Plan Bookings</h3>
+                        <p>View all incoming consultation bookings, plan requests, and client submissions.</p>
+
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Client Info</th>
+                                    <th>Service / Plan Requested</th>
+                                    <th>Preferred Date & Slot</th>
+                                    <th>Format</th>
+                                    <th>Submitted</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cms-leads-tbody">
+                                <!-- Rendered dynamically -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -540,12 +565,82 @@
                 const creds = getAdminCreds();
                 const sidebarUser = document.getElementById('cms-sidebar-user');
                 if (sidebarUser) sidebarUser.textContent = `${creds.user} (Admin)`;
+                renderLeadsTable();
                 renderProjectsTable();
                 renderReviewsTable();
             } else {
                 loginWrapper.style.display = 'flex';
                 appLayout.classList.remove('active');
             }
+        }
+
+        // ------------------------------------------------------------------
+        // Leads & Consultation Bookings Manager
+        // ------------------------------------------------------------------
+        function getLeads() {
+            const stored = localStorage.getItem('elavatex_leads');
+            if (stored) {
+                try { return JSON.parse(stored); } catch (e) { }
+            }
+            return [
+                {
+                    id: 1,
+                    name: "Sudarshan Shetty",
+                    email: "sudarshan@shelterhunt.com",
+                    phone: "7676808068",
+                    service: "Social Media Management - Growth Pack (₹6,999/mo)",
+                    date: "2026-08-15",
+                    timeSlot: "11:00 AM - 12:00 PM",
+                    channel: "In-Person / Reserved Slot",
+                    timestamp: new Date().toLocaleString()
+                }
+            ];
+        }
+
+        function saveLeads(leads) {
+            localStorage.setItem('elavatex_leads', JSON.stringify(leads));
+        }
+
+        function renderLeadsTable() {
+            const tbody = document.getElementById('cms-leads-tbody');
+            if (!tbody) return;
+            const leads = getLeads();
+
+            tbody.innerHTML = '';
+            if (leads.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--cms-muted); padding:2rem;">No lead submissions recorded yet.</td></tr>`;
+                return;
+            }
+
+            leads.forEach(l => {
+                const tr = document.createElement('tr');
+                const waText = encodeURIComponent(`Hi ${l.name}, following up regarding your consultation booking for ${l.service || 'ElavateX SMM'}.`);
+                const waUrl = `https://wa.me/91${l.phone}?text=${waText}`;
+
+                tr.innerHTML = `
+                    <td>
+                        <strong>${l.name}</strong><br>
+                        <small style="color:var(--cms-muted);">${l.email}</small><br>
+                        <small style="color:var(--cms-emerald);">📞 ${l.phone}</small>
+                    </td>
+                    <td><strong style="color:var(--cms-accent);">${l.service || 'SMM Consultation'}</strong></td>
+                    <td>${l.date || 'N/A'}<br><small style="color:var(--cms-muted);">${l.timeSlot || ''}</small></td>
+                    <td><span class="status-badge">${l.channel || 'Direct Callback'}</span></td>
+                    <td><small style="color:var(--cms-muted);">${l.timestamp || 'Recent'}</small></td>
+                    <td>
+                        <a href="${waUrl}" target="_blank" class="btn-action" style="background:#10b981; border:none; text-decoration:none;">WhatsApp</a>
+                        <button class="btn-delete btn-del-lead" data-id="${l.id}">Delete</button>
+                    </td>
+                `;
+
+                tr.querySelector('.btn-del-lead').addEventListener('click', () => {
+                    const updated = leads.filter(item => item.id !== l.id);
+                    saveLeads(updated);
+                    renderLeadsTable();
+                });
+
+                tbody.appendChild(tr);
+            });
         }
 
         loginForm.addEventListener('submit', (e) => {

@@ -56,24 +56,28 @@ def start_server():
     # Allow port reuse to prevent address-already-in-use errors
     socketserver.TCPServer.allow_reuse_address = True
     try:
+        if hasattr(sys.stdout, 'reconfigure'):
+            sys.stdout.reconfigure(encoding='utf-8')
+            sys.stderr.reconfigure(encoding='utf-8')
         with socketserver.TCPServer(("", PORT), Handler) as httpd:
             print("\n" + "="*50)
-            print("🚀  ElavateX Premium Local Dev Server Active!")
-            print(f"📂  Serving folder: {DIRECTORY}")
-            print(f"🔗  Local URL:      http://localhost:{PORT}")
-            print("💡  Press Ctrl+C to terminate the server.")
+            print("ElavateX Premium Local Dev Server Active!")
+            print(f"Serving folder: {DIRECTORY}")
+            print(f"Local URL:      http://localhost:{PORT}")
+            print(f"SMM Page URL:   http://localhost:{PORT}/services/social-media-management.html")
+            print("Press Ctrl+C to terminate the server.")
             print("="*50 + "\n")
             httpd.serve_forever()
     except Exception as e:
-        print(f"❌ Failed to start server: {e}", file=sys.stderr)
+        print(f"Failed to start server: {e}", file=sys.stderr)
         sys.exit(1)
 
 if __name__ == "__main__":
     # Open default web browser after 1 second delay
-    threading.Timer(1.0, lambda: webbrowser.open(f"http://localhost:{PORT}")).start()
+    threading.Timer(1.0, lambda: webbrowser.open(f"http://localhost:{PORT}/services/social-media-management.html")).start()
     
     try:
         start_server()
     except KeyboardInterrupt:
-        print("\n👋 Server shutdown. See you soon!")
+        print("\nServer shutdown. See you soon!")
         sys.exit(0)
