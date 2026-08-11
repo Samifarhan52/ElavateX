@@ -280,51 +280,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 ease: "power2.inOut"
             }, 3.8)
 
-            // Scene 6 — Seamless Flight Transition to Navbar Logo
+            // Scene 6 — Seamless Fade Transition to Main Website & Navbar Header
             .to(introOverlay, {
                 opacity: 0,
-                duration: 1.2,
+                duration: 1.0,
                 ease: "power2.inOut",
                 onStart: () => {
+                    // Reveal navbar header container and brand logo cleanly
+                    const navbar = document.querySelector('.navbar-header');
                     const navLogo = document.querySelector('.navbar-header .brand-logo');
-                    if (navLogo && logoStage) {
-                        const navRect = navLogo.getBoundingClientRect();
-                        const introRect = logoStage.getBoundingClientRect();
-                        
-                        const dx = navRect.left - introRect.left;
-                        const dy = navRect.top - introRect.top;
-                        const scale = navRect.width / introRect.width;
-                        
-                        // Fly logo stage to navbar bounds
-                        gsap.to(logoStage, {
-                            x: dx,
-                            y: dy,
-                            scale: scale,
-                            transformOrigin: "left top",
-                            duration: 1.2,
-                            ease: "power3.inOut"
-                        });
-                        
-                        // Reveal navbar header container
-                        const navbar = document.querySelector('.navbar-header');
-                        if (navbar) {
-                            gsap.fromTo(navbar, 
-                                { opacity: 0, y: -20 },
-                                { opacity: 1, y: 0, duration: 1.2, ease: "power2.out" }
-                            );
-                        }
-                        
-                        // Stagger fade up landing content elements
-                        gsap.fromTo(['.hero-badge', '.hero-title', '.hero-subtitle', '.hero-cta-group', '.metrics-grid'],
-                            { opacity: 0, y: 35 },
-                            { opacity: 1, y: 0, stagger: 0.15, duration: 1.4, ease: "power3.out" }
+                    if (navbar) {
+                        gsap.fromTo(navbar, 
+                            { opacity: 0, y: -20 },
+                            { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" }
                         );
                     }
+                    if (navLogo) {
+                        gsap.to(navLogo, { opacity: 1, duration: 0.8 });
+                    }
+                    
+                    // Stagger fade up landing content elements
+                    gsap.fromTo(['.hero-badge', '.hero-title', '.hero-subtitle', '.hero-cta-group', '.metrics-grid'],
+                        { opacity: 0, y: 35 },
+                        { opacity: 1, y: 0, stagger: 0.12, duration: 1.2, ease: "power3.out" }
+                    );
                 },
                 onComplete: () => {
                     finishIntro(true);
                 }
-            }, 6.0);
+            }, 5.5);
         } else {
             // Fallback if elements not found
             finishIntro(true);

@@ -604,9 +604,12 @@ button, input, select, textarea {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-main);
+  text-decoration: none;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-.logo-x-icon { width: 30px; height: 30px; }
+.logo-x-icon { width: 30px; height: 30px; flex-shrink: 0; }
 .accent-x { color: var(--accent-cyan); }
 
 .nav-links {
@@ -618,16 +621,17 @@ button, input, select, textarea {
   border: 1px solid var(--border-glass);
   border-radius: var(--radius-full);
   box-shadow: 0 4px 15px rgba(27, 26, 23, 0.03);
+  white-space: nowrap;
 }
 
 [data-theme="dark"] .nav-links {
   background: rgba(255, 255, 255, 0.04);
 }
 
-.nav-link { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
+.nav-link { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color var(--transition-fast); }
 .nav-link:hover, .nav-link.active { color: var(--text-main); font-weight: 700; }
 
-.nav-actions { display: flex; align-items: center; gap: 0.8rem; }
+.nav-actions { display: flex; align-items: center; gap: 0.8rem; flex-shrink: 0; }
 
 /* Theme Toggle Button */
 .theme-toggle-btn {
@@ -1847,10 +1851,16 @@ body.light-theme .buddy-icon-dark { display: none; }
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  transition: transform 0.35s ease;
+  transition: transform 0.35s ease, visibility 0.35s ease;
+  pointer-events: none;
+  visibility: hidden;
 }
 
-.mobile-drawer.open { transform: translateX(0); }
+.mobile-drawer.open {
+  transform: translateX(0);
+  pointer-events: auto;
+  visibility: visible;
+}
 .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
 .drawer-close { background: none; border: none; color: var(--text-main); font-size: 2rem; cursor: pointer; }
 .drawer-links { display: flex; flex-direction: column; gap: 1rem; }
@@ -1863,9 +1873,11 @@ body.light-theme .buddy-icon-dark { display: none; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .nav-links { gap: 1rem; padding: 0.4rem 1rem; }
+  .nav-link { font-size: 0.82rem; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   /* Prevent horizontal page overflow */
   html, body {
     overflow-x: hidden !important;
@@ -1880,9 +1892,9 @@ body.light-theme .buddy-icon-dark { display: none; }
   }
 
   /* Header Optimization: Hide bulky consultation button in mobile navbar to prevent squeezing */
-  .nav-links { display: none; }
+  .nav-links { display: none !important; }
   .nav-actions .open-consultation-btn { display: none !important; }
-  .mobile-toggle { display: flex; }
+  .mobile-toggle { display: flex !important; }
   .navbar-header { height: 62px; padding: 0 0.8rem; }
   .nav-container { width: 100%; justify-content: space-between; }
   .nav-actions { gap: 0.5rem; }
