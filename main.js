@@ -1096,4 +1096,107 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ===================================================================
+    // 13. 3D HERO SHOWCASE STAGE MOUSE PARALLAX ENGINE
+    // ===================================================================
+    const heroStage = document.getElementById('hero-visual-stage');
+    if (heroStage) {
+        heroStage.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 991) return;
+            const rect = heroStage.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            const rotateX = (-y / rect.height) * 12;
+            const rotateY = (x / rect.width) * 12;
+            
+            heroStage.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        heroStage.addEventListener('mouseleave', () => {
+            if (window.innerWidth <= 991) return;
+            heroStage.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+        });
+    }
+
+    // ===================================================================
+    // 14. CREATIVE SERVICE & PORTFOLIO CARD INTERACTIVE 3D TILT ENGINE
+    // ===================================================================
+    const tiltCards = document.querySelectorAll('.service-card-creative, .portfolio-card-creative');
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 991) return;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            const rotateX = (-y / rect.height) * 8;
+            const rotateY = (x / rect.width) * 8;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            if (window.innerWidth <= 991) return;
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        });
+    });
+
+    // ===================================================================
+    // 15. FLOATING EXPLORE SERVICES BANNER CONTROLLER
+    // ===================================================================
+    const exploreBanner = document.getElementById('explore-services-floating-banner');
+    const closeBannerBtn = document.getElementById('close-explore-banner');
+    const exploreBannerCta = document.getElementById('explore-banner-cta');
+    const servicesSection = document.getElementById('services-overview');
+    
+    let isBannerDismissed = false;
+
+    if (exploreBanner && servicesSection) {
+        function checkBannerVisibility() {
+            if (isBannerDismissed) {
+                exploreBanner.classList.remove('visible');
+                return;
+            }
+
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+            // Check if user is currently inside the Services section viewport
+            const servicesRect = servicesSection.getBoundingClientRect();
+            const isInsideServices = (servicesRect.top < window.innerHeight && servicesRect.bottom > 0);
+
+            // Reveal early when scrolled >= 180px (or >= 8%) AND not currently inside the Services section
+            if ((scrollTop >= 180 || scrollPercent >= 8) && !isInsideServices) {
+                exploreBanner.classList.add('visible');
+            } else {
+                exploreBanner.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('scroll', checkBannerVisibility, { passive: true });
+        // Initial check in case user loaded page scrolled down
+        checkBannerVisibility();
+
+        if (closeBannerBtn) {
+            closeBannerBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                isBannerDismissed = true;
+                exploreBanner.classList.remove('visible');
+            });
+        }
+
+        if (exploreBannerCta) {
+            exploreBannerCta.addEventListener('click', (e) => {
+                e.preventDefault();
+                servicesSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+    }
 });
+
+
+

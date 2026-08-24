@@ -55,7 +55,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=1.3">
+    <link rel="stylesheet" href="style.css?v=1.5">
 </head>
 <body class="light-theme">
 
@@ -232,56 +232,220 @@
         <!-- =================================================================== -->
         <!-- HERO SECTION                                                        -->
         <!-- =================================================================== -->
+        <!-- =================================================================== -->
+        <!-- HERO SECTION - CREATIVE PRODUCT SHOWCASE & DUAL THEME ENGINE        -->
+        <!-- =================================================================== -->
         <section class="hero-section" id="hero">
             <div class="hero-bg-lights">
                 <div class="hero-glow-blob blob-left"></div>
                 <div class="hero-glow-blob blob-right"></div>
+                <div class="hero-glow-blob blob-center"></div>
                 <div class="hero-grid-pattern"></div>
             </div>
 
             <div class="container hero-container">
-                <div class="hero-badge">
-                    <span class="pulse-dot"></span>
-                    <span class="badge-text">Official Agency Hub &bull; ElavateX.com</span>
+                <div class="hero-split-grid">
+                    
+                    <!-- LEFT COLUMN: CREATIVE TEXT & CTAS -->
+                    <div class="hero-text-column">
+                        <div class="hero-badge">
+                            <span class="pulse-dot"></span>
+                            <span class="badge-text">DIGITAL PRODUCT STUDIO</span>
+                        </div>
+
+                        <h1 class="hero-title">
+                            WE BUILD <br>
+                            DIGITAL EXPERIENCES <br>
+                            THAT DRIVE <br>
+                            <span class="hero-highlight-gradient">REAL GROWTH.</span>
+                        </h1>
+
+                        <p class="hero-subtitle">
+                            We design, develop and grow digital products, applications and campaigns that help ambitious businesses scale with real impact.
+                        </p>
+
+                        <div class="hero-cta-group">
+                            <button class="btn-creative-primary open-consultation-btn" id="hero-btn-start-project">
+                                <span>Start a Project</span>
+                                <span class="btn-arrow-badge">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </span>
+                            </button>
+
+                            <a href="#portfolio" class="btn-creative-secondary" id="hero-btn-view-work">
+                                <span>View Our Work</span>
+                                <span class="btn-play-badge">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+
+                        <div class="hero-scroll-indicator">
+                            <a href="#about" class="scroll-link">
+                                <span class="scroll-icon">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <polyline points="19 12 12 19 5 12"></polyline>
+                                    </svg>
+                                </span>
+                                <span>Scroll to explore</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: 3D INTERACTIVE PRODUCT SHOWCASE STAGE -->
+                    <div class="hero-visual-stage" id="hero-visual-stage">
+                        
+                        <!-- Ambient Laser Ribbon / Wireframe SVG Overlay -->
+                        <svg class="stage-wireframe-svg" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="laser-path path-1" d="M 50,450 Q 250,50 550,200" stroke="url(#laser-grad-1)" stroke-width="2" stroke-dasharray="6 6" />
+                            <path class="laser-path path-2" d="M 100,80 C 300,180 200,420 520,380" stroke="url(#laser-grad-2)" stroke-width="1.5" />
+                            <circle cx="280" cy="180" r="140" stroke="rgba(99, 102, 241, 0.15)" stroke-width="1" stroke-dasharray="4 4" />
+                            <defs>
+                                <linearGradient id="laser-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#a855f7" stop-opacity="0.8" />
+                                    <stop offset="50%" stop-color="#6366f1" stop-opacity="0.6" />
+                                    <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
+                                </linearGradient>
+                                <linearGradient id="laser-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9" />
+                                    <stop offset="100%" stop-color="#a855f7" stop-opacity="0.2" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+
+                        <!-- 1. MAIN MOCKUP CARD (Laptop/Tablet Studio View) -->
+                        <div class="showcase-card card-laptop-main">
+                            <div class="card-header-bar">
+                                <div class="dots-group">
+                                    <span class="dot dot-red"></span>
+                                    <span class="dot dot-yellow"></span>
+                                    <span class="dot dot-green"></span>
+                                </div>
+                                <div class="brand-mini">
+                                    <svg viewBox="0 0 40 40" class="mini-logo-icon" width="14" height="14">
+                                        <path d="M 8,6 L 20,20 L 8,34 L 14,34 L 23,23 L 32,34 L 38,34 L 26,20 L 38,6 L 32,6 L 23,17 L 14,6 Z" fill="url(#nav-x-grad)" />
+                                    </svg>
+                                    <span>ElavateX</span>
+                                </div>
+                                <div class="mini-nav-links">
+                                    <span>Home</span>
+                                    <span>Work</span>
+                                    <span>Services</span>
+                                    <span>About</span>
+                                </div>
+                                <div class="mini-cta-btn">Book Call</div>
+                            </div>
+                            <div class="card-screen-content">
+                                <div class="screen-hero-badge">OFFICIAL STUDIO</div>
+                                <h3 class="screen-title">Build.<br><span class="highlight-purple">Launch.</span><br><span class="highlight-cyan">Scale.</span></h3>
+                                <p class="screen-desc">We turn ideas into powerful digital products.</p>
+                                <div class="screen-btn-row">
+                                    <button class="screen-btn-primary">Explore</button>
+                                    <div class="screen-dots-nav">
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. MOBILE DEVICE MOCKUP CARD (Phone View) -->
+                        <div class="showcase-card card-phone-overlay">
+                            <div class="phone-notch"></div>
+                            <div class="phone-header">
+                                <div class="phone-title">Analytics</div>
+                                <div class="phone-subtitle">Overview</div>
+                            </div>
+                            <div class="phone-stat-block">
+                                <div class="stat-meta">Total Users</div>
+                                <div class="stat-value-row">
+                                    <span class="stat-number">12.5K</span>
+                                    <span class="stat-growth-tag">+24.5%</span>
+                                </div>
+                            </div>
+                            <!-- Live SVG Sparkline Chart -->
+                            <div class="phone-chart-container">
+                                <svg class="phone-chart-svg" viewBox="0 0 200 70" preserveAspectRatio="none">
+                                    <path d="M0,50 Q40,40 70,55 T140,25 T200,10" fill="none" stroke="url(#chart-grad)" stroke-width="3" stroke-linecap="round" />
+                                    <path d="M0,50 Q40,40 70,55 T140,25 T200,10 L200,70 L0,70 Z" fill="url(#chart-fill-grad)" opacity="0.25" />
+                                    <defs>
+                                        <linearGradient id="chart-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#38bdf8" />
+                                            <stop offset="100%" stop-color="#34d399" />
+                                        </linearGradient>
+                                        <linearGradient id="chart-fill-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#34d399" />
+                                            <stop offset="100%" stop-color="transparent" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <div class="phone-bottom-bar">
+                                <div class="phone-nav-icon active"></div>
+                                <div class="phone-nav-icon"></div>
+                                <div class="phone-nav-icon"></div>
+                            </div>
+                        </div>
+
+                        <!-- 3. CODE EDITOR WINDOW MOCKUP CARD -->
+                        <div class="showcase-card card-code-overlay">
+                            <div class="code-header">
+                                <div class="dots-group">
+                                    <span class="dot dot-red"></span>
+                                    <span class="dot dot-yellow"></span>
+                                    <span class="dot dot-green"></span>
+                                </div>
+                                <div class="code-filename">Product.jsx</div>
+                            </div>
+                            <div class="code-content">
+                                <span class="c-keyword">import</span> { <span class="c-component">ElavateX</span> } <span class="c-keyword">from</span> <span class="c-string">'@studio'</span>;<br><br>
+                                <span class="c-keyword">const</span> <span class="c-func">DevProduct</span> = () =&gt; {<br>
+                                &nbsp;&nbsp;<span class="c-keyword">return</span> (<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="c-component">ElavateX</span> <span class="c-attr">scale</span>={<span class="c-val">true</span>} /&gt;<br>
+                                &nbsp;&nbsp;);<br>
+                                };
+                            </div>
+                        </div>
+
+                        <!-- 4. FLOATING METRICS / GROWTH CARD -->
+                        <div class="showcase-card card-metrics-overlay">
+                            <div class="metrics-label">Growth</div>
+                            <div class="metrics-value">
+                                <span class="icon-up">&uarr;</span>
+                                <span class="value-text">+98.4%</span>
+                            </div>
+                            <div class="metrics-sub">vs last month</div>
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <h1 class="hero-title">
-                    Architecting <span class="gradient-text">High-Converting</span> Digital Products That Scale.
-                </h1>
-
-                <p class="hero-subtitle">
-                    At <strong>ElavateX</strong>, we combine high-performance Web Engineering, cross-platform Mobile Apps, and data-driven Social Media Management into unstoppable growth engines for ambitious brands.
-                </p>
-
-                <div class="hero-cta-group">
-                    <button class="btn-glow open-consultation-btn" id="hero-btn-book-call">
-                        <span>Book a Call Now</span>
-                        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </button>
-
-                    <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20discuss%20a%20project%20via%20ElavateX.com" target="_blank" rel="noopener" class="btn-whatsapp-pill" id="hero-btn-wa">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                        <span>Connect on WhatsApp</span>
-                    </a>
-                </div>
-
-                <!-- Metrics Grid -->
-                <div class="metrics-grid">
-                    <div class="metric-card glass-panel">
-                        <div class="metric-number">99.4%</div>
-                        <div class="metric-label">Client Retention</div>
+                <!-- METRICS BOTTOM STRIP BAR -->
+                <div class="hero-metrics-strip">
+                    <div class="strip-metric-item">
+                        <div class="strip-number">99.4%</div>
+                        <div class="strip-label">Client Retention</div>
                     </div>
-                    <div class="metric-card glass-panel">
-                        <div class="metric-number">150+</div>
-                        <div class="metric-label">Projects Deployed</div>
+                    <div class="strip-divider"></div>
+                    <div class="strip-metric-item">
+                        <div class="strip-number">150+</div>
+                        <div class="strip-label">Projects Deployed</div>
                     </div>
-                    <div class="metric-card glass-panel">
-                        <div class="metric-number">3.8x</div>
-                        <div class="metric-label">Average Revenue ROI</div>
+                    <div class="strip-divider"></div>
+                    <div class="strip-metric-item">
+                        <div class="strip-number">3.8x</div>
+                        <div class="strip-label">Average Revenue ROI</div>
                     </div>
-                    <div class="metric-card glass-panel">
-                        <div class="metric-number">24/7</div>
-                        <div class="metric-label">Dedicated Support</div>
+                    <div class="strip-divider"></div>
+                    <div class="strip-metric-item">
+                        <div class="strip-number">24/7</div>
+                        <div class="strip-label">Dedicated Support</div>
                     </div>
                 </div>
 
@@ -365,122 +529,161 @@
         <!-- =================================================================== -->
         <!-- SERVICES INTERACTIVE OVERVIEW SWITCHER                              -->
         <!-- =================================================================== -->
+        <!-- =================================================================== -->
+        <!-- SERVICES INTERACTIVE OVERVIEW (WHAT WE DO)                         -->
+        <!-- =================================================================== -->
         <section class="section-overview" id="services-overview">
             <div class="container">
-                <div class="section-header text-center reveal-item">
-                    <span class="section-subtitle">OUR SERVICES</span>
-                    <h2 class="section-title">Choose the Right Digital Solution for Your Business</h2>
-                    <p class="section-desc">Whether you're launching a startup, growing your business, or strengthening your online presence, ElavateX delivers tailored digital solutions designed for long-term success.</p>
-                </div>
+                <div class="services-creative-grid">
+                    
+                    <!-- Left Sticky Info Column -->
+                    <div class="services-info-column reveal-item">
+                        <div class="service-badge-pill violet">WHAT WE DO</div>
+                        <h2 class="services-main-title">
+                            We build <br>
+                            solutions that <br>
+                            <span class="hero-highlight-gradient">move your business forward.</span>
+                        </h2>
+                        <a href="services/web-development.html" class="creative-explore-link">
+                            <span>Explore Services</span>
+                            <span class="link-arrow">&rarr;</span>
+                        </a>
+                    </div>
 
-                <div class="services-interactive-grid">
-                    <!-- Card 1: Website Development -->
-                    <a href="services/web-development.html" class="service-item-card glass-panel reveal-item reveal-delay-1" data-service="Web Development">
-                        <div class="service-card-border-glow"></div>
-                        <div class="service-icon-box violet-glow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <line x1="2" y1="12" x2="22" y2="12"/>
-                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                            </svg>
-                        </div>
-                        <h3>Website Development</h3>
-                        <p>Build high-performance, responsive websites that elevate your brand, engage visitors, and convert them into customers.</p>
-                        <div class="service-explore-btn">
-                            <span>Explore Service</span>
-                            <span class="explore-arrow">&rarr;</span>
-                        </div>
-                    </a>
+                    <!-- Right 3 Vertical Service Cards Grid -->
+                    <div class="services-cards-column">
+                        <!-- Card 1: Web Development -->
+                        <a href="services/web-development.html" class="service-card-creative glass-panel reveal-item reveal-delay-1">
+                            <div class="card-glow-aura violet-glow-aura"></div>
+                            <div class="service-icon-3d violet-bg">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
+                            <div class="service-card-body">
+                                <h3>Web Development</h3>
+                                <p>Fast, scalable and modern websites & web applications that perform.</p>
+                            </div>
+                            <div class="service-card-action">
+                                <span class="circle-btn-arrow">&rarr;</span>
+                            </div>
+                        </a>
 
-                    <!-- Card 2: Mobile App Development -->
-                    <a href="services/mobile-app-development.html" class="service-item-card glass-panel reveal-item reveal-delay-2" data-service="Application Development">
-                        <div class="service-card-border-glow"></div>
-                        <div class="service-icon-box gold-glow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-                                <line x1="12" y1="18" x2="12.01" y2="18"/>
-                            </svg>
-                        </div>
-                        <h3>Mobile App Development</h3>
-                        <p>Develop powerful Android and iOS applications with seamless user experiences and scalable architecture.</p>
-                        <div class="service-explore-btn">
-                            <span>Explore Service</span>
-                            <span class="explore-arrow">&rarr;</span>
-                        </div>
-                    </a>
+                        <!-- Card 2: Mobile Development -->
+                        <a href="services/mobile-app-development.html" class="service-card-creative glass-panel reveal-item reveal-delay-2">
+                            <div class="card-glow-aura cyan-glow-aura"></div>
+                            <div class="service-icon-3d cyan-bg">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                                </svg>
+                            </div>
+                            <div class="service-card-body">
+                                <h3>Mobile Development</h3>
+                                <p>Cross-platform mobile apps that deliver seamless experiences.</p>
+                            </div>
+                            <div class="service-card-action">
+                                <span class="circle-btn-arrow">&rarr;</span>
+                            </div>
+                        </a>
 
-                    <!-- Card 3: Social Media Management -->
-                    <a href="services/social-media-management.html" class="service-item-card glass-panel reveal-item reveal-delay-3" data-service="Social Media Management">
-                        <div class="service-card-border-glow"></div>
-                        <div class="service-icon-box cyan-glow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                                <polyline points="17 6 23 6 23 12"/>
-                            </svg>
-                        </div>
-                        <h3>Social Media Management</h3>
-                        <p>Grow your online presence through strategic content creation, branding, audience engagement, and performance-driven marketing.</p>
-                        <div class="service-explore-btn">
-                            <span>Explore Service</span>
-                            <span class="explore-arrow">&rarr;</span>
-                        </div>
-                    </a>
+                        <!-- Card 3: Social Media Marketing -->
+                        <a href="services/social-media-management.html" class="service-card-creative glass-panel reveal-item reveal-delay-3">
+                            <div class="card-glow-aura emerald-glow-aura"></div>
+                            <div class="service-icon-3d emerald-bg">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                                    <path d="M12 12L2.1 10.5A10 10 0 1 0 12 22v-10z"></path>
+                                </svg>
+                            </div>
+                            <div class="service-card-body">
+                                <h3>Social Media Marketing</h3>
+                                <p>Strategic content, campaigns and growth systems that drive real results.</p>
+                            </div>
+                            <div class="service-card-action">
+                                <span class="circle-btn-arrow">&rarr;</span>
+                            </div>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <!-- PORTFOLIO & REAL CASE STUDIES                                       -->
+        <!-- =================================================================== -->
+        <!-- PORTFOLIO & REAL CASE STUDIES (SELECTED WORK)                      -->
         <!-- =================================================================== -->
         <section class="section-portfolio" id="portfolio">
             <div class="container">
-                <div class="section-header text-center reveal-item">
-                    <span class="section-subtitle">PROVEN CASE STUDIES</span>
-                    <h2 class="section-title">Featured Client Projects</h2>
-                    <p class="section-desc">Explore live applications and platforms engineered by ElavateX. Click any card to launch the live site.</p>
-                </div>
+                <div class="portfolio-creative-grid">
+                    
+                    <!-- Left Info Column -->
+                    <div class="portfolio-info-column reveal-item">
+                        <div class="service-badge-pill cyan">SELECTED WORK</div>
+                        <h2 class="portfolio-main-title">
+                            Real work. <br>
+                            Real <span class="hero-highlight-gradient">impact.</span>
+                        </h2>
+                        <a href="https://github.com/Samifarhan52/ElavateX" target="_blank" rel="noopener" class="creative-explore-link">
+                            <span>View All Projects</span>
+                            <span class="link-arrow">&rarr;</span>
+                        </a>
+                    </div>
 
-                <div class="portfolio-grid reveal-item reveal-delay-1" id="portfolio-grid">
-                    <!-- Project 1: Shelter Hunt Consultants -->
-                    <a href="https://shelterhuntconsultants.com" target="_blank" rel="noopener" class="portfolio-card glass-panel real-project-card">
-                        <div class="portfolio-img-box img-shelterhunt">
-                            <div class="tag-badge">REAL ESTATE PORTAL</div>
-                            <div class="external-link-icon">↗</div>
-                        </div>
-                        <div class="portfolio-content">
-                            <div class="project-domain">shelterhuntconsultants.com</div>
-                            <h3>Shelter Hunt Consultants</h3>
-                            <p>Property Advisory & Consultancy portal built for seamless property discovery and lead generation.</p>
-                            <div class="project-stat">★ 5.0 Rating &bull; Delivered On Time</div>
-                        </div>
-                    </a>
+                    <!-- Right 2 Showcase Cards Grid with 3D Mockup Frames -->
+                    <div class="portfolio-cards-column">
+                        
+                        <!-- Case Study 1: Shelter Hunt Consultants -->
+                        <a href="https://shelterhuntconsultants.com" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-1">
+                            <div class="project-mockup-frame">
+                                <div class="mockup-header-dots">
+                                    <span class="dot dot-red"></span>
+                                    <span class="dot dot-yellow"></span>
+                                    <span class="dot dot-green"></span>
+                                    <span class="mockup-url">shelterhuntconsultants.com</span>
+                                </div>
+                                <div class="mockup-screen-view">
+                                    <img src="shelterhunt_preview.jpg" alt="Shelter Hunt Consultants Real Estate Platform Preview" class="mockup-img-render">
+                                </div>
+                            </div>
+                            <div class="project-card-meta">
+                                <div class="project-category-tag">WEB PLATFORM</div>
+                                <h3>Shelter Hunt Consultants</h3>
+                                <p>A complete real estate platform with advanced search, property listings & lead inquiry system.</p>
+                                <div class="case-study-btn">
+                                    <span>View Case Study</span>
+                                    <span class="arrow">&rarr;</span>
+                                </div>
+                            </div>
+                        </a>
 
-                    <!-- Project 2: Online Games Tournaments -->
-                    <a href="https://sp-three-liart.vercel.app" target="_blank" rel="noopener" class="portfolio-card glass-panel real-project-card">
-                        <div class="portfolio-img-box img-esports">
-                            <div class="tag-badge cyan">ESPORTS PLATFORM</div>
-                            <div class="external-link-icon">↗</div>
-                        </div>
-                        <div class="portfolio-content">
-                            <div class="project-domain">sp-three-liart.vercel.app</div>
-                            <h3>Online Gaming Tournaments</h3>
-                            <p>Competitive Gaming Platform with live esports leaderboards, match brackets, and instant payout systems.</p>
-                            <div class="project-stat">Live App &bull; Active Tournaments</div>
-                        </div>
-                    </a>
+                        <!-- Case Study 2: Online Gaming Tournaments -->
+                        <a href="https://sp-three-liart.vercel.app" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-2">
+                            <div class="project-mockup-frame">
+                                <div class="mockup-header-dots">
+                                    <span class="dot dot-red"></span>
+                                    <span class="dot dot-yellow"></span>
+                                    <span class="dot dot-green"></span>
+                                    <span class="mockup-url">sp-three-liart.vercel.app</span>
+                                </div>
+                                <div class="mockup-screen-view">
+                                    <img src="esports_preview.jpg" alt="Online Gaming Tournaments eSports Platform Preview" class="mockup-img-render">
+                                </div>
+                            </div>
+                            <div class="project-card-meta">
+                                <div class="project-category-tag cyan-tag">WEB APPLICATION</div>
+                                <h3>Online Gaming Tournaments</h3>
+                                <p>Tournament management platform with live tracking, leaderboards & payout analytics.</p>
+                                <div class="case-study-btn">
+                                    <span>View Case Study</span>
+                                    <span class="arrow">&rarr;</span>
+                                </div>
+                            </div>
+                        </a>
 
-                    <!-- Project 3: Farhanulla Portfolio -->
-                    <a href="https://farhanulla.me" target="_blank" rel="noopener" class="portfolio-card glass-panel real-project-card">
-                        <div class="portfolio-img-box img-farhan">
-                            <div class="tag-badge violet">FOUNDER PORTFOLIO</div>
-                            <div class="external-link-icon">↗</div>
-                        </div>
-                        <div class="portfolio-content">
-                            <div class="project-domain">farhanulla.me</div>
-                            <h3>Founder & Architect Showcase</h3>
-                            <p>Personal portfolio showcasing engineering architecture, web apps, and full-stack software systems.</p>
-                            <div class="project-stat">Live Web &bull; Farhanulla</div>
-                        </div>
-                    </a>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -593,24 +796,50 @@
 
 
         <!-- =================================================================== -->
-        <!-- BOTTOM CTA BANNER                                                  -->
+        <!-- BOTTOM CREATIVE CTA BANNER                                          -->
         <!-- =================================================================== -->
-        <section class="section-cta">
+        <section class="section-cta" id="cta">
             <div class="container">
-                <div class="cta-box glass-panel text-center reveal-item">
-                    <h2 class="cta-title">Ready to Elevate Your Business with <span class="gradient-text">ElavateX</span>?</h2>
-                    <p class="cta-subtitle">Don't settle for mediocre digital presence. Partner with innovators who deliver measurable revenue growth.</p>
+                <div class="cta-creative-box glass-panel reveal-item">
+                    <div class="cta-mesh-lights">
+                        <div class="cta-light-blob blob-purple"></div>
+                        <div class="cta-light-blob blob-cyan"></div>
+                    </div>
                     
-                    <div class="cta-btn-group">
-                        <button class="btn-glow btn-lg open-consultation-btn">
-                            <span>Book a Call Now</span>
-                        </button>
-                        <button class="btn-glass btn-lg open-consultation-btn">
-                            <span>Get Free Consultation</span>
-                        </button>
-                        <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20a%20free%20consultation" target="_blank" class="btn-whatsapp-pill btn-lg">
-                            <span>Connect on WhatsApp</span>
-                        </a>
+                    <div class="cta-content-grid">
+                        
+                        <!-- Left Column: Title & Subtitle -->
+                        <div class="cta-text-side">
+                            <span class="cta-tagline">Have an idea?</span>
+                            <h2 class="cta-creative-title">
+                                Let's build something <br>
+                                <span class="hero-highlight-gradient">extraordinary</span> together.
+                            </h2>
+                        </div>
+
+                        <!-- Right Column: Pill CTA Button & Team Avatars -->
+                        <div class="cta-action-side">
+                            <button class="btn-creative-primary btn-cta-main open-consultation-btn" id="cta-btn-start-project">
+                                <span>Start a Project</span>
+                                <span class="btn-arrow-badge">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </span>
+                            </button>
+
+                            <div class="cta-team-row">
+                                <div class="team-avatars-stack">
+                                    <div class="avatar-item avatar-1"></div>
+                                    <div class="avatar-item avatar-2"></div>
+                                    <div class="avatar-item avatar-3"></div>
+                                    <div class="avatar-item avatar-4"></div>
+                                </div>
+                                <span class="reply-time-text">We typically reply within a few hours</span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -858,7 +1087,7 @@
             <!-- Step 1: Channel Selector Screen -->
             <div id="modal-step-selector" class="modal-step-container active">
                 <div class="modal-header">
-                    <div class="format-badge">CONSULTATION FORMAT</div>
+                    <div class="format-badge">CONSULTATION </div>
                     <h3 class="modal-title">How would you like to connect?</h3>
                     <p class="modal-subtitle">Select your preferred advisory channel below:</p>
                 </div>
@@ -1155,6 +1384,26 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- FLOATING EXPLORE SERVICES BANNER                                    -->
+    <!-- =================================================================== -->
+    <div id="explore-services-floating-banner" class="explore-floating-banner">
+        <button id="close-explore-banner" class="explore-banner-close" aria-label="Close Explore Banner">&times;</button>
+        <div class="explore-banner-content">
+            <div class="explore-banner-media">
+                <img src="explore_banner_art_large.jpg" alt="ElavateX Digital Products" class="explore-banner-img">
+            </div>
+            <div class="explore-banner-text">
+                <div class="explore-banner-title">What are you building?</div>
+                <div class="explore-banner-sub">Web &bull; Mobile &bull; Growth</div>
+            </div>
+            <a href="#services-overview" id="explore-banner-cta" class="explore-banner-btn">
+                <span>Explore Services</span>
+                <span class="btn-arrow">&rarr;</span>
+            </a>
         </div>
     </div>
 
