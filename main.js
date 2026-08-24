@@ -1196,7 +1196,58 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // ===================================================================
+    // 16. COMING SOON MODAL CONTROLLER (View All Projects)
+    // ===================================================================
+    const btnViewAllProjects = document.getElementById('btn-view-all-projects');
+    const comingSoonModal = document.getElementById('coming-soon-modal');
+    const closeComingSoonBtn = document.getElementById('close-coming-soon');
+    let comingSoonTimer = null;
+
+    function hideComingSoonModal() {
+        if (comingSoonModal) {
+            comingSoonModal.classList.remove('active');
+        }
+        if (comingSoonTimer) {
+            clearTimeout(comingSoonTimer);
+            comingSoonTimer = null;
+        }
+    }
+
+    if (btnViewAllProjects && comingSoonModal) {
+        btnViewAllProjects.addEventListener('click', (e) => {
+            e.preventDefault();
+            comingSoonModal.classList.add('active');
+
+            if (comingSoonTimer) clearTimeout(comingSoonTimer);
+            // Automatically close after 9 seconds (9000ms)
+            comingSoonTimer = setTimeout(() => {
+                hideComingSoonModal();
+            }, 9000);
+        });
+
+        if (closeComingSoonBtn) {
+            closeComingSoonBtn.addEventListener('click', () => {
+                hideComingSoonModal();
+            });
+        }
+
+        comingSoonModal.addEventListener('click', (e) => {
+            if (e.target === comingSoonModal) {
+                hideComingSoonModal();
+            }
+        });
+
+        const csExploreWorkLink = document.getElementById('cs-explore-work-link');
+        if (csExploreWorkLink) {
+            csExploreWorkLink.addEventListener('click', () => {
+                hideComingSoonModal();
+            });
+        }
+    }
 });
+
 
 
 
