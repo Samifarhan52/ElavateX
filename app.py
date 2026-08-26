@@ -75,7 +75,7 @@ def start_server():
 
 if __name__ == "__main__":
     # Open default web browser after 1 second delay
-    threading.Timer(1.0, lambda: webbrowser.open(f"http://localhost:{PORT}/services/social-media-management.html")).start()
+    threading.Timer(1.0, lambda: webbrowser.open(f"http://localhost:{PORT}")).start()
     
     try:
         start_server()

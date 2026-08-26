@@ -573,7 +573,8 @@
             const isMatch = (user === creds.user && pass === creds.pass) ||
                             (user.toLowerCase() === 'admin' && pass === 'admin') ||
                             (user.toLowerCase() === 'farhan' && pass === 'mycareer') ||
-                            (user === 'FarhanElavate' && pass === 'Mycareer');
+                            (user === 'FarhanElavate' && pass === 'admin@ceo') ||
+                            (user === 'KamalElavate' && pass === 'admin@cfo');
 
             if (isMatch) {
                 sessionStorage.setItem('elavatex_admin_logged', 'true');
