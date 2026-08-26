@@ -359,8 +359,8 @@
 .intro-brand-text .letter {
   display: inline-block;
   opacity: 0;
-  filter: blur(12px);
-  will-change: transform, opacity, filter;
+  filter: none !important;
+  will-change: transform, opacity;
   color: #ffffff;
 }
 
@@ -4390,6 +4390,60 @@ html, body {
   font-size: 0.8rem;
   font-weight: 800;
   color: #a855f7;
+}
+
+/* --------------------------------------------------------------------------
+   20. MOBILE & TOUCH HARDWARE ACCELERATION ENGINE (60 FPS SMOOTHNESS)
+   -------------------------------------------------------------------------- */
+.intro-overlay,
+.intro-logo-stage,
+.intro-logo-3d-wrapper,
+.intro-logo-mark-container,
+.intro-ex-emblem-frame,
+.intro-ex-laser-ring,
+.intro-brand-text,
+.intro-brand-text .letter,
+.elavatex-loader-overlay,
+.web-hero-mockup-frame,
+.phone-frame,
+.explore-floating-banner,
+.navbar-header,
+.glass-panel,
+.service-card-creative,
+.portfolio-card-creative,
+.hero-glow-blob,
+.intro-ambient-glow {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  /* Optimize heavy blur overdraw on low-power mobile GPUs */
+  .intro-ambient-glow {
+    filter: blur(45px) !important;
+    opacity: 0.55 !important;
+  }
+  .hero-glow-blob {
+    filter: blur(40px) !important;
+    opacity: 0.25 !important;
+  }
+  .loader-orb {
+    filter: blur(40px) !important;
+    opacity: 0.25 !important;
+  }
+  .explore-floating-banner,
+  .navbar-header,
+  .dedicated-fixed-navbar {
+    -webkit-backdrop-filter: blur(10px) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+  .phone-frame,
+  .web-hero-mockup-frame {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
+  }
 }
 
 

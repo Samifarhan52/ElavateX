@@ -184,10 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const initShift = (W_t + Gap) / 2;
 
             // Set initial 3D transforms for Logo wrapper
-            gsap.set(logo3dWrapper, { x: initShift, rotateY: -12, rotateX: 6 });
-            gsap.set(logoStage, { scale: 0.85 });
-            gsap.set(logoMark, { scale: 0.75, opacity: 0 });
-            gsap.set(letters, { opacity: 0, x: -140, z: -50, filter: "blur(12px)" });
+            gsap.set(logo3dWrapper, { x: initShift, rotateY: -12, rotateX: 6, force3D: true });
+            gsap.set(logoStage, { scale: 0.85, force3D: true });
+            gsap.set(logoMark, { scale: 0.75, opacity: 0, force3D: true });
+            gsap.set(letters, { opacity: 0, x: -80, scale: 0.88, filter: "none", force3D: true });
 
             // Initialize Master Timeline
             tl = gsap.timeline();
@@ -196,12 +196,12 @@ document.addEventListener('DOMContentLoaded', () => {
             tl.to(ambientGlow, {
                 opacity: 0.75,
                 scale: 1.0,
-                duration: 1.8,
+                duration: 1.6,
                 ease: "power2.out"
             }, 0)
             .to(logoStage, {
                 scale: 1.0,
-                duration: 3.6,
+                duration: 3.2,
                 ease: "power1.out"
             }, 0)
 
@@ -209,43 +209,44 @@ document.addEventListener('DOMContentLoaded', () => {
             .to(logoMark, {
                 opacity: 1,
                 scale: 1.0,
-                duration: 1.2,
+                duration: 1.0,
                 ease: "back.out(1.7)"
-            }, 0.3)
+            }, 0.2)
 
             // Scene 3 — EX Emblem shifts left & ElavateX text emerges from behind EX
             .to(logo3dWrapper, {
                 x: 0,
-                duration: 1.3,
+                duration: 1.1,
                 ease: "expo.inOut"
-            }, 1.6)
+            }, 1.3)
             .to(letters, {
                 opacity: 1,
                 x: 0,
-                z: 0,
-                filter: "blur(0px)",
-                stagger: 0.07,
-                duration: 1.1,
-                ease: "power3.out"
-            }, 1.8)
+                scale: 1,
+                filter: "none",
+                stagger: 0.05,
+                duration: 0.85,
+                ease: "power3.out",
+                force3D: true
+            }, 1.5)
 
             // Scene 4 — Metallic Glint Sweep Reflection
             .to(logo3dWrapper, {
                 rotateY: 8,
                 rotateX: -4,
-                duration: 2.0,
+                duration: 1.8,
                 ease: "power1.inOut"
-            }, 1.6)
+            }, 1.3)
             .to(logoGlint, {
                 backgroundPosition: "150% 150%",
-                duration: 1.6,
+                duration: 1.4,
                 ease: "power2.inOut"
-            }, 2.0)
+            }, 1.7)
 
             // Scene 5 — Seamless Fade Transition to Website
             .to(introOverlay, {
                 opacity: 0,
-                duration: 0.8,
+                duration: 0.7,
                 ease: "power2.inOut",
                 onStart: () => {
                     const navbar = document.querySelector('.navbar-header');
@@ -253,22 +254,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (navbar) {
                         gsap.fromTo(navbar, 
                             { opacity: 0, y: -20 },
-                            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+                            { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }
                         );
                     }
                     if (navLogo) {
-                        gsap.to(navLogo, { opacity: 1, duration: 0.6 });
+                        gsap.to(navLogo, { opacity: 1, duration: 0.5 });
                     }
                     
                     gsap.fromTo(['.hero-badge', '.hero-title', '.hero-subtitle', '.hero-cta-group', '.metrics-grid'],
-                        { opacity: 0, y: 35 },
-                        { opacity: 1, y: 0, stagger: 0.1, duration: 1.0, ease: "power3.out" }
+                        { opacity: 0, y: 25 },
+                        { opacity: 1, y: 0, stagger: 0.08, duration: 0.9, ease: "power3.out" }
                     );
                 },
                 onComplete: () => {
                     finishIntro(true);
                 }
-            }, 3.6);
+            }, 3.0);
         } else {
             finishIntro(true);
         }
