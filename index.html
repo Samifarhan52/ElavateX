@@ -47,7 +47,9 @@
     </script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="elavatex_logo.png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,14 +57,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=1.5">
+    <link rel="stylesheet" href="style.css?v=1.6">
 </head>
 <body class="light-theme">
 
     <!-- =================================================================== -->
     <!-- CINEMATIC ENTRY REVEAL OVERLAY (Netflix × Apple × Stripe style)     -->
-    <!-- Darkness -> Ambient Glow -> Liquid Light Ribbons -> Wireframe       -->
-    <!-- -> Metallic glass morph -> Brand text emerge -> Navbar Flight Morph -->
+    <!-- Darkness -> Ambient Glow -> EX Logo Emblem -> Brand text emerge    -->
     <!-- =================================================================== -->
     <div id="intro-overlay" class="intro-overlay">
         <button class="skip-intro-btn" id="skip-intro-btn">Skip &rarr;</button>
@@ -77,36 +78,11 @@
             <div class="intro-logo-stage" id="intro-logo-stage">
                 <div class="intro-logo-3d-wrapper" id="intro-logo-3d-wrapper">
                     
-                    <!-- X Logo Mark (front layer) -->
+                    <!-- EX Monogram Emblem (front layer) -->
                     <div class="intro-logo-mark-container" id="intro-logo-mark-container">
-                        
-                        <!-- SVG for light ribbons & logo wireframe -->
-                        <svg viewBox="0 0 40 40" class="intro-svg-wireframe" id="intro-svg-wireframe">
-                            <!-- Ribbon A (Glow, Mid, Core layers) -->
-                            <path class="light-ribbon ribbon-glow ribbon-a" d="M -10,10 C 15,-10 25,50 20,20 C 15,-10 30,15 50,30" stroke="url(#wireframe-gradient)" />
-                            <path class="light-ribbon ribbon-mid ribbon-a" d="M -10,10 C 15,-10 25,50 20,20 C 15,-10 30,15 50,30" stroke="url(#wireframe-gradient)" />
-                            <path class="light-ribbon ribbon-core ribbon-a" d="M -10,10 C 15,-10 25,50 20,20 C 15,-10 30,15 50,30" />
-
-                            <!-- Ribbon B (Glow, Mid, Core layers) -->
-                            <path class="light-ribbon ribbon-glow ribbon-b" d="M 50,10 C 25,50 15,-10 20,20 C 25,50 10,25 -10,30" stroke="url(#wireframe-gradient)" />
-                            <path class="light-ribbon ribbon-mid ribbon-b" d="M 50,10 C 25,50 15,-10 20,20 C 25,50 10,25 -10,30" stroke="url(#wireframe-gradient)" />
-                            <path class="light-ribbon ribbon-core ribbon-b" d="M 50,10 C 25,50 15,-10 20,20 C 25,50 10,25 -10,30" />
-
-                            <!-- Ribbon C (Glow, Mid, Core layers) -->
-                            <path class="light-ribbon ribbon-glow ribbon-c" d="M 20,-10 C 10,15 30,25 20,20 C 10,15 20,30 20,50" stroke="url(#wireframe-gradient)" />
-                            <path class="light-ribbon ribbon-mid ribbon-c" d="M 20,-10 C 10,15 30,25 20,20 C 10,15 20,30 20,50" stroke="url(#wireframe-gradient)" />
-                            <path class="light-ribbon ribbon-core ribbon-c" d="M 20,-10 C 10,15 30,25 20,20 C 10,15 20,30 20,50" />
-
-                            <!-- Logo Wireframe Path -->
-                            <path class="logo-path-wireframe" d="M 8,6 L 20,20 L 8,34 L 14,34 L 23,23 L 32,34 L 38,34 L 26,20 L 38,6 L 32,6 L 23,17 L 14,6 Z" />
-                        </svg>
-
-                        <!-- Glass/Metallic Rendered Logo (Scene 3) -->
-                        <div class="intro-logo-render" id="intro-logo-render">
-                            <svg viewBox="0 0 40 40" class="rendered-logo-svg">
-                                <path class="logo-path-fill" d="M 8,6 L 20,20 L 8,34 L 14,34 L 23,23 L 32,34 L 38,34 L 26,20 L 38,6 L 32,6 L 23,17 L 14,6 Z" fill="url(#metallic-glass-grad)" />
-                            </svg>
-                            <!-- Glossy sweep reflection overlay -->
+                        <div class="intro-ex-emblem-frame" id="intro-ex-emblem-frame">
+                            <div class="intro-ex-laser-ring"></div>
+                            <img src="favicon.png" alt="ElavateX EX Emblem" class="intro-ex-logo-img" id="intro-ex-logo-img">
                             <div class="logo-glint" id="logo-glint"></div>
                         </div>
                     </div>
@@ -160,15 +136,7 @@
         <div class="nav-container">
             <a href="#hero" class="brand-logo">
                 <span class="logo-mark">
-                    <svg viewBox="0 0 40 40" class="logo-x-icon">
-                        <path d="M 8,6 L 20,20 L 8,34 L 14,34 L 23,23 L 32,34 L 38,34 L 26,20 L 38,6 L 32,6 L 23,17 L 14,6 Z" fill="url(#nav-x-grad)" />
-                        <defs>
-                            <linearGradient id="nav-x-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#6366f1" />
-                                <stop offset="100%" stop-color="#06b6d4" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                    <img src="favicon.png" alt="ElavateX Logo" class="brand-logo-img">
                 </span>
                 <span class="logo-text">Elavate<span class="accent-x">X</span></span>
             </a>
@@ -328,9 +296,7 @@
                                     <span class="dot dot-green"></span>
                                 </div>
                                 <div class="brand-mini">
-                                    <svg viewBox="0 0 40 40" class="mini-logo-icon" width="14" height="14">
-                                        <path d="M 8,6 L 20,20 L 8,34 L 14,34 L 23,23 L 32,34 L 38,34 L 26,20 L 38,6 L 32,6 L 23,17 L 14,6 Z" fill="url(#nav-x-grad)" />
-                                    </svg>
+                                    <img src="favicon.png" alt="ElavateX Logo" style="width:16px; height:16px; object-fit:contain; flex-shrink:0;">
                                     <span>ElavateX</span>
                                 </div>
                                 <div class="mini-nav-links">
@@ -856,6 +822,9 @@
                 <!-- Col 1: Brand -->
                 <div class="footer-col brand-col">
                     <a href="#hero" class="brand-logo">
+                        <span class="logo-mark">
+                            <img src="favicon.png" alt="ElavateX Logo" class="brand-logo-img">
+                        </span>
                         <span class="logo-text">Elavate<span class="accent-x">X</span></span>
                     </a>
                     <p class="footer-desc">

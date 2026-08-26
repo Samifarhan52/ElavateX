@@ -214,6 +214,45 @@
   justify-content: center;
 }
 
+/* EX Monogram Emblem Frame */
+.intro-ex-emblem-frame {
+  position: relative;
+  width: clamp(75px, 10vw, 110px);
+  height: clamp(75px, 10vw, 110px);
+  border-radius: 24px;
+  background: rgba(15, 18, 28, 0.95);
+  border: 1.5px solid rgba(168, 85, 247, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9),
+              0 0 35px rgba(168, 85, 247, 0.4),
+              inset 0 0 20px rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.intro-ex-laser-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 26px;
+  padding: 2px;
+  background: conic-gradient(from 0deg, transparent 0%, #a855f7 40%, #38bdf8 70%, transparent 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: laserSpin 2.2s linear infinite;
+}
+
+.intro-ex-logo-img {
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 15px rgba(168, 85, 247, 0.6));
+  z-index: 2;
+}
+
 /* SVG wireframe overlay */
 .intro-svg-wireframe {
   position: absolute;
@@ -607,6 +646,27 @@ button, input, select, textarea {
   text-decoration: none;
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.4));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: scale(1.12) rotate(4deg);
 }
 
 .logo-x-icon { width: 30px; height: 30px; flex-shrink: 0; }
@@ -4154,6 +4214,182 @@ html, body {
     gap: 1.8rem;
   }
   .cs-pro-right { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   19. HANDCRAFTED ELAVATEX BRAND PAGE LOADER & ROUTE WIPE TRANSITION
+   -------------------------------------------------------------------------- */
+.elavatex-loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  background: #080a10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: transform 0.65s cubic-bezier(0.77, 0, 0.175, 1),
+              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.6s ease;
+  overflow: hidden;
+}
+
+/* Page Exit / Entrance Curtain Wipes */
+.elavatex-loader-overlay.hidden-loader {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+
+.elavatex-loader-overlay.active-exit {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.loader-bg-mesh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.loader-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.35;
+  animation: orbPulse 4s infinite ease-in-out alternate;
+}
+
+.orb-purple { width: 380px; height: 380px; background: #a855f7; top: -100px; left: -100px; }
+.orb-cyan { width: 380px; height: 380px; background: #06b6d4; bottom: -100px; right: -100px; }
+
+@keyframes orbPulse {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+  100% { transform: scale(1.2) translate(20px, 20px); opacity: 0.55; }
+}
+
+.loader-content-stage {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* 3D Emblem Frame */
+.loader-emblem-wrapper {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.8rem;
+}
+
+.loader-laser-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 30px;
+  padding: 2px;
+  background: conic-gradient(from 0deg, transparent 0%, #a855f7 40%, #38bdf8 70%, transparent 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: laserSpin 2.2s linear infinite;
+}
+
+@keyframes laserSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-logo-frame {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 24px;
+  background: rgba(15, 18, 28, 0.95);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9),
+              0 0 30px rgba(168, 85, 247, 0.3),
+              inset 0 0 20px rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: logoPulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes logoPulse {
+  0% { transform: scale(0.97); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(168, 85, 247, 0.2); }
+  100% { transform: scale(1.03); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 45px rgba(56, 189, 248, 0.4); }
+}
+
+.loader-logo-img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(168, 85, 247, 0.5));
+}
+
+.loader-brand-title {
+  font-family: var(--font-primary);
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+}
+
+.loader-subtext {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #38bdf8;
+  letter-spacing: 0.12em;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.loader-progress-container {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.loader-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.loader-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #a855f7 0%, #38bdf8 50%, #10b981 100%);
+  border-radius: 99px;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+  transition: width 0.1s linear;
+}
+
+.loader-percent-counter {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #a855f7;
 }
 
 

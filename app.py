@@ -6,6 +6,8 @@ import os
 import sys
 import mimetypes
 
+
+
 PORT = 5000
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
@@ -64,7 +66,6 @@ def start_server():
             print("ElavateX Premium Local Dev Server Active!")
             print(f"Serving folder: {DIRECTORY}")
             print(f"Local URL:      http://localhost:{PORT}")
-            print(f"SMM Page URL:   http://localhost:{PORT}/services/social-media-management.html")
             print("Press Ctrl+C to terminate the server.")
             print("="*50 + "\n")
             httpd.serve_forever()

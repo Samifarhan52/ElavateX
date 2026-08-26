@@ -139,9 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (introOverlay && !sessionStorage.getItem('elavatex_intro_played')) {
         sessionStorage.setItem('elavatex_intro_played', 'true');
 
-        if (logoStage && logo3dWrapper && logoMark && logoRender && logoWireframe && brandText && letters.length > 0 && ribbons.length > 0) {
+        if (logoStage && logo3dWrapper && logoMark && brandText && letters.length > 0) {
             
-            // 1. Prepare Initial States (Progressive Enhancement - hide only if timeline is running)
+            // 1. Prepare Initial States
             gsap.set('.navbar-header', { opacity: 0, y: -20 });
             gsap.set('.navbar-header .brand-logo', { opacity: 0 });
             gsap.set(['.hero-badge', '.hero-title', '.hero-subtitle', '.hero-cta-group', '.metrics-grid'], { opacity: 0, y: 35 });
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let i = 0; i < count; i++) {
                     const particle = document.createElement('div');
                     particle.className = 'intro-particle';
-                    const size = Math.random() * 3 + 2; // 2px to 5px
+                    const size = Math.random() * 3 + 2;
                     const px = Math.random() * 100;
                     const py = Math.random() * 100;
                     const opacity = Math.random() * 0.4 + 0.1;
@@ -166,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                     particlesContainer.appendChild(particle);
                     
-                    // Endless floating drift
                     gsap.to(particle, {
                         x: (Math.random() - 0.5) * 80,
                         y: (Math.random() - 0.5) * 80,
@@ -179,14 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Set initial paths offset length for draw-in effect
-            ribbons.forEach(ribbon => {
-                const len = ribbon.getTotalLength();
-                gsap.set(ribbon, { strokeDasharray: len, strokeDashoffset: len, opacity: 0 });
-            });
-            const wireframeLen = logoWireframe.getTotalLength();
-            gsap.set(logoWireframe, { strokeDasharray: wireframeLen, strokeDashoffset: wireframeLen, opacity: 0 });
-
             // Horizontal Centering Math for Logo Mark
             const W_t = brandText.offsetWidth || 180;
             const Gap = 16;
@@ -194,7 +185,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Set initial 3D transforms for Logo wrapper
             gsap.set(logo3dWrapper, { x: initShift, rotateY: -12, rotateX: 6 });
-            gsap.set(logoStage, { scale: 0.9 });
+            gsap.set(logoStage, { scale: 0.85 });
+            gsap.set(logoMark, { scale: 0.75, opacity: 0 });
             gsap.set(letters, { opacity: 0, x: -140, z: -50, filter: "blur(12px)" });
 
             // Initialize Master Timeline
@@ -202,115 +194,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Scene 1 — Darkness & Volumetric Ambient Glow
             tl.to(ambientGlow, {
-                opacity: 0.7,
+                opacity: 0.75,
                 scale: 1.0,
-                duration: 2.2,
+                duration: 1.8,
                 ease: "power2.out"
             }, 0)
             .to(logoStage, {
                 scale: 1.0,
-                duration: 4.8, // Slow camera push forward
+                duration: 3.6,
                 ease: "power1.out"
             }, 0)
 
-            // Scene 2 — Light Creates Geometry (Liquid light ribbons draw in)
-            .to(ribbons, {
-                opacity: (i, target) => {
-                    if (target.classList.contains('ribbon-core')) return 1;
-                    if (target.classList.contains('ribbon-mid')) return 0.6;
-                    return 0.25;
-                },
-                strokeDashoffset: 0,
-                duration: 2.0,
-                ease: "power2.inOut",
-                stagger: 0.05
-            }, 0.5)
-            // Logo wireframe path ignites from ribbon intersection
-            .to(logoWireframe, {
-                opacity: 0.8,
-                strokeDashoffset: 0,
-                duration: 2.0,
-                ease: "power2.inOut"
-            }, 1.5)
-            // Dissolve active drawing ribbons
-            .to(ribbons, {
-                opacity: 0,
-                duration: 1.0,
-                ease: "power2.out"
-            }, 2.4)
-
-            // Scene 3 — Material Reveal (Wireframe solidifies into metallic/glass shape)
-            .to(logoRender, {
+            // Scene 2 — EX Logo Emblem Materializes & Ignites on Stage
+            .to(logoMark, {
                 opacity: 1,
-                duration: 1.6,
-                ease: "power2.out"
-            }, 2.6)
-            .to(logoWireframe, {
-                opacity: 0,
+                scale: 1.0,
                 duration: 1.2,
-                ease: "power2.out"
-            }, 2.6)
+                ease: "back.out(1.7)"
+            }, 0.3)
 
-            // Scene 4 — Brand Reveal (Letters emerge behind logo mark with parallax)
+            // Scene 3 — EX Emblem shifts left & ElavateX text emerges from behind EX
             .to(logo3dWrapper, {
                 x: 0,
-                duration: 1.5,
+                duration: 1.3,
                 ease: "expo.inOut"
-            }, 3.4)
+            }, 1.6)
             .to(letters, {
                 opacity: 1,
                 x: 0,
                 z: 0,
                 filter: "blur(0px)",
-                stagger: 0.08,
-                duration: 1.3,
+                stagger: 0.07,
+                duration: 1.1,
                 ease: "power3.out"
-            }, 3.6)
+            }, 1.8)
 
-            // Scene 5 — Camera Showcase & Glint reflection sweep
+            // Scene 4 — Metallic Glint Sweep Reflection
             .to(logo3dWrapper, {
-                rotateY: 10,
-                rotateX: -5,
-                duration: 3.5,
+                rotateY: 8,
+                rotateX: -4,
+                duration: 2.0,
                 ease: "power1.inOut"
-            }, 3.4)
+            }, 1.6)
             .to(logoGlint, {
                 backgroundPosition: "150% 150%",
-                duration: 2.2,
+                duration: 1.6,
                 ease: "power2.inOut"
-            }, 3.8)
+            }, 2.0)
 
-            // Scene 6 — Seamless Fade Transition to Main Website & Navbar Header
+            // Scene 5 — Seamless Fade Transition to Website
             .to(introOverlay, {
                 opacity: 0,
-                duration: 1.0,
+                duration: 0.8,
                 ease: "power2.inOut",
                 onStart: () => {
-                    // Reveal navbar header container and brand logo cleanly
                     const navbar = document.querySelector('.navbar-header');
                     const navLogo = document.querySelector('.navbar-header .brand-logo');
                     if (navbar) {
                         gsap.fromTo(navbar, 
                             { opacity: 0, y: -20 },
-                            { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" }
+                            { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
                         );
                     }
                     if (navLogo) {
-                        gsap.to(navLogo, { opacity: 1, duration: 0.8 });
+                        gsap.to(navLogo, { opacity: 1, duration: 0.6 });
                     }
                     
-                    // Stagger fade up landing content elements
                     gsap.fromTo(['.hero-badge', '.hero-title', '.hero-subtitle', '.hero-cta-group', '.metrics-grid'],
                         { opacity: 0, y: 35 },
-                        { opacity: 1, y: 0, stagger: 0.12, duration: 1.2, ease: "power3.out" }
+                        { opacity: 1, y: 0, stagger: 0.1, duration: 1.0, ease: "power3.out" }
                     );
                 },
                 onComplete: () => {
                     finishIntro(true);
                 }
-            }, 5.5);
+            }, 3.6);
         } else {
-            // Fallback if elements not found
             finishIntro(true);
         }
     } else if (introOverlay) {
@@ -1246,6 +1205,76 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // ===================================================================
+    // 17. HANDCRAFTED BRAND PAGE LOADER & ROUTE TRANSITION ENGINE
+    // ===================================================================
+    const pageLoader = document.getElementById('elavatex-page-loader');
+    const loaderProgressFill = document.getElementById('loader-progress-fill');
+    const loaderPercentNum = document.getElementById('loader-percent-num');
+
+    function animateLoaderProgress(start, end, duration, onComplete) {
+        const startTime = performance.now();
+        function update(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const val = Math.floor(start + (end - start) * progress);
+            
+            if (loaderProgressFill) loaderProgressFill.style.width = val + '%';
+            if (loaderPercentNum) loaderPercentNum.textContent = val + '%';
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else if (onComplete) {
+                onComplete();
+            }
+        }
+        requestAnimationFrame(update);
+    }
+
+    // Initial Page Load Reveal
+    if (pageLoader) {
+        animateLoaderProgress(0, 100, 500, () => {
+            setTimeout(() => {
+                pageLoader.classList.add('hidden-loader');
+            }, 120);
+        });
+    }
+
+    // Intercept Link Navigation for Handcrafted Page Switch Transition
+    document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a');
+        if (!anchor) return;
+
+        const href = anchor.getAttribute('href');
+        const target = anchor.getAttribute('target');
+
+        // Ignore empty href, external tabs, or javascript pseudo links
+        if (!href || target === '_blank' || href.startsWith('javascript:') || href.startsWith('tel:') || href.startsWith('mailto:') || href.startsWith('https://wa.me')) {
+            return;
+        }
+
+        // If it's a same-page anchor link (starts with #)
+        if (href.startsWith('#')) {
+            return;
+        }
+
+        // Internal page switch (e.g. services/web-development.html or ../index.html)
+        e.preventDefault();
+
+        if (pageLoader) {
+            pageLoader.classList.remove('hidden-loader');
+            pageLoader.classList.add('active-exit');
+            if (loaderProgressFill) loaderProgressFill.style.width = '0%';
+            if (loaderPercentNum) loaderPercentNum.textContent = '0%';
+
+            animateLoaderProgress(0, 100, 400, () => {
+                window.location.href = href;
+            });
+        } else {
+            window.location.href = href;
+        }
+    });
 });
 
 

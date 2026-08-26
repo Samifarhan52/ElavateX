@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ElavateX CMS | Professional Agency Admin Dashboard</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="shortcut icon" type="image/png" href="../favicon.png">
+    <link rel="apple-touch-icon" href="../elavatex_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=1.6">
     <style>
         :root {
             --cms-bg: #090a0f;
@@ -201,12 +206,46 @@
 <body>
 
     <!-- =================================================================== -->
+    <!-- ELAVATEX HANDCRAFTED BRAND PAGE LOADER                              -->
+    <!-- =================================================================== -->
+    <div id="elavatex-page-loader" class="elavatex-loader-overlay">
+        <div class="loader-bg-mesh">
+            <div class="loader-orb orb-purple"></div>
+            <div class="loader-orb orb-cyan"></div>
+        </div>
+
+        <div class="loader-content-stage">
+            <div class="loader-emblem-wrapper">
+                <div class="loader-laser-ring"></div>
+                <div class="loader-logo-frame">
+                    <img src="../favicon.png" alt="ElavateX Logo" class="loader-logo-img">
+                </div>
+            </div>
+
+            <div class="loader-text-group">
+                <div class="loader-brand-title">ELAVATEX</div>
+                <div class="loader-subtext">ADMIN CMS DASHBOARD</div>
+            </div>
+
+            <div class="loader-progress-container">
+                <div class="loader-progress-track">
+                    <div class="loader-progress-bar" id="loader-progress-fill"></div>
+                </div>
+                <div class="loader-percent-counter" id="loader-percent-num">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
     <!-- CMS LOGIN SCREEN (Empty Input Fields + Show/Hide Password Toggle)   -->
     <!-- =================================================================== -->
     <div class="login-wrapper" id="cms-login-wrapper">
         <div class="login-card">
             <div class="brand-header">
-                <h1>Elavate<span>X</span> CMS</h1>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.4rem;">
+                    <img src="../favicon.png" alt="ElavateX Logo" style="width: 34px; height: 34px; object-fit: contain;">
+                    <h1 style="margin:0;">Elavate<span>X</span> CMS</h1>
+                </div>
                 <p>Official Agency Admin Dashboard & Engine</p>
             </div>
 
@@ -239,7 +278,10 @@
     <div class="cms-layout" id="cms-app-layout">
         <!-- Sidebar -->
         <aside class="cms-sidebar">
-            <div class="sidebar-brand">Elavate<span>X</span> CMS</div>
+            <div class="sidebar-brand" style="display: flex; align-items: center; gap: 0.6rem;">
+                <img src="../favicon.png" alt="ElavateX Logo" style="width: 28px; height: 28px; object-fit: contain;">
+                <span>Elavate<span>X</span> CMS</span>
+            </div>
 
             <nav class="nav-menu">
                 <div class="nav-item active" data-target="panel-overview">📊 Overview</div>
