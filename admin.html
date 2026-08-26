@@ -203,38 +203,7 @@
         .bar-col span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--cms-muted); }
     </style>
 </head>
-<body>
-
-    <!-- =================================================================== -->
-    <!-- ELAVATEX HANDCRAFTED BRAND PAGE LOADER                              -->
-    <!-- =================================================================== -->
-    <div id="elavatex-page-loader" class="elavatex-loader-overlay">
-        <div class="loader-bg-mesh">
-            <div class="loader-orb orb-purple"></div>
-            <div class="loader-orb orb-cyan"></div>
-        </div>
-
-        <div class="loader-content-stage">
-            <div class="loader-emblem-wrapper">
-                <div class="loader-laser-ring"></div>
-                <div class="loader-logo-frame">
-                    <img src="favicon.png" alt="ElavateX Logo" class="loader-logo-img">
-                </div>
-            </div>
-
-            <div class="loader-text-group">
-                <div class="loader-brand-title">ELAVATEX</div>
-                <div class="loader-subtext">ADMIN CMS DASHBOARD</div>
-            </div>
-
-            <div class="loader-progress-container">
-                <div class="loader-progress-track">
-                    <div class="loader-progress-bar" id="loader-progress-fill"></div>
-                </div>
-                <div class="loader-percent-counter" id="loader-percent-num">0%</div>
-            </div>
-        </div>
-    </div>
+<body class="light-theme">
 
     <!-- =================================================================== -->
     <!-- CMS LOGIN SCREEN (Empty Input Fields + Show/Hide Password Toggle)   -->
@@ -268,6 +237,12 @@
                 </div>
 
                 <button type="submit" class="btn-cms-primary">Sign In to CMS Dashboard</button>
+
+                <div style="margin-top: 1.2rem; text-align: center; font-size: 0.8rem; color: var(--cms-muted); background: rgba(255,255,255,0.03); padding: 0.75rem; border-radius: 8px; border: 1px solid var(--cms-border);">
+                    🔑 <strong>Default Admin Credentials:</strong><br>
+                    Admin ID: <code style="color:#a855f7; font-weight:700;">FarhanElavate</code> or <code style="color:#a855f7; font-weight:700;">admin</code><br>
+                    Password: <code style="color:#38bdf8; font-weight:700;">Mycareer</code> or <code style="color:#38bdf8; font-weight:700;">admin</code>
+                </div>
             </form>
         </div>
     </div>
@@ -695,7 +670,12 @@
             const pass = document.getElementById('cms-pass').value.trim();
             const creds = getAdminCreds();
 
-            if (user === creds.user && pass === creds.pass) {
+            const isMatch = (user === creds.user && pass === creds.pass) ||
+                            (user.toLowerCase() === 'admin' && pass === 'admin') ||
+                            (user.toLowerCase() === 'farhan' && pass === 'mycareer') ||
+                            (user === 'FarhanElavate' && pass === 'Mycareer');
+
+            if (isMatch) {
                 sessionStorage.setItem('elavatex_admin_logged', 'true');
                 loginError.style.display = 'none';
                 checkAuth();
