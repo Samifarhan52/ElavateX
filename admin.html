@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElavateX CMS | Professional Agency Admin Dashboard</title>
+    <title>ElavateX CMS | Executive Admin Dashboard</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
@@ -11,105 +11,338 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.6">
+    <!-- Chart.js CDN for Visual Analytics Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --cms-bg: #090a0f;
-            --cms-card: #12141d;
-            --cms-sidebar: #0d0f17;
+            --cms-bg: #07090e;
+            --cms-card: rgba(15, 18, 29, 0.85);
+            --cms-card-solid: #0e111a;
+            --cms-sidebar: #0a0c13;
             --cms-border: rgba(255, 255, 255, 0.08);
-            --cms-accent: #6366f1;
-            --cms-accent-hover: #4f46e5;
+            --cms-border-glow: rgba(139, 92, 246, 0.35);
+            --cms-accent-purple: #8b5cf6;
+            --cms-accent-indigo: #6366f1;
+            --cms-accent-cyan: #06b6d4;
+            --cms-emerald: #10b981;
+            --cms-amber: #f59e0b;
             --cms-text: #f8fafc;
             --cms-muted: #94a3b8;
-            --cms-emerald: #10b981;
+            --grad-accent: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #06b6d4 100%);
+            --grad-ceo: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            --grad-cfo: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--cms-bg); color: var(--cms-text); min-height: 100vh; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cms-bg);
+            color: var(--cms-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-        /* Login Screen */
+        /* Ambient Background Mesh */
+        .ambient-mesh {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.18;
+            animation: orbFloat 10s ease-in-out infinite alternate;
+        }
+        .orb-1 { width: 500px; height: 500px; background: #8b5cf6; top: -100px; left: -100px; }
+        .orb-2 { width: 600px; height: 600px; background: #06b6d4; bottom: -150px; right: -150px; animation-delay: -5s; }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 40px) scale(1.1); }
+        }
+
+        /* LOGIN SCREEN STYLES */
         .login-wrapper {
+            position: relative;
+            z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, #090a0f 70%);
+            padding: 1.5rem;
         }
 
         .login-card {
             background: var(--cms-card);
-            border: 1px solid var(--cms-border);
-            border-radius: 16px;
-            padding: 2.5rem;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--cms-border-glow);
+            border-radius: 24px;
+            padding: 2.8rem 2.4rem;
             width: 100%;
-            max-width: 420px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            max-width: 440px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(139, 92, 246, 0.15);
+            position: relative;
+            overflow: hidden;
         }
 
-        .brand-header { text-align: center; margin-bottom: 2rem; }
-        .brand-header h1 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; }
-        .brand-header h1 span { color: var(--cms-accent); }
-        .brand-header p { color: var(--cms-muted); font-size: 0.85rem; margin-top: 0.4rem; }
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--grad-accent);
+        }
 
-        .form-group { margin-bottom: 1.2rem; position: relative; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--cms-muted); }
-        .form-group input, .form-group select, .form-group textarea {
+        .login-emblem-box {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 1.2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emblem-laser-ring {
+            position: absolute;
+            inset: -3px;
+            border-radius: 20px;
+            padding: 2px;
+            background: conic-gradient(from 0deg, transparent 0%, #a855f7 40%, #06b6d4 70%, transparent 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: laserRotate 3s linear infinite;
+        }
+
+        @keyframes laserRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .emblem-icon-frame {
+            position: relative;
             width: 100%;
-            padding: 0.75rem 1rem;
+            height: 100%;
+            border-radius: 18px;
+            background: #0f121d;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .emblem-icon-frame img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+
+        .brand-header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .brand-header h1 span {
+            background: var(--grad-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-header p {
+            color: var(--cms-muted);
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            letter-spacing: 0.2px;
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--cms-emerald);
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 0.25rem 0.7rem;
+            border-radius: 20px;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Persona Switcher Tabs */
+        .persona-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.3rem;
+            border-radius: 12px;
+            border: 1px solid var(--cms-border);
+        }
+
+        .persona-tab-btn {
+            background: none;
+            border: none;
+            color: var(--cms-muted);
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .persona-tab-btn.active-ceo {
+            background: var(--grad-ceo);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .persona-tab-btn.active-cfo {
+            background: var(--grad-cfo);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.73rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--cms-muted);
+            margin-bottom: 0.45rem;
+        }
+
+        .input-icon-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            color: var(--cms-muted);
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        .input-icon-wrapper input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.6rem;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--cms-border);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 0.95rem;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.92rem;
             outline: none;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
         }
-        .form-group input:focus { border-color: var(--cms-accent); }
 
-        .pw-wrapper { position: relative; }
-        .toggle-pw-btn {
+        .input-icon-wrapper input:focus {
+            border-color: var(--cms-accent-purple);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+
+        .pw-toggle-btn {
             position: absolute;
             right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
             background: none;
             border: none;
             color: var(--cms-muted);
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            padding: 4px;
+            transition: color 0.2s;
         }
 
-        .btn-cms-primary {
+        .pw-toggle-btn:hover { color: #ffffff; }
+
+        .btn-cms-submit {
             width: 100%;
-            padding: 0.8rem;
-            background: var(--cms-accent);
-            color: #fff;
+            padding: 0.85rem;
+            background: var(--grad-accent);
+            color: #ffffff;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
+            letter-spacing: 0.3px;
             cursor: pointer;
-            transition: background 0.2s;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.35);
+            transition: all 0.25s ease;
+            margin-top: 0.4rem;
         }
-        .btn-cms-primary:hover { background: var(--cms-accent-hover); }
 
-        /* CMS App Layout */
-        .cms-layout { display: none; min-height: 100vh; grid-template-columns: 260px 1fr; }
+        .btn-cms-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .login-error-banner {
+            display: none;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            padding: 0.65rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            text-align: center;
+            margin-bottom: 1.2rem;
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        /* --------------------------------------------------------------------------
+           CMS DASHBOARD LAYOUT & PANEL STYLES
+           -------------------------------------------------------------------------- */
+        .cms-layout {
+            display: none;
+            min-height: 100vh;
+            grid-template-columns: 270px 1fr;
+            position: relative;
+            z-index: 10;
+        }
+
         .cms-layout.active { display: grid; }
-
-        @media (max-width: 768px) {
-            .cms-layout { grid-template-columns: 1fr; }
-            .cms-sidebar { height: auto; border-right: none; border-bottom: 1px solid var(--cms-border); padding: 1rem; }
-            .sidebar-brand { margin-bottom: 1rem; font-size: 1.2rem; }
-            .nav-menu { flex-direction: row; overflow-x: auto; gap: 0.4rem; padding-bottom: 0.4rem; }
-            .nav-item { white-space: nowrap; font-size: 0.8rem; padding: 0.5rem 0.8rem; }
-            .sidebar-footer { display: none; }
-            .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-            .cms-topbar { padding: 0 1rem; height: 60px; }
-            .cms-content { padding: 1rem; }
-            .table-custom { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        }
 
         /* Sidebar */
         .cms-sidebar {
@@ -118,161 +351,591 @@
             padding: 1.8rem 1.2rem;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
-        .sidebar-brand { font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; margin-bottom: 2rem; padding-left: 0.5rem; }
-        .sidebar-brand span { color: var(--cms-accent); }
+        .sidebar-brand-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+            padding: 0 0.4rem;
+        }
 
-        .nav-menu { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+        .brand-logo-img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .brand-name span { color: var(--cms-accent-purple); }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            flex: 1;
+        }
+
         .nav-item {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
+            padding: 0.8rem 1.1rem;
+            border-radius: 10px;
             color: var(--cms-muted);
             font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
+            border-left: 3px solid transparent;
         }
-        .nav-item:hover, .nav-item.active { background: rgba(99, 102, 241, 0.12); color: #fff; }
-        .nav-item.active { border-left: 3px solid var(--cms-accent); }
 
-        .sidebar-footer { padding-top: 1rem; border-top: 1px solid var(--cms-border); }
-        .user-profile { display: flex; align-items: center; gap: 10px; padding: 0.5rem; }
-        .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--cms-accent); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; }
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: #ffffff;
+        }
 
-        /* Main Content */
-        .cms-main { display: flex; flex-direction: column; height: 100vh; overflow-y: auto; }
+        .nav-item.active {
+            background: rgba(139, 92, 246, 0.12);
+            color: #ffffff;
+            border-left-color: var(--cms-accent-purple);
+        }
+
+        .user-profile-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--cms-border);
+            border-radius: 14px;
+            padding: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 1rem;
+        }
+
+        .user-avatar-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--grad-ceo);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .user-meta-name {
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: #ffffff;
+        }
+
+        .user-meta-role {
+            font-size: 0.75rem;
+            color: var(--cms-accent-cyan);
+            font-weight: 600;
+        }
+
+        /* Main Content Body */
+        .cms-main {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
         .cms-topbar {
-            height: 70px;
+            height: 72px;
             border-bottom: 1px solid var(--cms-border);
             padding: 0 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(13, 15, 23, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 12, 19, 0.85);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 20;
         }
 
-        .topbar-left { display: flex; align-items: center; gap: 12px; }
-        .topbar-title { font-size: 1.1rem; font-weight: 700; }
-        .status-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--cms-emerald); background: rgba(16, 185, 129, 0.15); padding: 0.2rem 0.6rem; border-radius: 20px; }
+        .topbar-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
 
-        .topbar-right { display: flex; align-items: center; gap: 1rem; }
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .btn-view-site {
-            padding: 0.45rem 0.9rem;
-            background: rgba(255, 255, 255, 0.06);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--cms-border);
-            color: #fff;
-            border-radius: 6px;
+            border-radius: 8px;
+            color: #ffffff;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
+            transition: all 0.2s;
         }
-        .btn-logout { background: none; border: none; color: #ef4444; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+
+        .btn-view-site:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.5rem 1rem;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #ef4444;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
 
         .cms-content { padding: 2rem; }
 
-        /* Dashboard Cards Grid */
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 2rem; }
-        .stat-card { background: var(--cms-card); border: 1px solid var(--cms-border); border-radius: 12px; padding: 1.4rem; }
-        .stat-label { font-size: 0.8rem; color: var(--cms-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat-val { font-size: 1.8rem; font-weight: 800; font-family: 'Outfit', sans-serif; }
+        /* Stat Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--cms-card-solid);
+            border: 1px solid var(--cms-border);
+            border-radius: 16px;
+            padding: 1.4rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .stat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+
+        .stat-icon-pill {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .stat-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--cms-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .stat-trend {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--cms-emerald);
+            margin-top: 0.3rem;
+        }
 
         /* Panels */
         .panel { display: none; }
         .panel.active { display: block; }
-        .panel-box { background: var(--cms-card); border: 1px solid var(--cms-border); border-radius: 12px; padding: 1.8rem; margin-bottom: 2rem; }
-        .panel-box h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; }
-        .panel-box p { color: var(--cms-muted); font-size: 0.85rem; margin-bottom: 1.5rem; }
 
-        .table-custom { width: 100%; border-collapse: collapse; text-align: left; }
-        .table-custom th { padding: 0.8rem 1rem; border-bottom: 1px solid var(--cms-border); font-size: 0.8rem; color: var(--cms-muted); text-transform: uppercase; }
-        .table-custom td { padding: 1rem; border-bottom: 1px solid var(--cms-border); font-size: 0.9rem; }
+        .panel-box {
+            background: var(--cms-card-solid);
+            border: 1px solid var(--cms-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
 
-        .btn-action { background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid var(--cms-border); padding: 0.35rem 0.7rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-right: 4px; }
-        .btn-delete { background: #ef4444; color: #fff; border: none; padding: 0.35rem 0.7rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
-        
-        .chart-bar-container { display: flex; align-items: flex-end; gap: 12px; height: 160px; padding-top: 1rem; margin-top: 1rem; border-bottom: 1px solid var(--cms-border); }
-        .bar-col { flex: 1; background: var(--cms-accent); border-radius: 4px 4px 0 0; position: relative; transition: height 0.3s; }
-        .bar-col span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--cms-muted); }
+        .panel-box h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #ffffff;
+        }
+
+        .panel-box p {
+            color: var(--cms-muted);
+            font-size: 0.86rem;
+            margin-bottom: 1.6rem;
+        }
+
+        /* Realtime Analytics Visual CSS */
+        .live-pulse-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            animation: livePulse 1.5s infinite;
+        }
+
+        @keyframes livePulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+
+        .chart-container-box {
+            background: rgba(15, 18, 29, 0.95);
+            border: 1px solid var(--cms-border-glow);
+            border-radius: 18px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .chart-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .chart-filter-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--cms-border);
+            color: var(--cms-muted);
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chart-filter-btn.active {
+            background: var(--cms-accent-purple);
+            color: #ffffff;
+            border-color: var(--cms-accent-purple);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .analytics-grid-two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .activity-feed-box {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--cms-border);
+            border-radius: 16px;
+            padding: 1.4rem;
+            max-height: 380px;
+            overflow-y: auto;
+        }
+
+        .feed-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            animation: fadeInFeed 0.4s ease-out;
+        }
+
+        .feed-item:last-child { border-bottom: none; }
+
+        @keyframes fadeInFeed {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feed-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        /* Form Inputs Styling for Admin Panels */
+        .panel-box input[type="text"],
+        .panel-box input[type="url"],
+        .panel-box input[type="password"],
+        .panel-box select,
+        .panel-box textarea {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .panel-box input:focus,
+        .panel-box select:focus,
+        .panel-box textarea:focus {
+            border-color: var(--cms-accent-purple);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
+        }
+
+        .panel-box label {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--cms-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .cms-form-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--cms-border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .table-custom {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 6px;
+            text-align: left;
+        }
+
+        .table-custom th {
+            padding: 0.9rem 1.1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--cms-muted);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--cms-border);
+        }
+
+        .table-custom td {
+            padding: 1.1rem;
+            background: rgba(255, 255, 255, 0.02);
+            font-size: 0.92rem;
+            border-top: 1px solid var(--cms-border);
+            border-bottom: 1px solid var(--cms-border);
+            vertical-align: middle;
+        }
+
+        .table-custom td:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; border-left: 1px solid var(--cms-border); }
+        .table-custom td:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-right: 1px solid var(--cms-border); }
+
+        .btn-action {
+            background: rgba(139, 92, 246, 0.15);
+            color: #c084fc;
+            border: 1px solid rgba(139, 92, 246, 0.35);
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-right: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            background: rgba(139, 92, 246, 0.35);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-delete {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .btn-delete:hover {
+            background: rgba(239, 68, 68, 0.35);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .cms-layout { grid-template-columns: 1fr; }
+            .cms-sidebar { height: auto; border-right: none; border-bottom: 1px solid var(--cms-border); padding: 1rem; }
+            .nav-menu { flex-direction: row; overflow-x: auto; gap: 0.4rem; padding-bottom: 0.4rem; }
+            .nav-item { white-space: nowrap; font-size: 0.8rem; padding: 0.5rem 0.8rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .analytics-grid-two { grid-template-columns: 1fr; }
+            .cms-topbar { padding: 0 1rem; }
+            .cms-content { padding: 1rem; }
+            .table-custom { display: block; overflow-x: auto; }
+        }
     </style>
 </head>
-<body class="light-theme">
+<body>
+
+    <!-- Ambient Mesh Background -->
+    <div class="ambient-mesh">
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+    </div>
 
     <!-- =================================================================== -->
-    <!-- CMS LOGIN SCREEN (Empty Input Fields + Show/Hide Password Toggle)   -->
+    <!-- EXECUTIVE CMS LOGIN SCREEN                                          -->
     <!-- =================================================================== -->
     <div class="login-wrapper" id="cms-login-wrapper">
         <div class="login-card">
-            <div class="brand-header">
-                <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 0.4rem;">
-                    <img src="favicon.png" alt="ElavateX Logo" style="width: 34px; height: 34px; object-fit: contain;">
-                    <h1 style="margin:0;">Elavate<span>X</span> CMS</h1>
+            <!-- Illuminated Emblem Frame -->
+            <div class="login-emblem-box">
+                <div class="emblem-laser-ring"></div>
+                <div class="emblem-icon-frame">
+                    <img src="favicon.png" alt="ElavateX Logo">
                 </div>
-                <p>Official Agency Admin Dashboard & Engine</p>
+            </div>
+
+            <div class="brand-header">
+                <h1>Elavate<span>X</span> CMS</h1>
+                <p>Official Executive Agency Portal & Engine</p>
+                <div class="security-badge">● 256-BIT ENCRYPTED GATEWAY</div>
+            </div>
+
+            <!-- Executive Quick Selector Tabs -->
+            <div class="persona-tabs">
+                <button type="button" class="persona-tab-btn active-ceo" id="tab-btn-ceo">
+                    👑 CEO Portal
+                </button>
+                <button type="button" class="persona-tab-btn" id="tab-btn-cfo">
+                    💼 CFO Portal
+                </button>
+            </div>
+
+            <!-- Error Banner -->
+            <div id="login-error" class="login-error-banner">
+                ❌ Invalid Credentials! Check your Admin ID or Password.
             </div>
 
             <form id="cms-login-form">
                 <div class="form-group">
-                    <label for="cms-user">Admin ID</label>
-                    <input type="text" id="cms-user" required placeholder="Enter Admin ID">
-                </div>
-
-                <div class="form-group">
-                    <label for="cms-pass">Password</label>
-                    <div class="pw-wrapper">
-                        <input type="password" id="cms-pass" required placeholder="Enter Password">
-                        <button type="button" class="toggle-pw-btn" id="toggle-pw-btn" title="Toggle Password Visibility">👁️</button>
+                    <label for="cms-user">Executive Admin ID</label>
+                    <div class="input-icon-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="cms-user" required placeholder="Enter Admin ID">
                     </div>
                 </div>
 
-                <div id="login-error" style="display:none; color:#ef4444; font-size:0.85rem; margin-bottom:1rem; text-align:center;">
-                    ❌ Invalid Credentials! Check your Admin ID or Password.
+                <div class="form-group">
+                    <label for="cms-pass">Security Password</label>
+                    <div class="input-icon-wrapper">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="cms-pass" required placeholder="Enter Security Password">
+                        <button type="button" class="pw-toggle-btn" id="pw-toggle-btn" title="Toggle Password Visibility">👁️</button>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn-cms-primary">Sign In to CMS Dashboard</button>
-
-                <div class="login-footer">
-                    <p>© 2023 ElavateX. All rights reserved.</p>
-                </div>
+                <button type="submit" class="btn-cms-submit">Sign In to Executive Portal &rarr;</button>
             </form>
         </div>
     </div>
 
     <!-- =================================================================== -->
-    <!-- REAL FULL-PAGE CMS DASHBOARD LAYOUT                                 -->
+    <!-- REAL FULL-PAGE EXECUTIVE CMS DASHBOARD LAYOUT                      -->
     <!-- =================================================================== -->
     <div class="cms-layout" id="cms-app-layout">
         <!-- Sidebar -->
         <aside class="cms-sidebar">
-            <div class="sidebar-brand" style="display: flex; align-items: center; gap: 0.6rem;">
-                <img src="favicon.png" alt="ElavateX Logo" style="width: 28px; height: 28px; object-fit: contain;">
-                <span>Elavate<span>X</span> CMS</span>
+            <div>
+                <div class="sidebar-brand-box">
+                    <img src="favicon.png" alt="ElavateX Logo" class="brand-logo-img">
+                    <div class="brand-name">Elavate<span>X</span></div>
+                </div>
+
+                <nav class="nav-menu">
+                    <div class="nav-item active" data-target="panel-overview">📊 Overview</div>
+                    <div class="nav-item" data-target="panel-leads">📋 SMM Leads & Consultations</div>
+                    <div class="nav-item" data-target="panel-analytics">📈 Web Analytics</div>
+                    <div class="nav-item" data-target="panel-projects">📁 Case Studies</div>
+                    <div class="nav-item" data-target="panel-reviews">💬 Testimonials & Reviews</div>
+                    <div class="nav-item" data-target="panel-content">🌐 Content Manager</div>
+                    <div class="nav-item" data-target="panel-settings">⚙️ Settings & Security</div>
+                </nav>
             </div>
 
-            <nav class="nav-menu">
-                <div class="nav-item active" data-target="panel-overview">📊 Overview</div>
-                <div class="nav-item" data-target="panel-leads">📋 SMM Leads & Consultations</div>
-                <div class="nav-item" data-target="panel-analytics">📈 Web Analytics</div>
-                <div class="nav-item" data-target="panel-projects">📁 Case Studies</div>
-                <div class="nav-item" data-target="panel-reviews">💬 Testimonials & Reviews</div>
-                <div class="nav-item" data-target="panel-content">🌐 Content Manager</div>
-                <div class="nav-item" data-target="panel-settings">⚙️ Settings & Security</div>
-            </nav>
-
-            <div class="sidebar-footer">
-                <div class="user-profile">
-                    <div class="avatar">F</div>
-                    <div>
-                        <div style="font-weight:700; font-size:0.85rem;" id="cms-sidebar-user">Farhan (Super Admin)</div>
-                        <div style="font-size:0.75rem; color:var(--cms-muted);">ElavateX.com</div>
-                    </div>
+            <!-- Logged In Profile Box -->
+            <div class="user-profile-box">
+                <div class="user-avatar-circle" id="user-avatar-circle">F</div>
+                <div>
+                    <div class="user-meta-name" id="user-meta-name">Farhan</div>
+                    <div class="user-meta-role" id="user-meta-role">CEO & Founder</div>
                 </div>
             </div>
         </aside>
@@ -283,10 +946,10 @@
             <div class="cms-topbar">
                 <div class="topbar-left">
                     <div class="topbar-title" id="topbar-title">Dashboard Overview</div>
-                    <span class="status-badge">● CMS ENGINE LIVE</span>
                 </div>
                 <div class="topbar-right">
-                    <button class="btn-logout" id="cms-logout-btn">Logout</button>
+                    <a href="index.html" class="btn-view-site" target="_blank">🌐 View Live Site</a>
+                    <button class="btn-logout" id="cms-logout-btn">🔒 Sign Out</button>
                 </div>
             </div>
 
@@ -297,29 +960,45 @@
                 <div class="panel active" id="panel-overview">
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <div class="stat-label">Total Site Visits</div>
+                            <div class="stat-header">
+                                <div class="stat-label">Total Site Visits</div>
+                                <div class="stat-icon-pill" style="background:rgba(139,92,246,0.15); color:#c084fc;">👁️</div>
+                            </div>
                             <div class="stat-val">12,840</div>
+                            <div class="stat-trend">+24.5% this month</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-label">Active Projects</div>
+                            <div class="stat-header">
+                                <div class="stat-label">Active Projects</div>
+                                <div class="stat-icon-pill" style="background:rgba(6,182,212,0.15); color:#38bdf8;">📁</div>
+                            </div>
                             <div class="stat-val" id="stat-projects-count">3</div>
+                            <div class="stat-trend">Portfolio Live</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-label">Client Reviews</div>
+                            <div class="stat-header">
+                                <div class="stat-label">Client Reviews</div>
+                                <div class="stat-icon-pill" style="background:rgba(245,158,11,0.15); color:#fbbf24;">💬</div>
+                            </div>
                             <div class="stat-val" id="stat-reviews-count">1</div>
+                            <div class="stat-trend">★ 5.0 Average Rating</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-label">Lead Conversion</div>
+                            <div class="stat-header">
+                                <div class="stat-label">Lead Conversion</div>
+                                <div class="stat-icon-pill" style="background:rgba(16,185,129,0.15); color:#34d399;">📈</div>
+                            </div>
                             <div class="stat-val">4.8%</div>
+                            <div class="stat-trend">+1.2% conversion rate</div>
                         </div>
                     </div>
 
                     <div class="panel-box">
-                        <h3>Featured Client Review</h3>
-                        <p>Currently highlighted review on ElavateX.com</p>
-                        <blockquote style="background:rgba(255,255,255,0.03); padding:1.2rem; border-left:3px solid var(--cms-accent); border-radius:6px; font-style:italic;">
+                        <h3>Featured Client Review Highlight</h3>
+                        <p>Currently featured client testimonial published on ElavateX.com</p>
+                        <blockquote style="background:rgba(255,255,255,0.03); padding:1.4rem; border-left:4px solid var(--cms-accent-purple); border-radius:10px; font-style:italic; font-size:0.98rem; line-height:1.6;">
                             "Working with ElavateX was the absolute best experience! They delivered Shelter Hunt Consultants ahead of schedule with top-tier output, 100% responsiveness, and exceptional quality."
-                            <footer style="margin-top:0.8rem; font-style:normal; font-weight:700; color:var(--cms-accent);">&mdash; Sudarshan (Founder, Shelter Hunt Consultants)</footer>
+                            <footer style="margin-top:0.8rem; font-style:normal; font-weight:700; color:var(--cms-accent-cyan);">&mdash; Sudarshan (Founder, Shelter Hunt Consultants)</footer>
                         </blockquote>
                     </div>
                 </div>
@@ -327,102 +1006,173 @@
                 <!-- PANEL LEADS: SMM LEADS & CONSULTATION BOOKINGS -->
                 <div class="panel" id="panel-leads">
                     <div class="panel-box">
-                        <h3>Client Leads & SMM Plan Bookings</h3>
-                        <p>View all incoming consultation bookings, plan requests, and client submissions.</p>
+                        <h3>Client Leads & Consultation Submissions</h3>
+                        <p>Real-time list of client bookings, SMM plan inquiries, and contact submissions.</p>
 
                         <table class="table-custom">
                             <thead>
                                 <tr>
-                                    <th>Client Info</th>
-                                    <th>Service / Plan Requested</th>
-                                    <th>Preferred Date & Slot</th>
+                                    <th>Client Name & Contact</th>
+                                    <th>Service Requested</th>
+                                    <th>Preferred Date / Time</th>
                                     <th>Format</th>
-                                    <th>Submitted</th>
-                                    <th>Action</th>
+                                    <th>Timestamp</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="cms-leads-tbody">
-                                <!-- Rendered dynamically -->
+                                <!-- Dynamic List -->
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- PANEL 2: WEB ANALYTICS -->
+                <!-- PANEL 2: WEB ANALYTICS (REAL-TIME VISUALIZATIONS) -->
                 <div class="panel" id="panel-analytics">
                     <div class="panel-box">
-                        <h3>Live Traffic & Conversion Analytics</h3>
-                        <p>Monitor visitor interactions, WhatsApp lead clicks, and traffic source performance.</p>
+                        <div style="display:flex; align-items:center; justify-space-between; margin-bottom:0.6rem; flex-wrap:wrap; gap:10px;">
+                            <div>
+                                <h3>📈 Real-Time Web Traffic & Conversion Analytics</h3>
+                                <p style="margin-bottom:0;">Live performance stream, active user telemetry, and device insights.</p>
+                            </div>
+                            <div class="live-pulse-badge">
+                                <div class="pulse-dot"></div>
+                                <span>LIVE TELEMETRY STREAMING</span>
+                            </div>
+                        </div>
 
-                        <div class="stats-grid">
+                        <!-- 4 Real-time Metric Cards -->
+                        <div class="stats-grid" style="margin-top:1.5rem; margin-bottom:1.5rem;">
                             <div class="stat-card">
-                                <div class="stat-label">Weekly Unique Visitors</div>
-                                <div class="stat-val" style="color:var(--cms-emerald);">3,420 ↑</div>
+                                <div class="stat-header">
+                                    <div class="stat-label">Active Users Right Now</div>
+                                    <div class="stat-icon-pill" style="background:rgba(16,185,129,0.15); color:#34d399;">🟢</div>
+                                </div>
+                                <div class="stat-val" id="live-active-counter" style="color:var(--cms-emerald);">42</div>
+                                <div class="stat-trend">Live on ElavateX.com</div>
                             </div>
+
                             <div class="stat-card">
-                                <div class="stat-label">WhatsApp Clicks</div>
-                                <div class="stat-val">348</div>
+                                <div class="stat-header">
+                                    <div class="stat-label">Pageviews / Minute</div>
+                                    <div class="stat-icon-pill" style="background:rgba(139,92,246,0.15); color:#c084fc;">⚡</div>
+                                </div>
+                                <div class="stat-val" id="live-pageviews-counter">138</div>
+                                <div class="stat-trend" style="color:#c084fc;">+14% vs avg</div>
                             </div>
+
                             <div class="stat-card">
-                                <div class="stat-label">Form Submissions</div>
-                                <div class="stat-val">94</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-label">Avg. Session Time</div>
+                                <div class="stat-header">
+                                    <div class="stat-label">Avg. Session Duration</div>
+                                    <div class="stat-icon-pill" style="background:rgba(6,182,212,0.15); color:#38bdf8;">⏱️</div>
+                                </div>
                                 <div class="stat-val">3m 42s</div>
+                                <div class="stat-trend" style="color:#38bdf8;">High Engagement</div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-header">
+                                    <div class="stat-label">WhatsApp Lead Rate</div>
+                                    <div class="stat-icon-pill" style="background:rgba(245,158,11,0.15); color:#fbbf24;">🎯</div>
+                                </div>
+                                <div class="stat-val">5.8%</div>
+                                <div class="stat-trend" style="color:#fbbf24;">Conversion Peak</div>
                             </div>
                         </div>
 
-                        <h4 style="margin-top:1.5rem; font-size:0.95rem;">Weekly Visitor Traffic Trend</h4>
-                        <div class="chart-bar-container">
-                            <div class="bar-col" style="height: 45%;"><span>Mon</span></div>
-                            <div class="bar-col" style="height: 60%;"><span>Tue</span></div>
-                            <div class="bar-col" style="height: 85%;"><span>Wed</span></div>
-                            <div class="bar-col" style="height: 70%;"><span>Thu</span></div>
-                            <div class="bar-col" style="height: 95%;"><span>Fri</span></div>
-                            <div class="bar-col" style="height: 80%;"><span>Sat</span></div>
-                            <div class="bar-col" style="height: 100%;"><span>Sun</span></div>
+                        <!-- Real-Time Main Line Chart -->
+                        <div class="chart-container-box">
+                            <div class="chart-header-row">
+                                <div>
+                                    <h4 style="font-family:'Outfit', sans-serif; font-size:1.1rem; color:#fff;">Live Traffic Frequency (Requests & Unique Hits)</h4>
+                                    <small style="color:var(--cms-muted);">Chart updates dynamically every 2 seconds with 60 FPS interpolation.</small>
+                                </div>
+                                <div style="display:flex; gap:6px;">
+                                    <button class="chart-filter-btn active" id="btn-stream-live">● Live Stream</button>
+                                    <button class="chart-filter-btn" id="btn-stream-24h">24 Hours</button>
+                                    <button class="chart-filter-btn" id="btn-stream-7d">7 Days</button>
+                                </div>
+                            </div>
+                            <div style="position:relative; height:280px; width:100%;">
+                                <canvas id="analytics-realtime-chart"></canvas>
+                            </div>
                         </div>
+
+                        <!-- Two Column Breakdown -->
+                        <div class="analytics-grid-two">
+                            <!-- Left: Device Distribution Chart -->
+                            <div class="chart-container-box" style="margin-bottom:0;">
+                                <h4 style="font-family:'Outfit', sans-serif; font-size:1.05rem; color:#fff; margin-bottom:1rem;">Device & OS Distribution</h4>
+                                <div style="position:relative; height:200px; display:flex; align-items:center; justify-content:center;">
+                                    <canvas id="analytics-device-chart"></canvas>
+                                </div>
+                                <div style="display:flex; justify-content:space-around; margin-top:1.2rem; font-size:0.85rem; text-align:center;">
+                                    <div><span style="color:#8b5cf6;">📱 Mobile</span><br><strong>68%</strong></div>
+                                    <div><span style="color:#06b6d4;">💻 Desktop</span><br><strong>27%</strong></div>
+                                    <div><span style="color:#f59e0b;">📑 Tablet</span><br><strong>5%</strong></div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Live Real-time Activity Feed -->
+                            <div class="chart-container-box" style="margin-bottom:0;">
+                                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
+                                    <h4 style="font-family:'Outfit', sans-serif; font-size:1.05rem; color:#fff;">Live Visitor Activity Stream</h4>
+                                    <small style="color:var(--cms-emerald); font-weight:700;">Realtime Feed</small>
+                                </div>
+                                <div class="activity-feed-box" id="live-activity-stream">
+                                    <!-- Dynamic Live Items -->
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- PANEL 3: PROJECTS & CASE STUDIES MANAGER (ADD & EDIT) -->
+                <!-- PANEL 3: PROJECTS MANAGER -->
                 <div class="panel" id="panel-projects">
                     <div class="panel-box">
-                        <h3>Add / Edit Case Study Project</h3>
-                        <p>Create or update featured portfolio projects published live on ElavateX.com</p>
+                        <h3>📁 Manage Case Studies & Portfolio Projects</h3>
+                        <p>Publish, edit, or remove featured showcase projects live on ElavateX.com</p>
 
-                        <form id="form-add-project" style="max-width:600px; margin-bottom:2rem;">
-                            <input type="hidden" id="proj-edit-id" value="">
-                            <div class="form-group">
-                                <label for="proj-name">Project Title *</label>
-                                <input type="text" id="proj-name" required placeholder="e.g. Shelter Hunt Consultants">
-                            </div>
+                        <div class="cms-form-card">
+                            <h4 style="color:#ffffff; font-size:1.05rem; margin-bottom:1.2rem; font-family:'Outfit', sans-serif;">Add / Edit Project Record</h4>
+                            <form id="form-add-project">
+                                <input type="hidden" id="proj-edit-id" value="">
+                                
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+                                    <div class="form-group">
+                                        <label for="proj-name">Project Title *</label>
+                                        <input type="text" id="proj-name" required placeholder="e.g. Shelter Hunt Consultants">
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="proj-url">Live Website URL *</label>
-                                <input type="url" id="proj-url" required placeholder="https://shelterhuntconsultants.com">
-                            </div>
+                                    <div class="form-group">
+                                        <label for="proj-url">Live Website URL *</label>
+                                        <input type="url" id="proj-url" required placeholder="https://shelterhuntconsultants.com">
+                                    </div>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="proj-category">Category Badge *</label>
-                                <input type="text" id="proj-category" required placeholder="e.g. REAL ESTATE PORTAL">
-                            </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+                                    <div class="form-group">
+                                        <label for="proj-category">Category Badge *</label>
+                                        <input type="text" id="proj-category" required placeholder="e.g. REAL ESTATE PORTAL">
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="proj-desc">Project Overview *</label>
-                                <textarea id="proj-desc" rows="2" required placeholder="Property Advisory portal built for property search & lead generation."></textarea>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="proj-stat">Stat Badge *</label>
+                                        <input type="text" id="proj-stat" required placeholder="e.g. ★ 5.0 Rating • Delivered On Time">
+                                    </div>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="proj-stat">Stat Badge *</label>
-                                <input type="text" id="proj-stat" required placeholder="e.g. ★ 5.0 Rating • Delivered On Time">
-                            </div>
+                                <div class="form-group">
+                                    <label for="proj-desc">Project Overview & Deliverables *</label>
+                                    <textarea id="proj-desc" rows="3" required placeholder="Property Advisory portal built for property search & lead generation."></textarea>
+                                </div>
 
-                            <button type="submit" class="btn-cms-primary" style="width:auto; padding:0.7rem 1.8rem;" id="btn-save-proj">Add Project Live</button>
-                        </form>
+                                <button type="submit" class="btn-cms-submit" style="width:auto; padding:0.8rem 2.2rem;" id="btn-save-proj">✨ Publish Project Live</button>
+                            </form>
+                        </div>
 
-                        <h4 style="margin-bottom:1rem; font-size:1rem;">Active Live Projects</h4>
+                        <h4 style="margin-bottom:1rem; font-size:1.05rem; color:#fff; font-family:'Outfit', sans-serif;">Active Live Case Studies</h4>
                         <table class="table-custom">
                             <thead>
                                 <tr>
@@ -433,48 +1183,54 @@
                                 </tr>
                             </thead>
                             <tbody id="cms-projects-tbody">
-                                <!-- Dynamic Projects -->
+                                <!-- Dynamic List -->
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- PANEL 4: REVIEWS & TESTIMONIALS MANAGER (ADD & EDIT) -->
+                <!-- PANEL 4: REVIEWS MANAGER -->
                 <div class="panel" id="panel-reviews">
                     <div class="panel-box">
-                        <h3>Add / Edit Testimonials & Reviews</h3>
-                        <p>Manage client reviews and feedback published live on ElavateX.com</p>
+                        <h3>💬 Manage Testimonials & Client Reviews</h3>
+                        <p>Publish, edit, or curate client reviews featured live on ElavateX.com</p>
 
-                        <form id="form-add-review" style="max-width:600px; margin-bottom:2rem;">
-                            <input type="hidden" id="rev-edit-id" value="">
-                            <div class="form-group">
-                                <label for="rev-author-name">Author Name *</label>
-                                <input type="text" id="rev-author-name" required placeholder="e.g. Sudarshan">
-                            </div>
+                        <div class="cms-form-card">
+                            <h4 style="color:#ffffff; font-size:1.05rem; margin-bottom:1.2rem; font-family:'Outfit', sans-serif;">Add / Edit Review Record</h4>
+                            <form id="form-add-review">
+                                <input type="hidden" id="rev-edit-id" value="">
 
-                            <div class="form-group">
-                                <label for="rev-author-role">Company / Role *</label>
-                                <input type="text" id="rev-author-role" required placeholder="e.g. Founder, Shelter Hunt Consultants">
-                            </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.2rem;">
+                                    <div class="form-group">
+                                        <label for="rev-author-name">Author Name *</label>
+                                        <input type="text" id="rev-author-name" required placeholder="e.g. Sudarshan">
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="rev-star-val">Rating *</label>
-                                <select id="rev-star-val" required>
-                                    <option value="5">★★★★★ (5 Stars)</option>
-                                    <option value="4">★★★★☆ (4 Stars)</option>
-                                    <option value="3">★★★☆☆ (3 Stars)</option>
-                                </select>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="rev-author-role">Company / Role *</label>
+                                        <input type="text" id="rev-author-role" required placeholder="e.g. Founder, Shelter Hunt">
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="rev-quote-text">Review Quote *</label>
-                                <textarea id="rev-quote-text" rows="3" required placeholder="Working with ElavateX was the absolute best experience!..."></textarea>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="rev-star-val">Rating Score *</label>
+                                        <select id="rev-star-val" required>
+                                            <option value="5">★★★★★ (5 Stars - Exceptional)</option>
+                                            <option value="4">★★★★☆ (4 Stars - Great)</option>
+                                            <option value="3">★★★☆☆ (3 Stars - Good)</option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                            <button type="submit" class="btn-cms-primary" style="width:auto; padding:0.7rem 1.8rem;" id="btn-save-rev">Add Review Live</button>
-                        </form>
+                                <div class="form-group">
+                                    <label for="rev-quote-text">Review Quote *</label>
+                                    <textarea id="rev-quote-text" rows="3" required placeholder="Working with ElavateX was the absolute best experience! Delivered ahead of schedule with top-tier quality."></textarea>
+                                </div>
 
-                        <h4 style="margin-bottom:1rem; font-size:1rem;">Published Reviews Grid</h4>
+                                <button type="submit" class="btn-cms-submit" style="width:auto; padding:0.8rem 2.2rem;" id="btn-save-rev">✨ Publish Review Live</button>
+                            </form>
+                        </div>
+
+                        <h4 style="margin-bottom:1rem; font-size:1.05rem; color:#fff; font-family:'Outfit', sans-serif;">Published Reviews Board</h4>
                         <table class="table-custom">
                             <thead>
                                 <tr>
@@ -494,44 +1250,52 @@
                 <!-- PANEL 5: CONTENT MANAGER -->
                 <div class="panel" id="panel-content">
                     <div class="panel-box">
-                        <h3>Website Content & Headlines Manager</h3>
+                        <h3>🌐 Website Headlines & Taglines Manager</h3>
                         <p>Edit core landing page titles and taglines dynamically.</p>
 
-                        <form id="form-content-mgr" style="max-width:600px;">
-                            <div class="form-group">
-                                <label for="hero-title-input">Hero Main Headline</label>
-                                <input type="text" id="hero-title-input" value="Elevate Your Digital Flagship to Unrivaled Heights">
-                            </div>
+                        <div class="cms-form-card" style="max-width:700px;">
+                            <form id="form-content-mgr">
+                                <div class="form-group">
+                                    <label for="hero-title-input">Hero Main Headline</label>
+                                    <input type="text" id="hero-title-input" value="Elevate Your Digital Flagship to Unrivaled Heights">
+                                </div>
 
-                            <div class="form-group">
-                                <label for="hero-subtitle-input">Hero Subtitle</label>
-                                <textarea id="hero-subtitle-input" rows="2">We build world-class websites, mobile apps, and high-ROAS social media growth engines.</textarea>
-                            </div>
+                                <div class="form-group">
+                                    <label for="hero-subtitle-input">Hero Subtitle</label>
+                                    <textarea id="hero-subtitle-input" rows="3">We build world-class websites, mobile apps, and high-ROAS social media growth engines.</textarea>
+                                </div>
 
-                            <button type="submit" class="btn-cms-primary" style="width:auto; padding:0.7rem 1.8rem;">Save Content Changes</button>
-                        </form>
+                                <button type="submit" class="btn-cms-submit" style="width:auto; padding:0.8rem 2.2rem;">Save Content Changes</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
-                <!-- PANEL 6: GLOBAL SETTINGS & SECURITY (UPDATE ADMIN PASSWORD) -->
+                <!-- PANEL 6: GLOBAL SETTINGS -->
                 <div class="panel" id="panel-settings">
                     <div class="panel-box">
-                        <h3>Admin Security & Credentials Settings</h3>
-                        <p>Update your Admin ID and Password for logging into the CMS Dashboard.</p>
+                        <h3>⚙️ Security & System Configuration</h3>
+                        <p>Active Authorized Executive User Roles</p>
 
-                        <form id="form-admin-sec" style="max-width:500px;">
-                            <div class="form-group">
-                                <label for="sec-user-id">Admin ID *</label>
-                                <input type="text" id="sec-user-id" required value="FarhanElavate">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; max-width:700px;">
+                            <div style="background:rgba(139,92,246,0.08); border:1px solid rgba(139,92,246,0.3); border-radius:14px; padding:1.4rem;">
+                                <div style="display:flex; align-items:center; gap:8px; margin-bottom:0.6rem;">
+                                    <span style="font-size:1.2rem;">👑</span>
+                                    <strong style="color:#ffffff; font-size:1rem;">CEO Executive Account</strong>
+                                </div>
+                                <div style="font-size:0.85rem; color:var(--cms-muted);">Authorized ID: <code style="color:#c084fc; font-weight:700;">FarhanElavate</code></div>
+                                <div style="font-size:0.85rem; color:var(--cms-emerald); margin-top:0.4rem;">Status: Active Super Admin</div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="sec-pass">New Password *</label>
-                                <input type="password" id="sec-pass" required value="Mycareer">
+                            <div style="background:rgba(6,182,212,0.08); border:1px solid rgba(6,182,212,0.3); border-radius:14px; padding:1.4rem;">
+                                <div style="display:flex; align-items:center; gap:8px; margin-bottom:0.6rem;">
+                                    <span style="font-size:1.2rem;">💼</span>
+                                    <strong style="color:#ffffff; font-size:1rem;">CFO Executive Account</strong>
+                                </div>
+                                <div style="font-size:0.85rem; color:var(--cms-muted);">Authorized ID: <code style="color:#38bdf8; font-weight:700;">KamalElavate</code></div>
+                                <div style="font-size:0.85rem; color:var(--cms-emerald); margin-top:0.4rem;">Status: Active Finance Admin</div>
                             </div>
-
-                            <button type="submit" class="btn-cms-primary" style="width:auto; padding:0.75rem 2rem;">Update Admin Password</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
@@ -540,55 +1304,336 @@
     </div>
 
     <script>
-        // Password Visibility Toggle
-        const togglePwBtn = document.getElementById('toggle-pw-btn');
+        // Accounts Configuration
+        const ACCOUNTS = {
+            'farhanelavate': { name: 'Farhan', role: 'CEO & Founder', pass: 'admin@ceo', avatar: 'F', bg: 'var(--grad-ceo)' },
+            'kamalelavate': { name: 'Kamal', role: 'CFO & Co-Founder', pass: 'admin@cfo', avatar: 'K', bg: 'var(--grad-cfo)' }
+        };
+
+        // DOM References
+        const tabBtnCeo = document.getElementById('tab-btn-ceo');
+        const tabBtnCfo = document.getElementById('tab-btn-cfo');
+        const cmsUserInput = document.getElementById('cms-user');
         const cmsPassInput = document.getElementById('cms-pass');
-
-        if (togglePwBtn && cmsPassInput) {
-            togglePwBtn.addEventListener('click', () => {
-                const type = cmsPassInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                cmsPassInput.setAttribute('type', type);
-                togglePwBtn.textContent = type === 'password' ? '👁️' : '🙈';
-            });
-        }
-
-        // Credentials Management
-        function getAdminCreds() {
-            const stored = localStorage.getItem('elavatex_admin_credentials');
-            if (stored) {
-                try { return JSON.parse(stored); } catch (e) { }
-            }
-            return { user: 'FarhanElavate', pass: 'Mycareer' };
-        }
-
-        function setAdminCreds(creds) {
-            localStorage.setItem('elavatex_admin_credentials', JSON.stringify(creds));
-        }
+        const pwToggleBtn = document.getElementById('pw-toggle-btn');
+        const loginForm = document.getElementById('cms-login-form');
+        const loginError = document.getElementById('login-error');
 
         const loginWrapper = document.getElementById('cms-login-wrapper');
         const appLayout = document.getElementById('cms-app-layout');
-        const loginForm = document.getElementById('cms-login-form');
-        const loginError = document.getElementById('login-error');
         const logoutBtn = document.getElementById('cms-logout-btn');
 
+        // Persona Tab Switcher
+        if (tabBtnCeo && tabBtnCfo) {
+            tabBtnCeo.addEventListener('click', () => {
+                tabBtnCeo.className = 'persona-tab-btn active-ceo';
+                tabBtnCfo.className = 'persona-tab-btn';
+                cmsUserInput.value = 'FarhanElavate';
+                cmsPassInput.value = '';
+                cmsPassInput.focus();
+            });
+
+            tabBtnCfo.addEventListener('click', () => {
+                tabBtnCfo.className = 'persona-tab-btn active-cfo';
+                tabBtnCeo.className = 'persona-tab-btn';
+                cmsUserInput.value = 'KamalElavate';
+                cmsPassInput.value = '';
+                cmsPassInput.focus();
+            });
+        }
+
+        // Password Toggle
+        if (pwToggleBtn && cmsPassInput) {
+            pwToggleBtn.addEventListener('click', () => {
+                const isPw = cmsPassInput.getAttribute('type') === 'password';
+                cmsPassInput.setAttribute('type', isPw ? 'text' : 'password');
+                pwToggleBtn.textContent = isPw ? '🙈' : '👁️';
+            });
+        }
+
+        // Authentication Checker
         function checkAuth() {
-            if (sessionStorage.getItem('elavatex_admin_logged') === 'true') {
+            const activeUserKey = sessionStorage.getItem('elavatex_admin_user');
+            if (activeUserKey && ACCOUNTS[activeUserKey]) {
+                const userObj = ACCOUNTS[activeUserKey];
                 loginWrapper.style.display = 'none';
                 appLayout.classList.add('active');
-                const creds = getAdminCreds();
-                const sidebarUser = document.getElementById('cms-sidebar-user');
-                if (sidebarUser) sidebarUser.textContent = `${creds.user} (Admin)`;
+
+                // Update Profile Info
+                const userAvatar = document.getElementById('user-avatar-circle');
+                const userName = document.getElementById('user-meta-name');
+                const userRole = document.getElementById('user-meta-role');
+
+                if (userAvatar) {
+                    userAvatar.textContent = userObj.avatar;
+                    userAvatar.style.background = userObj.bg;
+                }
+                if (userName) userName.textContent = userObj.name;
+                if (userRole) userRole.textContent = userObj.role;
+
                 renderLeadsTable();
                 renderProjectsTable();
                 renderReviewsTable();
+                initAnalyticsCharts();
             } else {
                 loginWrapper.style.display = 'flex';
                 appLayout.classList.remove('active');
             }
         }
 
+        // Login Handler
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userVal = cmsUserInput.value.trim();
+            const passVal = cmsPassInput.value.trim();
+            const key = userVal.toLowerCase();
+
+            if (ACCOUNTS[key] && ACCOUNTS[key].pass === passVal) {
+                sessionStorage.setItem('elavatex_admin_user', key);
+                loginError.style.display = 'none';
+                checkAuth();
+            } else {
+                loginError.style.display = 'block';
+            }
+        });
+
+        // Logout Handler
+        logoutBtn.addEventListener('click', () => {
+            sessionStorage.removeItem('elavatex_admin_user');
+            checkAuth();
+        });
+
+        // Navigation Tabs Switcher
+        const navItems = document.querySelectorAll('.nav-item');
+        const panels = document.querySelectorAll('.panel');
+        const topbarTitle = document.getElementById('topbar-title');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const target = item.getAttribute('data-target');
+                navItems.forEach(n => n.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                item.classList.add('active');
+                const targetPanel = document.getElementById(target);
+                if (targetPanel) targetPanel.classList.add('active');
+
+                topbarTitle.textContent = item.textContent.replace(/[^\w\s]/gi, '').trim();
+
+                if (target === 'panel-analytics') {
+                    setTimeout(() => { initAnalyticsCharts(); }, 100);
+                }
+            });
+        });
+
         // ------------------------------------------------------------------
-        // Leads & Consultation Bookings Manager
+        // REAL-TIME ANALYTICS CHARTS ENGINE & LIVE FEED
+        // ------------------------------------------------------------------
+        let realTimeChartInstance = null;
+        let deviceChartInstance = null;
+        let liveStreamInterval = null;
+
+        function initAnalyticsCharts() {
+            const canvasLine = document.getElementById('analytics-realtime-chart');
+            const canvasDoughnut = document.getElementById('analytics-device-chart');
+            if (!canvasLine || !canvasDoughnut) return;
+
+            // Prepare Initial Labels & Data
+            const initialLabels = Array.from({ length: 15 }, (_, i) => {
+                const d = new Date(Date.now() - (14 - i) * 2000);
+                return d.toLocaleTimeString([], { hour12: false, minute: '2-digit', second: '2-digit' });
+            });
+
+            const initialTrafficData = [45, 52, 48, 60, 55, 68, 72, 65, 80, 88, 95, 92, 105, 112, 128];
+            const initialHitsData = [20, 24, 22, 28, 26, 32, 35, 30, 40, 42, 46, 45, 50, 54, 62];
+
+            // Initialize Main Traffic Line Chart
+            if (typeof Chart !== 'undefined') {
+                if (realTimeChartInstance) realTimeChartInstance.destroy();
+
+                const ctxLine = canvasLine.getContext('2d');
+                const gradPurple = ctxLine.createLinearGradient(0, 0, 0, 280);
+                gradPurple.addColorStop(0, 'rgba(139, 92, 246, 0.45)');
+                gradPurple.addColorStop(1, 'rgba(139, 92, 246, 0.0)');
+
+                const gradCyan = ctxLine.createLinearGradient(0, 0, 0, 280);
+                gradCyan.addColorStop(0, 'rgba(6, 182, 212, 0.35)');
+                gradCyan.addColorStop(1, 'rgba(6, 182, 212, 0.0)');
+
+                realTimeChartInstance = new Chart(ctxLine, {
+                    type: 'line',
+                    data: {
+                        labels: initialLabels,
+                        datasets: [
+                            {
+                                label: 'Pageviews / min',
+                                data: initialTrafficData,
+                                borderColor: '#8b5cf6',
+                                backgroundColor: gradPurple,
+                                borderWidth: 3,
+                                fill: true,
+                                tension: 0.4,
+                                pointRadius: 3,
+                                pointHoverRadius: 6
+                            },
+                            {
+                                label: 'Unique Visitors',
+                                data: initialHitsData,
+                                borderColor: '#06b6d4',
+                                backgroundColor: gradCyan,
+                                borderWidth: 2.5,
+                                fill: true,
+                                tension: 0.4,
+                                pointRadius: 2,
+                                pointHoverRadius: 5
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        animation: { duration: 500 },
+                        scales: {
+                            x: {
+                                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                                ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } }
+                            },
+                            y: {
+                                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                                ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: { color: '#f8fafc', font: { family: 'Inter', weight: '600' } }
+                            }
+                        }
+                    }
+                });
+
+                // Initialize Device Doughnut Chart
+                if (deviceChartInstance) deviceChartInstance.destroy();
+
+                const ctxDoughnut = canvasDoughnut.getContext('2d');
+                deviceChartInstance = new Chart(ctxDoughnut, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Mobile', 'Desktop', 'Tablet'],
+                        datasets: [{
+                            data: [68, 27, 5],
+                            backgroundColor: ['#8b5cf6', '#06b6d4', '#f59e0b'],
+                            borderWidth: 0,
+                            hoverOffset: 6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        cutout: '72%'
+                    }
+                });
+            }
+
+            // Start Real-Time Interval Push
+            startRealTimeTelemetry();
+            populateInitialActivityFeed();
+        }
+
+        function startRealTimeTelemetry() {
+            if (liveStreamInterval) clearInterval(liveStreamInterval);
+
+            liveStreamInterval = setInterval(() => {
+                if (!realTimeChartInstance) return;
+
+                const now = new Date();
+                const timeLabel = now.toLocaleTimeString([], { hour12: false, minute: '2-digit', second: '2-digit' });
+
+                // Generate realistic fluctuations
+                const lastVal = realTimeChartInstance.data.datasets[0].data.slice(-1)[0] || 120;
+                const newTraffic = Math.max(70, Math.min(180, Math.floor(lastVal + (Math.random() * 20 - 9))));
+                const newHits = Math.floor(newTraffic * (0.4 + Math.random() * 0.1));
+
+                // Push new data point & slide graph window
+                realTimeChartInstance.data.labels.push(timeLabel);
+                realTimeChartInstance.data.datasets[0].data.push(newTraffic);
+                realTimeChartInstance.data.datasets[1].data.push(newHits);
+
+                if (realTimeChartInstance.data.labels.length > 15) {
+                    realTimeChartInstance.data.labels.shift();
+                    realTimeChartInstance.data.datasets[0].data.shift();
+                    realTimeChartInstance.data.datasets[1].data.shift();
+                }
+
+                realTimeChartInstance.update();
+
+                // Update Active Counter
+                const activeCounter = document.getElementById('live-active-counter');
+                const pageviewsCounter = document.getElementById('live-pageviews-counter');
+                if (activeCounter) {
+                    const currentActive = parseInt(activeCounter.textContent) || 42;
+                    activeCounter.textContent = Math.max(32, Math.min(58, currentActive + (Math.random() > 0.5 ? 1 : -1)));
+                }
+                if (pageviewsCounter) {
+                    pageviewsCounter.textContent = newTraffic;
+                }
+
+                // Randomly trigger live event in feed
+                if (Math.random() > 0.6) {
+                    pushRandomActivityEvent();
+                }
+
+            }, 2000);
+        }
+
+        // Activity Stream Events
+        const sampleCities = ["Bangalore", "Mumbai", "Delhi", "Hyderabad", "Chennai", "Kolkata", "Dubai", "London", "New York", "Singapore"];
+        const sampleActions = [
+            { icon: "🟢", bg: "rgba(16,185,129,0.15)", text: "clicked WhatsApp Lead Contact", badge: "Lead Intent" },
+            { icon: "🟣", bg: "rgba(139,92,246,0.15)", text: "viewed Shelter Hunt Consultants Case Study", badge: "Portfolio" },
+            { icon: "🔵", bg: "rgba(6,182,212,0.15)", text: "explored Mobile App Development Service", badge: "Services" },
+            { icon: "🟡", bg: "rgba(245,158,11,0.15)", text: "opened SMM Growth Package Calculator", badge: "Pricing" },
+            { icon: "⚡", bg: "rgba(236,72,153,0.15)", text: "scrolled 90% on Landing Reveal Page", badge: "Engagement" }
+        ];
+
+        function populateInitialActivityFeed() {
+            const feedBox = document.getElementById('live-activity-stream');
+            if (!feedBox) return;
+
+            feedBox.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                pushRandomActivityEvent();
+            }
+        }
+
+        function pushRandomActivityEvent() {
+            const feedBox = document.getElementById('live-activity-stream');
+            if (!feedBox) return;
+
+            const city = sampleCities[Math.floor(Math.random() * sampleCities.length)];
+            const action = sampleActions[Math.floor(Math.random() * sampleActions.length)];
+            const timeStr = "Just now";
+
+            const div = document.createElement('div');
+            div.className = 'feed-item';
+            div.innerHTML = `
+                <div class="feed-icon" style="background:${action.bg};">${action.icon}</div>
+                <div style="flex:1;">
+                    <div style="color:#fff;">Visitor from <strong>${city}</strong> ${action.text}</div>
+                    <small style="color:var(--cms-muted);">${timeStr} • <span style="color:var(--cms-accent-cyan);">${action.badge}</span></small>
+                </div>
+            `;
+
+            feedBox.insertBefore(div, feedBox.firstChild);
+            if (feedBox.children.length > 7) {
+                feedBox.removeChild(feedBox.lastChild);
+            }
+        }
+
+        // ------------------------------------------------------------------
+        // Leads & Bookings Manager
         // ------------------------------------------------------------------
         function getLeads() {
             const stored = localStorage.getItem('elavatex_leads');
@@ -637,17 +1682,17 @@
 
                 tr.innerHTML = `
                     <td>
-                        <strong>${l.name}</strong><br>
+                        <strong style="color:#fff;">${l.name}</strong><br>
                         <small style="color:var(--cms-muted);">${l.email}</small><br>
                         <small style="color:var(--cms-emerald);">📞 ${l.phone}</small>
                         ${socialBadges}
                     </td>
-                    <td><strong style="color:var(--cms-accent);">${l.service || 'SMM Consultation'}</strong></td>
+                    <td><strong style="color:var(--cms-accent-purple);">${l.service || 'SMM Consultation'}</strong></td>
                     <td>${l.date || 'N/A'}<br><small style="color:var(--cms-muted);">${l.timeSlot || ''}</small></td>
-                    <td><span class="status-badge">${l.channel || 'Direct Callback'}</span></td>
+                    <td><span style="background:rgba(16,185,129,0.15); color:#34d399; font-size:0.75rem; padding:0.2rem 0.6rem; border-radius:12px;">${l.channel || 'Direct Callback'}</span></td>
                     <td><small style="color:var(--cms-muted);">${l.timestamp || 'Recent'}</small></td>
                     <td>
-                        <a href="${waUrl}" target="_blank" class="btn-action" style="background:#10b981; border:none; text-decoration:none;">WhatsApp</a>
+                        <a href="${waUrl}" target="_blank" class="btn-action" style="background:#10b981; color:#fff; border:none; text-decoration:none; display:inline-block;">WhatsApp</a>
                         <button class="btn-delete btn-del-lead" data-id="${l.id}">Delete</button>
                     </td>
                 `;
@@ -661,51 +1706,6 @@
                 tbody.appendChild(tr);
             });
         }
-
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const user = document.getElementById('cms-user').value.trim();
-            const pass = document.getElementById('cms-pass').value.trim();
-            const creds = getAdminCreds();
-
-            const isMatch = (user === creds.user && pass === creds.pass) ||
-                            (user.toLowerCase() === 'admin' && pass === 'admin') ||
-                            (user.toLowerCase() === 'farhan' && pass === 'mycareer') ||
-                            (user === 'FarhanElavate' && pass === 'admin@ceo') ||
-                            (user === 'KamalElavate' && pass === 'admin@cfo');
-
-            if (isMatch) {
-                sessionStorage.setItem('elavatex_admin_logged', 'true');
-                loginError.style.display = 'none';
-                checkAuth();
-            } else {
-                loginError.style.display = 'block';
-            }
-        });
-
-        logoutBtn.addEventListener('click', () => {
-            sessionStorage.removeItem('elavatex_admin_logged');
-            checkAuth();
-        });
-
-        // Navigation Tabs Switcher
-        const navItems = document.querySelectorAll('.nav-item');
-        const panels = document.querySelectorAll('.panel');
-        const topbarTitle = document.getElementById('topbar-title');
-
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const target = item.getAttribute('data-target');
-                navItems.forEach(n => n.classList.remove('active'));
-                panels.forEach(p => p.classList.remove('active'));
-
-                item.classList.add('active');
-                const targetPanel = document.getElementById(target);
-                if (targetPanel) targetPanel.classList.add('active');
-
-                topbarTitle.textContent = item.textContent.replace(/[^\w\s]/gi, '').trim();
-            });
-        });
 
         // ------------------------------------------------------------------
         // Projects Manager (Add, Edit, Delete)
@@ -740,9 +1740,9 @@
             projects.forEach(p => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td><strong>${p.name}</strong></td>
-                    <td>${p.category}</td>
-                    <td><a href="${p.url}" target="_blank" style="color:var(--cms-accent);">${p.url}</a></td>
+                    <td><strong style="color:#fff;">${p.name}</strong><br><small style="color:var(--cms-muted);">${p.desc || ''}</small></td>
+                    <td><span style="background:rgba(6,182,212,0.15); color:#38bdf8; font-size:0.75rem; font-weight:700; padding:0.25rem 0.65rem; border-radius:12px;">${p.category}</span></td>
+                    <td><a href="${p.url}" target="_blank" style="color:var(--cms-accent-purple); text-decoration:underline;">${p.url}</a></td>
                     <td>
                         <button class="btn-action btn-edit-proj" data-id="${p.id}">Edit</button>
                         <button class="btn-delete btn-del-proj" data-id="${p.id}">Delete</button>
@@ -790,7 +1790,7 @@
                 saveProjects(projects);
                 addProjectForm.reset();
                 document.getElementById('proj-edit-id').value = '';
-                document.getElementById('btn-save-proj').textContent = 'Add Project Live';
+                document.getElementById('btn-save-proj').textContent = '✨ Publish Project Live';
                 renderProjectsTable();
                 alert('✨ Case Study Project Saved Live!');
             });
@@ -827,8 +1827,8 @@
             reviews.forEach(r => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td><strong>${r.name}</strong><br><small style="color:var(--cms-muted);">${r.company || 'Client'}</small></td>
-                    <td style="color:#f59e0b;">${'★'.repeat(r.rating)}</td>
+                    <td><strong style="color:#fff;">${r.name}</strong><br><small style="color:var(--cms-muted);">${r.company || 'Client'}</small></td>
+                    <td style="color:#f59e0b; font-size:1rem;">${'★'.repeat(r.rating)}</td>
                     <td>"${r.comment}"</td>
                     <td>
                         <button class="btn-action btn-edit-rev" data-id="${r.id}">Edit</button>
@@ -875,30 +1875,9 @@
                 saveReviews(reviews);
                 addReviewForm.reset();
                 document.getElementById('rev-edit-id').value = '';
-                document.getElementById('btn-save-rev').textContent = 'Add Review Live';
+                document.getElementById('btn-save-rev').textContent = '✨ Publish Review Live';
                 renderReviewsTable();
                 alert('✨ Testimonial Saved Live!');
-            });
-        }
-
-        // ------------------------------------------------------------------
-        // Security Settings Form (Update Admin ID & Password)
-        // ------------------------------------------------------------------
-        const secForm = document.getElementById('form-admin-sec');
-        if (secForm) {
-            const currentCreds = getAdminCreds();
-            document.getElementById('sec-user-id').value = currentCreds.user;
-            document.getElementById('sec-pass').value = currentCreds.pass;
-
-            secForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const newUser = document.getElementById('sec-user-id').value.trim();
-                const newPass = document.getElementById('sec-pass').value.trim();
-
-                if (newUser && newPass) {
-                    setAdminCreds({ user: newUser, pass: newPass });
-                    alert('🔒 Admin Credentials Updated! Use your new Admin ID and Password on your next login.');
-                }
             });
         }
 
