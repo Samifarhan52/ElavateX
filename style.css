@@ -606,12 +606,12 @@ button, input, select, textarea {
    -------------------------------------------------------------------------- */
 .navbar-header {
   position: fixed;
-  top: 0;
+  top: 38px;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 10000;
   padding: 1.2rem 0;
-  transition: background-color var(--transition-fast), padding var(--transition-fast), border-color var(--transition-fast);
+  transition: top var(--transition-fast), background-color var(--transition-fast), padding var(--transition-fast), border-color var(--transition-fast);
 }
 
 .navbar-header.scrolled {
@@ -4445,6 +4445,195 @@ html, body {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4) !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   21. TOP SCROLLING OFFER TICKER BAR & MID-PAGE PLATFORMS MARQUEE
+   -------------------------------------------------------------------------- */
+/* Top Header Discount Ticker Bar */
+.top-offer-ticker-bar {
+  width: 100%;
+  height: 38px;
+  background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+  color: #ffffff;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.25);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .top-offer-ticker-bar {
+    height: 34px;
+    font-size: 0.76rem;
+  }
+  .navbar-header {
+    top: 34px !important;
+  }
+}
+
+.top-offer-ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: tickerMarquee 25s linear infinite;
+  white-space: nowrap;
+}
+
+.top-offer-ticker-bar:hover .top-offer-ticker-track {
+  animation-play-state: paused;
+}
+
+.top-offer-content {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding-right: 3rem;
+  flex-shrink: 0;
+}
+
+.offer-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.2rem 0.65rem;
+  border-radius: 99px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.offer-text {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.offer-text strong {
+  color: #fef08a;
+  font-weight: 800;
+}
+
+.offer-action-btn {
+  background: #ffffff;
+  color: #4f46e5;
+  border: none;
+  padding: 0.25rem 0.85rem;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.offer-action-btn:hover {
+  background: #fef08a;
+  color: #1e1b4b;
+  transform: scale(1.05);
+}
+
+/* Mid-Page Platforms & Services Ribbon Marquee */
+.platforms-marquee-section {
+  width: 100%;
+  padding: 2.2rem 0;
+  position: relative;
+  overflow: hidden;
+  background: rgba(10, 12, 20, 0.6);
+  border-top: 1px solid var(--border-glass);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+[data-theme="light"] .platforms-marquee-section {
+  background: rgba(241, 245, 249, 0.7);
+}
+
+.platforms-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.platforms-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: max-content;
+  animation: tickerMarquee 28s linear infinite;
+}
+
+.platforms-marquee-section:hover .platforms-marquee-track {
+  animation-play-state: paused;
+}
+
+.platform-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.platform-chip:hover {
+  transform: translateY(-3px) scale(1.04);
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: 0 8px 25px rgba(168, 85, 247, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.platform-chip.highlight-web {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #818cf8;
+}
+
+.platform-chip.highlight-app {
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.4);
+  color: #38bdf8;
+}
+
+.platform-chip.highlight-smm {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+}
+
+.chip-icon {
+  font-size: 1.15rem;
+}
+
+.chip-text {
+  letter-spacing: 0.02em;
+}
+
+/* Keyframe for 60 FPS Infinite Ticker */
+@keyframes tickerMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
 
 
 
