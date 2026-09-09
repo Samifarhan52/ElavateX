@@ -492,71 +492,301 @@ document.addEventListener('DOMContentLoaded', () => {
     if (drawerThemeToggleBtn) drawerThemeToggleBtn.addEventListener('click', toggleTheme);
 
     // ----------------------------------------------------------------------
-    // 6. 24/7 AI Growth Buddy Chatbot Engine
+    // 6. ELAVATEX AI CHATBOT ENGINE (LIGHTWEIGHT, FAST & PERSISTENT)
     // ----------------------------------------------------------------------
     const chatbotContainer = document.getElementById('chatbot-container');
     const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
     const chatCloseBtn = document.getElementById('chat-close-btn');
+    const chatNewBtn = document.getElementById('chat-new-btn');
     const chatMessages = document.getElementById('chat-messages');
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
     const chatChips = document.querySelectorAll('.chat-chip');
     const chatbotTooltip = document.getElementById('chatbot-tooltip');
+    const chatHeaderStatus = document.getElementById('chat-header-status');
 
-    function toggleChatbot() {
-        if (chatbotContainer) {
-            chatbotContainer.classList.toggle('open');
-            if (chatbotTooltip && chatbotContainer.classList.contains('open')) {
-                chatbotTooltip.style.display = 'none';
+    // Centralized Verified ElavateX Knowledge Base
+    const ELAVATEX_KNOWLEDGE = {
+        company: {
+            name: "ElavateX",
+            website: "elavatex.com",
+            tagline: "Digital Project Engineering & Brand Growth"
+        },
+        services: {
+            web: {
+                title: "Web Development",
+                details: "We build sub-second websites, custom web applications, SaaS portals, e-commerce platforms, and high-converting business sites with 100/100 Core Web Vitals.",
+                url: "services/web-development.html"
+            },
+            mobile: {
+                title: "Mobile Application Development",
+                details: "We build cross-platform iOS & Android mobile apps using Flutter and React Native with 60FPS UI animations and real-time cloud backends.",
+                url: "services/mobile-app-development.html"
+            },
+            smm: {
+                title: "Social Media Marketing (SMM)",
+                details: "We manage social media channels, Instagram content curation, motion Reels, brand positioning, and targeted ad campaigns.",
+                url: "services/social-media-management.html",
+                instagram: "@elavatex_dev"
             }
+        },
+        projects: [
+            { name: "Shelter Hunt Consultants", url: "https://shelterhuntconsultants.com", category: "Real Estate Portal" },
+            { name: "Online Gaming Tournaments", url: "https://sp-three-liart.vercel.app", category: "Esports Competition Platform" },
+            { name: "Farhanulla Portfolio", url: "https://farhanulla.me", category: "Showcase Platform" }
+        ],
+        contact: {
+            whatsapp: "https://wa.me/917676808068",
+            phone: "+91 7676808068",
+            instagram: "https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1"
+        }
+    };
+
+    // Chatbot Session State
+    let chatState = {
+        history: [],
+        session: {
+            businessType: "",
+            projectType: "",
+            service: "",
+            smmSuggested: false
+        },
+        isOpen: false
+    };
+
+    // Load Session State
+    function loadChatState() {
+        try {
+            const saved = sessionStorage.getItem('elavatex_chat_state');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                chatState.session = parsed.session || chatState.session;
+                chatState.history = parsed.history || [];
+            }
+        } catch (e) {
+            console.warn("Could not load chat state:", e);
         }
     }
 
-    if (chatbotToggleBtn) chatbotToggleBtn.addEventListener('click', toggleChatbot);
-    if (chatCloseBtn) chatCloseBtn.addEventListener('click', toggleChatbot);
+    // Save Session State
+    function saveChatState() {
+        try {
+            sessionStorage.setItem('elavatex_chat_state', JSON.stringify({
+                session: chatState.session,
+                history: chatState.history.slice(-20) // Keep last 20 messages
+            }));
+        } catch (e) { }
+    }
 
-    function getBotResponse(userMsg) {
-        const query = userMsg.toLowerCase();
+    function toggleChatbot(forceState) {
+        if (!chatbotContainer) return;
+        const open = typeof forceState === 'boolean' ? forceState : !chatbotContainer.classList.contains('open');
+        if (open) {
+            chatbotContainer.classList.add('open');
+            if (chatbotTooltip) chatbotTooltip.style.display = 'none';
+        } else {
+            chatbotContainer.classList.remove('open');
+        }
+        chatState.isOpen = open;
+    }
 
-        if (query.includes('shelter') || query.includes('sudarshan') || query.includes('case') || query.includes('portfolio') || query.includes('game') || query.includes('esports')) {
-            return `💼 <strong>Featured Client Projects:</strong><br>&bull; <a href="https://shelterhuntconsultants.com" target="_blank">Shelter Hunt Consultants (shelterhuntconsultants.com)</a><br>&bull; <a href="https://sp-three-liart.vercel.app" target="_blank">Online Games Tournaments (sp-three-liart.vercel.app)</a><br>&bull; <a href="https://farhanulla.me" target="_blank">Farhanulla Portfolio (farhanulla.me)</a>`;
+    if (chatbotToggleBtn) chatbotToggleBtn.addEventListener('click', () => toggleChatbot());
+    if (chatCloseBtn) chatCloseBtn.addEventListener('click', () => toggleChatbot(false));
+
+    // Reset / New Chat
+    if (chatNewBtn) {
+        chatNewBtn.addEventListener('click', () => {
+            chatState.session = { businessType: "", projectType: "", service: "", smmSuggested: false };
+            chatState.history = [];
+            sessionStorage.removeItem('elavatex_chat_state');
+            if (chatMessages) {
+                const isWebPage = window.location.pathname.includes('web-development');
+                const isAppPage = window.location.pathname.includes('mobile-app-development');
+                const isSMMPage = window.location.pathname.includes('social-media-management');
+
+                let pageContextMsg = "I can help you explore our services, projects, pricing, or figure out what your business might need.";
+                if (isWebPage) pageContextMsg = "I see you're exploring Web Development! I can help you figure out what website or web app architecture fits your business.";
+                if (isAppPage) pageContextMsg = "I see you're exploring Mobile App Development! I can help you narrow down iOS & Android features for your app.";
+                if (isSMMPage) pageContextMsg = "I see you're looking at Social Media Marketing! I can help you review our content management & ad growth plans.";
+
+                chatMessages.innerHTML = `
+                    <div class="chat-msg msg-bot">
+                        <div class="msg-bubble">
+                            Hi! I'm ElavateX AI 👋<br><br>${pageContextMsg}
+                        </div>
+                        <div class="msg-time">Just now</div>
+                    </div>
+                `;
+            }
+        });
+    }
+
+    function setStatusIndicator(statusText, isThinking = false) {
+        if (!chatHeaderStatus) return;
+        if (isThinking) {
+            chatHeaderStatus.innerHTML = `<span class="status-dot" style="background:#f59e0b; box-shadow:0 0 6px #f59e0b;"></span> Thinking...`;
+        } else {
+            chatHeaderStatus.innerHTML = `<span class="status-dot"></span> Online`;
+        }
+    }
+
+    // Natural NLP Classifier & Response Generator
+    function generateBotResponse(userMsg) {
+        const query = userMsg.toLowerCase().trim();
+        const session = chatState.session;
+
+        // Remember business context if user provides it
+        if (query.includes('clothing') || query.includes('store') || query.includes('shop') || query.includes('restaurant') || query.includes('real estate') || query.includes('startup') || query.includes('salon') || query.includes('gym')) {
+            if (query.includes('clothing')) session.businessType = "clothing business";
+            else if (query.includes('restaurant')) session.businessType = "restaurant";
+            else if (query.includes('real estate')) session.businessType = "real estate business";
+            else if (query.includes('startup')) session.businessType = "startup";
+            else session.businessType = query;
         }
 
-        if (query.includes('web') || query.includes('website') || query.includes('react') || query.includes('next') || query.includes('site')) {
-            return `🌐 <strong>Web Development at ElavateX:</strong><br>We engineer high-converting, sub-second websites using React, Next.js, and Vite with 100/100 Core Web Vitals performance.<br><br>👉 <a href="#web-dev" onclick="document.getElementById('chatbot-container').classList.remove('open')">View Web Dev Showcase &rarr;</a><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20have%20a%20Web%20Dev%20inquiry" target="_blank">Connect on WhatsApp</a>`;
+        // Helper to construct response object: { text, buttons }
+        let reply = { text: "", buttons: [] };
+
+        // 1. Greetings & Small Talk
+        if (/^(hi|hello|hey|greetings|hola|who are you|help|start)/i.test(query)) {
+            reply.text = `Hi there! I'm **ElavateX AI**, your digital project assistant. We build high-performance websites, mobile applications, and grow brands through Social Media Marketing.<br><br>What kind of project or goal are you working on?`;
+            reply.buttons = [
+                { label: "🌐 Web Development", action: "web" },
+                { label: "📱 Mobile App Dev", action: "mobile" },
+                { label: "🔥 Social Media Growth", action: "smm" }
+            ];
+            return reply;
         }
 
-        if (query.includes('app') || query.includes('mobile') || query.includes('ios') || query.includes('android') || query.includes('flutter')) {
-            return `📱 <strong>Application Development:</strong><br>We build cross-platform iOS & Android mobile apps using Flutter and React Native with 60FPS UI animations and real-time cloud backends.<br><br>👉 <a href="#app-dev" onclick="document.getElementById('chatbot-container').classList.remove('open')">Explore Mobile App Dev &rarr;</a><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20have%20an%20App%20Dev%20inquiry" target="_blank">Connect on WhatsApp</a>`;
+        // 2. Web Development Queries
+        if (query.includes('web') || query.includes('website') || query.includes('site') || query.includes('react') || query.includes('next') || query.includes('e-commerce') || query.includes('online store') || query.includes('redesign')) {
+            session.service = "Web Development";
+            const biz = session.businessType ? ` for your ${session.businessType}` : "";
+            
+            let smmNote = "";
+            if (!session.smmSuggested && (query.includes('new') || query.includes('launch') || query.includes('store') || query.includes('customer') || session.businessType)) {
+                session.smmSuggested = true;
+                smmNote = `<br><br>💡 *Tip:* Since you're building/launching a website${biz}, you may also want to consider our Social Media Marketing service to drive consistent online traffic.`;
+            }
+
+            if (query.includes('redesign')) {
+                reply.text = `Yes! We redesign existing websites into sub-second, modern web applications built on React / Next.js with modern UX and 100/100 Core Web Vitals.${smmNote}<br><br>Would you like to review project scoping or start a project?`;
+            } else if (query.includes('e-commerce') || query.includes('online store') || query.includes('buy online') || query.includes('shop')) {
+                reply.text = `Awesome! We build custom e-commerce web applications complete with product catalogs, shopping carts, secure payment gateway integrations, and order management portals.${smmNote}<br><br>Are you looking to list physical products or digital services?`;
+            } else {
+                reply.text = `At ElavateX, we build custom websites, business portals, and web applications engineered for speed, mobile responsiveness, and high conversion.${smmNote}<br><br>What type of business is this website for?`;
+            }
+
+            reply.buttons = [
+                { label: "Explore Web Development →", action: "link-web" },
+                { label: "Start a Project →", action: "lead-form" }
+            ];
+            if (smmNote) reply.buttons.push({ label: "Explore SMM →", action: "link-smm" });
+            return reply;
         }
 
-        if (query.includes('social') || query.includes('marketing') || query.includes('insta') || query.includes('instagram') || query.includes('ads') || query.includes('media')) {
-            return `🔥 <strong>Social Media & Digital Marketing:</strong><br>We manage Instagram content curation, motion Reels, and high-ROAS Meta & Google Ad campaigns.<br><br><strong>Instagram Profile:</strong> <a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank">@elavatex_dev</a><br>👉 <a href="#digital-marketing" onclick="document.getElementById('chatbot-container').classList.remove('open')">View Marketing Strategy &rarr;</a>`;
+        // 3. Mobile App Development Queries
+        if (query.includes('app') || query.includes('mobile') || query.includes('ios') || query.includes('android') || query.includes('flutter') || query.includes('booking')) {
+            session.service = "Mobile Application Development";
+            let smmNote = "";
+            if (!session.smmSuggested) {
+                session.smmSuggested = true;
+                smmNote = `<br><br>💡 *Tip:* Once your app is ready for launch, our Social Media Marketing service can help build your user base through targeted campaigns.`;
+            }
+
+            if (query.includes('booking') || query.includes('appointment')) {
+                reply.text = `That's a great use case for a mobile application! We build appointment booking and scheduling apps for iOS & Android with push notifications, calendar syncing, and customer management.${smmNote}`;
+            } else {
+                reply.text = `We develop cross-platform iOS & Android mobile applications using Flutter and React Native with 60FPS UI performance, real-time cloud sync, and push notifications.${smmNote}<br><br>What kind of mobile app are you planning—e-commerce, business management, booking, or something else?`;
+            }
+
+            reply.buttons = [
+                { label: "Explore Mobile Apps →", action: "link-mobile" },
+                { label: "Start a Project →", action: "lead-form" }
+            ];
+            return reply;
         }
 
-        if (query.includes('contact') || query.includes('phone') || query.includes('number') || query.includes('whatsapp') || query.includes('email') || query.includes('detail')) {
-            return `📞 <strong>ElavateX Contact Information:</strong><br>&bull; <strong>WhatsApp:</strong> <a href="https://wa.me/917676808068" target="_blank">Connect via WhatsApp</a><br>&bull; <strong>Instagram:</strong> <a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank">@elavatex_dev</a><br>&bull; <strong>Official Website:</strong> ElavateX.com`;
+        // 4. Social Media Marketing Queries (Direct or Follow-up)
+        if (query.includes('social') || query.includes('smm') || query.includes('insta') || query.includes('instagram') || query.includes('facebook') || query.includes('marketing') || query.includes('reel') || query.includes('poster') || query.includes('growth') || query.includes('traffic') || query.includes('promote') || query.includes('campaign')) {
+            session.service = "Social Media Marketing";
+            reply.text = `ElavateX offers Social Media Marketing focused on content curation, high-engagement motion Reels, poster graphics, brand growth, and targeted ad campaigns. You can follow our official Instagram handle at **@elavatex_dev**.<br><br>Would you like to review our SMM service options or discuss your marketing goals?`;
+            reply.buttons = [
+                { label: "Explore SMM Services →", action: "link-smm" },
+                { label: "Start a Project →", action: "lead-form" },
+                { label: "Connect on WhatsApp →", action: "whatsapp" }
+            ];
+            return reply;
         }
 
-        if (query.includes('book') || query.includes('call') || query.includes('consultation') || query.includes('quote') || query.includes('price') || query.includes('cost') || query.includes('estimate')) {
-            return `📅 <strong>Book Your Free Strategy Consultation:</strong><br>You can book a free strategic consultation call or chat directly on WhatsApp:<br><br>💬 <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20book%20a%20free%20call" target="_blank">Click Here to Connect on WhatsApp</a>`;
+        // 5. Projects & Case Studies
+        if (query.includes('project') || query.includes('shelter') || query.includes('game') || query.includes('esports') || query.includes('built') || query.includes('work') || query.includes('portfolio') || query.includes('client')) {
+            reply.text = `Here are some of the real digital products built by ElavateX:<br><br>
+• **Shelter Hunt Consultants**: Real estate portal ([shelterhuntconsultants.com](https://shelterhuntconsultants.com))<br>
+• **Online Gaming Tournaments**: Esports competition platform ([sp-three-liart.vercel.app](https://sp-three-liart.vercel.app))<br>
+• **Farhanulla Portfolio**: Showcase platform ([farhanulla.me](https://farhanulla.me))<br><br>
+Would you like to build something similar for your business?`;
+            reply.buttons = [
+                { label: "View Our Work →", action: "link-projects" },
+                { label: "Start a Project →", action: "lead-form" }
+            ];
+            return reply;
         }
 
-        return `👋 Thank you for asking! At <strong>ElavateX</strong>, we help brands scale through Web Development, Mobile Apps, and Social Media Marketing.<br><br>Would you like to <strong>Book a Call</strong> or reach us directly on <strong>WhatsApp</strong>?`;
+        // 6. Pricing, Rates & Estimates
+        if (query.includes('price') || query.includes('cost') || query.includes('how much') || query.includes('rate') || query.includes('estimate') || query.includes('package')) {
+            reply.text = `Our pricing depends on your specific scope:<br><br>
+• **Web Development**: Tailored based on design, pages, and web app requirements.<br>
+• **Mobile App Dev**: Scoped by platform features, API integrations, and backend structure.<br>
+• **Social Media Marketing**: Available via structured monthly content & growth plans.<br><br>
+Share a few quick details about your project and I can get you an accurate quote!`;
+            reply.buttons = [
+                { label: "Start a Project / Get Quote →", action: "lead-form" },
+                { label: "Connect on WhatsApp →", action: "whatsapp" }
+            ];
+            return reply;
+        }
+
+        // 7. Contact Info & Consultation
+        if (query.includes('contact') || query.includes('phone') || query.includes('call') || query.includes('number') || query.includes('whatsapp') || query.includes('email') || query.includes('reach') || query.includes('hire')) {
+            reply.text = `You can connect directly with the ElavateX team:<br><br>
+• **WhatsApp / Direct Line**: +91 7676808068<br>
+• **Instagram**: @elavatex_dev<br>
+• **Official Website**: ElavateX.com<br><br>
+Would you like to start a project inquiry right now?`;
+            reply.buttons = [
+                { label: "Start a Project →", action: "lead-form" },
+                { label: "Connect on WhatsApp →", action: "whatsapp" }
+            ];
+            return reply;
+        }
+
+        // Default Fallback / General Consultative Response
+        reply.text = `At ElavateX, we help businesses grow through **Web Development**, **Mobile Applications**, and **Social Media Marketing**.<br><br>I don't have verified details about that specific question right now, but the ElavateX team can assist you directly!`;
+        reply.buttons = [
+            { label: "Start a Project →", action: "lead-form" },
+            { label: "Connect on WhatsApp →", action: "whatsapp" }
+        ];
+        return reply;
     }
 
     function appendUserMessage(text) {
+        if (!chatMessages) return;
         const msgDiv = document.createElement('div');
         msgDiv.className = 'chat-msg msg-user';
         msgDiv.innerHTML = `
             <div class="msg-bubble">${escapeHtml(text)}</div>
-            <div class="msg-time">Just now</div>
+            <div class="msg-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
         `;
         chatMessages.appendChild(msgDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        chatState.history.push({ sender: 'user', text: text });
+        saveChatState();
     }
 
     function showTypingIndicator() {
+        if (!chatMessages) return;
         const typingDiv = document.createElement('div');
         typingDiv.className = 'chat-msg msg-bot';
         typingDiv.id = 'typing-indicator';
@@ -569,23 +799,204 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         chatMessages.appendChild(typingDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+        setStatusIndicator("Thinking...", true);
     }
 
     function removeTypingIndicator() {
         const indicator = document.getElementById('typing-indicator');
         if (indicator) indicator.remove();
+        setStatusIndicator("Online", false);
     }
 
-    function appendBotMessage(htmlContent) {
+    function appendBotMessage(replyObj) {
         removeTypingIndicator();
+        if (!chatMessages) return;
+
         const msgDiv = document.createElement('div');
         msgDiv.className = 'chat-msg msg-bot';
+
+        let buttonsHtml = "";
+        if (replyObj.buttons && replyObj.buttons.length > 0) {
+            buttonsHtml = `<div class="msg-actions">` +
+                replyObj.buttons.map(b => {
+                    if (b.action === 'whatsapp') {
+                        return `<a href="${ELAVATEX_KNOWLEDGE.contact.whatsapp}" target="_blank" class="chat-action-btn chat-action-btn-whatsapp">💬 ${b.label}</a>`;
+                    } else if (b.action === 'link-web') {
+                        return `<a href="services/web-development.html" class="chat-action-btn">🌐 ${b.label}</a>`;
+                    } else if (b.action === 'link-mobile') {
+                        return `<a href="services/mobile-app-development.html" class="chat-action-btn">📱 ${b.label}</a>`;
+                    } else if (b.action === 'link-smm') {
+                        return `<a href="services/social-media-management.html" class="chat-action-btn">🔥 ${b.label}</a>`;
+                    } else if (b.action === 'link-projects') {
+                        return `<a href="#case-studies" class="chat-action-btn" onclick="document.getElementById('chatbot-container').classList.remove('open')">💼 ${b.label}</a>`;
+                    } else {
+                        return `<button type="button" class="chat-action-btn" data-action="${b.action}">🚀 ${b.label}</button>`;
+                    }
+                }).join('') +
+                `</div>`;
+        }
+
+        // Format Markdown boldness and bullet formatting
+        let formattedText = replyObj.text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/\n/g, '<br>');
+
         msgDiv.innerHTML = `
-            <div class="msg-bubble">${htmlContent}</div>
-            <div class="msg-time">Just now</div>
+            <div class="msg-bubble">${formattedText}${buttonsHtml}</div>
+            <div class="msg-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
         `;
+
         chatMessages.appendChild(msgDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        chatState.history.push({ sender: 'bot', text: replyObj.text });
+        saveChatState();
+
+        // Attach action handlers for dynamic action buttons
+        const actionBtns = msgDiv.querySelectorAll('button[data-action]');
+        actionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const act = btn.getAttribute('data-action');
+                if (act === 'lead-form') {
+                    renderInlineLeadForm();
+                } else if (act === 'web') {
+                    handleUserSubmit("Tell me about Web Development");
+                } else if (act === 'mobile') {
+                    handleUserSubmit("Tell me about Mobile App Development");
+                } else if (act === 'smm') {
+                    handleUserSubmit("Tell me about Social Media Marketing");
+                }
+            });
+        });
+    }
+
+    // Render Inline Project Lead Capture Form Inside Chatbot Stream
+    function renderInlineLeadForm() {
+        if (!chatMessages) return;
+        const existingForm = document.getElementById('chat-inline-lead-form');
+        if (existingForm) {
+            existingForm.scrollIntoView({ behavior: 'smooth' });
+            return;
+        }
+
+        const formDiv = document.createElement('div');
+        formDiv.className = 'chat-msg msg-bot';
+        formDiv.id = 'chat-inline-lead-form';
+        formDiv.innerHTML = `
+            <div class="msg-bubble">
+                <div class="chat-lead-container">
+                    <div class="chat-lead-title">🚀 Start Your Project with ElavateX</div>
+                    <form id="chat-lead-form-element">
+                        <div class="chat-lead-field">
+                            <label>Your Name *</label>
+                            <input type="text" id="clead-name" placeholder="John Doe" required>
+                        </div>
+                        <div class="chat-lead-field">
+                            <label>Business / Company (Optional)</label>
+                            <input type="text" id="clead-company" placeholder="e.g. Acme Inc.">
+                        </div>
+                        <div class="chat-lead-field">
+                            <label>Service Needed *</label>
+                            <select id="clead-service">
+                                <option value="Web Development" ${chatState.session.service === 'Web Development' ? 'selected' : ''}>Web Development</option>
+                                <option value="Mobile Application Development" ${chatState.session.service === 'Mobile Application Development' ? 'selected' : ''}>Mobile Application Development</option>
+                                <option value="Social Media Marketing" ${chatState.session.service === 'Social Media Marketing' ? 'selected' : ''}>Social Media Marketing</option>
+                                <option value="Full Digital Solution">Full Digital Solution</option>
+                            </select>
+                        </div>
+                        <div class="chat-lead-field">
+                            <label>Requirement Overview *</label>
+                            <textarea id="clead-req" rows="2" placeholder="Briefly describe your project..." required></textarea>
+                        </div>
+                        <div class="chat-lead-field">
+                            <label>WhatsApp / Phone Number *</label>
+                            <input type="tel" id="clead-phone" placeholder="10-digit number" maxlength="10" required>
+                        </div>
+                        <button type="submit" class="chat-lead-submit" id="clead-submit-btn">Submit Enquiry &rarr;</button>
+                    </form>
+                </div>
+            </div>
+            <div class="msg-time">Just now</div>
+        `;
+
+        chatMessages.appendChild(formDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        const leadFormEl = document.getElementById('chat-lead-form-element');
+        if (leadFormEl) {
+            leadFormEl.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('clead-name').value.trim();
+                const company = document.getElementById('clead-company').value.trim() || 'N/A';
+                const service = document.getElementById('clead-service').value;
+                const requirement = document.getElementById('clead-req').value.trim();
+                const phone = document.getElementById('clead-phone').value.trim();
+
+                if (phone.length !== 10 || isNaN(phone)) {
+                    alert("Please enter a valid 10-digit phone number.");
+                    return;
+                }
+
+                const submitBtn = document.getElementById('clead-submit-btn');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = "Submitting...";
+                }
+
+                const leadObj = {
+                    name,
+                    company,
+                    service,
+                    requirement,
+                    phone,
+                    email: "",
+                    budget: "",
+                    source: "ElavateX AI",
+                    status: "New",
+                    timestamp: new Date().toLocaleString()
+                };
+
+                // Dispatch to Firebase Cloud Firestore via main.js helper
+                try {
+                    await dispatchLeadToFirebase(leadObj);
+                } catch (err) {
+                    console.warn("Firestore lead submission fallback active:", err);
+                }
+
+                // Also save locally for Admin Dashboard
+                try {
+                    const storedLeads = JSON.parse(localStorage.getItem('elavatex_leads') || '[]');
+                    storedLeads.unshift({ ...leadObj, id: Date.now() });
+                    localStorage.setItem('elavatex_leads', JSON.stringify(storedLeads));
+                } catch (err) { }
+
+                // Build WhatsApp continuation URL
+                const waText = encodeURIComponent(
+                    `*New Project Enquiry (ElavateX AI)*\n\n` +
+                    `*Name:* ${name}\n` +
+                    `*Business:* ${company}\n` +
+                    `*Service:* ${service}\n` +
+                    `*Phone:* ${phone}\n` +
+                    `*Requirement:* ${requirement}\n\n` +
+                    `Sent via ElavateX AI Assistant`
+                );
+                const whatsappUrl = `https://wa.me/917676808068?text=${waText}`;
+
+                // Replace form card with success state & WhatsApp button
+                formDiv.innerHTML = `
+                    <div class="msg-bubble" style="background:#064e3b; border-color:#10b981;">
+                        ✅ <strong>Thanks! Your enquiry has been received.</strong><br>
+                        Our team will review your project requirements and contact you shortly.<br><br>
+                        <a href="${whatsappUrl}" target="_blank" class="chat-action-btn chat-action-btn-whatsapp" style="margin-top:4px;">
+                            💬 Continue on WhatsApp &rarr;
+                        </a>
+                    </div>
+                    <div class="msg-time">Just now</div>
+                `;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        }
     }
 
     function handleUserSubmit(text) {
@@ -595,10 +1006,11 @@ document.addEventListener('DOMContentLoaded', () => {
         appendUserMessage(queryText);
         showTypingIndicator();
 
+        // Reveal response smoothly without artificial delay
         setTimeout(() => {
-            const botHtml = getBotResponse(queryText);
-            appendBotMessage(botHtml);
-        }, 600);
+            const botReply = generateBotResponse(queryText);
+            appendBotMessage(botReply);
+        }, 400);
     }
 
     if (chatForm) {
@@ -620,6 +1032,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function escapeHtml(str) {
         return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
+
+    // Initialize session state on load
+    loadChatState();
 
 
     // ----------------------------------------------------------------------

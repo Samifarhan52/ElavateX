@@ -10,6 +10,7 @@ import {
     collection, 
     addDoc, 
     getDocs, 
+    updateDoc,
     deleteDoc, 
     doc, 
     onSnapshot, 
@@ -52,7 +53,7 @@ export async function saveLeadToFirestore(leadData) {
             createdAt: serverTimestamp()
         });
         console.log("✅ Lead saved to Cloud Firestore with ID:", docRef.id);
-        return true;
+        return docRef.id;
     } catch (e) {
         console.error("Error saving lead to Firestore:", e);
         return false;
@@ -70,7 +71,7 @@ export async function saveReviewToFirestore(reviewData) {
             createdAt: serverTimestamp()
         });
         console.log("✅ Review saved to Cloud Firestore with ID:", docRef.id);
-        return true;
+        return docRef.id;
     } catch (e) {
         console.error("Error saving review to Firestore:", e);
         return false;
@@ -78,25 +79,91 @@ export async function saveReviewToFirestore(reviewData) {
 }
 
 /**
- * 3. Real-Time Sync Listener for Live Reviews
+ * 3. Generic Save Record to Any Firestore Collection
  */
-export function subscribeToReviews(callback) {
+export async function saveRecordToFirestore(collName, data) {
+    if (!db) return false;
+    try {
+        const docRef = await addDoc(collection(db, collName), {
+            ...data,
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp()
+        });
+        return docRef.id;
+    } catch (e) {
+        console.warn(`Firestore save to ${collName} failed:`, e);
+        return false;
+    }
+}
+
+/**
+ * 4. Generic Update Record in Firestore Collection
+ */
+export async function updateRecordInFirestore(collName, docId, data) {
+    if (!db || !docId) return false;
+    try {
+        const docRef = doc(db, collName, String(docId));
+        await updateDoc(docRef, {
+            ...data,
+            updatedAt: serverTimestamp()
+        });
+        return true;
+    } catch (e) {
+        console.warn(`Firestore update in ${collName} failed:`, e);
+        return false;
+    }
+}
+
+/**
+ * 5. Generic Delete Record from Firestore Collection
+ */
+export async function deleteRecordFromFirestore(collName, docId) {
+    if (!db || !docId) return false;
+    try {
+        const docRef = doc(db, collName, String(docId));
+        await deleteDoc(docRef);
+        return true;
+    } catch (e) {
+        console.warn(`Firestore delete from ${collName} failed:`, e);
+        return false;
+    }
+}
+
+/**
+ * 6. Real-Time Sync Listener for Any Collection
+ */
+export function subscribeToCollection(collName, callback) {
     if (!db) return () => {};
     try {
-        const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+        const q = query(collection(db, collName), orderBy("createdAt", "desc"));
         return onSnapshot(q, (snapshot) => {
-            const reviews = [];
-            snapshot.forEach((doc) => {
-                reviews.push({ id: doc.id, ...doc.data() });
+            const records = [];
+            snapshot.forEach((d) => {
+                records.push({ id: d.id, ...d.data() });
             });
-            callback(reviews);
+            callback(records);
         }, (error) => {
-            console.warn("Firestore snapshot error (check rules if restricted):", error);
+            console.warn(`Firestore snapshot error for ${collName}:`, error);
         });
     } catch (err) {
-        console.warn("Firestore query listening fallback:", err);
+        console.warn(`Firestore listener setup fallback for ${collName}:`, err);
         return () => {};
     }
 }
 
-export { db, collection, addDoc, getDocs, deleteDoc, doc };
+/**
+ * 7. Real-Time Sync Listener for Live Reviews
+ */
+export function subscribeToReviews(callback) {
+    return subscribeToCollection("reviews", callback);
+}
+
+/**
+ * 8. Log Admin Audit Activity to Firestore
+ */
+export async function saveAuditLogToFirestore(logData) {
+    return saveRecordToFirestore("audit_logs", logData);
+}
+
+export { db, collection, addDoc, getDocs, updateDoc, deleteDoc, doc };
+

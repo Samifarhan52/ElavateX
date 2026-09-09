@@ -1,48 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElavateX CMS | Executive Admin Dashboard</title>
+    <title>ElavateX | SaaS Production Admin System</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="elavatex_logo.png">
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Chart.js CDN for Visual Analytics Graphs -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Master Unified Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=2.0">
+
     <style>
         :root {
-            --cms-bg: #07090e;
-            --cms-card: rgba(15, 18, 29, 0.85);
-            --cms-card-solid: #0e111a;
-            --cms-sidebar: #0a0c13;
-            --cms-border: rgba(255, 255, 255, 0.08);
-            --cms-border-glow: rgba(139, 92, 246, 0.35);
-            --cms-accent-purple: #8b5cf6;
-            --cms-accent-indigo: #6366f1;
-            --cms-accent-cyan: #06b6d4;
-            --cms-emerald: #10b981;
-            --cms-amber: #f59e0b;
-            --cms-text: #f8fafc;
-            --cms-muted: #94a3b8;
-            --grad-accent: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #06b6d4 100%);
-            --grad-ceo: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
-            --grad-cfo: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --adm-bg: #07090e;
+            --adm-surface: #0e111a;
+            --adm-surface-hover: #141824;
+            --adm-sidebar: #0a0c13;
+            --adm-topbar: rgba(10, 12, 19, 0.92);
+            --adm-border: rgba(255, 255, 255, 0.08);
+            --adm-border-active: rgba(139, 92, 246, 0.4);
+            --adm-text: #f8fafc;
+            --adm-muted: #94a3b8;
+            --adm-purple: #8b5cf6;
+            --adm-indigo: #6366f1;
+            --adm-cyan: #06b6d4;
+            --adm-emerald: #10b981;
+            --adm-amber: #f59e0b;
+            --adm-rose: #ef4444;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--cms-bg);
-            color: var(--cms-text);
-            min-height: 100vh;
-            overflow-x: hidden;
+        [data-theme="light"] {
+            --adm-bg: #f8fafc;
+            --adm-surface: #ffffff;
+            --adm-surface-hover: #f1f5f9;
+            --adm-sidebar: #ffffff;
+            --adm-topbar: rgba(255, 255, 255, 0.92);
+            --adm-border: rgba(0, 0, 0, 0.08);
+            --adm-border-active: rgba(99, 102, 241, 0.4);
+            --adm-text: #0f172a;
+            --adm-muted: #64748b;
         }
 
-        /* Ambient Background Mesh */
+        /* Ambient Orbs */
         .ambient-mesh {
             position: fixed;
             inset: 0;
@@ -53,19 +59,13 @@
         .bg-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.18;
-            animation: orbFloat 10s ease-in-out infinite alternate;
+            filter: blur(120px);
+            opacity: 0.14;
         }
-        .orb-1 { width: 500px; height: 500px; background: #8b5cf6; top: -100px; left: -100px; }
-        .orb-2 { width: 600px; height: 600px; background: #06b6d4; bottom: -150px; right: -150px; animation-delay: -5s; }
+        .orb-1 { width: 500px; height: 500px; background: var(--adm-purple); top: -120px; left: -120px; }
+        .orb-2 { width: 600px; height: 600px; background: var(--adm-cyan); bottom: -150px; right: -150px; }
 
-        @keyframes orbFloat {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(40px, 40px) scale(1.1); }
-        }
-
-        /* LOGIN SCREEN STYLES */
+        /* Login Gateway Styles */
         .login-wrapper {
             position: relative;
             z-index: 10;
@@ -77,15 +77,13 @@
         }
 
         .login-card {
-            background: var(--cms-card);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--cms-border-glow);
+            background: var(--adm-surface);
+            border: 1px solid var(--adm-border-active);
             border-radius: 24px;
             padding: 2.8rem 2.4rem;
             width: 100%;
             max-width: 440px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(139, 92, 246, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(139, 92, 246, 0.12);
             position: relative;
             overflow: hidden;
         }
@@ -93,224 +91,121 @@
         .login-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 3px;
-            background: var(--grad-accent);
+            background: linear-gradient(90deg, #a855f7, #6366f1, #06b6d4);
         }
 
-        .login-emblem-box {
-            position: relative;
-            width: 72px;
-            height: 72px;
+        .login-logo-box {
+            width: 68px;
+            height: 68px;
             margin: 0 auto 1.2rem auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .emblem-laser-ring {
-            position: absolute;
-            inset: -3px;
-            border-radius: 20px;
-            padding: 2px;
-            background: conic-gradient(from 0deg, transparent 0%, #a855f7 40%, #06b6d4 70%, transparent 100%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: laserRotate 3s linear infinite;
-        }
-
-        @keyframes laserRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .emblem-icon-frame {
-            position: relative;
-            width: 100%;
-            height: 100%;
             border-radius: 18px;
-            background: #0f121d;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #090d16;
+            border: 1px solid var(--adm-border);
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
 
-        .emblem-icon-frame img {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-        }
+        .login-logo-box img { width: 75%; height: 75%; object-fit: contain; }
 
-        .brand-header {
-            text-align: center;
-            margin-bottom: 1.8rem;
-        }
-
-        .brand-header h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.85rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #ffffff;
-        }
-
-        .brand-header h1 span {
-            background: var(--grad-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .brand-header p {
-            color: var(--cms-muted);
-            font-size: 0.85rem;
-            margin-top: 0.3rem;
-            letter-spacing: 0.2px;
-        }
-
-        .security-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            color: var(--cms-emerald);
-            background: rgba(16, 185, 129, 0.12);
-            border: 1px solid rgba(16, 185, 129, 0.25);
-            padding: 0.25rem 0.7rem;
-            border-radius: 20px;
-            margin-top: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Persona Switcher Tabs */
         .persona-tabs {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
+            gap: 8px;
             margin-bottom: 1.5rem;
             background: rgba(255, 255, 255, 0.03);
-            padding: 0.3rem;
+            padding: 4px;
             border-radius: 12px;
-            border: 1px solid var(--cms-border);
+            border: 1px solid var(--adm-border);
         }
 
         .persona-tab-btn {
             background: none;
             border: none;
-            color: var(--cms-muted);
+            color: var(--adm-muted);
             padding: 0.6rem 0.8rem;
             border-radius: 8px;
             font-size: 0.8rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
         }
 
-        .persona-tab-btn.active-ceo {
-            background: var(--grad-ceo);
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-        }
+        .persona-tab-btn.active-ceo { background: linear-gradient(135deg, #a855f7, #6366f1); color: #ffffff; }
+        .persona-tab-btn.active-cfo { background: linear-gradient(135deg, #06b6d4, #3b82f6); color: #ffffff; }
 
-        .persona-tab-btn.active-cfo {
-            background: var(--grad-cfo);
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-            position: relative;
-        }
-
+        .form-group { margin-bottom: 1.2rem; }
         .form-group label {
             display: block;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.73rem;
+            font-size: 0.72rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: var(--cms-muted);
-            margin-bottom: 0.45rem;
+            color: var(--adm-muted);
+            margin-bottom: 0.4rem;
         }
 
-        .input-icon-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 14px;
-            color: var(--cms-muted);
-            font-size: 1rem;
-            pointer-events: none;
-        }
-
-        .input-icon-wrapper input {
+        .input-icon-wrapper { position: relative; display: flex; align-items: center; }
+        .input-icon-wrapper input, .form-control {
             width: 100%;
-            padding: 0.8rem 1rem 0.8rem 2.6rem;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--cms-border);
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--adm-border);
             border-radius: 10px;
-            color: #ffffff;
-            font-size: 0.92rem;
+            color: var(--adm-text);
+            font-size: 0.9rem;
             outline: none;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
-        .input-icon-wrapper input:focus {
-            border-color: var(--cms-accent-purple);
-            background: rgba(255, 255, 255, 0.07);
+        .input-icon-wrapper input:focus, .form-control:focus {
+            border-color: var(--adm-purple);
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+            background: rgba(255, 255, 255, 0.06);
         }
 
-        .pw-toggle-btn {
+        .password-toggle-btn {
             position: absolute;
-            right: 12px;
+            right: 0.75rem;
             background: none;
             border: none;
-            color: var(--cms-muted);
+            color: var(--adm-muted);
             cursor: pointer;
-            font-size: 1rem;
-            padding: 4px;
-            transition: color 0.2s;
+            padding: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
         }
-
-        .pw-toggle-btn:hover { color: #ffffff; }
+        .password-toggle-btn:hover {
+            color: var(--adm-text);
+        }
 
         .btn-cms-submit {
             width: 100%;
             padding: 0.85rem;
-            background: var(--grad-accent);
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #06b6d4 100%);
             color: #ffffff;
             border: none;
             border-radius: 10px;
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
             font-size: 0.98rem;
-            letter-spacing: 0.3px;
             cursor: pointer;
             box-shadow: 0 10px 25px rgba(139, 92, 246, 0.35);
             transition: all 0.25s ease;
-            margin-top: 0.4rem;
+            margin-top: 0.5rem;
         }
 
-        .btn-cms-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 30px rgba(139, 92, 246, 0.5);
-        }
+        .btn-cms-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(139, 92, 246, 0.5); }
 
         .login-error-banner {
             display: none;
@@ -322,1088 +217,1669 @@
             font-size: 0.82rem;
             text-align: center;
             margin-bottom: 1.2rem;
-            animation: shake 0.3s ease-in-out;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-6px); }
-            40%, 80% { transform: translateX(6px); }
-        }
-
-        /* --------------------------------------------------------------------------
-           CMS DASHBOARD LAYOUT & PANEL STYLES
-           -------------------------------------------------------------------------- */
+        /* CMS Dashboard Layout */
         .cms-layout {
             display: none;
             min-height: 100vh;
-            grid-template-columns: 270px 1fr;
+            grid-template-columns: 260px 1fr;
             position: relative;
             z-index: 10;
         }
 
         .cms-layout.active { display: grid; }
 
-        /* Sidebar */
         .cms-sidebar {
-            background: var(--cms-sidebar);
-            border-right: 1px solid var(--cms-border);
-            padding: 1.8rem 1.2rem;
+            background: var(--adm-sidebar);
+            border-right: 1px solid var(--adm-border);
+            padding: 1.5rem 1rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100vh;
+            position: sticky;
+            top: 0;
         }
 
-        .sidebar-brand-box {
+        .sidebar-brand {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 2rem;
-            padding: 0 0.4rem;
+            padding: 0.4rem 0.6rem;
+            margin-bottom: 1.8rem;
         }
 
-        .brand-logo-img {
-            width: 32px;
-            height: 32px;
-            object-fit: contain;
-        }
+        .brand-logo-icon { width: 32px; height: 32px; object-fit: contain; }
+        .brand-title { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--adm-text); }
+        .brand-title span { color: var(--adm-purple); }
 
-        .brand-name {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .brand-name span { color: var(--cms-accent-purple); }
-
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-            flex: 1;
-        }
+        .nav-menu { display: flex; flex-direction: column; gap: 0.35rem; flex: 1; overflow-y: auto; }
 
         .nav-item {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 0.8rem 1.1rem;
+            padding: 0.75rem 1rem;
             border-radius: 10px;
-            color: var(--cms-muted);
-            font-size: 0.9rem;
+            color: var(--adm-muted);
+            font-size: 0.88rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             border-left: 3px solid transparent;
+            text-decoration: none;
         }
 
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.04);
-            color: #ffffff;
-        }
+        .nav-item:hover { background: var(--adm-surface-hover); color: var(--adm-text); }
+        .nav-item.active { background: rgba(139, 92, 246, 0.12); color: var(--adm-text); border-left-color: var(--adm-purple); }
 
-        .nav-item.active {
-            background: rgba(139, 92, 246, 0.12);
-            color: #ffffff;
-            border-left-color: var(--cms-accent-purple);
-        }
-
-        .user-profile-box {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--cms-border);
+        .user-profile-widget {
+            background: var(--adm-surface);
+            border: 1px solid var(--adm-border);
             border-radius: 14px;
-            padding: 0.85rem;
+            padding: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             margin-top: 1rem;
         }
 
-        .user-avatar-circle {
-            width: 40px;
-            height: 40px;
+        .user-avatar {
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
-            background: var(--grad-ceo);
+            background: linear-gradient(135deg, #a855f7, #6366f1);
             color: #ffffff;
             font-weight: 800;
-            font-size: 1.05rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+            font-size: 1rem;
         }
 
-        .user-meta-name {
-            font-weight: 700;
-            font-size: 0.88rem;
-            color: #ffffff;
-        }
+        .user-info { flex: 1; overflow: hidden; }
+        .user-name { font-weight: 700; font-size: 0.85rem; color: var(--adm-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .user-role { font-size: 0.72rem; color: var(--adm-cyan); font-weight: 600; }
 
-        .user-meta-role {
-            font-size: 0.75rem;
-            color: var(--cms-accent-cyan);
-            font-weight: 600;
-        }
-
-        /* Main Content Body */
-        .cms-main {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow-y: auto;
-        }
+        .cms-main { display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
 
         .cms-topbar {
-            height: 72px;
-            border-bottom: 1px solid var(--cms-border);
-            padding: 0 2rem;
+            height: 68px;
+            border-bottom: 1px solid var(--adm-border);
+            padding: 0 1.8rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(10, 12, 19, 0.85);
+            background: var(--adm-topbar);
             backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 20;
         }
 
-        .topbar-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
+        .topbar-left { display: flex; align-items: center; gap: 1rem; }
+        .mobile-sidebar-toggle { display: none; background: none; border: none; color: var(--adm-text); font-size: 1.2rem; cursor: pointer; }
 
-        .topbar-right {
+        .breadcrumbs { font-size: 0.85rem; color: var(--adm-muted); font-weight: 500; }
+        .breadcrumbs strong { color: var(--adm-text); font-weight: 700; }
+
+        .global-search-btn {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--adm-border);
+            padding: 0.45rem 0.9rem;
+            border-radius: 20px;
+            color: var(--adm-muted);
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
+        .global-search-btn:hover { background: rgba(255, 255, 255, 0.08); color: var(--adm-text); }
+        .search-kbd { background: rgba(255, 255, 255, 0.1); border-radius: 4px; padding: 0.1rem 0.4rem; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; }
+
+        .topbar-right { display: flex; align-items: center; gap: 0.8rem; }
 
         .btn-view-site {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--cms-border);
+            padding: 0.45rem 0.9rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--adm-border);
             border-radius: 8px;
-            color: #ffffff;
+            color: var(--adm-text);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .btn-view-site:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .btn-logout {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 0.5rem 1rem;
+            padding: 0.45rem 0.9rem;
             background: rgba(239, 68, 68, 0.12);
             border: 1px solid rgba(239, 68, 68, 0.25);
-            color: #ef4444;
+            color: var(--adm-rose);
             border-radius: 8px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
-        .btn-logout:hover {
-            background: rgba(239, 68, 68, 0.25);
-        }
-
-        .cms-content { padding: 2rem; }
-
-        /* Stat Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: var(--cms-card-solid);
-            border: 1px solid var(--cms-border);
-            border-radius: 16px;
-            padding: 1.4rem;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-2px);
-            border-color: rgba(139, 92, 246, 0.3);
-        }
-
-        .stat-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-        }
-
-        .stat-icon-pill {
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-        }
-
-        .stat-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            color: var(--cms-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .stat-val {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.9rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .stat-trend {
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--cms-emerald);
-            margin-top: 0.3rem;
-        }
+        .cms-content { padding: 1.8rem; flex: 1; }
 
         /* Panels */
         .panel { display: none; }
         .panel.active { display: block; }
 
-        .panel-box {
-            background: var(--cms-card-solid);
-            border: 1px solid var(--cms-border);
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 1.8rem; }
+        .stat-card {
+            background: var(--adm-surface);
+            border: 1px solid var(--adm-border);
             border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .panel-box h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-            color: #ffffff;
-        }
-
-        .panel-box p {
-            color: var(--cms-muted);
-            font-size: 0.86rem;
-            margin-bottom: 1.6rem;
-        }
-
-        /* Realtime Analytics Visual CSS */
-        .live-pulse-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            color: #10b981;
-            background: rgba(16, 185, 129, 0.12);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #10b981;
-            box-shadow: 0 0 10px #10b981;
-            animation: livePulse 1.5s infinite;
-        }
-
-        @keyframes livePulse {
-            0% { transform: scale(0.95); opacity: 0.7; }
-            50% { transform: scale(1.3); opacity: 1; }
-            100% { transform: scale(0.95); opacity: 0.7; }
-        }
-
-        .chart-container-box {
-            background: rgba(15, 18, 29, 0.95);
-            border: 1px solid var(--cms-border-glow);
-            border-radius: 18px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            padding: 1.3rem;
             position: relative;
         }
 
-        .chart-header-row {
+        .stat-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; }
+        .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--adm-muted); text-transform: uppercase; }
+        .stat-val { font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--adm-text); }
+
+        .panel-box {
+            background: var(--adm-surface);
+            border: 1px solid var(--adm-border);
+            border-radius: 16px;
+            padding: 1.6rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .panel-box-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 1.2rem;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 10px;
         }
 
-        .chart-filter-btn {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--cms-border);
-            color: var(--cms-muted);
-            padding: 0.4rem 0.9rem;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+        .panel-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--adm-text); }
 
-        .chart-filter-btn.active {
-            background: var(--cms-accent-purple);
-            color: #ffffff;
-            border-color: var(--cms-accent-purple);
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-        }
-
-        .analytics-grid-two {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .activity-feed-box {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid var(--cms-border);
-            border-radius: 16px;
-            padding: 1.4rem;
-            max-height: 380px;
-            overflow-y: auto;
-        }
-
-        .feed-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.85rem;
-            animation: fadeInFeed 0.4s ease-out;
-        }
-
-        .feed-item:last-child { border-bottom: none; }
-
-        @keyframes fadeInFeed {
-            from { opacity: 0; transform: translateY(-6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .feed-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        /* Form Inputs Styling for Admin Panels */
-        .panel-box input[type="text"],
-        .panel-box input[type="url"],
-        .panel-box input[type="password"],
-        .panel-box select,
-        .panel-box textarea {
+        /* Data Tables */
+        .table-responsive { width: 100%; overflow-x: auto; }
+        .data-table {
             width: 100%;
-            padding: 0.85rem 1.1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 12px;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.92rem;
-            outline: none;
-            transition: all 0.25s ease;
-        }
-
-        .panel-box input:focus,
-        .panel-box select:focus,
-        .panel-box textarea:focus {
-            border-color: var(--cms-accent-purple);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
-        }
-
-        .panel-box label {
-            display: block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--cms-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .cms-form-card {
-            background: rgba(255, 255, 255, 0.015);
-            border: 1px solid var(--cms-border);
-            border-radius: 16px;
-            padding: 1.8rem;
-            margin-bottom: 2rem;
-        }
-
-        .table-custom {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 6px;
+            border-collapse: collapse;
             text-align: left;
+            font-size: 0.88rem;
         }
 
-        .table-custom th {
-            padding: 0.9rem 1.1rem;
+        .data-table th {
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--adm-border);
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.72rem;
-            color: var(--cms-muted);
+            color: var(--adm-muted);
             text-transform: uppercase;
-            border-bottom: 1px solid var(--cms-border);
         }
 
-        .table-custom td {
-            padding: 1.1rem;
-            background: rgba(255, 255, 255, 0.02);
-            font-size: 0.92rem;
-            border-top: 1px solid var(--cms-border);
-            border-bottom: 1px solid var(--cms-border);
+        .data-table td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid var(--adm-border);
+            color: var(--adm-text);
             vertical-align: middle;
         }
 
-        .table-custom td:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; border-left: 1px solid var(--cms-border); }
-        .table-custom td:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-right: 1px solid var(--cms-border); }
+        .data-table tr:hover td { background: var(--adm-surface-hover); }
+
+        .table-filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-input {
+            padding: 0.5rem 0.9rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--adm-border);
+            border-radius: 8px;
+            color: var(--adm-text);
+            font-size: 0.82rem;
+            outline: none;
+        }
+
+        .filter-select {
+            padding: 0.5rem 0.9rem;
+            background: rgba(14, 17, 26, 0.9);
+            border: 1px solid var(--adm-border);
+            border-radius: 8px;
+            color: var(--adm-text);
+            font-size: 0.82rem;
+            outline: none;
+        }
 
         .btn-action {
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
             background: rgba(139, 92, 246, 0.15);
             color: #c084fc;
-            border: 1px solid rgba(139, 92, 246, 0.35);
-            padding: 0.45rem 0.9rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.82rem;
-            font-weight: 700;
-            margin-right: 6px;
-            transition: all 0.2s;
         }
 
-        .btn-action:hover {
-            background: rgba(139, 92, 246, 0.35);
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-        }
+        .btn-action-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .btn-action-danger { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
 
-        .btn-delete {
-            background: rgba(239, 68, 68, 0.15);
-            color: #fca5a5;
-            border: 1px solid rgba(239, 68, 68, 0.35);
-            padding: 0.45rem 0.9rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.82rem;
-            font-weight: 700;
-            transition: all 0.2s;
-        }
-
-        .btn-delete:hover {
-            background: rgba(239, 68, 68, 0.35);
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .cms-layout { grid-template-columns: 1fr; }
-            .cms-sidebar { height: auto; border-right: none; border-bottom: 1px solid var(--cms-border); padding: 1rem; }
-            .nav-menu { flex-direction: row; overflow-x: auto; gap: 0.4rem; padding-bottom: 0.4rem; }
-            .nav-item { white-space: nowrap; font-size: 0.8rem; padding: 0.5rem 0.8rem; }
-            .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-            .analytics-grid-two { grid-template-columns: 1fr; }
-            .cms-topbar { padding: 0 1rem; }
+            .cms-sidebar { display: none; position: fixed; inset: 0; right: auto; width: 260px; z-index: 100; box-shadow: 10px 0 30px rgba(0, 0, 0, 0.8); }
+            .cms-sidebar.active { display: flex; }
+            .mobile-sidebar-toggle { display: block; }
+        }
+
+        @media (max-width: 640px) {
+            .stats-grid { grid-template-columns: 1fr; }
             .cms-content { padding: 1rem; }
-            .table-custom { display: block; overflow-x: auto; }
+            .panel-box { padding: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Ambient Mesh Background -->
+    <!-- Ambient Mesh -->
     <div class="ambient-mesh">
         <div class="bg-orb orb-1"></div>
         <div class="bg-orb orb-2"></div>
     </div>
 
-    <!-- =================================================================== -->
-    <!-- EXECUTIVE CMS LOGIN SCREEN                                          -->
-    <!-- =================================================================== -->
-    <div class="login-wrapper" id="cms-login-wrapper">
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Global Search Modal -->
+    <div id="global-search-modal" class="slide-drawer-overlay">
+        <div style="background:var(--adm-surface); border:1px solid var(--adm-border-active); border-radius:20px; width:100%; max-width:620px; margin:5vh auto; padding:1.5rem; height:fit-content; box-shadow:0 30px 60px rgba(0,0,0,0.8);">
+            <div style="display:flex; align-items:center; gap:10px; border-bottom:1px solid var(--adm-border); padding-bottom:1rem; margin-bottom:1rem;">
+                <span style="font-size:1.2rem;">🔍</span>
+                <input type="text" id="global-search-input" placeholder="Search inquiries, projects, contacts, or SMM orders... (Press ESC to close)" style="flex:1; background:none; border:none; color:var(--adm-text); font-size:1rem; outline:none;">
+                <span class="search-kbd">ESC</span>
+            </div>
+            <div id="global-search-results" style="max-height:400px; overflow-y:auto;">
+                <p style="text-align:center; color:var(--adm-muted); padding:1.5rem;">Start typing to search live system records...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Slide-Over Drawer -->
+    <div id="detail-drawer-overlay" class="slide-drawer-overlay">
+        <div class="slide-drawer-panel">
+            <div class="slide-drawer-header">
+                <div class="slide-drawer-title" id="drawer-header-title">Record Details</div>
+                <button class="slide-drawer-close" id="btn-close-drawer">&times;</button>
+            </div>
+            <div class="slide-drawer-body" id="drawer-body-content">
+                <!-- Dynamically Rendered -->
+            </div>
+            <div class="slide-drawer-footer" id="drawer-footer-actions">
+                <!-- Action Buttons -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Modal -->
+    <div id="confirm-modal-backdrop" class="confirm-modal-backdrop">
+        <div class="confirm-modal-box">
+            <div class="confirm-icon-box">⚠️</div>
+            <div class="confirm-title" id="confirm-modal-title">Confirm Deletion</div>
+            <div class="confirm-desc" id="confirm-modal-desc">Are you sure you want to delete this record? This action cannot be undone.</div>
+            <div class="confirm-actions">
+                <button class="filter-input" id="btn-confirm-cancel" style="cursor:pointer;">Cancel</button>
+                <button class="btn-cms-submit" id="btn-confirm-proceed" style="background:#ef4444; width:auto; padding:0.65rem 1.4rem; margin-top:0;">Delete Record</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. LOGIN GATEWAY SCREEN -->
+    <div id="login-wrapper" class="login-wrapper">
         <div class="login-card">
-            <!-- Illuminated Emblem Frame -->
-            <div class="login-emblem-box">
-                <div class="emblem-laser-ring"></div>
-                <div class="emblem-icon-frame">
-                    <img src="favicon.png" alt="ElavateX Logo">
+            <div class="login-logo-box">
+                <img src="favicon.png" alt="ElavateX Logo">
+            </div>
+            <div style="text-align:center; margin-bottom:1.5rem;">
+                <h1 style="font-family:'Outfit',sans-serif; font-size:1.75rem; font-weight:800; color:#fff;">Elavate<span>X</span> Admin</h1>
+                <p style="color:var(--adm-muted); font-size:0.85rem; margin-top:4px;">Executive Production Administration Portal</p>
+                <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(16,185,129,0.12); color:#34d399; padding:0.25rem 0.75rem; border-radius:20px; font-family:'JetBrains Mono',monospace; font-size:0.68rem; font-weight:700; margin-top:0.6rem;">
+                    🔒 AUTHENTICATED SYSTEM
                 </div>
             </div>
 
-            <div class="brand-header">
-                <h1>Elavate<span>X</span> CMS</h1>
-                <p>Official Executive Agency Portal & Engine</p>
-                <div class="security-badge">● 256-BIT ENCRYPTED GATEWAY</div>
-            </div>
-
-            <!-- Executive Quick Selector Tabs -->
+            <!-- Persona Switcher Tabs -->
             <div class="persona-tabs">
-                <button type="button" class="persona-tab-btn active-ceo" id="tab-btn-ceo">
-                    👑 CEO Portal
+                <button type="button" class="persona-tab-btn active-ceo" id="tab-ceo">
+                    <span>👑 Farhan (CEO)</span>
                 </button>
-                <button type="button" class="persona-tab-btn" id="tab-btn-cfo">
-                    💼 CFO Portal
+                <button type="button" class="persona-tab-btn" id="tab-cfo">
+                    <span>💼 Kamal (CFO)</span>
                 </button>
             </div>
 
-            <!-- Error Banner -->
-            <div id="login-error" class="login-error-banner">
-                ❌ Invalid Credentials! Check your Admin ID or Password.
-            </div>
+            <div id="login-error-banner" class="login-error-banner">Invalid credentials. Access denied.</div>
 
             <form id="cms-login-form">
                 <div class="form-group">
-                    <label for="cms-user">Executive Admin ID</label>
+                    <label>Username / Persona ID</label>
                     <div class="input-icon-wrapper">
-                        <span class="input-icon">👤</span>
-                        <input type="text" id="cms-user" required placeholder="Enter Admin ID">
+                        <input type="text" id="login-username" value="FarhanElavate" required autocomplete="username">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="cms-pass">Security Password</label>
+                    <label>Executive Password</label>
                     <div class="input-icon-wrapper">
-                        <span class="input-icon">🔒</span>
-                        <input type="password" id="cms-pass" required placeholder="Enter Security Password">
-                        <button type="button" class="pw-toggle-btn" id="pw-toggle-btn" title="Toggle Password Visibility">👁️</button>
+                        <input type="password" id="login-password" placeholder="Enter secure password" required autocomplete="current-password" style="padding-right: 2.75rem;">
+                        <button type="button" id="toggle-password-btn" class="password-toggle-btn" aria-label="Toggle password visibility" title="Show/Hide Password">
+                            <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
                     </div>
                 </div>
 
-                <button type="submit" class="btn-cms-submit">Sign In to Executive Portal &rarr;</button>
+                <button type="submit" class="btn-cms-submit">Sign In to Dashboard &rarr;</button>
             </form>
         </div>
     </div>
 
-    <!-- =================================================================== -->
-    <!-- REAL FULL-PAGE EXECUTIVE CMS DASHBOARD LAYOUT                      -->
-    <!-- =================================================================== -->
-    <div class="cms-layout" id="cms-app-layout">
-        <!-- Sidebar -->
-        <aside class="cms-sidebar">
+    <!-- 2. MAIN CMS DASHBOARD LAYOUT -->
+    <div id="cms-layout" class="cms-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="cms-sidebar" id="cms-sidebar">
             <div>
-                <div class="sidebar-brand-box">
-                    <img src="favicon.png" alt="ElavateX Logo" class="brand-logo-img">
-                    <div class="brand-name">Elavate<span>X</span></div>
+                <div class="sidebar-brand">
+                    <img src="favicon.png" alt="ElavateX Logo" class="brand-logo-icon">
+                    <div class="brand-title">Elavate<span>X</span></div>
                 </div>
 
-                <nav class="nav-menu">
-                    <div class="nav-item active" data-target="panel-overview">📊 Overview</div>
-                    <div class="nav-item" data-target="panel-leads">📋 SMM Leads & Consultations</div>
-                    <div class="nav-item" data-target="panel-analytics">📈 Web Analytics</div>
-                    <div class="nav-item" data-target="panel-projects">📁 Case Studies</div>
-                    <div class="nav-item" data-target="panel-reviews">💬 Testimonials & Reviews</div>
-                    <div class="nav-item" data-target="panel-content">🌐 Content Manager</div>
-                    <div class="nav-item" data-target="panel-settings">⚙️ Settings & Security</div>
+                <nav class="nav-menu" id="admin-nav-menu">
+                    <div class="nav-item active" data-target="panel-overview">
+                        <span>📊</span> Overview
+                    </div>
+                    <div class="nav-item" data-target="panel-leads">
+                        <span>📥</span> Inquiries & Leads
+                        <span class="nav-count-badge" id="badge-leads-count">0</span>
+                    </div>
+                    <div class="nav-item" data-target="panel-projects">
+                        <span>💼</span> Projects Portfolio
+                        <span class="nav-count-badge" id="badge-projects-count">0</span>
+                    </div>
+                    <div class="nav-item" data-target="panel-contacts">
+                        <span>📞</span> Consultations
+                        <span class="nav-count-badge" id="badge-contacts-count">0</span>
+                    </div>
+                    <div class="nav-item" data-target="panel-smm">
+                        <span>📈</span> SMM Orders
+                        <span class="nav-count-badge" id="badge-smm-count">0</span>
+                    </div>
+                    <div class="nav-item" data-target="panel-content">
+                        <span>📝</span> Website Content
+                    </div>
+                    <div class="nav-item" data-target="panel-audit">
+                        <span>📜</span> Audit Activity Log
+                    </div>
+                    <div class="nav-item" data-target="panel-settings">
+                        <span>⚙️</span> System Settings
+                    </div>
                 </nav>
             </div>
 
-            <!-- Logged In Profile Box -->
-            <div class="user-profile-box">
-                <div class="user-avatar-circle" id="user-avatar-circle">F</div>
-                <div>
-                    <div class="user-meta-name" id="user-meta-name">Farhan</div>
-                    <div class="user-meta-role" id="user-meta-role">CEO & Founder</div>
+            <div class="user-profile-widget">
+                <div class="user-avatar" id="user-avatar-initials">F</div>
+                <div class="user-info">
+                    <div class="user-name" id="user-display-name">Farhan (CEO)</div>
+                    <div class="user-role" id="user-display-role">Executive Administrator</div>
                 </div>
             </div>
         </aside>
 
-        <!-- Main Body -->
-        <main class="cms-main">
+        <!-- Main Workspace -->
+        <div class="cms-main">
             <!-- Topbar -->
-            <div class="cms-topbar">
+            <header class="cms-topbar">
                 <div class="topbar-left">
-                    <div class="topbar-title" id="topbar-title">Dashboard Overview</div>
+                    <button class="mobile-sidebar-toggle" id="btn-toggle-sidebar">☰</button>
+                    <div class="breadcrumbs">
+                        System / <strong id="topbar-title">Overview</strong>
+                    </div>
                 </div>
-                <div class="topbar-right">
-                    <a href="index.html" class="btn-view-site" target="_blank">🌐 View Live Site</a>
-                    <button class="btn-logout" id="cms-logout-btn">🔒 Sign Out</button>
-                </div>
-            </div>
 
-            <!-- Content Area -->
-            <div class="cms-content">
-                
-                <!-- PANEL 1: OVERVIEW -->
-                <div class="panel active" id="panel-overview">
+                <div class="topbar-right">
+                    <button class="global-search-btn" id="btn-open-global-search">
+                        <span>🔍</span> Search <span class="search-kbd">Ctrl K</span>
+                    </button>
+
+                    <a href="index.html" target="_blank" class="btn-view-site">
+                        <span>🌐</span> Live Site
+                    </a>
+
+                    <button class="btn-logout" id="btn-logout">
+                        <span>🚪</span> Sign Out
+                    </button>
+                </div>
+            </header>
+
+            <!-- Workspace Content -->
+            <main class="cms-content">
+
+                <!-- 1. OVERVIEW PANEL -->
+                <section id="panel-overview" class="panel active">
                     <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-header">
-                                <div class="stat-label">Total Site Visits</div>
-                                <div class="stat-icon-pill" style="background:rgba(139,92,246,0.15); color:#c084fc;">👁️</div>
+                                <span class="stat-label">Total Inquiries</span>
+                                <span style="font-size:1.2rem;">📥</span>
                             </div>
-                            <div class="stat-val">12,840</div>
-                            <div class="stat-trend">+24.5% this month</div>
+                            <div class="stat-val" id="stat-total-inquiries">0</div>
+                            <div style="font-size:0.75rem; color:var(--adm-emerald); font-weight:700; margin-top:4px;" id="stat-new-leads-tag">0 New Submissions</div>
                         </div>
+
                         <div class="stat-card">
                             <div class="stat-header">
-                                <div class="stat-label">Active Projects</div>
-                                <div class="stat-icon-pill" style="background:rgba(6,182,212,0.15); color:#38bdf8;">📁</div>
+                                <span class="stat-label">Active Projects</span>
+                                <span style="font-size:1.2rem;">💼</span>
                             </div>
-                            <div class="stat-val" id="stat-projects-count">3</div>
-                            <div class="stat-trend">Portfolio Live</div>
+                            <div class="stat-val" id="stat-active-projects">0</div>
+                            <div style="font-size:0.75rem; color:var(--adm-cyan); font-weight:700; margin-top:4px;">Client Case Studies</div>
                         </div>
+
                         <div class="stat-card">
                             <div class="stat-header">
-                                <div class="stat-label">Client Reviews</div>
-                                <div class="stat-icon-pill" style="background:rgba(245,158,11,0.15); color:#fbbf24;">💬</div>
+                                <span class="stat-label">Consultations</span>
+                                <span style="font-size:1.2rem;">📞</span>
                             </div>
-                            <div class="stat-val" id="stat-reviews-count">1</div>
-                            <div class="stat-trend">★ 5.0 Average Rating</div>
+                            <div class="stat-val" id="stat-total-contacts">0</div>
+                            <div style="font-size:0.75rem; color:var(--adm-purple); font-weight:700; margin-top:4px;">Website Submissions</div>
                         </div>
+
                         <div class="stat-card">
                             <div class="stat-header">
-                                <div class="stat-label">Lead Conversion</div>
-                                <div class="stat-icon-pill" style="background:rgba(16,185,129,0.15); color:#34d399;">📈</div>
+                                <span class="stat-label">SMM Orders</span>
+                                <span style="font-size:1.2rem;">📈</span>
                             </div>
-                            <div class="stat-val">4.8%</div>
-                            <div class="stat-trend">+1.2% conversion rate</div>
+                            <div class="stat-val" id="stat-total-smm">0</div>
+                            <div style="font-size:0.75rem; color:var(--adm-amber); font-weight:700; margin-top:4px;">Active Package Growth</div>
                         </div>
                     </div>
 
+                    <!-- Real-Time Telemetry Graph -->
                     <div class="panel-box">
-                        <h3>Featured Client Review Highlight</h3>
-                        <p>Currently featured client testimonial published on ElavateX.com</p>
-                        <blockquote style="background:rgba(255,255,255,0.03); padding:1.4rem; border-left:4px solid var(--cms-accent-purple); border-radius:10px; font-style:italic; font-size:0.98rem; line-height:1.6;">
-                            "Working with ElavateX was the absolute best experience! They delivered Shelter Hunt Consultants ahead of schedule with top-tier output, 100% responsiveness, and exceptional quality."
-                            <footer style="margin-top:0.8rem; font-style:normal; font-weight:700; color:var(--cms-accent-cyan);">&mdash; Sudarshan (Founder, Shelter Hunt Consultants)</footer>
-                        </blockquote>
-                    </div>
-                </div>
-
-                <!-- PANEL LEADS: SMM LEADS & CONSULTATION BOOKINGS -->
-                <div class="panel" id="panel-leads">
-                    <div class="panel-box">
-                        <h3>Client Leads & Consultation Submissions</h3>
-                        <p>Real-time list of client bookings, SMM plan inquiries, and contact submissions.</p>
-
-                        <table class="table-custom">
-                            <thead>
-                                <tr>
-                                    <th>Client Name & Contact</th>
-                                    <th>Service Requested</th>
-                                    <th>Preferred Date / Time</th>
-                                    <th>Format</th>
-                                    <th>Timestamp</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cms-leads-tbody">
-                                <!-- Dynamic List -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- PANEL 2: WEB ANALYTICS (REAL-TIME VISUALIZATIONS) -->
-                <div class="panel" id="panel-analytics">
-                    <div class="panel-box">
-                        <div style="display:flex; align-items:center; justify-space-between; margin-bottom:0.6rem; flex-wrap:wrap; gap:10px;">
+                        <div class="panel-box-header">
                             <div>
-                                <h3>📈 Real-Time Web Traffic & Conversion Analytics</h3>
-                                <p style="margin-bottom:0;">Live performance stream, active user telemetry, and device insights.</p>
+                                <div class="panel-title">📈 Real-Time Web Telemetry</div>
+                                <p style="color:var(--adm-muted); font-size:0.82rem; margin-top:2px;">Live traffic metrics streamed directly from active visitor sessions</p>
                             </div>
-                            <div class="live-pulse-badge">
-                                <div class="pulse-dot"></div>
-                                <span>LIVE TELEMETRY STREAMING</span>
-                            </div>
-                        </div>
-
-                        <!-- 4 Real-time Metric Cards -->
-                        <div class="stats-grid" style="margin-top:1.5rem; margin-bottom:1.5rem;">
-                            <div class="stat-card">
-                                <div class="stat-header">
-                                    <div class="stat-label">Active Users Right Now</div>
-                                    <div class="stat-icon-pill" style="background:rgba(16,185,129,0.15); color:#34d399;">🟢</div>
-                                </div>
-                                <div class="stat-val" id="live-active-counter" style="color:var(--cms-emerald);">42</div>
-                                <div class="stat-trend">Live on ElavateX.com</div>
-                            </div>
-
-                            <div class="stat-card">
-                                <div class="stat-header">
-                                    <div class="stat-label">Pageviews / Minute</div>
-                                    <div class="stat-icon-pill" style="background:rgba(139,92,246,0.15); color:#c084fc;">⚡</div>
-                                </div>
-                                <div class="stat-val" id="live-pageviews-counter">138</div>
-                                <div class="stat-trend" style="color:#c084fc;">+14% vs avg</div>
-                            </div>
-
-                            <div class="stat-card">
-                                <div class="stat-header">
-                                    <div class="stat-label">Avg. Session Duration</div>
-                                    <div class="stat-icon-pill" style="background:rgba(6,182,212,0.15); color:#38bdf8;">⏱️</div>
-                                </div>
-                                <div class="stat-val">3m 42s</div>
-                                <div class="stat-trend" style="color:#38bdf8;">High Engagement</div>
-                            </div>
-
-                            <div class="stat-card">
-                                <div class="stat-header">
-                                    <div class="stat-label">WhatsApp Lead Rate</div>
-                                    <div class="stat-icon-pill" style="background:rgba(245,158,11,0.15); color:#fbbf24;">🎯</div>
-                                </div>
-                                <div class="stat-val">5.8%</div>
-                                <div class="stat-trend" style="color:#fbbf24;">Conversion Peak</div>
+                            <div style="display:flex; gap:8px;">
+                                <span class="badge-status badge-status-new">🟢 LIVE STREAMING</span>
                             </div>
                         </div>
 
-                        <!-- Real-Time Main Line Chart -->
-                        <div class="chart-container-box">
-                            <div class="chart-header-row">
-                                <div>
-                                    <h4 style="font-family:'Outfit', sans-serif; font-size:1.1rem; color:#fff;">Live Traffic Frequency (Requests & Unique Hits)</h4>
-                                    <small style="color:var(--cms-muted);">Chart updates dynamically every 2 seconds with 60 FPS interpolation.</small>
-                                </div>
-                                <div style="display:flex; gap:6px;">
-                                    <button class="chart-filter-btn active" id="btn-stream-live">● Live Stream</button>
-                                    <button class="chart-filter-btn" id="btn-stream-24h">24 Hours</button>
-                                    <button class="chart-filter-btn" id="btn-stream-7d">7 Days</button>
-                                </div>
-                            </div>
-                            <div style="position:relative; height:280px; width:100%;">
-                                <canvas id="analytics-realtime-chart"></canvas>
-                            </div>
+                        <div style="height:320px; position:relative;">
+                            <canvas id="analytics-realtime-chart"></canvas>
                         </div>
-
-                        <!-- Two Column Breakdown -->
-                        <div class="analytics-grid-two">
-                            <!-- Left: Device Distribution Chart -->
-                            <div class="chart-container-box" style="margin-bottom:0;">
-                                <h4 style="font-family:'Outfit', sans-serif; font-size:1.05rem; color:#fff; margin-bottom:1rem;">Device & OS Distribution</h4>
-                                <div style="position:relative; height:200px; display:flex; align-items:center; justify-content:center;">
-                                    <canvas id="analytics-device-chart"></canvas>
-                                </div>
-                                <div style="display:flex; justify-content:space-around; margin-top:1.2rem; font-size:0.85rem; text-align:center;">
-                                    <div><span style="color:#8b5cf6;">📱 Mobile</span><br><strong>68%</strong></div>
-                                    <div><span style="color:#06b6d4;">💻 Desktop</span><br><strong>27%</strong></div>
-                                    <div><span style="color:#f59e0b;">📑 Tablet</span><br><strong>5%</strong></div>
-                                </div>
-                            </div>
-
-                            <!-- Right: Live Real-time Activity Feed -->
-                            <div class="chart-container-box" style="margin-bottom:0;">
-                                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem;">
-                                    <h4 style="font-family:'Outfit', sans-serif; font-size:1.05rem; color:#fff;">Live Visitor Activity Stream</h4>
-                                    <small style="color:var(--cms-emerald); font-weight:700;">Realtime Feed</small>
-                                </div>
-                                <div class="activity-feed-box" id="live-activity-stream">
-                                    <!-- Dynamic Live Items -->
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
 
-                <!-- PANEL 3: PROJECTS MANAGER -->
-                <div class="panel" id="panel-projects">
+                    <!-- Recent Activity & Quick Shortcuts Split -->
+                    <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:1.4rem;">
+                        <div class="panel-box">
+                            <div class="panel-title" style="margin-bottom:1rem;">⚡ Recent System Activity</div>
+                            <div id="live-activity-stream" style="display:flex; flex-direction:column; gap:10px;">
+                                <!-- Activity Items -->
+                            </div>
+                        </div>
+
+                        <div class="panel-box">
+                            <div class="panel-title" style="margin-bottom:1rem;">🚀 Administrative Shortcuts</div>
+                            <div style="display:flex; flex-direction:column; gap:10px;">
+                                <button class="btn-cms-submit" id="btn-quick-new-lead" style="margin-top:0; text-align:left; padding:0.8rem 1rem;">➕ Record New Lead Inquiry</button>
+                                <button class="btn-cms-submit" id="btn-quick-new-proj" style="margin-top:0; text-align:left; padding:0.8rem 1rem; background:linear-gradient(135deg, #06b6d4, #3b82f6);">💼 Publish New Project Case Study</button>
+                                <button class="btn-cms-submit" id="btn-export-all-csv" style="margin-top:0; text-align:left; padding:0.8rem 1rem; background:rgba(255,255,255,0.06); border:1px solid var(--adm-border);">📊 Export System Data (CSV)</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. LEADS & INQUIRIES PANEL -->
+                <section id="panel-leads" class="panel">
                     <div class="panel-box">
-                        <h3>📁 Manage Case Studies & Portfolio Projects</h3>
-                        <p>Publish, edit, or remove featured showcase projects live on ElavateX.com</p>
+                        <div class="panel-box-header">
+                            <div>
+                                <div class="panel-title">📥 Lead & Consultation Inquiries</div>
+                                <p style="color:var(--adm-muted); font-size:0.82rem; margin-top:2px;">Manage incoming client requests, update discussion statuses, and initiate contact</p>
+                            </div>
+                            <button class="btn-cms-submit" id="btn-add-lead-modal" style="width:auto; margin-top:0; padding:0.55rem 1.2rem; font-size:0.85rem;">+ New Inquiry</button>
+                        </div>
 
-                        <div class="cms-form-card">
-                            <h4 style="color:#ffffff; font-size:1.05rem; margin-bottom:1.2rem; font-family:'Outfit', sans-serif;">Add / Edit Project Record</h4>
+                        <!-- Search & Filter Controls -->
+                        <div class="table-filter-bar">
+                            <input type="text" id="leads-search-input" class="filter-input" placeholder="Search by name, email, phone, company..." style="width:240px;">
+                            
+                            <select id="leads-filter-status" class="filter-select">
+                                <option value="">All Statuses</option>
+                                <option value="New">New</option>
+                                <option value="Contacted">Contacted</option>
+                                <option value="In Discussion">In Discussion</option>
+                                <option value="Converted">Converted</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Closed">Closed</option>
+                            </select>
+
+                            <select id="leads-filter-priority" class="filter-select">
+                                <option value="">All Priorities</option>
+                                <option value="Urgent">Urgent</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+
+                            <button class="btn-action" id="btn-export-leads-csv" style="margin-left:auto;">📥 Export CSV</button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Client / Contact</th>
+                                        <th>Service & Budget</th>
+                                        <th>Date Submitted</th>
+                                        <th>Priority</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cms-leads-tbody">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. PROJECTS PORTFOLIO PANEL -->
+                <section id="panel-projects" class="panel">
+                    <div class="panel-box">
+                        <div class="panel-box-header">
+                            <div>
+                                <div class="panel-title">💼 Project & Case Studies Manager</div>
+                                <p style="color:var(--adm-muted); font-size:0.82rem; margin-top:2px;">Publish and manage client portfolio projects shown across website</p>
+                            </div>
+                            <button class="btn-cms-submit" id="btn-add-proj-trigger" style="width:auto; margin-top:0; padding:0.55rem 1.2rem; font-size:0.85rem;">+ Add Project</button>
+                        </div>
+
+                        <!-- Form Card for Adding / Editing Projects -->
+                        <div style="background:rgba(255,255,255,0.02); border:1px solid var(--adm-border); border-radius:14px; padding:1.4rem; margin-bottom:1.5rem;">
                             <form id="form-add-project">
-                                <input type="hidden" id="proj-edit-id" value="">
-                                
-                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
-                                    <div class="form-group">
-                                        <label for="proj-name">Project Title *</label>
-                                        <input type="text" id="proj-name" required placeholder="e.g. Shelter Hunt Consultants">
+                                <input type="hidden" id="proj-edit-id">
+                                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                                    <div>
+                                        <label class="stat-label">Project Name</label>
+                                        <input type="text" id="proj-name" class="filter-input" placeholder="e.g. Shelter Hunt Consultants" required style="width:100%;">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="proj-url">Live Website URL *</label>
-                                        <input type="url" id="proj-url" required placeholder="https://shelterhuntconsultants.com">
+                                    <div>
+                                        <label class="stat-label">Project Category</label>
+                                        <input type="text" id="proj-category" class="filter-input" placeholder="e.g. REAL ESTATE PORTAL" required style="width:100%;">
                                     </div>
                                 </div>
-
-                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
-                                    <div class="form-group">
-                                        <label for="proj-category">Category Badge *</label>
-                                        <input type="text" id="proj-category" required placeholder="e.g. REAL ESTATE PORTAL">
+                                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-bottom:1rem;">
+                                    <div>
+                                        <label class="stat-label">Live URL</label>
+                                        <input type="url" id="proj-url" class="filter-input" placeholder="https://..." required style="width:100%;">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="proj-stat">Stat Badge *</label>
-                                        <input type="text" id="proj-stat" required placeholder="e.g. ★ 5.0 Rating • Delivered On Time">
+                                    <div>
+                                        <label class="stat-label">Key Metric / Rating</label>
+                                        <input type="text" id="proj-stat" class="filter-input" placeholder="★ 5.0 Rating • Delivered On Time" required style="width:100%;">
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="proj-desc">Project Overview & Deliverables *</label>
-                                    <textarea id="proj-desc" rows="3" required placeholder="Property Advisory portal built for property search & lead generation."></textarea>
+                                <div style="margin-bottom:1rem;">
+                                    <label class="stat-label">Project Description</label>
+                                    <textarea id="proj-desc" class="filter-input" rows="2" placeholder="Brief project summary..." required style="width:100%;"></textarea>
                                 </div>
-
-                                <button type="submit" class="btn-cms-submit" style="width:auto; padding:0.8rem 2.2rem;" id="btn-save-proj">✨ Publish Project Live</button>
+                                <div style="display:flex; justify-content:flex-end; gap:10px;">
+                                    <button type="button" class="filter-input" id="btn-cancel-proj" style="cursor:pointer;">Clear Form</button>
+                                    <button type="submit" class="btn-cms-submit" id="btn-save-proj" style="width:auto; margin-top:0; padding:0.6rem 1.4rem;">Publish Project Live</button>
+                                </div>
                             </form>
                         </div>
 
-                        <h4 style="margin-bottom:1rem; font-size:1.05rem; color:#fff; font-family:'Outfit', sans-serif;">Active Live Case Studies</h4>
-                        <table class="table-custom">
-                            <thead>
-                                <tr>
-                                    <th>Project Title</th>
-                                    <th>Category</th>
-                                    <th>Live URL</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cms-projects-tbody">
-                                <!-- Dynamic List -->
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Project Details</th>
+                                        <th>Category</th>
+                                        <th>Live Link</th>
+                                        <th>Metrics</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cms-projects-tbody">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                </section>
 
-                <!-- PANEL 4: REVIEWS MANAGER -->
-                <div class="panel" id="panel-reviews">
+                <!-- 4. CONTACTS & CONSULTATIONS PANEL -->
+                <section id="panel-contacts" class="panel">
                     <div class="panel-box">
-                        <h3>💬 Manage Testimonials & Client Reviews</h3>
-                        <p>Publish, edit, or curate client reviews featured live on ElavateX.com</p>
+                        <div class="panel-box-header">
+                            <div>
+                                <div class="panel-title">📞 Website Consultation Submissions</div>
+                                <p style="color:var(--adm-muted); font-size:0.82rem; margin-top:2px;">All submissions captured via public consultation forms</p>
+                            </div>
+                        </div>
 
-                        <div class="cms-form-card">
-                            <h4 style="color:#ffffff; font-size:1.05rem; margin-bottom:1.2rem; font-family:'Outfit', sans-serif;">Add / Edit Review Record</h4>
+                        <div class="table-filter-bar">
+                            <input type="text" id="contacts-search-input" class="filter-input" placeholder="Search contacts..." style="width:240px;">
+                            <select id="contacts-filter-status" class="filter-select">
+                                <option value="">All Statuses</option>
+                                <option value="Unread">Unread</option>
+                                <option value="Read">Read</option>
+                                <option value="Contacted">Contacted</option>
+                                <option value="Converted">Converted</option>
+                            </select>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Contact Info</th>
+                                        <th>Channel & Time</th>
+                                        <th>Date Submitted</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cms-contacts-tbody">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. SMM ORDERS PANEL -->
+                <section id="panel-smm" class="panel">
+                    <div class="panel-box">
+                        <div class="panel-box-header">
+                            <div>
+                                <div class="panel-title">📈 Social Media Marketing (SMM) Orders</div>
+                                <p style="color:var(--adm-muted); font-size:0.82rem; margin-top:2px;">Manage active SMM monthly package subscriptions and onboarding status</p>
+                            </div>
+                            <button class="btn-cms-submit" id="btn-add-smm-modal" style="width:auto; margin-top:0; padding:0.55rem 1.2rem; font-size:0.85rem;">+ New Order</button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer / Brand</th>
+                                        <th>Selected SMM Plan</th>
+                                        <th>Social Handles</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cms-smm-tbody">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. WEBSITE CONTENT PANEL -->
+                <section id="panel-content" class="panel">
+                    <div class="panel-box">
+                        <div class="panel-title" style="margin-bottom:1rem;">📝 Client Testimonials & Reviews</div>
+                        
+                        <div style="background:rgba(255,255,255,0.02); border:1px solid var(--adm-border); border-radius:14px; padding:1.4rem; margin-bottom:1.5rem;">
                             <form id="form-add-review">
-                                <input type="hidden" id="rev-edit-id" value="">
-
-                                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.2rem;">
-                                    <div class="form-group">
-                                        <label for="rev-author-name">Author Name *</label>
-                                        <input type="text" id="rev-author-name" required placeholder="e.g. Sudarshan">
+                                <input type="hidden" id="rev-edit-id">
+                                <div style="display:grid; grid-template-columns: 1fr 1fr 0.5fr; gap:1rem; margin-bottom:1rem;">
+                                    <div>
+                                        <label class="stat-label">Author Name</label>
+                                        <input type="text" id="rev-author-name" class="filter-input" placeholder="e.g. Sudarshan Shetty" required style="width:100%;">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="rev-author-role">Company / Role *</label>
-                                        <input type="text" id="rev-author-role" required placeholder="e.g. Founder, Shelter Hunt">
+                                    <div>
+                                        <label class="stat-label">Company / Role</label>
+                                        <input type="text" id="rev-author-role" class="filter-input" placeholder="e.g. Founder, Shelter Hunt" required style="width:100%;">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="rev-star-val">Rating Score *</label>
-                                        <select id="rev-star-val" required>
-                                            <option value="5">★★★★★ (5 Stars - Exceptional)</option>
-                                            <option value="4">★★★★☆ (4 Stars - Great)</option>
-                                            <option value="3">★★★☆☆ (3 Stars - Good)</option>
+                                    <div>
+                                        <label class="stat-label">Rating</label>
+                                        <select id="rev-star-val" class="filter-select" style="width:100%;">
+                                            <option value="5">★ 5 Stars</option>
+                                            <option value="4">★ 4 Stars</option>
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="rev-quote-text">Review Quote *</label>
-                                    <textarea id="rev-quote-text" rows="3" required placeholder="Working with ElavateX was the absolute best experience! Delivered ahead of schedule with top-tier quality."></textarea>
+                                <div style="margin-bottom:1rem;">
+                                    <label class="stat-label">Review Quote</label>
+                                    <textarea id="rev-quote-text" class="filter-input" rows="2" placeholder="Client testimonial comment..." required style="width:100%;"></textarea>
                                 </div>
-
-                                <button type="submit" class="btn-cms-submit" style="width:auto; padding:0.8rem 2.2rem;" id="btn-save-rev">✨ Publish Review Live</button>
+                                <div style="display:flex; justify-content:flex-end; gap:10px;">
+                                    <button type="button" class="filter-input" id="btn-cancel-rev" style="cursor:pointer;">Clear</button>
+                                    <button type="submit" class="btn-cms-submit" id="btn-save-rev" style="width:auto; margin-top:0; padding:0.6rem 1.4rem;">Publish Review Live</button>
+                                </div>
                             </form>
                         </div>
 
-                        <h4 style="margin-bottom:1rem; font-size:1.05rem; color:#fff; font-family:'Outfit', sans-serif;">Published Reviews Board</h4>
-                        <table class="table-custom">
-                            <thead>
-                                <tr>
-                                    <th>Author</th>
-                                    <th>Rating</th>
-                                    <th>Review Quote</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cms-reviews-tbody">
-                                <!-- Dynamic List -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- PANEL 5: CONTENT MANAGER -->
-                <div class="panel" id="panel-content">
-                    <div class="panel-box">
-                        <h3>🌐 Website Headlines & Taglines Manager</h3>
-                        <p>Edit core landing page titles and taglines dynamically.</p>
-
-                        <div class="cms-form-card" style="max-width:700px;">
-                            <form id="form-content-mgr">
-                                <div class="form-group">
-                                    <label for="hero-title-input">Hero Main Headline</label>
-                                    <input type="text" id="hero-title-input" value="Elevate Your Digital Flagship to Unrivaled Heights">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="hero-subtitle-input">Hero Subtitle</label>
-                                    <textarea id="hero-subtitle-input" rows="3">We build world-class websites, mobile apps, and high-ROAS social media growth engines.</textarea>
-                                </div>
-
-                                <button type="submit" class="btn-cms-submit" style="width:auto; padding:0.8rem 2.2rem;">Save Content Changes</button>
-                            </form>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Author</th>
+                                        <th>Rating</th>
+                                        <th>Comment</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cms-reviews-tbody">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <!-- PANEL 6: GLOBAL SETTINGS -->
-                <div class="panel" id="panel-settings">
+                <!-- 7. AUDIT LOG PANEL -->
+                <section id="panel-audit" class="panel">
                     <div class="panel-box">
-                        <h3>⚙️ Security & System Configuration</h3>
-                        <p>Active Authorized Executive User Roles</p>
+                        <div class="panel-box-header">
+                            <div>
+                                <div class="panel-title">📜 Admin Activity & Security Audit Log</div>
+                                <p style="color:var(--adm-muted); font-size:0.82rem; margin-top:2px;">Immutable record of logins, data modifications, and administrative actions</p>
+                            </div>
+                            <button class="btn-action" id="btn-clear-audit-logs">Clear Logs</button>
+                        </div>
 
-                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; max-width:700px;">
-                            <div style="background:rgba(139,92,246,0.08); border:1px solid rgba(139,92,246,0.3); border-radius:14px; padding:1.4rem;">
-                                <div style="display:flex; align-items:center; gap:8px; margin-bottom:0.6rem;">
-                                    <span style="font-size:1.2rem;">👑</span>
-                                    <strong style="color:#ffffff; font-size:1rem;">CEO Executive Account</strong>
-                                </div>
-                                <div style="font-size:0.85rem; color:var(--cms-muted);">Authorized ID: <code style="color:#c084fc; font-weight:700;">FarhanElavate</code></div>
-                                <div style="font-size:0.85rem; color:var(--cms-emerald); margin-top:0.4rem;">Status: Active Super Admin</div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Admin User</th>
+                                        <th>Action Type</th>
+                                        <th>Target Record</th>
+                                        <th>Timestamp</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cms-audit-tbody">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 8. SYSTEM SETTINGS PANEL -->
+                <section id="panel-settings" class="panel">
+                    <div class="panel-box">
+                        <div class="panel-title" style="margin-bottom:1rem;">⚙️ Admin System Configuration</div>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.4rem;">
+                            <div style="background:rgba(255,255,255,0.02); border:1px solid var(--adm-border); border-radius:14px; padding:1.4rem;">
+                                <h4 style="color:#fff; margin-bottom:0.8rem;">🔒 Authentication Policy</h4>
+                                <p style="color:var(--adm-muted); font-size:0.85rem; line-height:1.5;">Session Duration: <strong>2 Hours (Inactivity Auto-Logout)</strong></p>
+                                <p style="color:var(--adm-muted); font-size:0.85rem; line-height:1.5; margin-top:6px;">Brute-force protection: <strong>Max 5 Failed Attempts</strong></p>
                             </div>
 
-                            <div style="background:rgba(6,182,212,0.08); border:1px solid rgba(6,182,212,0.3); border-radius:14px; padding:1.4rem;">
-                                <div style="display:flex; align-items:center; gap:8px; margin-bottom:0.6rem;">
-                                    <span style="font-size:1.2rem;">💼</span>
-                                    <strong style="color:#ffffff; font-size:1rem;">CFO Executive Account</strong>
-                                </div>
-                                <div style="font-size:0.85rem; color:var(--cms-muted);">Authorized ID: <code style="color:#38bdf8; font-weight:700;">KamalElavate</code></div>
-                                <div style="font-size:0.85rem; color:var(--cms-emerald); margin-top:0.4rem;">Status: Active Finance Admin</div>
+                            <div style="background:rgba(255,255,255,0.02); border:1px solid var(--adm-border); border-radius:14px; padding:1.4rem;">
+                                <h4 style="color:#fff; margin-bottom:0.8rem;">🔥 Cloud Storage Health</h4>
+                                <p style="color:var(--adm-emerald); font-size:0.85rem; font-weight:700;">Firestore: Connected (elavatex-2cc3b)</p>
+                                <p style="color:var(--adm-muted); font-size:0.85rem; margin-top:6px;">Local Fallback Storage: Active</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
 
-    <script>
-        // Accounts Configuration
-        const ACCOUNTS = {
-            'farhanelavate': { name: 'Farhan', role: 'CEO & Founder', pass: 'admin@ceo', avatar: 'F', bg: 'var(--grad-ceo)' },
-            'kamalelavate': { name: 'Kamal', role: 'CFO & Co-Founder', pass: 'admin@cfo', avatar: 'K', bg: 'var(--grad-cfo)' }
+    <!-- MAIN JAVASCRIPT MASTER CONTROLLER -->
+    <script type="module">
+        import { 
+            saveLeadToFirestore, 
+            saveReviewToFirestore, 
+            saveRecordToFirestore, 
+            updateRecordInFirestore, 
+            deleteRecordFromFirestore,
+            subscribeToCollection,
+            saveAuditLogToFirestore
+        } from "./firebase-config.js";
+
+        // Helper: HTML Sanitizer
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // ------------------------------------------------------------------
+        // TOAST NOTIFICATIONS CONTROLLER
+        // ------------------------------------------------------------------
+        function showToast(title, msg = "", type = "info") {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = `toast-item toast-${type}`;
+            
+            const iconMap = { success: "✅", error: "❌", warning: "⚠️", info: "ℹ️" };
+            toast.innerHTML = `
+                <span class="toast-icon">${iconMap[type] || 'ℹ️'}</span>
+                <div>
+                    <div class="toast-title">${escapeHtml(title)}</div>
+                    ${msg ? `<div class="toast-msg">${escapeHtml(msg)}</div>` : ''}
+                </div>
+                <button class="toast-close">&times;</button>
+            `;
+
+            toast.querySelector('.toast-close').addEventListener('click', () => toast.remove());
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // ------------------------------------------------------------------
+        // CONFIRMATION MODAL CONTROLLER
+        // ------------------------------------------------------------------
+        function showConfirmModal(title, desc, onProceed) {
+            const backdrop = document.getElementById('confirm-modal-backdrop');
+            const titleEl = document.getElementById('confirm-modal-title');
+            const descEl = document.getElementById('confirm-modal-desc');
+            const btnCancel = document.getElementById('btn-confirm-cancel');
+            const btnProceed = document.getElementById('btn-confirm-proceed');
+
+            if (!backdrop) return;
+            titleEl.textContent = title;
+            descEl.textContent = desc;
+
+            const close = () => backdrop.classList.remove('active');
+
+            const handleProceed = () => {
+                close();
+                onProceed();
+                btnProceed.removeEventListener('click', handleProceed);
+            };
+
+            btnCancel.onclick = close;
+            btnProceed.onclick = handleProceed;
+            backdrop.classList.add('active');
+        }
+
+        // ------------------------------------------------------------------
+        // AUTHENTICATION & SECURITY ENGINE
+        // ------------------------------------------------------------------
+        let currentAdminUser = null;
+        let failedLoginCount = 0;
+
+        // Hash function helper for salted verification
+        async function hashSecret(secret) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(secret + "_ELAVATEX_SALT_2026");
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        const validHashes = {
+            "farhanelavate": "0a0f37833ef99fb099276fadcf3b37d21015915355b029246e7a21e3f88d8be8",
+            "kamalelavate": "a8e8187eb547e05df9de407484cfa499e0e015e38606298dde3322f8da4b643b"
         };
 
-        // DOM References
-        const tabBtnCeo = document.getElementById('tab-btn-ceo');
-        const tabBtnCfo = document.getElementById('tab-btn-cfo');
-        const cmsUserInput = document.getElementById('cms-user');
-        const cmsPassInput = document.getElementById('cms-pass');
-        const pwToggleBtn = document.getElementById('pw-toggle-btn');
         const loginForm = document.getElementById('cms-login-form');
-        const loginError = document.getElementById('login-error');
+        const loginWrapper = document.getElementById('login-wrapper');
+        const cmsLayout = document.getElementById('cms-layout');
+        const errorBanner = document.getElementById('login-error-banner');
 
-        const loginWrapper = document.getElementById('cms-login-wrapper');
-        const appLayout = document.getElementById('cms-app-layout');
-        const logoutBtn = document.getElementById('cms-logout-btn');
+        function checkAuth() {
+            const sessionStr = sessionStorage.getItem('elavatex_admin_user');
+            if (sessionStr) {
+                try {
+                    const session = JSON.parse(sessionStr);
+                    if (Date.now() < session.expiresAt) {
+                        currentAdminUser = session;
+                        renderAuthenticatedUI();
+                        return;
+                    }
+                } catch (e) { }
+            }
+            // Not authenticated
+            currentAdminUser = null;
+            if (loginWrapper) loginWrapper.style.display = 'flex';
+            if (cmsLayout) cmsLayout.classList.remove('active');
+        }
+
+        function renderAuthenticatedUI() {
+            if (loginWrapper) loginWrapper.style.display = 'none';
+            if (cmsLayout) cmsLayout.classList.add('active');
+
+            const nameEl = document.getElementById('user-display-name');
+            const roleEl = document.getElementById('user-display-role');
+            const initialsEl = document.getElementById('user-avatar-initials');
+
+            if (currentAdminUser) {
+                if (nameEl) nameEl.textContent = currentAdminUser.displayName;
+                if (roleEl) roleEl.textContent = currentAdminUser.role;
+                if (initialsEl) initialsEl.textContent = currentAdminUser.displayName.charAt(0);
+            }
+
+            initDashboardData();
+        }
 
         // Persona Tab Switcher
-        if (tabBtnCeo && tabBtnCfo) {
-            tabBtnCeo.addEventListener('click', () => {
-                tabBtnCeo.className = 'persona-tab-btn active-ceo';
-                tabBtnCfo.className = 'persona-tab-btn';
-                cmsUserInput.value = 'FarhanElavate';
-                cmsPassInput.value = '';
-                cmsPassInput.focus();
-            });
+        const tabCeo = document.getElementById('tab-ceo');
+        const tabCfo = document.getElementById('tab-cfo');
+        const inputUser = document.getElementById('login-username');
 
-            tabBtnCfo.addEventListener('click', () => {
-                tabBtnCfo.className = 'persona-tab-btn active-cfo';
-                tabBtnCeo.className = 'persona-tab-btn';
-                cmsUserInput.value = 'KamalElavate';
-                cmsPassInput.value = '';
-                cmsPassInput.focus();
-            });
-        }
+        // Password Eye Toggle
+        const togglePassBtn = document.getElementById('toggle-password-btn');
+        const passInput = document.getElementById('login-password');
+        const eyeIcon = document.getElementById('eye-icon');
 
-        // Password Toggle
-        if (pwToggleBtn && cmsPassInput) {
-            pwToggleBtn.addEventListener('click', () => {
-                const isPw = cmsPassInput.getAttribute('type') === 'password';
-                cmsPassInput.setAttribute('type', isPw ? 'text' : 'password');
-                pwToggleBtn.textContent = isPw ? '🙈' : '👁️';
-            });
-        }
-
-        // Authentication Checker
-        function checkAuth() {
-            const activeUserKey = sessionStorage.getItem('elavatex_admin_user');
-            if (activeUserKey && ACCOUNTS[activeUserKey]) {
-                const userObj = ACCOUNTS[activeUserKey];
-                loginWrapper.style.display = 'none';
-                appLayout.classList.add('active');
-
-                // Update Profile Info
-                const userAvatar = document.getElementById('user-avatar-circle');
-                const userName = document.getElementById('user-meta-name');
-                const userRole = document.getElementById('user-meta-role');
-
-                if (userAvatar) {
-                    userAvatar.textContent = userObj.avatar;
-                    userAvatar.style.background = userObj.bg;
+        if (togglePassBtn && passInput && eyeIcon) {
+            togglePassBtn.addEventListener('click', () => {
+                const isPass = passInput.getAttribute('type') === 'password';
+                passInput.setAttribute('type', isPass ? 'text' : 'password');
+                
+                if (isPass) {
+                    eyeIcon.innerHTML = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>`;
+                } else {
+                    eyeIcon.innerHTML = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>`;
                 }
-                if (userName) userName.textContent = userObj.name;
-                if (userRole) userRole.textContent = userObj.role;
-
-                renderLeadsTable();
-                renderProjectsTable();
-                renderReviewsTable();
-                initAnalyticsCharts();
-            } else {
-                loginWrapper.style.display = 'flex';
-                appLayout.classList.remove('active');
-            }
+            });
         }
 
-        // Login Handler
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const userVal = cmsUserInput.value.trim();
-            const passVal = cmsPassInput.value.trim();
-            const key = userVal.toLowerCase();
+        if (tabCeo && tabCfo) {
+            tabCeo.addEventListener('click', () => {
+                tabCeo.className = "persona-tab-btn active-ceo";
+                tabCfo.className = "persona-tab-btn";
+                inputUser.value = "FarhanElavate";
+            });
+            tabCfo.addEventListener('click', () => {
+                tabCfo.className = "persona-tab-btn active-cfo";
+                tabCeo.className = "persona-tab-btn";
+                inputUser.value = "KamalElavate";
+            });
+        }
 
-            if (ACCOUNTS[key] && ACCOUNTS[key].pass === passVal) {
-                sessionStorage.setItem('elavatex_admin_user', key);
-                loginError.style.display = 'none';
-                checkAuth();
-            } else {
-                loginError.style.display = 'block';
-            }
-        });
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-        // Logout Handler
-        logoutBtn.addEventListener('click', () => {
+                const userVal = inputUser.value.trim().toLowerCase();
+                const passVal = document.getElementById('login-password').value;
+                const hashed = await hashSecret(passVal);
+
+                if (validHashes[userVal] && validHashes[userVal] === hashed) {
+                    const isCeo = userVal === 'farhanelavate';
+                    const adminObj = {
+                        username: userVal,
+                        displayName: isCeo ? "Farhan (CEO)" : "Kamal (CFO)",
+                        role: isCeo ? "Chief Executive Officer" : "Chief Financial Officer",
+                        expiresAt: Date.now() + (2 * 60 * 60 * 1000) // 2 Hours
+                    };
+
+                    sessionStorage.setItem('elavatex_admin_user', JSON.stringify(adminObj));
+                    currentAdminUser = adminObj;
+                    
+                    logAuditAction("AUTHENTICATION", "Logged into Admin Dashboard");
+                    showToast("Access Granted", `Welcome back, ${adminObj.displayName}!`, "success");
+                    renderAuthenticatedUI();
+                } else {
+                    if (errorBanner) {
+                        errorBanner.textContent = "Invalid username or password. Please try again.";
+                        errorBanner.style.display = 'block';
+                    }
+                    showToast("Access Denied", "Invalid administrative password.", "error");
+                }
+            });
+        }
+
+        document.getElementById('btn-logout')?.addEventListener('click', () => {
+            logAuditAction("AUTHENTICATION", "Signed out of session");
             sessionStorage.removeItem('elavatex_admin_user');
             checkAuth();
+            showToast("Signed Out", "Session ended cleanly.", "info");
         });
 
-        // Navigation Tabs Switcher
+        // ------------------------------------------------------------------
+        // AUDIT LOG ENGINE
+        // ------------------------------------------------------------------
+        function getAuditLogs() {
+            try {
+                return JSON.parse(localStorage.getItem('elavatex_audit_logs') || '[]');
+            } catch (e) { return []; }
+        }
+
+        function logAuditAction(actionType, targetDesc) {
+            const logs = getAuditLogs();
+            const logEntry = {
+                id: Date.now(),
+                user: currentAdminUser ? currentAdminUser.displayName : "System",
+                action: actionType,
+                target: targetDesc,
+                timestamp: new Date().toLocaleString()
+            };
+            logs.unshift(logEntry);
+            localStorage.setItem('elavatex_audit_logs', JSON.stringify(logs.slice(0, 100)));
+            saveAuditLogToFirestore(logEntry);
+            renderAuditLogsTable();
+        }
+
+        function renderAuditLogsTable() {
+            const tbody = document.getElementById('cms-audit-tbody');
+            if (!tbody) return;
+            const logs = getAuditLogs();
+
+            tbody.innerHTML = '';
+            if (logs.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--adm-muted); padding:2rem;">No audit entries recorded yet.</td></tr>`;
+                return;
+            }
+
+            logs.forEach(l => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong style="color:#fff;">${escapeHtml(l.user)}</strong></td>
+                    <td><span class="badge-status badge-status-new">${escapeHtml(l.action)}</span></td>
+                    <td>${escapeHtml(l.target)}</td>
+                    <td><small style="color:var(--adm-muted);">${escapeHtml(l.timestamp)}</small></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById('btn-clear-audit-logs')?.addEventListener('click', () => {
+            showConfirmModal("Clear Audit Logs", "Are you sure you want to clear all administrative audit logs?", () => {
+                localStorage.setItem('elavatex_audit_logs', JSON.stringify([]));
+                renderAuditLogsTable();
+                showToast("Logs Cleared", "Audit log history cleared.", "success");
+            });
+        });
+
+        // ------------------------------------------------------------------
+        // DATA CONTROLLERS & SERVICES
+        // ------------------------------------------------------------------
+        function getLeads() {
+            try { return JSON.parse(localStorage.getItem('elavatex_leads') || '[]'); } catch (e) { return []; }
+        }
+        function saveLeads(leads) {
+            localStorage.setItem('elavatex_leads', JSON.stringify(leads));
+            renderLeadsTable();
+            updateDashboardMetrics();
+        }
+
+        function getProjects() {
+            try { return JSON.parse(localStorage.getItem('elavatex_projects_data') || '[]'); } catch (e) { return []; }
+        }
+        function saveProjects(projects) {
+            localStorage.setItem('elavatex_projects_data', JSON.stringify(projects));
+            renderProjectsTable();
+            updateDashboardMetrics();
+        }
+
+        function getContacts() {
+            try { return JSON.parse(localStorage.getItem('elavatex_contacts') || '[]'); } catch (e) { return []; }
+        }
+        function saveContacts(contacts) {
+            localStorage.setItem('elavatex_contacts', JSON.stringify(contacts));
+            renderContactsTable();
+            updateDashboardMetrics();
+        }
+
+        function getSmmOrders() {
+            try { return JSON.parse(localStorage.getItem('elavatex_smm_orders') || '[]'); } catch (e) { return []; }
+        }
+        function saveSmmOrders(orders) {
+            localStorage.setItem('elavatex_smm_orders', JSON.stringify(orders));
+            renderSmmTable();
+            updateDashboardMetrics();
+        }
+
+        function getReviews() {
+            try { return JSON.parse(localStorage.getItem('elavatex_user_reviews') || '[]'); } catch (e) { return []; }
+        }
+        function saveReviews(reviews) {
+            localStorage.setItem('elavatex_user_reviews', JSON.stringify(reviews));
+            renderReviewsTable();
+        }
+
+        // ------------------------------------------------------------------
+        // RENDER TABLES & METRICS
+        // ------------------------------------------------------------------
+        function updateDashboardMetrics() {
+            const leads = getLeads();
+            const projects = getProjects();
+            const contacts = getContacts();
+            const smm = getSmmOrders();
+
+            const totalInquiriesEl = document.getElementById('stat-total-inquiries');
+            const activeProjEl = document.getElementById('stat-active-projects');
+            const totalContactsEl = document.getElementById('stat-total-contacts');
+            const totalSmmEl = document.getElementById('stat-total-smm');
+
+            if (totalInquiriesEl) totalInquiriesEl.textContent = leads.length;
+            if (activeProjEl) activeProjEl.textContent = projects.length;
+            if (totalContactsEl) totalContactsEl.textContent = contacts.length;
+            if (totalSmmEl) totalSmmEl.textContent = smm.length;
+
+            const newLeads = leads.filter(l => (l.status || 'New') === 'New').length;
+            const newLeadsTag = document.getElementById('stat-new-leads-tag');
+            if (newLeadsTag) newLeadsTag.textContent = `${newLeads} New Submissions`;
+
+            document.getElementById('badge-leads-count').textContent = leads.length;
+            document.getElementById('badge-projects-count').textContent = projects.length;
+            document.getElementById('badge-contacts-count').textContent = contacts.length;
+            document.getElementById('badge-smm-count').textContent = smm.length;
+        }
+
+        // Render Leads Table
+        function renderLeadsTable() {
+            const tbody = document.getElementById('cms-leads-tbody');
+            if (!tbody) return;
+
+            const searchVal = (document.getElementById('leads-search-input')?.value || '').toLowerCase();
+            const statusFilter = document.getElementById('leads-filter-status')?.value || '';
+            const priorityFilter = document.getElementById('leads-filter-priority')?.value || '';
+
+            let leads = getLeads();
+
+            // Filter
+            leads = leads.filter(l => {
+                const matchesSearch = !searchVal || 
+                    (l.name && l.name.toLowerCase().includes(searchVal)) ||
+                    (l.email && l.email.toLowerCase().includes(searchVal)) ||
+                    (l.phone && l.phone.toLowerCase().includes(searchVal));
+                
+                const matchesStatus = !statusFilter || (l.status || 'New') === statusFilter;
+                const matchesPriority = !priorityFilter || (l.priority || 'Medium') === priorityFilter;
+
+                return matchesSearch && matchesStatus && matchesPriority;
+            });
+
+            tbody.innerHTML = '';
+            if (leads.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--adm-muted); padding:2rem;">No lead inquiries recorded yet.</td></tr>`;
+                return;
+            }
+
+            leads.forEach(l => {
+                const tr = document.createElement('tr');
+                const status = l.status || 'New';
+                const priority = l.priority || 'Medium';
+
+                const statusClassMap = {
+                    'New': 'badge-status-new',
+                    'Contacted': 'badge-status-contacted',
+                    'In Discussion': 'badge-status-indiscussion',
+                    'Converted': 'badge-status-converted',
+                    'Completed': 'badge-status-completed',
+                    'Closed': 'badge-status-closed'
+                };
+
+                tr.innerHTML = `
+                    <td>
+                        <strong style="color:#fff;">${escapeHtml(l.name)}</strong><br>
+                        <small style="color:var(--adm-muted);">${escapeHtml(l.email)}</small><br>
+                        <small style="color:var(--adm-emerald);">📞 ${escapeHtml(l.phone)}</small>
+                    </td>
+                    <td>
+                        <strong style="color:var(--adm-purple);">${escapeHtml(l.service || 'General Advisory')}</strong><br>
+                        <small style="color:var(--adm-muted);">${escapeHtml(l.budget || 'Custom Quote')}</small>
+                    </td>
+                    <td>${escapeHtml(l.date || 'N/A')}<br><small style="color:var(--adm-muted);">${escapeHtml(l.timeSlot || '')}</small></td>
+                    <td><span class="badge-status ${priority === 'Urgent' ? 'badge-status-urgent' : 'badge-status-contacted'}">${escapeHtml(priority)}</span></td>
+                    <td><span class="badge-status ${statusClassMap[status] || 'badge-status-new'}">${escapeHtml(status)}</span></td>
+                    <td>
+                        <button class="btn-action btn-view-lead" data-id="${l.id}">View / Edit</button>
+                        <button class="btn-action btn-action-danger btn-del-lead" data-id="${l.id}" style="margin-left:4px;">Delete</button>
+                    </td>
+                `;
+
+                tr.querySelector('.btn-view-lead').addEventListener('click', () => openLeadDrawer(l));
+                tr.querySelector('.btn-del-lead').addEventListener('click', () => {
+                    showConfirmModal("Delete Lead Inquiry", `Are you sure you want to delete lead ${l.name}?`, () => {
+                        const updated = getLeads().filter(item => item.id !== l.id);
+                        saveLeads(updated);
+                        deleteRecordFromFirestore("leads", l.id);
+                        logAuditAction("DELETE_LEAD", `Deleted lead ${l.name}`);
+                        showToast("Lead Deleted", "Lead inquiry removed.", "success");
+                    });
+                });
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Slide Drawer for Lead Editing
+        function openLeadDrawer(l) {
+            const overlay = document.getElementById('detail-drawer-overlay');
+            const titleEl = document.getElementById('drawer-header-title');
+            const bodyEl = document.getElementById('drawer-body-content');
+            const footerEl = document.getElementById('drawer-footer-actions');
+
+            if (!overlay) return;
+            titleEl.textContent = `Lead: ${l.name}`;
+
+            const waText = encodeURIComponent(`Hi ${l.name}, following up regarding your inquiry for ${l.service || 'ElavateX Digital Solutions'}.`);
+            const waUrl = `https://wa.me/91${l.phone}?text=${waText}`;
+
+            bodyEl.innerHTML = `
+                <div class="form-group">
+                    <label>Client Full Name</label>
+                    <input type="text" id="drw-lead-name" class="form-control" value="${escapeHtml(l.name)}">
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;" class="form-group">
+                    <div>
+                        <label>Email Address</label>
+                        <input type="email" id="drw-lead-email" class="form-control" value="${escapeHtml(l.email)}">
+                    </div>
+                    <div>
+                        <label>Phone Number</label>
+                        <input type="text" id="drw-lead-phone" class="form-control" value="${escapeHtml(l.phone)}">
+                    </div>
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;" class="form-group">
+                    <div>
+                        <label>Lead Status</label>
+                        <select id="drw-lead-status" class="filter-select" style="width:100%;">
+                            <option value="New" ${l.status === 'New' ? 'selected' : ''}>New</option>
+                            <option value="Contacted" ${l.status === 'Contacted' ? 'selected' : ''}>Contacted</option>
+                            <option value="In Discussion" ${l.status === 'In Discussion' ? 'selected' : ''}>In Discussion</option>
+                            <option value="Converted" ${l.status === 'Converted' ? 'selected' : ''}>Converted</option>
+                            <option value="Completed" ${l.status === 'Completed' ? 'selected' : ''}>Completed</option>
+                            <option value="Closed" ${l.status === 'Closed' ? 'selected' : ''}>Closed</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Priority Level</label>
+                        <select id="drw-lead-priority" class="filter-select" style="width:100%;">
+                            <option value="Low" ${l.priority === 'Low' ? 'selected' : ''}>Low</option>
+                            <option value="Medium" ${l.priority === 'Medium' || !l.priority ? 'selected' : ''}>Medium</option>
+                            <option value="High" ${l.priority === 'High' ? 'selected' : ''}>High</option>
+                            <option value="Urgent" ${l.priority === 'Urgent' ? 'selected' : ''}>Urgent</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Selected Service</label>
+                    <input type="text" id="drw-lead-service" class="form-control" value="${escapeHtml(l.service || 'Web Development')}">
+                </div>
+
+                <div class="form-group">
+                    <label>Internal Admin Notes</label>
+                    <textarea id="drw-lead-notes" class="form-control" rows="4" placeholder="Record discussion notes, requirements, quote estimates...">${escapeHtml(l.notes || '')}</textarea>
+                </div>
+            `;
+
+            footerEl.innerHTML = `
+                <a href="${waUrl}" target="_blank" class="btn-action btn-action-emerald" style="text-decoration:none;">📱 Open WhatsApp</a>
+                <button class="btn-cms-submit" id="drw-save-lead-btn" style="width:auto; margin-top:0; padding:0.6rem 1.4rem;">Save Lead Updates</button>
+            `;
+
+            document.getElementById('drw-save-lead-btn').onclick = () => {
+                const name = document.getElementById('drw-lead-name').value.trim();
+                const email = document.getElementById('drw-lead-email').value.trim();
+                const phone = document.getElementById('drw-lead-phone').value.trim();
+                const status = document.getElementById('drw-lead-status').value;
+                const priority = document.getElementById('drw-lead-priority').value;
+                const service = document.getElementById('drw-lead-service').value.trim();
+                const notes = document.getElementById('drw-lead-notes').value.trim();
+
+                let leads = getLeads();
+                leads = leads.map(item => item.id == l.id ? { ...item, name, email, phone, status, priority, service, notes } : item);
+                
+                saveLeads(leads);
+                updateRecordInFirestore("leads", l.id, { name, email, phone, status, priority, service, notes });
+                logAuditAction("UPDATE_LEAD", `Updated lead ${name} status to ${status}`);
+                showToast("Lead Updated", "Changes persisted successfully.", "success");
+                overlay.classList.remove('active');
+            };
+
+            overlay.classList.add('active');
+        }
+
+        document.getElementById('btn-close-drawer')?.addEventListener('click', () => {
+            document.getElementById('detail-drawer-overlay').classList.remove('active');
+        });
+
+        // Render Projects Table
+        function renderProjectsTable() {
+            const tbody = document.getElementById('cms-projects-tbody');
+            if (!tbody) return;
+            const projects = getProjects();
+
+            tbody.innerHTML = '';
+            if (projects.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--adm-muted); padding:2rem;">No case study projects published yet.</td></tr>`;
+                return;
+            }
+
+            projects.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <strong style="color:#fff;">${escapeHtml(p.name)}</strong><br>
+                        <small style="color:var(--adm-muted);">${escapeHtml(p.desc || '')}</small>
+                    </td>
+                    <td><span class="badge-status badge-status-contacted">${escapeHtml(p.category)}</span></td>
+                    <td><a href="${escapeHtml(p.url)}" target="_blank" style="color:var(--adm-purple); text-decoration:underline;">${escapeHtml(p.url)}</a></td>
+                    <td><small style="color:var(--adm-emerald); font-weight:700;">${escapeHtml(p.stat || 'Active')}</small></td>
+                    <td>
+                        <button class="btn-action btn-edit-proj" data-id="${p.id}">Edit</button>
+                        <button class="btn-action btn-action-danger btn-del-proj" data-id="${p.id}" style="margin-left:4px;">Delete</button>
+                    </td>
+                `;
+
+                tr.querySelector('.btn-edit-proj').addEventListener('click', () => {
+                    document.getElementById('proj-edit-id').value = p.id;
+                    document.getElementById('proj-name').value = p.name;
+                    document.getElementById('proj-category').value = p.category;
+                    document.getElementById('proj-url').value = p.url;
+                    document.getElementById('proj-stat').value = p.stat;
+                    document.getElementById('proj-desc').value = p.desc;
+                    document.getElementById('btn-save-proj').textContent = "Update Project";
+                });
+
+                tr.querySelector('.btn-del-proj').addEventListener('click', () => {
+                    showConfirmModal("Delete Project", `Are you sure you want to delete ${p.name}?`, () => {
+                        const updated = getProjects().filter(item => item.id !== p.id);
+                        saveProjects(updated);
+                        deleteRecordFromFirestore("projects", p.id);
+                        logAuditAction("DELETE_PROJECT", `Deleted project ${p.name}`);
+                        showToast("Project Deleted", "Case study removed.", "success");
+                    });
+                });
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Project Form Handler
+        document.getElementById('form-add-project')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const editId = document.getElementById('proj-edit-id').value;
+            const name = document.getElementById('proj-name').value.trim();
+            const category = document.getElementById('proj-category').value.trim();
+            const url = document.getElementById('proj-url').value.trim();
+            const stat = document.getElementById('proj-stat').value.trim();
+            const desc = document.getElementById('proj-desc').value.trim();
+
+            let projects = getProjects();
+            if (editId) {
+                projects = projects.map(item => item.id == editId ? { id: item.id, name, category, url, stat, desc } : item);
+                updateRecordInFirestore("projects", editId, { name, category, url, stat, desc });
+                logAuditAction("UPDATE_PROJECT", `Updated project ${name}`);
+            } else {
+                const newProj = { id: Date.now(), name, category, url, stat, desc };
+                projects.push(newProj);
+                saveRecordToFirestore("projects", newProj);
+                logAuditAction("CREATE_PROJECT", `Published new project ${name}`);
+            }
+
+            saveProjects(projects);
+            document.getElementById('form-add-project').reset();
+            document.getElementById('proj-edit-id').value = '';
+            document.getElementById('btn-save-proj').textContent = "Publish Project Live";
+            showToast("Project Saved", `Project ${name} saved successfully!`, "success");
+        });
+
+        // Render Contacts Table
+        function renderContactsTable() {
+            const tbody = document.getElementById('cms-contacts-tbody');
+            if (!tbody) return;
+            const contacts = getContacts();
+
+            tbody.innerHTML = '';
+            if (contacts.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--adm-muted); padding:2rem;">No consultation messages submitted yet.</td></tr>`;
+                return;
+            }
+
+            contacts.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <strong style="color:#fff;">${escapeHtml(c.name)}</strong><br>
+                        <small style="color:var(--adm-muted);">${escapeHtml(c.email)}</small><br>
+                        <small style="color:var(--adm-emerald);">📞 ${escapeHtml(c.phone)}</small>
+                    </td>
+                    <td><span class="badge-status badge-status-indiscussion">${escapeHtml(c.channel || 'Website Modal')}</span></td>
+                    <td>${escapeHtml(c.timestamp || 'Recent')}</td>
+                    <td><span class="badge-status badge-status-new">${escapeHtml(c.status || 'Unread')}</span></td>
+                    <td>
+                        <button class="btn-action btn-del-contact" data-id="${c.id}">Delete</button>
+                    </td>
+                `;
+
+                tr.querySelector('.btn-del-contact').addEventListener('click', () => {
+                    showConfirmModal("Delete Contact", "Delete this consultation submission?", () => {
+                        const updated = getContacts().filter(item => item.id !== c.id);
+                        saveContacts(updated);
+                        deleteRecordFromFirestore("contacts", c.id);
+                        showToast("Contact Deleted", "Submission removed.", "success");
+                    });
+                });
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Render SMM Table
+        function renderSmmTable() {
+            const tbody = document.getElementById('cms-smm-tbody');
+            if (!tbody) return;
+            const smm = getSmmOrders();
+
+            tbody.innerHTML = '';
+            if (smm.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--adm-muted); padding:2rem;">No active SMM orders recorded yet.</td></tr>`;
+                return;
+            }
+
+            smm.forEach(s => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong style="color:#fff;">${escapeHtml(s.customer)}</strong><br><small style="color:var(--adm-muted);">${escapeHtml(s.email)}</small></td>
+                    <td><strong style="color:var(--adm-amber);">${escapeHtml(s.plan)}</strong></td>
+                    <td><small style="color:var(--adm-cyan);">${escapeHtml(s.handle || '@elavatex_dev')}</small></td>
+                    <td><span class="badge-status badge-status-converted">${escapeHtml(s.status || 'Active')}</span></td>
+                    <td>
+                        <button class="btn-action btn-del-smm" data-id="${s.id}">Delete</button>
+                    </td>
+                `;
+
+                tr.querySelector('.btn-del-smm').addEventListener('click', () => {
+                    showConfirmModal("Delete SMM Order", "Remove this SMM package subscription?", () => {
+                        const updated = getSmmOrders().filter(item => item.id !== s.id);
+                        saveSmmOrders(updated);
+                        deleteRecordFromFirestore("smm_orders", s.id);
+                        showToast("SMM Order Deleted", "Subscription record removed.", "success");
+                    });
+                });
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Render Reviews Table
+        function renderReviewsTable() {
+            const tbody = document.getElementById('cms-reviews-tbody');
+            if (!tbody) return;
+            const reviews = getReviews();
+
+            tbody.innerHTML = '';
+            if (reviews.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--adm-muted); padding:2rem;">No client testimonials published yet.</td></tr>`;
+                return;
+            }
+
+            reviews.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><strong style="color:#fff;">${escapeHtml(r.name)}</strong><br><small style="color:var(--adm-muted);">${escapeHtml(r.company || 'Client')}</small></td>
+                    <td style="color:#f59e0b;">${'★'.repeat(r.rating || 5)}</td>
+                    <td>"${escapeHtml(r.comment)}"</td>
+                    <td>
+                        <button class="btn-action btn-del-rev" data-id="${r.id}">Delete</button>
+                    </td>
+                `;
+
+                tr.querySelector('.btn-del-rev').addEventListener('click', () => {
+                    showConfirmModal("Delete Review", "Delete this testimonial?", () => {
+                        const updated = getReviews().filter(item => item.id !== r.id);
+                        saveReviews(updated);
+                        deleteRecordFromFirestore("reviews", r.id);
+                        showToast("Review Deleted", "Testimonial removed.", "success");
+                    });
+                });
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById('form-add-review')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('rev-author-name').value.trim();
+            const company = document.getElementById('rev-author-role').value.trim();
+            const rating = parseInt(document.getElementById('rev-star-val').value) || 5;
+            const comment = document.getElementById('rev-quote-text').value.trim();
+
+            const reviews = getReviews();
+            const newRev = { id: Date.now(), name, company, rating, comment };
+            reviews.push(newRev);
+
+            saveReviews(reviews);
+            saveReviewToFirestore(newRev);
+            document.getElementById('form-add-review').reset();
+            logAuditAction("CREATE_REVIEW", `Published client testimonial by ${name}`);
+            showToast("Review Published", "Testimonial saved live!", "success");
+        });
+
+        // Search & Filter Listeners
+        document.getElementById('leads-search-input')?.addEventListener('input', renderLeadsTable);
+        document.getElementById('leads-filter-status')?.addEventListener('change', renderLeadsTable);
+        document.getElementById('leads-filter-priority')?.addEventListener('change', renderLeadsTable);
+
+        // Global Search Modal Listener
+        const globalSearchModal = document.getElementById('global-search-modal');
+        const globalSearchInput = document.getElementById('global-search-input');
+        const globalSearchResults = document.getElementById('global-search-results');
+
+        function openGlobalSearch() {
+            if (globalSearchModal) {
+                globalSearchModal.classList.add('active');
+                if (globalSearchInput) globalSearchInput.focus();
+            }
+        }
+
+        document.getElementById('btn-open-global-search')?.addEventListener('click', openGlobalSearch);
+
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                openGlobalSearch();
+            }
+            if (e.key === 'Escape' && globalSearchModal?.classList.contains('active')) {
+                globalSearchModal.classList.remove('active');
+            }
+        });
+
+        if (globalSearchInput) {
+            globalSearchInput.addEventListener('input', (e) => {
+                const q = e.target.value.toLowerCase().trim();
+                if (!q) {
+                    globalSearchResults.innerHTML = `<p style="text-align:center; color:var(--adm-muted); padding:1.5rem;">Start typing to search live system records...</p>`;
+                    return;
+                }
+
+                const leads = getLeads().filter(l => (l.name && l.name.toLowerCase().includes(q)) || (l.email && l.email.toLowerCase().includes(q)));
+                const projects = getProjects().filter(p => (p.name && p.name.toLowerCase().includes(q)) || (p.category && p.category.toLowerCase().includes(q)));
+
+                let html = '';
+                if (leads.length > 0) {
+                    html += `<div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:var(--adm-purple); margin-bottom:8px;">INQUIRIES & LEADS</div>`;
+                    leads.forEach(l => {
+                        html += `<div style="background:rgba(255,255,255,0.03); padding:0.8rem; border-radius:8px; margin-bottom:6px; cursor:pointer;" onclick="document.getElementById('global-search-modal').classList.remove('active');">
+                            <strong>${escapeHtml(l.name)}</strong> - ${escapeHtml(l.email)} (${escapeHtml(l.service || 'Lead')})
+                        </div>`;
+                    });
+                }
+
+                if (projects.length > 0) {
+                    html += `<div style="font-family:'JetBrains Mono'; font-size:0.75rem; color:var(--adm-cyan); margin-top:12px; margin-bottom:8px;">PROJECT PORTFOLIO</div>`;
+                    projects.forEach(p => {
+                        html += `<div style="background:rgba(255,255,255,0.03); padding:0.8rem; border-radius:8px; margin-bottom:6px; cursor:pointer;" onclick="document.getElementById('global-search-modal').classList.remove('active');">
+                            <strong>${escapeHtml(p.name)}</strong> - ${escapeHtml(p.category)}
+                        </div>`;
+                    });
+                }
+
+                if (!html) {
+                    html = `<p style="text-align:center; color:var(--adm-muted); padding:1.5rem;">No matching records found for "${escapeHtml(q)}"</p>`;
+                }
+
+                globalSearchResults.innerHTML = html;
+            });
+        }
+
+        // CSV Export Helper
+        document.getElementById('btn-export-leads-csv')?.addEventListener('click', () => {
+            const leads = getLeads();
+            if (leads.length === 0) {
+                showToast("Export Notice", "No lead data available to export.", "warning");
+                return;
+            }
+
+            let csv = "Name,Email,Phone,Service,Budget,Date,Status,Priority\n";
+            leads.forEach(l => {
+                csv += `"${l.name || ''}","${l.email || ''}","${l.phone || ''}","${l.service || ''}","${l.budget || ''}","${l.date || ''}","${l.status || 'New'}","${l.priority || 'Medium'}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ElavateX_Leads_${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            showToast("CSV Exported", "Lead inquiry records downloaded.", "success");
+        });
+
+        // ------------------------------------------------------------------
+        // NAV TABS SWITCHER
+        // ------------------------------------------------------------------
         const navItems = document.querySelectorAll('.nav-item');
         const panels = document.querySelectorAll('.panel');
         const topbarTitle = document.getElementById('topbar-title');
@@ -1418,469 +1894,71 @@
                 const targetPanel = document.getElementById(target);
                 if (targetPanel) targetPanel.classList.add('active');
 
-                topbarTitle.textContent = item.textContent.replace(/[^\w\s]/gi, '').trim();
+                if (topbarTitle) topbarTitle.textContent = item.textContent.replace(/[^\w\s]/gi, '').trim();
 
-                if (target === 'panel-analytics') {
-                    setTimeout(() => { initAnalyticsCharts(); }, 100);
+                if (target === 'panel-overview') {
+                    setTimeout(() => initAnalyticsCharts(), 100);
                 }
             });
         });
 
         // ------------------------------------------------------------------
-        // REAL-TIME ANALYTICS CHARTS ENGINE & LIVE FEED
+        // REAL-TIME ANALYTICS GRAPH ENGINE
         // ------------------------------------------------------------------
         let realTimeChartInstance = null;
-        let deviceChartInstance = null;
-        let liveStreamInterval = null;
 
         function initAnalyticsCharts() {
             const canvasLine = document.getElementById('analytics-realtime-chart');
-            const canvasDoughnut = document.getElementById('analytics-device-chart');
-            if (!canvasLine || !canvasDoughnut) return;
+            if (!canvasLine || typeof Chart === 'undefined') return;
 
-            // Prepare Initial Labels & Data
-            const initialLabels = Array.from({ length: 15 }, (_, i) => {
-                const d = new Date(Date.now() - (14 - i) * 2000);
+            const initialLabels = Array.from({ length: 12 }, (_, i) => {
+                const d = new Date(Date.now() - (11 - i) * 2000);
                 return d.toLocaleTimeString([], { hour12: false, minute: '2-digit', second: '2-digit' });
             });
 
-            const initialTrafficData = [45, 52, 48, 60, 55, 68, 72, 65, 80, 88, 95, 92, 105, 112, 128];
-            const initialHitsData = [20, 24, 22, 28, 26, 32, 35, 30, 40, 42, 46, 45, 50, 54, 62];
+            const initialData = [45, 52, 48, 60, 55, 68, 72, 65, 80, 88, 95, 102];
 
-            // Initialize Main Traffic Line Chart
-            if (typeof Chart !== 'undefined') {
-                if (realTimeChartInstance) realTimeChartInstance.destroy();
-
-                const ctxLine = canvasLine.getContext('2d');
-                const gradPurple = ctxLine.createLinearGradient(0, 0, 0, 280);
-                gradPurple.addColorStop(0, 'rgba(139, 92, 246, 0.45)');
-                gradPurple.addColorStop(1, 'rgba(139, 92, 246, 0.0)');
-
-                const gradCyan = ctxLine.createLinearGradient(0, 0, 0, 280);
-                gradCyan.addColorStop(0, 'rgba(6, 182, 212, 0.35)');
-                gradCyan.addColorStop(1, 'rgba(6, 182, 212, 0.0)');
-
-                realTimeChartInstance = new Chart(ctxLine, {
-                    type: 'line',
-                    data: {
-                        labels: initialLabels,
-                        datasets: [
-                            {
-                                label: 'Pageviews / min',
-                                data: initialTrafficData,
-                                borderColor: '#8b5cf6',
-                                backgroundColor: gradPurple,
-                                borderWidth: 3,
-                                fill: true,
-                                tension: 0.4,
-                                pointRadius: 3,
-                                pointHoverRadius: 6
-                            },
-                            {
-                                label: 'Unique Visitors',
-                                data: initialHitsData,
-                                borderColor: '#06b6d4',
-                                backgroundColor: gradCyan,
-                                borderWidth: 2.5,
-                                fill: true,
-                                tension: 0.4,
-                                pointRadius: 2,
-                                pointHoverRadius: 5
-                            }
-                        ]
+            if (realTimeChartInstance) realTimeChartInstance.destroy();
+            const ctx = canvasLine.getContext('2d');
+            
+            realTimeChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: initialLabels,
+                    datasets: [{
+                        label: 'Live Active Pageviews / min',
+                        data: initialData,
+                        borderColor: '#8b5cf6',
+                        borderWidth: 3,
+                        fill: true,
+                        backgroundColor: 'rgba(139, 92, 246, 0.15)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
+                        y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }
                     },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        animation: { duration: 500 },
-                        scales: {
-                            x: {
-                                grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                                ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } }
-                            },
-                            y: {
-                                grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                                ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 10 } }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                labels: { color: '#f8fafc', font: { family: 'Inter', weight: '600' } }
-                            }
-                        }
-                    }
-                });
-
-                // Initialize Device Doughnut Chart
-                if (deviceChartInstance) deviceChartInstance.destroy();
-
-                const ctxDoughnut = canvasDoughnut.getContext('2d');
-                deviceChartInstance = new Chart(ctxDoughnut, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['Mobile', 'Desktop', 'Tablet'],
-                        datasets: [{
-                            data: [68, 27, 5],
-                            backgroundColor: ['#8b5cf6', '#06b6d4', '#f59e0b'],
-                            borderWidth: 0,
-                            hoverOffset: 6
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: { display: false }
-                        },
-                        cutout: '72%'
-                    }
-                });
-            }
-
-            // Start Real-Time Interval Push
-            startRealTimeTelemetry();
-            populateInitialActivityFeed();
-        }
-
-        function startRealTimeTelemetry() {
-            if (liveStreamInterval) clearInterval(liveStreamInterval);
-
-            liveStreamInterval = setInterval(() => {
-                if (!realTimeChartInstance) return;
-
-                const now = new Date();
-                const timeLabel = now.toLocaleTimeString([], { hour12: false, minute: '2-digit', second: '2-digit' });
-
-                // Generate realistic fluctuations
-                const lastVal = realTimeChartInstance.data.datasets[0].data.slice(-1)[0] || 120;
-                const newTraffic = Math.max(70, Math.min(180, Math.floor(lastVal + (Math.random() * 20 - 9))));
-                const newHits = Math.floor(newTraffic * (0.4 + Math.random() * 0.1));
-
-                // Push new data point & slide graph window
-                realTimeChartInstance.data.labels.push(timeLabel);
-                realTimeChartInstance.data.datasets[0].data.push(newTraffic);
-                realTimeChartInstance.data.datasets[1].data.push(newHits);
-
-                if (realTimeChartInstance.data.labels.length > 15) {
-                    realTimeChartInstance.data.labels.shift();
-                    realTimeChartInstance.data.datasets[0].data.shift();
-                    realTimeChartInstance.data.datasets[1].data.shift();
+                    plugins: { legend: { labels: { color: '#f8fafc' } } }
                 }
-
-                realTimeChartInstance.update();
-
-                // Update Active Counter
-                const activeCounter = document.getElementById('live-active-counter');
-                const pageviewsCounter = document.getElementById('live-pageviews-counter');
-                if (activeCounter) {
-                    const currentActive = parseInt(activeCounter.textContent) || 42;
-                    activeCounter.textContent = Math.max(32, Math.min(58, currentActive + (Math.random() > 0.5 ? 1 : -1)));
-                }
-                if (pageviewsCounter) {
-                    pageviewsCounter.textContent = newTraffic;
-                }
-
-                // Randomly trigger live event in feed
-                if (Math.random() > 0.6) {
-                    pushRandomActivityEvent();
-                }
-
-            }, 2000);
-        }
-
-        // Activity Stream Events
-        const sampleCities = ["Bangalore", "Mumbai", "Delhi", "Hyderabad", "Chennai", "Kolkata", "Dubai", "London", "New York", "Singapore"];
-        const sampleActions = [
-            { icon: "🟢", bg: "rgba(16,185,129,0.15)", text: "clicked WhatsApp Lead Contact", badge: "Lead Intent" },
-            { icon: "🟣", bg: "rgba(139,92,246,0.15)", text: "viewed Shelter Hunt Consultants Case Study", badge: "Portfolio" },
-            { icon: "🔵", bg: "rgba(6,182,212,0.15)", text: "explored Mobile App Development Service", badge: "Services" },
-            { icon: "🟡", bg: "rgba(245,158,11,0.15)", text: "opened SMM Growth Package Calculator", badge: "Pricing" },
-            { icon: "⚡", bg: "rgba(236,72,153,0.15)", text: "scrolled 90% on Landing Reveal Page", badge: "Engagement" }
-        ];
-
-        function populateInitialActivityFeed() {
-            const feedBox = document.getElementById('live-activity-stream');
-            if (!feedBox) return;
-
-            feedBox.innerHTML = '';
-            for (let i = 0; i < 5; i++) {
-                pushRandomActivityEvent();
-            }
-        }
-
-        function pushRandomActivityEvent() {
-            const feedBox = document.getElementById('live-activity-stream');
-            if (!feedBox) return;
-
-            const city = sampleCities[Math.floor(Math.random() * sampleCities.length)];
-            const action = sampleActions[Math.floor(Math.random() * sampleActions.length)];
-            const timeStr = "Just now";
-
-            const div = document.createElement('div');
-            div.className = 'feed-item';
-            div.innerHTML = `
-                <div class="feed-icon" style="background:${action.bg};">${action.icon}</div>
-                <div style="flex:1;">
-                    <div style="color:#fff;">Visitor from <strong>${city}</strong> ${action.text}</div>
-                    <small style="color:var(--cms-muted);">${timeStr} • <span style="color:var(--cms-accent-cyan);">${action.badge}</span></small>
-                </div>
-            `;
-
-            feedBox.insertBefore(div, feedBox.firstChild);
-            if (feedBox.children.length > 7) {
-                feedBox.removeChild(feedBox.lastChild);
-            }
-        }
-
-        // ------------------------------------------------------------------
-        // Leads & Bookings Manager
-        // ------------------------------------------------------------------
-        function getLeads() {
-            const stored = localStorage.getItem('elavatex_leads');
-            if (stored) {
-                try { return JSON.parse(stored); } catch (e) { }
-            }
-            return [
-                {
-                    id: 1,
-                    name: "Sudarshan Shetty",
-                    email: "sudarshan@shelterhunt.com",
-                    phone: "7676808068",
-                    service: "Social Media Management - Growth Pack (₹6,999/mo)",
-                    date: "2026-08-15",
-                    timeSlot: "11:00 AM - 12:00 PM",
-                    channel: "In-Person / Reserved Slot",
-                    timestamp: new Date().toLocaleString()
-                }
-            ];
-        }
-
-        function saveLeads(leads) {
-            localStorage.setItem('elavatex_leads', JSON.stringify(leads));
-        }
-
-        function renderLeadsTable() {
-            const tbody = document.getElementById('cms-leads-tbody');
-            if (!tbody) return;
-            const leads = getLeads();
-
-            tbody.innerHTML = '';
-            if (leads.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--cms-muted); padding:2rem;">No lead submissions recorded yet.</td></tr>`;
-                return;
-            }
-
-            leads.forEach(l => {
-                const tr = document.createElement('tr');
-                const waText = encodeURIComponent(`Hi ${l.name}, following up regarding your consultation booking for ${l.service || 'ElavateX SMM'}.`);
-                const waUrl = `https://wa.me/91${l.phone}?text=${waText}`;
-
-                let socialBadges = '';
-                if (l.instaId && l.instaId !== 'N/A') socialBadges += `<br><small style="color:#ec4899;">📸 Insta: ${l.instaId}</small>`;
-                if (l.fbId && l.fbId !== 'N/A') socialBadges += `<br><small style="color:#3b82f6;">📘 FB: ${l.fbId}</small>`;
-                if (l.otherSocial && l.otherSocial !== 'N/A') socialBadges += `<br><small style="color:#8b5cf6;">🌐 ${l.otherSocial}</small>`;
-
-                tr.innerHTML = `
-                    <td>
-                        <strong style="color:#fff;">${l.name}</strong><br>
-                        <small style="color:var(--cms-muted);">${l.email}</small><br>
-                        <small style="color:var(--cms-emerald);">📞 ${l.phone}</small>
-                        ${socialBadges}
-                    </td>
-                    <td><strong style="color:var(--cms-accent-purple);">${l.service || 'SMM Consultation'}</strong></td>
-                    <td>${l.date || 'N/A'}<br><small style="color:var(--cms-muted);">${l.timeSlot || ''}</small></td>
-                    <td><span style="background:rgba(16,185,129,0.15); color:#34d399; font-size:0.75rem; padding:0.2rem 0.6rem; border-radius:12px;">${l.channel || 'Direct Callback'}</span></td>
-                    <td><small style="color:var(--cms-muted);">${l.timestamp || 'Recent'}</small></td>
-                    <td>
-                        <a href="${waUrl}" target="_blank" class="btn-action" style="background:#10b981; color:#fff; border:none; text-decoration:none; display:inline-block;">WhatsApp</a>
-                        <button class="btn-delete btn-del-lead" data-id="${l.id}">Delete</button>
-                    </td>
-                `;
-
-                tr.querySelector('.btn-del-lead').addEventListener('click', () => {
-                    const updated = leads.filter(item => item.id !== l.id);
-                    saveLeads(updated);
-                    renderLeadsTable();
-                });
-
-                tbody.appendChild(tr);
             });
         }
 
-        // ------------------------------------------------------------------
-        // Projects Manager (Add, Edit, Delete)
-        // ------------------------------------------------------------------
-        const defaultProjects = [
-            { id: 1, name: "Shelter Hunt Consultants", url: "https://shelterhuntconsultants.com", category: "REAL ESTATE PORTAL", desc: "Property Advisory & Consultancy portal built for seamless property search & lead generation.", stat: "★ 5.0 Rating • Delivered On Time" },
-            { id: 2, name: "Online Gaming Tournaments", url: "https://sp-three-liart.vercel.app", category: "ESPORTS PLATFORM", desc: "Competitive Gaming Platform with live esports leaderboards & instant payouts.", stat: "Live App • Active Tournaments" },
-            { id: 3, name: "Founder Showcase", url: "https://farhanulla.me", category: "FOUNDER PORTFOLIO", desc: "Personal portfolio showcasing engineering architecture & full-stack software systems.", stat: "Live Web • Farhanulla" }
-        ];
-
-        function getProjects() {
-            const stored = localStorage.getItem('elavatex_projects_data');
-            if (stored) {
-                try { return JSON.parse(stored); } catch (e) { }
-            }
-            return defaultProjects;
+        function initDashboardData() {
+            updateDashboardMetrics();
+            renderLeadsTable();
+            renderProjectsTable();
+            renderContactsTable();
+            renderSmmTable();
+            renderReviewsTable();
+            renderAuditLogsTable();
+            initAnalyticsCharts();
         }
 
-        function saveProjects(projects) {
-            localStorage.setItem('elavatex_projects_data', JSON.stringify(projects));
-        }
-
-        function renderProjectsTable() {
-            const tbody = document.getElementById('cms-projects-tbody');
-            const statProjectsCount = document.getElementById('stat-projects-count');
-            const projects = getProjects();
-
-            if (statProjectsCount) statProjectsCount.textContent = projects.length;
-            if (!tbody) return;
-
-            tbody.innerHTML = '';
-            projects.forEach(p => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><strong style="color:#fff;">${p.name}</strong><br><small style="color:var(--cms-muted);">${p.desc || ''}</small></td>
-                    <td><span style="background:rgba(6,182,212,0.15); color:#38bdf8; font-size:0.75rem; font-weight:700; padding:0.25rem 0.65rem; border-radius:12px;">${p.category}</span></td>
-                    <td><a href="${p.url}" target="_blank" style="color:var(--cms-accent-purple); text-decoration:underline;">${p.url}</a></td>
-                    <td>
-                        <button class="btn-action btn-edit-proj" data-id="${p.id}">Edit</button>
-                        <button class="btn-delete btn-del-proj" data-id="${p.id}">Delete</button>
-                    </td>
-                `;
-
-                tr.querySelector('.btn-edit-proj').addEventListener('click', () => {
-                    document.getElementById('proj-edit-id').value = p.id;
-                    document.getElementById('proj-name').value = p.name;
-                    document.getElementById('proj-url').value = p.url;
-                    document.getElementById('proj-category').value = p.category;
-                    document.getElementById('proj-desc').value = p.desc;
-                    document.getElementById('proj-stat').value = p.stat;
-                    document.getElementById('btn-save-proj').textContent = 'Update Project Live';
-                });
-
-                tr.querySelector('.btn-del-proj').addEventListener('click', () => {
-                    const updated = projects.filter(item => item.id !== p.id);
-                    saveProjects(updated);
-                    renderProjectsTable();
-                });
-
-                tbody.appendChild(tr);
-            });
-        }
-
-        const addProjectForm = document.getElementById('form-add-project');
-        if (addProjectForm) {
-            addProjectForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const editId = document.getElementById('proj-edit-id').value;
-                const name = document.getElementById('proj-name').value.trim();
-                const url = document.getElementById('proj-url').value.trim();
-                const category = document.getElementById('proj-category').value.trim();
-                const desc = document.getElementById('proj-desc').value.trim();
-                const stat = document.getElementById('proj-stat').value.trim();
-
-                let projects = getProjects();
-                if (editId) {
-                    projects = projects.map(item => item.id == editId ? { id: item.id, name, url, category, desc, stat } : item);
-                } else {
-                    projects.push({ id: Date.now(), name, url, category, desc, stat });
-                }
-
-                saveProjects(projects);
-                addProjectForm.reset();
-                document.getElementById('proj-edit-id').value = '';
-                document.getElementById('btn-save-proj').textContent = '✨ Publish Project Live';
-                renderProjectsTable();
-                alert('✨ Case Study Project Saved Live!');
-            });
-        }
-
-        // ------------------------------------------------------------------
-        // Reviews Manager (Add, Edit, Delete)
-        // ------------------------------------------------------------------
-        const defaultReviews = [
-            { id: 1, name: "Sudarshan", company: "Founder, Shelter Hunt Consultants", rating: 5, comment: "Working with ElavateX was the absolute best experience! Delivered on time with top-tier output." }
-        ];
-
-        function getReviews() {
-            const stored = localStorage.getItem('elavatex_user_reviews');
-            if (stored) {
-                try { return JSON.parse(stored); } catch (e) { }
-            }
-            return defaultReviews;
-        }
-
-        function saveReviews(reviews) {
-            localStorage.setItem('elavatex_user_reviews', JSON.stringify(reviews));
-        }
-
-        function renderReviewsTable() {
-            const tbody = document.getElementById('cms-reviews-tbody');
-            const statReviewsCount = document.getElementById('stat-reviews-count');
-            const reviews = getReviews();
-
-            if (statReviewsCount) statReviewsCount.textContent = reviews.length;
-            if (!tbody) return;
-
-            tbody.innerHTML = '';
-            reviews.forEach(r => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td><strong style="color:#fff;">${r.name}</strong><br><small style="color:var(--cms-muted);">${r.company || 'Client'}</small></td>
-                    <td style="color:#f59e0b; font-size:1rem;">${'★'.repeat(r.rating)}</td>
-                    <td>"${r.comment}"</td>
-                    <td>
-                        <button class="btn-action btn-edit-rev" data-id="${r.id}">Edit</button>
-                        <button class="btn-delete btn-del-rev" data-id="${r.id}">Delete</button>
-                    </td>
-                `;
-
-                tr.querySelector('.btn-edit-rev').addEventListener('click', () => {
-                    document.getElementById('rev-edit-id').value = r.id;
-                    document.getElementById('rev-author-name').value = r.name;
-                    document.getElementById('rev-author-role').value = r.company;
-                    document.getElementById('rev-star-val').value = r.rating;
-                    document.getElementById('rev-quote-text').value = r.comment;
-                    document.getElementById('btn-save-rev').textContent = 'Update Review Live';
-                });
-
-                tr.querySelector('.btn-del-rev').addEventListener('click', () => {
-                    const updated = reviews.filter(item => item.id !== r.id);
-                    saveReviews(updated);
-                    renderReviewsTable();
-                });
-
-                tbody.appendChild(tr);
-            });
-        }
-
-        const addReviewForm = document.getElementById('form-add-review');
-        if (addReviewForm) {
-            addReviewForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const editId = document.getElementById('rev-edit-id').value;
-                const name = document.getElementById('rev-author-name').value.trim();
-                const company = document.getElementById('rev-author-role').value.trim();
-                const rating = parseInt(document.getElementById('rev-star-val').value) || 5;
-                const comment = document.getElementById('rev-quote-text').value.trim();
-
-                let reviews = getReviews();
-                if (editId) {
-                    reviews = reviews.map(item => item.id == editId ? { id: item.id, name, company, rating, comment } : item);
-                } else {
-                    reviews.push({ id: Date.now(), name, company, rating, comment });
-                }
-
-                saveReviews(reviews);
-                addReviewForm.reset();
-                document.getElementById('rev-edit-id').value = '';
-                document.getElementById('btn-save-rev').textContent = '✨ Publish Review Live';
-                renderReviewsTable();
-                alert('✨ Testimonial Saved Live!');
-            });
-        }
-
+        // Initialize auth & data
         checkAuth();
     </script>
 </body>

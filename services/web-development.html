@@ -312,29 +312,29 @@
     <div id="top-loading-bar" class="top-loading-bar"></div>
 
     <!-- =================================================================== -->
+    <!-- =================================================================== -->
     <!-- DEDICATED FIXED NAVBAR FOR WEBSITE DEVELOPMENT PAGE                 -->
     <!-- =================================================================== -->
     <header class="dedicated-fixed-navbar" id="web-navbar">
         <div class="dedicated-nav-container">
-            <a href="../index.html#hero" class="brand-logo">
-                <span class="logo-mark">
-                    <img src="../favicon.png" alt="ElavateX Logo" class="brand-logo-img">
-                </span>
-                <span class="logo-text">Elavate<span class="accent-x">X</span> <span class="nav-badge-tag">Website Development</span></span>
-            </a>
+            <!-- Left Side: Return Home & Service Badge -->
+            <div class="nav-left-group">
+                <a href="../index.html" class="back-home-pill">
+                    <span>&larr; Home</span>
+                </a>
+                <span class="nav-badge-tag">Website Development</span>
+            </div>
 
-            <!-- Dedicated Subnav Links -->
+            <!-- Center Column: Subnav Links -->
             <nav class="dedicated-nav-links" id="web-nav-links">
                 <a href="#web-hero" class="dedicated-nav-link active">Overview</a>
-                <a href="#web-what-we-build" class="dedicated-nav-link">What We Build</a>
-                <a href="#web-services" class="dedicated-nav-link">Capabilities</a>
-                <a href="#web-why-us" class="dedicated-nav-link">Why Us</a>
-                <a href="#web-process" class="dedicated-nav-link">Process</a>
+                <a href="#web-what-we-build" class="dedicated-nav-link">Capabilities</a>
                 <a href="#web-tech" class="dedicated-nav-link">Tech Stack</a>
                 <a href="#web-projects" class="dedicated-nav-link">Projects</a>
                 <a href="#web-faq" class="dedicated-nav-link">FAQ</a>
             </nav>
 
+            <!-- Far Right Side: Actions & Official ElavateX Brand Logo at Top Right -->
             <div class="nav-actions">
                 <button class="btn-primary btn-sm open-consultation-btn">Start a Project</button>
 
@@ -346,6 +346,14 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </span>
                 </button>
+
+                <!-- Official Logo at Far Top Right -->
+                <a href="../index.html" class="brand-logo logo-top-right">
+                    <span class="logo-mark">
+                        <img src="../favicon.png" alt="ElavateX Logo" class="brand-logo-img">
+                    </span>
+                    <span class="logo-text">Elavate<span class="accent-x">X</span></span>
+                </a>
 
                 <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Mobile Navigation Menu">
                     <span class="bar"></span>
@@ -940,6 +948,164 @@ export default async function WebPlatform() {
             </div>
         </div>
     </dialog>
+
+    <!-- =================================================================== -->
+    <!-- ELAVATEX AI CHATBOT WIDGET (LIGHTWEIGHT & FAST)                    -->
+    <!-- =================================================================== -->
+    <div id="chatbot-container" class="chatbot-container buddy-mode">
+        <!-- Floating Teaser Tooltip -->
+        <div class="chatbot-tooltip" id="chatbot-tooltip">
+            ✨ Ask ElavateX AI
+        </div>
+
+        <!-- AI Trigger Button -->
+        <button class="chatbot-toggle-btn" id="chatbot-toggle-btn" aria-label="Open ElavateX AI Assistant">
+            <div class="buddy-icon-wrapper">
+                <!-- Dark Theme App Icon -->
+                <svg class="buddy-icon-dark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" rx="26" fill="url(#buddy-dark-bg-grad)" />
+                    <ellipse cx="50" cy="58" rx="24" ry="8" fill="#00e5ff" opacity="0.3" filter="blur(10px)" />
+                    <ellipse cx="50" cy="62" rx="16" ry="3" fill="#0055ff" opacity="0.5" filter="blur(4px)" />
+                    
+                    <rect x="19" y="34" width="7" height="18" rx="3.5" fill="#586780" />
+                    <rect x="74" y="34" width="7" height="18" rx="3.5" fill="#586780" />
+                    <rect x="22" y="37" width="2" height="12" rx="1" fill="#2d3748" />
+                    <rect x="76" y="37" width="2" height="12" rx="1" fill="#2d3748" />
+
+                    <path d="M50,26 L50,18" stroke="#a0aec0" stroke-width="3" stroke-linecap="round" />
+                    <circle cx="50" cy="16" r="3.5" fill="#ffffff" />
+                    <circle cx="50" cy="16" r="5" stroke="#ffffff" stroke-width="1.5" opacity="0.5" />
+                    
+                    <rect x="24" y="26" width="52" height="32" rx="15" fill="url(#metallic-dark-head-grad)" stroke="#4a5568" stroke-width="1" />
+                    <rect x="29" y="31" width="42" height="22" rx="10" fill="#06070d" stroke="#2d3748" stroke-width="1" />
+                    
+                    <rect x="36" y="39" width="8" height="3" rx="1.5" fill="#00f0ff" />
+                    <rect x="56" y="39" width="8" height="3" rx="1.5" fill="#00f0ff" />
+                    <path d="M46,46 Q50,48.5 54,46" stroke="#00f0ff" stroke-width="2" stroke-linecap="round" fill="none" />
+                    
+                    <path d="M43,58 C43,62 57,62 57,58" fill="url(#metallic-dark-head-grad)" stroke="#4a5568" stroke-width="1" />
+                    
+                    <text x="50" y="82" font-family="'Inter', sans-serif" font-weight="800" font-size="9" letter-spacing="0.8" text-anchor="middle">
+                        <tspan fill="#00f0ff">AI</tspan><tspan fill="#ffffff"> BUDDY</tspan>
+                    </text>
+                </svg>
+
+                <!-- Light Theme App Icon -->
+                <svg class="buddy-icon-light" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" rx="26" fill="url(#buddy-light-bg-grad)" stroke="#cbd5e0" stroke-width="1" />
+                    
+                    <rect x="19" y="34" width="7" height="18" rx="3.5" fill="#a0aec0" />
+                    <rect x="74" y="34" width="7" height="18" rx="3.5" fill="#a0aec0" />
+                    <rect x="22" y="37" width="2" height="12" rx="1" fill="#e2e8f0" />
+                    <rect x="76" y="37" width="2" height="12" rx="1" fill="#e2e8f0" />
+
+                    <path d="M50,26 L50,18" stroke="#a0aec0" stroke-width="3" stroke-linecap="round" />
+                    <circle cx="50" cy="16" r="3.5" fill="#805ad5" />
+                    
+                    <rect x="24" y="26" width="52" height="32" rx="15" fill="url(#metallic-light-head-grad)" stroke="#cbd5e0" stroke-width="1" />
+                    <rect x="29" y="31" width="42" height="22" rx="10" fill="#0f172a" />
+                    
+                    <circle cx="40" cy="41" r="3" stroke="#00c2ff" stroke-width="2.5" fill="none" />
+                    <circle cx="60" cy="41" r="3" stroke="#00c2ff" stroke-width="2.5" fill="none" />
+                    <path d="M45,46 Q50,49.5 55,46" stroke="#00c2ff" stroke-width="2" stroke-linecap="round" fill="none" />
+                    
+                    <path d="M43,58 C43,62 57,62 57,58" fill="url(#metallic-light-head-grad)" stroke="#cbd5e0" stroke-width="1" />
+                    
+                    <text x="50" y="82" font-family="'Inter', sans-serif" font-weight="800" font-size="9" letter-spacing="0.8" text-anchor="middle">
+                        <tspan fill="#6b46c1">AI</tspan><tspan fill="#1a202c"> BUDDY</tspan>
+                    </text>
+                </svg>
+            </div>
+            <div class="buddy-close-wrapper">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </div>
+
+            <!-- Definitions for Gradients -->
+            <svg width="0" height="0" style="position: absolute;">
+                <defs>
+                    <linearGradient id="buddy-dark-bg-grad" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#0a1226" />
+                        <stop offset="100%" stop-color="#030408" />
+                    </linearGradient>
+                    <linearGradient id="buddy-light-bg-grad" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#ffffff" />
+                        <stop offset="100%" stop-color="#eaedf2" />
+                    </linearGradient>
+                    <linearGradient id="metallic-dark-head-grad" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#cbd5e0" />
+                        <stop offset="50%" stop-color="#a0aec0" />
+                        <stop offset="100%" stop-color="#718096" />
+                    </linearGradient>
+                    <linearGradient id="metallic-light-head-grad" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#f7fafc" />
+                        <stop offset="50%" stop-color="#e2e8f0" />
+                        <stop offset="100%" stop-color="#cbd5e0" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span class="online-indicator"></span>
+        </button>
+
+        <!-- AI Chat Window -->
+        <div class="chatbot-window" id="chatbot-window">
+            <!-- Header -->
+            <div class="chat-header">
+                <div class="chat-avatar">
+                    <svg width="20" height="20" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="20" y="24" width="60" height="42" rx="16" fill="#ffffff" opacity="0.15" />
+                        <rect x="20" y="24" width="60" height="42" rx="16" stroke="#ffffff" stroke-width="4" />
+                        <rect x="28" y="32" width="44" height="26" rx="10" fill="#ffffff" opacity="0.25" />
+                        <circle cx="40" cy="45" r="5" fill="#ffffff" />
+                        <circle cx="60" cy="45" r="5" fill="#ffffff" />
+                        <path d="M50,24 L50,13" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+                        <circle cx="50" cy="11" r="4" fill="#ffffff" />
+                        <path d="M44,51 Q50,54 56,51" stroke="#ffffff" stroke-width="3" stroke-linecap="round" fill="none" />
+                    </svg>
+                    <span class="avatar-status"></span>
+                </div>
+                <div class="chat-meta">
+                    <div class="chat-name">ElavateX AI</div>
+                    <div class="chat-status" id="chat-header-status">
+                        <span class="status-dot"></span> Online
+                    </div>
+                </div>
+                <div class="chat-controls">
+                    <button class="chat-control-btn" id="chat-new-btn" title="New Chat">↺ New</button>
+                    <button class="chat-control-btn" id="chat-close-btn" title="Close">&times;</button>
+                </div>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-msg msg-bot">
+                    <div class="msg-bubble">
+                        Hi! I'm ElavateX AI 👋<br><br>
+                        I can help you explore our Web Development services, tech stack, pricing, or figure out what your business might need.
+                    </div>
+                    <div class="msg-time">Just now</div>
+                </div>
+            </div>
+
+            <!-- Quick Suggestion Chips -->
+            <div class="chat-chips-scroll" id="chat-chips">
+                <button class="chat-chip" data-query="Explore Web Development">🌐 Web Development</button>
+                <button class="chat-chip" data-query="Build a Mobile App">📱 Build Mobile App</button>
+                <button class="chat-chip" data-query="Explore SMM">🔥 Explore SMM</button>
+                <button class="chat-chip" data-query="Start a Project">🚀 Start a Project</button>
+            </div>
+
+            <!-- Message Input Bar -->
+            <form class="chat-input-bar" id="chat-form">
+                <input type="text" id="chat-input" placeholder="Ask about ElavateX, services, pricing..." autocomplete="off">
+                <button type="submit" class="chat-send-btn" id="chat-send-btn" aria-label="Send Query">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- GSAP & ScrollTrigger Libraries CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
