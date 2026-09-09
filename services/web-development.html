@@ -265,13 +265,482 @@
             display: none;
         }
 
-        .code-terminal-drawer.active { display: block; }
+            .code-terminal-drawer.active { display: block; }
         .terminal-header { display: flex; justify-content: space-between; align-items: center; color: #94a3b8; margin-bottom: 0.4rem; }
 
         @media (max-width: 900px) {
             .dedicated-nav-links { display: none !important; }
             .dedicated-nav-container { width: 100%; padding: 0 1rem; }
             .nav-badge-tag { display: none; }
+        }
+
+        /* =================================================================== */
+        /* REDESIGNED EDITORIAL WEB DEVELOPMENT SECTIONS                      */
+        /* =================================================================== */
+        .web-redesign-section {
+            padding: 5.5rem 0;
+            position: relative;
+        }
+
+        .web-redesign-section.alt-bg {
+            background: var(--bg-surface-subtle);
+        }
+
+        .editorial-header {
+            margin-bottom: 3rem;
+        }
+
+        .editorial-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-purple);
+            background: rgba(99, 102, 241, 0.1);
+            padding: 0.35rem 0.85rem;
+            border-radius: 99px;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            margin-bottom: 1.2rem;
+        }
+
+        .editorial-title {
+            font-family: var(--font-primary);
+            font-size: clamp(1.9rem, 3.8vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+        }
+
+        .editorial-desc {
+            font-size: 1.1rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            max-width: 680px;
+        }
+
+        /* SECTION 1: WHAT WE BUILD */
+        .build-grid-editorial {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .build-grid-editorial {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .build-card-large {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 2.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+            position: relative;
+        }
+
+        .build-card-large:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .build-card-num {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
+
+        .build-card-title {
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+        }
+
+        .build-card-body {
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .build-example-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .build-pill {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.8rem;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+        }
+
+        body.light-theme .build-pill,
+        [data-theme="light"] .build-pill {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .build-card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .build-card-cta:hover {
+            transform: translateX(4px);
+        }
+
+        /* SECTION 2: THE DIFFERENCE */
+        .difference-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 850px) {
+            .difference-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .difference-col {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 2.2rem 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .difference-col:hover {
+            transform: translateY(-3px);
+            border-color: rgba(99, 102, 241, 0.35);
+        }
+
+        .difference-col-title {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+        }
+
+        .difference-col-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* SECTION 3: CAPABILITIES ROWS */
+        .capabilities-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .capabilities-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .capability-row {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 1.4rem 1.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+
+        .capability-row:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .capability-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .capability-title {
+            font-family: var(--font-primary);
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+
+        .capability-desc {
+            font-size: 0.9rem;
+            line-height: 1.55;
+            color: var(--text-muted);
+        }
+
+        /* SECTION 4: REAL PROJECT SHOWCASE */
+        .project-editorial-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            align-items: center;
+            gap: 0;
+            box-shadow: var(--shadow-card);
+        }
+
+        @media (max-width: 992px) {
+            .project-editorial-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .project-info-side {
+            padding: 3.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .project-info-side {
+                padding: 2rem 1.6rem;
+            }
+        }
+
+        .project-tag {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-emerald);
+            background: rgba(16, 185, 129, 0.12);
+            padding: 0.3rem 0.75rem;
+            border-radius: 99px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: inline-block;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-title {
+            font-family: var(--font-primary);
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .project-desc {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+        }
+
+        .project-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .project-features-list li {
+            font-size: 0.92rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .project-features-list li::before {
+            content: "✓";
+            font-weight: 800;
+            color: var(--accent-emerald);
+        }
+
+        .project-visual-side {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            align-items: center;
+        }
+
+        .project-browser-frame {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            overflow: hidden;
+            background: #090d16;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .project-browser-header {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 0.6rem 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .project-browser-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .project-browser-dots span {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .p-dot-red { background: #ef4444; }
+        .p-dot-yellow { background: #f59e0b; }
+        .p-dot-green { background: #10b981; }
+
+        .project-browser-url {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 6px;
+            padding: 0.2rem 0.6rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: #94a3b8;
+            flex: 1;
+        }
+
+        .project-preview-img {
+            width: 100%;
+            height: auto;
+            max-height: 380px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        /* SECTION 5: PROCESS TIMELINE */
+        .process-timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 992px) {
+            .process-timeline-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .process-step-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 1.8rem 1.4rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .process-step-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .process-num {
+            font-family: var(--font-mono);
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--accent-purple);
+            margin-bottom: 0.8rem;
+        }
+
+        .process-step-title {
+            font-family: var(--font-primary);
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step-desc {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--text-muted);
+        }
+
+        /* SECTION 6: WHY ELAVATEX */
+        .why-reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .why-reasons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .why-reason-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 2.2rem;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .why-reason-card:hover {
+            border-color: rgba(99, 102, 241, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .why-reason-title {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+        }
+
+        .why-reason-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-muted);
         }
     </style>
 </head>
@@ -328,9 +797,11 @@
             <!-- Center Column: Subnav Links -->
             <nav class="dedicated-nav-links" id="web-nav-links">
                 <a href="#web-hero" class="dedicated-nav-link active">Overview</a>
-                <a href="#web-what-we-build" class="dedicated-nav-link">Capabilities</a>
-                <a href="#web-tech" class="dedicated-nav-link">Tech Stack</a>
-                <a href="#web-projects" class="dedicated-nav-link">Projects</a>
+                <a href="#web-what-we-build" class="dedicated-nav-link">What We Build</a>
+                <a href="#web-capabilities" class="dedicated-nav-link">Capabilities</a>
+                <a href="#web-projects" class="dedicated-nav-link">Our Work</a>
+                <a href="#web-process" class="dedicated-nav-link">Process</a>
+                <a href="#web-why-us" class="dedicated-nav-link">Why ElavateX</a>
                 <a href="#web-faq" class="dedicated-nav-link">FAQ</a>
             </nav>
 
@@ -376,11 +847,10 @@
         <div class="drawer-links">
             <a href="#web-hero" class="drawer-link">Overview</a>
             <a href="#web-what-we-build" class="drawer-link">What We Build</a>
-            <a href="#web-services" class="drawer-link">Capabilities</a>
-            <a href="#web-why-us" class="drawer-link">Why Us</a>
+            <a href="#web-capabilities" class="drawer-link">Capabilities</a>
+            <a href="#web-projects" class="drawer-link">Our Work</a>
             <a href="#web-process" class="drawer-link">Process</a>
-            <a href="#web-tech" class="drawer-link">Technologies</a>
-            <a href="#web-projects" class="drawer-link">Projects</a>
+            <a href="#web-why-us" class="drawer-link">Why ElavateX</a>
             <a href="#web-faq" class="drawer-link">FAQ</a>
             <hr class="drawer-divider">
             <button class="btn-primary open-consultation-btn w-full">Start a Project</button>
@@ -518,252 +988,447 @@ export default async function WebPlatform() {
             </div>
         </section>
 
-        <!-- SECTION 2: WHAT WE BUILD -->
-        <section class="section-about" id="web-what-we-build" style="padding: 5rem 0;">
+        <!-- SECTION 1 — WHAT WE BUILD -->
+        <section class="web-redesign-section" id="web-what-we-build">
             <div class="container">
-                <div class="section-header text-center reveal-item">
-                    <span class="section-subtitle">SOLUTIONS RANGE</span>
-                    <h2 class="section-title">What We Build</h2>
-                    <p class="section-desc">From complex startup dashboards to heavy-load enterprise architectures, we engineer bespoke web platforms.</p>
+                <div class="editorial-header reveal-item">
+                    <div class="editorial-badge">WHAT WE BUILD</div>
+                    <h2 class="editorial-title">Digital products built around how your business actually works.</h2>
+                    <p class="editorial-desc">We design and develop websites and web applications that are built for real users, real workflows, and real business goals.</p>
                 </div>
 
-                <div class="about-features-grid">
-                    <div class="why-card glass-panel reveal-item reveal-delay-1">
-                        <div class="service-icon-badge-box indigo-glow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                <div class="build-grid-editorial">
+                    <!-- 01 — BUSINESS WEBSITES -->
+                    <div class="build-card-large reveal-item reveal-delay-1">
+                        <div>
+                            <div class="build-card-num">01</div>
+                            <h3 class="build-card-title">BUSINESS WEBSITES</h3>
+                            <p class="build-card-body">Professional websites for companies, brands and growing businesses.</p>
+                            <div class="build-example-pills">
+                                <span class="build-pill">Company websites</span>
+                                <span class="build-pill">Service businesses</span>
+                                <span class="build-pill">Corporate websites</span>
+                                <span class="build-pill">Personal / founder brands</span>
+                            </div>
                         </div>
-                        <h3>SaaS & Web Products</h3>
-                        <p>Complex interactive web portals, custom admin panels, customer dashboards, and high-performance frontend interfaces built on React or Next.js.</p>
+                        <div>
+                            <button class="build-card-cta open-consultation-btn">Explore &rarr;</button>
+                        </div>
                     </div>
 
-                    <div class="why-card glass-panel reveal-item reveal-delay-2">
-                        <div class="service-icon-badge-box emerald-glow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    <!-- 02 — E-COMMERCE -->
+                    <div class="build-card-large reveal-item reveal-delay-2">
+                        <div>
+                            <div class="build-card-num">02</div>
+                            <h3 class="build-card-title">E-COMMERCE</h3>
+                            <p class="build-card-body">Online stores designed to make browsing, buying and managing products simple.</p>
+                            <div class="build-example-pills">
+                                <span class="build-pill">Product catalogues</span>
+                                <span class="build-pill">Shopping carts</span>
+                                <span class="build-pill">Checkout</span>
+                                <span class="build-pill">Order management</span>
+                            </div>
                         </div>
-                        <h3>High-Converting Agency & Corporate Sites</h3>
-                        <p>Editorial luxury brand websites, lead generation engines, and interactive corporate portals tailored to build authority and convert traffic.</p>
+                        <div>
+                            <button class="build-card-cta open-consultation-btn">Explore &rarr;</button>
+                        </div>
                     </div>
 
-                    <div class="why-card glass-panel reveal-item reveal-delay-3">
-                        <div class="service-icon-badge-box violet-glow">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <!-- 03 — WEB APPLICATIONS -->
+                    <div class="build-card-large reveal-item reveal-delay-3">
+                        <div>
+                            <div class="build-card-num">03</div>
+                            <h3 class="build-card-title">WEB APPLICATIONS</h3>
+                            <p class="build-card-body">Custom web applications built around your specific workflow.</p>
+                            <div class="build-example-pills">
+                                <span class="build-pill">Dashboards</span>
+                                <span class="build-pill">Portals</span>
+                                <span class="build-pill">Booking systems</span>
+                                <span class="build-pill">Management platforms</span>
+                            </div>
                         </div>
-                        <h3>E-Commerce & Headless Stores</h3>
-                        <p>Fast checkout pipelines, custom payment API integrations, and catalog browsing experiences engineered to maximize cart conversion rates.</p>
+                        <div>
+                            <button class="build-card-cta open-consultation-btn">Explore &rarr;</button>
+                        </div>
+                    </div>
+
+                    <!-- 04 — BUSINESS PLATFORMS -->
+                    <div class="build-card-large reveal-item reveal-delay-4">
+                        <div>
+                            <div class="build-card-num">04</div>
+                            <h3 class="build-card-title">BUSINESS PLATFORMS</h3>
+                            <p class="build-card-body">Larger digital systems connecting customers, teams and business operations.</p>
+                            <div class="build-example-pills">
+                                <span class="build-pill">Customer portals</span>
+                                <span class="build-pill">Admin systems</span>
+                                <span class="build-pill">Multi-user platforms</span>
+                                <span class="build-pill">Custom business software</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="build-card-cta open-consultation-btn">Explore &rarr;</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: SERVICES & CAPABILITIES -->
-        <section class="section-about" id="web-services" style="padding: 5rem 0; background: var(--bg-surface-subtle);">
+        <!-- SECTION 2 — THE DIFFERENCE -->
+        <section class="web-redesign-section alt-bg" id="web-difference">
             <div class="container">
-                <div class="section-header text-center reveal-item">
-                    <span class="section-subtitle">ENGINEERING STANDARDS</span>
-                    <h2 class="section-title">Core Web Capabilities</h2>
-                    <p class="section-desc">Every website we deploy adheres to strict performance, accessibility, and security standards.</p>
+                <div class="editorial-header reveal-item">
+                    <div class="editorial-badge">NOT JUST A WEBSITE</div>
+                    <h2 class="editorial-title">Your website should do more than look good.</h2>
+                    <p class="editorial-desc">We build digital experiences around what your business needs — whether that's generating enquiries, selling products, managing operations, or giving customers a better way to interact with you.</p>
                 </div>
 
-                <div class="about-features-grid">
-                    <div class="why-card glass-panel reveal-item reveal-delay-1">
-                        <h3>Sub-100ms LCP Latency</h3>
-                        <p>Compressed media, assets pre-rendering, minified CSS/JS packages, and CDN edge caching to ensure instant page load speeds.</p>
+                <div class="difference-grid">
+                    <div class="difference-col reveal-item reveal-delay-1">
+                        <h3 class="difference-col-title">LOOKS GOOD</h3>
+                        <p class="difference-col-desc">Modern, responsive interfaces designed around your brand.</p>
                     </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-2">
-                        <h3>Hardened Security & SSL</h3>
-                        <p>Enterprise SSL certificates, CORS security policies, cross-site scripting preventions, and zero raw database exposure.</p>
+
+                    <div class="difference-col reveal-item reveal-delay-2">
+                        <h3 class="difference-col-title">WORKS WELL</h3>
+                        <p class="difference-col-desc">Clear user journeys and practical functionality.</p>
                     </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-3">
-                        <h3>Headless CMS Options</h3>
-                        <p>Empower your non-technical marketing team to edit layouts, blogs, and texts directly without touching or breaking source code.</p>
-                    </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-4">
-                        <h3>Full Responsive Fluidity</h3>
-                        <p>Tested down to 320px screen width across all iOS, Android, tablet, and desktop viewports to guarantee 0 horizontal overflow.</p>
+
+                    <div class="difference-col reveal-item reveal-delay-3">
+                        <h3 class="difference-col-title">BUILT TO GROW</h3>
+                        <p class="difference-col-desc">A foundation that can evolve as your business grows.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: WHY CHOOSE US -->
-        <section class="section-about" id="web-why-us" style="padding: 5rem 0;">
+        <!-- SECTION 3 — WHAT WE CAN BUILD INTO IT (CAPABILITIES) -->
+        <section class="web-redesign-section" id="web-capabilities">
             <div class="container">
-                <div class="section-header text-center reveal-item">
-                    <span class="section-subtitle">THE ELAVATEX DIFFERENCE</span>
-                    <h2 class="section-title">Why Engineering Matters</h2>
-                    <p class="section-desc">We discard templates, bloated page builders, and slow plugins to write clean, bespoke code.</p>
+                <div class="editorial-header reveal-item">
+                    <div class="editorial-badge">CAPABILITIES</div>
+                    <h2 class="editorial-title">BUILT AROUND YOUR NEEDS</h2>
+                    <p class="editorial-desc">Practical features and architecture engineered for real business operations.</p>
                 </div>
 
-                <div class="about-features-grid">
-                    <div class="why-card glass-panel reveal-item reveal-delay-1">
-                        <h3>Zero Generic Templates</h3>
-                        <p>Every pixel and interaction is custom-designed for your brand identity. No slow WordPress plugins or visual page builders.</p>
-                    </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-2">
-                        <h3>SEO-First Architecture</h3>
-                        <p>Semantic HTML5 structure, structured JSON-LD data schema, canonical links, and auto-generated XML sitemaps built-in.</p>
-                    </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-3">
-                        <h3>Conversion Rate Optimization</h3>
-                        <p>Strategic call-to-action placement, magnetic button animations, and lead capture funnels designed to turn clicks into clients.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 5: DEVELOPMENT PROCESS -->
-        <section class="section-about" id="web-process" style="padding: 5rem 0; background: var(--bg-surface-subtle);">
-            <div class="container">
-                <div class="section-header text-center reveal-item">
-                    <span class="section-subtitle">PROCESS WORKFLOW</span>
-                    <h2 class="section-title">Our Web Engineering Pipeline</h2>
-                    <p class="section-desc">A structured development timeline that keeps your project moving smoothly from wireframe to deployment.</p>
-                </div>
-
-                <div class="about-features-grid">
-                    <div class="why-card glass-panel reveal-item reveal-delay-1">
-                        <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: var(--accent-indigo); margin-bottom: 0.8rem;">01</div>
-                        <h3>Discovery & Architecture</h3>
-                        <p>We analyze target demographics, diagram route maps, and define core technical specifications before coding.</p>
-                    </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-2">
-                        <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: var(--accent-indigo); margin-bottom: 0.8rem;">02</div>
-                        <h3>UX/UI Design Prototype</h3>
-                        <p>We craft responsive Figma glassmorphic visual designs matching your brand guidelines for review.</p>
-                    </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-3">
-                        <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: var(--accent-indigo); margin-bottom: 0.8rem;">03</div>
-                        <h3>Production Coding</h3>
-                        <p>Full-stack development using Next.js/React/Vite with clean modular architecture and API integrations.</p>
-                    </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-4">
-                        <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: var(--accent-indigo); margin-bottom: 0.8rem;">04</div>
-                        <h3>Audit & Deployment</h3>
-                        <p>Lighthouse audits, SEO schema checks, SSL setup, and seamless deployment on Vercel/AWS hosting.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 6: TECHNOLOGIES -->
-        <section class="section-about" id="web-tech" style="padding: 5rem 0;">
-            <div class="container">
-                <div class="section-header text-center reveal-item">
-                    <span class="section-subtitle">STACK</span>
-                    <h2 class="section-title">Web Stack Technologies</h2>
-                    <p class="section-desc">We leverage battle-tested modern tools for high speed and long-term maintainability.</p>
-                </div>
-
-                <div class="about-features-grid">
-                    <div class="why-card glass-panel reveal-item reveal-delay-1">
-                        <h3>Frontend</h3>
-                        <p style="font-family: var(--font-mono); color: var(--accent-cyan); font-weight: 600;">React 18 / Next.js 14 / TypeScript / HTML5 / Vanilla CSS</p>
-                    </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-2">
-                        <h3>Build & Motion</h3>
-                        <p style="font-family: var(--font-mono); color: var(--accent-cyan); font-weight: 600;">Vite / GSAP / ScrollTrigger / Webpack</p>
-                    </div>
-                    <div class="why-card glass-panel reveal-item reveal-delay-3">
-                        <h3>Backend & Cloud</h3>
-                        <p style="font-family: var(--font-mono); color: var(--accent-cyan); font-weight: 600;">Node.js / Express / Firebase / Vercel Edge CDN</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 7: FEATURED WORK -->
-        <section class="section-portfolio" id="web-projects" style="padding: 5rem 0; background: var(--bg-surface-subtle);">
-            <div class="container">
-                <div class="section-header text-center reveal-item">
-                    <span class="section-subtitle">OUR WORK</span>
-                    <h2 class="section-title">Featured Web Projects</h2>
-                    <p class="section-desc">Explore custom web platforms designed and deployed by ElavateX.</p>
-                </div>
-
-                <div class="portfolio-grid" style="max-width: 900px; margin: 3rem auto 0; gap: 2rem;">
-                    <a href="https://shelterhuntconsultants.com" target="_blank" rel="noopener" class="portfolio-card glass-panel reveal-item reveal-delay-1" style="text-decoration: none;">
-                        <div class="portfolio-img-box" style="background: linear-gradient(135deg, #011529 0%, #002244 100%); display: flex; align-items: center; justify-content: center; height: 180px; font-size: 2.5rem;">
-                            🏠
+                <div class="capabilities-list">
+                    <div class="capability-row reveal-item reveal-delay-1">
+                        <div class="capability-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
                         </div>
-                        <div class="portfolio-info" style="padding: 1.5rem;">
-                            <span class="portfolio-tag">Real Estate Portal</span>
-                            <h3>Shelter Hunt Consultants</h3>
-                            <p>Touch-optimized mobile and desktop property discovery website with fast search filtering and 1-click WhatsApp lead connection.</p>
-                            <div style="margin-top: 0.8rem; font-size: 0.85rem; font-weight: 700; color: #10b981;">Live Site &bull; shelterhuntconsultants.com ➔</div>
+                        <div>
+                            <h3 class="capability-title">Responsive Design</h3>
+                            <p class="capability-desc">Works across mobile, tablet and desktop.</p>
                         </div>
-                    </a>
+                    </div>
 
-                    <a href="https://sp-three-liart.vercel.app" target="_blank" rel="noopener" class="portfolio-card glass-panel reveal-item reveal-delay-2" style="text-decoration: none;">
-                        <div class="portfolio-img-box" style="background: linear-gradient(135deg, #050b14 0%, #1e1b4b 100%); display: flex; align-items: center; justify-content: center; height: 180px; font-size: 2.5rem;">
-                            🎮
+                    <div class="capability-row reveal-item reveal-delay-2">
+                        <div class="capability-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
                         </div>
-                        <div class="portfolio-info" style="padding: 1.5rem;">
-                            <span class="portfolio-tag">Esports Web Platform</span>
-                            <h3>Online Gaming Tournaments</h3>
-                            <p>Responsive gaming web platform with live tournament bracket schedules, match scoring, and real-time wallet transactions.</p>
-                            <div style="margin-top: 0.8rem; font-size: 0.85rem; font-weight: 700; color: #38bdf8;">Live App &bull; sp-three-liart.vercel.app ➔</div>
+                        <div>
+                            <h3 class="capability-title">Admin Panels</h3>
+                            <p class="capability-desc">Manage content, users, products and business data.</p>
                         </div>
-                    </a>
+                    </div>
+
+                    <div class="capability-row reveal-item reveal-delay-3">
+                        <div class="capability-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="capability-title">Forms & Lead Capture</h3>
+                            <p class="capability-desc">Turn website visitors into enquiries.</p>
+                        </div>
+                    </div>
+
+                    <div class="capability-row reveal-item reveal-delay-4">
+                        <div class="capability-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="capability-title">Authentication</h3>
+                            <p class="capability-desc">Secure login and user access when required.</p>
+                        </div>
+                    </div>
+
+                    <div class="capability-row reveal-item reveal-delay-1">
+                        <div class="capability-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="capability-title">Payments</h3>
+                            <p class="capability-desc">Payment and checkout functionality when required.</p>
+                        </div>
+                    </div>
+
+                    <div class="capability-row reveal-item reveal-delay-2">
+                        <div class="capability-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="capability-title">APIs & Integrations</h3>
+                            <p class="capability-desc">Connect your website with external services and tools.</p>
+                        </div>
+                    </div>
+
+                    <div class="capability-row reveal-item reveal-delay-3">
+                        <div class="capability-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="capability-title">Search & Filtering</h3>
+                            <p class="capability-desc">Help users quickly find the information or products they need.</p>
+                        </div>
+                    </div>
+
+                    <div class="capability-row reveal-item reveal-delay-4">
+                        <div class="capability-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="capability-title">Booking & Scheduling</h3>
+                            <p class="capability-desc">Allow customers to request or manage appointments.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 8: FAQ -->
-        <section class="section-about" id="web-faq" style="padding: 5rem 0;">
-            <div class="container" style="max-width: 800px;">
-                <div class="section-header text-center reveal-item">
-                    <span class="section-subtitle">FAQ</span>
-                    <h2 class="section-title">Web Development FAQs</h2>
-                    <p class="section-desc">Common questions clients ask before starting a website project.</p>
+        <!-- SECTION 4 — REAL PROJECT -->
+        <section class="web-redesign-section alt-bg" id="web-projects">
+            <div class="container">
+                <div class="editorial-header reveal-item">
+                    <div class="editorial-badge">OUR WORK</div>
+                    <h2 class="editorial-title">BUILT FOR REAL BUSINESSES</h2>
+                    <p class="editorial-desc">Real digital platforms engineered for real clients.</p>
                 </div>
 
-                <div class="faq-container reveal-item reveal-delay-2" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+                <div class="project-editorial-card reveal-item">
+                    <div class="project-info-side">
+                        <span class="project-tag">Real Estate Platform</span>
+                        <h3 class="project-title">Shelter Hunt Consultants</h3>
+                        <p class="project-desc">A custom real estate platform built to streamline property browsing and client lead connection. Includes touch-optimized search filters, fast image rendering, and 1-click WhatsApp inquiry integration.</p>
+
+                        <ul class="project-features-list">
+                            <li>Fast multi-criteria property search & filtering</li>
+                            <li>100% mobile responsive property catalog</li>
+                            <li>Direct WhatsApp lead routing pipeline</li>
+                        </ul>
+
+                        <a href="https://shelterhuntconsultants.com" target="_blank" rel="noopener" class="btn-glow">
+                            <span>View Project &rarr;</span>
+                        </a>
+                    </div>
+
+                    <div class="project-visual-side">
+                        <div class="project-browser-frame">
+                            <div class="project-browser-header">
+                                <div class="project-browser-dots">
+                                    <span class="p-dot-red"></span>
+                                    <span class="p-dot-yellow"></span>
+                                    <span class="p-dot-green"></span>
+                                </div>
+                                <div class="project-browser-url">https://shelterhuntconsultants.com</div>
+                            </div>
+                            <img src="../shelterhunt_preview.jpg" alt="Shelter Hunt Consultants Platform Preview" class="project-preview-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5 — HOW WE BUILD -->
+        <section class="web-redesign-section" id="web-process">
+            <div class="container">
+                <div class="editorial-header reveal-item">
+                    <div class="editorial-badge">PROCESS</div>
+                    <h2 class="editorial-title">FROM IDEA TO LIVE PRODUCT</h2>
+                    <p class="editorial-desc">A clear 5-step engineering timeline from initial concept to production launch.</p>
+                </div>
+
+                <div class="process-timeline-grid">
+                    <div class="process-step-card reveal-item reveal-delay-1">
+                        <div class="process-num">01</div>
+                        <h3 class="process-step-title">DISCOVER</h3>
+                        <p class="process-step-desc">Understand your business, users and requirements.</p>
+                    </div>
+
+                    <div class="process-step-card reveal-item reveal-delay-2">
+                        <div class="process-num">02</div>
+                        <h3 class="process-step-title">PLAN</h3>
+                        <p class="process-step-desc">Define the structure, features and user flow.</p>
+                    </div>
+
+                    <div class="process-step-card reveal-item reveal-delay-3">
+                        <div class="process-num">03</div>
+                        <h3 class="process-step-title">DESIGN</h3>
+                        <p class="process-step-desc">Create the interface and experience.</p>
+                    </div>
+
+                    <div class="process-step-card reveal-item reveal-delay-4">
+                        <div class="process-num">04</div>
+                        <h3 class="process-step-title">BUILD</h3>
+                        <p class="process-step-desc">Develop and connect the required functionality.</p>
+                    </div>
+
+                    <div class="process-step-card reveal-item reveal-delay-5">
+                        <div class="process-num">05</div>
+                        <h3 class="process-step-title">LAUNCH</h3>
+                        <p class="process-step-desc">Test, deploy and hand over the finished product.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6 — WHY ELAVATEX -->
+        <section class="web-redesign-section alt-bg" id="web-why-us">
+            <div class="container">
+                <div class="editorial-header reveal-item">
+                    <div class="editorial-badge">WHY ELAVATEX</div>
+                    <h2 class="editorial-title">Built on Practical Execution</h2>
+                    <p class="editorial-desc">We prioritize working software, clear communication, and long-term value over empty agency jargon.</p>
+                </div>
+
+                <div class="why-reasons-grid">
+                    <div class="why-reason-card reveal-item reveal-delay-1">
+                        <h3 class="why-reason-title">DIRECT COMMUNICATION</h3>
+                        <p class="why-reason-desc">Work directly with the people building your product.</p>
+                    </div>
+
+                    <div class="why-reason-card reveal-item reveal-delay-2">
+                        <h3 class="why-reason-title">BUSINESS-FIRST THINKING</h3>
+                        <p class="why-reason-desc">We focus on what the product needs to achieve, not just how it looks.</p>
+                    </div>
+
+                    <div class="why-reason-card reveal-item reveal-delay-3">
+                        <h3 class="why-reason-title">CUSTOM DEVELOPMENT</h3>
+                        <p class="why-reason-desc">Your project is built around your requirements instead of forcing your business into a template.</p>
+                    </div>
+
+                    <div class="why-reason-card reveal-item reveal-delay-4">
+                        <h3 class="why-reason-title">POST-LAUNCH SUPPORT</h3>
+                        <p class="why-reason-desc">We can continue improving and maintaining the product after launch.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7 — FAQ -->
+        <section class="web-redesign-section" id="web-faq">
+            <div class="container" style="max-width: 860px;">
+                <div class="editorial-header text-center reveal-item">
+                    <div class="editorial-badge">FREQUENTLY ASKED QUESTIONS</div>
+                    <h2 class="editorial-title">Web Development FAQs</h2>
+                    <p class="editorial-desc" style="margin: 0 auto;">Everything you need to know before starting your project.</p>
+                </div>
+
+                <div class="faq-container reveal-item reveal-delay-2" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2.5rem;">
                     <div class="faq-item glass-panel" style="border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-surface);">
                         <button class="faq-question" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 1.8rem; background:none; border:none; text-align:left; font-size:1.05rem; font-weight:700; color:var(--text-main); cursor:pointer; outline:none;">
-                            <span>How long does it take to design and launch a custom website?</span>
+                            <span>Can you build a website from scratch?</span>
                             <span class="faq-icon">+</span>
                         </button>
-                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.92rem; line-height:1.6;">
-                            <p>Standard corporate and agency websites typically take 2 to 3 weeks from discovery to live launch. Complex SaaS portals or custom web applications take 3 to 6 weeks depending on requirements.</p>
+                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            <p>Yes. We engineer bespoke websites from the ground up, tailored specifically to your brand identity, target audience, and business goals.</p>
                         </div>
                     </div>
 
                     <div class="faq-item glass-panel" style="border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-surface);">
                         <button class="faq-question" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 1.8rem; background:none; border:none; text-align:left; font-size:1.05rem; font-weight:700; color:var(--text-main); cursor:pointer; outline:none;">
-                            <span>Will my website be responsive on mobile devices?</span>
+                            <span>Can you redesign my existing website?</span>
                             <span class="faq-icon">+</span>
                         </button>
-                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.92rem; line-height:1.6;">
-                            <p>Absolutely. Every site we build is thoroughly tested across mobile screens from 320px up to 4K desktop displays to ensure 100% responsive fluidity and zero horizontal layout scrolling.</p>
+                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            <p>Yes. We can completely overhaul your existing site to improve visual design, mobile responsiveness, load speed, and lead conversion rates.</p>
                         </div>
                     </div>
 
                     <div class="faq-item glass-panel" style="border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-surface);">
                         <button class="faq-question" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 1.8rem; background:none; border:none; text-align:left; font-size:1.05rem; font-weight:700; color:var(--text-main); cursor:pointer; outline:none;">
-                            <span>Do you provide hosting and maintenance support?</span>
+                            <span>Can you build an e-commerce website?</span>
                             <span class="faq-icon">+</span>
                         </button>
-                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.92rem; line-height:1.6;">
-                            <p>Yes. We deploy on high-speed Vercel Edge / AWS hosting networks and offer ongoing maintenance, security updates, and performance optimization packages.</p>
+                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            <p>Yes. We build fast e-commerce stores with product catalogs, shopping carts, checkout flows, and payment gateway integrations.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-panel" style="border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-surface);">
+                        <button class="faq-question" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 1.8rem; background:none; border:none; text-align:left; font-size:1.05rem; font-weight:700; color:var(--text-main); cursor:pointer; outline:none;">
+                            <span>Can you build custom web applications?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            <p>Yes. We engineer custom web applications including customer portals, admin panels, dashboards, booking tools, and management platforms.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-panel" style="border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-surface);">
+                        <button class="faq-question" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 1.8rem; background:none; border:none; text-align:left; font-size:1.05rem; font-weight:700; color:var(--text-main); cursor:pointer; outline:none;">
+                            <span>Will the website work on mobile?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            <p>Absolutely. Every site we build is engineered and tested across mobile phones, tablets, and desktop displays for full responsiveness.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-panel" style="border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-surface);">
+                        <button class="faq-question" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 1.8rem; background:none; border:none; text-align:left; font-size:1.05rem; font-weight:700; color:var(--text-main); cursor:pointer; outline:none;">
+                            <span>Can you integrate payments?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            <p>Yes. We can integrate payment gateways for online transactions, checkout flows, or appointment bookings when required.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-panel" style="border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-surface);">
+                        <button class="faq-question" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 1.8rem; background:none; border:none; text-align:left; font-size:1.05rem; font-weight:700; color:var(--text-main); cursor:pointer; outline:none;">
+                            <span>Can you create an admin panel?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            <p>Yes. We create user-friendly admin panels and content management interfaces so you can easily manage site content, users, and business data.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-panel" style="border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-surface);">
+                        <button class="faq-question" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 1.8rem; background:none; border:none; text-align:left; font-size:1.05rem; font-weight:700; color:var(--text-main); cursor:pointer; outline:none;">
+                            <span>How long does a website take?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            <p>Standard business websites typically take 2 to 3 weeks, while custom web applications or complex platforms take 3 to 6 weeks depending on project scope.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item glass-panel" style="border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-surface);">
+                        <button class="faq-question" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 1.8rem; background:none; border:none; text-align:left; font-size:1.05rem; font-weight:700; color:var(--text-main); cursor:pointer; outline:none;">
+                            <span>How do I get started?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" style="max-height:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease; padding:0 1.8rem; color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            <p>Simply click "Start a Project" to request a callback or connect directly with our team on WhatsApp to discuss your requirements.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 9: STRONG CTA -->
-        <section class="section-cta" style="padding: 5rem 0; background: var(--bg-surface-subtle);">
+        <!-- SECTION 8 — FINAL CTA -->
+        <section class="web-redesign-section alt-bg" id="web-cta">
             <div class="container">
-                <div class="cta-box glass-panel text-center reveal-item">
-                    <h2 class="cta-title">Ready to Engineer Your High-Converting Website?</h2>
-                    <p class="cta-subtitle">Deploy a sub-second, custom-designed web platform built to scale. Partner with ElavateX Web Engineering.</p>
+                <div class="cta-box glass-panel text-center reveal-item" style="padding: 4rem 2rem; max-width: 900px; margin: 0 auto; border-radius: var(--radius-lg);">
+                    <h2 class="cta-title" style="font-family: var(--font-primary); font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">HAVE SOMETHING IN MIND?</h2>
+                    <p class="cta-subtitle" style="font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.2rem;">Tell us what you're building. We'll help you figure out the right way to build it.</p>
                     
-                    <div class="cta-btn-group" style="justify-content: center;">
+                    <div class="cta-btn-group" style="justify-content: center; display: flex; gap: 1.2rem; flex-wrap: wrap;">
                         <button class="btn-glow btn-lg open-consultation-btn">
-                            <span>Start Your Web Project ➔</span>
+                            <span>Start a Project &rarr;</span>
                         </button>
-                        <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20start%20a%20website%20project" target="_blank" class="btn-whatsapp-pill btn-lg">
-                            <span>Chat on WhatsApp 💬</span>
+                        <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20discuss%20a%20web%20project" target="_blank" class="btn-whatsapp-pill btn-lg">
+                            <span>Talk to ElavateX &rarr;</span>
                         </a>
                     </div>
                 </div>
