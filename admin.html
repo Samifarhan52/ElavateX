@@ -2473,17 +2473,146 @@
         };
     </script>
 
-    <!-- LIVE CLOUD FIRESTORE SYNCHRONIZATION ENGINE -->
-    <script type="module">
-        import { 
-            saveLeadToFirestore, 
-            saveReviewToFirestore, 
-            saveRecordToFirestore, 
-            updateRecordInFirestore, 
-            deleteRecordFromFirestore,
-            subscribeToCollection,
-            saveAuditLogToFirestore
-        } from "./firebase-config.js";
+    <!-- LIVE CLOUD FIRESTORE SYNCHRONIZATION ENGINE (Firebase Compat SDK for 100% reliable execution in all browser environments) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script>
+        (function() {
+            var firebaseConfig = {
+              apiKey: "AIzaSyDEY1wND-k04J8s4FYBfan0K8RBK2sfAEM",
+              authDomain: "elavatex-2cc3b.firebaseapp.com",
+              projectId: "elavatex-2cc3b",
+              storageBucket: "elavatex-2cc3b.firebasestorage.app",
+              messagingSenderId: "528561063745",
+              appId: "1:528561063745:web:333b2cbf7b3153b83ac3c0",
+              measurementId: "G-JMRL6LH7WJ"
+            };
+            if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+                try {
+                    firebase.initializeApp(firebaseConfig);
+                    window.db = firebase.firestore();
+                    console.log("🔥 LIVE FIREBASE CONNECTED VIA COMPAT SDK!");
+                } catch(e) {
+                    console.warn("Firebase Init Error:", e);
+                }
+            }
+        })();
+
+        window.saveLeadToFirestore = async function(leadData) {
+            if (!window.db) return false;
+            try {
+                const payload = {
+                    ...leadData,
+                    status: leadData.status || 'New',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+                const docRef = await window.db.collection("leads").add(payload);
+                try {
+                    await window.db.collection("contacts").add({
+                        ...payload,
+                        status: leadData.status || 'Pending'
+                    });
+                } catch(e){}
+                return docRef.id;
+            } catch(e) { return false; }
+        };
+
+        window.saveReviewToFirestore = async function(reviewData) {
+            if (!window.db) return false;
+            try {
+                const docRef = await window.db.collection("reviews").add({
+                    ...reviewData,
+                    status: reviewData.status || 'Approved',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                return docRef.id;
+            } catch(e) { return false; }
+        };
+
+        window.saveRecordToFirestore = async function(collName, data) {
+            if (!window.db) return false;
+            try {
+                const docRef = await window.db.collection(collName).add({
+                    ...data,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                return docRef.id;
+            } catch(e) { return false; }
+        };
+
+        window.updateRecordInFirestore = async function(collName, docId, data) {
+            if (!window.db || !docId) return false;
+            try {
+                await window.db.collection(collName).doc(String(docId)).update({
+                    ...data,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                return true;
+            } catch(e) { return false; }
+        };
+
+        window.deleteRecordFromFirestore = async function(collName, docId) {
+            if (!window.db || !docId) return false;
+            try {
+                await window.db.collection(collName).doc(String(docId)).delete();
+                return true;
+            } catch(e) { return false; }
+        };
+
+        window.subscribeToCollection = function(collName, callback, errorCallback) {
+            if (!window.db) {
+                if (errorCallback) errorCallback(new Error("Firestore DB not initialized"));
+                return () => {};
+            }
+            try {
+                return window.db.collection(collName).onSnapshot(snapshot => {
+                    const records = [];
+                    snapshot.forEach(d => {
+                        const data = d.data();
+                        let createdAtFormatted = data.createdAt;
+                        if (data.createdAt && typeof data.createdAt.toDate === 'function') {
+                            createdAtFormatted = data.createdAt.toDate().toLocaleString();
+                        } else if (data.createdAt && data.createdAt.seconds) {
+                            createdAtFormatted = new Date(data.createdAt.seconds * 1000).toLocaleString();
+                        }
+                        records.push({
+                            id: d.id,
+                            ...data,
+                            formattedDate: createdAtFormatted || data.date || 'Recently'
+                        });
+                    });
+
+                    records.sort((a, b) => {
+                        const getMillis = (item) => {
+                            if (item.createdAt && typeof item.createdAt.toDate === 'function') return item.createdAt.toDate().getTime();
+                            if (item.createdAt && item.createdAt.seconds) return item.createdAt.seconds * 1000;
+                            if (typeof item.createdAt === 'number') return item.createdAt;
+                            if (typeof item.timestamp === 'number') return item.timestamp;
+                            if (typeof item.id === 'number') return item.id;
+                            if (typeof item.id === 'string' && !isNaN(Number(item.id))) return Number(item.id);
+                            return 0;
+                        };
+                        return getMillis(b) - getMillis(a);
+                    });
+
+                    callback(records);
+                }, error => {
+                    if (errorCallback) errorCallback(error);
+                });
+            } catch(err) {
+                if (errorCallback) errorCallback(err);
+                return () => {};
+            }
+        };
+
+        window.subscribeToReviews = function(callback, errorCallback) {
+            return window.subscribeToCollection("reviews", callback, errorCallback);
+        };
+
+        window.saveAuditLogToFirestore = function(logData) {
+            return window.saveRecordToFirestore("audit_logs", logData);
+        };
 
         // Update telemetry badge
         function setTelemetryStatus(status) {
