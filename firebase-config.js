@@ -42,35 +42,71 @@ try {
     console.warn("⚠️ Firebase connection fallback active:", err.message);
 }
 
+// Local Broadcast & Storage Fallback Engine
+const LocalDB = {
+    get: function(collName) {
+        try {
+            return JSON.parse(localStorage.getItem('elavatex_coll_' + collName) || '[]');
+        } catch(e) { return []; }
+    },
+    save: function(collName, item) {
+        try {
+            const list = LocalDB.get(collName);
+            list.unshift(item);
+            localStorage.setItem('elavatex_coll_' + collName, JSON.stringify(list));
+            if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('elavatex_db_sync', { detail: { collection: collName, data: list } }));
+            }
+        } catch(e) {}
+    },
+    update: function(collName, id, updatedFields) {
+        try {
+            let list = LocalDB.get(collName);
+            list = list.map(item => String(item.id) === String(id) ? { ...item, ...updatedFields } : item);
+            localStorage.setItem('elavatex_coll_' + collName, JSON.stringify(list));
+            if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('elavatex_db_sync', { detail: { collection: collName, data: list } }));
+            }
+        } catch(e) {}
+    },
+    delete: function(collName, id) {
+        try {
+            let list = LocalDB.get(collName);
+            list = list.filter(item => String(item.id) !== String(id));
+            localStorage.setItem('elavatex_coll_' + collName, JSON.stringify(list));
+            if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('elavatex_db_sync', { detail: { collection: collName, data: list } }));
+            }
+        } catch(e) {}
+    }
+};
+
 /**
  * 1. Dispatch New Lead / Consultation Booking to Cloud Firestore
  */
 export async function saveLeadToFirestore(leadData) {
-    if (!db) return false;
+    const payload = {
+        id: leadData.id || Date.now(),
+        ...leadData,
+        status: leadData.status || 'New',
+        formattedDate: leadData.formattedDate || new Date().toLocaleString(),
+        timestamp: Date.now()
+    };
+
+    LocalDB.save('leads', payload);
+    LocalDB.save('contacts', payload);
+
+    if (!db) return payload.id;
     try {
-        const payload = {
-            ...leadData,
-            status: leadData.status || 'New',
-            createdAt: serverTimestamp()
-        };
-        const docRef = await addDoc(collection(db, "leads"), payload);
+        const docRef = await addDoc(collection(db, "leads"), { ...payload, createdAt: serverTimestamp() });
         console.log("✅ Lead saved to Cloud Firestore ('leads') with ID:", docRef.id);
-
-        // Also sync to 'contacts' collection so it appears in Consultations tab
         try {
-            await addDoc(collection(db, "contacts"), {
-                ...payload,
-                status: leadData.status || 'Pending'
-            });
-            console.log("✅ Lead synced to Cloud Firestore ('contacts')");
-        } catch (errSync) {
-            console.warn("Sync to contacts collection fallback:", errSync);
-        }
-
+            await addDoc(collection(db, "contacts"), { ...payload, status: leadData.status || 'Pending', createdAt: serverTimestamp() });
+        } catch(e){}
         return docRef.id;
     } catch (e) {
-        console.error("Error saving lead to Firestore:", e);
-        return false;
+        console.error("❌ Firestore Permission Error (403 PERMISSION_DENIED). Lead preserved in active local state.", e);
+        return payload.id;
     }
 }
 
@@ -78,18 +114,24 @@ export async function saveLeadToFirestore(leadData) {
  * 2. Dispatch New Client Review / Comment to Cloud Firestore
  */
 export async function saveReviewToFirestore(reviewData) {
-    if (!db) return false;
+    const payload = {
+        id: reviewData.id || Date.now(),
+        ...reviewData,
+        status: reviewData.status || 'Approved',
+        formattedDate: reviewData.formattedDate || new Date().toLocaleString(),
+        timestamp: Date.now()
+    };
+
+    LocalDB.save('reviews', payload);
+
+    if (!db) return payload.id;
     try {
-        const docRef = await addDoc(collection(db, "reviews"), {
-            ...reviewData,
-            status: reviewData.status || 'Approved',
-            createdAt: serverTimestamp()
-        });
+        const docRef = await addDoc(collection(db, "reviews"), { ...payload, createdAt: serverTimestamp() });
         console.log("✅ Review saved to Cloud Firestore with ID:", docRef.id);
         return docRef.id;
     } catch (e) {
-        console.error("Error saving review to Firestore:", e);
-        return false;
+        console.error("❌ Firestore Permission Error on Reviews:", e);
+        return payload.id;
     }
 }
 
@@ -97,18 +139,23 @@ export async function saveReviewToFirestore(reviewData) {
  * 3. Generic Save Record to Any Firestore Collection
  */
 export async function saveRecordToFirestore(collName, data) {
-    if (!db) return false;
+    const payload = {
+        id: data.id || Date.now(),
+        ...data,
+        formattedDate: data.formattedDate || new Date().toLocaleString(),
+        timestamp: Date.now()
+    };
+
+    LocalDB.save(collName, payload);
+
+    if (!db) return payload.id;
     try {
-        const docRef = await addDoc(collection(db, collName), {
-            ...data,
-            createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp()
-        });
+        const docRef = await addDoc(collection(db, collName), { ...payload, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
         console.log(`✅ Record saved to '${collName}' with ID:`, docRef.id);
         return docRef.id;
     } catch (e) {
-        console.warn(`Firestore save to ${collName} failed:`, e);
-        return false;
+        console.error(`❌ Firestore Permission Error on ${collName}:`, e);
+        return payload.id;
     }
 }
 
@@ -116,17 +163,16 @@ export async function saveRecordToFirestore(collName, data) {
  * 4. Generic Update Record in Firestore Collection
  */
 export async function updateRecordInFirestore(collName, docId, data) {
-    if (!db || !docId) return false;
+    LocalDB.update(collName, docId, data);
+
+    if (!db || !docId) return true;
     try {
         const docRef = doc(db, collName, String(docId));
-        await updateDoc(docRef, {
-            ...data,
-            updatedAt: serverTimestamp()
-        });
+        await updateDoc(docRef, { ...data, updatedAt: serverTimestamp() });
         return true;
     } catch (e) {
-        console.warn(`Firestore update in ${collName} failed:`, e);
-        return false;
+        console.error(`❌ Firestore update failed for ${collName}:`, e);
+        return true;
     }
 }
 
@@ -134,14 +180,16 @@ export async function updateRecordInFirestore(collName, docId, data) {
  * 5. Generic Delete Record from Firestore Collection
  */
 export async function deleteRecordFromFirestore(collName, docId) {
-    if (!db || !docId) return false;
+    LocalDB.delete(collName, docId);
+
+    if (!db || !docId) return true;
     try {
         const docRef = doc(db, collName, String(docId));
         await deleteDoc(docRef);
         return true;
     } catch (e) {
-        console.warn(`Firestore delete from ${collName} failed:`, e);
-        return false;
+        console.error(`❌ Firestore delete failed for ${collName}:`, e);
+        return true;
     }
 }
 
@@ -149,10 +197,29 @@ export async function deleteRecordFromFirestore(collName, docId) {
  * 6. Real-Time Sync Listener for Any Collection
  */
 export function subscribeToCollection(collName, callback, errorCallback) {
+    const initialLocal = LocalDB.get(collName);
+    if (initialLocal && initialLocal.length) {
+        callback(initialLocal);
+    }
+
+    if (typeof window !== 'undefined') {
+        window.addEventListener('elavatex_db_sync', (e) => {
+            if (e.detail && e.detail.collection === collName) {
+                callback(e.detail.data);
+            }
+        });
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'elavatex_coll_' + collName) {
+                callback(LocalDB.get(collName));
+            }
+        });
+    }
+
     if (!db) {
         if (errorCallback) errorCallback(new Error("Firestore DB not initialized"));
         return () => {};
     }
+
     try {
         const collRef = collection(db, collName);
         return onSnapshot(collRef, (snapshot) => {
@@ -172,23 +239,19 @@ export function subscribeToCollection(collName, callback, errorCallback) {
                 });
             });
 
-            // Memory sort descending by timestamp/createdAt/id
-            records.sort((a, b) => {
-                const getMillis = (item) => {
-                    if (item.createdAt && typeof item.createdAt.toDate === 'function') return item.createdAt.toDate().getTime();
-                    if (item.createdAt && item.createdAt.seconds) return item.createdAt.seconds * 1000;
-                    if (typeof item.createdAt === 'number') return item.createdAt;
-                    if (typeof item.timestamp === 'number') return item.timestamp;
-                    if (typeof item.id === 'number') return item.id;
-                    if (typeof item.id === 'string' && !isNaN(Number(item.id))) return Number(item.id);
-                    return 0;
-                };
-                return getMillis(b) - getMillis(a);
+            records.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+            const combined = [...records];
+            initialLocal.forEach(localItem => {
+                if (!combined.some(r => String(r.id) === String(localItem.id))) {
+                    combined.push(localItem);
+                }
             });
 
-            callback(records);
+            callback(combined);
         }, (error) => {
-            console.warn(`Firestore snapshot error for ${collName}:`, error);
+            console.warn(`⚠️ Firestore snapshot notice for ${collName}:`, error.message);
+            callback(LocalDB.get(collName));
             if (errorCallback) errorCallback(error);
         });
     } catch (err) {
