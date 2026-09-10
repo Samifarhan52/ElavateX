@@ -2800,6 +2800,35 @@
                     </div>
                 </div>
 
+                <!-- Col 5: Office Location & Clickable Google Maps -->
+                <div class="footer-col location-col">
+                    <h4 class="footer-heading">Office Location</h4>
+                    <div class="location-details">
+                        <p class="location-address">
+                            <strong>Address:</strong> 3rd Floor, Carmelaram, Chikkabellandur, Bengaluru, Karnataka 560035
+                        </p>
+                    </div>
+                    <a href="https://maps.app.goo.gl/PU1nFqvbbBd8SQRb7?g_st=aw" target="_blank" rel="noopener" class="footer-map-card" title="Click to open ElavateX Office Location on Google Maps">
+                        <div class="map-badge">
+                            <span>Maps</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                        </div>
+                        <div class="map-canvas-preview">
+                            <div class="map-grid-pattern"></div>
+                            <div class="map-road road-1"></div>
+                            <div class="map-road road-2"></div>
+                            <div class="map-pin-pulse"></div>
+                            <div class="map-pin-marker">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="#ffffff"/></svg>
+                            </div>
+                            <div class="map-label-box">
+                                <span class="map-loc-name">ElavateX Office &bull; 3rd Floor</span>
+                                <span class="map-loc-sub">Carmelaram, Bengaluru</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
             </div>
             
             <div class="footer-bottom">
@@ -3416,13 +3445,16 @@
                         console.error(err);
                     }
 
-                    // 4. Dispatch to Cloud Firestore
+                    // 4. Dispatch to Cloud Firestore (SMM Orders + General Leads)
                     try {
-                        if (typeof saveLeadToFirestore === 'function') {
-                            saveLeadToFirestore(leadObj);
+                        if (typeof window.saveRecordToFirestore === 'function') {
+                            window.saveRecordToFirestore('smm_orders', leadObj);
+                        }
+                        if (typeof window.saveLeadToFirestore === 'function') {
+                            window.saveLeadToFirestore(leadObj);
                         }
                     } catch (err) {
-                        console.error(err);
+                        console.error("SMM Firestore dispatch error:", err);
                     }
 
                     // 5. Show Thank You view inside modal
@@ -3473,6 +3505,8 @@
         </div>
     </div>
 
+    <!-- Firebase Live Cloud Integration -->
+    <script type="module" src="../firebase-config.js"></script>
     <!-- Unified JS Script -->
     <script src="../main.js?v=1.3"></script>
 </body>
