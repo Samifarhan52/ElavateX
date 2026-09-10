@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ElavateX | Admin CMS Control Center</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../favicon.png">
-    <link rel="shortcut icon" type="image/png" href="../favicon.png">
-    <link rel="apple-touch-icon" href="../elavatex_logo.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="elavatex_logo.png">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
     <!-- Master Unified Stylesheet -->
-    <link rel="stylesheet" href="../style.css?v=2.0">
+    <link rel="stylesheet" href="style.css?v=2.0">
 
     <style>
         :root {
@@ -1408,7 +1408,7 @@
             <div class="left-panel-content-wrap">
                 <div class="left-brand-header">
                     <div class="left-brand-logo-group">
-                        <img src="../favicon.png" alt="ElavateX Logo" class="left-brand-logo-img">
+                        <img src="favicon.png" alt="ElavateX Logo" class="left-brand-logo-img">
                         <div>
                             <div class="left-brand-title">ElavateX</div>
                             <div class="left-brand-sub">IDEAS &nbsp;&rsaquo;&nbsp; PRODUCTS &nbsp;&rsaquo;&nbsp; IMPACT</div>
@@ -1463,14 +1463,14 @@
 
         <!-- Right 45% Light Login Canvas -->
         <div class="login-right-canvas">
-            <a href="../index.html" class="back-to-site-link">
+            <a href="index.html" class="back-to-site-link">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 Back to Website
             </a>
 
             <div class="login-card-box">
                 <div class="login-card-brand-header">
-                    <img src="../favicon.png" alt="ElavateX Logo">
+                    <img src="favicon.png" alt="ElavateX Logo">
                     <div>
                         <div class="login-card-brand-title">ElavateX</div>
                         <div class="login-card-brand-sub">ADMIN PANEL</div>
@@ -1559,7 +1559,7 @@
         <aside class="dash-sidebar">
             <div>
                 <div class="sidebar-brand-box">
-                    <img src="../favicon.png" alt="ElavateX Logo">
+                    <img src="favicon.png" alt="ElavateX Logo">
                     <div class="sidebar-brand-title">Elavate<span>X</span></div>
                 </div>
 
@@ -1665,7 +1665,7 @@
                         <span id="firestore-status-text">Firestore Connected</span>
                     </div>
 
-                    <a href="../index.html" target="_blank" class="topbar-link-btn">
+                    <a href="index.html" target="_blank" class="topbar-link-btn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                         View Main Site
                     </a>
@@ -2483,7 +2483,7 @@
             deleteRecordFromFirestore,
             subscribeToCollection,
             saveAuditLogToFirestore
-        } from "../firebase-config.js";
+        } from "./firebase-config.js";
 
         // Update telemetry badge
         function setTelemetryStatus(status) {
@@ -2544,6 +2544,11 @@
             subscribeToCollection('audit_logs', data => {
                 state.audit_logs = data;
                 renderAuditUI();
+            });
+
+            subscribeToCollection('analytics_views', data => {
+                state.analytics_views = data;
+                renderAnalyticsUI();
             });
         } catch(e) {
             setTelemetryStatus('offline');
@@ -2704,6 +2709,59 @@
                             <td style="font-weight:700;">${escapeHtml(log.actor || 'System')}</td>
                             <td>${escapeHtml(log.action || log.details || 'Audit Event')}</td>
                             <td style="color:#64748b;">${escapeHtml(log.ip || '127.0.0.1')}</td>
+                        </tr>
+                    `).join('');
+                }
+            }
+        }
+
+        function renderAnalyticsUI() {
+            var views = state.analytics_views || [];
+            var totalViewsEl = document.getElementById('analytics-total-views');
+            var uniqueSessionsEl = document.getElementById('analytics-unique-sessions');
+            var topServiceEl = document.getElementById('analytics-top-service');
+            var conversionRateEl = document.getElementById('analytics-conversion-rate');
+            var liveCountEl = document.getElementById('analytics-live-count');
+            var tbody = document.getElementById('full-analytics-tbody');
+
+            if (totalViewsEl) totalViewsEl.textContent = views.length;
+
+            var uniqueDevices = new Set(views.map(v => v.userAgent || v.id)).size;
+            if (uniqueSessionsEl) uniqueSessionsEl.textContent = uniqueDevices || views.length;
+
+            var counts = {};
+            views.forEach(v => {
+                var s = v.service || 'General Visit';
+                counts[s] = (counts[s] || 0) + 1;
+            });
+            var topService = 'Web Dev';
+            var maxCount = 0;
+            Object.keys(counts).forEach(k => {
+                if (counts[k] > maxCount) {
+                    maxCount = counts[k];
+                    topService = k;
+                }
+            });
+            if (topServiceEl) topServiceEl.textContent = topService;
+
+            var leadsCount = (state.leads || []).length;
+            var rate = views.length ? Math.min(100, Math.round((leadsCount / views.length) * 100)) : 0;
+            if (conversionRateEl) conversionRateEl.textContent = rate + '%';
+
+            var fiveMinsAgo = Date.now() - (5 * 60 * 1000);
+            var activeNow = views.filter(v => (v.timestamp || 0) > fiveMinsAgo).length;
+            if (liveCountEl) liveCountEl.textContent = (activeNow || Math.min(views.length, 1)) + ' Active Visitors';
+
+            if (tbody) {
+                if (!views.length) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#94a3b8; padding:1.5rem;">No page views logged yet</td></tr>';
+                } else {
+                    tbody.innerHTML = views.map(v => `
+                        <tr>
+                            <td style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#64748b;">${escapeHtml(v.formattedDate || 'Just now')}</td>
+                            <td><span class="status-pill status-published">${escapeHtml(v.page || 'Home')}</span></td>
+                            <td style="color:#ffffff; font-weight:600;">${escapeHtml(v.service || 'General Visit')}</td>
+                            <td style="font-size:0.75rem; color:#94a3b8;">${escapeHtml(v.referrer || 'Direct')}</td>
                         </tr>
                     `).join('');
                 }
