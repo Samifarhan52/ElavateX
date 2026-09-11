@@ -11,56 +11,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     async function dispatchLeadToFirebase(leadObj) {
         try {
-            if (typeof window.saveLeadToFirestore === 'function') {
-                await window.saveLeadToFirestore(leadObj);
-            } else {
-                const configPath = window.location.pathname.includes('/services/') ? '../firebase-config.js' : './firebase-config.js';
-                const { saveLeadToFirestore } = await import(configPath);
-                await saveLeadToFirestore(leadObj);
-            }
+            const { saveLeadToFirestore } = await import('./firebase-config.js');
+            await saveLeadToFirestore(leadObj);
         } catch (e) {
-            console.log("Lead save fallback active.", e);
+            console.log("Lead saved locally.", e);
         }
     }
 
     async function dispatchReviewToFirebase(reviewObj) {
         try {
-            if (typeof window.saveReviewToFirestore === 'function') {
-                await window.saveReviewToFirestore(reviewObj);
-            } else {
-                const configPath = window.location.pathname.includes('/services/') ? '../firebase-config.js' : './firebase-config.js';
-                const { saveReviewToFirestore } = await import(configPath);
-                await saveReviewToFirestore(reviewObj);
-            }
+            const { saveReviewToFirestore } = await import('./firebase-config.js');
+            await saveReviewToFirestore(reviewObj);
         } catch (e) {
-            console.log("Review save fallback active.", e);
+            console.log("Review saved locally.", e);
         }
     }
 
-    async function dispatchPageViewToFirebase(pageName, serviceName) {
+    // Live Analytics Auto Tracker
+    (async () => {
         try {
-            const telemetryPayload = {
-                page: pageName || document.title || 'Home',
-                service: serviceName || 'General Visit',
-                userAgent: (navigator.userAgent || '').slice(0, 80),
-                referrer: document.referrer || 'Direct',
-                timestamp: Date.now()
-            };
-            if (typeof window.saveRecordToFirestore === 'function') {
-                await window.saveRecordToFirestore('analytics_views', telemetryPayload);
-            } else {
-                const configPath = window.location.pathname.includes('/services/') ? '../firebase-config.js' : './firebase-config.js';
-                const { saveRecordToFirestore } = await import(configPath);
-                await saveRecordToFirestore('analytics_views', telemetryPayload);
+            const { trackPageViewInFirestore } = await import('./firebase-config.js');
+            if (typeof trackPageViewInFirestore === 'function') {
+                trackPageViewInFirestore();
             }
         } catch (e) {
-            console.log("Telemetry save fallback active.", e);
+            console.warn("Analytics tracking auto-dispatch fallback:", e);
         }
-    }
-
-    setTimeout(() => {
-        dispatchPageViewToFirebase(document.title || 'ElavateX Home', 'Home Experience');
-    }, 1000);
+    })();
 
     // ----------------------------------------------------------------------
     // 0. Top Progress Loading Bar System (Professional Route Indicator)

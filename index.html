@@ -993,7 +993,131 @@
         </div>
     </footer>
 
+    <!-- =================================================================== -->
+    <!-- ADMIN LOGIN GATEWAY MODAL                                          -->
+    <!-- Credentials: ID = FarhanElavate | Password = Mycareer               -->
+    <!-- =================================================================== -->
+    <dialog class="glass-modal admin-modal" id="admin-login-modal">
+        <div class="modal-content admin-card-box">
+            <button class="modal-close" id="admin-login-close-btn">&times;</button>
+            <div class="modal-header text-center">
+                <div class="pill-tag text-purple">SECURE ADMIN GATEWAY</div>
+                <h3 class="modal-title">ElavateX Admin Portal</h3>
+                <p class="modal-subtitle">Enter your admin credentials to access live site configuration.</p>
+            </div>
 
+            <form id="admin-login-form" class="modal-form">
+                <div class="form-group">
+                    <label for="admin-user">Admin ID *</label>
+                    <input type="text" id="admin-user" required placeholder="FarhanElavate" value="FarhanElavate">
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-pass">Password *</label>
+                    <input type="password" id="admin-pass" required placeholder="Enter password" value="Mycareer">
+                </div>
+
+                <div id="admin-login-error" class="admin-login-error" style="display:none; color: #ef4444; font-size: 0.85rem; margin-bottom: 0.8rem; font-weight: 600;">
+                    ❌ Invalid Credentials! Required: FarhanElavate / Mycareer
+                </div>
+
+                <button type="submit" class="btn-glow w-full">
+                    <span>Login to Admin Control Center</span>
+                </button>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- =================================================================== -->
+    <!-- LIVE ADMIN CONTROL CENTER DASHBOARD MODAL                          -->
+    <!-- Allows live customization of website colors, logo, reviews, etc.   -->
+    <!-- =================================================================== -->
+    <dialog class="glass-modal admin-dashboard-modal" id="admin-dashboard-modal">
+        <div class="modal-content admin-dashboard-box">
+            <div class="admin-dash-header">
+                <div class="dash-brand">
+                    <span class="badge-admin">ADMIN CONTROL CENTER</span>
+                    <h2>ElavateX Live Website Engine</h2>
+                </div>
+                <div class="dash-actions">
+                    <button class="btn-sm btn-glass" id="admin-logout-btn">Logout</button>
+                    <button class="modal-close" id="admin-dash-close-btn">&times;</button>
+                </div>
+            </div>
+
+            <div class="admin-dash-tabs">
+                <button class="dash-tab-btn active" data-dashtab="tab-theme">🎨 Theme & Colors</button>
+                <button class="dash-tab-btn" data-dashtab="tab-reviews">💬 Manage Reviews</button>
+                <button class="dash-tab-btn" data-dashtab="tab-projects">📁 Manage Projects</button>
+            </div>
+
+            <!-- Tab 1: Theme & Brand Colors -->
+            <div class="dash-panel active" id="tab-theme">
+                <h3>Live Website Customization</h3>
+                <p class="dash-desc">Changes applied here dynamically update the live website immediately.</p>
+
+                <form id="admin-theme-form" class="admin-dash-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="adm-brand-name">Agency Brand Name</label>
+                            <input type="text" id="adm-brand-name" value="ElavateX">
+                        </div>
+                        <div class="form-group">
+                            <label for="adm-whatsapp">WhatsApp Contact Number</label>
+                            <input type="text" id="adm-whatsapp" value="7676808068">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="adm-instagram">Instagram Handle</label>
+                            <input type="text" id="adm-instagram" value="@elavatex_dev">
+                        </div>
+                        <div class="form-group">
+                            <label for="adm-primary-color">Primary Brand Accent Color</label>
+                            <input type="color" id="adm-primary-color" value="#6366f1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Default Website Theme Mode</label>
+                        <div class="option-chips" id="adm-theme-chips">
+                            <button type="button" class="chip active" data-admtheme="light">Warm Editorial Beige (#f6f1eb)</button>
+                            <button type="button" class="chip" data-admtheme="dark">Obsidian Dark (#090a0f)</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-glow">
+                        <span>Save & Apply Live Changes</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tab 2: Manage Reviews -->
+            <div class="dash-panel" id="tab-reviews">
+                <h3>Client Reviews & Testomiles</h3>
+                <div class="dash-reviews-list" id="adm-reviews-list">
+                    <!-- Dynamic List of Reviews with Delete option -->
+                </div>
+            </div>
+
+            <!-- Tab 3: Manage Projects -->
+            <div class="dash-panel" id="tab-projects">
+                <h3>Manage Case Studies & Links</h3>
+                <div class="dash-projects-list">
+                    <div class="dash-proj-item">
+                        <strong>Project 1:</strong> Shelter Hunt Consultants (<a href="https://shelterhuntconsultants.com" target="_blank">shelterhuntconsultants.com</a>)
+                    </div>
+                    <div class="dash-proj-item">
+                        <strong>Project 2:</strong> Online Games Tournaments (<a href="https://sp-three-liart.vercel.app" target="_blank">sp-three-liart.vercel.app</a>)
+                    </div>
+                    <div class="dash-proj-item">
+                        <strong>Project 3:</strong> Founder Showcase (<a href="https://farhanulla.me" target="_blank">farhanulla.me</a>)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
 
     <!-- =================================================================== -->
     <!-- INTERACTIVE CONSULTATION / BOOK A CALL MODAL DIALOG               -->
@@ -1395,8 +1519,6 @@
 
     <!-- GSAP Libraries CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <!-- Firebase Live Cloud Integration -->
-    <script type="module" src="firebase-config.js"></script>
     <!-- JS Script -->
     <script src="main.js?v=1.3"></script>
 </body>

@@ -3445,16 +3445,13 @@
                         console.error(err);
                     }
 
-                    // 4. Dispatch to Cloud Firestore (SMM Orders + General Leads)
+                    // 4. Dispatch to Cloud Firestore
                     try {
-                        if (typeof window.saveRecordToFirestore === 'function') {
-                            window.saveRecordToFirestore('smm_orders', leadObj);
-                        }
-                        if (typeof window.saveLeadToFirestore === 'function') {
-                            window.saveLeadToFirestore(leadObj);
+                        if (typeof saveLeadToFirestore === 'function') {
+                            saveLeadToFirestore(leadObj);
                         }
                     } catch (err) {
-                        console.error("SMM Firestore dispatch error:", err);
+                        console.error(err);
                     }
 
                     // 5. Show Thank You view inside modal
@@ -3505,8 +3502,6 @@
         </div>
     </div>
 
-    <!-- Firebase Live Cloud Integration -->
-    <script type="module" src="../firebase-config.js"></script>
     <!-- Unified JS Script -->
     <script src="../main.js?v=1.3"></script>
 </body>
