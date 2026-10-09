@@ -543,6 +543,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         projects: [
+            { name: "TRAIT Innovation", url: "https://traitinnovation.com", category: "Enterprise AI & Deep Tech Platform" },
+            { name: "HelloBotz", url: "https://hellobotz.com", category: "WhatsApp Marketing & Automation Platform" },
+            { name: "The Edu Consultant", url: "https://studyabroad.theeduconsultant.com", category: "Global Study Abroad & EdTech Portal" },
             { name: "Shelter Hunt Consultants", url: "https://shelterhuntconsultants.com", category: "Real Estate Portal" },
             { name: "Online Gaming Tournaments", url: "https://sp-three-liart.vercel.app", category: "Esports Competition Platform" },
             { name: "Farhanulla Portfolio", url: "https://farhanulla.me", category: "Showcase Platform" }
@@ -732,8 +735,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 5. Projects & Case Studies
-        if (query.includes('project') || query.includes('shelter') || query.includes('game') || query.includes('esports') || query.includes('built') || query.includes('work') || query.includes('portfolio') || query.includes('client')) {
-            reply.text = `Here are some of the real digital products built by ElavateX:<br><br>
+        if (query.includes('project') || query.includes('shelter') || query.includes('game') || query.includes('esports') || query.includes('trait') || query.includes('hellobotz') || query.includes('botz') || query.includes('study') || query.includes('abroad') || query.includes('edu') || query.includes('built') || query.includes('work') || query.includes('portfolio') || query.includes('client')) {
+            reply.text = `Here are some of the real digital products built and deployed live by ElavateX:<br><br>
+• **TRAIT Innovation**: Enterprise AI & intelligence systems ([traitinnovation.com](https://traitinnovation.com))<br>
+• **HelloBotz**: Official WhatsApp Business API & automation platform ([hellobotz.com](https://hellobotz.com))<br>
+• **The Edu Consultant**: Global education & study abroad portal ([studyabroad.theeduconsultant.com](https://studyabroad.theeduconsultant.com))<br>
 • **Shelter Hunt Consultants**: Real estate portal ([shelterhuntconsultants.com](https://shelterhuntconsultants.com))<br>
 • **Online Gaming Tournaments**: Esports competition platform ([sp-three-liart.vercel.app](https://sp-three-liart.vercel.app))<br>
 • **Farhanulla Portfolio**: Showcase platform ([farhanulla.me](https://farhanulla.me))<br><br>
@@ -1607,11 +1613,10 @@ Would you like to start a project inquiry right now?`;
             e.preventDefault();
             comingSoonModal.classList.add('active');
 
-            if (comingSoonTimer) clearTimeout(comingSoonTimer);
-            // Automatically close after 9 seconds (9000ms)
-            comingSoonTimer = setTimeout(() => {
-                hideComingSoonModal();
-            }, 9000);
+            if (comingSoonTimer) {
+                clearTimeout(comingSoonTimer);
+                comingSoonTimer = null;
+            }
         });
 
         if (closeComingSoonBtn) {

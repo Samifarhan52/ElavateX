@@ -1773,6 +1773,30 @@ button, input, select, textarea {
   color: #38bdf8;
 }
 
+.project-category-tag.emerald-tag {
+  color: #10b981;
+}
+
+.project-category-tag.amber-tag {
+  color: #f59e0b;
+}
+
+.project-category-tag.violet-tag {
+  color: #a855f7;
+}
+
+@media (min-width: 992px) {
+  .portfolio-card-creative.featured-marquee {
+    grid-column: 1 / -1;
+  }
+  .portfolio-card-creative.featured-marquee .project-mockup-frame {
+    height: 240px;
+  }
+  .portfolio-card-creative.featured-marquee .mockup-screen-view {
+    height: 195px;
+  }
+}
+
 .project-card-meta h3 {
   font-family: var(--font-primary);
   font-size: 1.3rem;
