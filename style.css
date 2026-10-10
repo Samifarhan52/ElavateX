@@ -1663,21 +1663,252 @@ button, input, select, textarea {
 
 
 /* --------------------------------------------------------------------------
-   9. PORTFOLIO & REAL CASE STUDIES (SELECTED WORK)
+   9. PORTFOLIO & REAL CASE STUDIES (SELECTED WORK) - REDESIGNED
    -------------------------------------------------------------------------- */
 .section-portfolio {
   padding: 6.5rem 0;
+  position: relative;
 }
 
-.portfolio-cards-column {
+/* Centered Header */
+.portfolio-centered-header {
+  max-width: 820px;
+  margin: 0 auto 3.5rem auto;
+  text-align: center;
+}
+
+.live-pulse-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background-color: #10b981;
+  border-radius: 50%;
+  margin-right: 6px;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseDotLive 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseDotLive {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+.portfolio-main-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Filter Tabs */
+.portfolio-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.portfolio-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.55rem 1.15rem;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--border-glass);
+}
+
+[data-theme="light"] .portfolio-filter-btn {
+  background: rgba(255, 255, 255, 0.95);
+  color: #475569;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="dark"] .portfolio-filter-btn {
+  background: rgba(18, 22, 34, 0.75);
+  color: #94a3b8;
+}
+
+.portfolio-filter-btn:hover {
+  transform: translateY(-2px);
+  color: var(--accent-purple);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+
+.portfolio-filter-btn.active {
+  background: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 18px rgba(99, 102, 241, 0.35) !important;
+}
+
+.filter-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.25);
+  color: inherit;
+}
+
+/* Showcase Flow */
+.portfolio-showcase-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  width: 100%;
+}
+
+.portfolio-item-wrap {
+  width: 100%;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.portfolio-item-wrap.hidden-filter {
+  display: none !important;
+}
+
+/* 1. Spotlight Hero Card */
+.portfolio-spotlight-card {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  padding: 2.2rem;
+  border-radius: 28px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+[data-theme="light"] .portfolio-spotlight-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="dark"] .portfolio-spotlight-card {
+  background: rgba(18, 22, 34, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+.portfolio-spotlight-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 25px 60px rgba(16, 185, 129, 0.12);
+}
+
+[data-theme="dark"] .portfolio-spotlight-card:hover {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(16, 185, 129, 0.2);
+}
+
+.spotlight-visual-side {
+  width: 100%;
+}
+
+.portfolio-spotlight-card .project-mockup-frame {
+  height: 310px;
+  border-radius: 16px;
+  border: 1px solid var(--border-glass);
+}
+
+.portfolio-spotlight-card .mockup-screen-view {
+  height: 260px;
+}
+
+.spotlight-content-side {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.spotlight-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.featured-ribbon-pill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(56, 189, 248, 0.2));
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.spotlight-title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+
+.spotlight-desc {
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.spotlight-action-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.spotlight-btn {
+  font-size: 0.95rem !important;
+  color: var(--accent-purple) !important;
+  font-weight: 700;
+}
+
+.spotlight-stat-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* 2. Symmetrical 2x2 Grid */
+.portfolio-grid-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.8rem;
+  gap: 2rem;
+  width: 100%;
 }
 
 .portfolio-card-creative {
   display: flex;
   flex-direction: column;
+  height: 100%;
   border-radius: 24px;
   overflow: hidden;
   text-decoration: none;
@@ -1686,28 +1917,33 @@ button, input, select, textarea {
 }
 
 [data-theme="light"] .portfolio-card-creative {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(99, 102, 241, 0.15);
-  box-shadow: 0 15px 35px rgba(30, 27, 75, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 }
 
 [data-theme="dark"] .portfolio-card-creative {
   background: rgba(18, 22, 34, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
 }
 
 .portfolio-card-creative:hover {
   transform: translateY(-8px);
-  border-color: rgba(56, 189, 248, 0.4);
+  border-color: rgba(99, 102, 241, 0.45);
+  box-shadow: 0 20px 45px rgba(99, 102, 241, 0.15);
 }
 
-/* Project Mockup Frame */
+[data-theme="dark"] .portfolio-card-creative:hover {
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(99, 102, 241, 0.2);
+}
+
+/* Mockup Frame inside cards */
 .project-mockup-frame {
-  height: 200px;
+  height: 245px;
   background: #090c15;
   border-bottom: 1px solid var(--border-glass);
-  padding: 0.8rem;
+  padding: 0.85rem;
   overflow: hidden;
   position: relative;
 }
@@ -1726,10 +1962,34 @@ button, input, select, textarea {
   margin-left: 0.5rem;
 }
 
+.mockup-live-indicator {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.15rem 0.55rem;
+  border-radius: 99px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mockup-live-dot {
+  width: 5px;
+  height: 5px;
+  background-color: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 5px #10b981;
+}
+
 .mockup-screen-view {
   width: 100%;
-  height: 155px;
-  border-radius: 8px;
+  height: 198px;
+  border-radius: 10px;
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
@@ -1745,15 +2005,14 @@ button, input, select, textarea {
   transition: transform 0.5s ease;
 }
 
-.portfolio-card-creative:hover .mockup-img-render {
-  transform: scale(1.05);
+.portfolio-card-creative:hover .mockup-img-render,
+.portfolio-spotlight-card:hover .mockup-img-render {
+  transform: scale(1.04);
 }
 
-.mock-nav { font-size: 0.65rem; color: #38bdf8; font-weight: 700; text-transform: uppercase; }
-.mock-hero-text { font-size: 0.85rem; font-weight: 800; }
-
+/* Card Metadata */
 .project-card-meta {
-  padding: 1.5rem;
+  padding: 1.8rem;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -1785,47 +2044,196 @@ button, input, select, textarea {
   color: #a855f7;
 }
 
-@media (min-width: 992px) {
-  .portfolio-card-creative.featured-marquee {
-    grid-column: 1 / -1;
-  }
-  .portfolio-card-creative.featured-marquee .project-mockup-frame {
-    height: 240px;
-  }
-  .portfolio-card-creative.featured-marquee .mockup-screen-view {
-    height: 195px;
-  }
-}
-
 .project-card-meta h3 {
   font-family: var(--font-primary);
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 800;
   color: var(--text-main);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .project-card-meta p {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 1.2rem;
-  flex-grow: 1;
+  line-height: 1.58;
+  margin-bottom: 1.1rem;
+}
+
+/* Tech Spec Chips */
+.project-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: auto;
+  margin-bottom: 1.3rem;
+}
+
+.project-spec-chip {
+  font-size: 0.73rem;
+  font-weight: 600;
+  padding: 0.28rem 0.65rem;
+  border-radius: 8px;
+  letter-spacing: 0.01em;
+}
+
+[data-theme="light"] .project-spec-chip {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+[data-theme="dark"] .project-spec-chip {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .case-study-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--accent-purple);
   transition: gap 0.3s ease;
+  margin-top: auto;
 }
 
 .portfolio-card-creative:hover .case-study-btn {
-  color: var(--accent-cyan);
   gap: 0.8rem;
+  color: var(--accent-cyan);
+}
+
+/* Bottom Conversion CTA Strip */
+.portfolio-bottom-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.4rem 2.8rem;
+  border-radius: 26px;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+[data-theme="light"] .portfolio-bottom-cta {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.95));
+  border: 1px solid rgba(226, 232, 240, 1);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="dark"] .portfolio-bottom-cta {
+  background: linear-gradient(135deg, rgba(18, 22, 34, 0.9), rgba(30, 27, 75, 0.6));
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.portfolio-bottom-cta-text {
+  text-align: left;
+  max-width: 600px;
+}
+
+.portfolio-cta-subbadge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #a855f7;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+.portfolio-bottom-cta-text h3 {
+  font-family: var(--font-primary);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.portfolio-bottom-cta-text p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.portfolio-bottom-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.btn-ghost-portfolio {
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  border: 1px solid var(--border-glass);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-ghost-portfolio:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+}
+
+/* Responsive Rules for Portfolio */
+@media (max-width: 992px) {
+  .portfolio-spotlight-card {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+    padding: 1.6rem;
+  }
+  .portfolio-spotlight-card .project-mockup-frame {
+    height: 240px;
+  }
+  .portfolio-spotlight-card .mockup-screen-view {
+    height: 195px;
+  }
+  .portfolio-grid-cards {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+  .portfolio-bottom-cta {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.6rem;
+  }
+  .portfolio-bottom-cta-text {
+    text-align: center;
+  }
+  .portfolio-bottom-cta-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .portfolio-bottom-cta-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-filter-tabs {
+    gap: 0.4rem;
+  }
+  .portfolio-filter-btn {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.85rem;
+  }
+  .portfolio-spotlight-card .project-mockup-frame,
+  .portfolio-card-creative .project-mockup-frame {
+    height: 195px;
+  }
+  .portfolio-spotlight-card .mockup-screen-view,
+  .portfolio-card-creative .mockup-screen-view {
+    height: 152px;
+  }
 }
 
 /* --------------------------------------------------------------------------

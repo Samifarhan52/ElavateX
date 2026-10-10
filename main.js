@@ -1516,7 +1516,7 @@ Would you like to start a project inquiry right now?`;
     // ===================================================================
     // 14. CREATIVE SERVICE & PORTFOLIO CARD INTERACTIVE 3D TILT ENGINE
     // ===================================================================
-    const tiltCards = document.querySelectorAll('.service-card-creative, .portfolio-card-creative');
+    const tiltCards = document.querySelectorAll('.service-card-creative, .portfolio-card-creative, .portfolio-spotlight-card');
     tiltCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             if (window.innerWidth <= 991) return;
@@ -1535,6 +1535,32 @@ Would you like to start a project inquiry right now?`;
             card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
         });
     });
+
+    // ===================================================================
+    // 14b. PORTFOLIO INDUSTRY FILTER TABS CONTROLLER
+    // ===================================================================
+    const portfolioFilterTabs = document.querySelectorAll('#portfolio-filter-tabs .portfolio-filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item-wrap');
+
+    if (portfolioFilterTabs.length > 0 && portfolioItems.length > 0) {
+        portfolioFilterTabs.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter') || 'all';
+
+                portfolioFilterTabs.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                portfolioItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        item.classList.remove('hidden-filter');
+                    } else {
+                        item.classList.add('hidden-filter');
+                    }
+                });
+            });
+        });
+    }
 
     // ===================================================================
     // 15. FLOATING EXPLORE SERVICES BANNER CONTROLLER

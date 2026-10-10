@@ -629,150 +629,244 @@
         <!-- =================================================================== -->
         <section class="section-portfolio" id="portfolio">
             <div class="container">
-                <div class="portfolio-creative-grid">
-                    
-                    <!-- Left Info Column -->
-                    <div class="portfolio-info-column reveal-item">
-                        <div class="service-badge-pill cyan">SELECTED WORK</div>
-                        <h2 class="portfolio-main-title">
-                            Real work. <br>
-                            Real <span class="hero-highlight-gradient">impact.</span>
-                        </h2>
-                        <p class="portfolio-info-subtext" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.8rem;">
-                            Live production systems engineered by ElavateX. From enterprise AI and WhatsApp automation to luxury real estate and global EdTech, we build high-converting platforms that drive real revenue.
-                        </p>
-                        <button id="btn-view-all-projects" class="creative-explore-link btn-reset-style">
-                            <span>View All Projects</span>
-                            <span class="link-arrow">&rarr;</span>
+                
+                <!-- Portfolio Centered Header -->
+                <div class="portfolio-centered-header text-center reveal-item">
+                    <div class="service-badge-pill cyan">
+                        <span class="live-pulse-dot"></span> SELECTED WORK
+                    </div>
+                    <h2 class="portfolio-main-title">
+                        Real work. Real <span class="hero-highlight-gradient">impact.</span>
+                    </h2>
+                    <p class="portfolio-main-subtitle">
+                        High-performance digital platforms engineered by ElavateX. From enterprise AI and WhatsApp automation to luxury real estate and global EdTech.
+                    </p>
+
+                    <!-- Interactive Industry Filter Tabs -->
+                    <div class="portfolio-filter-tabs" id="portfolio-filter-tabs">
+                        <button type="button" class="portfolio-filter-btn active" data-filter="all">
+                            <span>All Work</span>
+                            <span class="filter-count-badge">5</span>
+                        </button>
+                        <button type="button" class="portfolio-filter-btn" data-filter="ai">
+                            <span>⚡ Enterprise AI</span>
+                        </button>
+                        <button type="button" class="portfolio-filter-btn" data-filter="saas">
+                            <span>🤖 WhatsApp &amp; SaaS</span>
+                        </button>
+                        <button type="button" class="portfolio-filter-btn" data-filter="edtech">
+                            <span>🎓 Global EdTech</span>
+                        </button>
+                        <button type="button" class="portfolio-filter-btn" data-filter="realestate">
+                            <span>🏠 Real Estate</span>
+                        </button>
+                        <button type="button" class="portfolio-filter-btn" data-filter="gaming">
+                            <span>🎮 Web Apps</span>
                         </button>
                     </div>
+                </div>
 
-                    <!-- Right Showcase Cards Grid with 3D Mockup Frames -->
-                    <div class="portfolio-cards-column">
+                <!-- Portfolio Showcase Flow -->
+                <div class="portfolio-showcase-flow">
+                    
+                    <!-- 1. FEATURED MARQUEE HERO SPOTLIGHT: TRAIT INNOVATION -->
+                    <div class="portfolio-item-wrap" data-category="ai">
+                        <a href="https://traitinnovation.com" target="_blank" rel="noopener" class="portfolio-spotlight-card glass-panel reveal-item">
+                            <div class="spotlight-visual-side">
+                                <div class="project-mockup-frame">
+                                    <div class="mockup-header-dots">
+                                        <span class="dot dot-red"></span>
+                                        <span class="dot dot-yellow"></span>
+                                        <span class="dot dot-green"></span>
+                                        <span class="mockup-url">traitinnovation.com</span>
+                                        <span class="mockup-live-indicator"><span class="mockup-live-dot"></span> LIVE</span>
+                                    </div>
+                                    <div class="mockup-screen-view">
+                                        <img src="traitinnovation_preview.jpg" alt="TRAIT Innovation Enterprise AI Platform Preview" class="mockup-img-render">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spotlight-content-side">
+                                <div class="spotlight-badge-row">
+                                    <span class="project-category-tag emerald-tag">ENTERPRISE AI &amp; TECH SYSTEMS</span>
+                                    <span class="featured-ribbon-pill">★ FEATURED SHOWCASE</span>
+                                </div>
+                                <h3 class="spotlight-title">TRAIT Innovation</h3>
+                                <p class="spotlight-desc">
+                                    Enterprise artificial intelligence platform powering automated legal document review (AdvocatePro AI), customer support automation, and real-time neural data telemetry.
+                                </p>
+                                
+                                <div class="project-pills-row">
+                                    <span class="project-spec-chip">⚡ 0.8ms Latency</span>
+                                    <span class="project-spec-chip">🧠 AdvocatePro AI</span>
+                                    <span class="project-spec-chip">🌐 3D WebGL</span>
+                                </div>
+
+                                <div class="spotlight-action-row">
+                                    <span class="case-study-btn spotlight-btn">
+                                        <span>Visit Live Platform</span>
+                                        <span class="arrow">&rarr;</span>
+                                    </span>
+                                    <span class="spotlight-stat-tag">100/100 Core Web Vitals</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- 2. BALANCED 2x2 GRID (4 CARDS) -->
+                    <div class="portfolio-grid-cards">
                         
-                        <!-- Case Study 1: TRAIT Innovation -->
-                        <a href="https://traitinnovation.com" target="_blank" rel="noopener" class="portfolio-card-creative featured-marquee glass-panel reveal-item">
-                            <div class="project-mockup-frame">
-                                <div class="mockup-header-dots">
-                                    <span class="dot dot-red"></span>
-                                    <span class="dot dot-yellow"></span>
-                                    <span class="dot dot-green"></span>
-                                    <span class="mockup-url">traitinnovation.com</span>
+                        <!-- Card 2: HelloBotz -->
+                        <div class="portfolio-item-wrap" data-category="saas">
+                            <a href="https://hellobotz.com" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-1">
+                                <div class="project-mockup-frame">
+                                    <div class="mockup-header-dots">
+                                        <span class="dot dot-red"></span>
+                                        <span class="dot dot-yellow"></span>
+                                        <span class="dot dot-green"></span>
+                                        <span class="mockup-url">hellobotz.com</span>
+                                        <span class="mockup-live-indicator"><span class="mockup-live-dot"></span> LIVE</span>
+                                    </div>
+                                    <div class="mockup-screen-view">
+                                        <img src="hellobotz_preview.jpg" alt="HelloBotz WhatsApp Automation Platform Preview" class="mockup-img-render">
+                                    </div>
                                 </div>
-                                <div class="mockup-screen-view">
-                                    <img src="traitinnovation_preview.jpg" alt="TRAIT Innovation Enterprise AI Platform Preview" class="mockup-img-render">
+                                <div class="project-card-meta">
+                                    <div class="project-category-tag cyan-tag">WHATSAPP AUTOMATION &amp; SAAS</div>
+                                    <h3>HelloBotz</h3>
+                                    <p>Official WhatsApp Business API platform featuring visual drag-and-drop flow builder, AI chatbots, multi-agent shared inbox &amp; broadcast CRM.</p>
+                                    <div class="project-pills-row">
+                                        <span class="project-spec-chip">🤖 Visual Flow Builder</span>
+                                        <span class="project-spec-chip">💬 Meta Cloud API</span>
+                                        <span class="project-spec-chip">📈 Broadcast CRM</span>
+                                    </div>
+                                    <div class="case-study-btn">
+                                        <span>Visit Live Platform</span>
+                                        <span class="arrow">&rarr;</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="project-card-meta">
-                                <div class="project-category-tag emerald-tag">ENTERPRISE AI &amp; TECH SYSTEMS</div>
-                                <h3>TRAIT Innovation</h3>
-                                <p>Enterprise AI and intelligence platform powering automated legal analytics (AdvocatePro AI), customer support automation, and real-time neural data telemetry.</p>
-                                <div class="case-study-btn">
-                                    <span>View Live Platform</span>
-                                    <span class="arrow">&rarr;</span>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
 
-                        <!-- Case Study 2: HelloBotz -->
-                        <a href="https://hellobotz.com" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-1">
-                            <div class="project-mockup-frame">
-                                <div class="mockup-header-dots">
-                                    <span class="dot dot-red"></span>
-                                    <span class="dot dot-yellow"></span>
-                                    <span class="dot dot-green"></span>
-                                    <span class="mockup-url">hellobotz.com</span>
+                        <!-- Card 3: The Edu Consultant - Study Abroad -->
+                        <div class="portfolio-item-wrap" data-category="edtech">
+                            <a href="https://studyabroad.theeduconsultant.com" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-2">
+                                <div class="project-mockup-frame">
+                                    <div class="mockup-header-dots">
+                                        <span class="dot dot-red"></span>
+                                        <span class="dot dot-yellow"></span>
+                                        <span class="dot dot-green"></span>
+                                        <span class="mockup-url">studyabroad.theeduconsultant.com</span>
+                                        <span class="mockup-live-indicator"><span class="mockup-live-dot"></span> LIVE</span>
+                                    </div>
+                                    <div class="mockup-screen-view">
+                                        <img src="studyabroad_preview.jpg" alt="The Edu Consultant Study Abroad Portal Preview" class="mockup-img-render">
+                                    </div>
                                 </div>
-                                <div class="mockup-screen-view">
-                                    <img src="hellobotz_preview.jpg" alt="HelloBotz WhatsApp Marketing and Automation Platform Preview" class="mockup-img-render">
+                                <div class="project-card-meta">
+                                    <div class="project-category-tag amber-tag">GLOBAL EDTECH &amp; CONSULTING</div>
+                                    <h3>The Edu Consultant</h3>
+                                    <p>Comprehensive overseas education portal with international university search, scholarship calculator, visa roadmap tracker &amp; advisory booking.</p>
+                                    <div class="project-pills-row">
+                                        <span class="project-spec-chip">🌍 Multi-Country Finder</span>
+                                        <span class="project-spec-chip">🎓 Scholarship Engine</span>
+                                        <span class="project-spec-chip">📅 1-on-1 Booking</span>
+                                    </div>
+                                    <div class="case-study-btn">
+                                        <span>Visit Live Platform</span>
+                                        <span class="arrow">&rarr;</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="project-card-meta">
-                                <div class="project-category-tag cyan-tag">WHATSAPP MARKETING &amp; SAAS</div>
-                                <h3>HelloBotz</h3>
-                                <p>Official WhatsApp Business API platform featuring visual drag-and-drop flow builder, AI chatbots, shared team inbox &amp; broadcast CRM.</p>
-                                <div class="case-study-btn">
-                                    <span>View Live Platform</span>
-                                    <span class="arrow">&rarr;</span>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
 
-                        <!-- Case Study 3: The Edu Consultant - Study Abroad -->
-                        <a href="https://studyabroad.theeduconsultant.com" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-2">
-                            <div class="project-mockup-frame">
-                                <div class="mockup-header-dots">
-                                    <span class="dot dot-red"></span>
-                                    <span class="dot dot-yellow"></span>
-                                    <span class="dot dot-green"></span>
-                                    <span class="mockup-url">studyabroad.theeduconsultant.com</span>
+                        <!-- Card 4: Shelter Hunt Consultants -->
+                        <div class="portfolio-item-wrap" data-category="realestate">
+                            <a href="https://shelterhuntconsultants.com" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-1">
+                                <div class="project-mockup-frame">
+                                    <div class="mockup-header-dots">
+                                        <span class="dot dot-red"></span>
+                                        <span class="dot dot-yellow"></span>
+                                        <span class="dot dot-green"></span>
+                                        <span class="mockup-url">shelterhuntconsultants.com</span>
+                                        <span class="mockup-live-indicator"><span class="mockup-live-dot"></span> LIVE</span>
+                                    </div>
+                                    <div class="mockup-screen-view">
+                                        <img src="shelterhunt_preview.jpg" alt="Shelter Hunt Consultants Real Estate Platform Preview" class="mockup-img-render">
+                                    </div>
                                 </div>
-                                <div class="mockup-screen-view">
-                                    <img src="studyabroad_preview.jpg" alt="The Edu Consultant Study Abroad Platform Preview" class="mockup-img-render">
+                                <div class="project-card-meta">
+                                    <div class="project-category-tag emerald-tag">REAL ESTATE PLATFORM</div>
+                                    <h3>Shelter Hunt Consultants</h3>
+                                    <p>A complete luxury real estate portal engineered with multi-criteria property search, responsive listing catalog &amp; direct 1-click WhatsApp lead routing pipeline.</p>
+                                    <div class="project-pills-row">
+                                        <span class="project-spec-chip">🏠 Touch Search Filters</span>
+                                        <span class="project-spec-chip">⚡ Instant Rendering</span>
+                                        <span class="project-spec-chip">📲 Lead Flow Pipeline</span>
+                                    </div>
+                                    <div class="case-study-btn">
+                                        <span>Visit Live Platform</span>
+                                        <span class="arrow">&rarr;</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="project-card-meta">
-                                <div class="project-category-tag amber-tag">GLOBAL EDTECH &amp; CONSULTING</div>
-                                <h3>The Edu Consultant</h3>
-                                <p>Comprehensive overseas education portal with international university search, scholarship calculator, visa roadmap tracker &amp; advisory booking.</p>
-                                <div class="case-study-btn">
-                                    <span>View Live Platform</span>
-                                    <span class="arrow">&rarr;</span>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
 
-                        <!-- Case Study 4: Shelter Hunt Consultants -->
-                        <a href="https://shelterhuntconsultants.com" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-1">
-                            <div class="project-mockup-frame">
-                                <div class="mockup-header-dots">
-                                    <span class="dot dot-red"></span>
-                                    <span class="dot dot-yellow"></span>
-                                    <span class="dot dot-green"></span>
-                                    <span class="mockup-url">shelterhuntconsultants.com</span>
+                        <!-- Card 5: Online Gaming Tournaments -->
+                        <div class="portfolio-item-wrap" data-category="gaming">
+                            <a href="https://sp-three-liart.vercel.app" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-2">
+                                <div class="project-mockup-frame">
+                                    <div class="mockup-header-dots">
+                                        <span class="dot dot-red"></span>
+                                        <span class="dot dot-yellow"></span>
+                                        <span class="dot dot-green"></span>
+                                        <span class="mockup-url">sp-three-liart.vercel.app</span>
+                                        <span class="mockup-live-indicator"><span class="mockup-live-dot"></span> LIVE</span>
+                                    </div>
+                                    <div class="mockup-screen-view">
+                                        <img src="esports_preview.jpg" alt="Online Gaming Tournaments eSports Platform Preview" class="mockup-img-render">
+                                    </div>
                                 </div>
-                                <div class="mockup-screen-view">
-                                    <img src="shelterhunt_preview.jpg" alt="Shelter Hunt Consultants Real Estate Platform Preview" class="mockup-img-render">
+                                <div class="project-card-meta">
+                                    <div class="project-category-tag cyan-tag">WEB APPLICATION &amp; ESPORTS</div>
+                                    <h3>Online Gaming Tournaments</h3>
+                                    <p>Tournament management platform with live bracket tracking, interactive leaderboards, and automated payout analytics.</p>
+                                    <div class="project-pills-row">
+                                        <span class="project-spec-chip">🏆 Live Match Brackets</span>
+                                        <span class="project-spec-chip">⚡ 60FPS Fluid UI</span>
+                                        <span class="project-spec-chip">💰 Automated Payouts</span>
+                                    </div>
+                                    <div class="case-study-btn">
+                                        <span>View Case Study</span>
+                                        <span class="arrow">&rarr;</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="project-card-meta">
-                                <div class="project-category-tag">REAL ESTATE PLATFORM</div>
-                                <h3>Shelter Hunt Consultants</h3>
-                                <p>A complete real estate platform with advanced multi-criteria search, property listings &amp; direct 1-click WhatsApp lead inquiry routing.</p>
-                                <div class="case-study-btn">
-                                    <span>View Case Study</span>
-                                    <span class="arrow">&rarr;</span>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
 
-                        <!-- Case Study 5: Online Gaming Tournaments -->
-                        <a href="https://sp-three-liart.vercel.app" target="_blank" rel="noopener" class="portfolio-card-creative glass-panel reveal-item reveal-delay-2">
-                            <div class="project-mockup-frame">
-                                <div class="mockup-header-dots">
-                                    <span class="dot dot-red"></span>
-                                    <span class="dot dot-yellow"></span>
-                                    <span class="dot dot-green"></span>
-                                    <span class="mockup-url">sp-three-liart.vercel.app</span>
-                                </div>
-                                <div class="mockup-screen-view">
-                                    <img src="esports_preview.jpg" alt="Online Gaming Tournaments eSports Platform Preview" class="mockup-img-render">
-                                </div>
-                            </div>
-                            <div class="project-card-meta">
-                                <div class="project-category-tag cyan-tag">WEB APPLICATION</div>
-                                <h3>Online Gaming Tournaments</h3>
-                                <p>Tournament management platform with live tracking, leaderboards &amp; payout analytics.</p>
-                                <div class="case-study-btn">
-                                    <span>View Case Study</span>
-                                    <span class="arrow">&rarr;</span>
-                                </div>
-                            </div>
-                        </a>
+                    </div>
 
+                    <!-- Bottom Conversion Banner -->
+                    <div class="portfolio-bottom-cta glass-panel reveal-item">
+                        <div class="portfolio-bottom-cta-text">
+                            <span class="portfolio-cta-subbadge">HAVE A VISION?</span>
+                            <h3>Let's build your next high-converting platform</h3>
+                            <p>From custom MVPs to full-scale enterprise software — engineered from scratch to drive real leads and revenue.</p>
+                        </div>
+                        <div class="portfolio-bottom-cta-actions">
+                            <button class="btn-primary open-consultation-btn">
+                                <span>Get Free Consultation</span>
+                                <span class="arrow">&rarr;</span>
+                            </button>
+                            <button id="btn-view-all-projects" class="btn-ghost-portfolio btn-reset-style">
+                                <span>View Full Directory</span>
+                                <span class="link-arrow">&rarr;</span>
+                            </button>
+                        </div>
                     </div>
 
                 </div>
+
             </div>
         </section>
 
