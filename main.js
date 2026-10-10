@@ -472,13 +472,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------------------------
-    // 5. Dark / Light Theme Mode Toggle Engine
     // ----------------------------------------------------------------------
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
-    const drawerThemeToggleBtn = document.getElementById('drawer-theme-toggle-btn');
+    // 5. CINEMATIC RADIAL VIEW-TRANSITION THEME MODE ENGINE
+    // ----------------------------------------------------------------------
     const htmlEl = document.documentElement;
-
     const savedTheme = localStorage.getItem('elavatex_theme') || 'light';
+    let isThemeTransitioning = false;
+
+    // Initial silent theme application without animation
     setTheme(savedTheme);
 
     function setTheme(theme) {
@@ -494,14 +495,151 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('elavatex_theme', theme);
     }
 
-    function toggleTheme() {
-        const currentTheme = htmlEl.getAttribute('data-theme') || 'light';
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        setTheme(newTheme);
+    // Celestial Micro-Spark Burst Particle Generator
+    function createMicroSparks(x, y, isTargetDark) {
+        const colors = isTargetDark 
+            ? ['#6366f1', '#38bdf8', '#a855f7', '#818cf8', '#c084fc']
+            : ['#f59e0b', '#fbbf24', '#d97706', '#fcd34d', '#fef08a'];
+        
+        for (let i = 0; i < 8; i++) {
+            const spark = document.createElement('span');
+            spark.className = 'theme-spark-particle';
+            const angle = (Math.PI * 2 / 8) * i + (Math.random() * 0.3 - 0.15);
+            const dist = 34 + Math.random() * 24;
+            const tx = Math.cos(angle) * dist;
+            const ty = Math.sin(angle) * dist;
+            const size = 3 + Math.random() * 4;
+
+            spark.style.width = `${size}px`;
+            spark.style.height = `${size}px`;
+            spark.style.backgroundColor = colors[i % colors.length];
+            spark.style.boxShadow = `0 0 10px ${colors[i % colors.length]}`;
+            spark.style.left = `${x}px`;
+            spark.style.top = `${y}px`;
+            spark.style.setProperty('--spark-tx', `${tx}px`);
+            spark.style.setProperty('--spark-ty', `${ty}px`);
+
+            document.body.appendChild(spark);
+            setTimeout(() => spark.remove(), 700);
+        }
     }
 
-    if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
-    if (drawerThemeToggleBtn) drawerThemeToggleBtn.addEventListener('click', toggleTheme);
+    function executeThemeTransition(e, triggerBtn) {
+        if (isThemeTransitioning) return;
+        isThemeTransitioning = true;
+
+        const currentTheme = htmlEl.getAttribute('data-theme') || 'light';
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        const isTargetDark = newTheme === 'dark';
+
+        // Animate button bounce physics
+        if (triggerBtn) {
+            triggerBtn.classList.add('btn-bouncing');
+            setTimeout(() => triggerBtn.classList.remove('btn-bouncing'), 350);
+        }
+
+        // Determine transition origin coordinates
+        let x, y;
+        if (e && typeof e.clientX === 'number' && e.clientX > 0) {
+            x = e.clientX;
+            y = e.clientY;
+        } else if (triggerBtn) {
+            const rect = triggerBtn.getBoundingClientRect();
+            x = rect.left + rect.width / 2;
+            y = rect.top + rect.height / 2;
+        } else {
+            x = window.innerWidth / 2;
+            y = 50;
+        }
+
+        // Spawn celestial micro-sparks from button position
+        createMicroSparks(x, y, isTargetDark);
+
+        // Calculate max radius needed to cover the furthest corner of viewport
+        const endRadius = Math.hypot(
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
+        );
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Synchronize all CSS variables during the sweep
+        htmlEl.classList.add('theme-switching');
+        setTimeout(() => {
+            htmlEl.classList.remove('theme-switching');
+            isThemeTransitioning = false;
+        }, 700);
+
+        // Option A: Modern Browser View Transitions API with circular clip-path reveal
+        if (!prefersReducedMotion && document.startViewTransition) {
+            try {
+                const transition = document.startViewTransition(() => {
+                    setTheme(newTheme);
+                });
+
+                transition.ready.then(() => {
+                    try {
+                        document.documentElement.animate(
+                            {
+                                clipPath: [
+                                    `circle(0px at ${x}px ${y}px)`,
+                                    `circle(${endRadius}px at ${x}px ${y}px)`
+                                ]
+                            },
+                            {
+                                duration: 620,
+                                easing: 'cubic-bezier(0.2, 0, 0, 1)',
+                                pseudoElement: '::view-transition-new(root)'
+                            }
+                        );
+                    } catch (animErr) {
+                        // Animation error fallback
+                    }
+                }).catch(() => {
+                    // Ready error fallback
+                });
+                return;
+            } catch (err) {
+                // If startViewTransition throws, fallback to Option B below
+            }
+        }
+
+        // Option B: High-Performance Hardware Accelerated Radial Ripple Fallback
+        if (!prefersReducedMotion) {
+            const diameter = endRadius * 2.2;
+            const ripple = document.createElement('div');
+            ripple.className = 'theme-transition-fallback-ripple';
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            ripple.style.width = `${diameter}px`;
+            ripple.style.height = `${diameter}px`;
+            ripple.style.backgroundColor = isTargetDark ? '#0f1117' : '#f6f1eb';
+            ripple.style.opacity = '1';
+
+            document.body.appendChild(ripple);
+
+            requestAnimationFrame(() => {
+                ripple.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+
+            setTimeout(() => {
+                setTheme(newTheme);
+                ripple.style.opacity = '0';
+                setTimeout(() => ripple.remove(), 400);
+            }, 300);
+        } else {
+            // Option C: Instant with reduced motion
+            setTheme(newTheme);
+        }
+    }
+
+    // Attach to all theme buttons across the site
+    const allThemeButtons = document.querySelectorAll('.theme-toggle-btn, #theme-toggle-btn, #drawer-theme-toggle, #drawer-theme-toggle-btn');
+    allThemeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            executeThemeTransition(e, btn);
+        });
+    });
 
     // ----------------------------------------------------------------------
     // 6. ELAVATEX AI CHATBOT ENGINE (LIGHTWEIGHT, FAST & PERSISTENT)
