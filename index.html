@@ -162,8 +162,10 @@
                 <a href="#about" class="nav-link active">About</a>
                 <a href="#services-overview" class="nav-link">Services</a>
                 <a href="#portfolio" class="nav-link">Work</a>
+                <a href="#estimator" class="nav-link">Estimator</a>
                 <a href="#why-choose" class="nav-link">Why Us</a>
-                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
+                <a href="#faq" class="nav-link">FAQ</a>
             </nav>
 
             <div class="nav-actions">
@@ -206,8 +208,10 @@
             <a href="#about" class="drawer-link">About</a>
             <a href="#services-overview" class="drawer-link">Services</a>
             <a href="#portfolio" class="drawer-link">Work</a>
+            <a href="#estimator" class="drawer-link">Estimator</a>
             <a href="#why-choose" class="drawer-link">Why Us</a>
-            <a href="#testimonials" class="drawer-link">Testimonials</a>
+            <a href="#testimonials" class="drawer-link">Reviews</a>
+            <a href="#faq" class="drawer-link">FAQ</a>
             <hr class="drawer-divider">
             <button class="btn-primary open-consultation-btn w-full">Book a Call</button>
             <a href="https://wa.me/917676808068" target="_blank" class="btn-whatsapp-outline w-full text-center margin-top-sm">
@@ -238,9 +242,15 @@
                     
                     <!-- LEFT COLUMN: CREATIVE TEXT & CTAS -->
                     <div class="hero-text-column">
-                        <div class="hero-badge">
-                            <span class="pulse-dot"></span>
-                            <span class="badge-text">DIGITAL PRODUCT STUDIO</span>
+                        <div class="hero-badge-row">
+                            <div class="hero-badge">
+                                <span class="pulse-dot"></span>
+                                <span class="badge-text">DIGITAL PRODUCT STUDIO</span>
+                            </div>
+                            <div class="hero-availability-pill">
+                                <span class="status-dot-live"></span>
+                                <span>Q4 Project Slots Open • 2 Deployments Available</span>
+                            </div>
                         </div>
 
                         <h1 class="hero-title">
@@ -417,22 +427,22 @@
                 <!-- METRICS BOTTOM STRIP BAR -->
                 <div class="hero-metrics-strip">
                     <div class="strip-metric-item">
-                        <div class="strip-number">99.4%</div>
+                        <div class="strip-number" data-target="99.4" data-suffix="%" data-decimals="1">99.4%</div>
                         <div class="strip-label">Client Retention</div>
                     </div>
                     <div class="strip-divider"></div>
                     <div class="strip-metric-item">
-                        <div class="strip-number">150+</div>
+                        <div class="strip-number" data-target="150" data-suffix="+" data-decimals="0">150+</div>
                         <div class="strip-label">Projects Deployed</div>
                     </div>
                     <div class="strip-divider"></div>
                     <div class="strip-metric-item">
-                        <div class="strip-number">3.8x</div>
+                        <div class="strip-number" data-target="3.8" data-suffix="x" data-decimals="1">3.8x</div>
                         <div class="strip-label">Average Revenue ROI</div>
                     </div>
                     <div class="strip-divider"></div>
                     <div class="strip-metric-item">
-                        <div class="strip-number">24/7</div>
+                        <div class="strip-number" data-target="24" data-suffix="/7" data-decimals="0">24/7</div>
                         <div class="strip-label">Dedicated Support</div>
                     </div>
                 </div>
@@ -875,6 +885,159 @@
         </section>
 
         <!-- =================================================================== -->
+        <!-- INTERACTIVE PROJECT SCOPE & COST ESTIMATOR                          -->
+        <!-- =================================================================== -->
+        <section class="section-estimator" id="estimator">
+            <div class="container">
+                <div class="landing-header text-center reveal-item">
+                    <div class="service-badge-pill violet">INTERACTIVE PROJECT CALCULATOR</div>
+                    <h2>Estimate Your Project Scope &amp; Timeline</h2>
+                    <p>Select your platform, delivery speed, and custom capabilities to calculate an instant project scope and claim your 5% discount.</p>
+                </div>
+
+                <div class="estimator-grid glass-panel reveal-item">
+                    
+                    <!-- Left: Configuration Controls -->
+                    <div class="estimator-config-side">
+                        
+                        <!-- Step 1: Platform Type -->
+                        <div class="est-step-group">
+                            <label class="est-step-label">
+                                <span class="step-num">1</span> Choose Platform Architecture
+                            </label>
+                            <div class="est-platform-options" id="est-platforms">
+                                <button type="button" class="est-choice-btn active" data-platform="Web Application" data-base-days="14">
+                                    <span class="est-choice-icon">🌐</span>
+                                    <span class="est-choice-name">Web Application</span>
+                                    <span class="est-choice-sub">React / Next.js / Custom</span>
+                                </button>
+                                <button type="button" class="est-choice-btn" data-platform="Mobile App" data-base-days="24">
+                                    <span class="est-choice-icon">📱</span>
+                                    <span class="est-choice-name">Mobile App</span>
+                                    <span class="est-choice-sub">iOS &amp; Android Cross-Platform</span>
+                                </button>
+                                <button type="button" class="est-choice-btn" data-platform="Enterprise AI &amp; Automation" data-base-days="18">
+                                    <span class="est-choice-icon">🤖</span>
+                                    <span class="est-choice-name">Enterprise AI &amp; Bot</span>
+                                    <span class="est-choice-sub">Meta Cloud WhatsApp / AI Ops</span>
+                                </button>
+                                <button type="button" class="est-choice-btn" data-platform="Full Stack &amp; Growth" data-base-days="12">
+                                    <span class="est-choice-icon">🚀</span>
+                                    <span class="est-choice-name">Full Stack &amp; Growth</span>
+                                    <span class="est-choice-sub">Dev + Social Media Scaling</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Delivery Speed & Scale -->
+                        <div class="est-step-group">
+                            <label class="est-step-label">
+                                <span class="step-num">2</span> Target Delivery Timeline
+                            </label>
+                            <div class="est-speed-options" id="est-speeds">
+                                <button type="button" class="est-speed-btn active" data-speed="Rapid MVP" data-multiplier="1" data-speed-desc="Rapid MVP Launch (10–21 Days)">
+                                    <span class="speed-title">⚡ Rapid MVP</span>
+                                    <span class="speed-time">10–21 Days</span>
+                                </button>
+                                <button type="button" class="est-speed-btn" data-speed="Production Build" data-multiplier="1.6" data-speed-desc="Production Build (3–6 Weeks)">
+                                    <span class="speed-title">🏗️ Production Build</span>
+                                    <span class="speed-time">3–6 Weeks</span>
+                                </button>
+                                <button type="button" class="est-speed-btn" data-speed="Enterprise Scale" data-multiplier="2.2" data-speed-desc="Enterprise Scale &amp; Dedicated Sprint">
+                                    <span class="speed-title">🏢 Enterprise Scale</span>
+                                    <span class="speed-time">Dedicated Sprint</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Required Features & Capabilities -->
+                        <div class="est-step-group">
+                            <label class="est-step-label">
+                                <span class="step-num">3</span> Select Essential Capabilities
+                            </label>
+                            <div class="est-features-grid" id="est-features">
+                                <label class="est-feature-chip">
+                                    <input type="checkbox" value="User Auth & Roles" data-days="2" checked>
+                                    <span class="chip-box">🔐 User Auth &amp; Roles</span>
+                                </label>
+                                <label class="est-feature-chip">
+                                    <input type="checkbox" value="Payment Gateway (Stripe/Razorpay)" data-days="3" checked>
+                                    <span class="chip-box">💳 Payment Gateway</span>
+                                </label>
+                                <label class="est-feature-chip">
+                                    <input type="checkbox" value="WhatsApp / Meta Cloud AI Bot" data-days="4" checked>
+                                    <span class="chip-box">💬 WhatsApp / AI Bot</span>
+                                </label>
+                                <label class="est-feature-chip">
+                                    <input type="checkbox" value="Custom Admin Dashboard & CRM" data-days="4">
+                                    <span class="chip-box">📊 Admin CRM Dashboard</span>
+                                </label>
+                                <label class="est-feature-chip">
+                                    <input type="checkbox" value="High-Speed SEO & Global CDN" data-days="2">
+                                    <span class="chip-box">⚡ High-Speed SEO &amp; CDN</span>
+                                </label>
+                                <label class="est-feature-chip">
+                                    <input type="checkbox" value="Hardened Security & CSP Audit" data-days="2">
+                                    <span class="chip-box">🛡️ Security &amp; CSP Audit</span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Live Dynamic Summary & WhatsApp 1-Click Action -->
+                    <div class="estimator-summary-side">
+                        <div class="est-summary-card">
+                            <div class="est-summary-badge">
+                                <span class="est-badge-dot"></span> LIVE SPECIFICATION SUMMARY
+                            </div>
+                            
+                            <h3 class="est-summary-platform" id="est-summary-platform">Web Application</h3>
+                            <p class="est-summary-timeline-desc" id="est-summary-timeline-desc">Rapid MVP Launch (10–21 Days)</p>
+
+                            <div class="est-metrics-box">
+                                <div class="est-metric">
+                                    <span class="est-metric-label">Estimated Turnaround</span>
+                                    <span class="est-metric-val" id="est-calc-time">14 - 21 Days</span>
+                                </div>
+                                <div class="est-metric">
+                                    <span class="est-metric-label">Special Offer</span>
+                                    <span class="est-metric-val text-emerald">⚡ 5% Instant Discount</span>
+                                </div>
+                                <div class="est-metric">
+                                    <span class="est-metric-label">Intellectual Property</span>
+                                    <span class="est-metric-val">100% Full Transfer</span>
+                                </div>
+                            </div>
+
+                            <div class="est-included-features">
+                                <span class="est-inc-title">Selected Capabilities:</span>
+                                <ul id="est-selected-list" class="est-selected-list">
+                                    <!-- Dynamic chips -->
+                                </ul>
+                            </div>
+
+                            <div class="est-actions">
+                                <a id="est-whatsapp-btn" href="#" target="_blank" rel="noopener" class="btn-primary w-full text-center est-btn-cta">
+                                    <span>Lock In Spec &amp; Discuss on WhatsApp</span>
+                                    <span class="arrow">&rarr;</span>
+                                </a>
+                                <button type="button" class="btn-ghost-portfolio w-full open-consultation-btn est-btn-modal">
+                                    <span>Or Book Free Video Consultation</span>
+                                </button>
+                            </div>
+
+                            <div class="est-guarantee-note">
+                                <span>🔒 Risk-free milestone billing &bull; Free 30-day post-launch support &bull; Zero vendor lock-in</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
         <!-- BRAND SECTION 4: WHY CHOOSE ELAVATEX                                -->
         <!-- =================================================================== -->
         <section class="section-why" id="why-choose">
@@ -978,6 +1141,76 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- BRAND SECTION 6: FREQUENTLY ASKED QUESTIONS (FAQ)                   -->
+        <!-- =================================================================== -->
+        <section class="section-faq" id="faq">
+            <div class="container">
+                <div class="landing-header text-center reveal-item">
+                    <div class="service-badge-pill violet">FREQUENTLY ASKED QUESTIONS</div>
+                    <h2>Clear Answers to Common Questions</h2>
+                    <p>Everything you need to know about our engineering process, intellectual property guarantees, and pricing structure.</p>
+                </div>
+
+                <div class="faq-accordion-container reveal-item">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item glass-panel active">
+                        <button class="faq-question">
+                            <span class="faq-title">How fast can ElavateX build and launch our project?</span>
+                            <span class="faq-icon">&minus;</span>
+                        </button>
+                        <div class="faq-answer" style="max-height: 200px; padding: 0.8rem 1.8rem 1.4rem;">
+                            <p>For landing pages, MVPs, and focused web applications, our average turnaround is <strong>10 to 21 days</strong>. Full-scale production web applications and cross-platform mobile apps typically launch in <strong>3 to 6 weeks</strong>. We work in rapid agile sprints with live staging links so you can test features in real time.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item glass-panel">
+                        <button class="faq-question">
+                            <span class="faq-title">Who owns the code, assets, and intellectual property?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p><strong>You own 100% of everything.</strong> Upon final milestone delivery, all repository code, designs, credentials, database schemas, and intellectual property are fully transferred to your company. Zero vendor lock-in, zero hidden licensing fees.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item glass-panel">
+                        <button class="faq-question">
+                            <span class="faq-title">How does milestone pricing and billing work?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We work on transparent, risk-free milestone billing. Typically, projects are structured into clear milestone stages: Discovery &amp; Architecture (25%), Beta Prototype (35%), and Final Launch &amp; IP Transfer (40%). You only release milestone funds when deliverables match your approved specifications.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item glass-panel">
+                        <button class="faq-question">
+                            <span class="faq-title">Do you provide maintenance and support after launch?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes. Every deployment includes <strong>30 days of complimentary post-launch support</strong> covering bug fixes, server performance monitoring, and minor tweaks. We also offer dedicated monthly SLAs for continuous feature updates, scaling, and 24/7 uptime monitoring.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item glass-panel">
+                        <button class="faq-question">
+                            <span class="faq-title">Can you work with our existing stack or codebase?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely. Whether you need a ground-up build or an upgrade to an existing system, our engineers specialize in modern stacks (React, Next.js, Node.js, Flutter, Python AI, Firebase, AWS, Meta Cloud APIs). We can audit, refactor, and scale your existing product smoothly.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1588,6 +1821,7 @@
 
             <!-- Quick Suggestion Chips -->
             <div class="chat-chips-scroll" id="chat-chips">
+                <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20discuss%20a%20project" target="_blank" rel="noopener" class="chat-chip chat-chip-whatsapp">💬 Chat on WhatsApp</a>
                 <button class="chat-chip" data-query="Explore Web Development">🌐 Web Development</button>
                 <button class="chat-chip" data-query="Build a Mobile App">📱 Build Mobile App</button>
                 <button class="chat-chip" data-query="Explore SMM">🔥 Explore SMM</button>

@@ -386,7 +386,31 @@ document.addEventListener('DOMContentLoaded', () => {
             company: "Founder, Shelter Hunt Consultants (shelterhuntconsultants.com)",
             rating: 5,
             comment: "Working with ElavateX was the absolute best experience! They delivered Shelter Hunt Consultants ahead of schedule with top-tier output, 100% responsiveness, and exceptional quality. Highly recommended!",
-            date: "Recent"
+            date: "Verified Client"
+        },
+        {
+            id: 2,
+            name: "Adv. & Tech Directorate",
+            company: "Core Leadership, TRAIT Innovation (traitinnovation.com)",
+            rating: 5,
+            comment: "ElavateX engineered our Enterprise AI & Technology Systems architecture with extraordinary precision. 99.98% uptime, immaculate cyber-aesthetic design, and robust neural metric pipelines. Exceptional technical partners.",
+            date: "Verified Deployment"
+        },
+        {
+            id: 3,
+            name: "Marketing & Operations Lead",
+            company: "HelloBotz Official WhatsApp Automation (hellobotz.com)",
+            rating: 5,
+            comment: "The official Meta Cloud WhatsApp Automation engine ElavateX built for HelloBotz helped us automate millions of client messages with zero latency. Our client onboarding tripled within the first quarter.",
+            date: "Verified Client"
+        },
+        {
+            id: 4,
+            name: "Dr. Farooq & Admissions Directorate",
+            company: "The Edu Consultant (studyabroad.theeduconsultant.com)",
+            rating: 5,
+            comment: "The global study abroad platform built by ElavateX completely revolutionized our student counseling workflow. Responsive university matching, lightning-fast search filters, and seamless international inquiries.",
+            date: "Verified Client"
         }
     ];
 
@@ -1576,9 +1600,7 @@ Would you like to start a project inquiry right now?`;
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('reveal-active');
-                } else {
-                    // Smoothly reverse/reset when leaving the viewport
-                    entry.target.classList.remove('reveal-active');
+                    revealObserver.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -1626,6 +1648,185 @@ Would you like to start a project inquiry right now?`;
                 if (faqIcon) faqIcon.textContent = '−';
             }
         });
+    });
+
+    // ===================================================================
+    // 12b. INTERACTIVE PROJECT SCOPE & COST ESTIMATOR ENGINE
+    // ===================================================================
+    const estPlatformBtns = document.querySelectorAll('.est-choice-btn');
+    const estSpeedBtns = document.querySelectorAll('.est-speed-btn');
+    const estFeatureInputs = document.querySelectorAll('.est-feature-chip input');
+    
+    const estSummaryPlatform = document.getElementById('est-summary-platform');
+    const estSummaryTimelineDesc = document.getElementById('est-summary-timeline-desc');
+    const estCalcTime = document.getElementById('est-calc-time');
+    const estSelectedList = document.getElementById('est-selected-list');
+    const estWhatsappBtn = document.getElementById('est-whatsapp-btn');
+
+    let currentPlatform = "Web Application";
+    let baseDays = 14;
+    let currentSpeed = "Rapid MVP";
+    let speedDesc = "Rapid MVP Launch (10–21 Days)";
+    let speedMultiplier = 1;
+
+    function updateEstimator() {
+        if (!estSummaryPlatform) return;
+
+        let featureDays = 0;
+        const selectedFeatures = [];
+        estFeatureInputs.forEach(input => {
+            if (input.checked) {
+                featureDays += parseInt(input.getAttribute('data-days') || '2');
+                selectedFeatures.push(input.value);
+            }
+        });
+
+        const totalMinDays = Math.max(7, Math.round((baseDays + featureDays * 0.5) * speedMultiplier * 0.8));
+        const totalMaxDays = Math.round((baseDays + featureDays) * speedMultiplier);
+
+        let timelineText = `${totalMinDays} – ${totalMaxDays} Days`;
+        if (speedMultiplier >= 2) {
+            timelineText = `Dedicated Sprint (${totalMinDays}–${totalMaxDays} Days)`;
+        }
+
+        estSummaryPlatform.textContent = currentPlatform;
+        if (estSummaryTimelineDesc) estSummaryTimelineDesc.textContent = speedDesc;
+        if (estCalcTime) estCalcTime.textContent = timelineText;
+
+        if (estSelectedList) {
+            estSelectedList.innerHTML = '';
+            if (selectedFeatures.length === 0) {
+                const li = document.createElement('li');
+                li.textContent = "Core Architecture Baseline";
+                estSelectedList.appendChild(li);
+            } else {
+                selectedFeatures.forEach(feat => {
+                    const li = document.createElement('li');
+                    li.textContent = feat;
+                    estSelectedList.appendChild(li);
+                });
+            }
+        }
+
+        if (estWhatsappBtn) {
+            const featuresFormatted = selectedFeatures.map(f => `  • ${f}`).join('\n') || '  • Standard Baseline Architecture';
+            const waMsg = encodeURIComponent(
+                `*Project Scope & Estimation Spec (ElavateX.com)*\n\n` +
+                `*Platform:* ${currentPlatform}\n` +
+                `*Delivery Pace:* ${currentSpeed} (${timelineText})\n` +
+                `*Selected Capabilities:*\n${featuresFormatted}\n` +
+                `*Special Offer:* Instant 5% Discount Claimed\n\n` +
+                `Hi ElavateX team, I configured this project specification on your website estimator and would like to schedule a strategy call & get a quote!`
+            );
+            estWhatsappBtn.href = `https://wa.me/917676808068?text=${waMsg}`;
+        }
+    }
+
+    if (estPlatformBtns.length > 0) {
+        estPlatformBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                estPlatformBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentPlatform = btn.getAttribute('data-platform') || "Web Application";
+                baseDays = parseInt(btn.getAttribute('data-base-days') || '14');
+                updateEstimator();
+            });
+        });
+    }
+
+    if (estSpeedBtns.length > 0) {
+        estSpeedBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                estSpeedBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentSpeed = btn.getAttribute('data-speed') || "Rapid MVP";
+                speedMultiplier = parseFloat(btn.getAttribute('data-multiplier') || '1');
+                speedDesc = btn.getAttribute('data-speed-desc') || "Rapid MVP Launch (10–21 Days)";
+                updateEstimator();
+            });
+        });
+    }
+
+    if (estFeatureInputs.length > 0) {
+        estFeatureInputs.forEach(input => {
+            input.addEventListener('change', updateEstimator);
+        });
+    }
+
+    updateEstimator();
+
+    // ===================================================================
+    // 12c. HERO FLOATING PARALLAX & METRICS ANIMATED COUNTER ENGINE
+    // ===================================================================
+    if (typeof gsap !== 'undefined') {
+        gsap.to('.card-phone-overlay', {
+            y: '-=12',
+            duration: 3.5,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+        gsap.to('.card-code-overlay', {
+            y: '+=10',
+            duration: 4.2,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: 0.4
+        });
+        gsap.to('.card-metrics-overlay', {
+            y: '-=8',
+            duration: 3.8,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut',
+            delay: 0.8
+        });
+    }
+
+    // Hero Metrics Count-Up
+    const metricItems = document.querySelectorAll('.strip-number[data-target]');
+    if (metricItems.length > 0 && 'IntersectionObserver' in window) {
+        const counterObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const targetVal = parseFloat(el.getAttribute('data-target'));
+                    const suffix = el.getAttribute('data-suffix') || '';
+                    const decimals = parseInt(el.getAttribute('data-decimals') || '0');
+                    const duration = 1600;
+                    const startTime = performance.now();
+
+                    function updateCount(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                        const currentVal = targetVal * ease;
+                        el.textContent = currentVal.toFixed(decimals) + suffix;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCount);
+                        }
+                    }
+                    requestAnimationFrame(updateCount);
+                    obs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        metricItems.forEach(el => counterObserver.observe(el));
+    }
+
+    // ===================================================================
+    // 12d. DYNAMIC INTERACTIVE SPOTLIGHT CURSOR GLOW
+    // ===================================================================
+    document.addEventListener('mousemove', (e) => {
+        const card = e.target.closest('.glass-panel, .service-card-creative, .portfolio-card-creative, .portfolio-spotlight-card, .why-card');
+        if (card) {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+            card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        }
     });
 
     // ===================================================================
