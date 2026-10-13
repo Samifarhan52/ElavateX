@@ -414,23 +414,37 @@
                             <div style="width:48px; height:3px; background:rgba(255,255,255,0.4); border-radius:2px; margin:4px auto 0;"></div>
                         </div>
 
-                        <!-- 3. CODE EDITOR WINDOW MOCKUP CARD -->
-                        <div class="showcase-card card-code-overlay">
-                            <div class="code-header">
+                        <!-- 3. PERFORMANCE & SYSTEM ENGINE CARD (Replaces Code Window) -->
+                        <div class="showcase-card card-engine-overlay">
+                            <div class="engine-header-bar">
                                 <div class="dots-group">
                                     <span class="dot dot-red"></span>
                                     <span class="dot dot-yellow"></span>
                                     <span class="dot dot-green"></span>
                                 </div>
-                                <div class="code-filename">Product.jsx</div>
+                                <div class="engine-status-tag">
+                                    <span class="engine-pulse-dot"></span>
+                                    <span>LIVE AUDIT</span>
+                                </div>
                             </div>
-                            <div class="code-content">
-                                <span class="c-keyword">import</span> { <span class="c-component">ElavateX</span> } <span class="c-keyword">from</span> <span class="c-string">'@studio'</span>;<br><br>
-                                <span class="c-keyword">const</span> <span class="c-func">DevProduct</span> = () =&gt; {<br>
-                                &nbsp;&nbsp;<span class="c-keyword">return</span> (<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="c-component">ElavateX</span> <span class="c-attr">scale</span>={<span class="c-val">true</span>} /&gt;<br>
-                                &nbsp;&nbsp;);<br>
-                                };
+                            <div class="engine-body-content">
+                                <div class="engine-score-row">
+                                    <div class="score-badge-circle">
+                                        <span class="score-num">100</span>
+                                        <span class="score-sub">PERF</span>
+                                    </div>
+                                    <div class="score-details">
+                                        <div class="score-title">Core Web Vitals</div>
+                                        <div class="score-meta">
+                                            <span class="meta-highlight">0.12s</span> Sub-Second Load
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="engine-tech-stack-row">
+                                    <span class="stack-badge">Next.js 14</span>
+                                    <span class="stack-badge">Flutter</span>
+                                    <span class="stack-badge">Cloud SLA</span>
+                                </div>
                             </div>
                         </div>
 
