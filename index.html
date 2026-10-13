@@ -353,24 +353,45 @@
                         </div>
 
                         <!-- 2. MOBILE DEVICE MOCKUP CARD (Phone View) -->
-                        <div class="showcase-card card-phone-overlay">
-                            <div class="phone-notch"></div>
-                            <div class="phone-header">
-                                <div class="phone-title">Analytics</div>
-                                <div class="phone-subtitle">Overview</div>
-                            </div>
-                            <div class="phone-stat-block">
-                                <div class="stat-meta">Total Users</div>
-                                <div class="stat-value-row">
-                                    <span class="stat-number">12.5K</span>
-                                    <span class="stat-growth-tag">+24.5%</span>
+                        <div class="showcase-card card-phone-overlay" id="hero-phone-card">
+                            <div class="phone-status-mini">
+                                <span style="font-size:0.62rem; font-weight:700; color:#fff;" id="hero-phone-clock">9:41</span>
+                                <div class="phone-notch-island"></div>
+                                <div style="display:flex; align-items:center; gap:3px; font-size:0.55rem; color:#94a3b8;">
+                                    <span>5G</span>
+                                    <div style="width:12px; height:6px; border:1px solid #94a3b8; border-radius:2px; padding:1px;"><div style="width:100%; height:100%; background:#10b981;"></div></div>
                                 </div>
                             </div>
+                            
+                            <div class="phone-header" style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+                                <div>
+                                    <div class="phone-title">Growth Analytics</div>
+                                    <div class="phone-subtitle" style="font-size:0.95rem;">Overview</div>
+                                </div>
+                                <span style="font-size:0.58rem; color:#38bdf8; font-weight:800; background:rgba(56,189,248,0.15); padding:2px 6px; border-radius:10px;">LIVE</span>
+                            </div>
+
+                            <!-- Interactive Timeframe Filter Row -->
+                            <div class="phone-timeframe-row">
+                                <button class="phone-tf-btn" onclick="setHeroPhoneData('1d', this)">1D</button>
+                                <button class="phone-tf-btn active" onclick="setHeroPhoneData('7d', this)">7D</button>
+                                <button class="phone-tf-btn" onclick="setHeroPhoneData('1m', this)">1M</button>
+                                <button class="phone-tf-btn" onclick="setHeroPhoneData('1y', this)">1Y</button>
+                            </div>
+
+                            <div class="phone-stat-block" style="margin: 0.3rem 0;">
+                                <div class="stat-meta" id="hero-phone-meta">Active Audience</div>
+                                <div class="stat-value-row">
+                                    <span class="stat-number" id="hero-phone-num">12.5K</span>
+                                    <span class="stat-growth-tag" id="hero-phone-growth">+24.5%</span>
+                                </div>
+                            </div>
+
                             <!-- Live SVG Sparkline Chart -->
                             <div class="phone-chart-container">
                                 <svg class="phone-chart-svg" viewBox="0 0 200 70" preserveAspectRatio="none">
-                                    <path d="M0,50 Q40,40 70,55 T140,25 T200,10" fill="none" stroke="url(#chart-grad)" stroke-width="3" stroke-linecap="round" />
-                                    <path d="M0,50 Q40,40 70,55 T140,25 T200,10 L200,70 L0,70 Z" fill="url(#chart-fill-grad)" opacity="0.25" />
+                                    <path id="hero-chart-line" d="M0,50 Q40,40 70,55 T140,25 T200,10" fill="none" stroke="url(#chart-grad)" stroke-width="3" stroke-linecap="round" />
+                                    <path id="hero-chart-fill" d="M0,50 Q40,40 70,55 T140,25 T200,10 L200,70 L0,70 Z" fill="url(#chart-fill-grad)" opacity="0.25" />
                                     <defs>
                                         <linearGradient id="chart-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                                             <stop offset="0%" stop-color="#38bdf8" />
@@ -383,11 +404,14 @@
                                     </defs>
                                 </svg>
                             </div>
+
+                            <!-- Interactive Bottom Bar & Home Indicator -->
                             <div class="phone-bottom-bar">
-                                <div class="phone-nav-icon active"></div>
-                                <div class="phone-nav-icon"></div>
-                                <div class="phone-nav-icon"></div>
+                                <div class="phone-nav-icon active" onclick="setHeroPhoneTab(this)" title="Dashboard"></div>
+                                <div class="phone-nav-icon" onclick="setHeroPhoneTab(this)" title="Leads"></div>
+                                <div class="phone-nav-icon" onclick="setHeroPhoneTab(this)" title="Revenue"></div>
                             </div>
+                            <div style="width:48px; height:3px; background:rgba(255,255,255,0.4); border-radius:2px; margin:4px auto 0;"></div>
                         </div>
 
                         <!-- 3. CODE EDITOR WINDOW MOCKUP CARD -->

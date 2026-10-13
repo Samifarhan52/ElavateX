@@ -682,6 +682,8 @@
                                     <span>User</span>
                                 </button>
                             </div>
+                            <!-- iOS Home Indicator -->
+                            <div style="width:110px; height:4px; background:rgba(255,255,255,0.4); border-radius:2px; margin:6px auto 4px;"></div>
                         </div>
 
                         <!-- Controls -->
@@ -1508,6 +1510,16 @@
             }, 3200);
         }
 
+        // Live Status Bar Clock
+        function updateAppClock() {
+            const clock = document.getElementById('app-clock');
+            if (clock) {
+                clock.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+        }
+        updateAppClock();
+        setInterval(updateAppClock, 30000);
+
         // Money Transfer Simulation
         let balance = 48290.00;
         function triggerMoneyTransfer() {
@@ -1518,7 +1530,36 @@
                 balEl.style.color = '#34d399';
                 setTimeout(() => balEl.style.color = '#fff', 800);
             }
+            const listBox = document.querySelector('.app-list-box');
+            if (listBox) {
+                const newItem = document.createElement('div');
+                newItem.className = 'app-list-item';
+                newItem.innerHTML = `
+                    <div class="item-icon-bg bg-purple">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <div style="flex:1; text-align:left;">
+                        <div style="font-size:0.78rem; font-weight:700; color:#fff;">Instant Client Payout</div>
+                        <div style="font-size:0.68rem; color:#94a3b8;">Cloud Settlement</div>
+                    </div>
+                    <div style="font-size:0.78rem; font-weight:700; color:#34d399;">+$500.00</div>
+                `;
+                listBox.insertBefore(newItem, listBox.firstChild);
+            }
             triggerToast('Instant Transfer Received (+$500.00)');
+        }
+
+        // Color Swatch Selector Simulation
+        function selectColor(btn) {
+            document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            const color = btn.style.background;
+            const headphoneIcon = document.querySelector('#view-ecom svg');
+            if (headphoneIcon) {
+                headphoneIcon.style.stroke = color;
+                headphoneIcon.style.filter = `drop-shadow(0 0 10px ${color})`;
+            }
+            triggerToast('Color Finish Applied');
         }
 
         // Add to Cart Simulation

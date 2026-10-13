@@ -2073,6 +2073,60 @@ Would you like to start a project inquiry right now?`;
             window.location.href = href;
         }
     });
+
+    // --------------------------------------------------------------------------
+    // 19. Hero Mobile Phone Realistic Interactive Controller
+    // --------------------------------------------------------------------------
+    function updateHeroPhoneClock() {
+        const clock = document.getElementById('hero-phone-clock');
+        if (clock) {
+            clock.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+    }
+    updateHeroPhoneClock();
+    setInterval(updateHeroPhoneClock, 30000);
+
+    window.setHeroPhoneData = function(tf, btn) {
+        document.querySelectorAll('.phone-tf-btn').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        
+        const num = document.getElementById('hero-phone-num');
+        const growth = document.getElementById('hero-phone-growth');
+        const meta = document.getElementById('hero-phone-meta');
+        const line = document.getElementById('hero-chart-line');
+        const fill = document.getElementById('hero-chart-fill');
+        
+        if (tf === '1d') {
+            if (num) num.textContent = '3.2K';
+            if (growth) { growth.textContent = '+12.4%'; growth.style.color = '#38bdf8'; }
+            if (meta) meta.textContent = "Today's Visitors";
+            if (line) line.setAttribute('d', 'M0,60 Q50,45 90,50 T150,30 T200,20');
+            if (fill) fill.setAttribute('d', 'M0,60 Q50,45 90,50 T150,30 T200,20 L200,70 L0,70 Z');
+        } else if (tf === '7d') {
+            if (num) num.textContent = '12.5K';
+            if (growth) { growth.textContent = '+24.5%'; growth.style.color = '#10b981'; }
+            if (meta) meta.textContent = 'Active Audience';
+            if (line) line.setAttribute('d', 'M0,50 Q40,40 70,55 T140,25 T200,10');
+            if (fill) fill.setAttribute('d', 'M0,50 Q40,40 70,55 T140,25 T200,10 L200,70 L0,70 Z');
+        } else if (tf === '1m') {
+            if (num) num.textContent = '48.9K';
+            if (growth) { growth.textContent = '+118.2%'; growth.style.color = '#a855f7'; }
+            if (meta) meta.textContent = 'Monthly Reach';
+            if (line) line.setAttribute('d', 'M0,65 Q30,55 60,35 T130,20 T200,5');
+            if (fill) fill.setAttribute('d', 'M0,65 Q30,55 60,35 T130,20 T200,5 L200,70 L0,70 Z');
+        } else if (tf === '1y') {
+            if (num) num.textContent = '184.2K';
+            if (growth) { growth.textContent = '+340.5%'; growth.style.color = '#ec4899'; }
+            if (meta) meta.textContent = 'Annual Conversions';
+            if (line) line.setAttribute('d', 'M0,68 Q40,58 80,28 T140,12 T200,2');
+            if (fill) fill.setAttribute('d', 'M0,68 Q40,58 80,28 T140,12 T200,2 L200,70 L0,70 Z');
+        }
+    };
+
+    window.setHeroPhoneTab = function(icon) {
+        document.querySelectorAll('.phone-nav-icon').forEach(i => i.classList.remove('active'));
+        if (icon) icon.classList.add('active');
+    };
 });
 
 

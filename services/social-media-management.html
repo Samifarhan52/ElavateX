@@ -169,231 +169,1052 @@
         }
 
         .phone-frame {
-            width: 320px;
-            height: 640px;
+            width: 330px;
+            height: 660px;
             background: #000;
-            border-radius: 40px;
-            border: 12px solid #1e293b;
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(99, 102, 241, 0.15);
+            border-radius: 46px;
+            border: 9px solid #1e293b;
+            box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.8), 0 0 50px rgba(236, 72, 153, 0.2);
             overflow: hidden;
             position: relative;
-            transform: rotateY(-10deg) rotateX(10deg);
-            transition: transform 0.5s ease;
+            transform: rotateY(-8deg) rotateX(6deg);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
             color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            user-select: none;
         }
 
         .phone-frame:hover {
-            transform: rotateY(-3deg) rotateX(3deg) scale(1.02);
+            transform: rotateY(-2deg) rotateX(2deg) translateY(-6px);
+            box-shadow: 0 35px 90px -15px rgba(0, 0, 0, 0.9), 0 0 60px rgba(236, 72, 153, 0.3);
         }
 
-        /* Phone Screen Elements */
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 140px;
-            height: 25px;
-            background: #1e293b;
-            border-bottom-left-radius: 18px;
-            border-bottom-right-radius: 18px;
-            z-index: 100;
-        }
-
-        .insta-header {
-            padding: 2.2rem 1rem 0.8rem;
-            background: #000;
-            border-bottom: 1px solid #1e293b;
+        /* iOS Status Bar & Dynamic Island */
+        .phone-status-bar {
+            height: 38px;
+            padding: 8px 18px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: #000;
+            z-index: 60;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #fff;
+            position: relative;
+        }
+
+        .phone-dynamic-island {
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 88px;
+            height: 22px;
+            background: #000;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 100;
+        }
+
+        .phone-dynamic-island.expanded {
+            width: 240px;
+            height: 36px;
+            background: #0f172a;
+            border-color: rgba(236, 72, 153, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            padding: 0 12px;
+        }
+
+        .island-camera-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #111;
+            border: 1px solid #222;
+        }
+
+        .island-sensor-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #064e3b;
+            opacity: 0.8;
+        }
+
+        .island-expand-content {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            font-size: 0.68rem;
+        }
+
+        .phone-dynamic-island.expanded .island-expand-content {
+            display: flex;
+        }
+
+        .phone-dynamic-island.expanded .island-camera-dot,
+        .phone-dynamic-island.expanded .island-sensor-dot {
+            display: none;
+        }
+
+        .status-battery-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Instagram App Navigation Header */
+        .insta-header {
+            height: 42px;
+            padding: 0 12px;
+            background: #000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 40;
+        }
+
+        .insta-logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .insta-logo {
             font-family: 'Outfit', sans-serif;
             font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: -0.5px;
+            font-size: 1.15rem;
+            letter-spacing: -0.4px;
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .insta-icons {
-            display: flex;
-            gap: 1rem;
-            opacity: 0.85;
+        .insta-verified-badge {
+            color: #38bdf8;
+            display: inline-flex;
+            vertical-align: middle;
         }
 
-        .insta-feed {
-            height: calc(100% - 90px);
-            overflow-y: hidden;
+        .insta-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .insta-action-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 0;
+            cursor: pointer;
             position: relative;
-            background: #000;
-        }
-
-        /* Mockup Post card */
-        .insta-post {
-            width: 100%;
-            background: #000;
-        }
-
-        .post-author {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem;
-            gap: 0.5rem;
-        }
-
-        .author-pfp {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
-            border: 2px solid #000;
-            outline: 2px solid #ec4899;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        .author-name {
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .post-image-box {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);
-            position: relative;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .post-graphic {
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .post-graphic svg {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 0.8rem;
+        .insta-action-btn:hover {
             color: #ec4899;
         }
 
-        .post-graphic span {
-            font-size: 0.75rem;
+        .insta-action-badge {
+            position: absolute;
+            top: -4px;
+            right: -6px;
+            background: #ef4444;
+            color: #fff;
+            font-size: 0.55rem;
+            font-weight: 800;
+            padding: 1px 4px;
+            border-radius: 8px;
+            border: 1px solid #000;
+        }
+
+        /* Stories Tray */
+        .insta-stories-tray {
+            display: flex;
+            gap: 9px;
+            padding: 7px 10px;
+            background: #000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .insta-stories-tray::-webkit-scrollbar {
+            display: none;
+        }
+
+        .insta-story-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            flex: 0 0 46px;
+        }
+
+        .story-ring-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        .insta-story-item:hover .story-ring-wrap {
+            transform: scale(1.06);
+        }
+
+        .story-avatar-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #1e1b4b;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .story-add-badge {
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 14px;
+            height: 14px;
+            background: #0284c7;
+            border-radius: 50%;
+            border: 2px solid #000;
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-label {
+            font-size: 0.58rem;
+            color: #94a3b8;
+            width: 44px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* App View Switcher Tabs */
+        .insta-mode-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.04);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 3px;
+            gap: 4px;
+            margin: 4px 8px;
+            border-radius: 8px;
+            z-index: 30;
+        }
+
+        .insta-mode-btn {
+            flex: 1;
+            padding: 5px 0;
+            font-size: 0.68rem;
+            font-weight: 700;
+            border-radius: 6px;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .insta-mode-btn.active {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(168, 85, 247, 0.3));
+            color: #fff;
+            border: 1px solid rgba(236, 72, 153, 0.4);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Feed / Screen Container */
+        .insta-content-stream {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .insta-view-panel {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+        }
+
+        .insta-view-panel.active {
+            display: flex;
+        }
+
+        /* ------------------ REELS PLAYER VIEW ------------------ */
+        .reels-stage-wrap {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            background: radial-gradient(circle at 50% 30%, #2e1065 0%, #0f172a 70%, #020617 100%);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            cursor: pointer;
+        }
+
+        .reels-animated-bg {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .reels-pulse-core {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, rgba(139, 92, 246, 0.1) 60%, transparent 100%);
+            filter: blur(25px);
+            animation: pulseOrb 3.5s ease-in-out infinite alternate;
+        }
+
+        .reels-brand-stage-card {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 82%;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            padding: 1.1rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .reels-card-metric-tag {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .reels-card-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reels-soundwave-bars {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            height: 20px;
+        }
+
+        .soundwave-bar {
+            width: 3px;
+            background: #ec4899;
+            border-radius: 3px;
+            animation: soundwaveBounce 1.2s ease-in-out infinite alternate;
+        }
+
+        .soundwave-bar:nth-child(2) { animation-delay: 0.2s; height: 16px; }
+        .soundwave-bar:nth-child(3) { animation-delay: 0.4s; height: 22px; background: #8b5cf6; }
+        .soundwave-bar:nth-child(4) { animation-delay: 0.6s; height: 12px; }
+        .soundwave-bar:nth-child(5) { animation-delay: 0.8s; height: 18px; background: #38bdf8; }
+
+        @keyframes soundwaveBounce {
+            0% { transform: scaleY(0.3); }
+            100% { transform: scaleY(1.3); }
+        }
+
+        /* Right Floating Action Column */
+        .reels-action-column {
+            position: absolute;
+            right: 10px;
+            bottom: 75px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 13px;
+            z-index: 25;
+        }
+
+        .reels-action-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .reels-action-item:hover {
+            transform: scale(1.15);
+        }
+
+        .reels-action-item.liked svg {
+            fill: #f43f5e;
+            stroke: #f43f5e;
+            animation: heartPop 0.4s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+        }
+
+        .reels-action-item.saved svg {
+            fill: #fbbf24;
+            stroke: #fbbf24;
+        }
+
+        .reels-action-count {
+            font-size: 0.62rem;
             font-weight: 700;
             color: #fff;
-            letter-spacing: -0.3px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
         }
 
-        .post-actions {
+        .reels-vinyl-disc {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: conic-gradient(#111, #333, #111, #333);
+            border: 2px solid #fff;
             display: flex;
-            justify-content: space-between;
-            padding: 0.75rem;
-            font-size: 1.1rem;
+            align-items: center;
+            justify-content: center;
+            animation: rotateDisc 4s linear infinite;
         }
 
-        .actions-left {
+        @keyframes rotateDisc {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Bottom Reels Description Overlay */
+        .reels-bottom-info {
+            padding: 12px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+            z-index: 20;
+            position: relative;
+        }
+
+        .reels-author-row {
             display: flex;
-            gap: 1rem;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 5px;
         }
 
-        .post-likes {
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 0 0.75rem;
-            margin-bottom: 0.3rem;
-            display: block;
-        }
-
-        .post-caption {
+        .reels-author-name {
             font-size: 0.78rem;
-            padding: 0 0.75rem;
-            line-height: 1.4;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .reels-follow-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .reels-follow-btn.following {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: transparent;
             color: #cbd5e1;
         }
 
-        .post-caption strong {
+        .reels-caption-text {
+            font-size: 0.72rem;
+            color: #e2e8f0;
+            line-height: 1.35;
+            margin-bottom: 6px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .reels-audio-ticker {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.65rem;
+            color: #cbd5e1;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* Double-tap Burst Heart */
+        .insta-heart-burst {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            pointer-events: none;
+            z-index: 80;
+            color: #f43f5e;
+            filter: drop-shadow(0 10px 20px rgba(244, 63, 94, 0.8));
+            opacity: 0;
+        }
+
+        .insta-heart-burst.animate {
+            animation: burstHeartAnim 0.75s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
+        }
+
+        @keyframes burstHeartAnim {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            40% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+            80% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.9; }
+            100% { transform: translate(-50%, -50%) scale(1.4); opacity: 0; }
+        }
+
+        /* ------------------ FEED POST VIEW ------------------ */
+        .post-author-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 10px;
+        }
+
+        .post-author-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .post-carousel-container {
+            width: 100%;
+            height: 235px;
+            position: relative;
+            overflow: hidden;
+            background: #090d16;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+        }
+
+        .carousel-slide.active {
+            display: flex;
+        }
+
+        .carousel-slide:nth-child(2) {
+            background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+        }
+
+        .carousel-slide:nth-child(3) {
+            background: linear-gradient(135deg, #701a75 0%, #4a044e 100%);
+        }
+
+        .carousel-counter-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 12px;
+            z-index: 10;
+        }
+
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .carousel-nav-prev { left: 8px; }
+        .carousel-nav-next { right: 8px; }
+
+        .post-action-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 7px 10px 4px;
+        }
+
+        .post-action-left {
+            display: flex;
+            gap: 12px;
+        }
+
+        .post-indicators-dots {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .carousel-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .carousel-dot.active {
+            width: 6px;
+            height: 6px;
+            background: #38bdf8;
+        }
+
+        .post-likes-info {
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0 10px;
+            margin-bottom: 2px;
+        }
+
+        .post-caption-box {
+            font-size: 0.72rem;
+            padding: 0 10px;
+            line-height: 1.35;
+            color: #cbd5e1;
+        }
+
+        .post-caption-box strong {
             color: #fff;
         }
 
-        /* Floating Comments */
-        .floating-comments-container {
+        .post-comments-view-link {
+            font-size: 0.68rem;
+            color: #94a3b8;
+            padding: 3px 10px 0;
+            cursor: pointer;
+            display: block;
+        }
+
+        /* ------------------ INSIGHTS DASHBOARD VIEW ------------------ */
+        .insights-scroll-content {
+            padding: 10px;
+            overflow-y: auto;
+            flex: 1;
+            scrollbar-width: none;
+        }
+
+        .insights-scroll-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .insights-top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .insights-top-header h4 {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 0;
+        }
+
+        .insights-range-tabs {
+            display: flex;
+            gap: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px;
+            border-radius: 6px;
+        }
+
+        .range-chip {
+            font-size: 0.6rem;
+            font-weight: 700;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .range-chip.active {
+            background: #ec4899;
+            color: #fff;
+        }
+
+        .insights-metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+            margin-bottom: 10px;
+        }
+
+        .insights-stat-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        .insights-stat-label {
+            font-size: 0.62rem;
+            color: #94a3b8;
+            margin-bottom: 3px;
+        }
+
+        .insights-stat-val {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .insights-stat-growth {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #34d399;
+        }
+
+        .insights-bar-chart {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        .insights-chart-bars-wrap {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 48px;
+            padding-top: 6px;
+            gap: 4px;
+        }
+
+        .chart-col {
+            flex: 1;
+            background: linear-gradient(to top, #ec4899, #8b5cf6);
+            border-radius: 3px 3px 0 0;
+            transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ------------------ INTERACTIVE COMMENTS DRAWER ------------------ */
+        .insta-comments-drawer {
             position: absolute;
-            bottom: 40px;
-            left: 10px;
-            right: 10px;
-            z-index: 10;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 72%;
+            background: #0f172a;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.8);
+            z-index: 120;
+            transform: translateY(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+        }
+
+        .insta-comments-drawer.open {
+            transform: translateY(0);
+        }
+
+        .drawer-handle-bar {
+            width: 36px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 2px;
+            margin: 6px auto 4px;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 12px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .drawer-header h5 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .drawer-close-btn {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .drawer-comments-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            scrollbar-width: none;
+        }
+
+        .drawer-comments-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .drawer-comment-item {
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .drawer-comment-pfp {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #1e293b;
+            color: #ec4899;
+            font-size: 0.6rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+        }
+
+        .drawer-comment-body {
+            font-size: 0.68rem;
+            line-height: 1.3;
+            color: #cbd5e1;
+        }
+
+        .drawer-comment-body strong {
+            color: #fff;
+            margin-right: 4px;
+        }
+
+        .drawer-input-row {
+            padding: 8px 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #020617;
+        }
+
+        .drawer-input-row input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 5px 10px;
+            font-size: 0.68rem;
+            color: #fff;
+            outline: none;
+        }
+
+        .drawer-input-row button {
+            background: #ec4899;
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            padding: 4px 9px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ------------------ STORY PREVIEW OVERLAY ------------------ */
+        .insta-story-overlay {
+            position: absolute;
+            inset: 0;
+            background: #000;
+            z-index: 150;
+            display: none;
+            flex-direction: column;
+        }
+
+        .insta-story-overlay.active {
+            display: flex;
+        }
+
+        .story-progress-bar-wrap {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 8px 10px 4px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .story-progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: #fff;
+        }
+
+        .story-overlay-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 10px;
+        }
+
+        .story-overlay-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            text-align: center;
+            background: radial-gradient(circle at 50% 40%, #4c1d95 0%, #0f172a 100%);
+        }
+
+        /* Bottom App Navigation Bar */
+        .insta-bottom-nav {
+            height: 42px;
+            background: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 40;
+            position: relative;
+        }
+
+        .insta-nav-item {
+            background: none;
+            border: none;
+            color: #cbd5e1;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+
+        .insta-nav-item.active {
+            color: #fff;
+        }
+
+        .nav-profile-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            border: 1px solid #fff;
+        }
+
+        /* iOS Home Swipe Bar */
+        .phone-home-indicator {
+            width: 110px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 2px;
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
             pointer-events: none;
         }
 
-        .mini-comment-card {
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            padding: 0.6rem 0.9rem;
+        /* External Floating Social Proof Badges (Outside Phone Chassis) */
+        .floating-social-badge {
+            position: absolute;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(14px);
+            padding: 0.65rem 1rem;
             border-radius: 16px;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             color: #fff;
             display: flex;
             align-items: center;
             gap: 0.6rem;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: slideInComment 4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6);
+            z-index: 20;
+            animation: float 4s ease-in-out infinite;
         }
 
-        .mini-comment-card:nth-child(2) {
-            animation-delay: 1.3s;
+        .badge-smm-top-right {
+            top: 25px;
+            right: -24px;
+            animation-delay: 0.5s;
         }
 
-        .mini-comment-card:nth-child(3) {
-            animation-delay: 2.6s;
-        }
-
-        /* Push Notifications */
-        .push-notification {
-            position: absolute;
-            top: 75px;
-            left: 12px;
-            right: 12px;
-            background: rgba(15, 23, 42, 0.95);
-            border-left: 4px solid #ec4899;
-            border-radius: 12px;
-            padding: 0.75rem 1rem;
-            font-size: 0.75rem;
-            z-index: 50;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
-            transform: translateY(-100px);
-            opacity: 0;
-            animation: slideInNotification 6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        .badge-smm-bottom-left {
+            bottom: 35px;
+            left: -28px;
+            animation-delay: 1.8s;
         }
 
         /* Decorative Floating Elements around Mockup */
@@ -1941,71 +2762,386 @@
 
                     <div class="instagram-mockup-wrapper reveal-item">
                         <div class="hero-decor-orb"></div>
-                        <div class="phone-frame">
-                            <div class="phone-notch"></div>
+
+                        <!-- External Floating Social Proof Badges (Outside Chassis) -->
+                        <div class="floating-social-badge badge-smm-top-right">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <div>
+                                <strong style="display:block; font-size:0.75rem; color:#fff;">4.9 / 5 Client Rating</strong>
+                                <span style="font-size:0.65rem; color:#94a3b8;">480+ Brands Scaled</span>
+                            </div>
+                        </div>
+
+                        <div class="floating-social-badge badge-smm-bottom-left">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                            <div>
+                                <strong style="display:block; font-size:0.75rem; color:#34d399;">+340% Organic Reach</strong>
+                                <span style="font-size:0.65rem; color:#94a3b8;">Average 60-Day Lift</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Interactive Phone Frame -->
+                        <div class="phone-frame" id="insta-phone-chassis">
                             
-                            <!-- Push Notification Box -->
-                            <div class="push-notification" id="push-notify">
-                                <div class="author-pfp" style="display:flex; align-items:center; justify-content:center;">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            <!-- 1. iOS Status Bar & Dynamic Island -->
+                            <div class="phone-status-bar">
+                                <span id="insta-clock">9:41 AM</span>
+                                
+                                <div class="phone-dynamic-island" id="insta-island" title="Tap Dynamic Island">
+                                    <div class="island-camera-dot"></div>
+                                    <div class="island-sensor-dot"></div>
+                                    <div class="island-expand-content">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="#ec4899"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                        <span id="island-text" style="color:#fff; font-weight:700;">Reel Viral Spike: +124k</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <strong style="display:block;">ElavateX Marketing</strong>
-                                    <span>Your reel reached +124k users this hour!</span>
+
+                                <div class="status-battery-indicator">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+                                    <span style="font-size:0.65rem;">5G</span>
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2" ry="2"/><line x1="23" y1="10" x2="23" y2="14"/><rect x="3" y="8" width="14" height="8" rx="1" fill="#34d399"/></svg>
                                 </div>
                             </div>
 
+                            <!-- 2. Instagram Header Bar -->
                             <div class="insta-header">
-                                <span class="insta-logo">elavatex_dev</span>
-                                <div class="insta-icons">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                                <div class="insta-logo-wrap">
+                                    <span class="insta-logo">elavatex_dev</span>
+                                    <span class="insta-verified-badge" title="Verified Creator">
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="#38bdf8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                    </span>
+                                </div>
+                                <div class="insta-header-actions">
+                                    <button class="insta-action-btn" id="btn-insta-notif" title="Notifications">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                        <span class="insta-action-badge">9+</span>
+                                    </button>
+                                    <button class="insta-action-btn" id="btn-insta-dm" title="Direct Messages">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                                        <span class="insta-action-badge">3</span>
+                                    </button>
                                 </div>
                             </div>
-                            
-                            <div class="insta-feed">
-                                <div class="insta-post">
-                                    <div class="post-author">
-                                        <div class="author-pfp">EX</div>
-                                        <div>
-                                            <span class="author-name">elavatex_dev</span>
-                                            <span style="font-size:0.65rem; display:block; opacity:0.6;">Sponsored</span>
-                                        </div>
+
+                            <!-- 3. Stories Tray -->
+                            <div class="insta-stories-tray">
+                                <div class="insta-story-item" onclick="triggerStoryPreview('elavatex')">
+                                    <div class="story-ring-wrap">
+                                        <div class="story-avatar-inner" style="background:#0f172a;">EX</div>
+                                        <div class="story-add-badge">+</div>
                                     </div>
-                                    <div class="post-image-box">
-                                        <div class="post-graphic">
-                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                                            <span>WE BUILD DIGITAL PRODUCTS THAT SCALE</span>
-                                        </div>
+                                    <span class="story-label">Your Story</span>
+                                </div>
+                                <div class="insta-story-item" onclick="triggerStoryPreview('trait')">
+                                    <div class="story-ring-wrap">
+                                        <div class="story-avatar-inner" style="background:#1e1b4b; color:#818cf8;">TI</div>
                                     </div>
-                                    <div class="post-actions">
-                                        <div class="actions-left">
-                                            <svg id="insta-heart" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer; transition: fill 0.3s, color 0.3s;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-                                        </div>
+                                    <span class="story-label">trait.ai</span>
+                                </div>
+                                <div class="insta-story-item" onclick="triggerStoryPreview('hellobotz')">
+                                    <div class="story-ring-wrap">
+                                        <div class="story-avatar-inner" style="background:#064e3b; color:#34d399;">HB</div>
                                     </div>
-                                    <span class="post-likes"><span id="likes-counter">42,892</span> likes</span>
-                                    <p class="post-caption">
-                                        <strong>elavatex_dev</strong> Custom engineering is the ultimate hack for brands that want to grow. Stop using templates! #WebEngineering #DigitalGrowth #UIUX
-                                    </p>
+                                    <span class="story-label">hellobotz</span>
+                                </div>
+                                <div class="insta-story-item" onclick="triggerStoryPreview('studyabroad')">
+                                    <div class="story-ring-wrap">
+                                        <div class="story-avatar-inner" style="background:#581c87; color:#c084fc;">SA</div>
+                                    </div>
+                                    <span class="story-label">studyabroad</span>
+                                </div>
+                            </div>
+
+                            <!-- 4. Mode Switcher Tabs -->
+                            <div class="insta-mode-tabs">
+                                <button class="insta-mode-btn active" id="tab-btn-reels" onclick="switchInstaTab('reels')">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                                    Reels
+                                </button>
+                                <button class="insta-mode-btn" id="tab-btn-post" onclick="switchInstaTab('post')">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                    Carousel
+                                </button>
+                                <button class="insta-mode-btn" id="tab-btn-insights" onclick="switchInstaTab('insights')">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                    Insights
+                                </button>
+                            </div>
+
+                            <!-- 5. Content Stream Container -->
+                            <div class="insta-content-stream">
+                                
+                                <!-- SCREEN A: REELS PLAYER VIEW (Default) -->
+                                <div class="insta-view-panel active" id="view-insta-reels">
+                                    <div class="reels-stage-wrap" id="reels-video-stage" ondblclick="triggerReelDoubleTap(event)">
+                                        
+                                        <!-- Dynamic Ambient Motion Backdrop -->
+                                        <div class="reels-animated-bg">
+                                            <div class="reels-pulse-core"></div>
+                                        </div>
+
+                                        <!-- Center Brand Showcase Stage Card -->
+                                        <div class="reels-brand-stage-card">
+                                            <div class="reels-card-metric-tag">HIGH-RETENTION GROWTH AD</div>
+                                            <div class="reels-card-title">WE BUILD DIGITAL PRODUCTS THAT SCALE</div>
+                                            
+                                            <!-- Animated Equalizer Bars -->
+                                            <div class="reels-soundwave-bars">
+                                                <div class="soundwave-bar"></div>
+                                                <div class="soundwave-bar"></div>
+                                                <div class="soundwave-bar"></div>
+                                                <div class="soundwave-bar"></div>
+                                                <div class="soundwave-bar"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Double Tap Burst Heart -->
+                                        <div class="insta-heart-burst" id="burst-heart">
+                                            <svg width="74" height="74" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                        </div>
+
+                                        <!-- Right Vertical Action Controls -->
+                                        <div class="reels-action-column">
+                                            <button class="reels-action-item" id="reel-like-btn" onclick="toggleReelLike()">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                                <span class="reels-action-count" id="reel-likes-count">42.9K</span>
+                                            </button>
+                                            
+                                            <button class="reels-action-item" id="reel-comment-btn" onclick="toggleCommentsDrawer()">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                                <span class="reels-action-count" id="reel-comments-count">842</span>
+                                            </button>
+
+                                            <button class="reels-action-item" id="reel-share-btn" onclick="triggerReelShare()">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                                                <span class="reels-action-count">1.4K</span>
+                                            </button>
+
+                                            <button class="reels-action-item" id="reel-save-btn" onclick="toggleReelSave()">
+                                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                                            </button>
+
+                                            <div class="reels-vinyl-disc" title="Original Audio">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                                            </div>
+                                        </div>
+
+                                        <!-- Bottom Info Details -->
+                                        <div class="reels-bottom-info">
+                                            <div class="reels-author-row">
+                                                <div class="author-pfp" style="width:24px; height:24px; font-size:0.6rem;">EX</div>
+                                                <span class="reels-author-name">elavatex_dev</span>
+                                                <button class="reels-follow-btn" id="reel-follow-btn" onclick="toggleFollowAuthor()">Follow</button>
+                                            </div>
+                                            <div class="reels-caption-text">
+                                                Custom engineering is the ultimate hack for brands that want to grow. Stop using templates! #DigitalGrowth
+                                            </div>
+                                            <div class="reels-audio-ticker">
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg>
+                                                <span>♫ ElavateX Original Audio • Viral Tech Beats</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
 
-                                <!-- Floating Live Comments Board -->
-                                <div class="floating-comments-container">
-                                    <div class="mini-comment-card">
-                                        <div class="author-pfp" style="outline-color:#10b981; font-size:0.75rem; font-weight:700; color:#10b981;">RD</div>
-                                        <div><strong>rahul_dev:</strong> "Absolutely stunning design!"</div>
+                                <!-- SCREEN B: FEED CAROUSEL POST VIEW -->
+                                <div class="insta-view-panel" id="view-insta-post">
+                                    <div class="post-author-bar">
+                                        <div class="post-author-left">
+                                            <div class="author-pfp" style="width:28px; height:28px; font-size:0.65rem;">EX</div>
+                                            <div>
+                                                <div style="font-size:0.75rem; font-weight:700; color:#fff;">elavatex_dev</div>
+                                                <div style="font-size:0.62rem; color:#94a3b8;">Sponsored</div>
+                                            </div>
+                                        </div>
+                                        <span style="color:#94a3b8; font-size:0.85rem; cursor:pointer;">•••</span>
                                     </div>
-                                    <div class="mini-comment-card">
-                                        <div class="author-pfp" style="outline-color:#f59e0b; font-size:0.75rem; font-weight:700; color:#f59e0b;">AP</div>
-                                        <div><strong>ananya_pixels:</strong> "The animations feel so fluid!"</div>
+
+                                    <!-- Carousel Slides -->
+                                    <div class="post-carousel-container" id="post-carousel">
+                                        <div class="carousel-counter-badge" id="carousel-badge">1/3</div>
+                                        
+                                        <button class="carousel-nav-btn carousel-nav-prev" onclick="shiftPostSlide(-1)">&lsaquo;</button>
+                                        <button class="carousel-nav-btn carousel-nav-next" onclick="shiftPostSlide(1)">&rsaquo;</button>
+
+                                        <!-- Slide 1 -->
+                                        <div class="carousel-slide active" data-slide="0">
+                                            <div class="reels-card-metric-tag" style="background:rgba(236,72,153,0.2); color:#f472b6;">STEP 1: CREATIVE HOOK</div>
+                                            <h4 style="font-size:0.95rem; font-weight:800; color:#fff; margin-bottom:0.4rem;">High-Retention Content That Stops The Scroll</h4>
+                                            <p style="font-size:0.7rem; color:#cbd5e1; line-height:1.4;">Custom motion graphics engineered for maximum algorithmic watch time and CTR.</p>
+                                        </div>
+
+                                        <!-- Slide 2 -->
+                                        <div class="carousel-slide" data-slide="1">
+                                            <div class="reels-card-metric-tag" style="background:rgba(16,185,129,0.2); color:#34d399;">STEP 2: ROAS MULTIPLIER</div>
+                                            <h4 style="font-size:0.95rem; font-weight:800; color:#fff; margin-bottom:0.4rem;">+340% Higher ROAS on Meta & Instagram</h4>
+                                            <p style="font-size:0.7rem; color:#cbd5e1; line-height:1.4;">Targeted direct-response funnels that convert cold traffic into paid customers.</p>
+                                        </div>
+
+                                        <!-- Slide 3 -->
+                                        <div class="carousel-slide" data-slide="2">
+                                            <div class="reels-card-metric-tag" style="background:rgba(168,85,247,0.2); color:#c084fc;">STEP 3: AUTOMATION ENGINE</div>
+                                            <h4 style="font-size:0.95rem; font-weight:800; color:#fff; margin-bottom:0.4rem;">Automated Multi-Platform Distribution</h4>
+                                            <p style="font-size:0.7rem; color:#cbd5e1; line-height:1.4;">Scheduled deployment across Instagram, Facebook, LinkedIn & YouTube Shorts.</p>
+                                        </div>
                                     </div>
-                                    <div class="mini-comment-card">
-                                        <div class="author-pfp" style="outline-color:#3b82f6; font-size:0.75rem; font-weight:700; color:#3b82f6;">GH</div>
-                                        <div><strong>growth_hacker:</strong> "CTR increased by 3.4x!"</div>
+
+                                    <!-- Post Action Icons -->
+                                    <div class="post-action-bar">
+                                        <div class="post-action-left">
+                                            <svg id="post-heart-icon" onclick="togglePostHeart()" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                            <svg onclick="toggleCommentsDrawer()" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                            <svg onclick="triggerReelShare()" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer;"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                                        </div>
+                                        <div class="post-indicators-dots" id="carousel-dots-wrap">
+                                            <span class="carousel-dot active"></span>
+                                            <span class="carousel-dot"></span>
+                                            <span class="carousel-dot"></span>
+                                        </div>
+                                        <svg onclick="toggleReelSave()" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="cursor:pointer;"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                                    </div>
+
+                                    <div class="post-likes-info"><span id="post-likes-val">42,892</span> likes</div>
+                                    <div class="post-caption-box">
+                                        <strong>elavatex_dev</strong> Custom engineering is the ultimate hack for brands that want to grow. Stop using templates!
+                                    </div>
+                                    <span class="post-comments-view-link" onclick="toggleCommentsDrawer()">View all 842 comments</span>
+                                </div>
+
+                                <!-- SCREEN C: PROFESSIONAL INSIGHTS VIEW -->
+                                <div class="insta-view-panel" id="view-insta-insights">
+                                    <div class="insights-scroll-content">
+                                        <div class="insights-top-header">
+                                            <h4>Professional Dashboard</h4>
+                                            <div class="insights-range-tabs">
+                                                <button class="range-chip" onclick="setInsightsRange('7d', this)">7D</button>
+                                                <button class="range-chip active" onclick="setInsightsRange('30d', this)">30D</button>
+                                                <button class="range-chip" onclick="setInsightsRange('90d', this)">90D</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="insights-metric-grid">
+                                            <div class="insights-stat-box">
+                                                <div class="insights-stat-label">Accounts Reached</div>
+                                                <div class="insights-stat-val" id="ins-reach">284.5K</div>
+                                                <div class="insights-stat-growth">+412% vs prior</div>
+                                            </div>
+                                            <div class="insights-stat-box">
+                                                <div class="insights-stat-label">Engagements</div>
+                                                <div class="insights-stat-val" id="ins-eng">38.2K</div>
+                                                <div class="insights-stat-growth">+185% vs prior</div>
+                                            </div>
+                                            <div class="insights-stat-box">
+                                                <div class="insights-stat-label">Profile Visits</div>
+                                                <div class="insights-stat-val" id="ins-visits">18.9K</div>
+                                                <div class="insights-stat-growth">+240% CTR</div>
+                                            </div>
+                                            <div class="insights-stat-box">
+                                                <div class="insights-stat-label">Average ROAS</div>
+                                                <div class="insights-stat-val" id="ins-roas">4.8x</div>
+                                                <div class="insights-stat-growth">+2.1x Benchmark</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Mini Weekly Spikes Bar Chart -->
+                                        <div class="insights-bar-chart">
+                                            <div style="font-size:0.65rem; font-weight:700; color:#94a3b8; margin-bottom:4px;">Weekly Traffic Momentum</div>
+                                            <div class="insights-chart-bars-wrap" id="chart-bars-wrap">
+                                                <div class="chart-col" style="height:35%;" title="Mon"></div>
+                                                <div class="chart-col" style="height:55%;" title="Tue"></div>
+                                                <div class="chart-col" style="height:45%;" title="Wed"></div>
+                                                <div class="chart-col" style="height:80%;" title="Thu"></div>
+                                                <div class="chart-col" style="height:95%;" title="Fri"></div>
+                                                <div class="chart-col" style="height:70%;" title="Sat"></div>
+                                                <div class="chart-col" style="height:100%;" title="Sun"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- INTERACTIVE SLIDE-UP COMMENTS DRAWER -->
+                                <div class="insta-comments-drawer" id="insta-comments-drawer">
+                                    <div class="drawer-handle-bar" onclick="toggleCommentsDrawer()"></div>
+                                    <div class="drawer-header">
+                                        <h5>Comments (<span id="drawer-comments-count">842</span>)</h5>
+                                        <button class="drawer-close-btn" onclick="toggleCommentsDrawer()">&times;</button>
+                                    </div>
+                                    
+                                    <div class="drawer-comments-list" id="drawer-comments-list">
+                                        <div class="drawer-comment-item">
+                                            <div class="drawer-comment-pfp" style="color:#10b981;">RD</div>
+                                            <div class="drawer-comment-body">
+                                                <strong>rahul_dev</strong> Absolutely stunning design! How fast was this built?
+                                            </div>
+                                        </div>
+                                        <div class="drawer-comment-item">
+                                            <div class="drawer-comment-pfp" style="color:#f59e0b;">AP</div>
+                                            <div class="drawer-comment-body">
+                                                <strong>ananya_pixels</strong> The animations feel so fluid and premium!
+                                            </div>
+                                        </div>
+                                        <div class="drawer-comment-item">
+                                            <div class="drawer-comment-pfp" style="color:#3b82f6;">GH</div>
+                                            <div class="drawer-comment-body">
+                                                <strong>growth_hacker</strong> CTR increased by 3.4x after switching to this custom stack!
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <form class="drawer-input-row" id="drawer-comment-form" onsubmit="handleDrawerNewComment(event)">
+                                        <input type="text" id="drawer-comment-input" placeholder="Add a comment for elavatex_dev..." autocomplete="off" required>
+                                        <button type="submit">Post</button>
+                                    </form>
+                                </div>
+
+                                <!-- INTERACTIVE STORY PREVIEW OVERLAY -->
+                                <div class="insta-story-overlay" id="insta-story-overlay">
+                                    <div class="story-progress-bar-wrap">
+                                        <div class="story-progress-bar-fill" id="story-progress-fill"></div>
+                                    </div>
+                                    <div class="story-overlay-header">
+                                        <div style="display:flex; align-items:center; gap:6px;">
+                                            <div class="author-pfp" style="width:24px; height:24px; font-size:0.6rem;" id="story-pfp">EX</div>
+                                            <strong style="font-size:0.75rem; color:#fff;" id="story-title">elavatex_dev</strong>
+                                            <span style="font-size:0.62rem; color:#94a3b8;">4h ago</span>
+                                        </div>
+                                        <button style="background:none; border:none; color:#fff; font-size:1.1rem; cursor:pointer;" onclick="closeStoryOverlay()">&times;</button>
+                                    </div>
+                                    <div class="story-overlay-content" id="story-body-content">
+                                        <div class="reels-card-metric-tag" id="story-badge">LIVE CASE STUDY</div>
+                                        <h3 style="font-size:1.1rem; font-weight:800; color:#fff; margin-bottom:0.8rem;" id="story-heading">Deploying Trait Innovation & HelloBotz</h3>
+                                        <p style="font-size:0.78rem; color:#cbd5e1; line-height:1.5; margin-bottom:1.2rem;" id="story-text">Sub-second architecture paired with automated multi-channel viral reel pipelines.</p>
+                                        <button class="btn-smm-primary" style="padding:0.5rem 1.1rem; font-size:0.75rem;" onclick="closeStoryOverlay(); document.querySelector('.open-consultation-btn').click();">
+                                            <span>DM For Growth Plan &rarr;</span>
+                                        </button>
                                     </div>
                                 </div>
 
                             </div>
+
+                            <!-- 6. Instagram Bottom Navigation Bar -->
+                            <div class="insta-bottom-nav">
+                                <button class="insta-nav-item active" onclick="switchInstaTab('reels')" title="Home">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                                </button>
+                                <button class="insta-nav-item" onclick="switchInstaTab('post')" title="Explore">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                </button>
+                                <button class="insta-nav-item" onclick="switchInstaTab('reels')" title="Reels">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                                </button>
+                                <button class="insta-nav-item" onclick="switchInstaTab('insights')" title="Insights">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                </button>
+                                <button class="insta-nav-item" title="Profile">
+                                    <div class="nav-profile-dot"></div>
+                                </button>
+                            </div>
+
+                            <!-- 7. iOS Home Swipe Indicator Bar -->
+                            <div class="phone-home-indicator"></div>
+
                         </div>
                     </div>
 
@@ -3076,57 +4212,296 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // ------------------ 1. Instagram Feed Mockup Live Interactions ------------------
-            const heartIcon = document.getElementById('insta-heart');
-            const likesCounter = document.getElementById('likes-counter');
-            const pushNotify = document.getElementById('push-notify');
+            // ------------------ 1. Realistic & Functional Instagram App Controller ------------------
+            
+            // Live Status Bar Clock
+            function updateInstaClock() {
+                const clockEl = document.getElementById('insta-clock');
+                if (clockEl) {
+                    const now = new Date();
+                    clockEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                }
+            }
+            updateInstaClock();
+            setInterval(updateInstaClock, 30000);
 
-            let liked = false;
-            let currentLikes = 42892;
-
-            // Heart Click Action
-            if (heartIcon && likesCounter) {
-                heartIcon.addEventListener('click', () => {
-                    liked = !liked;
-                    if (liked) {
-                        heartIcon.style.fill = '#ec4899';
-                        heartIcon.style.color = '#ec4899';
-                        currentLikes++;
-                    } else {
-                        heartIcon.style.fill = 'none';
-                        heartIcon.style.color = '#fff';
-                        currentLikes--;
-                    }
-                    likesCounter.textContent = currentLikes.toLocaleString();
+            // Dynamic Island Interactions
+            const island = document.getElementById('insta-island');
+            const islandText = document.getElementById('island-text');
+            const islandMessages = [
+                "Reel Viral Spike: +124k views",
+                "New Direct Message from Client",
+                "CTR reached 4.8% on Meta Ads",
+                "Story Reach: +28k today"
+            ];
+            let islandMsgIdx = 0;
+            
+            if (island) {
+                island.addEventListener('click', () => {
+                    island.classList.toggle('expanded');
                 });
             }
 
-            // Auto-increment Likes simulation
             setInterval(() => {
-                if (likesCounter) {
-                    currentLikes += Math.floor(Math.random() * 3) + 1;
-                    likesCounter.textContent = currentLikes.toLocaleString();
+                if (island && !island.classList.contains('expanded')) {
+                    islandMsgIdx = (islandMsgIdx + 1) % islandMessages.length;
+                    if (islandText) islandText.textContent = islandMessages[islandMsgIdx];
+                    island.classList.add('expanded');
+                    setTimeout(() => {
+                        island.classList.remove('expanded');
+                    }, 3500);
                 }
-            }, 3000);
+            }, 8000);
 
-            // Simulation of changing push notifications periodically
-            const notificationMessages = [
-                "Your reel reached +124k users this hour!",
-                "New comment from designer_pro: 'Incredible grids!'",
-                "Conversion spike: +3.4x CTR detected!",
-                "+140 followers gained today organically!",
-                "Brand reputation score increased to 99.4%"
-            ];
-            let msgIndex = 0;
-            setInterval(() => {
-                if (pushNotify) {
-                    msgIndex = (msgIndex + 1) % notificationMessages.length;
-                    const textSpan = pushNotify.querySelector('div span');
-                    if (textSpan) {
-                        textSpan.textContent = notificationMessages[msgIndex];
+            // Header DMs / Notifications
+            const dmBtn = document.getElementById('btn-insta-dm');
+            if (dmBtn) {
+                dmBtn.addEventListener('click', () => {
+                    if (island && islandText) {
+                        islandText.textContent = "3 Inquiries: 'Can we book a project?'";
+                        island.classList.add('expanded');
+                        setTimeout(() => island.classList.remove('expanded'), 3200);
+                    }
+                });
+            }
+
+            // Tab Switching (Reels / Carousel Post / Insights)
+            window.switchInstaTab = function(tabName) {
+                document.querySelectorAll('.insta-mode-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.insta-view-panel').forEach(panel => panel.classList.remove('active'));
+
+                const targetBtn = document.getElementById(`tab-btn-${tabName}`);
+                const targetView = document.getElementById(`view-insta-${tabName}`);
+                if (targetBtn) targetBtn.classList.add('active');
+                if (targetView) targetView.classList.add('active');
+            };
+
+            // Reels Like Toggle
+            let isReelLiked = false;
+            let reelLikes = 42892;
+            const reelLikeBtn = document.getElementById('reel-like-btn');
+            const reelLikesCount = document.getElementById('reel-likes-count');
+
+            window.toggleReelLike = function() {
+                isReelLiked = !isReelLiked;
+                if (reelLikeBtn) {
+                    if (isReelLiked) {
+                        reelLikeBtn.classList.add('liked');
+                        reelLikes++;
+                    } else {
+                        reelLikeBtn.classList.remove('liked');
+                        reelLikes--;
                     }
                 }
-            }, 6000);
+                if (reelLikesCount) {
+                    reelLikesCount.textContent = (reelLikes / 1000).toFixed(1) + 'K';
+                }
+            };
+
+            // Reels Double Tap Heart Burst
+            window.triggerReelDoubleTap = function(e) {
+                const burstHeart = document.getElementById('burst-heart');
+                if (burstHeart) {
+                    burstHeart.classList.remove('animate');
+                    void burstHeart.offsetWidth;
+                    burstHeart.classList.add('animate');
+                }
+                if (!isReelLiked) {
+                    toggleReelLike();
+                }
+            };
+
+            // Follow Author Toggle
+            let isFollowing = false;
+            window.toggleFollowAuthor = function() {
+                const btn = document.getElementById('reel-follow-btn');
+                if (!btn) return;
+                isFollowing = !isFollowing;
+                if (isFollowing) {
+                    btn.textContent = "Following ✓";
+                    btn.classList.add('following');
+                } else {
+                    btn.textContent = "Follow";
+                    btn.classList.remove('following');
+                }
+            };
+
+            // Comments Drawer Toggle & Add Comment
+            const drawer = document.getElementById('insta-comments-drawer');
+            window.toggleCommentsDrawer = function() {
+                if (drawer) drawer.classList.toggle('open');
+            };
+
+            let commentTotal = 842;
+            window.handleDrawerNewComment = function(e) {
+                e.preventDefault();
+                const input = document.getElementById('drawer-comment-input');
+                const list = document.getElementById('drawer-comments-list');
+                const countEl = document.getElementById('drawer-comments-count');
+                const reelCountEl = document.getElementById('reel-comments-count');
+
+                if (!input || !list || !input.value.trim()) return;
+
+                commentTotal++;
+                if (countEl) countEl.textContent = commentTotal;
+                if (reelCountEl) reelCountEl.textContent = commentTotal;
+
+                const item = document.createElement('div');
+                item.className = 'drawer-comment-item';
+                item.innerHTML = `
+                    <div class="drawer-comment-pfp" style="color:#ec4899;">YOU</div>
+                    <div class="drawer-comment-body">
+                        <strong>you</strong> ${escapeHTML(input.value.trim())}
+                    </div>
+                `;
+                list.appendChild(item);
+                input.value = '';
+                list.scrollTop = list.scrollHeight;
+            };
+
+            // Share & Save Actions
+            window.triggerReelShare = function() {
+                if (island && islandText) {
+                    islandText.textContent = "Reel Link Copied to Clipboard! ✔";
+                    island.classList.add('expanded');
+                    setTimeout(() => island.classList.remove('expanded'), 2400);
+                }
+            };
+
+            let isReelSaved = false;
+            window.toggleReelSave = function() {
+                isReelSaved = !isReelSaved;
+                const saveBtn = document.getElementById('reel-save-btn');
+                if (saveBtn) {
+                    saveBtn.classList.toggle('saved', isReelSaved);
+                }
+                if (island && islandText) {
+                    islandText.textContent = isReelSaved ? "Saved to Bookmarks ✓" : "Removed from Bookmarks";
+                    island.classList.add('expanded');
+                    setTimeout(() => island.classList.remove('expanded'), 2000);
+                }
+            };
+
+            // Post Carousel Switching
+            let curSlideIdx = 0;
+            const totalSlides = 3;
+            window.shiftPostSlide = function(direction) {
+                curSlideIdx = (curSlideIdx + direction + totalSlides) % totalSlides;
+                
+                document.querySelectorAll('.carousel-slide').forEach(s => s.classList.remove('active'));
+                const activeSlide = document.querySelector(`.carousel-slide[data-slide="${curSlideIdx}"]`);
+                if (activeSlide) activeSlide.classList.add('active');
+
+                const badge = document.getElementById('carousel-badge');
+                if (badge) badge.textContent = `${curSlideIdx + 1}/${totalSlides}`;
+
+                const dots = document.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === curSlideIdx);
+                });
+            };
+
+            let postLiked = false;
+            let postLikes = 42892;
+            window.togglePostHeart = function() {
+                postLiked = !postLiked;
+                const icon = document.getElementById('post-heart-icon');
+                const val = document.getElementById('post-likes-val');
+                if (icon) {
+                    if (postLiked) {
+                        icon.style.fill = '#f43f5e';
+                        icon.style.stroke = '#f43f5e';
+                        postLikes++;
+                    } else {
+                        icon.style.fill = 'none';
+                        icon.style.stroke = '#fff';
+                        postLikes--;
+                    }
+                }
+                if (val) val.textContent = postLikes.toLocaleString();
+            };
+
+            // Insights Range Switching
+            window.setInsightsRange = function(range, chip) {
+                document.querySelectorAll('.range-chip').forEach(c => c.classList.remove('active'));
+                if (chip) chip.classList.add('active');
+
+                const reach = document.getElementById('ins-reach');
+                const eng = document.getElementById('ins-eng');
+                const visits = document.getElementById('ins-visits');
+                const roas = document.getElementById('ins-roas');
+                const bars = document.querySelectorAll('.chart-col');
+
+                if (range === '7d') {
+                    if (reach) reach.textContent = '78.2K';
+                    if (eng) eng.textContent = '12.4K';
+                    if (visits) visits.textContent = '4.9K';
+                    if (roas) roas.textContent = '4.6x';
+                    const heights = ['40%', '60%', '30%', '85%', '90%', '50%', '75%'];
+                    bars.forEach((b, i) => b.style.height = heights[i] || '50%');
+                } else if (range === '30d') {
+                    if (reach) reach.textContent = '284.5K';
+                    if (eng) eng.textContent = '38.2K';
+                    if (visits) visits.textContent = '18.9K';
+                    if (roas) roas.textContent = '4.8x';
+                    const heights = ['35%', '55%', '45%', '80%', '95%', '70%', '100%'];
+                    bars.forEach((b, i) => b.style.height = heights[i] || '50%');
+                } else if (range === '90d') {
+                    if (reach) reach.textContent = '892.4K';
+                    if (eng) eng.textContent = '148.6K';
+                    if (visits) visits.textContent = '62.4K';
+                    if (roas) roas.textContent = '5.2x';
+                    const heights = ['70%', '85%', '65%', '90%', '100%', '80%', '95%'];
+                    bars.forEach((b, i) => b.style.height = heights[i] || '70%');
+                }
+            };
+
+            // Story Preview Modal
+            let storyTimer;
+            const storyData = {
+                'elavatex': { pfp: 'EX', title: 'elavatex_dev', badge: 'BRAND LAUNCH', heading: 'Transforming Clients into Category Leaders', text: 'Custom web apps, native Flutter platforms & viral organic TikTok/IG funnels.' },
+                'trait': { pfp: 'TI', title: 'traitinnovation.com', badge: 'ENTERPRISE AI', heading: 'Trait Innovation Case Study', text: 'Scaled organic impressions by +480% across tech enterprise founders.' },
+                'hellobotz': { pfp: 'HB', title: 'hellobotz.com', badge: 'WHATSAPP SAAS', heading: 'HelloBotz Viral Launch', text: 'Generated 1,200+ qualified business leads in 30 days.' },
+                'studyabroad': { pfp: 'SA', title: 'studyabroad.theeduconsultant', badge: 'EDTECH GLOBAL', heading: 'Global Student Portal Growth', text: 'Attracted 24,000+ international students across 18 countries.' }
+            };
+
+            window.triggerStoryPreview = function(key) {
+                const overlay = document.getElementById('insta-story-overlay');
+                const fill = document.getElementById('story-progress-fill');
+                const pfp = document.getElementById('story-pfp');
+                const title = document.getElementById('story-title');
+                const badge = document.getElementById('story-badge');
+                const head = document.getElementById('story-heading');
+                const txt = document.getElementById('story-text');
+
+                const data = storyData[key] || storyData['elavatex'];
+                if (pfp) pfp.textContent = data.pfp;
+                if (title) title.textContent = data.title;
+                if (badge) badge.textContent = data.badge;
+                if (head) head.textContent = data.heading;
+                if (txt) txt.textContent = data.text;
+
+                if (overlay && fill) {
+                    overlay.classList.add('active');
+                    fill.style.transition = 'none';
+                    fill.style.width = '0%';
+                    setTimeout(() => {
+                        fill.style.transition = 'width 3.5s linear';
+                        fill.style.width = '100%';
+                    }, 50);
+
+                    clearTimeout(storyTimer);
+                    storyTimer = setTimeout(() => {
+                        closeStoryOverlay();
+                    }, 3600);
+                }
+            };
+
+            window.closeStoryOverlay = function() {
+                const overlay = document.getElementById('insta-story-overlay');
+                if (overlay) overlay.classList.remove('active');
+                clearTimeout(storyTimer);
+            };
 
             // ------------------ 2. FAQ Accordion Action ------------------
             const faqHeaders = document.querySelectorAll('.faq-header');
