@@ -4532,18 +4532,6 @@ body.light-theme .buddy-icon-dark { display: none; }
 .badge-top-right { top: -18px; right: -15px; }
 .badge-bottom-left { bottom: -18px; left: -15px; animation-delay: 1.5s; }
 
-/* Dedicated positioning for mobile mockup to prevent toolbar collision */
-.mobile-mockup-outer-container .badge-bottom-left {
-  bottom: 85px !important;
-  left: -22px !important;
-  z-index: 20;
-}
-.mobile-mockup-outer-container .badge-top-right {
-  top: -12px !important;
-  right: -20px !important;
-  z-index: 20;
-}
-
 /* Global Section Anchor Scroll Margin - Prevents Fixed Navbars from Hiding Titles & FAQs */
 section[id], [id] {
   scroll-margin-top: 85px;
