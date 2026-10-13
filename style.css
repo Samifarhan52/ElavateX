@@ -1338,10 +1338,10 @@ button, input, select, textarea {
 
 /* 2. Phone Mockup Card Overlay */
 .card-phone-overlay {
-  width: 210px;
-  height: 370px;
+  width: 205px;
+  height: 365px;
   top: 15px;
-  right: 25px;
+  right: 15px;
   transform: rotateX(6deg) rotateY(-8deg) translateZ(40px);
   z-index: 4;
   padding: 1.2rem 1rem;
@@ -1382,11 +1382,11 @@ button, input, select, textarea {
 
 /* 3. Code Editor Window Mockup Card */
 .card-code-overlay {
-  width: 250px;
-  height: 155px;
-  bottom: 25px;
-  left: 5px;
-  transform: rotateX(10deg) rotateY(-5deg) translateZ(60px);
+  width: 228px;
+  height: 148px;
+  bottom: 18px;
+  left: -20px;
+  transform: rotateX(8deg) rotateY(-4deg) translateZ(60px);
   z-index: 5;
   background: #0d1117 !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -4497,6 +4497,36 @@ body.light-theme .buddy-icon-dark { display: none; }
 .badge-top-right { top: -18px; right: -15px; }
 .badge-bottom-left { bottom: -18px; left: -15px; animation-delay: 1.5s; }
 
+/* Dedicated positioning for mobile mockup to prevent toolbar collision */
+.mobile-mockup-outer-container .badge-bottom-left {
+  bottom: 85px !important;
+  left: -22px !important;
+  z-index: 20;
+}
+.mobile-mockup-outer-container .badge-top-right {
+  top: -12px !important;
+  right: -20px !important;
+  z-index: 20;
+}
+
+/* Global Section Anchor Scroll Margin - Prevents Fixed Navbars from Hiding Titles & FAQs */
+section[id], [id] {
+  scroll-margin-top: 85px;
+}
+
+/* Dedicated Subpage Header Badge Pill */
+.nav-badge-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  margin-left: 0.5rem;
+  display: inline-block;
+  vertical-align: middle;
+  letter-spacing: 0.02em;
+  transition: all var(--transition-fast);
+}
+
 @keyframes heroFloat {
   0% { transform: translateY(0) rotate(0deg); }
   100% { transform: translateY(-10px) rotate(1deg); }
@@ -6077,6 +6107,10 @@ body.light-theme .dedicated-fixed-navbar,
 .est-choice-icon {
   font-size: 1.4rem;
   margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-purple);
 }
 
 .est-choice-name {

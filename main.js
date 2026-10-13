@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             publicReviewForm.reset();
             renderReviews();
-            alert('🎉 Thank you! Your review has been published live on ElavateX.com & saved to Firebase!');
+            alert('Thank you! Your review has been published live on ElavateX.com & saved to Firebase!');
         });
     }
 
@@ -789,7 +789,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 chatMessages.innerHTML = `
                     <div class="chat-msg msg-bot">
                         <div class="msg-bubble">
-                            Hi! I'm ElavateX AI 👋<br><br>${pageContextMsg}
+                            Hi! I'm ElavateX AI<br><br>${pageContextMsg}
                         </div>
                         <div class="msg-time">Just now</div>
                     </div>
@@ -828,9 +828,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (/^(hi|hello|hey|greetings|hola|who are you|help|start)/i.test(query)) {
             reply.text = `Hi there! I'm **ElavateX AI**, your digital project assistant. We build high-performance websites, mobile applications, and grow brands through Social Media Marketing.<br><br>What kind of project or goal are you working on?`;
             reply.buttons = [
-                { label: "🌐 Web Development", action: "web" },
-                { label: "📱 Mobile App Dev", action: "mobile" },
-                { label: "🔥 Social Media Growth", action: "smm" }
+                { label: "Web Development", action: "web" },
+                { label: "Mobile App Dev", action: "mobile" },
+                { label: "Social Media Growth", action: "smm" }
             ];
             return reply;
         }
@@ -843,7 +843,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let smmNote = "";
             if (!session.smmSuggested && (query.includes('new') || query.includes('launch') || query.includes('store') || query.includes('customer') || session.businessType)) {
                 session.smmSuggested = true;
-                smmNote = `<br><br>💡 *Tip:* Since you're building/launching a website${biz}, you may also want to consider our Social Media Marketing service to drive consistent online traffic.`;
+                smmNote = `<br><br>*Tip:* Since you're building/launching a website${biz}, you may also want to consider our Social Media Marketing service to drive consistent online traffic.`;
             }
 
             if (query.includes('redesign')) {
@@ -868,7 +868,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let smmNote = "";
             if (!session.smmSuggested) {
                 session.smmSuggested = true;
-                smmNote = `<br><br>💡 *Tip:* Once your app is ready for launch, our Social Media Marketing service can help build your user base through targeted campaigns.`;
+                smmNote = `<br><br>*Tip:* Once your app is ready for launch, our Social Media Marketing service can help build your user base through targeted campaigns.`;
             }
 
             if (query.includes('booking') || query.includes('appointment')) {
@@ -1000,17 +1000,17 @@ Would you like to start a project inquiry right now?`;
             buttonsHtml = `<div class="msg-actions">` +
                 replyObj.buttons.map(b => {
                     if (b.action === 'whatsapp') {
-                        return `<a href="${ELAVATEX_KNOWLEDGE.contact.whatsapp}" target="_blank" class="chat-action-btn chat-action-btn-whatsapp">💬 ${b.label}</a>`;
+                        return `<a href="${ELAVATEX_KNOWLEDGE.contact.whatsapp}" target="_blank" class="chat-action-btn chat-action-btn-whatsapp">${b.label}</a>`;
                     } else if (b.action === 'link-web') {
-                        return `<a href="services/web-development.html" class="chat-action-btn">🌐 ${b.label}</a>`;
+                        return `<a href="services/web-development.html" class="chat-action-btn">${b.label}</a>`;
                     } else if (b.action === 'link-mobile') {
-                        return `<a href="services/mobile-app-development.html" class="chat-action-btn">📱 ${b.label}</a>`;
+                        return `<a href="services/mobile-app-development.html" class="chat-action-btn">${b.label}</a>`;
                     } else if (b.action === 'link-smm') {
-                        return `<a href="services/social-media-management.html" class="chat-action-btn">🔥 ${b.label}</a>`;
+                        return `<a href="services/social-media-management.html" class="chat-action-btn">${b.label}</a>`;
                     } else if (b.action === 'link-projects') {
-                        return `<a href="#case-studies" class="chat-action-btn" onclick="document.getElementById('chatbot-container').classList.remove('open')">💼 ${b.label}</a>`;
+                        return `<a href="#case-studies" class="chat-action-btn" onclick="document.getElementById('chatbot-container').classList.remove('open')">${b.label}</a>`;
                     } else {
-                        return `<button type="button" class="chat-action-btn" data-action="${b.action}">🚀 ${b.label}</button>`;
+                        return `<button type="button" class="chat-action-btn" data-action="${b.action}">${b.label}</button>`;
                     }
                 }).join('') +
                 `</div>`;
@@ -1066,7 +1066,7 @@ Would you like to start a project inquiry right now?`;
         formDiv.innerHTML = `
             <div class="msg-bubble">
                 <div class="chat-lead-container">
-                    <div class="chat-lead-title">🚀 Start Your Project with ElavateX</div>
+                    <div class="chat-lead-title">Start Your Project with ElavateX</div>
                     <form id="chat-lead-form-element">
                         <div class="chat-lead-field">
                             <label>Your Name *</label>
@@ -1166,10 +1166,10 @@ Would you like to start a project inquiry right now?`;
                 // Replace form card with success state & WhatsApp button
                 formDiv.innerHTML = `
                     <div class="msg-bubble" style="background:#064e3b; border-color:#10b981;">
-                        ✅ <strong>Thanks! Your enquiry has been received.</strong><br>
+                        <strong>Thanks! Your enquiry has been received.</strong><br>
                         Our team will review your project requirements and contact you shortly.<br><br>
                         <a href="${whatsappUrl}" target="_blank" class="chat-action-btn chat-action-btn-whatsapp" style="margin-top:4px;">
-                            💬 Continue on WhatsApp &rarr;
+                            Continue on WhatsApp &rarr;
                         </a>
                     </div>
                     <div class="msg-time">Just now</div>
