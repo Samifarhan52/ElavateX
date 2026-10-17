@@ -407,9 +407,9 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             id: 4,
             name: "Dr. Farooq & Admissions Directorate",
-            company: "The Edu Consultant (studyabroad.theeduconsultant.com)",
+            company: "The Edu Consultant Ecosystem (theeduconsultant.com • theeduconsultant.in)",
             rating: 5,
-            comment: "The global study abroad platform built by ElavateX completely revolutionized our student counseling workflow. Responsive university matching, lightning-fast search filters, and seamless international inquiries.",
+            comment: "The education portals built by ElavateX completely revolutionized our student counseling workflow. Responsive college matching, lightning-fast search filters, and seamless admissions inquiries.",
             date: "Verified Client"
         }
     ];
@@ -707,7 +707,9 @@ document.addEventListener('DOMContentLoaded', () => {
         projects: [
             { name: "TRAIT Innovation", url: "https://traitinnovation.com", category: "Enterprise AI & Deep Tech Platform" },
             { name: "HelloBotz", url: "https://hellobotz.com", category: "WhatsApp Marketing & Automation Platform" },
-            { name: "The Edu Consultant", url: "https://studyabroad.theeduconsultant.com", category: "Global Study Abroad & EdTech Portal" },
+            { name: "The Edu Consultant - Admissions", url: "https://theeduconsultant.com", category: "Higher Education Direct Admissions & Quota Portal" },
+            { name: "The Edu Consultant - Bengaluru", url: "https://bangalore.theeduconsultant.com", category: "Bengaluru Schools & Colleges Discovery Engine" },
+            { name: "The Edu Consultant - Study Abroad", url: "https://theeduconsultant.in", category: "Global Study Abroad & Overseas Education Portal" },
             { name: "Shelter Hunt Consultants", url: "https://shelterhuntconsultants.com", category: "Real Estate Portal" },
             { name: "Online Gaming Tournaments", url: "https://sp-three-liart.vercel.app", category: "Esports Competition Platform" },
             { name: "Farhanulla Portfolio", url: "https://farhanulla.me", category: "Showcase Platform" }
@@ -918,7 +920,9 @@ document.addEventListener('DOMContentLoaded', () => {
             reply.text = `Here are some of the real digital products built and deployed live by ElavateX:<br><br>
 • **TRAIT Innovation**: Enterprise AI & intelligence systems ([traitinnovation.com](https://traitinnovation.com))<br>
 • **HelloBotz**: Official WhatsApp Business API & automation platform ([hellobotz.com](https://hellobotz.com))<br>
-• **The Edu Consultant**: Global education & study abroad portal ([studyabroad.theeduconsultant.com](https://studyabroad.theeduconsultant.com))<br>
+• **The Edu Consultant (Direct Admissions)**: Academic direct seats & quota portal ([theeduconsultant.com](https://theeduconsultant.com))<br>
+• **The Edu Consultant (Bengaluru)**: Institutions & college search engine ([bangalore.theeduconsultant.com](https://bangalore.theeduconsultant.com))<br>
+• **The Edu Consultant (Study Abroad)**: Global overseas education consultancy ([theeduconsultant.in](https://theeduconsultant.in))<br>
 • **Shelter Hunt Consultants**: Real estate portal ([shelterhuntconsultants.com](https://shelterhuntconsultants.com))<br>
 • **Online Gaming Tournaments**: Esports competition platform ([sp-three-liart.vercel.app](https://sp-three-liart.vercel.app))<br>
 • **Farhanulla Portfolio**: Showcase platform ([farhanulla.me](https://farhanulla.me))<br><br>
