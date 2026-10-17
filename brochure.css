@@ -77,6 +77,11 @@
   -webkit-font-smoothing: antialiased;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   background-color: var(--bg-page);
   color: var(--text-main);
@@ -502,6 +507,109 @@ body {
     padding: 0.7rem 0.85rem !important;
   }
 
+  .deck-toc-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+    padding: 0.65rem 0.8rem !important;
+  }
+
+  .deck-toc-list {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.25rem !important;
+  }
+
+  /* Mobile Front Book Cover */
+  .sheet-cover-front {
+    padding: 1.5rem 1rem !important;
+    gap: 1rem !important;
+  }
+
+  .cover-front-top-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+  }
+
+  .cover-front-brand-sub {
+    font-size: 0.48rem !important;
+    letter-spacing: 0.04em !important;
+    word-break: break-word !important;
+    line-height: 1.2 !important;
+  }
+
+  .cover-front-main-title {
+    font-size: 1.55rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .cover-front-subtitle {
+    font-size: 0.72rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .cover-front-desc {
+    font-size: 0.72rem !important;
+  }
+
+  .cover-front-pillars-strip {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.35rem !important;
+    width: 100% !important;
+  }
+
+  .cover-front-pill {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .cover-front-bottom-card {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    align-items: flex-start !important;
+    gap: 0.6rem !important;
+    padding: 0.75rem 0.85rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Mobile Back Book Cover */
+  .sheet-cover-back {
+    padding: 1.5rem 1rem !important;
+    gap: 1.2rem !important;
+  }
+
+  .cover-back-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+  }
+
+  .engagement-models-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.65rem !important;
+  }
+
+  .corporate-seal-frame {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.6rem !important;
+    padding: 0.85rem 0.9rem !important;
+  }
+
+  .cover-back-contact-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  .cover-back-legal-notice {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.35rem !important;
+  }
+
   .deck-cta-block {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -699,7 +807,249 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   SHEET 1: COVER & EXECUTIVE VISION
+   SHEET 1: FRONT BOOK COVER (Real Brochure Cover)
+   -------------------------------------------------------------------------- */
+.sheet-cover-front {
+  background: radial-gradient(circle at 85% 15%, rgba(99, 102, 241, 0.28) 0%, transparent 60%),
+              radial-gradient(circle at 15% 85%, rgba(2, 132, 199, 0.22) 0%, transparent 55%),
+              #070a12 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 12mm 14mm 10mm 14mm !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.cover-front-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 3.2mm;
+}
+
+.cover-front-edition-tag {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.cover-front-confidential-pill {
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  text-transform: uppercase;
+}
+
+.cover-front-center-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto 0;
+}
+
+.cover-front-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 3.5mm;
+  margin-bottom: 4.5mm;
+}
+
+.cover-front-logo-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 11px;
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cover-front-brand-title {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.05;
+}
+
+.cover-front-brand-sub {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  text-transform: uppercase;
+  margin-top: 1mm;
+}
+
+.cover-front-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #818cf8;
+  background: rgba(99, 102, 241, 0.15);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-bottom: 3.5mm;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.cover-front-main-title {
+  font-family: var(--font-heading);
+  font-size: 2.35rem;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin-bottom: 2.8mm;
+}
+
+.cover-front-main-title .gradient-text {
+  background: linear-gradient(135deg, #818cf8 0%, #38bdf8 50%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cover-front-subtitle {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #e2e8f0;
+  text-transform: uppercase;
+  margin-bottom: 2.2mm;
+}
+
+.cover-front-desc {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: #94a3b8;
+  max-width: 175mm;
+  margin-bottom: 4.5mm;
+}
+
+.cover-front-pillars-strip {
+  display: flex;
+  gap: 2.2mm;
+  flex-wrap: wrap;
+  margin-bottom: 3.5mm;
+}
+
+.cover-front-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 1.6mm 3mm;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 1.6mm;
+}
+
+.cover-front-pill-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #38bdf8;
+}
+
+.cover-front-bottom-card {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 2.8mm 3.8mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cover-front-meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6mm;
+}
+
+.cover-front-meta-label {
+  font-size: 0.52rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cover-front-meta-value {
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+/* Table of Contents Index Card on Page 2 (Details Page) */
+.deck-toc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  padding: 2mm 3.2mm;
+  margin-bottom: 2.6mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deck-toc-label {
+  font-size: 0.56rem;
+  font-weight: 800;
+  color: var(--accent-purple);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  margin-right: 2.5mm;
+}
+
+.deck-toc-list {
+  display: flex;
+  align-items: center;
+  gap: 2.8mm;
+  flex-wrap: wrap;
+  font-size: 0.56rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.deck-toc-list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2mm;
+}
+
+.deck-toc-list strong {
+  color: var(--accent-purple);
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+}
+
+/* --------------------------------------------------------------------------
+   SHEET 2: EXECUTIVE PROFILE & DETAILS PAGE
    -------------------------------------------------------------------------- */
 .cover-hero-banner {
   background: radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
@@ -1511,6 +1861,185 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   SHEET 6: BACK BOOK COVER (Real Brochure Closing & Seal)
+   -------------------------------------------------------------------------- */
+.sheet-cover-back {
+  background: radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.22) 0%, transparent 60%),
+              radial-gradient(circle at 85% 85%, rgba(5, 150, 105, 0.18) 0%, transparent 50%),
+              #070a12 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 11mm 13mm 9mm 13mm !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.cover-back-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 2.5mm;
+  margin-bottom: 3mm;
+}
+
+.cover-back-title-wrap h3 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.cover-back-title-wrap p {
+  font-size: 0.58rem;
+  color: #94a3b8;
+  margin-top: 0.4mm;
+}
+
+.cover-back-seal-badge {
+  font-family: var(--font-mono);
+  font-size: 0.54rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(5, 150, 105, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(5, 150, 105, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.engagement-models-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4mm;
+  margin-bottom: 3.2mm;
+}
+
+.engagement-model-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  padding: 2.6mm 2.8mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.engagement-model-card h4 {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.8mm;
+}
+
+.engagement-model-card p {
+  font-size: 0.58rem;
+  color: #cbd5e1;
+  line-height: 1.34;
+}
+
+.engagement-model-tag {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  font-weight: 800;
+  color: #38bdf8;
+  text-transform: uppercase;
+  margin-top: 1.6mm;
+  letter-spacing: 0.04em;
+}
+
+.corporate-seal-frame {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(2, 132, 199, 0.12) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  border-radius: 8px;
+  padding: 2.6mm 3.5mm;
+  display: flex;
+  align-items: center;
+  gap: 3.2mm;
+  margin-bottom: 3.2mm;
+}
+
+.corporate-seal-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--grad-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 900;
+  flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}
+
+.corporate-seal-text h5 {
+  font-family: var(--font-heading);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4mm;
+}
+
+.corporate-seal-text p {
+  font-size: 0.58rem;
+  color: #cbd5e1;
+  line-height: 1.32;
+}
+
+.cover-back-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2mm;
+  margin-bottom: 3mm;
+}
+
+.cover-back-contact-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 1.8mm 2.2mm;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.cover-back-contact-pill .label {
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cover-back-contact-pill .val {
+  font-family: var(--font-heading);
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 0.4mm;
+}
+
+.cover-back-legal-notice {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 2mm;
+  font-size: 0.52rem;
+  color: #64748b;
+  line-height: 1.34;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
    STRICT PRINT ENGINE (@media print)
    Exact A4 Portrait 0mm Margin System
    -------------------------------------------------------------------------- */
@@ -1568,6 +2097,34 @@ body {
 
   .sheet-top-accent {
     height: 4px !important;
+  }
+
+  /* Book Cover Pages in Print (Front & Back Cover) */
+  .sheet-cover-front,
+  .sheet-cover-back {
+    background: #070a12 !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .cover-front-bottom-card,
+  .cover-front-pill,
+  .engagement-model-card,
+  .corporate-seal-frame,
+  .cover-back-contact-pill {
+    background: #111827 !important;
+    border: 1px solid #374151 !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .deck-toc-card {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .cover-hero-banner,
