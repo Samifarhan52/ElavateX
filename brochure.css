@@ -261,7 +261,7 @@ body {
     border: 1px solid var(--border-sheet);
     position: relative;
     overflow: hidden;
-    padding: 13mm 15mm 11mm 15mm;
+    padding: 10.5mm 12.5mm 9mm 12.5mm;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -340,8 +340,9 @@ body {
     margin-bottom: 0.6rem !important;
   }
 
-  .sheet-doc-label {
-    display: none !important; /* Hide long uppercase meta on mobile screens */
+  .sheet-doc-label,
+  .sheet-doc-meta-block {
+    display: none !important; /* Hide technical metadata tags on mobile screens */
   }
 
   .sheet-footer-meta {
@@ -380,6 +381,24 @@ body {
     line-height: 1.45 !important;
   }
 
+  .cover-editorial-briefing {
+    grid-template-columns: 1fr !important;
+    gap: 0.6rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .cover-sectors-strip {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.35rem !important;
+    padding: 0.65rem 0.8rem !important;
+  }
+
+  .sector-strip-list {
+    flex-wrap: wrap !important;
+    gap: 0.35rem 0.6rem !important;
+  }
+
   .cover-stats-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.5rem !important;
@@ -415,10 +434,52 @@ body {
   .services-2x2-grid,
   .portfolio-grid-deck,
   .methodology-strip,
-  .engagement-models-row,
   .contact-channels-grid {
     grid-template-columns: 1fr !important;
     gap: 0.75rem !important;
+  }
+
+  .tech-matrix-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .sla-commitment-strip {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+    padding: 0.7rem 0.85rem !important;
+  }
+
+  .sla-items {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.25rem !important;
+  }
+
+  .portfolio-endorsement-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.4rem !important;
+    padding: 0.85rem 0.9rem !important;
+  }
+
+  .comparison-matrix-wrapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  .comparison-matrix-table {
+    min-width: 520px !important;
+  }
+
+  .guarantees-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.8rem !important;
   }
 
   .service-deck-card,
@@ -523,8 +584,8 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--border-sheet);
-  padding-bottom: 5mm;
-  margin-bottom: 5mm;
+  padding-bottom: 3.5mm;
+  margin-bottom: 3.5mm;
 }
 
 .sheet-brand-row {
@@ -534,26 +595,74 @@ body {
 }
 
 .sheet-brand-logo {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
   border-radius: 5px;
+}
+
+.sheet-brand-title-wrap {
+  display: flex;
+  flex-direction: column;
 }
 
 .sheet-brand-name {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 1.05rem;
   letter-spacing: -0.01em;
   color: var(--text-main);
+  line-height: 1.1;
 }
 
 .sheet-brand-name .accent-x {
   color: var(--accent-purple);
 }
 
+.sheet-brand-sub {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.sheet-doc-meta-block {
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+}
+
+.doc-badge {
+  font-size: 0.52rem;
+  font-weight: 800;
+  padding: 1.5px 6px;
+  border-radius: 4px;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.doc-badge.green {
+  background: rgba(5, 150, 105, 0.1);
+  color: #059669;
+  border-color: rgba(5, 150, 105, 0.25);
+}
+
+.doc-ref {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-card);
+  padding: 1.5px 5px;
+  border-radius: 4px;
+}
+
 .sheet-doc-label {
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -597,9 +706,9 @@ body {
               radial-gradient(circle at 10% 90%, rgba(2, 132, 199, 0.08) 0%, transparent 50%),
               var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 12px;
-  padding: 5.5mm 6.5mm;
-  margin-bottom: 4mm;
+  border-radius: 10px;
+  padding: 3.5mm 5mm;
+  margin-bottom: 2.6mm;
   position: relative;
 }
 
@@ -607,15 +716,15 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.64rem;
+  font-size: 0.58rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-purple);
   background: rgba(79, 70, 229, 0.08);
-  padding: 3px 9px;
+  padding: 2px 7px;
   border-radius: 999px;
-  margin-bottom: 2.8mm;
+  margin-bottom: 1.8mm;
 }
 
 .cover-kicker-dot {
@@ -627,12 +736,12 @@ body {
 
 .cover-main-headline {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: 1.45rem;
   font-weight: 800;
-  line-height: 1.18;
+  line-height: 1.16;
   letter-spacing: -0.01em;
   color: var(--text-main);
-  margin-bottom: 2.8mm;
+  margin-bottom: 1.6mm;
 }
 
 .cover-main-headline .highlight {
@@ -643,32 +752,71 @@ body {
 }
 
 .cover-summary {
-  font-size: 0.82rem;
-  line-height: 1.48;
+  font-size: 0.72rem;
+  line-height: 1.4;
   color: var(--text-body);
+}
+
+/* Editorial 2-Column Corporate Briefing */
+.cover-editorial-briefing {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.6mm;
+  margin-bottom: 2.6mm;
+}
+
+.editorial-col {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  padding: 2.4mm 3mm;
+}
+
+.editorial-col h4 {
+  font-family: var(--font-heading);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.8mm;
+  display: flex;
+  align-items: center;
+  gap: 1.8mm;
+}
+
+.editorial-col h4 .col-accent-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+}
+
+.editorial-col p {
+  font-size: 0.62rem;
+  color: var(--text-body);
+  line-height: 1.34;
 }
 
 .cover-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 3mm;
-  margin-bottom: 4mm;
+  gap: 2.4mm;
+  margin-bottom: 2.6mm;
 }
 
 .stat-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 9px;
-  padding: 3mm 2.2mm;
+  border-radius: 8px;
+  padding: 2.2mm 1.8mm;
   text-align: center;
 }
 
 .stat-number {
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: 1.25rem;
   font-weight: 800;
   line-height: 1;
-  margin-bottom: 1.2mm;
+  margin-bottom: 0.8mm;
 }
 
 .stat-number.green { color: var(--accent-emerald); }
@@ -677,38 +825,39 @@ body {
 .stat-number.amber { color: var(--accent-amber); }
 
 .stat-label {
-  font-size: 0.66rem;
+  font-size: 0.62rem;
   font-weight: 700;
   color: var(--text-main);
   line-height: 1.2;
 }
 
 .stat-sub {
-  font-size: 0.58rem;
+  font-size: 0.54rem;
   color: var(--text-muted);
-  margin-top: 0.8mm;
+  margin-top: 0.5mm;
 }
 
 .cover-pillars-section {
   display: flex;
   flex-direction: column;
-  gap: 2.8mm;
+  gap: 2mm;
+  margin-bottom: 2.6mm;
 }
 
 .pillar-item {
   display: flex;
   align-items: flex-start;
-  gap: 3mm;
-  padding: 3mm 3.8mm;
+  gap: 2.5mm;
+  padding: 2.2mm 3mm;
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 9px;
+  border-radius: 8px;
 }
 
 .pillar-icon-box {
-  width: 26px;
-  height: 26px;
-  border-radius: 7px;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
   background: rgba(79, 70, 229, 0.1);
   color: var(--accent-purple);
   display: flex;
@@ -719,78 +868,107 @@ body {
 
 .pillar-content h4 {
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 0.6mm;
+  margin-bottom: 0.4mm;
   letter-spacing: -0.01em;
 }
 
 .pillar-content p {
-  font-size: 0.72rem;
+  font-size: 0.64rem;
   color: var(--text-body);
-  line-height: 1.38;
+  line-height: 1.32;
+}
+
+.cover-sectors-strip {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 7px;
+  padding: 1.8mm 2.8mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.58rem;
+}
+
+.sector-strip-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-size: 0.54rem;
+}
+
+.sector-strip-list {
+  color: var(--text-main);
+  font-weight: 600;
+  display: flex;
+  gap: 2.5mm;
+  align-items: center;
 }
 
 /* --------------------------------------------------------------------------
    SHEET 2: SERVICES & CAPABILITIES
    -------------------------------------------------------------------------- */
 .sheet-section-intro {
-  margin-bottom: 3.5mm;
+  margin-bottom: 2.6mm;
 }
 
 .section-tag {
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-purple);
-  margin-bottom: 0.8mm;
+  margin-bottom: 0.6mm;
 }
 
 .sheet-section-title {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--text-main);
+  line-height: 1.15;
 }
 
 .sheet-section-subtitle {
-  font-size: 0.74rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
-  margin-top: 0.8mm;
+  margin-top: 0.5mm;
+  line-height: 1.35;
 }
 
 .services-2x2-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3.5mm;
-  margin-bottom: 3.5mm;
+  gap: 2.6mm;
+  margin-bottom: 2.6mm;
 }
 
 .service-deck-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 9px;
-  padding: 4mm 4.5mm;
+  border-radius: 8px;
+  padding: 2.8mm 3.2mm;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2mm;
+  gap: 1.5mm;
 }
 
 .service-card-header {
   display: flex;
   align-items: center;
-  gap: 2.8mm;
-  margin-bottom: 1.2mm;
+  gap: 2.2mm;
+  margin-bottom: 0.8mm;
 }
 
 .service-card-icon {
-  width: 26px;
-  height: 26px;
-  border-radius: 7px;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -804,33 +982,33 @@ body {
 
 .service-card-title {
   font-family: var(--font-heading);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--text-main);
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .service-card-desc {
-  font-size: 0.7rem;
+  font-size: 0.64rem;
   color: var(--text-body);
-  line-height: 1.35;
+  line-height: 1.32;
 }
 
 .service-checklist {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1.2mm;
-  margin-top: 1.2mm;
+  gap: 0.8mm;
+  margin-top: 0.8mm;
 }
 
 .service-checklist li {
-  font-size: 0.66rem;
+  font-size: 0.6rem;
   color: var(--text-main);
   font-weight: 500;
   display: flex;
   align-items: center;
-  gap: 1.8mm;
+  gap: 1.5mm;
 }
 
 .check-bullet {
@@ -841,40 +1019,110 @@ body {
 .tech-pills-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.2mm;
+  gap: 1mm;
   border-top: 1px dashed var(--border-card);
-  padding-top: 2mm;
+  padding-top: 1.4mm;
 }
 
 .tech-pill {
-  font-size: 0.56rem;
+  font-size: 0.52rem;
   font-weight: 600;
-  padding: 1.5px 5px;
+  padding: 1px 4.5px;
   border-radius: 4px;
   background: var(--bg-card-subtle);
   border: 1px solid var(--border-card);
   color: var(--text-muted);
 }
 
-.service-stack-banner {
+/* Multi-Tier Technology Matrix */
+.tech-matrix-container {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: 8px;
-  padding: 2.8mm 3.8mm;
+  padding: 2.2mm 3mm;
+  margin-bottom: 2.4mm;
+}
+
+.tech-matrix-title-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.66rem;
+  margin-bottom: 1.5mm;
+  border-bottom: 1px solid var(--border-card);
+  padding-bottom: 1.2mm;
 }
 
-.stack-banner-title {
-  font-weight: 700;
+.tech-matrix-heading {
+  font-family: var(--font-heading);
+  font-size: 0.64rem;
+  font-weight: 800;
   color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.stack-banner-items {
+.tech-matrix-note {
+  font-size: 0.52rem;
   color: var(--accent-purple);
+  font-weight: 700;
+}
+
+.tech-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2mm;
+}
+
+.tech-matrix-cell {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-card);
+  border-radius: 6px;
+  padding: 1.8mm 2mm;
+}
+
+.matrix-layer-name {
+  font-family: var(--font-heading);
+  font-size: 0.56rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--accent-purple);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.8mm;
+}
+
+.matrix-tech-items {
+  font-size: 0.56rem;
+  color: var(--text-body);
+  line-height: 1.32;
+  font-weight: 500;
+}
+
+/* Enterprise SLA Commitment Strip */
+.sla-commitment-strip {
+  background: linear-gradient(90deg, rgba(79, 70, 229, 0.06) 0%, rgba(2, 132, 199, 0.06) 100%), var(--bg-card);
+  border: 1px solid var(--border-highlight);
+  border-radius: 8px;
+  padding: 1.8mm 3mm;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.58rem;
+}
+
+.sla-badge {
+  font-weight: 800;
+  font-size: 0.56rem;
+  color: var(--accent-purple);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sla-items {
+  color: var(--text-main);
   font-weight: 600;
+  display: flex;
+  gap: 2.8mm;
+  align-items: center;
 }
 
 /* --------------------------------------------------------------------------
@@ -883,21 +1131,21 @@ body {
 .portfolio-grid-deck {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3.5mm;
-  margin-bottom: 3.5mm;
+  gap: 2.6mm;
+  margin-bottom: 2.4mm;
 }
 
 .project-deck-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 9px;
+  border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
 .project-thumb-frame {
-  height: 36mm;
+  height: 29mm;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -912,27 +1160,27 @@ body {
 
 .project-category-badge {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 4px;
+  left: 4px;
   background: rgba(15, 23, 42, 0.88);
   backdrop-filter: blur(6px);
   color: #ffffff;
-  font-size: 0.52rem;
+  font-size: 0.5rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  padding: 2px 6px;
+  padding: 1.5px 5px;
   border-radius: 4px;
 }
 
 .project-live-indicator {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 4px;
+  right: 4px;
   background: #059669;
   color: #ffffff;
-  font-size: 0.5rem;
+  font-size: 0.48rem;
   font-weight: 800;
-  padding: 2px 5px;
+  padding: 1.5px 4.5px;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -940,14 +1188,14 @@ body {
 }
 
 .live-dot {
-  width: 4px;
-  height: 4px;
+  width: 3.5px;
+  height: 3.5px;
   background: #fff;
   border-radius: 50%;
 }
 
 .project-deck-body {
-  padding: 3mm 3.8mm;
+  padding: 2.2mm 2.8mm;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -958,29 +1206,29 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.2mm;
+  margin-bottom: 0.8mm;
 }
 
 .project-title {
   font-family: var(--font-heading);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: var(--text-main);
   letter-spacing: -0.01em;
 }
 
 .project-url-link {
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 600;
   color: var(--accent-purple);
   text-decoration: none;
 }
 
 .project-description {
-  font-size: 0.66rem;
+  font-size: 0.6rem;
   color: var(--text-body);
-  line-height: 1.34;
-  margin-bottom: 1.8mm;
+  line-height: 1.32;
+  margin-bottom: 1.4mm;
 }
 
 .project-metrics-strip {
@@ -989,9 +1237,9 @@ body {
   justify-content: space-between;
   background: var(--bg-card-subtle);
   border: 1px solid var(--border-card);
-  border-radius: 6px;
-  padding: 1.5mm 2.8mm;
-  font-size: 0.6rem;
+  border-radius: 5px;
+  padding: 1.2mm 2.2mm;
+  font-size: 0.55rem;
 }
 
 .metric-highlight {
@@ -1002,9 +1250,9 @@ body {
 .portfolio-extra-banner {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 8px;
-  padding: 2.2mm 3.5mm;
-  font-size: 0.62rem;
+  border-radius: 7px;
+  padding: 1.8mm 3mm;
+  font-size: 0.58rem;
   color: var(--text-muted);
   text-align: center;
 }
@@ -1013,160 +1261,232 @@ body {
   color: var(--text-main);
 }
 
+/* Verified Client Endorsement Strip */
+.portfolio-endorsement-card {
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.04) 0%, rgba(2, 132, 199, 0.04) 100%), var(--bg-card);
+  border: 1px solid var(--border-highlight);
+  border-radius: 8px;
+  padding: 2.2mm 3.2mm;
+  display: flex;
+  align-items: center;
+  gap: 2.5mm;
+  margin-top: 2.2mm;
+}
+
+.endorsement-quote-mark {
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--accent-purple);
+  font-family: Georgia, serif;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.endorsement-text {
+  font-size: 0.62rem;
+  font-style: italic;
+  color: var(--text-main);
+  line-height: 1.34;
+}
+
+.endorsement-author {
+  font-size: 0.54rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 0.4mm;
+  font-style: normal;
+}
+
 /* --------------------------------------------------------------------------
-   SHEET 4: METHODOLOGY, REPUTATION & CONTACT
+   SHEET 4: METHODOLOGY, COMPARATIVE ADVANTAGE & TERMS
    -------------------------------------------------------------------------- */
 .methodology-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2.8mm;
-  margin-bottom: 3.5mm;
+  gap: 2.2mm;
+  margin-bottom: 2.4mm;
 }
 
 .step-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 8px;
-  padding: 2.8mm 2.8mm;
+  border-radius: 7px;
+  padding: 2mm 2.2mm;
 }
 
-.step-number {
+.step-phase-badge {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.54rem;
   font-weight: 800;
   color: var(--accent-purple);
-  margin-bottom: 0.8mm;
+  background: rgba(79, 70, 229, 0.08);
+  padding: 1px 4px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 0.6mm;
 }
 
 .step-title {
   font-family: var(--font-heading);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 0.8mm;
-  line-height: 1.2;
+  margin-bottom: 0.5mm;
+  line-height: 1.15;
 }
 
 .step-desc {
-  font-size: 0.6rem;
+  font-size: 0.56rem;
   color: var(--text-body);
-  line-height: 1.32;
+  line-height: 1.3;
 }
 
-.deck-testimonial-card {
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.04) 0%, rgba(2, 132, 199, 0.04) 100%), var(--bg-card);
-  border: 1px solid var(--border-highlight);
-  border-radius: 9px;
-  padding: 3mm 4mm;
-  margin-bottom: 3.5mm;
-  display: flex;
-  align-items: flex-start;
-  gap: 2.8mm;
+/* Competitive Capability Comparison Table */
+.comparison-matrix-wrapper {
+  margin-bottom: 2.4mm;
+  border-radius: 7px;
+  overflow: hidden;
+  border: 1px solid var(--border-card);
 }
 
-.testimonial-quote-icon {
-  font-size: 1.6rem;
-  line-height: 1;
-  color: var(--accent-purple);
-  opacity: 0.7;
+.comparison-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.58rem;
+  text-align: left;
 }
 
-.testimonial-text {
-  font-size: 0.72rem;
-  font-style: italic;
-  color: var(--text-main);
-  line-height: 1.42;
-  margin-bottom: 1.2mm;
-}
-
-.testimonial-author {
-  font-size: 0.62rem;
+.comparison-matrix-table th {
+  padding: 1.8mm 2.4mm;
+  background: var(--bg-card-subtle);
+  border-bottom: 1px solid var(--border-card);
   font-weight: 700;
+  font-size: 0.56rem;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.engagement-models-row {
+.comparison-matrix-table td {
+  padding: 1.5mm 2.4mm;
+  border-bottom: 1px solid var(--border-card);
+  color: var(--text-body);
+  line-height: 1.25;
+}
+
+.comparison-matrix-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-matrix-table .highlight-th {
+  background: rgba(79, 70, 229, 0.12) !important;
+  color: var(--accent-purple) !important;
+  font-weight: 800;
+}
+
+.comparison-matrix-table .highlight-td {
+  background: rgba(79, 70, 229, 0.04);
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.comparison-matrix-table .check-win {
+  color: var(--accent-emerald);
+  font-weight: 800;
+  margin-right: 2px;
+}
+
+.comparison-matrix-table .cross-loss {
+  color: #ef4444;
+  font-weight: 700;
+  margin-right: 2px;
+}
+
+/* Risk-Reversal Guarantees Strip */
+.guarantees-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.8mm;
-  margin-bottom: 3.5mm;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2mm;
+  margin-bottom: 2.4mm;
 }
 
-.engagement-pill {
+.guarantee-pill {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 7px;
-  padding: 2.2mm 2.8mm;
+  border-radius: 6px;
+  padding: 1.8mm 2mm;
   text-align: center;
 }
 
-.engagement-pill h5 {
+.guarantee-pill h6 {
   font-family: var(--font-heading);
-  font-size: 0.72rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  color: var(--text-main);
-  margin-bottom: 0.4mm;
+  color: var(--accent-purple);
+  margin-bottom: 0.3mm;
 }
 
-.engagement-pill p {
-  font-size: 0.56rem;
+.guarantee-pill p {
+  font-size: 0.52rem;
   color: var(--text-muted);
+  line-height: 1.25;
 }
 
+/* Direct Engagement CTA Banner */
 .deck-cta-block {
   background: radial-gradient(circle at 90% 10%, rgba(99, 102, 241, 0.25) 0%, transparent 60%),
               radial-gradient(circle at 10% 90%, rgba(2, 132, 199, 0.2) 0%, transparent 50%),
               #0f172a;
-  border-radius: 11px;
-  padding: 4.5mm 5.5mm;
+  border-radius: 9px;
+  padding: 3mm 4.5mm;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 3.5mm;
+  gap: 3mm;
   border: 1px solid rgba(255, 255, 255, 0.15);
-  margin-bottom: 3mm;
+  margin-bottom: 2.4mm;
 }
 
 .cta-text-col h3 {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 800;
   letter-spacing: -0.01em;
-  margin-bottom: 0.8mm;
+  margin-bottom: 0.5mm;
   color: #ffffff;
 }
 
 .cta-text-col p {
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   color: #cbd5e1;
-  line-height: 1.35;
+  line-height: 1.32;
 }
 
 .cta-action-col {
   display: flex;
   flex-direction: column;
-  gap: 1.8mm;
+  gap: 1.4mm;
   flex-shrink: 0;
 }
 
 .cta-action-col .btn-deck {
-  padding: 0.4rem 0.75rem;
-  font-size: 0.72rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.68rem;
   justify-content: center;
 }
 
 .contact-channels-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.8mm;
+  gap: 2.2mm;
 }
 
 .channel-pill {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
-  border-radius: 7px;
-  padding: 2.2mm 3mm;
+  border-radius: 6px;
+  padding: 1.8mm 2.6mm;
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -1175,7 +1495,7 @@ body {
 }
 
 .channel-name {
-  font-size: 0.56rem;
+  font-size: 0.52rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -1184,7 +1504,7 @@ body {
 
 .channel-val {
   font-family: var(--font-heading);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-main);
   margin-top: 1px;
@@ -1232,7 +1552,7 @@ body {
     border: none !important;
     border-radius: 0 !important;
     background: #ffffff !important;
-    padding: 13mm 15mm 11mm 15mm !important;
+    padding: 10.5mm 12.5mm 9mm 12.5mm !important;
     margin: 0 !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
@@ -1251,20 +1571,45 @@ body {
   }
 
   .cover-hero-banner,
+  .editorial-col,
+  .cover-sectors-strip,
   .stat-card,
   .pillar-item,
   .service-deck-card,
+  .tech-matrix-container,
+  .tech-matrix-cell,
+  .sla-commitment-strip,
   .service-stack-banner,
   .project-deck-card,
   .portfolio-extra-banner,
+  .portfolio-endorsement-card,
   .step-card,
-  .deck-testimonial-card,
-  .engagement-pill,
+  .comparison-matrix-wrapper,
+  .comparison-matrix-table,
+  .comparison-matrix-table th,
+  .comparison-matrix-table td,
+  .guarantees-strip,
+  .guarantee-pill,
   .channel-pill {
     background: #f8fafc !important;
     border: 1px solid #e2e8f0 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+  }
+
+  .comparison-matrix-table th {
+    background: #f1f5f9 !important;
+    color: #475569 !important;
+  }
+
+  .comparison-matrix-table .highlight-th {
+    background: #e0e7ff !important;
+    color: #3730a3 !important;
+  }
+
+  .comparison-matrix-table .highlight-td {
+    background: #f5f3ff !important;
+    color: #0f172a !important;
   }
 
   .deck-cta-block {
