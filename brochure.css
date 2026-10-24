@@ -1519,6 +1519,319 @@ body {
 }
 
 /* --------------------------------------------------------------------------
+   EDITORIAL RICH ADDITIONS (Standards, Inclusions, Charters & Milestone Box)
+   -------------------------------------------------------------------------- */
+.sheet-standards-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  padding: 2.2mm 3.2mm;
+  margin-top: 2.2mm;
+  margin-bottom: 2mm;
+}
+
+.standards-header {
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent-purple);
+  text-transform: uppercase;
+  margin-bottom: 1.6mm;
+}
+
+.sheet-standards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8mm 3mm;
+}
+
+.sheet-standards-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 2mm;
+}
+
+.standards-num {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #fbbf24;
+  line-height: 1.1;
+  flex-shrink: 0;
+}
+
+.standards-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.standards-title {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.standards-desc {
+  font-size: 0.50rem;
+  color: var(--text-body);
+  line-height: 1.25;
+}
+
+.partner-ecosystem-bar {
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-card);
+  border-radius: 6px;
+  padding: 1.6mm 2.8mm;
+  display: flex;
+  align-items: center;
+  gap: 2.5mm;
+  font-size: 0.52rem;
+}
+
+.partner-ecosystem-lbl {
+  font-family: var(--font-mono);
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  font-size: 0.48rem;
+}
+
+.partner-ecosystem-tags {
+  display: flex;
+  align-items: center;
+  gap: 1.5mm;
+  flex-wrap: wrap;
+}
+
+.partner-ecosystem-tags span {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-card);
+  border-radius: 3px;
+  padding: 1px 4.5px;
+  font-size: 0.48rem;
+  font-weight: 700;
+  color: var(--text-body);
+}
+
+/* Inclusions Grid (Sheet 3 & 4) */
+.guide-inclusions-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  padding: 2.2mm 3.2mm;
+  margin-bottom: 2.4mm;
+}
+
+.guide-inclusions-title {
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  text-transform: uppercase;
+  margin-bottom: 1.8mm;
+  display: flex;
+  align-items: center;
+  gap: 1.5mm;
+}
+
+.guide-inclusions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8mm 2.8mm;
+}
+
+.guide-inclusion-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.guide-inclusion-head {
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.guide-inclusion-desc {
+  font-size: 0.48rem;
+  color: var(--text-body);
+  line-height: 1.25;
+  margin-top: 0.3mm;
+}
+
+/* Client Rights Charter (Sheet 7) */
+.charter-commitments-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 8px;
+  padding: 2.2mm 3.2mm;
+  margin-top: 2.2mm;
+  margin-bottom: 2.4mm;
+}
+
+.charter-title {
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent-purple);
+  text-transform: uppercase;
+  margin-bottom: 1.6mm;
+}
+
+.charter-commitments-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2mm;
+}
+
+.charter-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.charter-head {
+  font-family: var(--font-heading);
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.charter-desc {
+  font-size: 0.48rem;
+  color: var(--text-body);
+  line-height: 1.25;
+  margin-top: 0.3mm;
+}
+
+/* 3-Stage Milestone Payment Model (Sheet 8) */
+.payment-model-box {
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 2.6mm 3.5mm;
+  margin-top: 2.2mm;
+  margin-bottom: 2.4mm;
+}
+
+.payment-model-title {
+  font-family: var(--font-heading);
+  font-size: 0.60rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #fbbf24;
+  text-transform: uppercase;
+  margin-bottom: 1.8mm;
+}
+
+.payment-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5mm;
+}
+
+.payment-step-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-pct {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #38bdf8;
+  line-height: 1;
+  margin-bottom: 0.6mm;
+}
+
+.payment-step-title {
+  font-family: var(--font-heading);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.payment-step-desc {
+  font-size: 0.49rem;
+  color: #cbd5e1;
+  line-height: 1.25;
+  margin-top: 0.3mm;
+}
+
+.payment-model-note {
+  font-size: 0.48rem;
+  color: #94a3b8;
+  margin-top: 1.6mm;
+  padding-top: 1.4mm;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   DESKTOP SIDEBAR PAGE JUMP NAVIGATION
+   -------------------------------------------------------------------------- */
+.deck-sidebar-pills {
+  display: none;
+}
+
+@media screen and (min-width: 1280px) {
+  .deck-sidebar-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 0.32rem;
+    position: fixed;
+    top: 50%;
+    left: calc(50% - 105mm - 148px);
+    transform: translateY(-50%);
+    z-index: 900;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 0.55rem 0.45rem;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  }
+
+  .deck-nav-dot {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.32rem 0.65rem;
+    border-radius: 6px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .deck-nav-dot span {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: #fbbf24;
+    font-weight: 800;
+  }
+
+  .deck-nav-dot:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    transform: translateX(2px);
+  }
+}
+
+/* --------------------------------------------------------------------------
    FLOATING BOTTOM ACTION BAR (Mobile Only)
    -------------------------------------------------------------------------- */
 .mobile-bottom-bar {
@@ -1745,9 +2058,20 @@ body {
   .glance-stream-card,
   .why-reason-card,
   .roadmap-step-row,
+  .sheet-standards-wrap,
+  .partner-ecosystem-bar,
+  .guide-inclusions-wrap,
+  .charter-commitments-wrap,
   .visit-us-bar {
     background: #ffffff !important;
     border: 1px solid #e2e8f0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .payment-model-box {
+    background: #0f172a !important;
+    color: #ffffff !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
