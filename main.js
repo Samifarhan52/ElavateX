@@ -2154,6 +2154,171 @@ Would you like to start a project inquiry right now?`;
         document.querySelectorAll('.phone-nav-icon').forEach(i => i.classList.remove('active'));
         if (icon) icon.classList.add('active');
     };
+
+    // -------------------------------------------------------------------------
+    // HERO DYNAMIC WORD ROTATOR ("REAL GROWTH." -> "MAXIMUM REVENUE." etc.)
+    // -------------------------------------------------------------------------
+    function initHeroWordRotator() {
+        const words = document.querySelectorAll('#hero-word-rotator .rotator-word');
+        if (!words || words.length === 0) return;
+        let currentIndex = 0;
+        setInterval(() => {
+            const currentWord = words[currentIndex];
+            currentWord.classList.remove('active');
+            currentWord.classList.add('exit');
+
+            setTimeout(() => {
+                currentWord.classList.remove('exit');
+            }, 600);
+
+            currentIndex = (currentIndex + 1) % words.length;
+            words[currentIndex].classList.add('active');
+        }, 2400);
+    }
+    initHeroWordRotator();
+
+    // -------------------------------------------------------------------------
+    // HIGH-END INTERACTIVE 3D CYBERBOT (CURSOR TRACKING, EMOTES, SPEECH)
+    // -------------------------------------------------------------------------
+    function initCyberBot() {
+        const robot = document.getElementById('robot-avatar-3d');
+        const pupilLeft = document.getElementById('eye-pupil-left');
+        const pupilRight = document.getElementById('eye-pupil-right');
+        const eyeLeft = document.getElementById('robot-eye-left');
+        const eyeRight = document.getElementById('robot-eye-right');
+        const speechText = document.getElementById('robot-speech-text');
+        const scanline = document.getElementById('visor-scanline');
+        const btnWave = document.getElementById('chip-btn-wave');
+        const btnScan = document.getElementById('chip-btn-scan');
+        const btnSpeak = document.getElementById('chip-btn-speak');
+
+        if (!robot) return;
+
+        let targetRotX = 0;
+        let targetRotY = 0;
+        let currentRotX = 0;
+        let currentRotY = 0;
+        let targetPupilX = 0;
+        let targetPupilY = 0;
+        let currentPupilX = 0;
+        let currentPupilY = 0;
+
+        function updateTracking(clientX, clientY) {
+            const rect = robot.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            const deltaX = clientX - centerX;
+            const deltaY = clientY - centerY;
+
+            // Constrain rotation (-18deg to +18deg)
+            targetRotY = Math.max(-18, Math.min(18, deltaX / 28));
+            targetRotX = Math.max(-14, Math.min(14, -deltaY / 32));
+
+            // Constrain pupil translation (-8px to +8px)
+            targetPupilX = Math.max(-8, Math.min(8, deltaX / 40));
+            targetPupilY = Math.max(-7, Math.min(7, deltaY / 40));
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            updateTracking(e.clientX, e.clientY);
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches && e.touches[0]) {
+                updateTracking(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        // Animation Loop with Smooth Interpolation
+        function animateRobot() {
+            currentRotX += (targetRotX - currentRotX) * 0.1;
+            currentRotY += (targetRotY - currentRotY) * 0.1;
+            currentPupilX += (targetPupilX - currentPupilX) * 0.15;
+            currentPupilY += (targetPupilY - currentPupilY) * 0.15;
+
+            robot.style.transform = `perspective(800px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+            
+            if (pupilLeft && pupilRight) {
+                const pTransform = `translate(${currentPupilX.toFixed(1)}px, ${currentPupilY.toFixed(1)}px)`;
+                pupilLeft.style.transform = pTransform;
+                pupilRight.style.transform = pTransform;
+            }
+
+            requestAnimationFrame(animateRobot);
+        }
+        requestAnimationFrame(animateRobot);
+
+        // Natural eye blinking
+        setInterval(() => {
+            if (eyeLeft && eyeRight) {
+                eyeLeft.classList.add('blink');
+                eyeRight.classList.add('blink');
+                setTimeout(() => {
+                    eyeLeft.classList.remove('blink');
+                    eyeRight.classList.remove('blink');
+                }, 250);
+            }
+        }, 4000);
+
+        // Strategic Insights
+        const insights = [
+            "Next.js 14 server components cut TTFB by up to 78%.",
+            "1-click WhatsApp cart recovery saves 42% abandoned checkouts.",
+            "Sub-second page speeds double Google search conversion rates.",
+            "Audited 100/100 Core Web Vitals guarantees zero SEO penalties.",
+            "Flutter 60 FPS engines provide true iOS & Android native parity."
+        ];
+
+        let insightIdx = 0;
+
+        function setSpeech(msg) {
+            if (!speechText) return;
+            speechText.style.opacity = '0';
+            setTimeout(() => {
+                speechText.textContent = msg;
+                speechText.style.opacity = '1';
+            }, 150);
+        }
+
+        // Button Click Triggers
+        if (btnWave) {
+            btnWave.addEventListener('click', () => {
+                setSpeech("👋 Hello! I'm CyberBot v2.6. Ready to scale your product?");
+                if (eyeLeft && eyeRight) {
+                    eyeLeft.classList.add('blink');
+                    eyeRight.classList.add('blink');
+                    setTimeout(() => {
+                        eyeLeft.classList.remove('blink');
+                        eyeRight.classList.remove('blink');
+                    }, 400);
+                }
+            });
+        }
+
+        if (btnScan) {
+            btnScan.addEventListener('click', () => {
+                setSpeech("⚡ Scanning codebase... 100/100 Lighthouse score verified. Zero bloat!");
+                if (scanline) {
+                    scanline.style.animation = 'none';
+                    scanline.offsetHeight; // trigger reflow
+                    scanline.style.animation = 'scanlineMove 1s ease-in-out 3';
+                }
+            });
+        }
+
+        if (btnSpeak) {
+            btnSpeak.addEventListener('click', () => {
+                setSpeech("💡 " + insights[insightIdx]);
+                insightIdx = (insightIdx + 1) % insights.length;
+            });
+        }
+
+        robot.addEventListener('click', () => {
+            setSpeech("🚀 Click below to book a strategy call or claim free assets!");
+        });
+    }
+    initCyberBot();
 });
 
 

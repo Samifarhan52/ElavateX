@@ -261,7 +261,12 @@
                             WE BUILD <br>
                             DIGITAL EXPERIENCES <br>
                             THAT DRIVE <br>
-                            <span class="hero-highlight-gradient">REAL GROWTH.</span>
+                            <span class="hero-word-rotator" id="hero-word-rotator">
+                                <span class="hero-highlight-gradient rotator-word active">REAL GROWTH.</span>
+                                <span class="hero-highlight-gradient rotator-word">MAXIMUM REVENUE.</span>
+                                <span class="hero-highlight-gradient rotator-word">MARKET DOMINANCE.</span>
+                                <span class="hero-highlight-gradient rotator-word">UNFAIR ADVANTAGE.</span>
+                            </span>
                         </h1>
 
                         <p class="hero-subtitle">
@@ -309,47 +314,110 @@
                         </div>
                     </div>
 
-                    <!-- RIGHT COLUMN: 3D INTERACTIVE PRODUCT SHOWCASE STAGE -->
+                    <!-- RIGHT COLUMN: HIGH-END INTERACTIVE 3D ROBOT ASSISTANT -->
                     <div class="hero-visual-stage" id="hero-visual-stage">
                         
-                        <!-- Ambient Laser Ribbon / Wireframe SVG Overlay -->
-                        <svg class="stage-wireframe-svg" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class="laser-path path-1" d="M 50,450 Q 250,50 550,200" stroke="url(#laser-grad-1)" stroke-width="2" stroke-dasharray="6 6" />
-                            <path class="laser-path path-2" d="M 100,80 C 300,180 200,420 520,380" stroke="url(#laser-grad-2)" stroke-width="1.5" />
-                            <circle cx="280" cy="180" r="140" stroke="rgba(99, 102, 241, 0.15)" stroke-width="1" stroke-dasharray="4 4" />
-                            <defs>
-                                <linearGradient id="laser-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#a855f7" stop-opacity="0.8" />
-                                    <stop offset="50%" stop-color="#6366f1" stop-opacity="0.6" />
-                                    <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
-                                </linearGradient>
-                                <linearGradient id="laser-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9" />
-                                    <stop offset="100%" stop-color="#a855f7" stop-opacity="0.2" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
+                        <!-- Ambient Holographic Aura & Laser Rings -->
+                        <div class="robot-stage-aura"></div>
+                        <div class="robot-orbit-ring ring-outer"></div>
+                        <div class="robot-orbit-ring ring-inner"></div>
 
-                        <!-- 3D HERO VISUAL CONTAINER -->
-                        <div class="hero-3d-visual-wrapper reveal-item">
-                            <div class="hero-3d-glow-backdrop"></div>
-                            <img src="hero_3d_showcase.jpg" alt="ElavateX 3D Digital Product Architecture Showcase" class="hero-3d-render-img">
+                        <!-- Interactive Robot Container -->
+                        <div class="interactive-robot-container" id="interactive-robot-container">
                             
-                            <!-- Floating Holographic Badge Top Right -->
-                            <div class="hero-3d-float-badge badge-top-right">
-                                <span class="float-pulse-dot"></span>
-                                <div>
-                                    <strong>100/100 Core Web Vitals</strong>
-                                    <span class="float-sub">0.12s TTFB &bull; Global Edge CDN</span>
+                            <!-- Interactive Speech / Telemetry Bubble -->
+                            <div class="robot-speech-bubble" id="robot-speech-bubble">
+                                <span class="speech-pulse"></span>
+                                <span class="speech-text" id="robot-speech-text">Tracking your cursor! Move your mouse to interact.</span>
+                            </div>
+
+                            <!-- 3D Robot Head & Torso Frame (Follows Cursor via 3D Perspective) -->
+                            <div class="robot-avatar-3d" id="robot-avatar-3d" title="Click or move cursor to interact!">
+                                
+                                <!-- Ear Antennas with Signal Beacons -->
+                                <div class="robot-ear ear-left">
+                                    <span class="antenna-stick"></span>
+                                    <span class="antenna-orb"></span>
+                                </div>
+                                <div class="robot-ear ear-right">
+                                    <span class="antenna-stick"></span>
+                                    <span class="antenna-orb"></span>
+                                </div>
+
+                                <!-- Main Cybernetic Helmet -->
+                                <div class="robot-helmet">
+                                    
+                                    <!-- Forehead Status Badge -->
+                                    <div class="robot-forehead-badge">
+                                        <span class="badge-dot"></span>
+                                        <span>AI-CORE v2.6 &bull; LIVE</span>
+                                    </div>
+
+                                    <!-- Visor Screen Glass -->
+                                    <div class="robot-visor">
+                                        <div class="visor-glare"></div>
+                                        <div class="visor-scanline" id="visor-scanline"></div>
+
+                                        <!-- Cybernetic Eyes (Track Cursor in Real-Time) -->
+                                        <div class="robot-eyes-row" id="robot-eyes-row">
+                                            <div class="robot-eye eye-left" id="robot-eye-left">
+                                                <div class="eye-pupil" id="eye-pupil-left">
+                                                    <span class="pupil-core"></span>
+                                                </div>
+                                            </div>
+                                            <div class="robot-eye eye-right" id="robot-eye-right">
+                                                <div class="eye-pupil" id="eye-pupil-right">
+                                                    <span class="pupil-core"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Animated Holographic Mouth Visor -->
+                                        <div class="robot-mouth-wave" id="robot-mouth-wave">
+                                            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Cybernetic Neck & Torso -->
+                                <div class="robot-neck"></div>
+                                <div class="robot-torso">
+                                    <div class="torso-core-reactor">
+                                        <div class="reactor-spinner"></div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Floating Holographic Badge Bottom Left -->
-                            <div class="hero-3d-float-badge badge-bottom-left">
-                                <span class="float-icon-check">&check;</span>
+                            <!-- Interactive Emote Action Pills -->
+                            <div class="robot-action-chips">
+                                <button type="button" class="robot-chip-btn" id="chip-btn-wave" title="Say Hello">
+                                    <span>👋 Wave</span>
+                                </button>
+                                <button type="button" class="robot-chip-btn" id="chip-btn-scan" title="Simulate Neural Code Scan">
+                                    <span>⚡ Code Scan</span>
+                                </button>
+                                <button type="button" class="robot-chip-btn active" id="chip-btn-speak" title="Hear Insights">
+                                    <span>💡 AI Insight</span>
+                                </button>
+                                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20interacted%20with%20your%20Hero%20CyberBot%20and%20want%20to%20discuss%20a%20project." target="_blank" class="robot-chip-btn chat-btn" title="Chat with Engineering Desk">
+                                    <span>💬 WhatsApp</span>
+                                </a>
+                            </div>
+
+                            <!-- Floating Holographic Stat Badges -->
+                            <div class="robot-stat-pill pill-top-right">
+                                <span class="pill-dot emerald"></span>
                                 <div>
-                                    <strong>Next.js 14 &amp; Flutter Native</strong>
-                                    <span class="float-sub">Verified Enterprise SLA</span>
+                                    <strong>Next.js 14 &amp; Flutter</strong>
+                                    <span>Sub-Second Response</span>
+                                </div>
+                            </div>
+
+                            <div class="robot-stat-pill pill-bottom-left">
+                                <span class="pill-dot cyan"></span>
+                                <div>
+                                    <strong>Autonomous Intelligence</strong>
+                                    <span>100% Custom Handwritten</span>
                                 </div>
                             </div>
                         </div>
