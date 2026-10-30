@@ -314,7 +314,7 @@
                         </div>
                     </div>
 
-                    <!-- RIGHT COLUMN: HIGH-END INTERACTIVE 3D ROBOT ASSISTANT -->
+                    <!-- RIGHT COLUMN: HIGH-END FULL-BODY INTERACTIVE WALKING & WAVING ROBOT -->
                     <div class="hero-visual-stage" id="hero-visual-stage">
                         
                         <!-- Ambient Holographic Aura & Laser Rings -->
@@ -328,98 +328,115 @@
                             <!-- Interactive Speech / Telemetry Bubble -->
                             <div class="robot-speech-bubble" id="robot-speech-bubble">
                                 <span class="speech-pulse"></span>
-                                <span class="speech-text" id="robot-speech-text">Tracking your cursor! Move your mouse to interact.</span>
+                                <span class="speech-text" id="robot-speech-text">👋 Hello! Click actions below to see me walk, wave, or make signs!</span>
                             </div>
 
-                            <!-- 3D Robot Head & Torso Frame (Follows Cursor via 3D Perspective) -->
-                            <div class="robot-avatar-3d" id="robot-avatar-3d" title="Click or move cursor to interact!">
-                                
-                                <!-- Ear Antennas with Signal Beacons -->
-                                <div class="robot-ear ear-left">
-                                    <span class="antenna-stick"></span>
-                                    <span class="antenna-orb"></span>
-                                </div>
-                                <div class="robot-ear ear-right">
-                                    <span class="antenna-stick"></span>
-                                    <span class="antenna-orb"></span>
+                            <!-- Walking Stage Track & Platform -->
+                            <div class="robot-stage-track" id="robot-stage-track">
+                                <div class="stage-floor-platform">
+                                    <div class="platform-glow-line"></div>
                                 </div>
 
-                                <!-- Main Cybernetic Helmet -->
-                                <div class="robot-helmet">
-                                    
-                                    <!-- Forehead Status Badge -->
-                                    <div class="robot-forehead-badge">
-                                        <span class="badge-dot"></span>
-                                        <span>AI-CORE v2.6 &bull; LIVE</span>
-                                    </div>
+                                <!-- Full-Body Robot Character Rig (Supports Walking, Waving, Gestures) -->
+                                <div class="robot-character-rig is-walking" id="robot-character-rig" title="Interactive Robot: Click to interact!">
+                                    <!-- Ground Shadow -->
+                                    <div class="robot-ground-shadow"></div>
 
-                                    <!-- Visor Screen Glass -->
-                                    <div class="robot-visor">
-                                        <div class="visor-glare"></div>
-                                        <div class="visor-scanline" id="visor-scanline"></div>
-
-                                        <!-- Cybernetic Eyes (Track Cursor in Real-Time) -->
-                                        <div class="robot-eyes-row" id="robot-eyes-row">
-                                            <div class="robot-eye eye-left" id="robot-eye-left">
-                                                <div class="eye-pupil" id="eye-pupil-left">
-                                                    <span class="pupil-core"></span>
+                                    <!-- Head Assembly -->
+                                    <div class="bot-head-group" id="bot-head-group">
+                                        <div class="bot-antenna bot-antenna-left">
+                                            <span class="ant-stick"></span>
+                                            <span class="ant-glow"></span>
+                                        </div>
+                                        <div class="bot-antenna bot-antenna-right">
+                                            <span class="ant-stick"></span>
+                                            <span class="ant-glow"></span>
+                                        </div>
+                                        <div class="bot-helmet">
+                                            <div class="bot-visor" id="bot-visor">
+                                                <div class="bot-visor-glare"></div>
+                                                <div class="bot-eyes" id="bot-eyes">
+                                                    <div class="bot-eye eye-left" id="bot-eye-left">
+                                                        <div class="eye-pupil" id="eye-pupil-left"></div>
+                                                    </div>
+                                                    <div class="bot-eye eye-right" id="bot-eye-right">
+                                                        <div class="eye-pupil" id="eye-pupil-right"></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="robot-eye eye-right" id="robot-eye-right">
-                                                <div class="eye-pupil" id="eye-pupil-right">
-                                                    <span class="pupil-core"></span>
+                                                <div class="bot-emote-overlay" id="bot-emote-overlay">👋</div>
+                                                <div class="bot-mouth" id="bot-mouth">
+                                                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <!-- Animated Holographic Mouth Visor -->
-                                        <div class="robot-mouth-wave" id="robot-mouth-wave">
-                                            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                                    <!-- Torso & Arms Assembly -->
+                                    <div class="bot-torso-group" id="bot-torso-group">
+                                        <!-- Left Arm -->
+                                        <div class="bot-arm bot-arm-left" id="bot-arm-left">
+                                            <div class="arm-shoulder"></div>
+                                            <div class="arm-limb"></div>
+                                            <div class="arm-hand"></div>
+                                        </div>
+
+                                        <!-- Chest Core Reactor -->
+                                        <div class="bot-chest">
+                                            <div class="chest-reactor">
+                                                <div class="reactor-ring"></div>
+                                                <div class="reactor-dot"></div>
+                                            </div>
+                                            <div class="chest-badge">AI-99</div>
+                                        </div>
+
+                                        <!-- Right Arm with Gesture Sign -->
+                                        <div class="bot-arm bot-arm-right" id="bot-arm-right">
+                                            <div class="arm-shoulder"></div>
+                                            <div class="arm-limb"></div>
+                                            <div class="arm-hand">
+                                                <span class="hand-gesture-icon" id="hand-gesture-icon">👋</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Cybernetic Neck & Torso -->
-                                <div class="robot-neck"></div>
-                                <div class="robot-torso">
-                                    <div class="torso-core-reactor">
-                                        <div class="reactor-spinner"></div>
+                                    <!-- Legs & Feet Assembly (Walk & Dance Cycle) -->
+                                    <div class="bot-legs-group" id="bot-legs-group">
+                                        <div class="bot-leg bot-leg-left" id="bot-leg-left">
+                                            <div class="leg-thigh"></div>
+                                            <div class="leg-shin"></div>
+                                            <div class="leg-foot"></div>
+                                        </div>
+                                        <div class="bot-leg bot-leg-right" id="bot-leg-right">
+                                            <div class="leg-thigh"></div>
+                                            <div class="leg-shin"></div>
+                                            <div class="leg-foot"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Interactive Emote Action Pills -->
-                            <div class="robot-action-chips">
-                                <button type="button" class="robot-chip-btn" id="chip-btn-wave" title="Say Hello">
+                            <!-- Interactive Robot Action Controls (Walk, Wave, Thumbs Up, Peace, Dance) -->
+                            <div class="robot-interactive-actions" id="robot-interactive-actions">
+                                <button type="button" class="robot-act-btn active" id="btn-act-walk" data-action="walk" title="Make Robot Walk Across Platform">
+                                    <span>🚶 Walk</span>
+                                </button>
+                                <button type="button" class="robot-act-btn" id="btn-act-wave" data-action="wave" title="Make Robot Wave Hello">
                                     <span>👋 Wave</span>
                                 </button>
-                                <button type="button" class="robot-chip-btn" id="chip-btn-scan" title="Simulate Neural Code Scan">
-                                    <span>⚡ Code Scan</span>
+                                <button type="button" class="robot-act-btn" id="btn-act-thumbs" data-action="thumbs" title="Show Thumbs Up Sign">
+                                    <span>👍 Thumbs Up</span>
                                 </button>
-                                <button type="button" class="robot-chip-btn active" id="chip-btn-speak" title="Hear Insights">
-                                    <span>💡 AI Insight</span>
+                                <button type="button" class="robot-act-btn" id="btn-act-peace" data-action="peace" title="Show Peace Sign">
+                                    <span>✌️ Peace</span>
                                 </button>
-                                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20interacted%20with%20your%20Hero%20CyberBot%20and%20want%20to%20discuss%20a%20project." target="_blank" class="robot-chip-btn chat-btn" title="Chat with Engineering Desk">
+                                <button type="button" class="robot-act-btn" id="btn-act-dance" data-action="dance" title="Robot Dance Mode">
+                                    <span>🕺 Dance</span>
+                                </button>
+                                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20interacted%20with%20your%20Hero%20CyberBot%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="robot-act-btn btn-chat-link" id="btn-act-chat" title="Chat Directly on WhatsApp">
                                     <span>💬 WhatsApp</span>
                                 </a>
                             </div>
 
-                            <!-- Floating Holographic Stat Badges -->
-                            <div class="robot-stat-pill pill-top-right">
-                                <span class="pill-dot emerald"></span>
-                                <div>
-                                    <strong>Next.js 14 &amp; Flutter</strong>
-                                    <span>Sub-Second Response</span>
-                                </div>
-                            </div>
-
-                            <div class="robot-stat-pill pill-bottom-left">
-                                <span class="pill-dot cyan"></span>
-                                <div>
-                                    <strong>Autonomous Intelligence</strong>
-                                    <span>100% Custom Handwritten</span>
-                                </div>
-                            </div>
                         </div>
 
                     </div>

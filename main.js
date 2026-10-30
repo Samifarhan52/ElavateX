@@ -2178,21 +2178,22 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // HIGH-END INTERACTIVE 3D CYBERBOT (CURSOR TRACKING, EMOTES, SPEECH)
+    // HIGH-END FULL-BODY INTERACTIVE ROBOT (WALKING, WAVING, SIGNS & TRACKING)
     // -------------------------------------------------------------------------
     function initCyberBot() {
-        const robot = document.getElementById('robot-avatar-3d');
+        const robotRig = document.getElementById('robot-character-rig');
+        const botHead = document.getElementById('bot-head-group');
+        const botVisor = document.getElementById('bot-visor');
+        const emoteOverlay = document.getElementById('bot-emote-overlay');
+        const handGestureIcon = document.getElementById('hand-gesture-icon');
         const pupilLeft = document.getElementById('eye-pupil-left');
         const pupilRight = document.getElementById('eye-pupil-right');
-        const eyeLeft = document.getElementById('robot-eye-left');
-        const eyeRight = document.getElementById('robot-eye-right');
+        const eyeLeft = document.getElementById('bot-eye-left');
+        const eyeRight = document.getElementById('bot-eye-right');
         const speechText = document.getElementById('robot-speech-text');
-        const scanline = document.getElementById('visor-scanline');
-        const btnWave = document.getElementById('chip-btn-wave');
-        const btnScan = document.getElementById('chip-btn-scan');
-        const btnSpeak = document.getElementById('chip-btn-speak');
+        const actButtons = document.querySelectorAll('.robot-act-btn[data-action]');
 
-        if (!robot) return;
+        if (!robotRig) return;
 
         let targetRotX = 0;
         let targetRotY = 0;
@@ -2202,22 +2203,134 @@ Would you like to start a project inquiry right now?`;
         let targetPupilY = 0;
         let currentPupilX = 0;
         let currentPupilY = 0;
+        let currentAction = 'walk';
+        let userInteracted = false;
+        let userInteractTimeout = null;
 
+        function setSpeech(msg) {
+            if (!speechText) return;
+            speechText.style.opacity = '0';
+            setTimeout(() => {
+                speechText.textContent = msg;
+                speechText.style.opacity = '1';
+            }, 120);
+        }
+
+        function setRobotAction(action, isUserTriggered = false) {
+            if (isUserTriggered) {
+                userInteracted = true;
+                clearTimeout(userInteractTimeout);
+                userInteractTimeout = setTimeout(() => {
+                    userInteracted = false;
+                }, 15000);
+            }
+
+            currentAction = action;
+
+            // Remove existing action classes
+            robotRig.classList.remove('is-walking', 'is-waving', 'is-thumbs', 'is-peace', 'is-dance');
+            if (botVisor) botVisor.classList.remove('show-emote');
+            if (handGestureIcon) handGestureIcon.classList.remove('show');
+
+            // Update button active state
+            actButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-action') === action);
+            });
+
+            switch(action) {
+                case 'walk':
+                    robotRig.classList.add('is-walking');
+                    setSpeech("🚶 Walking along the platform... 60 FPS smooth animation!");
+                    break;
+
+                case 'wave':
+                    robotRig.classList.add('is-waving');
+                    if (handGestureIcon) {
+                        handGestureIcon.textContent = '👋';
+                        handGestureIcon.classList.add('show');
+                    }
+                    if (emoteOverlay && botVisor) {
+                        emoteOverlay.textContent = '👋';
+                        botVisor.classList.add('show-emote');
+                    }
+                    setSpeech("👋 Hello! Welcome to ElavateX engineering studio!");
+                    break;
+
+                case 'thumbs':
+                    robotRig.classList.add('is-thumbs');
+                    if (handGestureIcon) {
+                        handGestureIcon.textContent = '👍';
+                        handGestureIcon.classList.add('show');
+                    }
+                    if (emoteOverlay && botVisor) {
+                        emoteOverlay.textContent = '👍';
+                        botVisor.classList.add('show-emote');
+                    }
+                    setSpeech("👍 Quality verified! 100/100 Core Web Vitals & clean architecture.");
+                    break;
+
+                case 'peace':
+                    robotRig.classList.add('is-peace');
+                    if (handGestureIcon) {
+                        handGestureIcon.textContent = '✌️';
+                        handGestureIcon.classList.add('show');
+                    }
+                    if (emoteOverlay && botVisor) {
+                        emoteOverlay.textContent = '✌️';
+                        botVisor.classList.add('show-emote');
+                    }
+                    setSpeech("✌️ Peace! Let's craft your next web or mobile app together.");
+                    break;
+
+                case 'dance':
+                    robotRig.classList.add('is-dance');
+                    if (handGestureIcon) {
+                        handGestureIcon.textContent = '🕺';
+                        handGestureIcon.classList.add('show');
+                    }
+                    if (emoteOverlay && botVisor) {
+                        emoteOverlay.textContent = '🔥';
+                        botVisor.classList.add('show-emote');
+                    }
+                    setSpeech("🕺 High-velocity launch celebration! Zero bloat, pure performance.");
+                    break;
+            }
+        }
+
+        // Attach click listeners to action buttons
+        actButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const act = btn.getAttribute('data-action');
+                if (act) setRobotAction(act, true);
+            });
+        });
+
+        // Click directly on robot to trigger gesture cycle
+        robotRig.addEventListener('click', () => {
+            const nextActs = ['wave', 'thumbs', 'peace', 'dance', 'walk'];
+            const nextAct = nextActs[(nextActs.indexOf(currentAction) + 1) % nextActs.length];
+            setRobotAction(nextAct, true);
+        });
+
+        // Smooth cursor tracking for head and pupils
         function updateTracking(clientX, clientY) {
-            const rect = robot.getBoundingClientRect();
+            const stage = document.getElementById('hero-visual-stage');
+            if (!stage) return;
+            const rect = stage.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
 
             const deltaX = clientX - centerX;
             const deltaY = clientY - centerY;
 
-            // Constrain rotation (-18deg to +18deg)
-            targetRotY = Math.max(-18, Math.min(18, deltaX / 28));
-            targetRotX = Math.max(-14, Math.min(14, -deltaY / 32));
+            // Head 3D rotation limits (-14deg to +14deg)
+            targetRotY = Math.max(-14, Math.min(14, deltaX / 30));
+            targetRotX = Math.max(-10, Math.min(10, -deltaY / 35));
 
-            // Constrain pupil translation (-8px to +8px)
-            targetPupilX = Math.max(-8, Math.min(8, deltaX / 40));
-            targetPupilY = Math.max(-7, Math.min(7, deltaY / 40));
+            // Eye pupil shift limits (-6px to +6px)
+            targetPupilX = Math.max(-6, Math.min(6, deltaX / 45));
+            targetPupilY = Math.max(-5, Math.min(5, deltaY / 45));
         }
 
         window.addEventListener('mousemove', (e) => {
@@ -2231,92 +2344,47 @@ Would you like to start a project inquiry right now?`;
         }, { passive: true });
 
         // Animation Loop with Smooth Interpolation
-        function animateRobot() {
-            currentRotX += (targetRotX - currentRotX) * 0.1;
-            currentRotY += (targetRotY - currentRotY) * 0.1;
-            currentPupilX += (targetPupilX - currentPupilX) * 0.15;
-            currentPupilY += (targetPupilY - currentPupilY) * 0.15;
+        function animateHeadAndEyes() {
+            currentRotX += (targetRotX - currentRotX) * 0.12;
+            currentRotY += (targetRotY - currentRotY) * 0.12;
+            currentPupilX += (targetPupilX - currentPupilX) * 0.18;
+            currentPupilY += (targetPupilY - currentPupilY) * 0.18;
 
-            robot.style.transform = `perspective(800px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
-            
+            if (botHead && !robotRig.classList.contains('is-dance')) {
+                botHead.style.transform = `perspective(600px) rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+            }
+
             if (pupilLeft && pupilRight) {
                 const pTransform = `translate(${currentPupilX.toFixed(1)}px, ${currentPupilY.toFixed(1)}px)`;
                 pupilLeft.style.transform = pTransform;
                 pupilRight.style.transform = pTransform;
             }
 
-            requestAnimationFrame(animateRobot);
+            requestAnimationFrame(animateHeadAndEyes);
         }
-        requestAnimationFrame(animateRobot);
+        requestAnimationFrame(animateHeadAndEyes);
 
         // Natural eye blinking
         setInterval(() => {
-            if (eyeLeft && eyeRight) {
+            if (eyeLeft && eyeRight && botVisor && !botVisor.classList.contains('show-emote')) {
                 eyeLeft.classList.add('blink');
                 eyeRight.classList.add('blink');
                 setTimeout(() => {
                     eyeLeft.classList.remove('blink');
                     eyeRight.classList.remove('blink');
-                }, 250);
+                }, 220);
             }
-        }, 4000);
+        }, 4200);
 
-        // Strategic Insights
-        const insights = [
-            "Next.js 14 server components cut TTFB by up to 78%.",
-            "1-click WhatsApp cart recovery saves 42% abandoned checkouts.",
-            "Sub-second page speeds double Google search conversion rates.",
-            "Audited 100/100 Core Web Vitals guarantees zero SEO penalties.",
-            "Flutter 60 FPS engines provide true iOS & Android native parity."
-        ];
-
-        let insightIdx = 0;
-
-        function setSpeech(msg) {
-            if (!speechText) return;
-            speechText.style.opacity = '0';
-            setTimeout(() => {
-                speechText.textContent = msg;
-                speechText.style.opacity = '1';
-            }, 150);
-        }
-
-        // Button Click Triggers
-        if (btnWave) {
-            btnWave.addEventListener('click', () => {
-                setSpeech("👋 Hello! I'm CyberBot v2.6. Ready to scale your product?");
-                if (eyeLeft && eyeRight) {
-                    eyeLeft.classList.add('blink');
-                    eyeRight.classList.add('blink');
-                    setTimeout(() => {
-                        eyeLeft.classList.remove('blink');
-                        eyeRight.classList.remove('blink');
-                    }, 400);
-                }
-            });
-        }
-
-        if (btnScan) {
-            btnScan.addEventListener('click', () => {
-                setSpeech("⚡ Scanning codebase... 100/100 Lighthouse score verified. Zero bloat!");
-                if (scanline) {
-                    scanline.style.animation = 'none';
-                    scanline.offsetHeight; // trigger reflow
-                    scanline.style.animation = 'scanlineMove 1s ease-in-out 3';
-                }
-            });
-        }
-
-        if (btnSpeak) {
-            btnSpeak.addEventListener('click', () => {
-                setSpeech("💡 " + insights[insightIdx]);
-                insightIdx = (insightIdx + 1) % insights.length;
-            });
-        }
-
-        robot.addEventListener('click', () => {
-            setSpeech("🚀 Click below to book a strategy call or claim free assets!");
-        });
+        // Auto-idle demonstration loop: walks, then pauses to wave or thumbs up
+        const autoCycle = ['walk', 'wave', 'walk', 'thumbs', 'walk', 'peace'];
+        let cycleIdx = 0;
+        setInterval(() => {
+            if (!userInteracted) {
+                cycleIdx = (cycleIdx + 1) % autoCycle.length;
+                setRobotAction(autoCycle[cycleIdx], false);
+            }
+        }, 8000);
     }
     initCyberBot();
 });
