@@ -17,30 +17,81 @@
     <meta property="og:site_name" content="ElavateX">
     <meta property="og:type" content="website">
 
-    <!-- Structured Data (JSON-LD) for Google Search Box Indexing -->
+    <!-- Structured Data (JSON-LD) for Google Search Box & Google Maps Knowledge Panel Indexing -->
     <script type="application/ld+json">
     [
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "ElavateX",
-        "alternateName": ["elavatex.com", "ElavateX Agency", "ElavateX Digital"],
-        "url": "https://elavatex.com/"
+        "alternateName": ["elavatex.com", "ElavateX Agency", "ElavateX Digital", "ElavateX Studio"],
+        "url": "https://www.elavatex.com/"
       },
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": "ProfessionalService",
+        "@id": "https://www.elavatex.com/#organization",
         "name": "ElavateX",
-        "url": "https://elavatex.com",
-        "logo": "https://elavatex.com/favicon.svg",
-        "sameAs": [
-          "https://instagram.com/ElavateX.dev",
-          "https://github.com/Samifarhan52/ElavateX"
+        "alternateName": ["ElavateX Digital Product Studio", "ElavateX Software & Growth Agency", "ElavateX Bengaluru"],
+        "legalName": "ElavateX Digital Technologies",
+        "url": "https://www.elavatex.com/",
+        "logo": "https://www.elavatex.com/elavatex_logo.png",
+        "image": [
+          "https://www.elavatex.com/elavatex_instagram_poster_1080x1350.jpg",
+          "https://www.elavatex.com/elavatex_logo.png"
         ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+91-7676808068",
-          "contactType": "customer service"
+        "description": "Bengaluru's foremost digital product studio specializing in High-Performance Web Development, Mobile Application Engineering (iOS & Android), Custom SaaS Architectures, and Full-Funnel Digital Growth.",
+        "telephone": "+91-7676808068",
+        "email": "contact@elavatex.com",
+        "priceRange": "$$$",
+        "currenciesAccepted": "INR, USD, EUR, AED",
+        "paymentAccepted": "UPI, Net Banking, Credit Card, Wire Transfer",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3rd Floor, Carmelaram, Chikkabellandur",
+          "addressLocality": "Bengaluru",
+          "addressRegion": "Karnataka",
+          "postalCode": "560035",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 12.9098,
+          "longitude": 77.7024
+        },
+        "hasMap": "https://maps.app.goo.gl/PU1nFqvbbBd8SQRb7?g_st=aw",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "09:00",
+            "closes": "20:00"
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1",
+          "https://github.com/Samifarhan52/ElavateX",
+          "https://wa.me/917676808068",
+          "https://maps.app.goo.gl/PU1nFqvbbBd8SQRb7?g_st=aw"
+        ],
+        "areaServed": [
+          {"@type": "City", "name": "Bengaluru"},
+          {"@type": "Country", "name": "India"},
+          {"@type": "Country", "name": "United States"},
+          {"@type": "Country", "name": "United Arab Emirates"},
+          {"@type": "Country", "name": "United Kingdom"}
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "ElavateX Engineering Services",
+          "itemListElement": [
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mobile Application Development (iOS & Android)"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Web Applications & SaaS Platforms"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Website Design & Development"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "E-Commerce Website Development"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Technical & On-Page SEO Services"}},
+            {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Google Business Profile (GBP) Maps Optimization"}}
+          ]
         }
       }
     ]
