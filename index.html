@@ -335,6 +335,93 @@
                             <div class="robot-canvas-stage" id="robot-canvas-stage" title="Click or drag to interact with Atlas-X Humanoid Robot!">
                                 <canvas id="robot-webgl-canvas"></canvas>
                                 <div class="canvas-ambient-pedestal"></div>
+
+                                <!-- FLOATING HOLOGRAPHIC HUD DIAGNOSTIC CARDS (Boston Dynamics / Atlas Industrial Tech Overlay) -->
+                                <div class="robot-hud-layer" id="robot-hud-layer">
+                                    <!-- Card 1: Top Left - AI Vision Core -->
+                                    <div class="hud-callout-card hud-pos-tl" data-hud-target="head" data-info="⚡ 120 TFLOPS Autonomous AI Vision with live multi-modal cursor &amp; viewport tracking.">
+                                        <div class="hud-card-header">
+                                            <span class="hud-indicator-dot"></span>
+                                            <span class="hud-card-tag">NEURAL VISION</span>
+                                        </div>
+                                        <div class="hud-card-title">120 TFLOPS AI Core</div>
+                                        <div class="hud-card-desc">Real-time eye tracking &amp; neural inference</div>
+                                        <div class="hud-pointer-connector">
+                                            <span class="hud-line"></span>
+                                            <span class="hud-target-dot"></span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 2: Mid Left - Core Web Vitals -->
+                                    <div class="hud-callout-card hud-pos-ml" data-hud-target="core" data-info="🚀 100/100 Core Web Vitals with 0.12s TTFB sub-second edge distribution.">
+                                        <div class="hud-card-header">
+                                            <span class="hud-indicator-dot"></span>
+                                            <span class="hud-card-tag">PERFORMANCE</span>
+                                        </div>
+                                        <div class="hud-card-title">100/100 Core Vitals</div>
+                                        <div class="hud-card-desc">0.12s TTFB &amp; zero layout shift delivery</div>
+                                        <div class="hud-pointer-connector">
+                                            <span class="hud-line"></span>
+                                            <span class="hud-target-dot"></span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 3: Bottom Left - Hydraulic Actuators -->
+                                    <div class="hud-callout-card hud-pos-bl" data-hud-target="knee" data-info="⚙️ Cross-Platform Stack: Next.js 14 App Router, Flutter 60 FPS, and multi-tenant Postgres.">
+                                        <div class="hud-card-header">
+                                            <span class="hud-indicator-dot"></span>
+                                            <span class="hud-card-tag">HYDRAULIC STACK</span>
+                                        </div>
+                                        <div class="hud-card-title">Next.js 14 &amp; Flutter</div>
+                                        <div class="hud-card-desc">High-torque 60 FPS reactive mobile SDK</div>
+                                        <div class="hud-pointer-connector">
+                                            <span class="hud-line"></span>
+                                            <span class="hud-target-dot"></span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 4: Top Right - Enterprise Security -->
+                                    <div class="hud-callout-card hud-pos-tr" data-hud-target="shoulder" data-info="🛡️ Enterprise Zero-Trust security with automated CI/CD audits &amp; E2E encryption.">
+                                        <div class="hud-card-header">
+                                            <span class="hud-indicator-dot"></span>
+                                            <span class="hud-card-tag">ENTERPRISE SECURITY</span>
+                                        </div>
+                                        <div class="hud-card-title">Zero-Trust Hardening</div>
+                                        <div class="hud-card-desc">End-to-end encrypted microservice mesh</div>
+                                        <div class="hud-pointer-connector">
+                                            <span class="hud-line"></span>
+                                            <span class="hud-target-dot"></span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 5: Mid Right - Dynamic Kinematics -->
+                                    <div class="hud-callout-card hud-pos-mr" data-hud-target="elbow" data-info="🦾 Dynamic bipedal physics: Inverse kinematics for Walk, High-Speed Sprint, Wave, Greet, and Dance.">
+                                        <div class="hud-card-header">
+                                            <span class="hud-indicator-dot"></span>
+                                            <span class="hud-card-tag">KINEMATICS</span>
+                                        </div>
+                                        <div class="hud-card-title">Atlas Bipedal Physics</div>
+                                        <div class="hud-card-desc">60 FPS physics-driven athletic articulation</div>
+                                        <div class="hud-pointer-connector">
+                                            <span class="hud-line"></span>
+                                            <span class="hud-target-dot"></span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 6: Bottom Right - Deal Acquisition Engine -->
+                                    <div class="hud-callout-card hud-pos-br" data-hud-target="foot" data-info="📈 Deal Acquisition Engine: High-converting MVP funnels with automated WhatsApp deal close.">
+                                        <div class="hud-card-header">
+                                            <span class="hud-indicator-dot"></span>
+                                            <span class="hud-card-tag">GROWTH ENGINE</span>
+                                        </div>
+                                        <div class="hud-card-title">Deal Acquisition</div>
+                                        <div class="hud-card-desc">Conversion funnels &amp; instant WhatsApp routing</div>
+                                        <div class="hud-pointer-connector">
+                                            <span class="hud-line"></span>
+                                            <span class="hud-target-dot"></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Interactive Robot Action Controls (Humanoid Actions + WhatsApp) -->

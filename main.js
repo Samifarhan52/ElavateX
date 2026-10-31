@@ -2178,18 +2178,19 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // ATLAS-X STUDIO-GRADE HUMANOID ROBOT (FULL BIPEDAL SKELETON, USER-TRACKING, 5 ACTIONS)
+    // ATLAS-X STUDIO-GRADE HUMANOID ROBOT (FULL BIPEDAL SKELETON, USER-TRACKING, 5 ACTIONS, HUD INTEGRATION)
     // -------------------------------------------------------------------------
     function initCyberBot() {
         const canvas = document.getElementById('robot-webgl-canvas');
         const container = document.getElementById('robot-canvas-stage');
         const speechText = document.getElementById('robot-speech-text');
         const actButtons = document.querySelectorAll('.robot-act-btn[data-action]');
+        const hudCards = document.querySelectorAll('.hud-callout-card');
 
         if (!canvas || !container || typeof THREE === 'undefined') return;
 
-        let width = container.clientWidth || 640;
-        let height = container.clientHeight || 540;
+        let width = container.clientWidth || 720;
+        let height = container.clientHeight || 560;
 
         // 1. Crystal-Clear Transparent WebGL Renderer
         const renderer = new THREE.WebGLRenderer({
@@ -2202,64 +2203,80 @@ Would you like to start a project inquiry right now?`;
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setClearColor(0x000000, 0); // 100% TRANSLUCENT BACKGROUND
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.3;
+        renderer.toneMappingExposure = 1.35;
 
-        // 2. Camera Framing
+        // 2. Camera Framing (Athletic Full-Body Studio Stance)
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(36, width / height, 0.1, 100);
-        camera.position.set(0, 1.35, 4.2);
+        const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
+        camera.position.set(0, 1.35, 4.3);
         camera.lookAt(0, 1.15, 0);
 
-        // 3. Cinematic 3-Point Studio Lighting Rig
+        // 3. Cinematic 4-Point Studio Lighting Rig
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
         scene.add(ambientLight);
 
-        const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
         keyLight.position.set(4, 8, 5);
         scene.add(keyLight);
 
-        const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.6);
+        const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.8);
         fillLight.position.set(-5, 4, 3);
         scene.add(fillLight);
 
-        const rimLight = new THREE.DirectionalLight(0xa855f7, 2.2);
-        rimLight.position.set(0, 6, -5);
+        const rimLight = new THREE.DirectionalLight(0xa855f7, 2.4);
+        rimLight.position.set(0, 7, -5);
         scene.add(rimLight);
 
-        const groundPointLight = new THREE.PointLight(0x00f0ff, 1.6, 5);
-        groundPointLight.position.set(0, 0.15, 0);
-        scene.add(groundPointLight);
+        const groundLight = new THREE.PointLight(0x00f0ff, 1.6, 5);
+        groundLight.position.set(0, 0.15, 0);
+        scene.add(groundLight);
 
-        // 4. Studio Humanoid Shaders (Matching Reference Image)
-        // Gleaming White Ceramic Shell Armor
+        // 4. Studio Humanoid Shaders (Matching Boston Dynamics / Atlas Reference Image)
+        // Pearlescent White Ceramic Armor Shell
         const matWhiteArmor = new THREE.MeshPhysicalMaterial({
             color: 0xf8fafc,
-            roughness: 0.14,
+            roughness: 0.12,
             metalness: 0.08,
             clearcoat: 1.0,
-            clearcoatRoughness: 0.08
+            clearcoatRoughness: 0.06,
+            reflectivity: 0.95
         });
 
         // Dark Gunmetal / Carbon-Fiber Inner Skeletal Mechanics
         const matDarkSkeleton = new THREE.MeshStandardMaterial({
-            color: 0x111827,
-            roughness: 0.28,
-            metalness: 0.85
-        });
-
-        // Metallic Bronze/Orange Rotary Actuator Rings (Key visual feature from reference image)
-        const matBronzeActuator = new THREE.MeshStandardMaterial({
-            color: 0xd97706,
+            color: 0x0f172a,
             roughness: 0.22,
             metalness: 0.92
         });
 
-        // High-Specular Deep Camera Optical Lens Glass
-        const matCameraLens = new THREE.MeshPhysicalMaterial({
-            color: 0x050b14,
-            roughness: 0.04,
+        // Metallic Polished Bronze Rotary Actuators (Key visual feature from reference image)
+        const matBronzeActuator = new THREE.MeshStandardMaterial({
+            color: 0xd97706,
+            roughness: 0.18,
+            metalness: 0.96
+        });
+
+        // Gold Bezel Accent
+        const matGoldBezel = new THREE.MeshStandardMaterial({
+            color: 0xf59e0b,
+            roughness: 0.2,
+            metalness: 0.95
+        });
+
+        // High-Specular Deep Curved Visor Glass
+        const matVisorGlass = new THREE.MeshPhysicalMaterial({
+            color: 0x040812,
+            roughness: 0.03,
             metalness: 0.95,
-            clearcoat: 1.0
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.03
+        });
+
+        // Mirror Chrome Hydraulic Piston Rods
+        const matChromeRod = new THREE.MeshStandardMaterial({
+            color: 0xe2e8f0,
+            roughness: 0.05,
+            metalness: 0.98
         });
 
         const matCyanGlow = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
@@ -2271,7 +2288,7 @@ Would you like to start a project inquiry right now?`;
         scene.add(robotMasterGroup);
 
         // Holographic Gyro Pedestal at Feet
-        const platformGeo = new THREE.CylinderGeometry(1.6, 1.8, 0.08, 48);
+        const platformGeo = new THREE.CylinderGeometry(1.65, 1.85, 0.08, 48);
         const platformMat = new THREE.MeshStandardMaterial({
             color: 0x090f22,
             metalness: 0.9,
@@ -2281,39 +2298,39 @@ Would you like to start a project inquiry right now?`;
         platform.position.y = -0.04;
         robotMasterGroup.add(platform);
 
-        const ringGeo = new THREE.TorusGeometry(1.68, 0.018, 16, 64);
+        const ringGeo = new THREE.TorusGeometry(1.72, 0.018, 16, 64);
         const ring = new THREE.Mesh(ringGeo, matCyanGlow);
         ring.rotation.x = Math.PI / 2;
         ring.position.y = 0.02;
         robotMasterGroup.add(ring);
 
-        const innerRingGeo = new THREE.TorusGeometry(1.35, 0.012, 16, 48);
+        const innerRingGeo = new THREE.TorusGeometry(1.38, 0.012, 16, 48);
         const innerRing = new THREE.Mesh(innerRingGeo, matPurpleGlow);
         innerRing.rotation.x = Math.PI / 2;
         innerRing.position.y = 0.02;
         robotMasterGroup.add(innerRing);
 
-        // Ground Soft Contact Shadow
+        // Dynamic Soft Contact Shadow
         const shadowCanvas = document.createElement('canvas');
         shadowCanvas.width = 128;
         shadowCanvas.height = 128;
         const sCtx = shadowCanvas.getContext('2d');
         const sGrad = sCtx.createRadialGradient(64, 64, 0, 64, 64, 64);
-        sGrad.addColorStop(0, 'rgba(0, 0, 0, 0.45)');
+        sGrad.addColorStop(0, 'rgba(0, 0, 0, 0.48)');
         sGrad.addColorStop(0.5, 'rgba(0, 0, 0, 0.16)');
         sGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         sCtx.fillStyle = sGrad;
         sCtx.fillRect(0, 0, 128, 128);
         const shadowTexture = new THREE.CanvasTexture(shadowCanvas);
 
-        const shadowGeo = new THREE.PlaneGeometry(3.0, 3.0);
+        const shadowGeo = new THREE.PlaneGeometry(3.2, 3.2);
         const shadowMat = new THREE.MeshBasicMaterial({ map: shadowTexture, transparent: true });
         const groundShadow = new THREE.Mesh(shadowGeo, shadowMat);
         groundShadow.rotation.x = -Math.PI / 2;
         groundShadow.position.y = 0.005;
         robotMasterGroup.add(groundShadow);
 
-        // 6. Full Humanoid Bipedal Anatomy (Matching Reference Image)
+        // 6. Sculpted Humanoid Bipedal Anatomy (Matching Reference Image)
         const robotBody = new THREE.Group();
         robotMasterGroup.add(robotBody);
 
@@ -2322,177 +2339,266 @@ Would you like to start a project inquiry right now?`;
         pelvisGroup.position.y = 0.95;
         robotBody.add(pelvisGroup);
 
-        const pelvis = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.22, 0.18, 24), matDarkSkeleton);
-        pelvisGroup.add(pelvis);
+        const pelvisShield = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.22, 0.18, 24), matWhiteArmor);
+        pelvisGroup.add(pelvisShield);
+
+        const pelvisCore = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.14, 0.26), matDarkSkeleton);
+        pelvisGroup.add(pelvisCore);
 
         // Bronze Hip Actuator Rings
-        const hipRingL = new THREE.Mesh(new THREE.TorusGeometry(0.12, 0.02, 16, 24), matBronzeActuator);
+        const hipRingL = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.022, 16, 28), matBronzeActuator);
         hipRingL.rotation.y = Math.PI / 2;
         hipRingL.position.set(-0.25, 0, 0);
         pelvisGroup.add(hipRingL);
 
-        const hipRingR = hipRingL.clone();
-        hipRingR.position.x = 0.25;
-        pelvisGroup.add(hipRingR);
+        const hipPinL = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.06, 20), matDarkSkeleton);
+        hipPinL.rotation.z = Math.PI / 2;
+        hipPinL.position.set(-0.25, 0, 0);
+        pelvisGroup.add(hipPinL);
 
-        // Segmented Spine & Abdomen
+        const hipRingR = hipRingL.clone(); hipRingR.position.x = 0.25; pelvisGroup.add(hipRingR);
+        const hipPinR = hipPinL.clone(); hipPinR.position.x = 0.25; pelvisGroup.add(hipPinR);
+
+        // Segmented Hydraulic Spine & Flank Ribs
         const spineGroup = new THREE.Group();
         pelvisGroup.add(spineGroup);
-        for (let i = 0; i < 3; i++) {
-            const vertebra = new THREE.Mesh(new THREE.CylinderGeometry(0.14 - i * 0.015, 0.15 - i * 0.015, 0.08, 16), matDarkSkeleton);
-            vertebra.position.y = 0.1 + i * 0.09;
+        for (let i = 0; i < 4; i++) {
+            const vertebra = new THREE.Mesh(new THREE.CylinderGeometry(0.13 - i * 0.01, 0.14 - i * 0.01, 0.065, 16), matDarkSkeleton);
+            vertebra.position.y = 0.09 + i * 0.075;
             spineGroup.add(vertebra);
+
+            // Left & Right Titanium Flank Ribs
+            const ribL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.03, 0.16), matDarkSkeleton);
+            ribL.position.set(-0.16, 0.09 + i * 0.075, 0);
+            ribL.rotation.z = -0.15;
+            spineGroup.add(ribL);
+
+            const ribR = ribL.clone();
+            ribR.position.x = 0.16;
+            ribR.rotation.z = 0.15;
+            spineGroup.add(ribR);
         }
 
-        // Upper Torso & Chest Armor Chassis
+        // Dual Vertical Hydraulic Actuator Rods on Back Spine
+        const spineRodL = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.32, 12), matChromeRod);
+        spineRodL.position.set(-0.06, 0.22, -0.11);
+        spineGroup.add(spineRodL);
+
+        const spineRodR = spineRodL.clone();
+        spineRodR.position.x = 0.06;
+        spineGroup.add(spineRodR);
+
+        // Segmented Ceramic Abdominal Armor
+        const abPlateUpper = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.09, 0.18), matWhiteArmor);
+        abPlateUpper.position.set(0, 0.24, 0.08);
+        spineGroup.add(abPlateUpper);
+
+        const abPlateLower = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.08, 0.16), matWhiteArmor);
+        abPlateLower.position.set(0, 0.13, 0.09);
+        spineGroup.add(abPlateLower);
+
+        // Upper Torso & Chest Armor Chassis (Athletic V-Taper)
         const torsoGroup = new THREE.Group();
         torsoGroup.position.y = 0.38;
         pelvisGroup.add(torsoGroup);
 
-        // Sculpted White Ceramic Breastplate
-        const chest = new THREE.Mesh(new THREE.CylinderGeometry(0.48, 0.38, 0.58, 32), matWhiteArmor);
-        chest.position.y = 0.18;
-        torsoGroup.add(chest);
+        // Sculpted Ceramic Pectoral Armor Plates (Left & Right)
+        const chestL = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.38, 0.28), matWhiteArmor);
+        chestL.position.set(-0.14, 0.22, 0.08);
+        chestL.rotation.y = 0.12;
+        torsoGroup.add(chestL);
 
-        // Central Power Core Badge (Circular Bronze Ring + Dark Center from reference image!)
+        const chestR = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.38, 0.28), matWhiteArmor);
+        chestR.position.set(0.14, 0.22, 0.08);
+        chestR.rotation.y = -0.12;
+        torsoGroup.add(chestR);
+
+        // Back Armor Shell
+        const backShell = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.36, 0.22), matWhiteArmor);
+        backShell.position.set(0, 0.22, -0.06);
+        torsoGroup.add(backShell);
+
+        // Clavicle Yoke
+        const clavicle = new THREE.Mesh(new THREE.BoxGeometry(0.54, 0.08, 0.16), matDarkSkeleton);
+        clavicle.position.set(0, 0.42, 0.02);
+        torsoGroup.add(clavicle);
+
+        // Central Power Core Badge (The defining circular bronze emblem from the reference image!)
         const coreGroup = new THREE.Group();
-        coreGroup.position.set(0, 0.26, 0.44);
+        coreGroup.position.set(0, 0.22, 0.22);
         torsoGroup.add(coreGroup);
 
-        const coreBronzeRing = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.02, 16, 24), matBronzeActuator);
+        const coreBronzeRing = new THREE.Mesh(new THREE.TorusGeometry(0.1, 0.022, 16, 32), matBronzeActuator);
         coreGroup.add(coreBronzeRing);
 
-        const coreDarkBezel = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.03, 24), matDarkSkeleton);
+        const coreGoldRim = new THREE.Mesh(new THREE.TorusGeometry(0.082, 0.012, 16, 24), matGoldBezel);
+        coreGroup.add(coreGoldRim);
+
+        const coreDarkBezel = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.085, 0.035, 24), matDarkSkeleton);
         coreDarkBezel.rotation.x = Math.PI / 2;
         coreGroup.add(coreDarkBezel);
 
-        const coreLed = new THREE.Mesh(new THREE.SphereGeometry(0.04, 16, 16), matOrangeGlow);
+        const coreLed = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 16), matOrangeGlow);
         coreLed.position.z = 0.02;
         coreGroup.add(coreLed);
 
-        const corePointLight = new THREE.PointLight(0xf59e0b, 1.2, 2.5);
-        corePointLight.position.set(0, 0, 0.1);
+        const corePointLight = new THREE.PointLight(0xf59e0b, 1.4, 2.8);
+        corePointLight.position.set(0, 0, 0.12);
         coreGroup.add(corePointLight);
 
-        // Dark Titanium Hydraulic Neck
+        // Aerodynamic Shoulder Cowls (Pauldrons)
+        const pauldronL = new THREE.Mesh(new THREE.SphereGeometry(0.18, 20, 20), matWhiteArmor);
+        pauldronL.scale.set(1.2, 0.85, 1.1);
+        pauldronL.position.set(-0.35, 0.38, 0.02);
+        torsoGroup.add(pauldronL);
+
+        const pauldronR = pauldronL.clone();
+        pauldronR.position.x = 0.35;
+        torsoGroup.add(pauldronR);
+
+        // Neck Assembly with Dual Chrome Hydraulic Pistons
         const neckGroup = new THREE.Group();
-        neckGroup.position.y = 0.52;
+        neckGroup.position.y = 0.48;
         torsoGroup.add(neckGroup);
 
-        const neckPiston = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.16, 20), matDarkSkeleton);
+        const neckPiston = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.13, 0.16, 20), matDarkSkeleton);
         neckGroup.add(neckPiston);
 
-        // Humanoid Skull Head Group (Matching Reference Image)
+        const neckHydraulicL = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.14, 12), matChromeRod);
+        neckHydraulicL.position.set(-0.06, 0.02, 0.04);
+        neckHydraulicL.rotation.z = -0.15;
+        neckGroup.add(neckHydraulicL);
+
+        const neckHydraulicR = neckHydraulicL.clone();
+        neckHydraulicR.position.x = 0.06;
+        neckHydraulicR.rotation.z = 0.15;
+        neckGroup.add(neckHydraulicR);
+
+        // Sculpted Humanoid Head & Helmet (Matching Boston Dynamics / Figure 01 Reference)
         const headGroup = new THREE.Group();
-        headGroup.position.y = 0.22;
+        headGroup.position.y = 0.2;
         neckGroup.add(headGroup);
 
-        // Sleek White Ceramic Cranium Shell
-        const craniumGeo = new THREE.SphereGeometry(0.35, 36, 32);
-        craniumGeo.scale(0.96, 1.08, 1.02);
+        // Sleek White Ceramic Cranium Shell (Aerodynamic compound curvature)
+        const craniumGeo = new THREE.SphereGeometry(0.34, 36, 32);
+        craniumGeo.scale(0.96, 1.12, 1.05);
         const cranium = new THREE.Mesh(craniumGeo, matWhiteArmor);
         headGroup.add(cranium);
 
-        // Sculpted Ceramic Face Mask with cheek contours
-        const faceMask = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.22, 0.36, 24, 1, false, -Math.PI / 2.6, Math.PI / 1.3), matWhiteArmor);
-        faceMask.rotation.y = Math.PI / 2;
-        faceMask.position.set(0, 0.02, 0.12);
-        headGroup.add(faceMask);
+        // Sculpted Face Mask & Athletic Jawline
+        const jawPlate = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.18, 0.22, 24, 1, false, -Math.PI / 2.6, Math.PI / 1.3), matWhiteArmor);
+        jawPlate.rotation.y = Math.PI / 2;
+        jawPlate.position.set(0, -0.06, 0.14);
+        headGroup.add(jawPlate);
 
-        // Dual Optical Camera Eyes (Left & Right)
+        // Glossy Curved Visor Face Shield
+        const visorGeo = new THREE.SphereGeometry(0.31, 32, 24, 0, Math.PI, 0, Math.PI * 0.52);
+        const visorMask = new THREE.Mesh(visorGeo, matVisorGlass);
+        visorMask.rotation.x = -Math.PI / 2.2;
+        visorMask.position.set(0, 0.04, 0.06);
+        headGroup.add(visorMask);
+
+        // Dual Optical Camera Eyes (Left & Right with Specular Lenses)
         const eyeGroup = new THREE.Group();
-        eyeGroup.position.set(0, 0.06, 0.32);
+        eyeGroup.position.set(0, 0.06, 0.3);
         headGroup.add(eyeGroup);
 
         // Left Eye Assembly
         const eyeSocketL = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.04, 24), matDarkSkeleton);
         eyeSocketL.rotation.x = Math.PI / 2;
-        eyeSocketL.position.set(-0.13, 0, 0);
+        eyeSocketL.position.set(-0.125, 0, 0);
         eyeGroup.add(eyeSocketL);
 
-        const eyeLensL = new THREE.Mesh(new THREE.SphereGeometry(0.065, 20, 20), matCameraLens);
-        eyeLensL.position.set(-0.13, 0, 0.02);
+        const eyeIrisRingL = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.008, 16, 24), matCyanGlow);
+        eyeIrisRingL.position.set(-0.125, 0, 0.02);
+        eyeGroup.add(eyeIrisRingL);
+
+        const eyeLensL = new THREE.Mesh(new THREE.SphereGeometry(0.06, 20, 20), matVisorGlass);
+        eyeLensL.position.set(-0.125, 0, 0.015);
         eyeGroup.add(eyeLensL);
 
-        const pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 16), matCyanGlow);
-        pupilL.position.set(-0.13, 0, 0.06);
+        const pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.026, 16, 16), matCyanGlow);
+        pupilL.position.set(-0.125, 0, 0.055);
         eyeGroup.add(pupilL);
 
         // Right Eye Assembly
-        const eyeSocketR = eyeSocketL.clone(); eyeSocketR.position.x = 0.13; eyeGroup.add(eyeSocketR);
-        const eyeLensR = eyeLensL.clone(); eyeLensR.position.x = 0.13; eyeGroup.add(eyeLensR);
-        const pupilR = pupilL.clone(); pupilR.position.x = 0.13; eyeGroup.add(pupilR);
+        const eyeSocketR = eyeSocketL.clone(); eyeSocketR.position.x = 0.125; eyeGroup.add(eyeSocketR);
+        const eyeIrisRingR = eyeIrisRingL.clone(); eyeIrisRingR.position.x = 0.125; eyeGroup.add(eyeIrisRingR);
+        const eyeLensR = eyeLensL.clone(); eyeLensR.position.x = 0.125; eyeGroup.add(eyeLensR);
+        const pupilR = pupilL.clone(); pupilR.position.x = 0.125; eyeGroup.add(pupilR);
 
-        // Dual Ear Rotary Actuators with Bronze Rings (from reference image)
+        // Dual Rotary Ear Actuators with Bronze Outer Rings (from reference image)
         const earL = new THREE.Group();
-        earL.position.set(-0.36, 0.02, 0);
+        earL.position.set(-0.35, 0.02, 0);
         headGroup.add(earL);
 
         const earBaseL = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.06, 24), matDarkSkeleton);
         earBaseL.rotation.z = Math.PI / 2;
         earL.add(earBaseL);
 
-        const earBronzeL = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.016, 16, 24), matBronzeActuator);
+        const earBronzeL = new THREE.Mesh(new THREE.TorusGeometry(0.115, 0.018, 16, 24), matBronzeActuator);
         earBronzeL.rotation.y = Math.PI / 2;
         earBronzeL.position.x = -0.04;
         earL.add(earBronzeL);
 
         const earR = new THREE.Group();
-        earR.position.set(0.36, 0.02, 0);
+        earR.position.set(0.35, 0.02, 0);
         headGroup.add(earR);
 
         const earBaseR = earBaseL.clone(); earR.add(earBaseR);
         const earBronzeR = earBronzeL.clone(); earBronzeR.position.x = 0.04; earR.add(earBronzeR);
 
-        // Left Arm Assembly
+        // Left Arm Assembly (Ball Shoulder, Bicep, Rotary Elbow, Gauntlet Forearm, 5-Finger Hand)
         const leftArm = new THREE.Group();
-        leftArm.position.set(-0.58, 0.38, 0);
+        leftArm.position.set(-0.46, 0.38, 0);
         torsoGroup.add(leftArm);
 
-        // Shoulder Rotary Actuator with Bronze Ring
-        const lShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.12, 20, 20), matDarkSkeleton);
+        const lShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 20), matDarkSkeleton);
         leftArm.add(lShoulderJoint);
 
-        const lShoulderBronze = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.018, 16, 24), matBronzeActuator);
+        const lShoulderBronze = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 16, 24), matBronzeActuator);
         lShoulderBronze.position.set(-0.02, 0, 0);
         leftArm.add(lShoulderBronze);
 
-        const lShoulderCap = new THREE.Mesh(new THREE.SphereGeometry(0.15, 20, 20), matWhiteArmor);
-        lShoulderCap.position.set(-0.06, 0.04, 0);
-        leftArm.add(lShoulderCap);
-
-        // Bicep Shell
-        const lBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.38, 20), matWhiteArmor);
+        // Sculpted Bicep Armor
+        const lBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.36, 20), matWhiteArmor);
         lBicep.position.y = -0.22;
         leftArm.add(lBicep);
+
+        const lBicepRod = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.28, 10), matChromeRod);
+        lBicepRod.position.set(0.04, -0.22, 0.02);
+        leftArm.add(lBicepRod);
 
         // Elbow Rotary Joint with Bronze Ring
         const lForearm = new THREE.Group();
         lForearm.position.y = -0.42;
         leftArm.add(lForearm);
 
-        const lElbowBronze = new THREE.Mesh(new THREE.TorusGeometry(0.08, 0.015, 16, 24), matBronzeActuator);
+        const lElbowBronze = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.018, 16, 24), matBronzeActuator);
         lElbowBronze.rotation.y = Math.PI / 2;
         lForearm.add(lElbowBronze);
 
-        const lElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.08, 20), matDarkSkeleton);
+        const lElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.08, 20), matDarkSkeleton);
         lElbowJoint.rotation.z = Math.PI / 2;
         lForearm.add(lElbowJoint);
 
-        // Forearm Shell
-        const lLowerArm = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.38, 20), matWhiteArmor);
-        lLowerArm.position.y = -0.2;
-        lForearm.add(lLowerArm);
+        // Forearm Gauntlet with Cyan Telemetry Strip
+        const lForearmArmor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.34, 20), matWhiteArmor);
+        lForearmArmor.position.y = -0.2;
+        lForearm.add(lForearmArmor);
 
-        // Articulated Hand
+        const lStatusStripe = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.24, 0.02), matCyanGlow);
+        lStatusStripe.position.set(-0.07, -0.2, 0);
+        lForearm.add(lStatusStripe);
+
+        // Articulated 5-Finger Cybernetic Hand
         const lHand = new THREE.Group();
-        lHand.position.y = -0.42;
+        lHand.position.set(0, -0.4, 0);
         lForearm.add(lHand);
 
-        const lPalm = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.06, 0.12), matDarkSkeleton);
+        const lPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matWhiteArmor);
         lHand.add(lPalm);
 
-        // 5 Robotic Fingers
         for (let f = 0; f < 4; f++) {
             const finger = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.1, 10), matWhiteArmor);
             finger.position.set(-0.035 + f * 0.024, -0.06, 0.03);
@@ -2503,47 +2609,51 @@ Would you like to start a project inquiry right now?`;
         lThumb.rotation.z = -0.5;
         lHand.add(lThumb);
 
-        // Right Arm Assembly (Articulated for Wave, Greet, and Run)
+        // Right Arm Assembly
         const rightArm = new THREE.Group();
-        rightArm.position.set(0.58, 0.38, 0);
+        rightArm.position.set(0.46, 0.38, 0);
         torsoGroup.add(rightArm);
 
-        const rShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.12, 20, 20), matDarkSkeleton);
+        const rShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 20), matDarkSkeleton);
         rightArm.add(rShoulderJoint);
 
-        const rShoulderBronze = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.018, 16, 24), matBronzeActuator);
+        const rShoulderBronze = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 16, 24), matBronzeActuator);
         rShoulderBronze.position.set(0.02, 0, 0);
         rightArm.add(rShoulderBronze);
 
-        const rShoulderCap = new THREE.Mesh(new THREE.SphereGeometry(0.15, 20, 20), matWhiteArmor);
-        rShoulderCap.position.set(0.06, 0.04, 0);
-        rightArm.add(rShoulderCap);
-
-        const rBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.38, 20), matWhiteArmor);
+        const rBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.36, 20), matWhiteArmor);
         rBicep.position.y = -0.22;
         rightArm.add(rBicep);
+
+        const rBicepRod = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.28, 10), matChromeRod);
+        rBicepRod.position.set(-0.04, -0.22, 0.02);
+        rightArm.add(rBicepRod);
 
         const rForearm = new THREE.Group();
         rForearm.position.y = -0.42;
         rightArm.add(rForearm);
 
-        const rElbowBronze = new THREE.Mesh(new THREE.TorusGeometry(0.08, 0.015, 16, 24), matBronzeActuator);
+        const rElbowBronze = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.018, 16, 24), matBronzeActuator);
         rElbowBronze.rotation.y = Math.PI / 2;
         rForearm.add(rElbowBronze);
 
-        const rElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.08, 20), matDarkSkeleton);
+        const rElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.08, 20), matDarkSkeleton);
         rElbowJoint.rotation.z = Math.PI / 2;
         rForearm.add(rElbowJoint);
 
-        const rLowerArm = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.38, 20), matWhiteArmor);
-        rLowerArm.position.y = -0.2;
-        rForearm.add(rLowerArm);
+        const rForearmArmor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.34, 20), matWhiteArmor);
+        rForearmArmor.position.y = -0.2;
+        rForearm.add(rForearmArmor);
+
+        const rStatusStripe = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.24, 0.02), matCyanGlow);
+        rStatusStripe.position.set(0.07, -0.2, 0);
+        rForearm.add(rStatusStripe);
 
         const rHand = new THREE.Group();
-        rHand.position.y = -0.42;
+        rHand.position.set(0, -0.4, 0);
         rForearm.add(rHand);
 
-        const rPalm = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.06, 0.12), matDarkSkeleton);
+        const rPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matWhiteArmor);
         rHand.add(rPalm);
 
         for (let f = 0; f < 4; f++) {
@@ -2556,47 +2666,57 @@ Would you like to start a project inquiry right now?`;
         rThumb.rotation.z = 0.5;
         rHand.add(rThumb);
 
-        // Left Leg Assembly (Thigh, Rotary Knee with Bronze Ring, Shin, Foot)
+        // Left Leg Assembly (Thigh, Rotary Knee with Bronze Ring, Shin, Athletic Shoe)
         const leftLeg = new THREE.Group();
         leftLeg.position.set(-0.25, 0, 0);
         pelvisGroup.add(leftLeg);
 
-        const lThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.085, 0.44, 20), matWhiteArmor);
+        // Contoured Quadricep Armor
+        const lThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.46, 24), matWhiteArmor);
         lThigh.position.y = -0.24;
         leftLeg.add(lThigh);
 
-        // Knee Group with Bronze Rotary Actuator (Matching reference photo!)
+        const lHamstringRod = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.36, 12), matChromeRod);
+        lHamstringRod.position.set(0, -0.24, -0.08);
+        leftLeg.add(lHamstringRod);
+
+        // Knee Group with Heavy-Duty Bronze Rotary Actuator (Matching reference photo!)
         const lKnee = new THREE.Group();
-        lKnee.position.y = -0.46;
+        lKnee.position.y = -0.48;
         leftLeg.add(lKnee);
 
-        const lKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.09, 20), matDarkSkeleton);
+        const lKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.095, 20), matDarkSkeleton);
         lKneeJoint.rotation.z = Math.PI / 2;
         lKnee.add(lKneeJoint);
 
-        const lKneeBronze = new THREE.Mesh(new THREE.TorusGeometry(0.095, 0.018, 16, 24), matBronzeActuator);
+        const lKneeBronze = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.022, 16, 28), matBronzeActuator);
         lKneeBronze.rotation.y = Math.PI / 2;
         lKnee.add(lKneeBronze);
 
-        // Shin Shell
-        const lShin = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.07, 0.44, 20), matWhiteArmor);
-        lShin.position.y = -0.22;
+        // Rear Knee Damping Piston
+        const lKneePiston = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.16, 10), matChromeRod);
+        lKneePiston.position.set(0, 0.02, -0.07);
+        lKnee.add(lKneePiston);
+
+        // Sculpted Shin Guard & Calf Armor
+        const lShin = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.075, 0.46, 24), matWhiteArmor);
+        lShin.position.y = -0.24;
         lKnee.add(lShin);
 
-        // Athletic Robotic Shoe with Cyan Toe Pad (from reference image)
+        // Athletic Robotic Running Shoe with Cyan Toe Grip (from reference image)
         const lFoot = new THREE.Group();
-        lFoot.position.set(0, -0.46, 0.04);
+        lFoot.position.set(0, -0.48, 0.04);
         lKnee.add(lFoot);
 
-        const lShoeBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.1, 0.3), matWhiteArmor);
+        const lShoeBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.1, 0.32), matWhiteArmor);
         lFoot.add(lShoeBody);
 
-        const lShoeSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.32), matDarkSkeleton);
+        const lShoeSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.34), matDarkSkeleton);
         lShoeSole.position.y = -0.06;
         lFoot.add(lShoeSole);
 
         const lToeAccent = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.06, 0.08), matCyanGlow);
-        lToeAccent.position.set(0, -0.02, 0.13);
+        lToeAccent.position.set(0, -0.02, 0.14);
         lFoot.add(lToeAccent);
 
         // Right Leg Assembly
@@ -2604,39 +2724,47 @@ Would you like to start a project inquiry right now?`;
         rightLeg.position.set(0.25, 0, 0);
         pelvisGroup.add(rightLeg);
 
-        const rThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.085, 0.44, 20), matWhiteArmor);
+        const rThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.46, 24), matWhiteArmor);
         rThigh.position.y = -0.24;
         rightLeg.add(rThigh);
 
+        const rHamstringRod = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.36, 12), matChromeRod);
+        rHamstringRod.position.set(0, -0.24, -0.08);
+        rightLeg.add(rHamstringRod);
+
         const rKnee = new THREE.Group();
-        rKnee.position.y = -0.46;
+        rKnee.position.y = -0.48;
         rightLeg.add(rKnee);
 
-        const rKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.09, 20), matDarkSkeleton);
+        const rKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.095, 20), matDarkSkeleton);
         rKneeJoint.rotation.z = Math.PI / 2;
         rKnee.add(rKneeJoint);
 
-        const rKneeBronze = new THREE.Mesh(new THREE.TorusGeometry(0.095, 0.018, 16, 24), matBronzeActuator);
+        const rKneeBronze = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.022, 16, 28), matBronzeActuator);
         rKneeBronze.rotation.y = Math.PI / 2;
         rKnee.add(rKneeBronze);
 
-        const rShin = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.07, 0.44, 20), matWhiteArmor);
-        rShin.position.y = -0.22;
+        const rKneePiston = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.16, 10), matChromeRod);
+        rKneePiston.position.set(0, 0.02, -0.07);
+        rKnee.add(rKneePiston);
+
+        const rShin = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.075, 0.46, 24), matWhiteArmor);
+        rShin.position.y = -0.24;
         rKnee.add(rShin);
 
         const rFoot = new THREE.Group();
-        rFoot.position.set(0, -0.46, 0.04);
+        rFoot.position.set(0, -0.48, 0.04);
         rKnee.add(rFoot);
 
-        const rShoeBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.1, 0.3), matWhiteArmor);
+        const rShoeBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.1, 0.32), matWhiteArmor);
         rFoot.add(rShoeBody);
 
-        const rShoeSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.32), matDarkSkeleton);
+        const rShoeSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.34), matDarkSkeleton);
         rShoeSole.position.y = -0.06;
         rFoot.add(rShoeSole);
 
         const rToeAccent = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.06, 0.08), matCyanGlow);
-        rToeAccent.position.set(0, -0.02, 0.13);
+        rToeAccent.position.set(0, -0.02, 0.14);
         rFoot.add(rToeAccent);
 
         // 7. Live User-Tracking Engine ("see what user do and where he goes")
@@ -2646,6 +2774,8 @@ Would you like to start a project inquiry right now?`;
         let isDragging = false;
         let prevMouseX = 0;
         let userInteracted = false;
+        let targetLookX = 0;
+        let targetLookY = 0;
 
         // Mouse cursor tracking
         window.addEventListener('mousemove', (e) => {
@@ -2658,9 +2788,9 @@ Would you like to start a project inquiry right now?`;
             // Pupil offset tracking cursor
             const pX = Math.max(-0.02, Math.min(0.02, mouseX * 0.02));
             const pY = Math.max(-0.02, Math.min(0.02, -mouseY * 0.02));
-            pupilL.position.x = -0.13 + pX;
+            pupilL.position.x = -0.125 + pX;
             pupilL.position.y = pY;
-            pupilR.position.x = 0.13 + pX;
+            pupilR.position.x = 0.125 + pX;
             pupilR.position.y = pY;
 
             if (isDragging) {
@@ -2741,7 +2871,7 @@ Would you like to start a project inquiry right now?`;
                     if (currentActionName === actionName) {
                         triggerAction('Walking', false);
                     }
-                }, 4000);
+                }, 4500);
             }
         }
 
@@ -2754,7 +2884,44 @@ Would you like to start a project inquiry right now?`;
             });
         });
 
-        // 9. Kinematic Physics & Animation Loop (60 FPS)
+        // 9. Floating Holographic HUD Card Interactive Engine (From Reference Image)
+        hudCards.forEach(card => {
+            const target = card.getAttribute('data-hud-target');
+            const info = card.getAttribute('data-info');
+
+            card.addEventListener('mouseenter', () => {
+                hudCards.forEach(c => c.classList.remove('active-focus'));
+                card.classList.add('active-focus');
+                if (info) setSpeech(info);
+
+                // Robot glances directly toward card
+                if (target === 'head') { targetLookX = -0.2; targetLookY = -0.3; }
+                else if (target === 'core') { targetLookX = 0.1; targetLookY = -0.25; }
+                else if (target === 'knee') { targetLookX = 0.35; targetLookY = -0.2; }
+                else if (target === 'shoulder') { targetLookX = -0.15; targetLookY = 0.3; }
+                else if (target === 'elbow') { targetLookX = 0.1; targetLookY = 0.28; }
+                else if (target === 'foot') { targetLookX = 0.35; targetLookY = 0.22; }
+
+                // Pulse core reactor light
+                corePointLight.intensity = 2.4;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('active-focus');
+                targetLookX = 0;
+                targetLookY = 0;
+                corePointLight.intensity = 1.4;
+            });
+
+            card.addEventListener('click', () => {
+                userInteracted = true;
+                if (info) setSpeech(info);
+                // Trigger a responsive reaction
+                triggerAction('Wave', true);
+            });
+        });
+
+        // 10. Kinematic Physics & Animation Loop (60 FPS)
         const clock = new THREE.Clock();
         let animTime = 0;
         let blinkTimer = 0;
@@ -2777,12 +2944,16 @@ Would you like to start a project inquiry right now?`;
                 if (blinkTimer > 3.8) blinkTimer = 0;
             }
 
-            // Real-Time Head & Neck User Tracking (Follows cursor + scroll position)
-            const targetHeadY = mouseX * 0.45;
-            const targetHeadX = -mouseY * 0.25 - scrollRatio * 0.28; // looks down as user scrolls down!
-            headGroup.rotation.y = THREE.MathUtils.lerp(headGroup.rotation.y, targetHeadY, 0.07);
-            headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, targetHeadX, 0.07);
-            torsoGroup.rotation.y = THREE.MathUtils.lerp(torsoGroup.rotation.y, mouseX * 0.15, 0.05);
+            // Real-Time Head & Neck User Tracking (Follows cursor + scroll position + HUD target focus)
+            const targetHeadY = (targetLookY !== 0 ? targetLookY : mouseX * 0.45);
+            const targetHeadX = (targetLookX !== 0 ? targetLookX : (-mouseY * 0.25 - scrollRatio * 0.28));
+            headGroup.rotation.y = THREE.MathUtils.lerp(headGroup.rotation.y, targetHeadY, 0.08);
+            headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, targetHeadX, 0.08);
+            torsoGroup.rotation.y = THREE.MathUtils.lerp(torsoGroup.rotation.y, (targetLookY !== 0 ? targetLookY * 0.5 : mouseX * 0.15), 0.06);
+
+            // Core Reactor Breathing Pulse
+            const reactorPulse = 1.3 + Math.sin(animTime * 3.2) * 0.25;
+            corePointLight.intensity = targetLookX !== 0 ? 2.4 : reactorPulse;
 
             // 5 High-Impact Dynamic Actions
             if (currentActionName === 'Walking') {
@@ -2803,22 +2974,22 @@ Would you like to start a project inquiry right now?`;
                 robotBody.rotation.x = 0;
                 rightArm.rotation.y = 0;
             } else if (currentActionName === 'Running') {
-                // Athletic high-knee sprint (Matching dynamic pose in reference photo!)
+                // Athletic High-Knee Sprint (Exact dynamic leap pose matching reference photo!)
                 const runStep = Math.sin(animTime * 8.5);
-                leftLeg.rotation.x = runStep * 0.78;
-                rightLeg.rotation.x = -runStep * 0.78;
-                lKnee.rotation.x = Math.max(0, -runStep * 0.85);
-                rKnee.rotation.x = Math.max(0, runStep * 0.85);
+                leftLeg.rotation.x = runStep * 0.85;
+                rightLeg.rotation.x = -runStep * 0.85;
+                lKnee.rotation.x = Math.max(0, -runStep * 0.95);
+                rKnee.rotation.x = Math.max(0, runStep * 0.95);
 
-                leftArm.rotation.x = -runStep * 0.8;
-                rightArm.rotation.x = runStep * 0.8;
+                leftArm.rotation.x = -runStep * 0.88;
+                rightArm.rotation.x = runStep * 0.88;
                 leftArm.rotation.z = 0.22;
                 rightArm.rotation.z = -0.22;
-                lForearm.rotation.x = -0.65;
-                rForearm.rotation.x = -0.65;
+                lForearm.rotation.x = -0.68;
+                rForearm.rotation.x = -0.68;
 
-                robotBody.position.y = Math.abs(Math.sin(animTime * 8.5)) * 0.12;
-                robotBody.rotation.x = 0.26; // forward athletic runner's lean
+                robotBody.position.y = Math.abs(Math.sin(animTime * 8.5)) * 0.14;
+                robotBody.rotation.x = 0.32; // Forward athletic runner's lean
             } else if (currentActionName === 'Wave') {
                 leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.1);
                 rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0, 0.1);
@@ -2843,8 +3014,8 @@ Would you like to start a project inquiry right now?`;
                 rKnee.rotation.x = 0;
                 robotBody.position.y = 0;
 
-                // Gentle respectful bow (15 degrees)
-                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.22, 0.08);
+                // Gentle respectful bow (16 degrees)
+                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.24, 0.08);
 
                 // Left arm relaxed at side
                 leftArm.rotation.x = 0.15;
@@ -2882,18 +3053,18 @@ Would you like to start a project inquiry right now?`;
         }
         animate();
 
-        // 10. Responsive Viewport Resize Observer
+        // 11. Responsive Viewport Resize Observer
         function onWindowResize() {
             if (!container || !renderer || !camera) return;
-            width = container.clientWidth || 640;
-            height = container.clientHeight || 540;
+            width = container.clientWidth || 720;
+            height = container.clientHeight || 560;
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
         }
         window.addEventListener('resize', onWindowResize);
 
-        // 11. Auto-Idle Demonstration Loop (Transitions smoothly between showcase moves)
+        // 12. Auto-Idle Demonstration Loop (Transitions smoothly between showcase moves)
         const autoCycle = ['Walking', 'Run', 'Wave', 'Greet', 'Walking', 'Dance'];
         let cycleIdx = 0;
         setInterval(() => {
@@ -2906,7 +3077,3 @@ Would you like to start a project inquiry right now?`;
     }
     initCyberBot();
 });
-
-
-
-
