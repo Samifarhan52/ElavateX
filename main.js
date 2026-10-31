@@ -2178,7 +2178,7 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // NEXUS-9 QUANTUM CYBER SENTINEL (UNIQUE 3D SCI-FI MECHA, ARC REACTOR, USER TRACKING, 5 ACTIONS)
+    // APEX-X QUANTUM CYBER MECHA (HIGH-END SCI-FI SENTINEL, ARC REACTOR, AERO WINGS, JUMP, USER TRACKING)
     // -------------------------------------------------------------------------
     function initCyberBot() {
         const canvas = document.getElementById('robot-webgl-canvas');
@@ -2202,7 +2202,7 @@ Would you like to start a project inquiry right now?`;
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setClearColor(0x000000, 0); // 100% TRANSLUCENT BACKGROUND
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.4;
+        renderer.toneMappingExposure = 1.45;
 
         // 2. Camera Framing (Athletic Full-Body Studio Stance)
         const scene = new THREE.Scene();
@@ -2210,23 +2210,23 @@ Would you like to start a project inquiry right now?`;
         camera.position.set(0, 1.35, 4.3);
         camera.lookAt(0, 1.15, 0);
 
-        // 3. Cinematic 4-Point Sci-Fi Lighting Rig
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+        // 3. Cinematic 4-Point Sci-Fi Studio Lighting Rig
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.6);
         scene.add(ambientLight);
 
         const keyLight = new THREE.DirectionalLight(0xffffff, 2.8);
         keyLight.position.set(4, 8, 5);
         scene.add(keyLight);
 
-        const fillLight = new THREE.DirectionalLight(0x38bdf8, 2.0);
+        const fillLight = new THREE.DirectionalLight(0x38bdf8, 2.2);
         fillLight.position.set(-5, 4, 3);
         scene.add(fillLight);
 
-        const rimLight = new THREE.DirectionalLight(0xa855f7, 2.6);
+        const rimLight = new THREE.DirectionalLight(0xa855f7, 2.8);
         rimLight.position.set(0, 7, -5);
         scene.add(rimLight);
 
-        const groundLight = new THREE.PointLight(0x00f0ff, 2.0, 6);
+        const groundLight = new THREE.PointLight(0x00f0ff, 2.2, 6);
         groundLight.position.set(0, 0.15, 0);
         scene.add(groundLight);
 
@@ -2234,11 +2234,11 @@ Would you like to start a project inquiry right now?`;
         // Pearlescent White Ceramic Armor
         const matWhiteArmor = new THREE.MeshPhysicalMaterial({
             color: 0xf8fafc,
-            roughness: 0.12,
+            roughness: 0.11,
             metalness: 0.08,
             clearcoat: 1.0,
             clearcoatRoughness: 0.05,
-            reflectivity: 0.95
+            reflectivity: 0.96
         });
 
         // Dark Gunmetal / Carbon-Fiber Inner Skeletal Mechanics
@@ -2279,6 +2279,7 @@ Would you like to start a project inquiry right now?`;
         });
 
         const matCyanGlow = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+        const matCyanGlowBright = new THREE.MeshBasicMaterial({ color: 0x7dd3fc });
         const matOrangeGlow = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
         const matPurpleGlow = new THREE.MeshBasicMaterial({ color: 0xa855f7 });
         const matCoreReactor = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
@@ -2310,19 +2311,30 @@ Would you like to start a project inquiry right now?`;
         innerRing.position.y = 0.02;
         robotMasterGroup.add(innerRing);
 
-        // Floating Quantum Particles around Robot
+        // Holographic Radial Tech Markers on Floor
+        const techMarksGroup = new THREE.Group();
+        platform.add(techMarksGroup);
+        for (let m = 0; m < 8; m++) {
+            const angle = (m / 8) * Math.PI * 2;
+            const marker = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.01, 0.03), matCyanGlow);
+            marker.position.set(Math.cos(angle) * 1.5, 0.05, Math.sin(angle) * 1.5);
+            marker.rotation.y = -angle;
+            techMarksGroup.add(marker);
+        }
+
+        // Floating Quantum Particle Field (60 Particles Swirling Around Robot)
         const particleGeo = new THREE.BufferGeometry();
-        const particleCount = 45;
+        const particleCount = 60;
         const particlePositions = new Float32Array(particleCount * 3);
         for (let p = 0; p < particleCount; p++) {
-            particlePositions[p * 3] = (Math.random() - 0.5) * 3.5;
+            particlePositions[p * 3] = (Math.random() - 0.5) * 3.6;
             particlePositions[p * 3 + 1] = Math.random() * 2.8;
-            particlePositions[p * 3 + 2] = (Math.random() - 0.5) * 3.5;
+            particlePositions[p * 3 + 2] = (Math.random() - 0.5) * 3.6;
         }
         particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
         const particleMat = new THREE.PointsMaterial({
             color: 0x38bdf8,
-            size: 0.035,
+            size: 0.038,
             transparent: true,
             opacity: 0.75,
             blending: THREE.AdditiveBlending
@@ -2330,14 +2342,14 @@ Would you like to start a project inquiry right now?`;
         const particleField = new THREE.Points(particleGeo, particleMat);
         robotMasterGroup.add(particleField);
 
-        // Dynamic Soft Contact Shadow
+        // Dynamic Soft Contact Shadow (Scales & fades during Jumps!)
         const shadowCanvas = document.createElement('canvas');
         shadowCanvas.width = 128;
         shadowCanvas.height = 128;
         const sCtx = shadowCanvas.getContext('2d');
         const sGrad = sCtx.createRadialGradient(64, 64, 0, 64, 64, 64);
-        sGrad.addColorStop(0, 'rgba(0, 0, 0, 0.5)');
-        sGrad.addColorStop(0.5, 'rgba(0, 0, 0, 0.18)');
+        sGrad.addColorStop(0, 'rgba(0, 0, 0, 0.55)');
+        sGrad.addColorStop(0.5, 'rgba(0, 0, 0, 0.2)');
         sGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         sCtx.fillStyle = sGrad;
         sCtx.fillRect(0, 0, 128, 128);
@@ -2444,10 +2456,38 @@ Would you like to start a project inquiry right now?`;
         backShell.position.set(0, 0.22, -0.06);
         torsoGroup.add(backShell);
 
-        const backVentL = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.18, 0.02), matCyanGlow);
-        backVentL.position.set(-0.12, 0.22, -0.17);
-        torsoGroup.add(backVentL);
-        const backVentR = backVentL.clone(); backVentR.position.x = 0.12; torsoGroup.add(backVentR);
+        // Twin Quantum Aero Back Thruster Wings (UNIQUE SCULPT!)
+        const wingGroupL = new THREE.Group();
+        wingGroupL.position.set(-0.24, 0.3, -0.15);
+        torsoGroup.add(wingGroupL);
+
+        const wingBladeL = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.45, 0.18), matWhiteArmor);
+        wingBladeL.rotation.x = -0.25;
+        wingBladeL.rotation.z = 0.3;
+        wingBladeL.position.set(-0.08, 0.12, 0);
+        wingGroupL.add(wingBladeL);
+
+        const wingEdgeL = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.42, 0.03), matCyanGlow);
+        wingEdgeL.rotation.x = -0.25;
+        wingEdgeL.rotation.z = 0.3;
+        wingEdgeL.position.set(-0.14, 0.12, 0.08);
+        wingGroupL.add(wingEdgeL);
+
+        const wingGroupR = new THREE.Group();
+        wingGroupR.position.set(0.24, 0.3, -0.15);
+        torsoGroup.add(wingGroupR);
+
+        const wingBladeR = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.45, 0.18), matWhiteArmor);
+        wingBladeR.rotation.x = -0.25;
+        wingBladeR.rotation.z = -0.3;
+        wingBladeR.position.set(0.08, 0.12, 0);
+        wingGroupR.add(wingBladeR);
+
+        const wingEdgeR = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.42, 0.03), matCyanGlow);
+        wingEdgeR.rotation.x = -0.25;
+        wingEdgeR.rotation.z = -0.3;
+        wingEdgeR.position.set(0.14, 0.12, 0.08);
+        wingGroupR.add(wingEdgeR);
 
         // Clavicle Yoke with Chrome Hydraulics
         const clavicle = new THREE.Mesh(new THREE.BoxGeometry(0.54, 0.08, 0.16), matDarkSkeleton);
@@ -2474,10 +2514,10 @@ Would you like to start a project inquiry right now?`;
         coreGroup.add(coreLed);
 
         // Floating Counter-Rotating Quantum Micro-Rings inside Core
-        const coreOrbitRing1 = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.005, 12, 24), matCyanGlow);
+        const coreOrbitRing1 = new THREE.Mesh(new THREE.TorusGeometry(0.062, 0.005, 12, 24), matCyanGlow);
         coreGroup.add(coreOrbitRing1);
 
-        const coreOrbitRing2 = new THREE.Mesh(new THREE.TorusGeometry(0.042, 0.005, 12, 24), matPurpleGlow);
+        const coreOrbitRing2 = new THREE.Mesh(new THREE.TorusGeometry(0.044, 0.005, 12, 24), matPurpleGlow);
         coreGroup.add(coreOrbitRing2);
 
         const corePointLight = new THREE.PointLight(0x00f0ff, 1.8, 3.2);
@@ -2522,6 +2562,12 @@ Would you like to start a project inquiry right now?`;
         craniumGeo.scale(0.96, 1.12, 1.05);
         const cranium = new THREE.Mesh(craniumGeo, matWhiteArmor);
         headGroup.add(cranium);
+
+        // Floating Holographic Sensory Halo above Head (UNIQUE!)
+        const haloRing = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.008, 16, 48), matCyanGlow);
+        haloRing.rotation.x = Math.PI / 2;
+        haloRing.position.set(0, 0.44, 0);
+        headGroup.add(haloRing);
 
         // Dual Swept-Back Cyber Crest Horns/Fins (Unique Sci-Fi Mecha feature!)
         const hornGeo = new THREE.ConeGeometry(0.04, 0.32, 12);
@@ -2572,7 +2618,7 @@ Would you like to start a project inquiry right now?`;
         eyeLensL.position.set(-0.125, 0, 0.015);
         eyeGroup.add(eyeLensL);
 
-        const pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.026, 16, 16), matCyanGlow);
+        const pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.026, 16, 16), matCyanGlowBright);
         pupilL.position.set(-0.125, 0, 0.055);
         eyeGroup.add(pupilL);
 
@@ -2659,10 +2705,12 @@ Would you like to start a project inquiry right now?`;
         const lPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matWhiteArmor);
         lHand.add(lPalm);
 
+        const lFingers = [];
         for (let f = 0; f < 4; f++) {
             const finger = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.1, 10), matWhiteArmor);
             finger.position.set(-0.035 + f * 0.024, -0.06, 0.03);
             lHand.add(finger);
+            lFingers.push(finger);
         }
         const lThumb = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.013, 0.08, 10), matWhiteArmor);
         lThumb.position.set(0.05, -0.03, -0.02);
@@ -2716,10 +2764,12 @@ Would you like to start a project inquiry right now?`;
         const rPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matWhiteArmor);
         rHand.add(rPalm);
 
+        const rFingers = [];
         for (let f = 0; f < 4; f++) {
             const finger = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.1, 10), matWhiteArmor);
             finger.position.set(-0.035 + f * 0.024, -0.06, 0.03);
             rHand.add(finger);
+            rFingers.push(finger);
         }
         const rThumb = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.013, 0.08, 10), matWhiteArmor);
         rThumb.position.set(-0.05, -0.03, -0.02);
@@ -2897,12 +2947,14 @@ Would you like to start a project inquiry right now?`;
         }, { passive: true });
         window.addEventListener('touchend', () => { isDragging = false; });
 
-        // 8. 5 Humanoid Interactive Actions Controller (Walk, Run, Wave, Greet, Dance)
+        // 8. 6 Interactive Actions Controller (Walk, Sprint, Jump, Wave, Greet, Dance)
         let currentActionName = 'Walking';
+        let actionTimer = 0; // Tracks elapsed time per action for phased sequences like Jump
 
         const speechMessages = {
-            Walking: '🚶 Nexus-9 Sentinel: Autonomous scanning & system architecture monitoring active.',
-            Running: '⚡ Hyper-Drive Sprint: Sub-second TTFB & 100/100 Core Web Vitals engaged.',
+            Walking: '🚶 Apex-X Sentinel: Autonomous scanning & system architecture monitoring active.',
+            Running: '⚡ Quantum Sprint: Sub-second TTFB & 100/100 Core Web Vitals engaged.',
+            Jump: '🦘 Thruster Jump: Vertical thrust vectoring & acrobatic zero-g articulation.',
             Wave: '👋 Hello! Welcome to ElavateX engineering studio! How can we scale your vision today?',
             Greet: '🤝 Executive Welcome: Ready to architect your web platform, mobile app, or AI agents.',
             Dance: '🎉 Cyber Groove: Delivering unfair competitive advantage and market dominance.'
@@ -2919,6 +2971,7 @@ Would you like to start a project inquiry right now?`;
 
         function triggerAction(actionName, fromClick = true) {
             currentActionName = actionName;
+            actionTimer = 0;
 
             actButtons.forEach(btn => {
                 if (btn.getAttribute('data-action') === actionName) {
@@ -2932,7 +2985,14 @@ Would you like to start a project inquiry right now?`;
                 setSpeech(speechMessages[actionName]);
             }
 
-            if (actionName === 'Greet' || actionName === 'Wave') {
+            // Temporary auto-reverts for single-shot moves
+            if (actionName === 'Jump') {
+                setTimeout(() => {
+                    if (currentActionName === 'Jump') {
+                        triggerAction('Walking', false);
+                    }
+                }, 3200);
+            } else if (actionName === 'Greet' || actionName === 'Wave') {
                 setTimeout(() => {
                     if (currentActionName === actionName) {
                         triggerAction('Walking', false);
@@ -2960,6 +3020,7 @@ Would you like to start a project inquiry right now?`;
 
             const delta = clock.getDelta();
             animTime += delta;
+            actionTimer += delta;
 
             // Optical Sensor Blinking
             blinkTimer += delta;
@@ -2980,6 +3041,10 @@ Would you like to start a project inquiry right now?`;
             headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, targetHeadX, 0.08);
             torsoGroup.rotation.y = THREE.MathUtils.lerp(torsoGroup.rotation.y, mouseX * 0.15, 0.06);
 
+            // Floating Halo Orbit
+            haloRing.rotation.z = animTime * 0.8;
+            haloRing.position.y = 0.44 + Math.sin(animTime * 2.5) * 0.02;
+
             // Core Arc Reactor Breathing Pulse & Counter-Rotating Micro-Rings
             const reactorPulse = 1.6 + Math.sin(animTime * 3.5) * 0.4;
             corePointLight.intensity = reactorPulse;
@@ -2994,14 +3059,17 @@ Would you like to start a project inquiry right now?`;
             // Floating Quantum Particles Motion
             const positions = particleGeo.attributes.position.array;
             for (let i = 0; i < particleCount; i++) {
-                positions[i * 3 + 1] += 0.003;
+                positions[i * 3 + 1] += 0.0035;
                 if (positions[i * 3 + 1] > 3.0) {
                     positions[i * 3 + 1] = 0.1;
                 }
             }
             particleGeo.attributes.position.needsUpdate = true;
 
-            // 5 High-Impact Dynamic Actions
+            // Default wing positions (folded in aerodynamic cruise mode)
+            let targetWingAngle = 0;
+
+            // 6 HIGH-IMPACT DYNAMIC KINEMATIC ACTIONS (Walk, Sprint, Jump, Wave, Greet, Dance)
             if (currentActionName === 'Walking') {
                 const step = Math.sin(animTime * 4.2);
                 leftLeg.rotation.x = step * 0.42;
@@ -3016,11 +3084,15 @@ Would you like to start a project inquiry right now?`;
                 lForearm.rotation.x = -0.22;
                 rForearm.rotation.x = -0.22;
 
-                robotBody.position.y = Math.abs(Math.sin(animTime * 4.2)) * 0.06;
-                robotBody.rotation.x = 0;
+                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.abs(Math.sin(animTime * 4.2)) * 0.06, 0.15);
+                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.1);
+                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
                 rightArm.rotation.y = 0;
+
+                groundShadow.scale.set(1, 1, 1);
+                groundShadow.material.opacity = 1;
             } else if (currentActionName === 'Running') {
-                // Athletic High-Knee Sprint
+                // Athletic High-Knee Sprint with Flared Thruster Wings
                 const runStep = Math.sin(animTime * 8.5);
                 leftLeg.rotation.x = runStep * 0.85;
                 rightLeg.rotation.x = -runStep * 0.85;
@@ -3034,56 +3106,177 @@ Would you like to start a project inquiry right now?`;
                 lForearm.rotation.x = -0.68;
                 rForearm.rotation.x = -0.68;
 
-                robotBody.position.y = Math.abs(Math.sin(animTime * 8.5)) * 0.14;
-                robotBody.rotation.x = 0.32; // Forward athletic runner's lean
+                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.abs(Math.sin(animTime * 8.5)) * 0.14, 0.2);
+                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.32, 0.15); // Forward athletic runner's lean
+                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
+
+                targetWingAngle = 0.45; // Wings flare open!
+                groundShadow.scale.set(0.9, 0.9, 0.9);
+                groundShadow.material.opacity = 0.85;
+            } else if (currentActionName === 'Jump') {
+                // Multi-Phase Acrobatic Thruster Jump (Anticipation -> Explosive Launch -> Apex -> Landing Rebound)
+                const jumpCycle = actionTimer % 2.6;
+
+                if (jumpCycle < 0.45) {
+                    // Phase 1: Deep Crouch Anticipation
+                    const p = jumpCycle / 0.45;
+                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.24, 0.2);
+                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.28, 0.2);
+                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, -0.55, 0.2);
+                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, -0.55, 0.2);
+                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.95, 0.2);
+                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.95, 0.2);
+                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.65, 0.2); // Arms swing back
+                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.65, 0.2);
+                    targetWingAngle = 0;
+                    groundShadow.scale.set(1.15, 1.15, 1.15);
+                    groundShadow.material.opacity = 1;
+                } else if (jumpCycle < 1.4) {
+                    // Phase 2: Explosive Launch & Mid-Air Flight!
+                    const flightP = (jumpCycle - 0.45) / 0.95;
+                    const flightArc = Math.sin(flightP * Math.PI);
+                    robotBody.position.y = flightArc * 0.92; // Launches high into air!
+                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, -0.15, 0.15);
+
+                    // Acrobatic mid-air tuck
+                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0.25, 0.15);
+                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0.45, 0.15);
+                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.4, 0.15);
+                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.65, 0.15);
+
+                    // Arms thrust upward toward sky
+                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, -1.8, 0.18);
+                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -1.8, 0.18);
+                    leftArm.rotation.z = 0.4;
+                    rightArm.rotation.z = -0.4;
+
+                    targetWingAngle = 0.65; // Wings flare fully open!
+                    groundShadow.scale.set(0.45, 0.45, 0.45); // Shadow shrinks in air
+                    groundShadow.material.opacity = 0.35;
+                } else if (jumpCycle < 1.95) {
+                    // Phase 3: Shock-Absorbing Landing
+                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.22, 0.25);
+                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.32, 0.25);
+                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, -0.5, 0.25);
+                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, -0.5, 0.25);
+                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.9, 0.25);
+                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.9, 0.25);
+                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.2, 0.2);
+                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.2, 0.2);
+                    targetWingAngle = 0.2;
+                    groundShadow.scale.set(1.2, 1.2, 1.2);
+                    groundShadow.material.opacity = 1;
+                } else {
+                    // Phase 4: Spring Rebound back to Standing
+                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, 0, 0.12);
+                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.12);
+                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.12);
+                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0, 0.12);
+                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0, 0.12);
+                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0, 0.12);
+                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0, 0.12);
+                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0, 0.12);
+                    targetWingAngle = 0;
+                    groundShadow.scale.set(1, 1, 1);
+                    groundShadow.material.opacity = 1;
+                }
             } else if (currentActionName === 'Wave') {
+                // PERFECT WARM & LIFELIKE WAVE (Body weight shifts, head tilts happily, fluid pendulum hand wave)
+                // Left hip juts with gentle organic weight shift
+                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0.08, 0.1);
+                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.sin(animTime * 3) * 0.02, 0.1);
+                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.1);
+
+                // Legs relaxed, left leg supports weight
+                leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.1);
+                rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0.08, 0.1);
+                lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0, 0.1);
+                rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.1, 0.1);
+
+                // Left arm relaxed naturally at hip with breathing sway
+                leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.1, 0.1);
+                leftArm.rotation.z = THREE.MathUtils.lerp(leftArm.rotation.z, 0.22, 0.1);
+                lForearm.rotation.x = THREE.MathUtils.lerp(lForearm.rotation.x, -0.15, 0.1);
+
+                // Right arm raises smoothly into charismatic wave pose
+                rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -0.2, 0.12);
+                rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -2.15, 0.12);
+
+                // Fluid Pendulum Wave Motion (Forearm and wrist oscillate with organic wrist lead)
+                const waveWave = Math.sin(animTime * 7.5);
+                rForearm.rotation.z = -0.45 + waveWave * 0.48;
+                rForearm.rotation.x = waveWave * 0.12;
+
+                // Fingers flex warmly during wave
+                rFingers.forEach((f, idx) => {
+                    f.rotation.z = Math.sin(animTime * 7.5 + idx * 0.2) * 0.15;
+                });
+
+                groundShadow.scale.set(1, 1, 1);
+                groundShadow.material.opacity = 1;
+            } else if (currentActionName === 'Greet') {
+                // Dignified Executive Cyber Bow & Salutation
                 leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.1);
                 rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0, 0.1);
                 lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0, 0.1);
                 rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0, 0.1);
                 robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, 0, 0.1);
-                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.1);
+                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
 
-                leftArm.rotation.x = 0;
-                leftArm.rotation.z = 0.2;
+                // Respectful bow (18 degrees)
+                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.26, 0.08);
 
-                // Right arm raised high in friendly wave
-                rightArm.rotation.x = 0;
-                rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -2.25, 0.15);
-                rForearm.rotation.z = -0.5 + Math.sin(animTime * 8.5) * 0.42;
-                rForearm.rotation.x = 0;
-            } else if (currentActionName === 'Greet') {
-                // Dignified executive bow & chest salutation
-                leftLeg.rotation.x = 0;
-                rightLeg.rotation.x = 0;
-                lKnee.rotation.x = 0;
-                rKnee.rotation.x = 0;
-                robotBody.position.y = 0;
+                // Left arm formal at side
+                leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.15, 0.1);
+                leftArm.rotation.z = THREE.MathUtils.lerp(leftArm.rotation.z, 0.25, 0.1);
+                lForearm.rotation.x = 0;
 
-                // Gentle respectful bow (16 degrees)
-                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.24, 0.08);
-
-                // Left arm relaxed at side
-                leftArm.rotation.x = 0.15;
-                leftArm.rotation.z = 0.25;
-
-                // Right hand gracefully placed over chest core badge
+                // Right hand gracefully placed over central Arc Reactor core
                 rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -0.95, 0.1);
                 rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -0.4, 0.1);
                 rForearm.rotation.y = THREE.MathUtils.lerp(rForearm.rotation.y, 0.8, 0.1);
                 rForearm.rotation.x = THREE.MathUtils.lerp(rForearm.rotation.x, -0.5, 0.1);
+                rForearm.rotation.z = 0;
+
+                groundShadow.scale.set(1, 1, 1);
+                groundShadow.material.opacity = 1;
             } else if (currentActionName === 'Dance') {
-                const beat = animTime * 6;
-                robotBody.position.y = Math.abs(Math.sin(beat)) * 0.14;
-                robotBody.rotation.z = Math.sin(beat) * 0.18;
-                torsoGroup.rotation.y = Math.sin(beat * 0.5) * 0.35;
+                // PERFECT CYBER BREAKDANCE GROOVE (120 BPM Rhythmic Bounce, Hip Roll, Popping Arms, Head Bobs)
+                const beat = animTime * 6.8;
 
-                leftLeg.rotation.z = Math.sin(beat) * 0.26;
-                rightLeg.rotation.z = -Math.sin(beat) * 0.26;
+                // Rhythmic Bounce & Knee Drop
+                const bounce = Math.abs(Math.sin(beat));
+                robotBody.position.y = bounce * 0.16;
 
-                leftArm.rotation.z = 1.35 + Math.sin(beat) * 0.55;
-                rightArm.rotation.z = -1.35 - Math.sin(beat + 1) * 0.55;
+                // Fluid Torso Figure-8 Sway & Roll
+                robotBody.rotation.z = Math.sin(beat * 0.5) * 0.16;
+                robotBody.rotation.x = Math.cos(beat * 0.5) * 0.12;
+                torsoGroup.rotation.y = Math.sin(beat * 0.5) * 0.38;
+
+                // Rhythmic Knee Flexion
+                lKnee.rotation.x = (1 - bounce) * 0.45;
+                rKnee.rotation.x = bounce * 0.45;
+                leftLeg.rotation.x = -Math.sin(beat * 0.5) * 0.25;
+                rightLeg.rotation.x = Math.sin(beat * 0.5) * 0.25;
+
+                // Alternating Cyber Pop & Windmill Arms
+                leftArm.rotation.z = 1.25 + Math.sin(beat) * 0.55;
+                rightArm.rotation.z = -1.25 - Math.sin(beat + 1.2) * 0.55;
+                leftArm.rotation.x = Math.cos(beat) * 0.45;
+                rightArm.rotation.x = -Math.cos(beat) * 0.45;
+                lForearm.rotation.x = -0.3 + Math.sin(beat * 2) * 0.35;
+                rForearm.rotation.x = -0.3 + Math.cos(beat * 2) * 0.35;
+
+                // Flared Wings Bounce to Beat
+                targetWingAngle = 0.25 + bounce * 0.3;
+
+                groundShadow.scale.set(1 - bounce * 0.15, 1 - bounce * 0.15, 1 - bounce * 0.15);
+                groundShadow.material.opacity = 0.95;
             }
+
+            // Smooth Interpolation of Aero Wings
+            wingGroupL.rotation.y = THREE.MathUtils.lerp(wingGroupL.rotation.y, targetWingAngle, 0.1);
+            wingGroupR.rotation.y = THREE.MathUtils.lerp(wingGroupR.rotation.y, -targetWingAngle, 0.1);
 
             // Platform Gyro Rotations
             ring.rotation.z = animTime * 0.35;
@@ -3110,8 +3303,8 @@ Would you like to start a project inquiry right now?`;
         }
         window.addEventListener('resize', onWindowResize);
 
-        // 11. Auto-Idle Demonstration Loop (Transitions smoothly between showcase moves)
-        const autoCycle = ['Walking', 'Run', 'Wave', 'Greet', 'Walking', 'Dance'];
+        // 11. Auto-Idle Demonstration Loop (Showcases all moves seamlessly!)
+        const autoCycle = ['Walking', 'Run', 'Jump', 'Wave', 'Greet', 'Walking', 'Dance'];
         let cycleIdx = 0;
         setInterval(() => {
             if (!userInteracted) {
@@ -3119,7 +3312,7 @@ Would you like to start a project inquiry right now?`;
                 const act = autoCycle[cycleIdx] === 'Run' ? 'Running' : autoCycle[cycleIdx];
                 triggerAction(act, false);
             }
-        }, 9000);
+        }, 9500);
     }
     initCyberBot();
 });
