@@ -2178,7 +2178,7 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // HIGH-END REALISTIC 3D WEBGL CYBERBOT (WALKING, WAVING, SIGNS, TRACKING)
+    // AAA STUDIO-GRADE 3D WEBGL CYBERBOT (ROBOTEXPRESSIVE GLTF CHARACTER)
     // -------------------------------------------------------------------------
     function initCyberBot() {
         const canvas = document.getElementById('robot-webgl-canvas');
@@ -2188,10 +2188,10 @@ Would you like to start a project inquiry right now?`;
 
         if (!canvas || !container || typeof THREE === 'undefined') return;
 
-        let width = container.clientWidth || 460;
-        let height = container.clientHeight || 420;
+        let width = container.clientWidth || 640;
+        let height = container.clientHeight || 520;
 
-        // 1. Renderer Setup with PBR Tone Mapping & Antialiasing
+        // 1. WebGL Renderer with High-Performance Tone Mapping
         const renderer = new THREE.WebGLRenderer({
             canvas: canvas,
             alpha: true,
@@ -2201,71 +2201,56 @@ Would you like to start a project inquiry right now?`;
         renderer.setSize(width, height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.15;
+        renderer.toneMappingExposure = 1.25;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-        // 2. Camera & Scene
+        // 2. Camera & Scene (Framed closely and prominently)
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-        camera.position.set(0, 0.1, 7.2);
+        camera.position.set(0, 1.8, 4.8);
+        camera.lookAt(0, 1.6, 0);
 
-        // 3. Cinematic Studio Lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+        // 3. Cinematic 4-Point Studio Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.15);
         scene.add(ambientLight);
 
-        const keyLight = new THREE.DirectionalLight(0xffffff, 1.5);
-        keyLight.position.set(3.5, 5, 4.5);
+        const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
+        keyLight.position.set(4, 8, 5);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 1024;
+        keyLight.shadow.mapSize.height = 1024;
+        keyLight.shadow.bias = -0.001;
         scene.add(keyLight);
 
-        const fillLight = new THREE.DirectionalLight(0x38bdf8, 0.9);
-        fillLight.position.set(-4, 2, 3);
+        const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.2);
+        fillLight.position.set(-5, 4, 3);
         scene.add(fillLight);
 
-        const rimLight = new THREE.DirectionalLight(0x818cf8, 1.4);
-        rimLight.position.set(0, 4.5, -4);
+        const rimLight = new THREE.DirectionalLight(0xa855f7, 1.8);
+        rimLight.position.set(0, 6, -5);
         scene.add(rimLight);
 
-        const chestPointLight = new THREE.PointLight(0x38bdf8, 1.5, 3.5);
-        chestPointLight.position.set(0, -0.65, 0.65);
-        scene.add(chestPointLight);
+        const groundPointLight = new THREE.PointLight(0x06b6d4, 1.6, 5);
+        groundPointLight.position.set(0, 0.2, 1.2);
+        scene.add(groundPointLight);
 
-        // 4. Materials (High-End Ceramic & Polished Chrome)
-        const matBody = new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-            roughness: 0.12,
-            metalness: 0.1
-        });
-
-        const matChrome = new THREE.MeshStandardMaterial({
-            color: 0xd1d5db,
-            roughness: 0.05,
-            metalness: 0.95
-        });
-
-        const matVisor = new THREE.MeshStandardMaterial({
-            color: 0x050713,
-            roughness: 0.05,
-            metalness: 0.9
-        });
-
-        const matCyanGlow = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
-        const matPupil = new THREE.MeshBasicMaterial({ color: 0x0284c7 });
-
-        // Soft Radial Ground Contact Shadow
+        // 4. Ambient Holographic Floor & Soft Contact Shadow
         function createShadowTexture() {
             const sCanvas = document.createElement('canvas');
             sCanvas.width = 128;
             sCanvas.height = 128;
             const ctx = sCanvas.getContext('2d');
             const grad = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
-            grad.addColorStop(0, 'rgba(15, 23, 42, 0.55)');
-            grad.addColorStop(0.4, 'rgba(15, 23, 42, 0.22)');
+            grad.addColorStop(0, 'rgba(15, 23, 42, 0.65)');
+            grad.addColorStop(0.4, 'rgba(15, 23, 42, 0.3)');
             grad.addColorStop(1, 'rgba(15, 23, 42, 0)');
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, 128, 128);
             return new THREE.CanvasTexture(sCanvas);
         }
 
-        const shadowGeo = new THREE.PlaneGeometry(2.6, 1.4);
+        const shadowGeo = new THREE.PlaneGeometry(3.2, 1.8);
         const shadowMat = new THREE.MeshBasicMaterial({
             map: createShadowTexture(),
             transparent: true,
@@ -2273,233 +2258,60 @@ Would you like to start a project inquiry right now?`;
         });
         const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
         shadowMesh.rotation.x = -Math.PI / 2;
-        shadowMesh.position.y = -2.15;
+        shadowMesh.position.y = -0.01;
         scene.add(shadowMesh);
 
-        // Holographic Platform Rings
+        // Concentric Holographic Floor Rings
         const platformRing = new THREE.Mesh(
-            new THREE.RingGeometry(1.55, 1.68, 48),
-            new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.4 })
+            new THREE.RingGeometry(2.1, 2.25, 64),
+            new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.45 })
         );
         platformRing.rotation.x = -Math.PI / 2;
-        platformRing.position.y = -2.16;
+        platformRing.position.y = -0.02;
         scene.add(platformRing);
 
         const innerRing = new THREE.Mesh(
-            new THREE.RingGeometry(0.95, 1.02, 36),
-            new THREE.MeshBasicMaterial({ color: 0x818cf8, side: THREE.DoubleSide, transparent: true, opacity: 0.25 })
+            new THREE.RingGeometry(1.3, 1.4, 48),
+            new THREE.MeshBasicMaterial({ color: 0x818cf8, side: THREE.DoubleSide, transparent: true, opacity: 0.3 })
         );
         innerRing.rotation.x = -Math.PI / 2;
-        innerRing.position.y = -2.16;
+        innerRing.position.y = -0.02;
         scene.add(innerRing);
 
-        // 5. Robot Rig Assembly
-        const robot = new THREE.Group();
-        robot.position.y = -0.1;
-        scene.add(robot);
-
-        // Torso Group
-        const torsoGroup = new THREE.Group();
-        robot.add(torsoGroup);
-
-        const pelvis = new THREE.Mesh(new THREE.SphereGeometry(0.24, 20, 20), matChrome);
-        pelvis.position.y = -1.18;
-        torsoGroup.add(pelvis);
-
-        const chest = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.44, 0.88, 28), matBody);
-        chest.position.y = -0.72;
-        chest.scale.set(1.15, 1.0, 0.86);
-        torsoGroup.add(chest);
-
-        // Arc Reactor Core
-        const reactorCore = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.08, 24), matCyanGlow);
-        reactorCore.rotation.x = Math.PI / 2;
-        reactorCore.position.set(0, -0.68, 0.42);
-        torsoGroup.add(reactorCore);
-
-        const reactorRing = new THREE.Mesh(new THREE.TorusGeometry(0.23, 0.025, 12, 28), matChrome);
-        reactorRing.position.set(0, -0.68, 0.43);
-        torsoGroup.add(reactorRing);
-
-        // Neck Joint
-        const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.2, 0.18, 20), matChrome);
-        neck.position.y = -0.2;
-        torsoGroup.add(neck);
-
-        // Head Group (3D Cursor Tracking)
-        const headGroup = new THREE.Group();
-        headGroup.position.y = 0.52;
-        torsoGroup.add(headGroup);
-
-        const helmet = new THREE.Mesh(new THREE.SphereGeometry(0.85, 32, 24), matBody);
-        helmet.scale.set(1.08, 0.94, 0.96);
-        headGroup.add(helmet);
-
-        // Deep Visor Screen Glass
-        const visor = new THREE.Mesh(
-            new THREE.SphereGeometry(0.72, 32, 16, 0, Math.PI * 2, 0, Math.PI * 0.42),
-            matVisor
-        );
-        visor.rotation.x = Math.PI * 0.44;
-        visor.position.set(0, 0.03, 0.35);
-        visor.scale.set(1.0, 0.68, 0.86);
-        headGroup.add(visor);
-
-        // OLED Glowing Eyes
-        const eyeGeo = new THREE.SphereGeometry(0.1, 16, 16);
-        const eyeL = new THREE.Mesh(eyeGeo, matCyanGlow);
-        eyeL.position.set(-0.26, 0.06, 0.84);
-        const eyeR = eyeL.clone();
-        eyeR.position.x = 0.26;
-        headGroup.add(eyeL);
-        headGroup.add(eyeR);
-
-        // Eye Pupils
-        const pupilGeo = new THREE.SphereGeometry(0.05, 12, 12);
-        const pupilL = new THREE.Mesh(pupilGeo, matPupil);
-        pupilL.position.set(-0.26, 0.06, 0.92);
-        const pupilR = pupilL.clone();
-        pupilR.position.x = 0.26;
-        headGroup.add(pupilL);
-        headGroup.add(pupilR);
-
-        // Side Antennas
-        function createAntenna(isLeft) {
-            const ant = new THREE.Group();
-            const stick = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.32, 10), matChrome);
-            const tip = new THREE.Mesh(new THREE.SphereGeometry(0.07, 16, 16), matCyanGlow);
-            tip.position.y = 0.18;
-            ant.add(stick);
-            ant.add(tip);
-            ant.position.set(isLeft ? -0.88 : 0.88, 0.42, 0);
-            ant.rotation.z = isLeft ? 0.36 : -0.36;
-            return ant;
+        // Ambient Floating Cyber Dust Particles
+        const particleCount = 45;
+        const particleGeo = new THREE.BufferGeometry();
+        const particlePositions = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount; i++) {
+            particlePositions[i * 3] = (Math.random() - 0.5) * 5;
+            particlePositions[i * 3 + 1] = Math.random() * 3.5;
+            particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 4;
         }
-        headGroup.add(createAntenna(true));
-        headGroup.add(createAntenna(false));
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+        const particleMat = new THREE.PointsMaterial({
+            color: 0x38bdf8,
+            size: 0.045,
+            transparent: true,
+            opacity: 0.65
+        });
+        const particleSystem = new THREE.Points(particleGeo, particleMat);
+        scene.add(particleSystem);
 
-        // Side Audio Ear Discs
-        const earL = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.08, 20), matChrome);
-        earL.rotation.z = Math.PI / 2;
-        earL.position.set(-0.92, 0.02, 0);
-        const earR = earL.clone();
-        earR.position.x = 0.92;
-        headGroup.add(earL);
-        headGroup.add(earR);
-
-        // Arms Builder
-        function buildArm(isLeft) {
-            const arm = new THREE.Group();
-            const shoulder = new THREE.Mesh(new THREE.SphereGeometry(0.16, 16, 16), matChrome);
-            arm.add(shoulder);
-
-            const bicep = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.09, 0.42, 16), matBody);
-            bicep.position.y = -0.22;
-            arm.add(bicep);
-
-            const elbowGroup = new THREE.Group();
-            elbowGroup.position.y = -0.44;
-            const elbow = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), matChrome);
-            elbowGroup.add(elbow);
-
-            const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.4, 16), matBody);
-            forearm.position.y = -0.21;
-            elbowGroup.add(forearm);
-
-            const wristGroup = new THREE.Group();
-            wristGroup.position.y = -0.42;
-            const hand = new THREE.Mesh(new THREE.SphereGeometry(0.11, 16, 16), matChrome);
-            wristGroup.add(hand);
-
-            // Detailed Gesture Digits on Right Arm
-            let thumb = null;
-            let peace1 = null;
-            let peace2 = null;
-
-            if (!isLeft) {
-                thumb = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 0.16, 10), matChrome);
-                thumb.position.set(0, 0.09, 0.04);
-                thumb.rotation.x = -0.4;
-                wristGroup.add(thumb);
-
-                peace1 = new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.024, 0.18, 8), matChrome);
-                peace1.position.set(-0.04, 0.11, 0);
-                peace1.rotation.z = 0.22;
-                peace1.visible = false;
-                wristGroup.add(peace1);
-
-                peace2 = new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.024, 0.18, 8), matChrome);
-                peace2.position.set(0.04, 0.11, 0);
-                peace2.rotation.z = -0.22;
-                peace2.visible = false;
-                wristGroup.add(peace2);
-            }
-
-            elbowGroup.add(wristGroup);
-            arm.add(elbowGroup);
-
-            arm.position.set(isLeft ? -0.74 : 0.74, -0.5, 0);
-            return { arm, elbowGroup, wristGroup, thumb, peace1, peace2 };
-        }
-
-        const leftArm = buildArm(true);
-        const rightArm = buildArm(false);
-        torsoGroup.add(leftArm.arm);
-        torsoGroup.add(rightArm.arm);
-
-        // Legs Builder
-        function buildLeg(isLeft) {
-            const leg = new THREE.Group();
-            const hip = new THREE.Mesh(new THREE.SphereGeometry(0.15, 16, 16), matChrome);
-            leg.add(hip);
-
-            const thigh = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.5, 16), matBody);
-            thigh.position.y = -0.27;
-            leg.add(thigh);
-
-            const kneeGroup = new THREE.Group();
-            kneeGroup.position.y = -0.54;
-            const knee = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), matChrome);
-            kneeGroup.add(knee);
-
-            const shin = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.09, 0.5, 16), matBody);
-            shin.position.y = -0.27;
-            kneeGroup.add(shin);
-
-            const ankleGroup = new THREE.Group();
-            ankleGroup.position.y = -0.54;
-            const foot = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.14, 0.44), matBody);
-            foot.position.set(0, -0.06, 0.09);
-            ankleGroup.add(foot);
-
-            const soleGlow = new THREE.Mesh(new THREE.BoxGeometry(0.21, 0.02, 0.4), matCyanGlow);
-            soleGlow.position.set(0, -0.13, 0.09);
-            ankleGroup.add(soleGlow);
-
-            kneeGroup.add(ankleGroup);
-            leg.add(kneeGroup);
-
-            leg.position.set(isLeft ? -0.32 : 0.32, -1.22, 0);
-            return { leg, kneeGroup, ankleGroup };
-        }
-
-        const leftLeg = buildLeg(true);
-        const rightLeg = buildLeg(false);
-        robot.add(leftLeg.leg);
-        robot.add(rightLeg.leg);
-
-        // 6. State Machine & Controller
-        let currentAction = 'walk';
+        // 5. Robot Model State & Animation Manager
+        let mixer = null;
+        let robotModel = null;
+        let headBone = null;
+        const actions = {};
+        let activeAction = null;
+        let currentActionName = 'Walking';
         let userInteracted = false;
         let userInteractTimeout = null;
-        let walkCycle = 0;
-        let clock = new THREE.Clock();
+        const clock = new THREE.Clock();
 
         let mouseX = 0;
         let mouseY = 0;
         let targetHeadRotY = 0;
         let targetHeadRotX = 0;
-
         let isDragging = false;
         let prevPointerX = 0;
         let dragRotY = 0;
@@ -2513,7 +2325,39 @@ Would you like to start a project inquiry right now?`;
             }, 120);
         }
 
-        function setRobotAction(action, isUser = false) {
+        function fadeToAction(name, duration = 0.28, isSingleShot = false) {
+            const previousAction = activeAction;
+            activeAction = actions[name];
+
+            if (!activeAction) return;
+
+            if (previousAction && previousAction !== activeAction) {
+                previousAction.fadeOut(duration);
+            }
+
+            activeAction
+                .reset()
+                .setEffectiveTimeScale(1)
+                .setEffectiveWeight(1)
+                .fadeIn(duration);
+
+            if (isSingleShot) {
+                activeAction.setLoop(THREE.LoopOnce, 1);
+                activeAction.clampWhenFinished = true;
+            } else {
+                activeAction.setLoop(THREE.LoopRepeat);
+            }
+
+            activeAction.play();
+            currentActionName = name;
+
+            // Highlight corresponding button
+            actButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-action') === name);
+            });
+        }
+
+        function triggerAction(name, isUser = false) {
             if (isUser) {
                 userInteracted = true;
                 clearTimeout(userInteractTimeout);
@@ -2522,39 +2366,43 @@ Would you like to start a project inquiry right now?`;
                 }, 16000);
             }
 
-            currentAction = action;
+            const oneShotActions = ['Jump', 'Punch', 'ThumbsUp'];
+            const isSingleShot = oneShotActions.includes(name);
 
-            actButtons.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-action') === action);
-            });
-
-            // Reset digit visibility
-            if (rightArm.peace1) rightArm.peace1.visible = false;
-            if (rightArm.peace2) rightArm.peace2.visible = false;
-            if (rightArm.thumb) rightArm.thumb.scale.set(1, 1, 1);
-
-            switch(action) {
-                case 'walk':
-                    setSpeech("🚶 Walking along the platform... 60 FPS realistic 3D WebGL physics!");
+            switch(name) {
+                case 'Walking':
+                    fadeToAction('Walking', 0.3, false);
+                    setSpeech("🚶 Active patrol mode: 60 FPS full skeletal inverse kinematics!");
                     break;
 
-                case 'wave':
-                    setSpeech("👋 Hello! Welcome to ElavateX engineering studio!");
+                case 'Running':
+                    fadeToAction('Running', 0.25, false);
+                    setSpeech("🏃 High-velocity sprint! Scaling architecture to millions of users.");
                     break;
 
-                case 'thumbs':
-                    if (rightArm.thumb) rightArm.thumb.scale.set(1.4, 1.4, 1.4);
-                    setSpeech("👍 Quality verified! 100/100 Core Web Vitals & clean architecture.");
+                case 'Wave':
+                    fadeToAction('Wave', 0.28, false);
+                    setSpeech("👋 Hello there! Welcome to ElavateX engineering studio!");
                     break;
 
-                case 'peace':
-                    if (rightArm.peace1) rightArm.peace1.visible = true;
-                    if (rightArm.peace2) rightArm.peace2.visible = true;
-                    setSpeech("✌️ Peace! Let's craft your next web or mobile app together.");
+                case 'ThumbsUp':
+                    fadeToAction('ThumbsUp', 0.25, true);
+                    setSpeech("👍 Quality verified: 100/100 Core Web Vitals & clean architecture.");
                     break;
 
-                case 'dance':
-                    setSpeech("🕺 High-velocity launch celebration! Zero bloat, pure performance.");
+                case 'Jump':
+                    fadeToAction('Jump', 0.22, true);
+                    setSpeech("⚡ Leap ahead of the competition with verified enterprise tech!");
+                    break;
+
+                case 'Punch':
+                    fadeToAction('Punch', 0.2, true);
+                    setSpeech("🥊 Knocking out performance bottlenecks and bloated frameworks!");
+                    break;
+
+                case 'Dance':
+                    fadeToAction('Dance', 0.3, false);
+                    setSpeech("🕺 Launch celebration! Delivering real growth and market dominance.");
                     break;
             }
         }
@@ -2564,9 +2412,90 @@ Would you like to start a project inquiry right now?`;
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const act = btn.getAttribute('data-action');
-                if (act) setRobotAction(act, true);
+                if (act) triggerAction(act, true);
             });
         });
+
+        // 6. Model Loader (Native GLTF with Base64 Fallback)
+        function initModel(gltf) {
+            robotModel = gltf.scene;
+
+            // Position & Scale prominently
+            robotModel.position.set(0, 0, 0);
+            robotModel.scale.set(0.78, 0.78, 0.78);
+
+            // Enhance Materials to AAA Studio Spec
+            robotModel.traverse((child) => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+
+                    if (child.material) {
+                        if (child.material.name === 'Main') {
+                            child.material.roughness = 0.14;
+                            child.material.metalness = 0.08;
+                            child.material.color.setHex(0xf8fafc);
+                        } else if (child.material.name === 'Grey') {
+                            child.material.roughness = 0.08;
+                            child.material.metalness = 0.94;
+                            child.material.color.setHex(0xd1d5db);
+                        } else if (child.material.name === 'Black') {
+                            child.material.roughness = 0.05;
+                            child.material.metalness = 0.88;
+                            child.material.color.setHex(0x070b16);
+                        }
+                    }
+                }
+            });
+
+            headBone = robotModel.getObjectByName('Head');
+
+            // Set up Animation Mixer
+            mixer = new THREE.AnimationMixer(robotModel);
+            gltf.animations.forEach((clip) => {
+                actions[clip.name] = mixer.clipAction(clip);
+            });
+
+            // Automatically return to Walking/Idle after one-shot moves finish
+            mixer.addEventListener('finished', (e) => {
+                if (e.action === actions['Jump'] || e.action === actions['Punch'] || e.action === actions['ThumbsUp']) {
+                    setTimeout(() => {
+                        triggerAction('Walking', false);
+                    }, 400);
+                }
+            });
+
+            scene.add(robotModel);
+
+            // Start in Walking mode
+            triggerAction('Walking', false);
+        }
+
+        // Load the GLTF model
+        if (typeof THREE.GLTFLoader !== 'undefined') {
+            const loader = new THREE.GLTFLoader();
+            loader.load(
+                'RobotExpressive.glb',
+                (gltf) => {
+                    initModel(gltf);
+                },
+                undefined,
+                (err) => {
+                    console.warn('Direct fetch failed, decoding base64 data...', err);
+                    if (window.ROBOT_MODEL_BASE64) {
+                        const binary = atob(window.ROBOT_MODEL_BASE64);
+                        const len = binary.length;
+                        const bytes = new Uint8Array(len);
+                        for (let i = 0; i < len; i++) {
+                            bytes[i] = binary.charCodeAt(i);
+                        }
+                        loader.parse(bytes.buffer, '', initModel, (parseErr) => {
+                            console.error('Failed to parse base64 robot model:', parseErr);
+                        });
+                    }
+                }
+            );
+        }
 
         // 7. Interactive Mouse / Touch Tracking & Orbit
         function onPointerMove(e) {
@@ -2574,9 +2503,9 @@ Would you like to start a project inquiry right now?`;
             const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
             const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
 
-            if (isDragging) {
+            if (isDragging && robotModel) {
                 const deltaX = clientX - prevPointerX;
-                dragRotY += deltaX * 0.015;
+                dragRotY += deltaX * 0.012;
                 prevPointerX = clientX;
             }
 
@@ -2586,8 +2515,8 @@ Would you like to start a project inquiry right now?`;
             mouseX = Math.max(-1.5, Math.min(1.5, normX));
             mouseY = Math.max(-1.5, Math.min(1.5, normY));
 
-            targetHeadRotY = mouseX * 0.42;
-            targetHeadRotX = -mouseY * 0.32;
+            targetHeadRotY = mouseX * 0.38;
+            targetHeadRotX = -mouseY * 0.28;
         }
 
         window.addEventListener('mousemove', onPointerMove, { passive: true });
@@ -2602,150 +2531,49 @@ Would you like to start a project inquiry right now?`;
             isDragging = false;
         });
 
-        // Click directly on canvas to cycle action
+        // Click directly on canvas to trigger next high-impact action
         canvas.addEventListener('click', () => {
-            const nextActs = ['wave', 'thumbs', 'peace', 'dance', 'walk'];
-            const nextAct = nextActs[(nextActs.indexOf(currentAction) + 1) % nextActs.length];
-            setRobotAction(nextAct, true);
+            const acts = ['Jump', 'Punch', 'Dance', 'Wave', 'Running', 'Walking'];
+            const nextIdx = (acts.indexOf(currentActionName) + 1) % acts.length;
+            triggerAction(acts[nextIdx], true);
         });
 
-        // 8. Animation & Kinematics Loop
+        // 8. Main Render & Physics Loop
         function animate() {
             requestAnimationFrame(animate);
 
             const delta = clock.getDelta();
-            const time = clock.getElapsedTime();
 
-            // Rotate Arc Reactor Outer Ring
-            reactorRing.rotation.z += 0.04;
-            platformRing.rotation.z -= 0.008;
-            innerRing.rotation.z += 0.012;
-
-            // Smooth Drag Return
-            if (!isDragging) {
-                dragRotY *= 0.94;
+            // Update Animation Mixer
+            if (mixer) {
+                mixer.update(delta);
             }
 
-            // Head 3D Tracking Lerp
-            headGroup.rotation.y += (targetHeadRotY - headGroup.rotation.y) * 0.1;
-            headGroup.rotation.x += (targetHeadRotX - headGroup.rotation.x) * 0.1;
+            // Rotate Platform Rings
+            platformRing.rotation.z -= 0.006;
+            innerRing.rotation.z += 0.009;
 
-            // Eye Pupils Subtle Shift
-            pupilL.position.x = -0.26 + targetHeadRotY * 0.06;
-            pupilR.position.x = 0.26 + targetHeadRotY * 0.06;
-            pupilL.position.y = 0.06 - targetHeadRotX * 0.05;
-            pupilR.position.y = 0.06 - targetHeadRotX * 0.05;
+            // Float Cyber Particles
+            const positions = particleGeo.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+                positions[i * 3 + 1] += 0.003;
+                if (positions[i * 3 + 1] > 3.5) {
+                    positions[i * 3 + 1] = 0.1;
+                }
+            }
+            particleGeo.attributes.position.needsUpdate = true;
 
-            // KINEMATICS PER ACTION
-            if (currentAction === 'walk') {
-                walkCycle += delta * 4.6;
+            // Robot Drag & Head Tracking
+            if (robotModel) {
+                if (!isDragging) {
+                    dragRotY *= 0.93;
+                }
+                robotModel.rotation.y = dragRotY;
 
-                // Legs Swing
-                const swing = Math.sin(walkCycle) * 0.55;
-                leftLeg.leg.rotation.x = swing;
-                rightLeg.leg.rotation.x = -swing;
-
-                // Natural Knee Flexion on Backstroke
-                leftLeg.kneeGroup.rotation.x = Math.max(0, -Math.sin(walkCycle) * 0.65);
-                rightLeg.kneeGroup.rotation.x = Math.max(0, Math.sin(walkCycle) * 0.65);
-
-                // Arms Counter-Swing
-                leftArm.arm.rotation.x = -swing * 0.65;
-                leftArm.arm.rotation.z = 0.1;
-                rightArm.arm.rotation.x = swing * 0.65;
-                rightArm.arm.rotation.z = -0.1;
-                rightArm.elbowGroup.rotation.x = Math.max(0, swing * 0.3);
-                leftArm.elbowGroup.rotation.x = Math.max(0, -swing * 0.3);
-                rightArm.wristGroup.rotation.set(0, 0, 0);
-
-                // Torso & Pelvis Bob
-                torsoGroup.position.y = Math.abs(Math.sin(walkCycle)) * 0.07;
-                torsoGroup.rotation.z = Math.sin(walkCycle) * 0.03;
-                headGroup.rotation.z = -Math.sin(walkCycle) * 0.02;
-
-                // Patrol Movement along X
-                const patrolX = Math.sin(walkCycle * 0.28) * 0.95;
-                robot.position.x = patrolX;
-                shadowMesh.position.x = patrolX;
-
-                // Turn around at platform edges
-                const targetFacingY = Math.cos(walkCycle * 0.28) >= 0 ? 0 : Math.PI;
-                robot.rotation.y += (targetFacingY + dragRotY - robot.rotation.y) * 0.08;
-
-            } else {
-                // Return smoothly to center platform
-                robot.position.x += (0 - robot.position.x) * 0.1;
-                shadowMesh.position.x = robot.position.x;
-                robot.rotation.y += (0 + dragRotY - robot.rotation.y) * 0.1;
-
-                // Return legs to neutral standing
-                leftLeg.leg.rotation.x += (0 - leftLeg.leg.rotation.x) * 0.12;
-                rightLeg.leg.rotation.x += (0 - rightLeg.leg.rotation.x) * 0.12;
-                leftLeg.kneeGroup.rotation.x += (0 - leftLeg.kneeGroup.rotation.x) * 0.12;
-                rightLeg.kneeGroup.rotation.x += (0 - rightLeg.kneeGroup.rotation.x) * 0.12;
-
-                if (currentAction === 'wave') {
-                    // Right Arm Waving
-                    rightArm.arm.rotation.z += (2.25 - rightArm.arm.rotation.z) * 0.12;
-                    rightArm.arm.rotation.x += (0.15 - rightArm.arm.rotation.x) * 0.12;
-                    rightArm.elbowGroup.rotation.x += (0.45 - rightArm.elbowGroup.rotation.x) * 0.12;
-                    rightArm.wristGroup.rotation.z = Math.sin(time * 7) * 0.35;
-
-                    // Left Arm Neutral
-                    leftArm.arm.rotation.set(0, 0, 0.15);
-                    leftArm.elbowGroup.rotation.set(0.2, 0, 0);
-
-                    // Head Inquisitive Tilt
-                    headGroup.rotation.z += (0.08 - headGroup.rotation.z) * 0.1;
-                    torsoGroup.position.y = Math.sin(time * 2) * 0.02;
-                    torsoGroup.rotation.z = 0;
-
-                } else if (currentAction === 'thumbs') {
-                    // Right Arm Thumbs Up Pose
-                    rightArm.arm.rotation.x += (-1.2 - rightArm.arm.rotation.x) * 0.14;
-                    rightArm.arm.rotation.z += (0.25 - rightArm.arm.rotation.z) * 0.14;
-                    rightArm.elbowGroup.rotation.x += (0.85 - rightArm.elbowGroup.rotation.x) * 0.14;
-                    rightArm.wristGroup.rotation.set(0, 0, 0);
-
-                    // Confident Affirmative Head Nod
-                    headGroup.rotation.x += (Math.sin(time * 4) * 0.08 - 0.12 - headGroup.rotation.x) * 0.1;
-                    headGroup.rotation.z += (0 - headGroup.rotation.z) * 0.1;
-
-                    leftArm.arm.rotation.set(0, 0, 0.15);
-                    leftArm.elbowGroup.rotation.set(0.3, 0, 0);
-                    torsoGroup.position.y = Math.sin(time * 2) * 0.02;
-                    torsoGroup.rotation.z = 0;
-
-                } else if (currentAction === 'peace') {
-                    // Right Arm Peace Pose
-                    rightArm.arm.rotation.x += (-1.05 - rightArm.arm.rotation.x) * 0.14;
-                    rightArm.arm.rotation.z += (0.32 - rightArm.arm.rotation.z) * 0.14;
-                    rightArm.elbowGroup.rotation.x += (0.75 - rightArm.elbowGroup.rotation.x) * 0.14;
-                    rightArm.wristGroup.rotation.set(0, 0, 0);
-
-                    headGroup.rotation.z += (-0.08 - headGroup.rotation.z) * 0.1;
-                    leftArm.arm.rotation.set(0, 0, 0.15);
-                    leftArm.elbowGroup.rotation.set(0.25, 0, 0);
-                    torsoGroup.position.y = Math.sin(time * 2) * 0.02;
-                    torsoGroup.rotation.z = 0;
-
-                } else if (currentAction === 'dance') {
-                    // Upbeat Dance Groove
-                    const beat = Math.sin(time * 8.5);
-                    torsoGroup.position.y = Math.abs(beat) * 0.09;
-                    torsoGroup.rotation.z = Math.sin(time * 4.25) * 0.08;
-                    pelvis.rotation.y = Math.sin(time * 4.25) * 0.15;
-
-                    leftArm.arm.rotation.x = beat * 0.75;
-                    leftArm.arm.rotation.z = 0.25;
-                    leftArm.elbowGroup.rotation.x = 0.6;
-
-                    rightArm.arm.rotation.x = -beat * 0.75;
-                    rightArm.arm.rotation.z = -0.25;
-                    rightArm.elbowGroup.rotation.x = 0.6;
-                    rightArm.wristGroup.rotation.set(0, 0, 0);
-
-                    headGroup.rotation.z = -Math.sin(time * 4.25) * 0.06;
+                // Subtle head tracking towards cursor
+                if (headBone && !['Dance', 'Jump'].includes(currentActionName)) {
+                    headBone.rotation.y += (targetHeadRotY - headBone.rotation.y) * 0.1;
+                    headBone.rotation.x += (targetHeadRotX - headBone.rotation.x) * 0.1;
                 }
             }
 
@@ -2756,23 +2584,23 @@ Would you like to start a project inquiry right now?`;
         // 9. Resize Listener
         function onWindowResize() {
             if (!container) return;
-            width = container.clientWidth || 460;
-            height = container.clientHeight || 420;
+            width = container.clientWidth || 640;
+            height = container.clientHeight || 520;
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
         }
         window.addEventListener('resize', onWindowResize);
 
-        // 10. Auto-Idle Demonstration Loop
-        const autoCycle = ['walk', 'wave', 'walk', 'thumbs', 'walk', 'peace'];
+        // 10. Auto-Idle Demonstration Loop (Transitions between high-impact moves)
+        const autoCycle = ['Walking', 'Wave', 'Running', 'ThumbsUp', 'Walking', 'Jump', 'Dance'];
         let cycleIdx = 0;
         setInterval(() => {
-            if (!userInteracted) {
+            if (!userInteracted && mixer) {
                 cycleIdx = (cycleIdx + 1) % autoCycle.length;
-                setRobotAction(autoCycle[cycleIdx], false);
+                triggerAction(autoCycle[cycleIdx], false);
             }
-        }, 8000);
+        }, 8500);
     }
     initCyberBot();
 });

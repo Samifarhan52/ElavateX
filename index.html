@@ -328,30 +328,36 @@
                             <!-- Interactive Speech / Telemetry Bubble -->
                             <div class="robot-speech-bubble" id="robot-speech-bubble">
                                 <span class="speech-pulse"></span>
-                                <span class="speech-text" id="robot-speech-text">👋 Hello! Click actions below to see me walk, wave, or make signs!</span>
+                                <span class="speech-text" id="robot-speech-text">👋 Welcome to ElavateX! Click any action below or drag to rotate in 3D!</span>
                             </div>
 
                             <!-- 3D WebGL Robot Canvas Stage -->
-                            <div class="robot-canvas-stage" id="robot-canvas-stage" title="Click or move cursor to interact with 3D CyberBot!">
+                            <div class="robot-canvas-stage" id="robot-canvas-stage" title="Click or drag to interact with 3D CyberBot!">
                                 <canvas id="robot-webgl-canvas"></canvas>
                                 <div class="canvas-ambient-pedestal"></div>
                             </div>
 
-                            <!-- Interactive Robot Action Controls (Walk, Wave, Thumbs Up, Peace, Dance) -->
+                            <!-- Interactive Robot Action Controls (7 Dynamic Actions + WhatsApp) -->
                             <div class="robot-interactive-actions" id="robot-interactive-actions">
-                                <button type="button" class="robot-act-btn active" id="btn-act-walk" data-action="walk" title="Make Robot Walk Across Platform">
+                                <button type="button" class="robot-act-btn active" id="btn-act-walk" data-action="Walking" title="Make Robot Walk">
                                     <span>🚶 Walk</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-wave" data-action="wave" title="Make Robot Wave Hello">
+                                <button type="button" class="robot-act-btn" id="btn-act-run" data-action="Running" title="High-Speed Sprint">
+                                    <span>🏃 Sprint</span>
+                                </button>
+                                <button type="button" class="robot-act-btn" id="btn-act-wave" data-action="Wave" title="Friendly Wave">
                                     <span>👋 Wave</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-thumbs" data-action="thumbs" title="Show Thumbs Up Sign">
+                                <button type="button" class="robot-act-btn" id="btn-act-thumbs" data-action="ThumbsUp" title="Thumbs Up Verification">
                                     <span>👍 Thumbs Up</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-peace" data-action="peace" title="Show Peace Sign">
-                                    <span>✌️ Peace</span>
+                                <button type="button" class="robot-act-btn" id="btn-act-jump" data-action="Jump" title="Athletic Aerial Leap">
+                                    <span>⚡ Jump</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-dance" data-action="dance" title="Robot Dance Mode">
+                                <button type="button" class="robot-act-btn" id="btn-act-punch" data-action="Punch" title="Heroic Power Punch">
+                                    <span>🥊 Punch</span>
+                                </button>
+                                <button type="button" class="robot-act-btn" id="btn-act-dance" data-action="Dance" title="Breakdance Groove">
                                     <span>🕺 Dance</span>
                                 </button>
                                 <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20interacted%20with%20your%20Hero%20CyberBot%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="robot-act-btn btn-chat-link" id="btn-act-chat" title="Chat Directly on WhatsApp">
@@ -2946,11 +2952,13 @@
         </div>
     </div>
 
-    <!-- Three.js 3D WebGL Engine -->
+    <!-- Three.js 3D WebGL Engine & GLTF Loader -->
     <script src="three.min.js"></script>
+    <script src="GLTFLoader.js"></script>
+    <script src="robot_model_data.js"></script>
     <!-- GSAP Libraries CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- JS Script -->
-    <script src="main.js?v=1.4"></script>
+    <script src="main.js?v=1.5"></script>
 </body>
 </html>

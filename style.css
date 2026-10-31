@@ -1020,8 +1020,8 @@ button, input, select, textarea {
 /* 2-Column Split Grid */
 .hero-split-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 3.5rem;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 2.2rem;
   align-items: center;
   width: 100%;
 }
@@ -1259,7 +1259,7 @@ button, input, select, textarea {
 .hero-visual-stage {
   position: relative;
   width: 100%;
-  min-height: 520px;
+  min-height: 600px;
   perspective: 1200px;
   display: flex;
   align-items: center;
@@ -1270,8 +1270,8 @@ button, input, select, textarea {
 .interactive-robot-container {
   position: relative;
   width: 100%;
-  max-width: 480px;
-  min-height: 520px;
+  max-width: 660px;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1283,11 +1283,11 @@ button, input, select, textarea {
 /* Ambient Pulsing Aura & 3D Gyro Orbit Rings */
 .robot-stage-aura {
   position: absolute;
-  width: 380px;
-  height: 380px;
+  width: 520px;
+  height: 520px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.28) 0%, rgba(6, 182, 212, 0.18) 50%, transparent 70%);
-  filter: blur(40px);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, rgba(6, 182, 212, 0.2) 50%, transparent 70%);
+  filter: blur(45px);
   z-index: 0;
   pointer-events: none;
   animation: auraPulse 6s ease-in-out infinite alternate;
@@ -1306,15 +1306,15 @@ button, input, select, textarea {
 }
 
 .robot-orbit-ring.ring-outer {
-  width: 360px;
-  height: 360px;
+  width: 500px;
+  height: 500px;
   border: 1.5px dashed rgba(99, 102, 241, 0.35);
   animation: orbitSpin 25s linear infinite;
 }
 
 .robot-orbit-ring.ring-inner {
-  width: 290px;
-  height: 290px;
+  width: 420px;
+  height: 420px;
   border: 1px solid rgba(6, 182, 212, 0.25);
   animation: orbitSpinRev 18s linear infinite;
 }
@@ -1337,14 +1337,14 @@ button, input, select, textarea {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 14px;
-  padding: 0.65rem 1.1rem;
+  padding: 0.7rem 1.25rem;
   margin-bottom: 0.8rem;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   z-index: 10;
-  max-width: 360px;
+  max-width: 460px;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -1372,7 +1372,7 @@ button, input, select, textarea {
 
 .speech-text {
   font-family: var(--font-primary);
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 600;
   color: var(--text-main);
   line-height: 1.35;
@@ -1386,8 +1386,8 @@ button, input, select, textarea {
 .robot-canvas-stage {
   position: relative;
   width: 100%;
-  max-width: 480px;
-  height: 420px;
+  max-width: 640px;
+  height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1407,21 +1407,21 @@ button, input, select, textarea {
   height: 100% !important;
   display: block;
   outline: none;
-  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.45));
 }
 
 [data-theme="light"] #robot-webgl-canvas {
-  filter: drop-shadow(0 15px 35px rgba(30, 27, 75, 0.12));
+  filter: drop-shadow(0 20px 45px rgba(30, 27, 75, 0.15));
 }
 
 .canvas-ambient-pedestal {
   position: absolute;
-  bottom: 8px;
-  width: 320px;
-  height: 24px;
+  bottom: 12px;
+  width: 440px;
+  height: 32px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(56, 189, 248, 0.35) 0%, rgba(99, 102, 241, 0.18) 50%, transparent 75%);
-  filter: blur(8px);
+  background: radial-gradient(ellipse, rgba(56, 189, 248, 0.4) 0%, rgba(99, 102, 241, 0.22) 50%, transparent 75%);
+  filter: blur(10px);
   pointer-events: none;
   z-index: 1;
   animation: pedestalPulse 4s ease-in-out infinite alternate;
@@ -1496,8 +1496,8 @@ button, input, select, textarea {
     margin-top: 1.5rem;
   }
   .robot-canvas-stage {
-    height: 330px;
-    max-width: 360px;
+    height: 400px;
+    max-width: 100%;
   }
 }
 
