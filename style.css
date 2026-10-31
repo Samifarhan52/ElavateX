@@ -1407,10 +1407,12 @@ button, input, select, textarea {
   height: 100% !important;
   display: block;
   outline: none;
+  background: transparent !important;
   filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.45));
 }
 
 [data-theme="light"] #robot-webgl-canvas {
+  background: transparent !important;
   filter: drop-shadow(0 20px 45px rgba(30, 27, 75, 0.15));
 }
 
