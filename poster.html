@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElavateX Social Media Poster Studio (Instagram & LinkedIn)</title>
+    <link rel="icon" type="image/png" href="elavatex_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #070913;
+            --surface-card: #0d1222;
+            --primary-indigo: #4f46e5;
+            --cyber-purple: #9333ea;
+            --ocean-cyan: #00f0ff;
+            --amber-gold: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-glow: rgba(99, 102, 241, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            background: #04060d;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem 4rem;
+        }
+
+        /* Top Header & Navigation */
+        .studio-header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        .studio-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: #38bdf8;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            margin-bottom: 0.8rem;
+        }
+
+        .studio-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            margin-bottom: 0.6rem;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .studio-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Studio Controls Bar */
+        .controls-toolbar {
+            background: rgba(13, 18, 34, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(79, 70, 229, 0.15);
+            max-width: 1040px;
+            width: 100%;
+        }
+
+        .btn-group {
+            display: inline-flex;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 3px;
+        }
+
+        .tool-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 0.55rem 1rem;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .tool-btn:hover {
+            color: #ffffff;
+        }
+
+        .tool-btn.active {
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            padding: 0.65rem 1.25rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45);
+        }
+
+        .quote-select {
+            background: #0f172a;
+            color: #f1f5f9;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 0.55rem 1rem;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* Poster Stage Container */
+        .poster-preview-stage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1080px;
+        }
+
+        .poster-frame {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 65px rgba(0, 0, 0, 0.8), 0 0 40px rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            background: #060813;
+            max-width: 540px;
+            width: 100%;
+        }
+
+        .poster-frame img,
+        .poster-frame svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Tabs for different formats */
+        .poster-view {
+            display: none;
+        }
+
+        .poster-view.active {
+            display: block;
+        }
+
+        /* Info strip */
+        .specs-strip {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .spec-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00f0ff;
+        }
+
+        /* Back to Site Link */
+        .back-link {
+            margin-top: 2.5rem;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="studio-header">
+        <div class="studio-pill">✨ ELAVATEX BRAND CREATIVE SUITE</div>
+        <h1 class="studio-title">Social Media Poster Studio</h1>
+        <p class="studio-desc">Ultra-modern Gen-Z &amp; Executive Tech Agency posters engineered for Instagram Feed (4:5) and LinkedIn (1:1 / Carousel). Formatted with your brand logo, core capabilities, punchy founder quotes, and direct contact channels.</p>
+    </header>
+
+    <div class="controls-toolbar">
+        <!-- Aspect Ratio / Style Selector -->
+        <div class="btn-group">
+            <button class="tool-btn active" onclick="switchView('portrait')">📱 4:5 Instagram (1080×1350)</button>
+            <button class="tool-btn" onclick="switchView('square')">💼 1:1 LinkedIn (1080×1080)</button>
+            <button class="tool-btn" onclick="switchView('artwork')">🤖 3D Cyber Art (Studio Edition)</button>
+        </div>
+
+        <!-- Quote Selector -->
+        <select class="quote-select" id="quoteSelect" onchange="updateQuotes(this.value)">
+            <option value="1">Quote 1: “Stop building ordinary templates. We engineer unfair dominance...”</option>
+            <option value="2">Quote 2: “In a world of digital noise, average products get ignored...”</option>
+            <option value="3">Quote 3: “Speed is the ultimate moat. Sub-second execution &amp; real impact...”</option>
+        </select>
+
+        <!-- Download Buttons -->
+        <button class="download-btn" onclick="downloadCurrentPoster()">
+            <span>📥 Download High-Res PNG</span>
+        </button>
+        <button class="tool-btn" style="border: 1px solid rgba(255,255,255,0.15);" onclick="downloadSVG()">
+            <span>📄 Download Vector SVG</span>
+        </button>
+    </div>
+
+    <main class="poster-preview-stage">
+        <!-- 1. Portrait 1080x1350 View (SVG Vector) -->
+        <div class="poster-frame poster-view active" id="view-portrait">
+            <!-- Inline SVG for instant vector rendering -->
+            <object id="svg-portrait" data="elavatex_social_poster_1080x1350.svg" type="image/svg+xml" style="width:100%; display:block;"></object>
+        </div>
+
+        <!-- 2. Square 1080x1080 View (SVG Vector) -->
+        <div class="poster-frame poster-view" id="view-square" style="max-width: 540px;">
+            <object id="svg-square" data="elavatex_social_poster_1080x1080.svg" type="image/svg+xml" style="width:100%; display:block;"></object>
+        </div>
+
+        <!-- 3. 3D Cyber Art (Studio Edition Image) -->
+        <div class="poster-frame poster-view" id="view-artwork">
+            <img src="elavatex_instagram_poster_1080x1350.jpg" alt="ElavateX 3D Cyber Studio Poster" id="img-artwork" style="width:100%; display:block;">
+        </div>
+    </main>
+
+    <div class="specs-strip">
+        <div class="spec-item"><span class="spec-dot"></span> Canvas: 1080 × 1350 px (4:5) / 1080 × 1080 px (1:1)</div>
+        <div class="spec-item"><span class="spec-dot"></span> Colors: Electric Indigo, Cyber Purple, Ocean Cyan, Amber Gold</div>
+        <div class="spec-item"><span class="spec-dot"></span> Resolution: 300 DPI Crystal-Clear Output</div>
+        <div class="spec-item"><span class="spec-dot"></span> Channels: Instagram, LinkedIn, Twitter/X, WhatsApp Broadcast</div>
+    </div>
+
+    <a href="index.html" class="back-link">← Return to ElavateX Main Website</a>
+
+    <script>
+        let currentMode = 'portrait';
+
+        const quotes = {
+            1: {
+                line1: "“Stop building ordinary templates. We engineer high-velocity apps, scalable SaaS,",
+                line2: "and conversion ecosystems that scale ambitious brands with unfair competitive advantage.”"
+            },
+            2: {
+                line1: "“In a world of digital noise, average products get completely ignored.",
+                line2: "We build digital experiences, mobile platforms, and growth engines that dominate.”"
+            },
+            3: {
+                line1: "“Speed is the ultimate moat. Sub-second execution, enterprise architecture,",
+                line2: "and bespoke conversion funnels engineered for ambitious global scale.”"
+            }
+        };
+
+        function switchView(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.querySelectorAll('.poster-view').forEach(view => view.classList.remove('active'));
+            document.getElementById('view-' + mode).classList.add('active');
+        }
+
+        function updateQuotes(val) {
+            const q = quotes[val];
+            // Update in SVG object if loaded
+            try {
+                const pObj = document.getElementById('svg-portrait').contentDocument;
+                if (pObj) {
+                    const texts = pObj.querySelectorAll('text');
+                    texts.forEach(t => {
+                        if (t.textContent.includes('Stop building') || t.textContent.includes('In a world') || t.textContent.includes('Speed is the')) {
+                            t.textContent = q.line1;
+                        }
+                        if (t.textContent.includes('and conversion ecosystems') || t.textContent.includes('We build digital') || t.textContent.includes('and bespoke')) {
+                            t.textContent = q.line2;
+                        }
+                    });
+                }
+            } catch (e) {
+                console.log('Object cross-origin note:', e);
+            }
+        }
+
+        async function downloadCurrentPoster() {
+            if (currentMode === 'artwork') {
+                const a = document.createElement('a');
+                a.href = 'elavatex_instagram_poster_1080x1350.jpg';
+                a.download = 'ElavateX_3D_Instagram_Poster_1080x1350.jpg';
+                a.click();
+                return;
+            }
+
+            const svgFile = currentMode === 'portrait' ? 'elavatex_social_poster_1080x1350.svg' : 'elavatex_social_poster_1080x1080.svg';
+            const width = currentMode === 'portrait' ? 1080 : 1080;
+            const height = currentMode === 'portrait' ? 1350 : 1080;
+            const fileName = currentMode === 'portrait' ? 'ElavateX_Instagram_Poster_1080x1350.png' : 'ElavateX_LinkedIn_Poster_1080x1080.png';
+
+            try {
+                const response = await fetch(svgFile);
+                const svgText = await response.text();
+
+                const img = new Image();
+                const svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+                const url = URL.createObjectURL(svgBlob);
+
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    URL.revokeObjectURL(url);
+
+                    const pngUrl = canvas.toDataURL('image/png');
+                    const a = document.createElement('a');
+                    a.href = pngUrl;
+                    a.download = fileName;
+                    a.click();
+                };
+                img.src = url;
+            } catch (err) {
+                console.error(err);
+                // Fallback to direct SVG download
+                downloadSVG();
+            }
+        }
+
+        function downloadSVG() {
+            const svgFile = currentMode === 'portrait' ? 'elavatex_social_poster_1080x1350.svg' : 'elavatex_social_poster_1080x1080.svg';
+            const a = document.createElement('a');
+            a.href = svgFile;
+            a.download = svgFile;
+            a.click();
+        }
+    </script>
+</body>
+</html>
