@@ -2178,14 +2178,13 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // ATLAS-X STUDIO-GRADE HUMANOID ROBOT (FULL BIPEDAL SKELETON, USER-TRACKING, 5 ACTIONS, HUD INTEGRATION)
+    // NEXUS-9 QUANTUM CYBER SENTINEL (UNIQUE 3D SCI-FI MECHA, ARC REACTOR, USER TRACKING, 5 ACTIONS)
     // -------------------------------------------------------------------------
     function initCyberBot() {
         const canvas = document.getElementById('robot-webgl-canvas');
         const container = document.getElementById('robot-canvas-stage');
         const speechText = document.getElementById('robot-speech-text');
         const actButtons = document.querySelectorAll('.robot-act-btn[data-action]');
-        const hudCards = document.querySelectorAll('.hud-callout-card');
 
         if (!canvas || !container || typeof THREE === 'undefined') return;
 
@@ -2203,7 +2202,7 @@ Would you like to start a project inquiry right now?`;
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setClearColor(0x000000, 0); // 100% TRANSLUCENT BACKGROUND
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.35;
+        renderer.toneMappingExposure = 1.4;
 
         // 2. Camera Framing (Athletic Full-Body Studio Stance)
         const scene = new THREE.Scene();
@@ -2211,77 +2210,78 @@ Would you like to start a project inquiry right now?`;
         camera.position.set(0, 1.35, 4.3);
         camera.lookAt(0, 1.15, 0);
 
-        // 3. Cinematic 4-Point Studio Lighting Rig
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.4);
+        // 3. Cinematic 4-Point Sci-Fi Lighting Rig
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
         scene.add(ambientLight);
 
-        const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2.8);
         keyLight.position.set(4, 8, 5);
         scene.add(keyLight);
 
-        const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.8);
+        const fillLight = new THREE.DirectionalLight(0x38bdf8, 2.0);
         fillLight.position.set(-5, 4, 3);
         scene.add(fillLight);
 
-        const rimLight = new THREE.DirectionalLight(0xa855f7, 2.4);
+        const rimLight = new THREE.DirectionalLight(0xa855f7, 2.6);
         rimLight.position.set(0, 7, -5);
         scene.add(rimLight);
 
-        const groundLight = new THREE.PointLight(0x00f0ff, 1.6, 5);
+        const groundLight = new THREE.PointLight(0x00f0ff, 2.0, 6);
         groundLight.position.set(0, 0.15, 0);
         scene.add(groundLight);
 
-        // 4. Studio Humanoid Shaders (Matching Boston Dynamics / Atlas Reference Image)
-        // Pearlescent White Ceramic Armor Shell
+        // 4. Futuristic PBR Materials & Shaders
+        // Pearlescent White Ceramic Armor
         const matWhiteArmor = new THREE.MeshPhysicalMaterial({
             color: 0xf8fafc,
             roughness: 0.12,
             metalness: 0.08,
             clearcoat: 1.0,
-            clearcoatRoughness: 0.06,
+            clearcoatRoughness: 0.05,
             reflectivity: 0.95
         });
 
         // Dark Gunmetal / Carbon-Fiber Inner Skeletal Mechanics
         const matDarkSkeleton = new THREE.MeshStandardMaterial({
-            color: 0x0f172a,
+            color: 0x0a0f1d,
             roughness: 0.22,
-            metalness: 0.92
+            metalness: 0.94
         });
 
-        // Metallic Polished Bronze Rotary Actuators (Key visual feature from reference image)
+        // Polished Metallic Bronze / Copper Rotary Actuators
         const matBronzeActuator = new THREE.MeshStandardMaterial({
             color: 0xd97706,
-            roughness: 0.18,
+            roughness: 0.16,
             metalness: 0.96
         });
 
         // Gold Bezel Accent
         const matGoldBezel = new THREE.MeshStandardMaterial({
             color: 0xf59e0b,
-            roughness: 0.2,
-            metalness: 0.95
+            roughness: 0.18,
+            metalness: 0.96
         });
 
-        // High-Specular Deep Curved Visor Glass
+        // High-Specular Deep Obsidian Visor Glass
         const matVisorGlass = new THREE.MeshPhysicalMaterial({
-            color: 0x040812,
+            color: 0x020617,
             roughness: 0.03,
-            metalness: 0.95,
+            metalness: 0.98,
             clearcoat: 1.0,
-            clearcoatRoughness: 0.03
+            clearcoatRoughness: 0.02
         });
 
         // Mirror Chrome Hydraulic Piston Rods
         const matChromeRod = new THREE.MeshStandardMaterial({
-            color: 0xe2e8f0,
-            roughness: 0.05,
+            color: 0xf1f5f9,
+            roughness: 0.04,
             metalness: 0.98
         });
 
         const matCyanGlow = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
         const matOrangeGlow = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
         const matPurpleGlow = new THREE.MeshBasicMaterial({ color: 0xa855f7 });
+        const matCoreReactor = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
 
         // 5. Master Robot Hierarchy
         const robotMasterGroup = new THREE.Group();
@@ -2310,14 +2310,34 @@ Would you like to start a project inquiry right now?`;
         innerRing.position.y = 0.02;
         robotMasterGroup.add(innerRing);
 
+        // Floating Quantum Particles around Robot
+        const particleGeo = new THREE.BufferGeometry();
+        const particleCount = 45;
+        const particlePositions = new Float32Array(particleCount * 3);
+        for (let p = 0; p < particleCount; p++) {
+            particlePositions[p * 3] = (Math.random() - 0.5) * 3.5;
+            particlePositions[p * 3 + 1] = Math.random() * 2.8;
+            particlePositions[p * 3 + 2] = (Math.random() - 0.5) * 3.5;
+        }
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+        const particleMat = new THREE.PointsMaterial({
+            color: 0x38bdf8,
+            size: 0.035,
+            transparent: true,
+            opacity: 0.75,
+            blending: THREE.AdditiveBlending
+        });
+        const particleField = new THREE.Points(particleGeo, particleMat);
+        robotMasterGroup.add(particleField);
+
         // Dynamic Soft Contact Shadow
         const shadowCanvas = document.createElement('canvas');
         shadowCanvas.width = 128;
         shadowCanvas.height = 128;
         const sCtx = shadowCanvas.getContext('2d');
         const sGrad = sCtx.createRadialGradient(64, 64, 0, 64, 64, 64);
-        sGrad.addColorStop(0, 'rgba(0, 0, 0, 0.48)');
-        sGrad.addColorStop(0.5, 'rgba(0, 0, 0, 0.16)');
+        sGrad.addColorStop(0, 'rgba(0, 0, 0, 0.5)');
+        sGrad.addColorStop(0.5, 'rgba(0, 0, 0, 0.18)');
         sGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         sCtx.fillStyle = sGrad;
         sCtx.fillRect(0, 0, 128, 128);
@@ -2330,7 +2350,7 @@ Would you like to start a project inquiry right now?`;
         groundShadow.position.y = 0.005;
         robotMasterGroup.add(groundShadow);
 
-        // 6. Sculpted Humanoid Bipedal Anatomy (Matching Reference Image)
+        // 6. Sculpted Humanoid Mecha Anatomy
         const robotBody = new THREE.Group();
         robotMasterGroup.add(robotBody);
 
@@ -2367,16 +2387,18 @@ Would you like to start a project inquiry right now?`;
             vertebra.position.y = 0.09 + i * 0.075;
             spineGroup.add(vertebra);
 
-            // Left & Right Titanium Flank Ribs
+            // Left & Right Titanium Flank Ribs with Cyan Light Channels
             const ribL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.03, 0.16), matDarkSkeleton);
             ribL.position.set(-0.16, 0.09 + i * 0.075, 0);
             ribL.rotation.z = -0.15;
             spineGroup.add(ribL);
 
-            const ribR = ribL.clone();
-            ribR.position.x = 0.16;
-            ribR.rotation.z = 0.15;
-            spineGroup.add(ribR);
+            const ribGlowL = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.015, 0.12), matCyanGlow);
+            ribGlowL.position.set(-0.19, 0.09 + i * 0.075, 0);
+            spineGroup.add(ribGlowL);
+
+            const ribR = ribL.clone(); ribR.position.x = 0.16; ribR.rotation.z = 0.15; spineGroup.add(ribR);
+            const ribGlowR = ribGlowL.clone(); ribGlowR.position.x = 0.19; spineGroup.add(ribGlowR);
         }
 
         // Dual Vertical Hydraulic Actuator Rods on Back Spine
@@ -2384,9 +2406,7 @@ Would you like to start a project inquiry right now?`;
         spineRodL.position.set(-0.06, 0.22, -0.11);
         spineGroup.add(spineRodL);
 
-        const spineRodR = spineRodL.clone();
-        spineRodR.position.x = 0.06;
-        spineGroup.add(spineRodR);
+        const spineRodR = spineRodL.clone(); spineRodR.position.x = 0.06; spineGroup.add(spineRodR);
 
         // Segmented Ceramic Abdominal Armor
         const abPlateUpper = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.09, 0.18), matWhiteArmor);
@@ -2413,17 +2433,28 @@ Would you like to start a project inquiry right now?`;
         chestR.rotation.y = -0.12;
         torsoGroup.add(chestR);
 
-        // Back Armor Shell
+        // Chest Inset Cyan Neon Seams
+        const seamL = new THREE.Mesh(new THREE.BoxGeometry(0.015, 0.32, 0.02), matCyanGlow);
+        seamL.position.set(-0.03, 0.22, 0.22);
+        torsoGroup.add(seamL);
+        const seamR = seamL.clone(); seamR.position.x = 0.03; torsoGroup.add(seamR);
+
+        // Back Armor Shell with Exhaust Louvers
         const backShell = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.36, 0.22), matWhiteArmor);
         backShell.position.set(0, 0.22, -0.06);
         torsoGroup.add(backShell);
 
-        // Clavicle Yoke
+        const backVentL = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.18, 0.02), matCyanGlow);
+        backVentL.position.set(-0.12, 0.22, -0.17);
+        torsoGroup.add(backVentL);
+        const backVentR = backVentL.clone(); backVentR.position.x = 0.12; torsoGroup.add(backVentR);
+
+        // Clavicle Yoke with Chrome Hydraulics
         const clavicle = new THREE.Mesh(new THREE.BoxGeometry(0.54, 0.08, 0.16), matDarkSkeleton);
         clavicle.position.set(0, 0.42, 0.02);
         torsoGroup.add(clavicle);
 
-        // Central Power Core Badge (The defining circular bronze emblem from the reference image!)
+        // Quantum Arc Reactor Core (Unique Multi-Layered Pulsating Core!)
         const coreGroup = new THREE.Group();
         coreGroup.position.set(0, 0.22, 0.22);
         torsoGroup.add(coreGroup);
@@ -2438,23 +2469,33 @@ Would you like to start a project inquiry right now?`;
         coreDarkBezel.rotation.x = Math.PI / 2;
         coreGroup.add(coreDarkBezel);
 
-        const coreLed = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 16), matOrangeGlow);
+        const coreLed = new THREE.Mesh(new THREE.SphereGeometry(0.048, 16, 16), matCoreReactor);
         coreLed.position.z = 0.02;
         coreGroup.add(coreLed);
 
-        const corePointLight = new THREE.PointLight(0xf59e0b, 1.4, 2.8);
+        // Floating Counter-Rotating Quantum Micro-Rings inside Core
+        const coreOrbitRing1 = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.005, 12, 24), matCyanGlow);
+        coreGroup.add(coreOrbitRing1);
+
+        const coreOrbitRing2 = new THREE.Mesh(new THREE.TorusGeometry(0.042, 0.005, 12, 24), matPurpleGlow);
+        coreGroup.add(coreOrbitRing2);
+
+        const corePointLight = new THREE.PointLight(0x00f0ff, 1.8, 3.2);
         corePointLight.position.set(0, 0, 0.12);
         coreGroup.add(corePointLight);
 
-        // Aerodynamic Shoulder Cowls (Pauldrons)
-        const pauldronL = new THREE.Mesh(new THREE.SphereGeometry(0.18, 20, 20), matWhiteArmor);
-        pauldronL.scale.set(1.2, 0.85, 1.1);
-        pauldronL.position.set(-0.35, 0.38, 0.02);
+        // Aerodynamic Tiered Shoulder Pauldrons (Cowls)
+        const pauldronL = new THREE.Mesh(new THREE.SphereGeometry(0.19, 20, 20), matWhiteArmor);
+        pauldronL.scale.set(1.25, 0.85, 1.15);
+        pauldronL.position.set(-0.36, 0.38, 0.02);
         torsoGroup.add(pauldronL);
 
-        const pauldronR = pauldronL.clone();
-        pauldronR.position.x = 0.35;
-        torsoGroup.add(pauldronR);
+        const pauldronGlowL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.02, 0.14), matCyanGlow);
+        pauldronGlowL.position.set(-0.36, 0.44, 0.02);
+        torsoGroup.add(pauldronGlowL);
+
+        const pauldronR = pauldronL.clone(); pauldronR.position.x = 0.36; torsoGroup.add(pauldronR);
+        const pauldronGlowR = pauldronGlowL.clone(); pauldronGlowR.position.x = 0.36; torsoGroup.add(pauldronGlowR);
 
         // Neck Assembly with Dual Chrome Hydraulic Pistons
         const neckGroup = new THREE.Group();
@@ -2469,23 +2510,37 @@ Would you like to start a project inquiry right now?`;
         neckHydraulicL.rotation.z = -0.15;
         neckGroup.add(neckHydraulicL);
 
-        const neckHydraulicR = neckHydraulicL.clone();
-        neckHydraulicR.position.x = 0.06;
-        neckHydraulicR.rotation.z = 0.15;
-        neckGroup.add(neckHydraulicR);
+        const neckHydraulicR = neckHydraulicL.clone(); neckHydraulicR.position.x = 0.06; neckHydraulicR.rotation.z = 0.15; neckGroup.add(neckHydraulicR);
 
-        // Sculpted Humanoid Head & Helmet (Matching Boston Dynamics / Figure 01 Reference)
+        // Sculpted Sci-Fi Mecha Head (Unique Aerodynamic Helmet & Cyber Visor)
         const headGroup = new THREE.Group();
         headGroup.position.y = 0.2;
         neckGroup.add(headGroup);
 
-        // Sleek White Ceramic Cranium Shell (Aerodynamic compound curvature)
+        // Sleek White Ceramic Cranium Shell
         const craniumGeo = new THREE.SphereGeometry(0.34, 36, 32);
         craniumGeo.scale(0.96, 1.12, 1.05);
         const cranium = new THREE.Mesh(craniumGeo, matWhiteArmor);
         headGroup.add(cranium);
 
-        // Sculpted Face Mask & Athletic Jawline
+        // Dual Swept-Back Cyber Crest Horns/Fins (Unique Sci-Fi Mecha feature!)
+        const hornGeo = new THREE.ConeGeometry(0.04, 0.32, 12);
+        const hornL = new THREE.Mesh(hornGeo, matWhiteArmor);
+        hornL.rotation.z = 0.45;
+        hornL.rotation.x = -0.35;
+        hornL.position.set(-0.24, 0.3, -0.06);
+        headGroup.add(hornL);
+
+        const hornGlowL = new THREE.Mesh(new THREE.ConeGeometry(0.02, 0.18, 10), matCyanGlow);
+        hornGlowL.rotation.z = 0.45;
+        hornGlowL.rotation.x = -0.35;
+        hornGlowL.position.set(-0.27, 0.36, -0.08);
+        headGroup.add(hornGlowL);
+
+        const hornR = hornL.clone(); hornR.rotation.z = -0.45; hornR.position.x = 0.24; headGroup.add(hornR);
+        const hornGlowR = hornGlowL.clone(); hornGlowR.rotation.z = -0.45; hornGlowR.position.x = 0.27; headGroup.add(hornGlowR);
+
+        // Sculpted Athletic Jawline & Chin Guard
         const jawPlate = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.18, 0.22, 24, 1, false, -Math.PI / 2.6, Math.PI / 1.3), matWhiteArmor);
         jawPlate.rotation.y = Math.PI / 2;
         jawPlate.position.set(0, -0.06, 0.14);
@@ -2498,7 +2553,7 @@ Would you like to start a project inquiry right now?`;
         visorMask.position.set(0, 0.04, 0.06);
         headGroup.add(visorMask);
 
-        // Dual Optical Camera Eyes (Left & Right with Specular Lenses)
+        // Dual Optical Camera Eyes (Left & Right with Concentric Cyber Reticle Rings)
         const eyeGroup = new THREE.Group();
         eyeGroup.position.set(0, 0.06, 0.3);
         headGroup.add(eyeGroup);
@@ -2527,7 +2582,12 @@ Would you like to start a project inquiry right now?`;
         const eyeLensR = eyeLensL.clone(); eyeLensR.position.x = 0.125; eyeGroup.add(eyeLensR);
         const pupilR = pupilL.clone(); pupilR.position.x = 0.125; eyeGroup.add(pupilR);
 
-        // Dual Rotary Ear Actuators with Bronze Outer Rings (from reference image)
+        // Audio Visualizer Cyber Mouth Line
+        const mouthBar = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.012, 0.02), matCyanGlow);
+        mouthBar.position.set(0, -0.12, 0.28);
+        headGroup.add(mouthBar);
+
+        // Dual Rotary Ear Actuators with Bronze Outer Rings
         const earL = new THREE.Group();
         earL.position.set(-0.35, 0.02, 0);
         headGroup.add(earL);
@@ -2560,7 +2620,7 @@ Would you like to start a project inquiry right now?`;
         lShoulderBronze.position.set(-0.02, 0, 0);
         leftArm.add(lShoulderBronze);
 
-        // Sculpted Bicep Armor
+        // Sculpted Bicep Armor with Chrome Cylinder
         const lBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.36, 20), matWhiteArmor);
         lBicep.position.y = -0.22;
         leftArm.add(lBicep);
@@ -2671,7 +2731,7 @@ Would you like to start a project inquiry right now?`;
         leftLeg.position.set(-0.25, 0, 0);
         pelvisGroup.add(leftLeg);
 
-        // Contoured Quadricep Armor
+        // Contoured Quadricep Armor with Neon Seams
         const lThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.46, 24), matWhiteArmor);
         lThigh.position.y = -0.24;
         leftLeg.add(lThigh);
@@ -2680,7 +2740,7 @@ Would you like to start a project inquiry right now?`;
         lHamstringRod.position.set(0, -0.24, -0.08);
         leftLeg.add(lHamstringRod);
 
-        // Knee Group with Heavy-Duty Bronze Rotary Actuator (Matching reference photo!)
+        // Knee Group with Heavy-Duty Bronze Rotary Actuator
         const lKnee = new THREE.Group();
         lKnee.position.y = -0.48;
         leftLeg.add(lKnee);
@@ -2703,7 +2763,11 @@ Would you like to start a project inquiry right now?`;
         lShin.position.y = -0.24;
         lKnee.add(lShin);
 
-        // Athletic Robotic Running Shoe with Cyan Toe Grip (from reference image)
+        const lShinGlow = new THREE.Mesh(new THREE.BoxGeometry(0.016, 0.3, 0.02), matCyanGlow);
+        lShinGlow.position.set(0, -0.24, 0.085);
+        lKnee.add(lShinGlow);
+
+        // Athletic Robotic Running Shoe with Anti-Grav Thruster Sole
         const lFoot = new THREE.Group();
         lFoot.position.set(0, -0.48, 0.04);
         lKnee.add(lFoot);
@@ -2752,6 +2816,10 @@ Would you like to start a project inquiry right now?`;
         rShin.position.y = -0.24;
         rKnee.add(rShin);
 
+        const rShinGlow = new THREE.Mesh(new THREE.BoxGeometry(0.016, 0.3, 0.02), matCyanGlow);
+        rShinGlow.position.set(0, -0.24, 0.085);
+        rKnee.add(rShinGlow);
+
         const rFoot = new THREE.Group();
         rFoot.position.set(0, -0.48, 0.04);
         rKnee.add(rFoot);
@@ -2774,8 +2842,6 @@ Would you like to start a project inquiry right now?`;
         let isDragging = false;
         let prevMouseX = 0;
         let userInteracted = false;
-        let targetLookX = 0;
-        let targetLookY = 0;
 
         // Mouse cursor tracking
         window.addEventListener('mousemove', (e) => {
@@ -2835,11 +2901,11 @@ Would you like to start a project inquiry right now?`;
         let currentActionName = 'Walking';
 
         const speechMessages = {
-            Walking: '🚶 Autonomous Navigation: Actively auditing systems & monitoring conversion metrics.',
-            Running: '⚡ Enterprise Velocity: Sub-second TTFB & 100/100 Core Web Vitals delivered.',
+            Walking: '🚶 Nexus-9 Sentinel: Autonomous scanning & system architecture monitoring active.',
+            Running: '⚡ Hyper-Drive Sprint: Sub-second TTFB & 100/100 Core Web Vitals engaged.',
             Wave: '👋 Hello! Welcome to ElavateX engineering studio! How can we scale your vision today?',
             Greet: '🤝 Executive Welcome: Ready to architect your web platform, mobile app, or AI agents.',
-            Dance: '🎉 Launch Celebration: Delivering real growth and market dominance.'
+            Dance: '🎉 Cyber Groove: Delivering unfair competitive advantage and market dominance.'
         };
 
         function setSpeech(text) {
@@ -2884,44 +2950,7 @@ Would you like to start a project inquiry right now?`;
             });
         });
 
-        // 9. Floating Holographic HUD Card Interactive Engine (From Reference Image)
-        hudCards.forEach(card => {
-            const target = card.getAttribute('data-hud-target');
-            const info = card.getAttribute('data-info');
-
-            card.addEventListener('mouseenter', () => {
-                hudCards.forEach(c => c.classList.remove('active-focus'));
-                card.classList.add('active-focus');
-                if (info) setSpeech(info);
-
-                // Robot glances directly toward card
-                if (target === 'head') { targetLookX = -0.2; targetLookY = -0.3; }
-                else if (target === 'core') { targetLookX = 0.1; targetLookY = -0.25; }
-                else if (target === 'knee') { targetLookX = 0.35; targetLookY = -0.2; }
-                else if (target === 'shoulder') { targetLookX = -0.15; targetLookY = 0.3; }
-                else if (target === 'elbow') { targetLookX = 0.1; targetLookY = 0.28; }
-                else if (target === 'foot') { targetLookX = 0.35; targetLookY = 0.22; }
-
-                // Pulse core reactor light
-                corePointLight.intensity = 2.4;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                card.classList.remove('active-focus');
-                targetLookX = 0;
-                targetLookY = 0;
-                corePointLight.intensity = 1.4;
-            });
-
-            card.addEventListener('click', () => {
-                userInteracted = true;
-                if (info) setSpeech(info);
-                // Trigger a responsive reaction
-                triggerAction('Wave', true);
-            });
-        });
-
-        // 10. Kinematic Physics & Animation Loop (60 FPS)
+        // 9. Kinematic Physics & Animation Loop (60 FPS)
         const clock = new THREE.Clock();
         let animTime = 0;
         let blinkTimer = 0;
@@ -2944,16 +2973,33 @@ Would you like to start a project inquiry right now?`;
                 if (blinkTimer > 3.8) blinkTimer = 0;
             }
 
-            // Real-Time Head & Neck User Tracking (Follows cursor + scroll position + HUD target focus)
-            const targetHeadY = (targetLookY !== 0 ? targetLookY : mouseX * 0.45);
-            const targetHeadX = (targetLookX !== 0 ? targetLookX : (-mouseY * 0.25 - scrollRatio * 0.28));
+            // Real-Time Head & Neck User Tracking (Follows cursor + scroll position)
+            const targetHeadY = mouseX * 0.45;
+            const targetHeadX = -mouseY * 0.25 - scrollRatio * 0.28;
             headGroup.rotation.y = THREE.MathUtils.lerp(headGroup.rotation.y, targetHeadY, 0.08);
             headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, targetHeadX, 0.08);
-            torsoGroup.rotation.y = THREE.MathUtils.lerp(torsoGroup.rotation.y, (targetLookY !== 0 ? targetLookY * 0.5 : mouseX * 0.15), 0.06);
+            torsoGroup.rotation.y = THREE.MathUtils.lerp(torsoGroup.rotation.y, mouseX * 0.15, 0.06);
 
-            // Core Reactor Breathing Pulse
-            const reactorPulse = 1.3 + Math.sin(animTime * 3.2) * 0.25;
-            corePointLight.intensity = targetLookX !== 0 ? 2.4 : reactorPulse;
+            // Core Arc Reactor Breathing Pulse & Counter-Rotating Micro-Rings
+            const reactorPulse = 1.6 + Math.sin(animTime * 3.5) * 0.4;
+            corePointLight.intensity = reactorPulse;
+            coreOrbitRing1.rotation.x = animTime * 2.2;
+            coreOrbitRing1.rotation.y = animTime * 1.8;
+            coreOrbitRing2.rotation.y = -animTime * 2.6;
+            coreOrbitRing2.rotation.z = animTime * 1.5;
+
+            // Audio Visualizer mouth pulse
+            mouthBar.scale.x = 0.8 + Math.sin(animTime * 8) * 0.3;
+
+            // Floating Quantum Particles Motion
+            const positions = particleGeo.attributes.position.array;
+            for (let i = 0; i < particleCount; i++) {
+                positions[i * 3 + 1] += 0.003;
+                if (positions[i * 3 + 1] > 3.0) {
+                    positions[i * 3 + 1] = 0.1;
+                }
+            }
+            particleGeo.attributes.position.needsUpdate = true;
 
             // 5 High-Impact Dynamic Actions
             if (currentActionName === 'Walking') {
@@ -2974,7 +3020,7 @@ Would you like to start a project inquiry right now?`;
                 robotBody.rotation.x = 0;
                 rightArm.rotation.y = 0;
             } else if (currentActionName === 'Running') {
-                // Athletic High-Knee Sprint (Exact dynamic leap pose matching reference photo!)
+                // Athletic High-Knee Sprint
                 const runStep = Math.sin(animTime * 8.5);
                 leftLeg.rotation.x = runStep * 0.85;
                 rightLeg.rotation.x = -runStep * 0.85;
@@ -3053,7 +3099,7 @@ Would you like to start a project inquiry right now?`;
         }
         animate();
 
-        // 11. Responsive Viewport Resize Observer
+        // 10. Responsive Viewport Resize Observer
         function onWindowResize() {
             if (!container || !renderer || !camera) return;
             width = container.clientWidth || 720;
@@ -3064,7 +3110,7 @@ Would you like to start a project inquiry right now?`;
         }
         window.addEventListener('resize', onWindowResize);
 
-        // 12. Auto-Idle Demonstration Loop (Transitions smoothly between showcase moves)
+        // 11. Auto-Idle Demonstration Loop (Transitions smoothly between showcase moves)
         const autoCycle = ['Walking', 'Run', 'Wave', 'Greet', 'Walking', 'Dance'];
         let cycleIdx = 0;
         setInterval(() => {
