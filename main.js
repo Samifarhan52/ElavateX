@@ -2204,10 +2204,14 @@ Would you like to start a project inquiry right now?`;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.45;
 
-        // 2. Camera Framing (Athletic Full-Body Studio Stance)
+        // 2. Camera Framing (Athletic Full-Body Studio Stance - Mobile-Aware)
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
-        camera.position.set(0, 1.35, 4.3);
+        const isMobileInit = width < 640;
+        const initFov = isMobileInit ? 38 : (width < 1024 ? 36 : 35);
+        const initZ = isMobileInit ? 4.8 : (width < 1024 ? 4.5 : 4.3);
+        const initY = isMobileInit ? 1.25 : 1.35;
+        const camera = new THREE.PerspectiveCamera(initFov, width / height, 0.1, 100);
+        camera.position.set(0, initY, initZ);
         camera.lookAt(0, 1.15, 0);
 
         // 3. Cinematic Multicolor Studio Lighting Rig (Matching ElavateX Brand)
@@ -2321,15 +2325,17 @@ Would you like to start a project inquiry right now?`;
         const robotMasterGroup = new THREE.Group();
         scene.add(robotMasterGroup);
 
-        // Holographic Gyro Pedestal at Feet (Dual Cyan & Violet Rings)
-        const platformGeo = new THREE.CylinderGeometry(1.65, 1.85, 0.08, 48);
+        // Holographic Gyro Pedestal at Feet (Dual Cyan & Violet Neon Rings, 100% Translucent Dais)
+        const platformGeo = new THREE.CylinderGeometry(1.65, 1.75, 0.02, 48);
         const platformMat = new THREE.MeshStandardMaterial({
-            color: 0x090f22,
-            metalness: 0.9,
-            roughness: 0.25
+            color: 0x38bdf8,
+            transparent: true,
+            opacity: 0.05,
+            metalness: 0.8,
+            roughness: 0.2
         });
         const platform = new THREE.Mesh(platformGeo, platformMat);
-        platform.position.y = -0.04;
+        platform.position.y = -0.01;
         robotMasterGroup.add(platform);
 
         const ringGeo = new THREE.TorusGeometry(1.72, 0.018, 16, 64);
@@ -3017,22 +3023,61 @@ Would you like to start a project inquiry right now?`;
         });
         window.addEventListener('mouseup', () => { isDragging = false; });
 
-        // Touch support
+        // Intelligent Mobile Touch Support (Prevents scroll trap; passes vertical swipes to browser)
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isHorizontalSwipe = false;
+
         container.addEventListener('touchstart', (e) => {
             if (e.touches.length === 1) {
-                isDragging = true;
-                prevMouseX = e.touches[0].clientX;
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                prevMouseX = touchStartX;
+                isHorizontalSwipe = false;
+                isDragging = false;
                 userInteracted = true;
             }
         }, { passive: true });
+
         window.addEventListener('touchmove', (e) => {
-            if (isDragging && e.touches.length === 1) {
-                const deltaX = e.touches[0].clientX - prevMouseX;
-                robotMasterGroup.rotation.y += deltaX * 0.008;
-                prevMouseX = e.touches[0].clientX;
+            if (e.touches.length === 1) {
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const deltaX = currentX - touchStartX;
+                const deltaY = currentY - touchStartY;
+
+                // Gesture intent discrimination:
+                if (!isHorizontalSwipe && !isDragging) {
+                    // Vertical gesture intent: user is scrolling down/up the webpage!
+                    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+                        isDragging = false;
+                        return; // Let browser natively scroll smoothly without obstruction
+                    }
+                    // Deliberate horizontal gesture intent: user is rotating the robot!
+                    if (Math.abs(deltaX) > Math.abs(deltaY) + 6) {
+                        isHorizontalSwipe = true;
+                        isDragging = true;
+                        prevMouseX = currentX;
+                    }
+                }
+
+                if (isDragging) {
+                    const stepX = currentX - prevMouseX;
+                    robotMasterGroup.rotation.y += stepX * 0.008;
+                    prevMouseX = currentX;
+                }
             }
         }, { passive: true });
-        window.addEventListener('touchend', () => { isDragging = false; });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+            isHorizontalSwipe = false;
+        });
+
+        window.addEventListener('touchcancel', () => {
+            isDragging = false;
+            isHorizontalSwipe = false;
+        });
 
         // 8. 6 Interactive Actions Controller (Walk, Sprint, Jump, Wave, Greet, Dance)
         let currentActionName = 'Walking';
@@ -3372,12 +3417,22 @@ Would you like to start a project inquiry right now?`;
         }
         animate();
 
-        // 10. Responsive Viewport Resize Observer
+        // 10. Responsive Viewport Resize Observer (Mobile Adaptive Framing)
         function onWindowResize() {
             if (!container || !renderer || !camera) return;
             width = container.clientWidth || 720;
             height = container.clientHeight || 560;
             camera.aspect = width / height;
+            if (width < 640) {
+                camera.fov = 38;
+                camera.position.set(0, 1.25, 4.8);
+            } else if (width < 1024) {
+                camera.fov = 36;
+                camera.position.set(0, 1.3, 4.5);
+            } else {
+                camera.fov = 35;
+                camera.position.set(0, 1.35, 4.3);
+            }
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
         }

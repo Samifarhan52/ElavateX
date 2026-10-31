@@ -1385,6 +1385,10 @@ button, input, select, textarea {
 }
 
 /* 3D WebGL CyberBot Canvas Stage */
+.interactive-robot-container {
+  touch-action: pan-y !important;
+}
+
 .robot-canvas-stage {
   position: relative;
   width: 100%;
@@ -1395,7 +1399,7 @@ button, input, select, textarea {
   justify-content: center;
   cursor: grab;
   user-select: none;
-  touch-action: none;
+  touch-action: pan-y !important; /* Critical: allows seamless vertical page scroll on mobile */
   overflow: visible;
   z-index: 3;
 }
@@ -1410,6 +1414,7 @@ button, input, select, textarea {
   display: block;
   outline: none;
   background: transparent !important;
+  touch-action: pan-y !important;
   filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.5));
 }
 
@@ -1497,22 +1502,83 @@ button, input, select, textarea {
   }
   .interactive-robot-container {
     min-height: auto;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
     max-width: 100%;
+    touch-action: pan-y !important;
   }
   .robot-canvas-stage {
-    height: 480px;
+    height: 440px;
     max-width: 100%;
+    touch-action: pan-y !important;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .hero-visual-stage {
+    min-height: auto;
+    margin-top: 0.8rem;
+  }
+  .interactive-robot-container {
+    min-height: auto;
+    margin-top: 0.8rem;
+    max-width: 100%;
+    touch-action: pan-y !important;
+  }
   .robot-canvas-stage {
-    height: 400px;
+    height: 350px !important;
+    max-width: 100%;
+    touch-action: pan-y !important;
+  }
+  #robot-webgl-canvas {
+    touch-action: pan-y !important;
+  }
+  .robot-stage-aura {
+    width: 340px;
+    height: 340px;
+    filter: blur(35px);
+  }
+  .robot-orbit-ring.ring-outer {
+    width: 320px;
+    height: 320px;
+  }
+  .robot-orbit-ring.ring-inner {
+    width: 250px;
+    height: 250px;
+  }
+  .robot-speech-bubble {
+    padding: 0.45rem 0.95rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.45rem;
+    max-width: 95%;
+  }
+  .speech-text {
+    font-size: 0.74rem;
+  }
+  .robot-interactive-actions {
+    gap: 0.35rem;
+    margin-top: 0.85rem;
+    padding: 0.2rem 0;
   }
   .robot-act-btn {
     font-size: 0.72rem;
-    padding: 0.4rem 0.75rem;
+    padding: 0.38rem 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .robot-canvas-stage {
+    height: 320px !important;
+    touch-action: pan-y !important;
+  }
+  .robot-speech-bubble {
+    padding: 0.35rem 0.75rem;
+  }
+  .speech-text {
+    font-size: 0.7rem;
+  }
+  .robot-act-btn {
+    font-size: 0.68rem;
+    padding: 0.32rem 0.55rem;
   }
 }
 
@@ -5078,12 +5144,14 @@ html, body {
   }
   .hero-visual-stage {
     width: 100%;
-    min-height: 480px;
+    min-height: auto;
     transform: none;
     margin-top: 1rem;
+    touch-action: pan-y !important;
   }
   .robot-canvas-stage {
     height: 440px;
+    touch-action: pan-y !important;
   }
   .hero-metrics-strip {
     display: grid;
