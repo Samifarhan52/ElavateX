@@ -333,7 +333,7 @@
 
                             <!-- 3D Spline Robot Stage -->
                             <div class="robot-canvas-stage" id="robot-canvas-stage" title="Move your cursor or click to interact with 3D CyberBot">
-                                <spline-viewer id="hero-spline-robot" url="scene.splinecode" loading-anim-type="none"></spline-viewer>
+                                <spline-viewer id="hero-spline-robot" url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="eager"></spline-viewer>
                                 <div class="canvas-ambient-pedestal"></div>
                             </div>
 
@@ -2943,13 +2943,13 @@
         </div>
     </div>
 
-    <!-- Spline 3D Interactive Web Engine (Local Fast Loading with CDN fallback) -->
-    <script type="module" src="spline-viewer.js"></script>
+    <!-- Spline 3D Interactive Web Engine (Cloudflare CDN with local fallback) -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@2.0.126/build/spline-viewer.js"></script>
     <script type="module">
         if (!customElements.get('spline-viewer')) {
             const s = document.createElement('script');
             s.type = 'module';
-            s.src = 'https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js';
+            s.src = './spline-viewer.js';
             document.head.appendChild(s);
         }
     </script>

@@ -1410,8 +1410,11 @@ spline-viewer {
   filter: drop-shadow(0 20px 45px rgba(30, 27, 75, 0.12));
 }
 
-/* Remove Spline Watermark / Logo completely */
-spline-viewer::part(logo) {
+/* Remove Spline Watermark, Preloader, and Logo parts */
+spline-viewer::part(logo),
+spline-viewer::part(preloader),
+spline-viewer::part(spinner),
+spline-viewer::part(hints) {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;

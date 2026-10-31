@@ -2237,9 +2237,14 @@ Would you like to start a project inquiry right now?`;
             const sanitizeViewer = () => {
                 try {
                     if (splineViewer.shadowRoot) {
-                        // Remove default logo and inject strict style to hide all watermarks
                         const logo = splineViewer.shadowRoot.querySelector('#logo');
                         if (logo) logo.remove();
+
+                        const preloader = splineViewer.shadowRoot.querySelector('#preloader');
+                        if (preloader) preloader.remove();
+
+                        const hints = splineViewer.shadowRoot.querySelector('#hints');
+                        if (hints) hints.remove();
 
                         const links = splineViewer.shadowRoot.querySelectorAll('a[href*="spline"]');
                         links.forEach(l => l.remove());
@@ -2248,7 +2253,7 @@ Would you like to start a project inquiry right now?`;
                             const style = document.createElement('style');
                             style.id = 'spline-override-style';
                             style.textContent = `
-                                #logo, [class*="watermark"], a[href*="spline.design"] {
+                                #logo, #hints, #hint-drag, #preloader, [class*="watermark"], a[href*="spline.design"] {
                                     display: none !important;
                                     opacity: 0 !important;
                                     visibility: hidden !important;
@@ -2268,7 +2273,11 @@ Would you like to start a project inquiry right now?`;
                 }
             };
 
-            splineViewer.addEventListener('load', sanitizeViewer);
+            splineViewer.addEventListener('load', () => {
+                sanitizeViewer();
+                splineViewer.classList.add('scene-loaded');
+                updateSpeech('🤖 CyberBot Online: Move your cursor to explore 3D motion tracking & studio lighting!');
+            });
 
             // Periodically check shadowRoot until loaded to ensure logo is pruned
             const pruneInterval = setInterval(() => {
@@ -2276,17 +2285,7 @@ Would you like to start a project inquiry right now?`;
                 if (splineViewer.shadowRoot && splineViewer.shadowRoot.querySelector('canvas')) {
                     clearInterval(pruneInterval);
                 }
-            }, 300);
-
-            // Fallback to CDN URL if local scene fails or takes too long
-            const fallbackTimeout = setTimeout(() => {
-                if (splineViewer && (!splineViewer.shadowRoot || !splineViewer.shadowRoot.querySelector('canvas'))) {
-                    console.log('Switching to high-availability CDN asset for 3D robot...');
-                    splineViewer.setAttribute('url', 'https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode');
-                }
-            }, 6000);
-
-            splineViewer.addEventListener('load', () => clearTimeout(fallbackTimeout));
+            }, 250);
         }
 
         // Auto-cycling speech telemetry when idle
