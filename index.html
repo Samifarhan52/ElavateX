@@ -331,27 +331,36 @@
                                 <span class="speech-text" id="robot-speech-text">🤖 CyberBot Online! Move your cursor to interact or tap insights below:</span>
                             </div>
 
-                            <!-- 3D Spline Robot Stage -->
-                            <div class="robot-canvas-stage" id="robot-canvas-stage" title="Move your cursor or click to interact with 3D CyberBot">
-                                <spline-viewer id="hero-spline-robot" url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading="eager"></spline-viewer>
+                            <!-- 3D WebGL CyberBot Stage -->
+                            <div class="robot-canvas-stage" id="robot-canvas-stage" title="Click or drag to interact with 3D CyberBot!">
+                                <canvas id="robot-webgl-canvas"></canvas>
                                 <div class="canvas-ambient-pedestal"></div>
                             </div>
 
-                            <!-- Interactive Robot Action Controls (AI & Architecture Insights + WhatsApp) -->
+                            <!-- Interactive Robot Action Controls (7 Dynamic Actions + WhatsApp) -->
                             <div class="robot-interactive-actions" id="robot-interactive-actions">
-                                <button type="button" class="robot-act-btn active" id="btn-act-ai" data-topic="ai" title="AI Engineering Insights">
-                                    <span>💡 AI Insights</span>
+                                <button type="button" class="robot-act-btn active" id="btn-act-walk" data-action="Walking" title="Make CyberBot Walk">
+                                    <span>🚶 Walk</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-speed" data-topic="vitals" title="100/100 Core Web Vitals">
-                                    <span>⚡ 100/100 Vitals</span>
+                                <button type="button" class="robot-act-btn" id="btn-act-run" data-action="Running" title="High-Speed Sprint">
+                                    <span>🏃 Sprint</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-arch" data-topic="architecture" title="Next.js & Flutter Architecture">
-                                    <span>🚀 Architecture</span>
+                                <button type="button" class="robot-act-btn" id="btn-act-wave" data-action="Wave" title="Friendly Wave">
+                                    <span>👋 Wave</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-growth" data-topic="growth" title="Market Dominance & Deal Conversion">
-                                    <span>📈 Growth Engine</span>
+                                <button type="button" class="robot-act-btn" id="btn-act-thumbs" data-action="ThumbsUp" title="Thumbs Up Verification">
+                                    <span>👍 Thumbs Up</span>
                                 </button>
-                                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20interacted%20with%20your%203D%20Robot%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="robot-act-btn btn-chat-link" id="btn-act-chat" title="Chat Directly on WhatsApp">
+                                <button type="button" class="robot-act-btn" id="btn-act-jump" data-action="Jump" title="Athletic Aerial Leap">
+                                    <span>⚡ Jump</span>
+                                </button>
+                                <button type="button" class="robot-act-btn" id="btn-act-punch" data-action="Punch" title="Heroic Power Punch">
+                                    <span>🥊 Punch</span>
+                                </button>
+                                <button type="button" class="robot-act-btn" id="btn-act-dance" data-action="Dance" title="Breakdance Groove">
+                                    <span>🕺 Dance</span>
+                                </button>
+                                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20interacted%20with%20your%203D%20CyberBot%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="robot-act-btn btn-chat-link" id="btn-act-chat" title="Chat Directly on WhatsApp">
                                     <span>💬 WhatsApp</span>
                                 </a>
                             </div>
@@ -2943,23 +2952,12 @@
         </div>
     </div>
 
-    <!-- Spline 3D Interactive Web Engine (Cloudflare CDN with local fallback) -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@2.0.126/build/spline-viewer.js"></script>
-    <script type="module">
-        if (!customElements.get('spline-viewer')) {
-            const s = document.createElement('script');
-            s.type = 'module';
-            s.src = './spline-viewer.js';
-            document.head.appendChild(s);
-        }
-    </script>
     <!-- Three.js 3D WebGL Engine & GLTF Loader -->
     <script src="three.min.js"></script>
     <script src="GLTFLoader.js"></script>
-    <script src="robot_model_data.js"></script>
     <!-- GSAP Libraries CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- JS Script -->
-    <script src="main.js?v=2.0"></script>
+    <script src="main.js?v=3.1"></script>
 </body>
 </html>

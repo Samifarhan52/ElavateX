@@ -2178,150 +2178,636 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // ULTRA-HIGH-END SPLINE 3D CYBERBOT (STUDIO LIGHTING, CURSOR TRACKING)
+    // ULTRA-HIGH-END 3D CYBERBOT (CERAMIC CHASSIS, OLED VISOR, 7 ACTIONS)
     // -------------------------------------------------------------------------
     function initCyberBot() {
-        const splineViewer = document.getElementById('hero-spline-robot') || document.querySelector('spline-viewer');
+        const canvas = document.getElementById('robot-webgl-canvas');
+        const container = document.getElementById('robot-canvas-stage');
         const speechText = document.getElementById('robot-speech-text');
-        const actButtons = document.querySelectorAll('.robot-act-btn[data-topic]');
-        const stageContainer = document.getElementById('hero-visual-stage');
+        const actButtons = document.querySelectorAll('.robot-act-btn[data-action]');
 
-        // Dynamic insights for action chips
-        const insights = {
-            ai: '💡 AI Intelligence: Custom multi-agent LLM systems, enterprise RAG pipelines, & autonomous workflows.',
-            vitals: '⚡ 100/100 Core Web Vitals: 0.12s TTFB, zero layout shift, sub-second loads & global edge CDN caching.',
-            architecture: '🚀 Modern Architecture: Next.js 14 App Router, Flutter Native, Tailwind CSS, & Postgres multi-tenant clusters.',
-            growth: '📈 Deal Acquisition: Conversion-optimized MVP funnels, SEO market dominance, & direct WhatsApp deal capture.'
+        if (!canvas || !container || typeof THREE === 'undefined') return;
+
+        let width = container.clientWidth || 640;
+        let height = container.clientHeight || 540;
+
+        // 1. High-Performance WebGL Renderer with Filmic Tone Mapping
+        const renderer = new THREE.WebGLRenderer({
+            canvas: canvas,
+            alpha: true,
+            antialias: true,
+            powerPreference: 'high-performance'
+        });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.35;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        // 2. Camera & Scene Framing
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+        camera.position.set(0, 1.32, 4.2);
+        camera.lookAt(0, 1.15, 0);
+
+        // 3. Cinematic 3-Point Studio Lighting Rig
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
+        scene.add(ambientLight);
+
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+        keyLight.position.set(4, 7, 5);
+        keyLight.castShadow = true;
+        scene.add(keyLight);
+
+        const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.5);
+        fillLight.position.set(-5, 4, 3);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0xa855f7, 2.0);
+        rimLight.position.set(0, 6, -5);
+        scene.add(rimLight);
+
+        const groundPointLight = new THREE.PointLight(0x06b6d4, 1.8, 6);
+        groundPointLight.position.set(0, 0.25, 0);
+        scene.add(groundPointLight);
+
+        // 4. Advanced Studio Materials
+        const matCeramicWhite = new THREE.MeshPhysicalMaterial({
+            color: 0xf8fafc,
+            metalness: 0.15,
+            roughness: 0.18,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.12
+        });
+
+        const matChromeTitanium = new THREE.MeshStandardMaterial({
+            color: 0x1e293b,
+            metalness: 0.95,
+            roughness: 0.18
+        });
+
+        const matObsidianGlass = new THREE.MeshPhysicalMaterial({
+            color: 0x030712,
+            metalness: 0.95,
+            roughness: 0.06,
+            clearcoat: 1.0
+        });
+
+        const matCyanGlow = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
+
+        // 5. Dynamic High-Definition OLED Visor Face Canvas (512x512)
+        const faceCanvas = document.createElement('canvas');
+        faceCanvas.width = 512;
+        faceCanvas.height = 512;
+        const faceCtx = faceCanvas.getContext('2d');
+
+        const faceTexture = new THREE.CanvasTexture(faceCanvas);
+        faceTexture.generateMipmaps = false;
+        faceTexture.minFilter = THREE.LinearFilter;
+        faceTexture.magFilter = THREE.LinearFilter;
+
+        const matOledScreen = new THREE.MeshBasicMaterial({
+            map: faceTexture,
+            transparent: true
+        });
+
+        let eyeExpression = 'friendly';
+        let blinkPhase = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        function renderFace() {
+            if (!faceCtx) return;
+            faceCtx.clearRect(0, 0, 512, 512);
+
+            // Deep obsidian background
+            faceCtx.fillStyle = '#030712';
+            faceCtx.fillRect(0, 0, 512, 512);
+
+            // High-voltage Cyan Neon Glow
+            faceCtx.shadowBlur = 28;
+            faceCtx.shadowColor = '#00f0ff';
+            faceCtx.fillStyle = '#38bdf8';
+            faceCtx.strokeStyle = '#00f0ff';
+
+            const eyeHeight = blinkPhase > 0.85 ? 4 : 44;
+            const eyeY = 240;
+
+            // Pupillary offset tracking mouse cursor
+            const pOffsetX = Math.max(-14, Math.min(14, mouseX * 14));
+            const pOffsetY = Math.max(-10, Math.min(10, mouseY * 10));
+
+            if (eyeExpression === 'happy' || eyeExpression === 'dance') {
+                // Joyful upward glowing arcs
+                faceCtx.beginPath();
+                faceCtx.arc(170 + pOffsetX, 245, 42, Math.PI * 1.1, Math.PI * 1.9, false);
+                faceCtx.lineWidth = 15;
+                faceCtx.lineCap = 'round';
+                faceCtx.stroke();
+
+                faceCtx.beginPath();
+                faceCtx.arc(342 + pOffsetX, 245, 42, Math.PI * 1.1, Math.PI * 1.9, false);
+                faceCtx.lineWidth = 15;
+                faceCtx.lineCap = 'round';
+                faceCtx.stroke();
+            } else if (eyeExpression === 'focus') {
+                // High-speed angular focus slits
+                faceCtx.lineWidth = 14;
+                faceCtx.beginPath();
+                faceCtx.moveTo(130, 230);
+                faceCtx.lineTo(210, 245);
+                faceCtx.stroke();
+
+                faceCtx.beginPath();
+                faceCtx.moveTo(382, 230);
+                faceCtx.lineTo(302, 245);
+                faceCtx.stroke();
+            } else {
+                // Friendly expressive rounded cyber eyes
+                faceCtx.beginPath();
+                faceCtx.ellipse(175 + pOffsetX, eyeY + pOffsetY, 34, eyeHeight, 0, 0, Math.PI * 2);
+                faceCtx.fill();
+
+                faceCtx.beginPath();
+                faceCtx.ellipse(337 + pOffsetX, eyeY + pOffsetY, 34, eyeHeight, 0, 0, Math.PI * 2);
+                faceCtx.fill();
+
+                // Specular highlights
+                if (eyeHeight > 16) {
+                    faceCtx.shadowBlur = 8;
+                    faceCtx.fillStyle = '#ffffff';
+                    faceCtx.beginPath();
+                    faceCtx.arc(165 + pOffsetX, eyeY - 8 + pOffsetY, 10, 0, Math.PI * 2);
+                    faceCtx.fill();
+                    faceCtx.beginPath();
+                    faceCtx.arc(327 + pOffsetX, eyeY - 8 + pOffsetY, 10, 0, Math.PI * 2);
+                    faceCtx.fill();
+                }
+            }
+
+            // Audio telemetry equalizer bars beneath eyes
+            faceCtx.shadowBlur = 10;
+            faceCtx.fillStyle = '#06b6d4';
+            for (let i = 0; i < 7; i++) {
+                const barH = 5 + Math.sin(Date.now() * 0.006 + i) * 3;
+                faceCtx.fillRect(195 + i * 18, 345, 10, barH);
+            }
+
+            faceTexture.needsUpdate = true;
+        }
+        renderFace();
+
+        // 6. Master Robot Hierarchy
+        const robotMasterGroup = new THREE.Group();
+        scene.add(robotMasterGroup);
+
+        // Holographic Platform Pedestal at Feet
+        const platformGeo = new THREE.CylinderGeometry(1.65, 1.85, 0.1, 36);
+        const platformMat = new THREE.MeshStandardMaterial({
+            color: 0x070d1e,
+            metalness: 0.9,
+            roughness: 0.25
+        });
+        const platform = new THREE.Mesh(platformGeo, platformMat);
+        platform.position.y = -0.05;
+        robotMasterGroup.add(platform);
+
+        const ringGeo = new THREE.TorusGeometry(1.72, 0.02, 16, 64);
+        const ring = new THREE.Mesh(ringGeo, matCyanGlow);
+        ring.rotation.x = Math.PI / 2;
+        ring.position.y = 0.02;
+        robotMasterGroup.add(ring);
+
+        // Ground Contact Soft Shadow
+        const shadowGeo = new THREE.PlaneGeometry(3.2, 3.2);
+        const shadowMat = new THREE.MeshBasicMaterial({
+            color: 0x000000,
+            transparent: true,
+            opacity: 0.45
+        });
+        const groundShadow = new THREE.Mesh(shadowGeo, shadowMat);
+        groundShadow.rotation.x = -Math.PI / 2;
+        groundShadow.position.y = 0.01;
+        robotMasterGroup.add(groundShadow);
+
+        // 7. Sculpted Studio Cyber Helmet (Aerodynamic Dome + OLED Panoramic Visor)
+        function createCyberHelmet() {
+            const helmetGroup = new THREE.Group();
+
+            // Smooth aerodynamic pearl-white helmet shell
+            const shellGeo = new THREE.SphereGeometry(0.5, 36, 30);
+            shellGeo.scale(1.1, 0.98, 1.02);
+            const shell = new THREE.Mesh(shellGeo, matCeramicWhite);
+            helmetGroup.add(shell);
+
+            // Panoramic curved visor
+            const visorGeo = new THREE.CylinderGeometry(0.44, 0.44, 0.38, 36, 1, false, -Math.PI / 2.5, Math.PI / 1.25);
+            const visor = new THREE.Mesh(visorGeo, matObsidianGlass);
+            visor.rotation.y = Math.PI / 2;
+            visor.position.set(0, 0.02, 0.12);
+            helmetGroup.add(visor);
+
+            // OLED screen plane displaying animated face canvas
+            const screenGeo = new THREE.PlaneGeometry(0.66, 0.34);
+            const screen = new THREE.Mesh(screenGeo, matOledScreen);
+            screen.position.set(0, 0.03, 0.495);
+            helmetGroup.add(screen);
+
+            // Left & Right Cybernetic Ear Pods with glowing pulse rings
+            const earGeo = new THREE.CylinderGeometry(0.13, 0.13, 0.08, 24);
+            const earL = new THREE.Mesh(earGeo, matChromeTitanium);
+            earL.rotation.z = Math.PI / 2;
+            earL.position.set(-0.56, 0.02, 0);
+            helmetGroup.add(earL);
+
+            const earRingGeo = new THREE.TorusGeometry(0.11, 0.015, 12, 24);
+            const earRingL = new THREE.Mesh(earRingGeo, matCyanGlow);
+            earRingL.rotation.y = Math.PI / 2;
+            earRingL.position.set(-0.61, 0.02, 0);
+            helmetGroup.add(earRingL);
+
+            const earR = earL.clone();
+            earR.position.x = 0.56;
+            helmetGroup.add(earR);
+
+            const earRingR = earRingL.clone();
+            earRingR.position.x = 0.61;
+            helmetGroup.add(earRingR);
+
+            // Aerodynamic antenna fins
+            const antGeo = new THREE.CylinderGeometry(0.018, 0.018, 0.28, 12);
+            const antL = new THREE.Mesh(antGeo, matChromeTitanium);
+            antL.position.set(-0.4, 0.46, -0.05);
+            antL.rotation.z = 0.28;
+            antL.rotation.x = -0.15;
+            helmetGroup.add(antL);
+
+            const antTipL = new THREE.Mesh(new THREE.SphereGeometry(0.035, 12, 12), matCyanGlow);
+            antTipL.position.set(-0.44, 0.6, -0.07);
+            helmetGroup.add(antTipL);
+
+            const antR = antL.clone();
+            antR.position.x = 0.4;
+            antR.rotation.z = -0.28;
+            helmetGroup.add(antR);
+
+            const antTipR = antTipL.clone();
+            antTipR.position.x = 0.44;
+            helmetGroup.add(antTipR);
+
+            return helmetGroup;
+        }
+
+        // 8. Chest Cyber Arc Reactor Core
+        function createArcReactor() {
+            const reactorGroup = new THREE.Group();
+
+            const bezelGeo = new THREE.CylinderGeometry(0.14, 0.14, 0.04, 24);
+            const bezel = new THREE.Mesh(bezelGeo, matChromeTitanium);
+            bezel.rotation.x = Math.PI / 2;
+            reactorGroup.add(bezel);
+
+            const coreGeo = new THREE.CylinderGeometry(0.09, 0.09, 0.05, 24);
+            const core = new THREE.Mesh(coreGeo, matCyanGlow);
+            core.rotation.x = Math.PI / 2;
+            reactorGroup.add(core);
+
+            const light = new THREE.PointLight(0x00f0ff, 1.2, 2.5);
+            light.position.set(0, 0, 0.15);
+            reactorGroup.add(light);
+
+            return reactorGroup;
+        }
+
+        // 9. Procedural Stand-in Model (Renders instantly on Frame 1)
+        const proceduralBot = new THREE.Group();
+        robotMasterGroup.add(proceduralBot);
+
+        const pChest = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.45, 0.85, 24), matCeramicWhite);
+        pChest.position.y = 1.35;
+        proceduralBot.add(pChest);
+
+        const pReactor = createArcReactor();
+        pReactor.position.set(0, 1.45, 0.52);
+        proceduralBot.add(pReactor);
+
+        const pHead = createCyberHelmet();
+        pHead.position.set(0, 2.15, 0);
+        proceduralBot.add(pHead);
+
+        // Procedural Limbs
+        const pLeftArm = new THREE.Group(); pLeftArm.position.set(-0.65, 1.65, 0); proceduralBot.add(pLeftArm);
+        pLeftArm.add(new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.4, 16), matCeramicWhite));
+        const pRightArm = new THREE.Group(); pRightArm.position.set(0.65, 1.65, 0); proceduralBot.add(pRightArm);
+        pRightArm.add(new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.4, 16), matCeramicWhite));
+
+        const pLeftLeg = new THREE.Group(); pLeftLeg.position.set(-0.25, 0.95, 0); proceduralBot.add(pLeftLeg);
+        pLeftLeg.add(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.09, 0.45, 16), matCeramicWhite));
+        const pRightLeg = new THREE.Group(); pRightLeg.position.set(0.25, 0.95, 0); proceduralBot.add(pRightLeg);
+        pRightLeg.add(new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.09, 0.45, 16), matCeramicWhite));
+
+        // 10. Load Official High-Precision Skeletal Model (RobotExpressive.glb)
+        let mixer = null;
+        let activeAction = null;
+        const animationActions = {};
+        let isGltfLoaded = false;
+        let headBone = null;
+
+        const gltfLoader = (typeof THREE.GLTFLoader !== 'undefined') ? new THREE.GLTFLoader() : null;
+
+        if (gltfLoader) {
+            gltfLoader.load('RobotExpressive.glb', (gltf) => {
+                const model = gltf.scene;
+                model.scale.set(0.52, 0.52, 0.52);
+                model.position.set(0, 0, 0);
+
+                // Material enhancement & head replacement
+                model.traverse((child) => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+
+                        // Hide the low-poly angular default head
+                        if (child.name === 'Head') {
+                            child.visible = false;
+                        } else if (child.material) {
+                            if (child.material.name === 'Main' || child.name.includes('Torso') || child.name.includes('Arm') || child.name.includes('Leg')) {
+                                child.material = matCeramicWhite;
+                            } else if (child.material.name === 'Grey' || child.name.includes('Hand') || child.name.includes('Foot')) {
+                                child.material = matChromeTitanium;
+                            } else {
+                                child.material = matCeramicWhite;
+                            }
+                        }
+                    }
+                });
+
+                // Attach custom sculpted cyber helmet to the Head bone
+                headBone = model.getObjectByName('Head');
+                if (headBone) {
+                    const cyberHelmet = createCyberHelmet();
+                    cyberHelmet.position.set(0, 0.007, 0.001);
+                    cyberHelmet.scale.set(1.9, 1.9, 1.9);
+                    headBone.add(cyberHelmet);
+                }
+
+                // Attach Cyber Arc Reactor to Torso
+                const torsoBone = model.getObjectByName('Torso');
+                if (torsoBone) {
+                    const chestReactor = createArcReactor();
+                    chestReactor.position.set(0, 0.008, 0.006);
+                    chestReactor.scale.set(1.6, 1.6, 1.6);
+                    torsoBone.add(chestReactor);
+                }
+
+                // Animation Mixer
+                mixer = new THREE.AnimationMixer(model);
+                gltf.animations.forEach((clip) => {
+                    animationActions[clip.name] = mixer.clipAction(clip);
+                });
+
+                // Smoothly swap procedural stand-in with animated model
+                robotMasterGroup.remove(proceduralBot);
+                robotMasterGroup.add(model);
+                isGltfLoaded = true;
+
+                // Start with Walking animation
+                if (animationActions['Walking']) {
+                    activeAction = animationActions['Walking'];
+                    activeAction.play();
+                } else if (animationActions['Idle']) {
+                    activeAction = animationActions['Idle'];
+                    activeAction.play();
+                }
+            }, undefined, (err) => {
+                console.log('Procedural CyberBot active:', err);
+            });
+        }
+
+        // 11. Interactive Action Controller & Dynamic Speech Telemetry
+        let currentActionName = 'Walking';
+        let userInteracted = false;
+
+        const speechMessages = {
+            Walking: '🚶 Autonomous Navigation: Actively auditing systems & monitoring conversion metrics.',
+            Running: '⚡ Enterprise Velocity: Sub-second TTFB & 100/100 Core Web Vitals delivered.',
+            Wave: '👋 Hello! Welcome to ElavateX engineering studio! How can we scale your vision today?',
+            ThumbsUp: '👍 Quality verified! 100/100 Core Web Vitals & clean architecture.',
+            Jump: '🚀 Scalability in action: From MVP prototype to high-traffic enterprise scale.',
+            Punch: '🥊 Smashing bottlenecks: Zero latency, optimized databases & instant page response.',
+            Dance: '🎉 Launch celebration! Delivering real growth and market dominance.'
         };
 
-        const defaultCycle = [
-            '🤖 CyberBot Online: Move your cursor to explore 3D motion tracking & studio lighting!',
-            '💡 AI-Driven Engineering: Turn ambitious vision into production-ready web & mobile platforms.',
-            '⚡ 100/100 Core Web Vitals: Engineered for maximum Google rank, high speed & 0ms layout shift.',
-            '🚀 Full-Stack MVPs: Select your niche, discuss architecture, and get working prototypes within 7 days.'
-        ];
-
-        let userInteracted = false;
-        let cycleIndex = 0;
-
-        function updateSpeech(text) {
+        function setSpeech(text) {
             if (!speechText) return;
             speechText.style.opacity = '0';
-            speechText.style.transform = 'translateY(4px)';
             setTimeout(() => {
                 speechText.textContent = text;
-                speechText.style.transition = 'all 0.35s ease';
                 speechText.style.opacity = '1';
-                speechText.style.transform = 'translateY(0)';
             }, 180);
         }
 
-        // Action button event handlers
-        if (actButtons && actButtons.length > 0) {
+        function triggerAction(actionName, fromClick = true) {
+            currentActionName = actionName;
+
+            // Update UI buttons
             actButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    userInteracted = true;
-                    actButtons.forEach(b => b.classList.remove('active'));
+                if (btn.getAttribute('data-action') === actionName) {
                     btn.classList.add('active');
-
-                    const topic = btn.getAttribute('data-topic');
-                    if (insights[topic]) {
-                        updateSpeech(insights[topic]);
-                    }
-                });
-            });
-        }
-
-        // Spline Watermark Sanitization & Load Optimization
-        if (splineViewer) {
-            const sanitizeViewer = () => {
-                try {
-                    if (splineViewer.shadowRoot) {
-                        const logo = splineViewer.shadowRoot.querySelector('#logo');
-                        if (logo) logo.remove();
-
-                        const preloader = splineViewer.shadowRoot.querySelector('#preloader');
-                        if (preloader) preloader.remove();
-
-                        const hints = splineViewer.shadowRoot.querySelector('#hints');
-                        if (hints) hints.remove();
-
-                        const links = splineViewer.shadowRoot.querySelectorAll('a[href*="spline"]');
-                        links.forEach(l => l.remove());
-
-                        if (!splineViewer.shadowRoot.querySelector('#spline-override-style')) {
-                            const style = document.createElement('style');
-                            style.id = 'spline-override-style';
-                            style.textContent = `
-                                #logo, #hints, #hint-drag, #preloader, [class*="watermark"], a[href*="spline.design"] {
-                                    display: none !important;
-                                    opacity: 0 !important;
-                                    visibility: hidden !important;
-                                    pointer-events: none !important;
-                                }
-                                canvas {
-                                    outline: none !important;
-                                    width: 100% !important;
-                                    height: 100% !important;
-                                }
-                            `;
-                            splineViewer.shadowRoot.appendChild(style);
-                        }
-                    }
-                } catch (e) {
-                    console.warn('Spline sanitization note:', e);
+                } else {
+                    btn.classList.remove('active');
                 }
-            };
-
-            splineViewer.addEventListener('load', () => {
-                sanitizeViewer();
-                splineViewer.classList.add('scene-loaded');
-                updateSpeech('🤖 CyberBot Online: Move your cursor to explore 3D motion tracking & studio lighting!');
             });
 
-            // Periodically check shadowRoot until loaded to ensure logo is pruned
-            const pruneInterval = setInterval(() => {
-                sanitizeViewer();
-                if (splineViewer.shadowRoot && splineViewer.shadowRoot.querySelector('canvas')) {
-                    clearInterval(pruneInterval);
-                }
-            }, 250);
-        }
-
-        // Auto-cycling speech telemetry when idle
-        setInterval(() => {
-            if (!userInteracted && speechText) {
-                cycleIndex = (cycleIndex + 1) % defaultCycle.length;
-                updateSpeech(defaultCycle[cycleIndex]);
+            // Set speech telemetry
+            if (speechMessages[actionName]) {
+                setSpeech(speechMessages[actionName]);
             }
-        }, 7500);
 
-        // Spatial mouse reaction on stage halo & pedestal
-        if (stageContainer) {
-            stageContainer.addEventListener('mousemove', (e) => {
-                const rect = stageContainer.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
+            // Facial expression reaction
+            if (actionName === 'Dance' || actionName === 'ThumbsUp' || actionName === 'Wave') {
+                eyeExpression = 'happy';
+            } else if (actionName === 'Running' || actionName === 'Punch') {
+                eyeExpression = 'focus';
+            } else {
+                eyeExpression = 'friendly';
+            }
+            renderFace();
 
-                const aura = stageContainer.querySelector('.robot-stage-aura');
-                const ringOuter = stageContainer.querySelector('.ring-outer');
-                const pedestal = stageContainer.querySelector('.canvas-ambient-pedestal');
+            // Trigger GLTF animation
+            if (isGltfLoaded && mixer && animationActions[actionName]) {
+                const prev = activeAction;
+                const next = animationActions[actionName];
 
-                if (aura) aura.style.transform = `translate(${x * 24}px, ${y * 24}px) scale(1.05)`;
-                if (ringOuter) ringOuter.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
-                if (pedestal) pedestal.style.transform = `translateX(${x * 20}px) scale(1.02)`;
-            });
+                if (prev !== next) {
+                    if (prev) prev.fadeOut(0.25);
+                    next.reset();
+                    next.fadeIn(0.25);
 
-            stageContainer.addEventListener('mouseleave', () => {
-                const aura = stageContainer.querySelector('.robot-stage-aura');
-                const ringOuter = stageContainer.querySelector('.ring-outer');
-                const pedestal = stageContainer.querySelector('.canvas-ambient-pedestal');
-
-                if (aura) aura.style.transform = '';
-                if (ringOuter) ringOuter.style.transform = '';
-                if (pedestal) pedestal.style.transform = '';
-            });
+                    if (actionName === 'ThumbsUp' || actionName === 'Jump' || actionName === 'Punch') {
+                        next.setLoop(THREE.LoopOnce);
+                        next.clampWhenFinished = true;
+                        const onFinish = (e) => {
+                            if (e.action === next) {
+                                mixer.removeEventListener('finished', onFinish);
+                                triggerAction('Walking', false);
+                            }
+                        };
+                        mixer.addEventListener('finished', onFinish);
+                    } else {
+                        next.setLoop(THREE.LoopRepeat);
+                    }
+                    next.play();
+                    activeAction = next;
+                }
+            }
         }
+
+        // Button Click Listeners
+        actButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                userInteracted = true;
+                const action = btn.getAttribute('data-action');
+                triggerAction(action, true);
+            });
+        });
+
+        // 12. Interactive Mouse Tracking & Drag to Rotate
+        let isDragging = false;
+        let prevMouseX = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            mouseX = (e.clientX - cx) / (rect.width / 2);
+            mouseY = (e.clientY - cy) / (rect.height / 2);
+            renderFace();
+
+            if (isDragging) {
+                const deltaX = e.clientX - prevMouseX;
+                robotMasterGroup.rotation.y += deltaX * 0.008;
+                prevMouseX = e.clientX;
+                userInteracted = true;
+            }
+        });
+
+        container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            prevMouseX = e.clientX;
+            userInteracted = true;
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Touch support for mobile devices
+        container.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                isDragging = true;
+                prevMouseX = e.touches[0].clientX;
+                userInteracted = true;
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (isDragging && e.touches.length === 1) {
+                const deltaX = e.touches[0].clientX - prevMouseX;
+                robotMasterGroup.rotation.y += deltaX * 0.008;
+                prevMouseX = e.touches[0].clientX;
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        // 13. Render Loop & Animation Step
+        const clock = new THREE.Clock();
+        let animTime = 0;
+        let blinkTimer = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const delta = clock.getDelta();
+            animTime += delta;
+
+            if (mixer) {
+                mixer.update(delta);
+            }
+
+            // Facial Blink Timer
+            blinkTimer += delta;
+            if (blinkTimer > 3.8) {
+                blinkPhase = (blinkTimer - 3.8) / 0.25;
+                if (blinkPhase >= 1) {
+                    blinkTimer = 0;
+                    blinkPhase = 0;
+                }
+                renderFace();
+            }
+
+            // Head tracking towards cursor
+            if (headBone) {
+                headBone.rotation.y = THREE.MathUtils.lerp(headBone.rotation.y, mouseX * 0.35, 0.06);
+                headBone.rotation.x = THREE.MathUtils.lerp(headBone.rotation.x, -mouseY * 0.2, 0.06);
+            } else if (pHead) {
+                pHead.rotation.y = THREE.MathUtils.lerp(pHead.rotation.y, mouseX * 0.35, 0.06);
+                pHead.rotation.x = THREE.MathUtils.lerp(pHead.rotation.x, -mouseY * 0.2, 0.06);
+            }
+
+            // Procedural animation step if GLTF is loading
+            if (!isGltfLoaded) {
+                const speed = currentActionName === 'Running' ? 8.5 : 4.5;
+                const swing = Math.sin(animTime * speed);
+                if (currentActionName === 'Walking' || currentActionName === 'Running') {
+                    pLeftArm.rotation.x = -swing * 0.45;
+                    pRightArm.rotation.x = swing * 0.45;
+                    pLeftLeg.rotation.x = swing * 0.45;
+                    pRightLeg.rotation.x = -swing * 0.45;
+                    proceduralBot.position.y = Math.abs(Math.sin(animTime * speed)) * 0.06;
+                } else if (currentActionName === 'Wave') {
+                    pRightArm.rotation.z = -2.2 + Math.sin(animTime * 9) * 0.35;
+                }
+            }
+
+            // Pedestal rotation
+            ring.rotation.z = animTime * 0.35;
+            platform.rotation.y = -animTime * 0.12;
+
+            // Idle return orientation
+            if (!isDragging) {
+                robotMasterGroup.rotation.y = THREE.MathUtils.lerp(robotMasterGroup.rotation.y, mouseX * 0.18, 0.04);
+            }
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // 14. Responsive Viewport Resize Observer
+        function onWindowResize() {
+            if (!container || !renderer || !camera) return;
+            width = container.clientWidth || 640;
+            height = container.clientHeight || 540;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+        window.addEventListener('resize', onWindowResize);
+
+        // 15. Auto-Idle Demonstration Loop
+        const autoCycle = ['Walking', 'Wave', 'Running', 'ThumbsUp', 'Walking', 'Jump', 'Dance'];
+        let cycleIdx = 0;
+        setInterval(() => {
+            if (!userInteracted) {
+                cycleIdx = (cycleIdx + 1) % autoCycle.length;
+                triggerAction(autoCycle[cycleIdx], false);
+            }
+        }, 8500);
     }
     initCyberBot();
 });
