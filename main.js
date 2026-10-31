@@ -2178,7 +2178,7 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // AAA STUDIO-GRADE 3D WEBGL CYBERBOT (ROBOTEXPRESSIVE GLTF CHARACTER)
+    // ULTRA-HIGH-END 3D CYBERBOT (SLEEK CERAMIC, OLED FACE, 7 ACTIONS)
     // -------------------------------------------------------------------------
     function initCyberBot() {
         const canvas = document.getElementById('robot-webgl-canvas');
@@ -2202,25 +2202,19 @@ Would you like to start a project inquiry right now?`;
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.25;
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
         // 2. Camera & Scene (Framed closely and prominently)
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
-        camera.position.set(0, 1.8, 4.8);
-        camera.lookAt(0, 1.6, 0);
+        const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+        camera.position.set(0, 1.35, 5.2);
+        camera.lookAt(0, 1.2, 0);
 
         // 3. Cinematic 4-Point Studio Lighting
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.15);
         scene.add(ambientLight);
 
         const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
-        keyLight.position.set(4, 8, 5);
-        keyLight.castShadow = true;
-        keyLight.shadow.mapSize.width = 1024;
-        keyLight.shadow.mapSize.height = 1024;
-        keyLight.shadow.bias = -0.001;
+        keyLight.position.set(4, 7, 5);
         scene.add(keyLight);
 
         const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.2);
@@ -2232,10 +2226,144 @@ Would you like to start a project inquiry right now?`;
         scene.add(rimLight);
 
         const groundPointLight = new THREE.PointLight(0x06b6d4, 1.6, 5);
-        groundPointLight.position.set(0, 0.2, 1.2);
+        groundPointLight.position.set(0, 0.1, 1.2);
         scene.add(groundPointLight);
 
-        // 4. Ambient Holographic Floor & Soft Contact Shadow
+        // 4. Materials (Sleek Pearl Ceramic, Mirror Chrome & Visor Glass)
+        const matBody = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            roughness: 0.12,
+            metalness: 0.08
+        });
+
+        const matChrome = new THREE.MeshStandardMaterial({
+            color: 0xe2e8f0,
+            roughness: 0.05,
+            metalness: 0.95
+        });
+
+        const matVisor = new THREE.MeshStandardMaterial({
+            color: 0x060914,
+            roughness: 0.05,
+            metalness: 0.9
+        });
+
+        const matCyanGlow = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
+
+        // 5. Dynamic OLED Visor Display Canvas (Animated Expressive Eyes)
+        const faceCanvas = document.createElement('canvas');
+        faceCanvas.width = 256;
+        faceCanvas.height = 128;
+        const faceCtx = faceCanvas.getContext('2d');
+        const faceTexture = new THREE.CanvasTexture(faceCanvas);
+        faceTexture.generateMipmaps = false;
+        faceTexture.minFilter = THREE.LinearFilter;
+        faceTexture.magFilter = THREE.LinearFilter;
+
+        let eyeState = 'normal';
+        let isBlinking = false;
+        let pupilShiftX = 0;
+        let pupilShiftY = 0;
+
+        function updateFace() {
+            if (!faceCtx) return;
+            faceCtx.clearRect(0, 0, 256, 128);
+            faceCtx.save();
+
+            faceCtx.shadowColor = '#38bdf8';
+            faceCtx.shadowBlur = 14;
+            faceCtx.fillStyle = '#38bdf8';
+            faceCtx.strokeStyle = '#38bdf8';
+            faceCtx.lineWidth = 6;
+            faceCtx.lineCap = 'round';
+
+            const eyeL_X = 82;
+            const eyeR_X = 174;
+            const eyeY = 64;
+
+            if (eyeState === 'normal' || eyeState === 'running') {
+                const h = isBlinking ? 2 : (eyeState === 'running' ? 20 : 26);
+                const w = eyeState === 'running' ? 24 : 20;
+
+                faceCtx.beginPath();
+                faceCtx.ellipse(eyeL_X + pupilShiftX, eyeY + pupilShiftY, w, h, 0, 0, Math.PI * 2);
+                faceCtx.fill();
+
+                faceCtx.beginPath();
+                faceCtx.ellipse(eyeR_X + pupilShiftX, eyeY + pupilShiftY, w, h, 0, 0, Math.PI * 2);
+                faceCtx.fill();
+
+                if (!isBlinking) {
+                    faceCtx.shadowBlur = 0;
+                    faceCtx.fillStyle = '#0284c7';
+                    faceCtx.beginPath();
+                    faceCtx.ellipse(eyeL_X + pupilShiftX * 1.3, eyeY + pupilShiftY * 1.3, w * 0.45, h * 0.45, 0, 0, Math.PI * 2);
+                    faceCtx.fill();
+
+                    faceCtx.beginPath();
+                    faceCtx.ellipse(eyeR_X + pupilShiftX * 1.3, eyeY + pupilShiftY * 1.3, w * 0.45, h * 0.45, 0, 0, Math.PI * 2);
+                    faceCtx.fill();
+                }
+            } else if (eyeState === 'happy') {
+                // Happy curved eyes ^ ^
+                faceCtx.beginPath();
+                faceCtx.arc(eyeL_X, eyeY + 6, 18, Math.PI * 1.15, Math.PI * 1.85);
+                faceCtx.stroke();
+
+                faceCtx.beginPath();
+                faceCtx.arc(eyeR_X, eyeY + 6, 18, Math.PI * 1.15, Math.PI * 1.85);
+                faceCtx.stroke();
+            } else if (eyeState === 'wink') {
+                // Left open, right wink
+                faceCtx.beginPath();
+                faceCtx.ellipse(eyeL_X, eyeY, 20, 26, 0, 0, Math.PI * 2);
+                faceCtx.fill();
+
+                faceCtx.beginPath();
+                faceCtx.moveTo(eyeR_X - 18, eyeY);
+                faceCtx.lineTo(eyeR_X + 18, eyeY);
+                faceCtx.stroke();
+            } else if (eyeState === 'battle') {
+                // Focused battle eyes > <
+                faceCtx.beginPath();
+                faceCtx.moveTo(eyeL_X - 14, eyeY - 14);
+                faceCtx.lineTo(eyeL_X + 12, eyeY);
+                faceCtx.lineTo(eyeL_X - 14, eyeY + 14);
+                faceCtx.stroke();
+
+                faceCtx.beginPath();
+                faceCtx.moveTo(eyeR_X + 14, eyeY - 14);
+                faceCtx.lineTo(eyeR_X - 12, eyeY);
+                faceCtx.lineTo(eyeR_X + 14, eyeY + 14);
+                faceCtx.stroke();
+            } else if (eyeState === 'dance') {
+                // Equalizer musical bars
+                const bar1 = 12 + Math.sin(Date.now() * 0.015) * 10;
+                const bar2 = 18 + Math.cos(Date.now() * 0.018) * 12;
+                faceCtx.fillRect(eyeL_X - 16, eyeY - bar1, 10, bar1 * 2);
+                faceCtx.fillRect(eyeL_X + 6, eyeY - bar2, 10, bar2 * 2);
+                faceCtx.fillRect(eyeR_X - 16, eyeY - bar2, 10, bar2 * 2);
+                faceCtx.fillRect(eyeR_X + 6, eyeY - bar1, 10, bar1 * 2);
+            }
+
+            faceCtx.restore();
+            faceTexture.needsUpdate = true;
+        }
+        updateFace();
+
+        // Natural eye blinking
+        setInterval(() => {
+            if (eyeState === 'normal') {
+                isBlinking = true;
+                updateFace();
+                setTimeout(() => {
+                    isBlinking = false;
+                    updateFace();
+                }, 180);
+            }
+        }, 3600);
+
+        // 6. Ambient Floor Platform & Soft Contact Shadow
         function createShadowTexture() {
             const sCanvas = document.createElement('canvas');
             sCanvas.width = 128;
@@ -2297,15 +2425,178 @@ Would you like to start a project inquiry right now?`;
         const particleSystem = new THREE.Points(particleGeo, particleMat);
         scene.add(particleSystem);
 
-        // 5. Robot Model State & Animation Manager
-        let mixer = null;
-        let robotModel = null;
-        let headBone = null;
-        const actions = {};
-        let activeAction = null;
-        let currentActionName = 'Walking';
+        // 7. SLEEK 3D ROBOT CHARACTER RIG (Sleek AstroBot / Companion Aesthetics)
+        const robot = new THREE.Group();
+        scene.add(robot);
+
+        // Head Group (Smooth Curved Capsule + Glossy Visor)
+        const headGroup = new THREE.Group();
+        headGroup.position.y = 1.95;
+        robot.add(headGroup);
+
+        const helmet = new THREE.Mesh(new THREE.SphereGeometry(0.76, 36, 28), matBody);
+        helmet.scale.set(1.08, 0.95, 1.0);
+        headGroup.add(helmet);
+
+        const visor = new THREE.Mesh(
+            new THREE.SphereGeometry(0.68, 36, 20, 0, Math.PI * 2, 0, Math.PI * 0.44),
+            matVisor
+        );
+        visor.rotation.x = Math.PI * 0.44;
+        visor.position.set(0, 0.02, 0.32);
+        visor.scale.set(1.0, 0.68, 0.88);
+        headGroup.add(visor);
+
+        // Curved Digital Face Display
+        const screenGeo = new THREE.PlaneGeometry(0.96, 0.5);
+        const screenMat = new THREE.MeshBasicMaterial({
+            map: faceTexture,
+            transparent: true,
+            depthWrite: false
+        });
+        const screenMesh = new THREE.Mesh(screenGeo, screenMat);
+        screenMesh.position.set(0, 0.04, 0.73);
+        headGroup.add(screenMesh);
+
+        // Ear Audio Pods
+        const earGeo = new THREE.CylinderGeometry(0.16, 0.16, 0.08, 24);
+        const earL = new THREE.Mesh(earGeo, matChrome);
+        earL.rotation.z = Math.PI / 2;
+        earL.position.set(-0.84, 0.02, 0);
+        const earR = earL.clone();
+        earR.position.x = 0.84;
+        headGroup.add(earL);
+        headGroup.add(earR);
+
+        // Dual Glowing Beacons on Ears
+        const beaconGeo = new THREE.SphereGeometry(0.06, 16, 16);
+        const beaconL = new THREE.Mesh(beaconGeo, matCyanGlow);
+        beaconL.position.set(-0.89, 0.02, 0);
+        const beaconR = beaconL.clone();
+        beaconR.position.x = 0.89;
+        headGroup.add(beaconL);
+        headGroup.add(beaconR);
+
+        // Torso Group
+        const torsoGroup = new THREE.Group();
+        torsoGroup.position.y = 1.0;
+        robot.add(torsoGroup);
+
+        const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 0.2, 20), matChrome);
+        neck.position.y = 0.72;
+        torsoGroup.add(neck);
+
+        const chest = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.44, 0.88, 28), matBody);
+        chest.position.y = 0.22;
+        chest.scale.set(1.15, 1.0, 0.88);
+        torsoGroup.add(chest);
+
+        // Arc Reactor Core (Pulsing Cyan Light)
+        const reactorCore = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.08, 24), matCyanGlow);
+        reactorCore.rotation.x = Math.PI / 2;
+        reactorCore.position.set(0, 0.26, 0.44);
+        torsoGroup.add(reactorCore);
+
+        const reactorRing = new THREE.Mesh(new THREE.TorusGeometry(0.24, 0.025, 12, 28), matChrome);
+        reactorRing.position.set(0, 0.26, 0.45);
+        torsoGroup.add(reactorRing);
+
+        const pelvis = new THREE.Mesh(new THREE.SphereGeometry(0.24, 20, 20), matChrome);
+        pelvis.position.y = -0.25;
+        torsoGroup.add(pelvis);
+
+        // Arms Builder
+        function buildArm(isLeft) {
+            const arm = new THREE.Group();
+            const shoulder = new THREE.Mesh(new THREE.SphereGeometry(0.15, 18, 18), matChrome);
+            arm.add(shoulder);
+
+            const bicep = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.09, 0.42, 18), matBody);
+            bicep.position.y = -0.22;
+            arm.add(bicep);
+
+            const elbowGroup = new THREE.Group();
+            elbowGroup.position.y = -0.44;
+            const elbow = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), matChrome);
+            elbowGroup.add(elbow);
+
+            const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.08, 0.4, 18), matBody);
+            forearm.position.y = -0.21;
+            elbowGroup.add(forearm);
+
+            const wristGroup = new THREE.Group();
+            wristGroup.position.y = -0.42;
+            const hand = new THREE.Mesh(new THREE.SphereGeometry(0.11, 16, 16), matChrome);
+            wristGroup.add(hand);
+
+            // Fingers and Thumb
+            const thumb = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.15, 10), matChrome);
+            thumb.position.set(0, 0.08, 0.04);
+            thumb.rotation.x = -0.4;
+            wristGroup.add(thumb);
+
+            elbowGroup.add(wristGroup);
+            arm.add(elbowGroup);
+
+            arm.position.set(isLeft ? -0.84 : 0.84, 0.42, 0);
+            return { arm, elbowGroup, wristGroup, thumb };
+        }
+
+        const leftArm = buildArm(true);
+        const rightArm = buildArm(false);
+        torsoGroup.add(leftArm.arm);
+        torsoGroup.add(rightArm.arm);
+
+        // Legs Builder
+        function buildLeg(isLeft) {
+            const leg = new THREE.Group();
+            const hip = new THREE.Mesh(new THREE.SphereGeometry(0.15, 16, 16), matChrome);
+            leg.add(hip);
+
+            const thigh = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.1, 0.48, 18), matBody);
+            thigh.position.y = -0.26;
+            leg.add(thigh);
+
+            const kneeGroup = new THREE.Group();
+            kneeGroup.position.y = -0.52;
+            const knee = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), matChrome);
+            kneeGroup.add(knee);
+
+            const shin = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.09, 0.48, 18), matBody);
+            shin.position.y = -0.26;
+            kneeGroup.add(shin);
+
+            const ankleGroup = new THREE.Group();
+            ankleGroup.position.y = -0.52;
+            const foot = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.14, 0.44), matBody);
+            foot.position.set(0, -0.06, 0.09);
+            ankleGroup.add(foot);
+
+            const soleGlow = new THREE.Mesh(new THREE.BoxGeometry(0.21, 0.02, 0.4), matCyanGlow);
+            soleGlow.position.set(0, -0.13, 0.09);
+            ankleGroup.add(soleGlow);
+
+            kneeGroup.add(ankleGroup);
+            leg.add(kneeGroup);
+
+            leg.position.set(isLeft ? -0.34 : 0.34, 0.72, 0);
+            return { leg, kneeGroup, ankleGroup };
+        }
+
+        const leftLeg = buildLeg(true);
+        const rightLeg = buildLeg(false);
+        robot.add(leftLeg.leg);
+        robot.add(rightLeg.leg);
+
+        // 8. KINEMATIC STATE ENGINE (7 DYNAMIC ACTIONS)
+        let currentAction = 'Walking';
         let userInteracted = false;
         let userInteractTimeout = null;
+        let walkCycle = 0;
+        let jumpProgress = 0;
+        let isJumping = false;
+        let punchProgress = 0;
+        let isPunching = false;
         const clock = new THREE.Clock();
 
         let mouseX = 0;
@@ -2325,38 +2616,6 @@ Would you like to start a project inquiry right now?`;
             }, 120);
         }
 
-        function fadeToAction(name, duration = 0.28, isSingleShot = false) {
-            const previousAction = activeAction;
-            activeAction = actions[name];
-
-            if (!activeAction) return;
-
-            if (previousAction && previousAction !== activeAction) {
-                previousAction.fadeOut(duration);
-            }
-
-            activeAction
-                .reset()
-                .setEffectiveTimeScale(1)
-                .setEffectiveWeight(1)
-                .fadeIn(duration);
-
-            if (isSingleShot) {
-                activeAction.setLoop(THREE.LoopOnce, 1);
-                activeAction.clampWhenFinished = true;
-            } else {
-                activeAction.setLoop(THREE.LoopRepeat);
-            }
-
-            activeAction.play();
-            currentActionName = name;
-
-            // Highlight corresponding button
-            actButtons.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-action') === name);
-            });
-        }
-
         function triggerAction(name, isUser = false) {
             if (isUser) {
                 userInteracted = true;
@@ -2366,45 +2625,55 @@ Would you like to start a project inquiry right now?`;
                 }, 16000);
             }
 
-            const oneShotActions = ['Jump', 'Punch', 'ThumbsUp'];
-            const isSingleShot = oneShotActions.includes(name);
+            currentAction = name;
 
+            actButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-action') === name);
+            });
+
+            // Set digital face expression & speech
             switch(name) {
                 case 'Walking':
-                    fadeToAction('Walking', 0.3, false);
+                    eyeState = 'normal';
                     setSpeech("🚶 Active patrol mode: 60 FPS full skeletal inverse kinematics!");
                     break;
 
                 case 'Running':
-                    fadeToAction('Running', 0.25, false);
+                    eyeState = 'running';
                     setSpeech("🏃 High-velocity sprint! Scaling architecture to millions of users.");
                     break;
 
                 case 'Wave':
-                    fadeToAction('Wave', 0.28, false);
+                    eyeState = 'happy';
                     setSpeech("👋 Hello there! Welcome to ElavateX engineering studio!");
                     break;
 
                 case 'ThumbsUp':
-                    fadeToAction('ThumbsUp', 0.25, true);
+                    eyeState = 'wink';
+                    rightArm.thumb.scale.set(1.4, 1.4, 1.4);
                     setSpeech("👍 Quality verified: 100/100 Core Web Vitals & clean architecture.");
                     break;
 
                 case 'Jump':
-                    fadeToAction('Jump', 0.22, true);
+                    eyeState = 'battle';
+                    isJumping = true;
+                    jumpProgress = 0;
                     setSpeech("⚡ Leap ahead of the competition with verified enterprise tech!");
                     break;
 
                 case 'Punch':
-                    fadeToAction('Punch', 0.2, true);
+                    eyeState = 'battle';
+                    isPunching = true;
+                    punchProgress = 0;
                     setSpeech("🥊 Knocking out performance bottlenecks and bloated frameworks!");
                     break;
 
                 case 'Dance':
-                    fadeToAction('Dance', 0.3, false);
+                    eyeState = 'dance';
                     setSpeech("🕺 Launch celebration! Delivering real growth and market dominance.");
                     break;
             }
+            updateFace();
         }
 
         // Action Buttons Click Handlers
@@ -2416,96 +2685,15 @@ Would you like to start a project inquiry right now?`;
             });
         });
 
-        // 6. Model Loader (Native GLTF with Base64 Fallback)
-        function initModel(gltf) {
-            robotModel = gltf.scene;
-
-            // Position & Scale prominently
-            robotModel.position.set(0, 0, 0);
-            robotModel.scale.set(0.78, 0.78, 0.78);
-
-            // Enhance Materials to AAA Studio Spec
-            robotModel.traverse((child) => {
-                if (child.isMesh) {
-                    child.castShadow = true;
-                    child.receiveShadow = true;
-
-                    if (child.material) {
-                        if (child.material.name === 'Main') {
-                            child.material.roughness = 0.14;
-                            child.material.metalness = 0.08;
-                            child.material.color.setHex(0xf8fafc);
-                        } else if (child.material.name === 'Grey') {
-                            child.material.roughness = 0.08;
-                            child.material.metalness = 0.94;
-                            child.material.color.setHex(0xd1d5db);
-                        } else if (child.material.name === 'Black') {
-                            child.material.roughness = 0.05;
-                            child.material.metalness = 0.88;
-                            child.material.color.setHex(0x070b16);
-                        }
-                    }
-                }
-            });
-
-            headBone = robotModel.getObjectByName('Head');
-
-            // Set up Animation Mixer
-            mixer = new THREE.AnimationMixer(robotModel);
-            gltf.animations.forEach((clip) => {
-                actions[clip.name] = mixer.clipAction(clip);
-            });
-
-            // Automatically return to Walking/Idle after one-shot moves finish
-            mixer.addEventListener('finished', (e) => {
-                if (e.action === actions['Jump'] || e.action === actions['Punch'] || e.action === actions['ThumbsUp']) {
-                    setTimeout(() => {
-                        triggerAction('Walking', false);
-                    }, 400);
-                }
-            });
-
-            scene.add(robotModel);
-
-            // Start in Walking mode
-            triggerAction('Walking', false);
-        }
-
-        // Load the GLTF model
-        if (typeof THREE.GLTFLoader !== 'undefined') {
-            const loader = new THREE.GLTFLoader();
-            loader.load(
-                'RobotExpressive.glb',
-                (gltf) => {
-                    initModel(gltf);
-                },
-                undefined,
-                (err) => {
-                    console.warn('Direct fetch failed, decoding base64 data...', err);
-                    if (window.ROBOT_MODEL_BASE64) {
-                        const binary = atob(window.ROBOT_MODEL_BASE64);
-                        const len = binary.length;
-                        const bytes = new Uint8Array(len);
-                        for (let i = 0; i < len; i++) {
-                            bytes[i] = binary.charCodeAt(i);
-                        }
-                        loader.parse(bytes.buffer, '', initModel, (parseErr) => {
-                            console.error('Failed to parse base64 robot model:', parseErr);
-                        });
-                    }
-                }
-            );
-        }
-
-        // 7. Interactive Mouse / Touch Tracking & Orbit
+        // 9. Interactive Mouse / Touch Tracking & Orbit
         function onPointerMove(e) {
             const rect = canvas.getBoundingClientRect();
             const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
             const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : 0);
 
-            if (isDragging && robotModel) {
+            if (isDragging) {
                 const deltaX = clientX - prevPointerX;
-                dragRotY += deltaX * 0.012;
+                dragRotY += deltaX * 0.015;
                 prevPointerX = clientX;
             }
 
@@ -2517,6 +2705,10 @@ Would you like to start a project inquiry right now?`;
 
             targetHeadRotY = mouseX * 0.38;
             targetHeadRotX = -mouseY * 0.28;
+
+            pupilShiftX = mouseX * 7;
+            pupilShiftY = -mouseY * 6;
+            updateFace();
         }
 
         window.addEventListener('mousemove', onPointerMove, { passive: true });
@@ -2534,46 +2726,189 @@ Would you like to start a project inquiry right now?`;
         // Click directly on canvas to trigger next high-impact action
         canvas.addEventListener('click', () => {
             const acts = ['Jump', 'Punch', 'Dance', 'Wave', 'Running', 'Walking'];
-            const nextIdx = (acts.indexOf(currentActionName) + 1) % acts.length;
+            const nextIdx = (acts.indexOf(currentAction) + 1) % acts.length;
             triggerAction(acts[nextIdx], true);
         });
 
-        // 8. Main Render & Physics Loop
+        // 10. ANIMATION & KINEMATICS RENDER LOOP
         function animate() {
             requestAnimationFrame(animate);
 
             const delta = clock.getDelta();
+            const time = clock.getElapsedTime();
 
-            // Update Animation Mixer
-            if (mixer) {
-                mixer.update(delta);
-            }
-
-            // Rotate Platform Rings
+            // Rotate Arc Reactor Outer Ring & Platform Rings
+            reactorRing.rotation.z += 0.04;
             platformRing.rotation.z -= 0.006;
             innerRing.rotation.z += 0.009;
 
             // Float Cyber Particles
             const positions = particleGeo.attributes.position.array;
             for (let i = 0; i < particleCount; i++) {
-                positions[i * 3 + 1] += 0.003;
+                positions[i * 3 + 1] += 0.004;
                 if (positions[i * 3 + 1] > 3.5) {
                     positions[i * 3 + 1] = 0.1;
                 }
             }
             particleGeo.attributes.position.needsUpdate = true;
 
-            // Robot Drag & Head Tracking
-            if (robotModel) {
-                if (!isDragging) {
-                    dragRotY *= 0.93;
-                }
-                robotModel.rotation.y = dragRotY;
+            // Drag Rotation with Smooth Damping
+            if (!isDragging) {
+                dragRotY *= 0.94;
+            }
 
-                // Subtle head tracking towards cursor
-                if (headBone && !['Dance', 'Jump'].includes(currentActionName)) {
-                    headBone.rotation.y += (targetHeadRotY - headBone.rotation.y) * 0.1;
-                    headBone.rotation.x += (targetHeadRotX - headBone.rotation.x) * 0.1;
+            // Head 3D LookAt Lerp (tracks cursor in 3D)
+            headGroup.rotation.y += (targetHeadRotY - headGroup.rotation.y) * 0.1;
+            headGroup.rotation.x += (targetHeadRotX - headGroup.rotation.x) * 0.1;
+
+            // KINEMATICS ACCORDING TO ACTION
+            if (currentAction === 'Walking') {
+                walkCycle += delta * 4.6;
+
+                const swing = Math.sin(walkCycle) * 0.55;
+                leftLeg.leg.rotation.x = swing;
+                rightLeg.leg.rotation.x = -swing;
+
+                // Knee flexion on backstroke
+                leftLeg.kneeGroup.rotation.x = Math.max(0, -Math.sin(walkCycle) * 0.65);
+                rightLeg.kneeGroup.rotation.x = Math.max(0, Math.sin(walkCycle) * 0.65);
+
+                // Counter-arms
+                leftArm.arm.rotation.x = -swing * 0.65;
+                leftArm.arm.rotation.z = 0.1;
+                rightArm.arm.rotation.x = swing * 0.65;
+                rightArm.arm.rotation.z = -0.1;
+                rightArm.elbowGroup.rotation.x = Math.max(0, swing * 0.3);
+                leftArm.elbowGroup.rotation.x = Math.max(0, -swing * 0.3);
+                rightArm.wristGroup.rotation.set(0, 0, 0);
+
+                // Torso vertical bob & roll
+                torsoGroup.position.y = 1.0 + Math.abs(Math.sin(walkCycle)) * 0.07;
+                torsoGroup.rotation.z = Math.sin(walkCycle) * 0.03;
+                torsoGroup.rotation.x = 0;
+
+                // Patrol movement along X
+                const patrolX = Math.sin(walkCycle * 0.28) * 0.95;
+                robot.position.x = patrolX;
+                shadowMesh.position.x = patrolX;
+
+                const targetFacingY = Math.cos(walkCycle * 0.28) >= 0 ? 0 : Math.PI;
+                robot.rotation.y += (targetFacingY + dragRotY - robot.rotation.y) * 0.08;
+
+            } else if (currentAction === 'Running') {
+                // High-velocity turbo sprint
+                walkCycle += delta * 9.5;
+
+                const sprintSwing = Math.sin(walkCycle) * 0.85;
+                leftLeg.leg.rotation.x = sprintSwing;
+                rightLeg.leg.rotation.x = -sprintSwing;
+
+                leftLeg.kneeGroup.rotation.x = Math.max(0, -Math.sin(walkCycle) * 1.0);
+                rightLeg.kneeGroup.rotation.x = Math.max(0, Math.sin(walkCycle) * 1.0);
+
+                leftArm.arm.rotation.x = -sprintSwing * 0.9;
+                leftArm.arm.rotation.z = 0.15;
+                rightArm.arm.rotation.x = sprintSwing * 0.9;
+                rightArm.arm.rotation.z = -0.15;
+                rightArm.elbowGroup.rotation.x = 0.6 + Math.abs(sprintSwing) * 0.4;
+                leftArm.elbowGroup.rotation.x = 0.6 + Math.abs(sprintSwing) * 0.4;
+
+                // Sprint forward body lean & energetic bob
+                torsoGroup.position.y = 1.0 + Math.abs(Math.sin(walkCycle)) * 0.12;
+                torsoGroup.rotation.x = 0.4;
+                torsoGroup.rotation.z = Math.sin(walkCycle) * 0.06;
+
+                robot.position.x += (0 - robot.position.x) * 0.1;
+                shadowMesh.position.x = robot.position.x;
+                robot.rotation.y += (0 + dragRotY - robot.rotation.y) * 0.1;
+
+            } else {
+                // Return smoothly to center platform & upright posture
+                robot.position.x += (0 - robot.position.x) * 0.1;
+                shadowMesh.position.x = robot.position.x;
+                robot.rotation.y += (0 + dragRotY - robot.rotation.y) * 0.1;
+                torsoGroup.rotation.x += (0 - torsoGroup.rotation.x) * 0.1;
+                torsoGroup.rotation.z += (0 - torsoGroup.rotation.z) * 0.1;
+
+                // Neutral legs
+                leftLeg.leg.rotation.x += (0 - leftLeg.leg.rotation.x) * 0.12;
+                rightLeg.leg.rotation.x += (0 - rightLeg.leg.rotation.x) * 0.12;
+                leftLeg.kneeGroup.rotation.x += (0 - leftLeg.kneeGroup.rotation.x) * 0.12;
+                rightLeg.kneeGroup.rotation.x += (0 - rightLeg.kneeGroup.rotation.x) * 0.12;
+
+                if (currentAction === 'Wave') {
+                    // Right arm waving
+                    rightArm.arm.rotation.z += (2.3 - rightArm.arm.rotation.z) * 0.12;
+                    rightArm.arm.rotation.x += (0.15 - rightArm.arm.rotation.x) * 0.12;
+                    rightArm.elbowGroup.rotation.x += (0.45 - rightArm.elbowGroup.rotation.x) * 0.12;
+                    rightArm.wristGroup.rotation.z = Math.sin(time * 7) * 0.35;
+
+                    leftArm.arm.rotation.set(0, 0, 0.15);
+                    leftArm.elbowGroup.rotation.set(0.2, 0, 0);
+
+                    headGroup.rotation.z += (0.08 - headGroup.rotation.z) * 0.1;
+                    torsoGroup.position.y = 1.0 + Math.sin(time * 2) * 0.02;
+
+                } else if (currentAction === 'ThumbsUp') {
+                    // Thumbs up pose
+                    rightArm.arm.rotation.x += (-1.2 - rightArm.arm.rotation.x) * 0.14;
+                    rightArm.arm.rotation.z += (0.25 - rightArm.arm.rotation.z) * 0.14;
+                    rightArm.elbowGroup.rotation.x += (0.85 - rightArm.elbowGroup.rotation.x) * 0.14;
+                    rightArm.wristGroup.rotation.set(0, 0, 0);
+
+                    headGroup.rotation.x += (Math.sin(time * 4) * 0.08 - 0.12 - headGroup.rotation.x) * 0.1;
+                    leftArm.arm.rotation.set(0, 0, 0.15);
+                    leftArm.elbowGroup.rotation.set(0.3, 0, 0);
+                    torsoGroup.position.y = 1.0 + Math.sin(time * 2) * 0.02;
+
+                } else if (currentAction === 'Jump') {
+                    // Jump parabola arc
+                    jumpProgress += delta * 2.2;
+                    if (jumpProgress > Math.PI) {
+                        jumpProgress = 0;
+                        isJumping = false;
+                        triggerAction('Walking', false);
+                    } else {
+                        const jumpY = Math.sin(jumpProgress) * 1.35;
+                        torsoGroup.position.y = 1.0 + jumpY;
+                        leftLeg.kneeGroup.rotation.x = Math.sin(jumpProgress) * 0.8;
+                        rightLeg.kneeGroup.rotation.x = Math.sin(jumpProgress) * 0.8;
+                        leftArm.arm.rotation.z = 0.6 + Math.sin(jumpProgress) * 0.6;
+                        rightArm.arm.rotation.z = -0.6 - Math.sin(jumpProgress) * 0.6;
+                    }
+
+                } else if (currentAction === 'Punch') {
+                    // 1-2 Martial arts punch
+                    punchProgress += delta * 4.5;
+                    if (punchProgress > Math.PI * 2) {
+                        punchProgress = 0;
+                        isPunching = false;
+                        triggerAction('Walking', false);
+                    } else {
+                        const punchR = Math.max(0, Math.sin(punchProgress));
+                        rightArm.arm.rotation.x = -punchR * 1.4;
+                        rightArm.arm.rotation.z = 0;
+                        rightArm.elbowGroup.rotation.x = (1 - punchR) * 0.8;
+                        torsoGroup.rotation.y = punchR * 0.35;
+                    }
+
+                } else if (currentAction === 'Dance') {
+                    // Breakdance groove
+                    const beat = Math.sin(time * 8.5);
+                    torsoGroup.position.y = 1.0 + Math.abs(beat) * 0.1;
+                    torsoGroup.rotation.z = Math.sin(time * 4.25) * 0.12;
+
+                    leftArm.arm.rotation.x = beat * 0.75;
+                    leftArm.arm.rotation.z = 0.25;
+                    leftArm.elbowGroup.rotation.x = 0.6;
+
+                    rightArm.arm.rotation.x = -beat * 0.75;
+                    rightArm.arm.rotation.z = -0.25;
+                    rightArm.elbowGroup.rotation.x = 0.6;
+                    rightArm.wristGroup.rotation.set(0, 0, 0);
+
+                    headGroup.rotation.z = -Math.sin(time * 4.25) * 0.08;
+                    updateFace();
                 }
             }
 
@@ -2581,7 +2916,7 @@ Would you like to start a project inquiry right now?`;
         }
         animate();
 
-        // 9. Resize Listener
+        // 11. Resize Listener
         function onWindowResize() {
             if (!container) return;
             width = container.clientWidth || 640;
@@ -2592,11 +2927,11 @@ Would you like to start a project inquiry right now?`;
         }
         window.addEventListener('resize', onWindowResize);
 
-        // 10. Auto-Idle Demonstration Loop (Transitions between high-impact moves)
+        // 12. Auto-Idle Demonstration Loop (Transitions between high-impact moves)
         const autoCycle = ['Walking', 'Wave', 'Running', 'ThumbsUp', 'Walking', 'Jump', 'Dance'];
         let cycleIdx = 0;
         setInterval(() => {
-            if (!userInteracted && mixer) {
+            if (!userInteracted) {
                 cycleIdx = (cycleIdx + 1) % autoCycle.length;
                 triggerAction(autoCycle[cycleIdx], false);
             }
