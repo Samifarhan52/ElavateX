@@ -776,7 +776,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalViewport.innerHTML = `
             <div style="max-width: 980px; margin: 0 auto; width: 100%;">
                 <!-- Simulated Top Nav -->
-                <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 3rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 2rem; border-bottom: 1px solid rgba(128, 128, 128, 0.25); margin-bottom: 3rem;">
                     <div style="display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 1.25rem;">
                         <span style="display:inline-flex; align-items:center;">${indData.iconSvg}</span>
                         <span>${indData.name.split(',')[0]}</span>

@@ -567,13 +567,51 @@
 }
 
 /* ------------------------------------------------------------------- */
-/* 4. THE 18 THEME STYLES (Unique Buttons, Cards, Inputs, & Hover)     */
 /* ------------------------------------------------------------------- */
+/* 4. THE 18 THEME STYLES (Scoped Typography, WCAG Contrast & Aesthetics)*/
+/* ------------------------------------------------------------------- */
+
+/* Base Reset: Ensure elements inside themed stages inherit theme colors */
+.sandbox-stage h1, .sandbox-stage h2, .sandbox-stage h3, .sandbox-stage h4, .sandbox-stage h5, .sandbox-stage h6,
+.card-preview-viewport h1, .card-preview-viewport h2, .card-preview-viewport h3, .card-preview-viewport h4, .card-preview-viewport h5, .card-preview-viewport h6,
+.modal-body-viewport h1, .modal-body-viewport h2, .modal-body-viewport h3, .modal-body-viewport h4, .modal-body-viewport h5, .modal-body-viewport h6 {
+  color: inherit;
+}
+
+.sandbox-stage p,
+.card-preview-viewport p,
+.modal-body-viewport p {
+  color: inherit;
+}
 
 /* 1. GLASSMORPHISM */
 .theme-glassmorphism {
-  background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.4), rgba(15, 23, 42, 0.95) 70%);
+  background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.45), rgba(15, 23, 42, 0.96) 70%);
   color: #ffffff;
+}
+.theme-glassmorphism h1,
+.theme-glassmorphism h2,
+.theme-glassmorphism h3,
+.theme-glassmorphism h4,
+.theme-glassmorphism h5,
+.theme-glassmorphism h6,
+.theme-glassmorphism .sandbox-heading {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.theme-glassmorphism .sandbox-tag {
+  color: #38bdf8 !important;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+.theme-glassmorphism .sandbox-desc,
+.theme-glassmorphism p,
+.theme-glassmorphism label {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.theme-glassmorphism #sandbox-stat1-lbl,
+.theme-glassmorphism #sandbox-stat2-lbl,
+.theme-glassmorphism .sandbox-stat-lbl {
+  color: rgba(255, 255, 255, 0.8) !important;
 }
 .theme-glassmorphism .morph-card {
   background: rgba(255, 255, 255, 0.08);
@@ -588,7 +626,7 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.08) 100%);
   backdrop-filter: blur(18px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 999px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
@@ -597,21 +635,43 @@
   transform: translateY(-3px);
   box-shadow: 0 14px 35px rgba(0, 240, 255, 0.35);
   border-color: rgba(0, 240, 255, 0.7);
+  color: #ffffff !important;
 }
 .theme-glassmorphism .morph-input {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
+  color: #ffffff !important;
 }
-.theme-glassmorphism .morph-input:focus {
-  border-color: #00f0ff;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+.theme-glassmorphism .morph-input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
 }
 
 /* 2. BENTO GRID UI */
 .theme-bento {
   background: #090b10;
   color: #f8fafc;
+}
+.theme-bento h1,
+.theme-bento h2,
+.theme-bento h3,
+.theme-bento h4,
+.theme-bento h5,
+.theme-bento h6,
+.theme-bento .sandbox-heading {
+  color: #f8fafc !important;
+}
+.theme-bento .sandbox-tag {
+  color: #38bdf8 !important;
+}
+.theme-bento .sandbox-desc,
+.theme-bento p,
+.theme-bento label {
+  color: #94a3b8 !important;
+}
+.theme-bento #sandbox-stat1-lbl,
+.theme-bento #sandbox-stat2-lbl,
+.theme-bento .sandbox-stat-lbl {
+  color: #64748b !important;
 }
 .theme-bento .morph-card {
   background: #111520;
@@ -623,7 +683,7 @@
 .theme-bento .morph-btn {
   background: #171d2b;
   border: 1px solid #2a364f;
-  color: #38bdf8;
+  color: #38bdf8 !important;
   border-radius: 12px;
   font-family: var(--font-mono);
   font-size: 0.88rem;
@@ -631,21 +691,54 @@
 .theme-bento .morph-btn:hover {
   background: #1e273a;
   border-color: #38bdf8;
-  color: #ffffff;
+  color: #ffffff !important;
   box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), inset 0 0 10px rgba(56, 189, 248, 0.15);
   transform: translateY(-2px);
 }
 .theme-bento .morph-input {
   background: #161b26;
   border: 1px solid #283144;
-  color: #f8fafc;
+  color: #f8fafc !important;
   font-family: var(--font-mono);
+}
+.theme-bento .morph-input::placeholder {
+  color: #64748b;
 }
 
 /* 3. NEO-BRUTALISM */
 .theme-neobrutalism {
   background: #fff8eb;
   color: #000000;
+}
+.theme-neobrutalism h1,
+.theme-neobrutalism h2,
+.theme-neobrutalism h3,
+.theme-neobrutalism h4,
+.theme-neobrutalism h5,
+.theme-neobrutalism h6,
+.theme-neobrutalism .sandbox-heading {
+  color: #000000 !important;
+  font-weight: 900 !important;
+}
+.theme-neobrutalism .sandbox-tag {
+  color: #000000 !important;
+  background: #bef264;
+  border: 2px solid #000000;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 900;
+}
+.theme-neobrutalism .sandbox-desc,
+.theme-neobrutalism p,
+.theme-neobrutalism label {
+  color: #111111 !important;
+  font-weight: 600;
+}
+.theme-neobrutalism #sandbox-stat1-lbl,
+.theme-neobrutalism #sandbox-stat2-lbl,
+.theme-neobrutalism .sandbox-stat-lbl {
+  color: #000000 !important;
+  font-weight: 700;
 }
 .theme-neobrutalism .morph-card {
   background: #ffffff;
@@ -658,15 +751,16 @@
   background: #bef264;
   border: 3.5px solid #000000;
   box-shadow: 6px 6px 0px #000000;
-  color: #000000;
+  color: #000000 !important;
   border-radius: 10px;
   font-family: 'Space Grotesk', sans-serif;
-  font-weight: 800;
+  font-weight: 900;
   text-transform: uppercase;
 }
 .theme-neobrutalism .morph-btn:hover {
   transform: translate(-3px, -3px);
   box-shadow: 9px 9px 0px #000000;
+  color: #000000 !important;
 }
 .theme-neobrutalism .morph-btn:active {
   transform: translate(3px, 3px);
@@ -675,14 +769,39 @@
 .theme-neobrutalism .morph-input {
   background: #ffffff;
   border: 3px solid #000000;
-  color: #000000;
+  color: #000000 !important;
   font-weight: 700;
+}
+.theme-neobrutalism .morph-input::placeholder {
+  color: #555555;
 }
 
 /* 4. MINIMALISM */
 .theme-minimalism {
   background: #ffffff;
   color: #0f172a;
+}
+.theme-minimalism h1,
+.theme-minimalism h2,
+.theme-minimalism h3,
+.theme-minimalism h4,
+.theme-minimalism h5,
+.theme-minimalism h6,
+.theme-minimalism .sandbox-heading {
+  color: #0a0a0a !important;
+}
+.theme-minimalism .sandbox-tag {
+  color: #525252 !important;
+}
+.theme-minimalism .sandbox-desc,
+.theme-minimalism p,
+.theme-minimalism label {
+  color: #404040 !important;
+}
+.theme-minimalism #sandbox-stat1-lbl,
+.theme-minimalism #sandbox-stat2-lbl,
+.theme-minimalism .sandbox-stat-lbl {
+  color: #737373 !important;
 }
 .theme-minimalism .morph-card {
   background: #f8fafc;
@@ -694,7 +813,7 @@
 .theme-minimalism .morph-btn {
   background: #0f172a;
   border: 1px solid #0f172a;
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 0px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -702,19 +821,48 @@
 }
 .theme-minimalism .morph-btn:hover {
   background: transparent;
-  color: #0f172a;
+  color: #0f172a !important;
 }
 .theme-minimalism .morph-input {
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 0;
-  color: #0f172a;
+  color: #0f172a !important;
+}
+.theme-minimalism .morph-input::placeholder {
+  color: #94a3b8;
 }
 
 /* 5. MAXIMALISM */
 .theme-maximalism {
   background: linear-gradient(135deg, #f43f5e 0%, #8b5cf6 50%, #06b6d4 100%);
   color: #ffffff;
+}
+.theme-maximalism h1,
+.theme-maximalism h2,
+.theme-maximalism h3,
+.theme-maximalism h4,
+.theme-maximalism h5,
+.theme-maximalism h6,
+.theme-maximalism .sandbox-heading {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+.theme-maximalism .sandbox-tag {
+  color: #facc15 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+.theme-maximalism .sandbox-desc,
+.theme-maximalism p,
+.theme-maximalism label {
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+.theme-maximalism #sandbox-stat1-lbl,
+.theme-maximalism #sandbox-stat2-lbl,
+.theme-maximalism .sandbox-stat-lbl {
+  color: #fef08a !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 .theme-maximalism .morph-card {
   background: rgba(0, 0, 0, 0.45);
@@ -726,30 +874,53 @@
 .theme-maximalism .morph-btn {
   background: linear-gradient(90deg, #ec4899, #f59e0b, #10b981, #06b6d4, #ec4899);
   background-size: 300% 100%;
-  color: #ffffff;
+  color: #ffffff !important;
   border: 2px solid #ffffff;
   border-radius: 999px;
   font-weight: 900;
   animation: rainbowFlow 4s linear infinite;
 }
-@keyframes rainbowFlow {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
 .theme-maximalism .morph-btn:hover {
   transform: scale(1.08) rotate(-2deg);
   box-shadow: 0 15px 35px rgba(236, 72, 153, 0.6);
+  color: #ffffff !important;
 }
 .theme-maximalism .morph-input {
   background: rgba(255, 255, 255, 0.25);
   border: 2px solid #ffffff;
-  color: #ffffff;
+  color: #ffffff !important;
+}
+.theme-maximalism .morph-input::placeholder {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* 6. NEUMORPHISM */
 .theme-neumorphism {
   background: #e6ecf4;
   color: #334155;
+}
+.theme-neumorphism h1,
+.theme-neumorphism h2,
+.theme-neumorphism h3,
+.theme-neumorphism h4,
+.theme-neumorphism h5,
+.theme-neumorphism h6,
+.theme-neumorphism .sandbox-heading {
+  color: #1e293b !important;
+  font-weight: 800;
+}
+.theme-neumorphism .sandbox-tag {
+  color: #475569 !important;
+}
+.theme-neumorphism .sandbox-desc,
+.theme-neumorphism p,
+.theme-neumorphism label {
+  color: #334155 !important;
+}
+.theme-neumorphism #sandbox-stat1-lbl,
+.theme-neumorphism #sandbox-stat2-lbl,
+.theme-neumorphism .sandbox-stat-lbl {
+  color: #64748b !important;
 }
 .theme-neumorphism .morph-card {
   background: #e6ecf4;
@@ -762,12 +933,13 @@
   background: #e6ecf4;
   border-radius: 18px;
   box-shadow: 8px 8px 16px #c2c9d2, -8px -8px 16px #ffffff;
-  color: #1e293b;
+  color: #1e293b !important;
   border: none;
 }
 .theme-neumorphism .morph-btn:hover {
   box-shadow: 10px 10px 20px #b5bcc5, -10px -10px 20px #ffffff;
   transform: translateY(-2px);
+  color: #1e293b !important;
 }
 .theme-neumorphism .morph-btn:active {
   box-shadow: inset 6px 6px 12px #c2c9d2, inset -6px -6px 12px #ffffff;
@@ -777,13 +949,39 @@
   background: #e6ecf4;
   border: none;
   box-shadow: inset 5px 5px 10px #c2c9d2, inset -5px -5px 10px #ffffff;
-  color: #334155;
+  color: #1e293b !important;
+}
+.theme-neumorphism .morph-input::placeholder {
+  color: #94a3b8;
 }
 
 /* 7. CLAYMORPHISM */
 .theme-claymorphism {
   background: #e0f2fe;
   color: #0369a1;
+}
+.theme-claymorphism h1,
+.theme-claymorphism h2,
+.theme-claymorphism h3,
+.theme-claymorphism h4,
+.theme-claymorphism h5,
+.theme-claymorphism h6,
+.theme-claymorphism .sandbox-heading {
+  color: #0c4a6e !important;
+  font-weight: 800;
+}
+.theme-claymorphism .sandbox-tag {
+  color: #0284c7 !important;
+}
+.theme-claymorphism .sandbox-desc,
+.theme-claymorphism p,
+.theme-claymorphism label {
+  color: #0369a1 !important;
+}
+.theme-claymorphism #sandbox-stat1-lbl,
+.theme-claymorphism #sandbox-stat2-lbl,
+.theme-claymorphism .sandbox-stat-lbl {
+  color: #0284c7 !important;
 }
 .theme-claymorphism .morph-card {
   background: #bae6fd;
@@ -794,7 +992,7 @@
 }
 .theme-claymorphism .morph-btn {
   background: #38bdf8;
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 999px;
   box-shadow: 8px 8px 20px rgba(14, 165, 233, 0.35), inset -5px -5px 10px rgba(2, 132, 199, 0.4), inset 5px 5px 10px rgba(255, 255, 255, 0.8);
   border: none;
@@ -802,12 +1000,16 @@
 .theme-claymorphism .morph-btn:hover {
   transform: translateY(-4px) scale(1.03);
   box-shadow: 12px 14px 25px rgba(14, 165, 233, 0.45);
+  color: #ffffff !important;
 }
 .theme-claymorphism .morph-input {
   background: #e0f2fe;
   border: none;
   box-shadow: inset 5px 5px 10px rgba(14, 165, 233, 0.25), inset -5px -5px 10px #ffffff;
-  color: #0369a1;
+  color: #0c4a6e !important;
+}
+.theme-claymorphism .morph-input::placeholder {
+  color: #38bdf8;
 }
 
 /* 8. BRUTALISM */
@@ -815,6 +1017,32 @@
   background: #111111;
   color: #e5e5e5;
   font-family: var(--font-mono);
+}
+.theme-brutalism h1,
+.theme-brutalism h2,
+.theme-brutalism h3,
+.theme-brutalism h4,
+.theme-brutalism h5,
+.theme-brutalism h6,
+.theme-brutalism .sandbox-heading {
+  color: #ffffff !important;
+  font-family: var(--font-mono) !important;
+}
+.theme-brutalism .sandbox-tag {
+  color: #a3e635 !important;
+  font-family: var(--font-mono) !important;
+}
+.theme-brutalism .sandbox-desc,
+.theme-brutalism p,
+.theme-brutalism label {
+  color: #d4d4d4 !important;
+  font-family: var(--font-mono) !important;
+}
+.theme-brutalism #sandbox-stat1-lbl,
+.theme-brutalism #sandbox-stat2-lbl,
+.theme-brutalism .sandbox-stat-lbl {
+  color: #a3a3a3 !important;
+  font-family: var(--font-mono) !important;
 }
 .theme-brutalism .morph-card {
   background: #000000;
@@ -824,7 +1052,7 @@
 }
 .theme-brutalism .morph-btn {
   background: #ffffff;
-  color: #000000;
+  color: #000000 !important;
   border-radius: 0;
   border: 2px solid #ffffff;
   font-family: var(--font-mono);
@@ -832,52 +1060,109 @@
 }
 .theme-brutalism .morph-btn:hover {
   background: #000000;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .theme-brutalism .morph-input {
   background: #111111;
   border: 1px solid #444444;
-  color: #ffffff;
+  color: #ffffff !important;
+}
+.theme-brutalism .morph-input::placeholder {
+  color: #737373;
 }
 
 /* 9. SKEUOMORPHISM */
 .theme-skeuomorphism {
-  background: #1c1d21;
-  color: #d1d5db;
+  background: #18191d;
+  color: #f3f4f6;
+}
+.theme-skeuomorphism h1,
+.theme-skeuomorphism h2,
+.theme-skeuomorphism h3,
+.theme-skeuomorphism h4,
+.theme-skeuomorphism h5,
+.theme-skeuomorphism h6,
+.theme-skeuomorphism .sandbox-heading {
+  color: #f3f4f6 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 -1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+.theme-skeuomorphism .sandbox-tag {
+  color: #9ca3af !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
+}
+.theme-skeuomorphism .sandbox-desc,
+.theme-skeuomorphism p,
+.theme-skeuomorphism label {
+  color: #d1d5db !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+}
+.theme-skeuomorphism #sandbox-stat1-lbl,
+.theme-skeuomorphism #sandbox-stat2-lbl,
+.theme-skeuomorphism .sandbox-stat-lbl {
+  color: #9ca3af !important;
 }
 .theme-skeuomorphism .morph-card {
   background: linear-gradient(180deg, #2a2c33 0%, #1a1b1f 100%);
   border: 1px solid #3d404b;
   border-radius: 16px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 15px 35px rgba(0, 0, 0, 0.7);
-  color: #d1d5db;
+  color: #f3f4f6;
 }
 .theme-skeuomorphism .morph-btn {
   background: linear-gradient(180deg, #4b5563 0%, #374151 100%);
   border: 1px solid #1f2937;
   border-radius: 10px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 6px 12px rgba(0, 0, 0, 0.5);
-  color: #ffffff;
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 }
 .theme-skeuomorphism .morph-btn:hover {
   background: linear-gradient(180deg, #5b6575 0%, #475161 100%);
   transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 18px rgba(0, 0, 0, 0.7);
+  color: #ffffff !important;
 }
 .theme-skeuomorphism .morph-btn:active {
-  box-shadow: inset 0 3px 6px rgba(0,0,0,0.8);
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.8);
   transform: translateY(1px);
 }
 .theme-skeuomorphism .morph-input {
   background: #141518;
   border: 1px solid #32353e;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
-  color: #ffffff;
+  color: #ffffff !important;
+}
+.theme-skeuomorphism .morph-input::placeholder {
+  color: #9ca3af;
 }
 
 /* 10. FLAT DESIGN */
 .theme-flat {
   background: #f1f5f9;
   color: #1e293b;
+}
+.theme-flat h1,
+.theme-flat h2,
+.theme-flat h3,
+.theme-flat h4,
+.theme-flat h5,
+.theme-flat h6,
+.theme-flat .sandbox-heading {
+  color: #0f172a !important;
+  font-weight: 800;
+}
+.theme-flat .sandbox-tag {
+  color: #0284c7 !important;
+}
+.theme-flat .sandbox-desc,
+.theme-flat p,
+.theme-flat label {
+  color: #334155 !important;
+}
+.theme-flat #sandbox-stat1-lbl,
+.theme-flat #sandbox-stat2-lbl,
+.theme-flat .sandbox-stat-lbl {
+  color: #64748b !important;
 }
 .theme-flat .morph-card {
   background: #ffffff;
@@ -888,24 +1173,51 @@
 }
 .theme-flat .morph-btn {
   background: #0284c7;
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 6px;
   border: none;
   font-weight: 700;
 }
 .theme-flat .morph-btn:hover {
   background: #0369a1;
+  color: #ffffff !important;
 }
 .theme-flat .morph-input {
   background: #f8fafc;
   border: 2px solid #e2e8f0;
-  color: #1e293b;
+  color: #0f172a !important;
+}
+.theme-flat .morph-input::placeholder {
+  color: #94a3b8;
 }
 
 /* 11. MATERIAL 3 */
 .theme-material {
   background: #f7f9fc;
   color: #1a1c1e;
+}
+.theme-material h1,
+.theme-material h2,
+.theme-material h3,
+.theme-material h4,
+.theme-material h5,
+.theme-material h6,
+.theme-material .sandbox-heading {
+  color: #1a1c1e !important;
+  font-weight: 800;
+}
+.theme-material .sandbox-tag {
+  color: #006494 !important;
+}
+.theme-material .sandbox-desc,
+.theme-material p,
+.theme-material label {
+  color: #41474d !important;
+}
+.theme-material #sandbox-stat1-lbl,
+.theme-material #sandbox-stat2-lbl,
+.theme-material .sandbox-stat-lbl {
+  color: #71787e !important;
 }
 .theme-material .morph-card {
   background: #ffffff;
@@ -916,7 +1228,7 @@
 }
 .theme-material .morph-btn {
   background: #006494;
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 999px;
   border: none;
   box-shadow: 0 2px 6px rgba(0, 100, 148, 0.25);
@@ -924,18 +1236,45 @@
 .theme-material .morph-btn:hover {
   box-shadow: 0 6px 16px rgba(0, 100, 148, 0.35);
   transform: translateY(-2px);
+  color: #ffffff !important;
 }
 .theme-material .morph-input {
   background: #eef2f6;
   border: 1px solid #c4c7cf;
   border-radius: 12px;
-  color: #1a1c1e;
+  color: #1a1c1e !important;
+}
+.theme-material .morph-input::placeholder {
+  color: #8e9199;
 }
 
 /* 12. Y2K CYBER */
 .theme-y2k {
   background: linear-gradient(135deg, #e0e7ff 0%, #fbcfe8 100%);
   color: #4338ca;
+}
+.theme-y2k h1,
+.theme-y2k h2,
+.theme-y2k h3,
+.theme-y2k h4,
+.theme-y2k h5,
+.theme-y2k h6,
+.theme-y2k .sandbox-heading {
+  color: #3730a3 !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+}
+.theme-y2k .sandbox-tag {
+  color: #ec4899 !important;
+}
+.theme-y2k .sandbox-desc,
+.theme-y2k p,
+.theme-y2k label {
+  color: #4338ca !important;
+}
+.theme-y2k #sandbox-stat1-lbl,
+.theme-y2k #sandbox-stat2-lbl,
+.theme-y2k .sandbox-stat-lbl {
+  color: #6366f1 !important;
 }
 .theme-y2k .morph-card {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(224, 231, 255, 0.8) 100%);
@@ -946,25 +1285,53 @@
 }
 .theme-y2k .morph-btn {
   background: linear-gradient(180deg, #ffffff 0%, #d8b4fe 40%, #c084fc 60%, #ec4899 100%);
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 999px;
   border: 2px solid #ffffff;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 .theme-y2k .morph-btn:hover {
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
+  color: #ffffff !important;
 }
 .theme-y2k .morph-input {
   background: #ffffff;
   border: 2px solid #c084fc;
-  color: #4338ca;
+  color: #4338ca !important;
+}
+.theme-y2k .morph-input::placeholder {
+  color: #a855f7;
 }
 
 /* 13. RETRO SYNTHWAVE */
 .theme-retro {
   background: #11052c;
   color: #f1f5f9;
+}
+.theme-retro h1,
+.theme-retro h2,
+.theme-retro h3,
+.theme-retro h4,
+.theme-retro h5,
+.theme-retro h6,
+.theme-retro .sandbox-heading {
+  color: #ffffff !important;
+  text-shadow: 0 0 12px rgba(236, 72, 153, 0.8), 0 0 25px rgba(236, 72, 153, 0.4) !important;
+}
+.theme-retro .sandbox-tag {
+  color: #06b6d4 !important;
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.8) !important;
+}
+.theme-retro .sandbox-desc,
+.theme-retro p,
+.theme-retro label {
+  color: #f1f5f9 !important;
+}
+.theme-retro #sandbox-stat1-lbl,
+.theme-retro #sandbox-stat2-lbl,
+.theme-retro .sandbox-stat-lbl {
+  color: #cbd5e1 !important;
 }
 .theme-retro .morph-card {
   background: #1c0a3e;
@@ -978,16 +1345,20 @@
   border: 2px solid #ec4899;
   border-radius: 8px;
   box-shadow: 0 0 15px rgba(236, 72, 153, 0.6), inset 0 0 8px rgba(6, 182, 212, 0.5);
-  color: #ffffff;
+  color: #ffffff !important;
 }
 .theme-retro .morph-btn:hover {
   box-shadow: 0 0 25px #ec4899, inset 0 0 12px #06b6d4;
   transform: translateY(-2px);
+  color: #ffffff !important;
 }
 .theme-retro .morph-input {
   background: #090217;
   border: 1px solid #06b6d4;
-  color: #ffffff;
+  color: #ffffff !important;
+}
+.theme-retro .morph-input::placeholder {
+  color: #94a3b8;
 }
 
 /* 14. CYBERPUNK 2077 */
@@ -995,6 +1366,34 @@
   background: #0d0f14;
   color: #fcee0a;
   font-family: var(--font-mono);
+}
+.theme-cyberpunk h1,
+.theme-cyberpunk h2,
+.theme-cyberpunk h3,
+.theme-cyberpunk h4,
+.theme-cyberpunk h5,
+.theme-cyberpunk h6,
+.theme-cyberpunk .sandbox-heading {
+  color: #fcee0a !important;
+  font-family: var(--font-mono) !important;
+  text-shadow: 0 0 10px rgba(252, 238, 10, 0.4) !important;
+}
+.theme-cyberpunk .sandbox-tag {
+  color: #00f0ff !important;
+  font-family: var(--font-mono) !important;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6) !important;
+}
+.theme-cyberpunk .sandbox-desc,
+.theme-cyberpunk p,
+.theme-cyberpunk label {
+  color: #e2e8f0 !important;
+  font-family: var(--font-mono) !important;
+}
+.theme-cyberpunk #sandbox-stat1-lbl,
+.theme-cyberpunk #sandbox-stat2-lbl,
+.theme-cyberpunk .sandbox-stat-lbl {
+  color: #94a3b8 !important;
+  font-family: var(--font-mono) !important;
 }
 .theme-cyberpunk .morph-card {
   background: #161922;
@@ -1007,7 +1406,7 @@
 }
 .theme-cyberpunk .morph-btn {
   background: #fcee0a;
-  color: #000000;
+  color: #000000 !important;
   border-radius: 0px;
   font-family: var(--font-mono);
   font-weight: 900;
@@ -1017,11 +1416,15 @@
 .theme-cyberpunk .morph-btn:hover {
   filter: drop-shadow(-3px 0 #00f0ff) drop-shadow(3px 0 #ff0055);
   transform: translateY(-2px);
+  color: #000000 !important;
 }
 .theme-cyberpunk .morph-input {
   background: #0d0f14;
   border: 1px solid #fcee0a;
-  color: #fcee0a;
+  color: #fcee0a !important;
+}
+.theme-cyberpunk .morph-input::placeholder {
+  color: #64748b;
 }
 
 /* 15. EDITORIAL SWISS */
@@ -1029,6 +1432,29 @@
   background: #faf8f4;
   color: #1c1917;
   font-family: 'Playfair Display', serif;
+}
+.theme-editorial h1,
+.theme-editorial h2,
+.theme-editorial h3,
+.theme-editorial h4,
+.theme-editorial h5,
+.theme-editorial h6,
+.theme-editorial .sandbox-heading {
+  color: #1c1917 !important;
+  font-family: 'Playfair Display', serif !important;
+}
+.theme-editorial .sandbox-tag {
+  color: #854d0e !important;
+}
+.theme-editorial .sandbox-desc,
+.theme-editorial p,
+.theme-editorial label {
+  color: #292524 !important;
+}
+.theme-editorial #sandbox-stat1-lbl,
+.theme-editorial #sandbox-stat2-lbl,
+.theme-editorial .sandbox-stat-lbl {
+  color: #78716c !important;
 }
 .theme-editorial .morph-card {
   background: #ffffff;
@@ -1039,7 +1465,7 @@
 }
 .theme-editorial .morph-btn {
   background: #1c1917;
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 0px;
   border: 1px solid #1c1917;
   font-family: 'Playfair Display', serif;
@@ -1050,19 +1476,46 @@
 .theme-editorial .morph-btn:hover {
   background: #d4af37;
   border-color: #d4af37;
-  color: #1c1917;
+  color: #1c1917 !important;
   transform: translateY(-2px);
 }
 .theme-editorial .morph-input {
   background: #fafaf9;
   border: 1px solid #d6d3d1;
-  color: #1c1917;
+  color: #1c1917 !important;
+}
+.theme-editorial .morph-input::placeholder {
+  color: #a8a29e;
 }
 
 /* 16. SPATIAL COMPUTING */
 .theme-spatial {
   background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #030712 100%);
   color: #ffffff;
+}
+.theme-spatial h1,
+.theme-spatial h2,
+.theme-spatial h3,
+.theme-spatial h4,
+.theme-spatial h5,
+.theme-spatial h6,
+.theme-spatial .sandbox-heading {
+  color: #ffffff !important;
+  text-shadow: 0 2px 15px rgba(255, 255, 255, 0.3) !important;
+}
+.theme-spatial .sandbox-tag {
+  color: #818cf8 !important;
+  text-shadow: 0 0 10px rgba(129, 140, 248, 0.5) !important;
+}
+.theme-spatial .sandbox-desc,
+.theme-spatial p,
+.theme-spatial label {
+  color: #e0e7ff !important;
+}
+.theme-spatial #sandbox-stat1-lbl,
+.theme-spatial #sandbox-stat2-lbl,
+.theme-spatial .sandbox-stat-lbl {
+  color: #a5b4fc !important;
 }
 .theme-spatial .morph-card {
   background: rgba(255, 255, 255, 0.08);
@@ -1076,7 +1529,7 @@
   background: rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 999px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
@@ -1084,17 +1537,45 @@
   transform: translateZ(20px) scale(1.05);
   border-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  color: #ffffff !important;
 }
 .theme-spatial .morph-input {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  color: #ffffff !important;
+}
+.theme-spatial .morph-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* 17. STEALTH LUXURY */
 .theme-luxury {
   background: #07080a;
   color: #f8fafc;
+}
+.theme-luxury h1,
+.theme-luxury h2,
+.theme-luxury h3,
+.theme-luxury h4,
+.theme-luxury h5,
+.theme-luxury h6,
+.theme-luxury .sandbox-heading {
+  color: #f8fafc !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+}
+.theme-luxury .sandbox-tag {
+  color: #d4af37 !important;
+  letter-spacing: 0.12em !important;
+}
+.theme-luxury .sandbox-desc,
+.theme-luxury p,
+.theme-luxury label {
+  color: #cbd5e1 !important;
+}
+.theme-luxury #sandbox-stat1-lbl,
+.theme-luxury #sandbox-stat2-lbl,
+.theme-luxury .sandbox-stat-lbl {
+  color: #94a3b8 !important;
 }
 .theme-luxury .morph-card {
   background: #0e1015;
@@ -1105,7 +1586,7 @@
 }
 .theme-luxury .morph-btn {
   background: linear-gradient(135deg, #d4af37 0%, #aa8214 100%);
-  color: #07080a;
+  color: #07080a !important;
   border: 1px solid #f7df8c;
   border-radius: 999px;
   font-weight: 800;
@@ -1117,17 +1598,43 @@
   background: linear-gradient(135deg, #f7df8c 0%, #d4af37 100%);
   box-shadow: 0 15px 35px rgba(212, 175, 55, 0.45);
   transform: translateY(-3px);
+  color: #07080a !important;
 }
 .theme-luxury .morph-input {
   background: #141720;
   border: 1px solid rgba(212, 175, 55, 0.4);
-  color: #f8fafc;
+  color: #f8fafc !important;
+}
+.theme-luxury .morph-input::placeholder {
+  color: #64748b;
 }
 
 /* 18. CUSTOMIZED 3D EXPERIENTIAL */
 .theme-customized {
   background: radial-gradient(circle at 30% 70%, #312e81 0%, #0f172a 70%);
   color: #ffffff;
+}
+.theme-customized h1,
+.theme-customized h2,
+.theme-customized h3,
+.theme-customized h4,
+.theme-customized h5,
+.theme-customized h6,
+.theme-customized .sandbox-heading {
+  color: #ffffff !important;
+}
+.theme-customized .sandbox-tag {
+  color: #a78bfa !important;
+}
+.theme-customized .sandbox-desc,
+.theme-customized p,
+.theme-customized label {
+  color: #e2e8f0 !important;
+}
+.theme-customized #sandbox-stat1-lbl,
+.theme-customized #sandbox-stat2-lbl,
+.theme-customized .sandbox-stat-lbl {
+  color: #94a3b8 !important;
 }
 .theme-customized .morph-card {
   background: rgba(15, 23, 42, 0.7);
@@ -1139,7 +1646,7 @@
 }
 .theme-customized .morph-btn {
   background: var(--grad-primary);
-  color: #ffffff;
+  color: #ffffff !important;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
@@ -1147,12 +1654,17 @@
 .theme-customized .morph-btn:hover {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 15px 40px rgba(168, 85, 247, 0.5);
+  color: #ffffff !important;
 }
 .theme-customized .morph-input {
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  color: #ffffff !important;
 }
+.theme-customized .morph-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 
 /* ------------------------------------------------------------------- */
 /* 5. SHOWCASE DIRECTORY GRID & CARDS                                  */
@@ -1225,12 +1737,14 @@
   font-size: 1.05rem;
   font-weight: 800;
   margin-bottom: 0.25rem;
+  color: inherit !important;
 }
 
 .mini-preview-component p {
   font-size: 0.72rem;
-  opacity: 0.8;
+  opacity: 0.85;
   margin-bottom: 0.75rem;
+  color: inherit !important;
 }
 
 .mini-preview-btn {
