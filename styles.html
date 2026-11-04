@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Web Design Styles &amp; Interactive Demos Directory | ElavateX</title>
     <meta name="description" content="Explore 18 world-class web design philosophies and interactive demos across 14 commercial industries. From Minimalism and Bento UI to Glassmorphism and Cyberpunk, experience live responsive UI/UX architectures by ElavateX.">
     <link rel="canonical" href="https://elavatex.com/styles.html">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="elavatex_logo.png">
 
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Web Design Styles &amp; Interactive Demos Directory | ElavateX">
@@ -16,13 +17,15 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://elavatex.com/explore_banner_art_large.jpg">
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Outfit:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="styles-showcase.css">
+    <!-- Master Brand Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=1.6">
+    <!-- Showcase Extension Stylesheet -->
+    <link rel="stylesheet" href="styles-showcase.css?v=2.0">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -41,176 +44,252 @@
     }
     </script>
 </head>
-<body class="styles-page">
+<body class="light-theme">
 
     <!-- =================================================================== -->
-    <!-- STICKY TOP NAVIGATION BAR                                           -->
+    <!-- TOP PROGRESS LOADING BAR SYSTEM                                     -->
     <!-- =================================================================== -->
-    <header class="styles-navbar">
-        <div class="styles-container nav-inner">
-            <a href="index.html" class="brand-wrap" title="ElavateX Home">
-                <img src="favicon.png" alt="ElavateX Logo" class="brand-logo-img">
-                <span class="brand-text">Elavate<span style="color: #00f0ff;">X</span></span>
-                <span class="brand-badge">Styles Matrix</span>
+    <div id="top-loading-bar" class="top-loading-bar"></div>
+
+    <!-- =================================================================== -->
+    <!-- TOP OFFER DISCOUNT SCROLLING TICKER BAR                             -->
+    <!-- =================================================================== -->
+    <div class="top-offer-ticker-bar" id="top-offer-bar">
+        <div class="top-offer-ticker-track">
+            <div class="top-offer-content">
+                <span class="offer-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle; margin-right:3px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>SPECIAL OFFER</span>
+                <span class="offer-text">First time working with us? <strong>Get an instant FLAT 5% DISCOUNT</strong> on Web Development, Mobile Apps &amp; Social Media Growth!</span>
+                <button class="offer-action-btn open-consultation-btn">Claim 5% Discount &rarr;</button>
+            </div>
+            <div class="top-offer-content" aria-hidden="true">
+                <span class="offer-pill"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle; margin-right:3px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>SPECIAL OFFER</span>
+                <span class="offer-text">First time working with us? <strong>Get an instant FLAT 5% DISCOUNT</strong> on Web Development, Mobile Apps &amp; Social Media Growth!</span>
+                <button class="offer-action-btn open-consultation-btn">Claim 5% Discount &rarr;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- OFFICIAL HEADER / NAVIGATION BAR                                    -->
+    <!-- =================================================================== -->
+    <header class="navbar-header" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo" title="ElavateX Home">
+                <span class="logo-mark">
+                    <img src="favicon.png" alt="ElavateX Logo" class="brand-logo-img">
+                </span>
+                <span class="logo-text">Elavate<span class="accent-x">X</span></span>
             </a>
-
-            <nav class="nav-links-menu">
-                <a href="index.html" class="nav-link-item">Home</a>
-                <a href="index.html#services-overview" class="nav-link-item">Services</a>
-                <a href="#sandbox-section" class="nav-link-item active" style="color: #00f0ff; font-weight: 700;">Live Sandbox</a>
-                <a href="#styles-grid-section" class="nav-link-item">18 Styles</a>
-                <a href="#matrix-section" class="nav-link-item">Comparison</a>
-                <a href="#matchmaker-section" class="nav-link-item">Style Quiz</a>
-                <a href="brochure.html" class="nav-link-item">Brochure</a>
+            <nav class="nav-links">
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#services-overview" class="nav-link">Services</a>
+                <a href="styles.html" class="nav-link active" title="Web Design Styles &amp; Interactive Demos" style="color: var(--accent-cyan); font-weight: 700;">Styles ✨</a>
+                <a href="index.html#mvp-demo" class="nav-link">Demo &amp; MVP</a>
+                <a href="index.html#execution-roadmap" class="nav-link">Roadmap</a>
+                <a href="index.html#portfolio" class="nav-link">Work</a>
+                <a href="index.html#estimator" class="nav-link">Estimator</a>
+                <a href="brochure.html" class="nav-link" title="Company Brochure &amp; Capabilities Deck">Brochure</a>
             </nav>
 
-            <div class="nav-action-btns">
-                <button class="btn-theme-toggle" id="styles-theme-toggle" aria-label="Toggle Theme" title="Switch Theme">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <div class="nav-actions">
+                <button class="btn-primary btn-sm open-consultation-btn">Get Free Consultation</button>
+
+                <!-- Dark / Light Theme Toggle Button -->
+                <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Light and Dark Theme" title="Switch Light/Dark Mode">
+                    <span class="theme-icon-sun">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    </span>
+                    <span class="theme-icon-moon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </span>
                 </button>
-                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20am%20exploring%20your%20Styles%20Directory%20and%20want%20to%20consult%20about%20my%20website%20design." target="_blank" class="btn-contact-top">
-                    <span>💬 Book This Style</span>
-                </a>
+
+                <!-- Mobile Menu Button Drawer Trigger -->
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Mobile Navigation Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
     </header>
 
     <!-- =================================================================== -->
-    <!-- HERO SECTION                                                        -->
+    <!-- OFFICIAL MOBILE NAVIGATION DRAWER                                   -->
     <!-- =================================================================== -->
-    <section class="styles-hero">
-        <div class="hero-glow-orb glow-orb-1"></div>
-        <div class="hero-glow-orb glow-orb-2"></div>
-
-        <div class="styles-container" style="position: relative; z-index: 2;">
-            <div class="hero-badge-pill">
-                <span class="badge-pulse-dot"></span>
-                <span>ELAVATEX DESIGN SYSTEM ARCHITECTURES &bull; 2026-2027 MATRIX</span>
-            </div>
-
-            <h1 class="hero-title">
-                Explore 18 Web Design Philosophies <br>
-                <span class="gradient-text">&amp; Interactive Demos for Every Industry</span>
-            </h1>
-
-            <p class="hero-subtitle">
-                Reinventing how modern brands communicate online. Compare 18 iconic visual aesthetics tailored specifically across 14 high-conversion commercial industries—from clinical Dental and AI Automation to Real Estate Brokers and Luxury Commerce.
-            </p>
-
-            <div class="hero-stats-strip">
-                <div class="stat-pill">
-                    <span class="stat-pill-dot dot-cyan"></span>
-                    <span><strong>18</strong> Visual Philosophies</span>
-                </div>
-                <div class="stat-pill">
-                    <span class="stat-pill-dot dot-purple"></span>
-                    <span><strong>14</strong> Commercial Industries</span>
-                </div>
-                <div class="stat-pill">
-                    <span class="stat-pill-dot dot-emerald"></span>
-                    <span><strong>100%</strong> Zero-Bloat Handwritten CSS</span>
-                </div>
-                <div class="stat-pill">
-                    <span class="stat-pill-dot dot-amber"></span>
-                    <span><strong>100/100</strong> Core Web Vitals Ready</span>
-                </div>
-            </div>
+    <div class="mobile-drawer" id="mobile-drawer">
+        <div class="drawer-header">
+            <button class="theme-toggle-btn" id="drawer-theme-toggle" aria-label="Toggle Navigation Light and Dark Theme" title="Switch Light/Dark Mode">
+                <span class="theme-icon-sun">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </span>
+                <span class="theme-icon-moon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </span>
+            </button>
+            <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
         </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- STICKY DUAL-FILTER CONTROL DASHBOARD                                -->
-    <!-- =================================================================== -->
-    <section class="filter-dashboard">
-        <div class="styles-container">
-            <div class="filter-row-top">
-                <!-- Search Input -->
-                <div class="search-input-wrap">
-                    <span class="search-icon">🔍</span>
-                    <input type="text" id="styles-search" class="styles-search-input" placeholder="Search styles, traits, or keywords (e.g. Bento, Minimal, Glass, Cyber, Dental)..." autocomplete="off">
-                </div>
-
-                <!-- Industry Selector Dropdown -->
-                <div class="industry-filter-wrap">
-                    <label for="industry-filter" class="filter-label-txt">Industry Preset:</label>
-                    <select id="industry-filter" class="industry-select">
-                        <option value="all">🌐 All Commercial Industries</option>
-                        <option value="dental">🦷 Dental, Clinics &amp; Healthcare</option>
-                        <option value="agency">⚡ Digital Agency &amp; Studios</option>
-                        <option value="broker">🏢 Real Estate Brokers &amp; Wealth</option>
-                        <option value="education">🎓 EdTech, Academies &amp; Learning</option>
-                        <option value="ai">🤖 AI Automation &amp; Robotics</option>
-                        <option value="transportation">🚢 Transportation &amp; Logistics</option>
-                        <option value="visa">🛂 Visa, Immigration &amp; Mobility</option>
-                        <option value="startups">🚀 High-Velocity SaaS &amp; Startups</option>
-                        <option value="portfolio">💼 Creator &amp; Founder Portfolios</option>
-                        <option value="social">📱 Social Media &amp; Creator Agencies</option>
-                        <option value="marketing">📈 Performance Marketing &amp; SEO</option>
-                        <option value="routines">⏰ Daily Routine &amp; Habit Apps</option>
-                        <option value="ecommerce">💎 Luxury D2C &amp; E-Commerce</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Aesthetic Pills Carousel -->
-            <div class="aesthetic-pills-carousel" id="aesthetic-pills-row">
-                <button class="style-filter-btn active" data-filter="all">✨ All 18 Aesthetics</button>
-                <button class="style-filter-btn" data-filter="glassmorphism">🧊 Glassmorphism</button>
-                <button class="style-filter-btn" data-filter="bento">🍱 Bento Grid UI</button>
-                <button class="style-filter-btn" data-filter="neobrutalism">⚡ Neo-Brutalism</button>
-                <button class="style-filter-btn" data-filter="minimalism">⚪ Minimalism</button>
-                <button class="style-filter-btn" data-filter="maximalism">💥 Maximalism</button>
-                <button class="style-filter-btn" data-filter="neumorphism">🔘 Neumorphism</button>
-                <button class="style-filter-btn" data-filter="claymorphism">☁️ Claymorphism</button>
-                <button class="style-filter-btn" data-filter="brutalism">🏗️ Brutalism</button>
-                <button class="style-filter-btn" data-filter="skeuomorphism">🕰️ Skeuomorphism</button>
-                <button class="style-filter-btn" data-filter="flat">📐 Flat Design</button>
-                <button class="style-filter-btn" data-filter="material">🎨 Material 3</button>
-                <button class="style-filter-btn" data-filter="y2k">💿 Y2K Design</button>
-                <button class="style-filter-btn" data-filter="retro">🕹️ Retro Synthwave</button>
-                <button class="style-filter-btn" data-filter="cyberpunk">🌆 Cyberpunk 2077</button>
-                <button class="style-filter-btn" data-filter="editorial">📰 Editorial Swiss</button>
-                <button class="style-filter-btn" data-filter="spatial">🥽 Spatial Computing</button>
-                <button class="style-filter-btn" data-filter="luxury">👑 Stealth Luxury</button>
-                <button class="style-filter-btn" data-filter="customized">🌌 Customized 3D</button>
-            </div>
+        <div class="drawer-links">
+            <a href="index.html#about" class="drawer-link">About</a>
+            <a href="index.html#services-overview" class="drawer-link">Core Services</a>
+            <a href="styles.html" class="drawer-link" style="color: var(--accent-cyan); font-weight: 700;">Design Styles &amp; Demos Directory ✨</a>
+            <a href="index.html#knowledge-hub" class="drawer-link">Growth Frameworks</a>
+            <a href="index.html#daily-journey" class="drawer-link">Daily Journey (BTS)</a>
+            <a href="index.html#mvp-demo" class="drawer-link">Demo &amp; MVP Blueprint</a>
+            <a href="index.html#free-assets" class="drawer-link" style="color: var(--accent-cyan); font-weight: 600;">Free Valuable Assets</a>
+            <a href="index.html#execution-roadmap" class="drawer-link">Master Roadmap</a>
+            <a href="index.html#portfolio" class="drawer-link">Work &amp; Case Studies</a>
+            <a href="index.html#estimator" class="drawer-link">Project Scope Estimator</a>
+            <a href="index.html#testimonials" class="drawer-link">Client Reviews</a>
+            <a href="brochure.html" class="drawer-link" style="color: var(--accent-purple); font-weight: 700;">Company Brochure (PDF &amp; Deck)</a>
+            <hr class="drawer-divider">
+            <button class="btn-primary open-consultation-btn w-full">Book a Call</button>
+            <a href="https://wa.me/917676808068" target="_blank" class="btn-whatsapp-outline w-full text-center margin-top-sm">
+                <span>Connect via WhatsApp</span>
+            </a>
         </div>
-    </section>
+    </div>
 
     <!-- =================================================================== -->
-    <!-- MASTER MORPHING LIVE SANDBOX SECTION                                -->
+    <!-- MAIN CONTENT                                                        -->
     <!-- =================================================================== -->
-    <section class="sandbox-section" id="sandbox-section">
-        <div class="styles-container">
-            <div class="sandbox-frame">
-                <!-- Sandbox Simulated Top Toolbar -->
-                <div class="sandbox-header-bar">
-                    <div class="browser-dots">
-                        <span class="b-dot dot-red"></span>
-                        <span class="b-dot dot-yellow"></span>
-                        <span class="b-dot dot-green"></span>
+    <main class="styles-page-main">
+
+        <!-- =============================================================== -->
+        <!-- HERO SECTION                                                    -->
+        <!-- =============================================================== -->
+        <section class="styles-hero-section">
+            <div class="hero-glow-blob-styles"></div>
+
+            <div class="container" style="position: relative; z-index: 2;">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    <span>ELAVATEX DESIGN ARCHITECTURES &bull; 2026-2027 MATRIX</span>
+                </div>
+
+                <h1 style="font-family: var(--font-primary); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15; margin: 1.2rem 0;">
+                    18 World-Class Web Design Philosophies <br>
+                    <span class="gradient-text">&amp; Live Interactive Demos</span>
+                </h1>
+
+                <p style="font-family: var(--font-body); font-size: 1.1rem; max-width: 760px; margin: 0 auto 2.2rem; color: var(--text-muted); line-height: 1.6;">
+                    Explore how high-end aesthetics morph seamlessly across 14 commercial industries—from clinical Dental and AI Automation to Real Estate Brokers and Luxury Commerce. Experience production-grade handwritten CSS in action.
+                </p>
+
+                <!-- Stats Strip -->
+                <div class="hero-stats-deck">
+                    <div class="stat-chip-pill">
+                        <span class="dot dot-cyan"></span>
+                        <span><strong>18</strong> Visual Philosophies</span>
+                    </div>
+                    <div class="stat-chip-pill">
+                        <span class="dot dot-purple"></span>
+                        <span><strong>14</strong> Commercial Industries</span>
+                    </div>
+                    <div class="stat-chip-pill">
+                        <span class="dot dot-emerald"></span>
+                        <span><strong>100%</strong> Handwritten Zero-Bloat CSS</span>
+                    </div>
+                    <div class="stat-chip-pill">
+                        <span class="dot dot-amber"></span>
+                        <span><strong>100/100</strong> Core Web Vitals Ready</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================================== -->
+        <!-- COMMAND & FILTER DASHBOARD                                      -->
+        <!-- =============================================================== -->
+        <section class="container" style="position: relative; z-index: 5;">
+            <div class="filter-command-panel">
+                <div class="filter-top-row">
+                    <!-- Real-Time Search -->
+                    <div class="search-field-box">
+                        <span class="search-field-icon">🔍</span>
+                        <input type="text" id="styles-search" class="search-field-input" placeholder="Search styles, traits, or keywords (e.g. Bento, Minimal, Glass, Cyber, Dental)..." autocomplete="off">
                     </div>
 
-                    <div class="sandbox-address-bar" id="sandbox-address">
+                    <!-- Industry Selector Dropdown -->
+                    <div class="industry-select-wrap">
+                        <label for="industry-filter" class="industry-select-label">Industry Preset:</label>
+                        <select id="industry-filter" class="industry-select-dropdown">
+                            <option value="all">🌐 All Commercial Industries</option>
+                            <option value="dental">🦷 Dental, Clinics &amp; Healthcare</option>
+                            <option value="agency">⚡ Digital Agency &amp; Studios</option>
+                            <option value="broker">🏢 Real Estate Brokers &amp; Wealth</option>
+                            <option value="education">🎓 EdTech, Academies &amp; Learning</option>
+                            <option value="ai">🤖 AI Automation &amp; Robotics</option>
+                            <option value="transportation">🚢 Transportation &amp; Logistics</option>
+                            <option value="visa">🛂 Visa, Immigration &amp; Mobility</option>
+                            <option value="startups">🚀 High-Velocity SaaS &amp; Startups</option>
+                            <option value="portfolio">💼 Creator &amp; Founder Portfolios</option>
+                            <option value="social">📱 Social Media &amp; Creator Agencies</option>
+                            <option value="marketing">📈 Performance Marketing &amp; SEO</option>
+                            <option value="routines">⏰ Daily Routine &amp; Habit Apps</option>
+                            <option value="ecommerce">💎 Luxury D2C &amp; E-Commerce</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Aesthetic Filter Pills Carousel -->
+                <div class="pills-scroll-track" id="aesthetic-pills-row">
+                    <button class="style-filter-btn active" data-filter="all">✨ All 18 Aesthetics</button>
+                    <button class="style-filter-btn" data-filter="glassmorphism">🧊 Glassmorphism</button>
+                    <button class="style-filter-btn" data-filter="bento">🍱 Bento Grid UI</button>
+                    <button class="style-filter-btn" data-filter="neobrutalism">⚡ Neo-Brutalism</button>
+                    <button class="style-filter-btn" data-filter="minimalism">⚪ Minimalism</button>
+                    <button class="style-filter-btn" data-filter="maximalism">💥 Maximalism</button>
+                    <button class="style-filter-btn" data-filter="neumorphism">🔘 Neumorphism</button>
+                    <button class="style-filter-btn" data-filter="claymorphism">☁️ Claymorphism</button>
+                    <button class="style-filter-btn" data-filter="brutalism">🏗️ Brutalism</button>
+                    <button class="style-filter-btn" data-filter="skeuomorphism">🕰️ Skeuomorphism</button>
+                    <button class="style-filter-btn" data-filter="flat">📐 Flat Design</button>
+                    <button class="style-filter-btn" data-filter="material">🎨 Material 3</button>
+                    <button class="style-filter-btn" data-filter="y2k">💿 Y2K Design</button>
+                    <button class="style-filter-btn" data-filter="retro">🕹️ Retro Synthwave</button>
+                    <button class="style-filter-btn" data-filter="cyberpunk">🌆 Cyberpunk 2077</button>
+                    <button class="style-filter-btn" data-filter="editorial">📰 Editorial Swiss</button>
+                    <button class="style-filter-btn" data-filter="spatial">🥽 Spatial Computing</button>
+                    <button class="style-filter-btn" data-filter="luxury">👑 Stealth Luxury</button>
+                    <button class="style-filter-btn" data-filter="customized">🌌 Customized 3D</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================================== -->
+        <!-- MASTER MORPHING LIVE SANDBOX SECTION                            -->
+        <!-- =============================================================== -->
+        <section class="container sandbox-deck-wrap" id="sandbox-section">
+            <div class="browser-window-frame">
+                <!-- Browser Titlebar -->
+                <div class="browser-titlebar">
+                    <div class="browser-dots-group">
+                        <span class="browser-dot dot-red"></span>
+                        <span class="browser-dot dot-yellow"></span>
+                        <span class="browser-dot dot-green"></span>
+                    </div>
+
+                    <div class="browser-url-pill" id="sandbox-address">
                         https://studio.elavatex.com/styles/glassmorphism
                     </div>
 
-                    <div class="sandbox-controls-right">
-                        <button class="view-toggle-btn sandbox-view-btn active" data-view="desktop" title="Desktop Viewport">
+                    <div class="browser-actions-group">
+                        <button class="viewport-toggle-btn sandbox-view-btn active" data-view="desktop" title="Desktop Viewport">
                             🖥️ Desktop
                         </button>
-                        <button class="view-toggle-btn sandbox-view-btn" data-view="mobile" title="Mobile Viewport (375px)">
+                        <button class="viewport-toggle-btn sandbox-view-btn" data-view="mobile" title="Mobile Viewport (375px)">
                             📱 Mobile
                         </button>
-                        <button class="view-toggle-btn" id="toggle-code-drawer-btn" title="Inspect Raw CSS Architecture">
+                        <button class="viewport-toggle-btn" id="toggle-code-drawer-btn" title="Inspect Raw CSS Architecture">
                             Inspect CSS Formula ⚙
                         </button>
                     </div>
                 </div>
 
-                <!-- Sandbox Live Canvas Stage (Morphs in real-time) -->
+                <!-- Master Morphing Stage Canvas -->
                 <div class="sandbox-stage theme-glassmorphism" id="sandbox-stage">
-                    <div class="sandbox-hero-grid">
+                    <div class="stage-inner-grid">
                         <div>
                             <div class="sandbox-tag" id="sandbox-tag">🧊 GLASSMORPHISM &bull; ELAVATEX ARCHITECTURE</div>
                             <h2 class="sandbox-heading" id="sandbox-heading">Crystalline Precision for Modern Healthcare &amp; High-Tech Platforms.</h2>
@@ -226,23 +305,23 @@
                             </div>
                         </div>
 
-                        <!-- Morphing Mini Card & Metrics -->
+                        <!-- Live Performance Profile Card -->
                         <div class="morph-card">
-                            <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem;">Live Performance Profile</h3>
+                            <h3 style="font-family: var(--font-primary); font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem;">Live Performance Profile</h3>
                             
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
                                 <div>
-                                    <div style="font-size: 1.6rem; font-weight: 900; color: #00f0ff;" id="sandbox-stat1-val">99.8%</div>
+                                    <div style="font-size: 1.6rem; font-weight: 900; color: var(--accent-cyan);" id="sandbox-stat1-val">99.8%</div>
                                     <div style="font-size: 0.78rem; opacity: 0.75;" id="sandbox-stat1-lbl">Patient Satisfaction</div>
                                 </div>
                                 <div>
-                                    <div style="font-size: 1.6rem; font-weight: 900; color: #10b981;" id="sandbox-stat2-val">100/100</div>
+                                    <div style="font-size: 1.6rem; font-weight: 900; color: var(--accent-emerald);" id="sandbox-stat2-val">100/100</div>
                                     <div style="font-size: 0.78rem; opacity: 0.75;" id="sandbox-stat2-lbl">Core Web Vitals</div>
                                 </div>
                             </div>
 
                             <div class="morph-form-row">
-                                <input type="text" class="morph-input" placeholder="Quick consult name / email...">
+                                <input type="text" class="morph-input" placeholder="Quick inquiry name / email...">
                                 <button class="morph-btn" style="padding: 0.5rem 1rem; font-size: 0.82rem;" onclick="alert('Instant consultation inquiry recorded! Our lead architect will connect via WhatsApp.')">Send</button>
                             </div>
                         </div>
@@ -250,7 +329,7 @@
                 </div>
 
                 <!-- Collapsible CSS Blueprint Drawer -->
-                <pre class="sandbox-code-drawer" id="sandbox-code-drawer" style="display: none; padding: 1.25rem; background: #05070e; border-top: 1px solid var(--clr-border); font-family: var(--showcase-font-mono); font-size: 0.82rem; color: #38bdf8; overflow-x: auto; white-space: pre-wrap; line-height: 1.5;">
+                <pre class="sandbox-code-drawer" id="sandbox-code-drawer" style="display: none; padding: 1.25rem; background: #05070e; border-top: 1px solid var(--border-glass); font-family: var(--font-mono); font-size: 0.82rem; color: #38bdf8; overflow-x: auto; white-space: pre-wrap; line-height: 1.5;">
 /* Glassmorphism Architectural Blueprint */
 .brand-container {
   background: rgba(255, 255, 255, 0.08);
@@ -262,274 +341,288 @@
 }
                 </pre>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- =================================================================== -->
-    <!-- ALL 18 STYLES SHOWCASE GRID DIRECTORY                               -->
-    <!-- =================================================================== -->
-    <section class="styles-grid-section" id="styles-grid-section">
-        <div class="styles-container">
-            <div class="section-header-block">
-                <span class="section-kicker">CURATED DIRECTORY</span>
-                <h2 class="section-title-large">18 World-Class Design Systems</h2>
-                <p style="color: var(--clr-text-muted); max-width: 680px; margin: 0 auto; font-size: 1.05rem;">
-                    Every card is rendered with real embedded CSS micro-components. Click on any preview to morph the live master sandbox, or click "Launch Demo" for a full-screen simulated experience.
-                </p>
-            </div>
-
-            <!-- Dynamically populated by styles.js -->
-            <div class="styles-showcase-grid" id="styles-showcase-grid"></div>
-        </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- CROSS-INDUSTRY COMPARISON MATRIX TABLE                              -->
-    <!-- =================================================================== -->
-    <section class="matrix-section" id="matrix-section">
-        <div class="styles-container">
-            <div class="section-header-block">
-                <span class="section-kicker">TECHNICAL EVALUATION</span>
-                <h2 class="section-title-large">Architectural Comparison Matrix</h2>
-                <p style="color: var(--clr-text-muted); max-width: 680px; margin: 0 auto; font-size: 1rem;">
-                    Analyze conversion psychology, engineering complexity, and brand impact across all 18 philosophies to select the ideal design stack for your commercial targets.
-                </p>
-            </div>
-
-            <div class="matrix-table-wrap">
-                <table class="matrix-table">
-                    <thead>
-                        <tr>
-                            <th>Style Philosophy</th>
-                            <th>Aesthetic Category</th>
-                            <th>Primary Emotional Vibe</th>
-                            <th>Prime Commercial Industries</th>
-                            <th>Conversion Score</th>
-                            <th>UX Complexity</th>
-                            <th>Speed / Vitals</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>🧊 Glassmorphism</strong></td>
-                            <td>Modern Tech</td>
-                            <td>Clinical Purity &amp; Futuristic Depth</td>
-                            <td>Dental, Clinics, Fintech, HealthTech</td>
-                            <td><span style="color:#10b981; font-weight:700;">98%</span></td>
-                            <td>Moderate</td>
-                            <td>99/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🍱 Bento Grid UI</strong></td>
-                            <td>Modern Tech</td>
-                            <td>Structured Intelligence &amp; Modular Clarity</td>
-                            <td>AI Automation, SaaS, Startups, Hardware</td>
-                            <td><span style="color:#10b981; font-weight:700;">99%</span></td>
-                            <td>High Utility</td>
-                            <td>100/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>⚡ Neo-Brutalism</strong></td>
-                            <td>Avant-Garde</td>
-                            <td>High-Voltage Contrast &amp; Rebel Energy</td>
-                            <td>Agencies, EdTech, D2C, Creator Media</td>
-                            <td><span style="color:#10b981; font-weight:700;">96%</span></td>
-                            <td>Bold Simplicity</td>
-                            <td>100/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>⚪ Minimalism</strong></td>
-                            <td>Clean &amp; Direct</td>
-                            <td>Radical Clarity &amp; Zero Cognitive Friction</td>
-                            <td>Brokers, Wealth, Portfolios, Law</td>
-                            <td><span style="color:#10b981; font-weight:700;">97%</span></td>
-                            <td>Effortless</td>
-                            <td>100/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>💥 Maximalism</strong></td>
-                            <td>Avant-Garde</td>
-                            <td>Sensory Overload &amp; Dynamic Bravado</td>
-                            <td>Music, Gaming, Festivals, Streetwear</td>
-                            <td><span style="color:#f59e0b; font-weight:700;">92%</span></td>
-                            <td>Intense</td>
-                            <td>94/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🔘 Neumorphism</strong></td>
-                            <td>Tactile &amp; Soft</td>
-                            <td>Soft Inset Extrusion &amp; Organic Tactility</td>
-                            <td>IoT, Smart Home, Health Trackers</td>
-                            <td><span style="color:#10b981; font-weight:700;">90%</span></td>
-                            <td>High Precision</td>
-                            <td>98/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>☁️ Claymorphism</strong></td>
-                            <td>Playful 3D</td>
-                            <td>Friendly Inflatables &amp; Warm Approachability</td>
-                            <td>EdTech, Kids, Gamified SaaS, Pet Care</td>
-                            <td><span style="color:#10b981; font-weight:700;">95%</span></td>
-                            <td>Balanced</td>
-                            <td>97/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🏗️ Brutalism</strong></td>
-                            <td>Raw Structural</td>
-                            <td>Unfiltered Concrete &amp; Anti-Decorative Truth</td>
-                            <td>Architecture, Independent Studios, Art</td>
-                            <td><span style="color:#f59e0b; font-weight:700;">88%</span></td>
-                            <td>Deliberate</td>
-                            <td>100/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🕰️ Skeuomorphism</strong></td>
-                            <td>Physical Realism</td>
-                            <td>Nostalgic Luxury &amp; Handcrafted Heritage</td>
-                            <td>Horology, Automotive, Audio Studios</td>
-                            <td><span style="color:#10b981; font-weight:700;">93%</span></td>
-                            <td>Artisanal</td>
-                            <td>95/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>📐 Flat Design</strong></td>
-                            <td>Clean &amp; Direct</td>
-                            <td>Zero Distraction &amp; Pure Functional Speed</td>
-                            <td>Transportation, Logistics, Government</td>
-                            <td><span style="color:#10b981; font-weight:700;">96%</span></td>
-                            <td>Low</td>
-                            <td>100/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🎨 Material 3</strong></td>
-                            <td>Standard / Adaptive</td>
-                            <td>Adaptive Surfaces &amp; Natural Ripple Physics</td>
-                            <td>Enterprise Dashboards, Multi-Screen Portals</td>
-                            <td><span style="color:#10b981; font-weight:700;">98%</span></td>
-                            <td>Systematic</td>
-                            <td>99/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>💿 Y2K Design</strong></td>
-                            <td>Nostalgic Retro</td>
-                            <td>Chrome Liquidity &amp; Millennium Optimism</td>
-                            <td>Gen-Z Apparel, Nightlife, Record Labels</td>
-                            <td><span style="color:#f59e0b; font-weight:700;">91%</span></td>
-                            <td>Complex</td>
-                            <td>93/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🕹️ Retro Synthwave</strong></td>
-                            <td>Nostalgic Retro</td>
-                            <td>Neon CRT Gridlines &amp; Outrun Cyber-Glow</td>
-                            <td>Gaming, Podcasts, Retro Hardware, Arcades</td>
-                            <td><span style="color:#10b981; font-weight:700;">94%</span></td>
-                            <td>Vibrant</td>
-                            <td>96/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🌆 Cyberpunk 2077</strong></td>
-                            <td>Futuristic Sci-Fi</td>
-                            <td>High-Density Neon Wireframes &amp; Glitch HUD</td>
-                            <td>Crypto, Web3, Esports, Cybersecurity</td>
-                            <td><span style="color:#10b981; font-weight:700;">95%</span></td>
-                            <td>Intricate</td>
-                            <td>95/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>📰 Editorial Swiss</strong></td>
-                            <td>Typography First</td>
-                            <td>Literary Prestige &amp; Typographic Authority</td>
-                            <td>Publishing, Law, Private Equity, Architecture</td>
-                            <td><span style="color:#10b981; font-weight:700;">97%</span></td>
-                            <td>Refined</td>
-                            <td>100/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🥽 Spatial Computing</strong></td>
-                            <td>Spatial / VisionOS</td>
-                            <td>Specular Lensing &amp; Floating Ambient Glass</td>
-                            <td>VR/AR, Spatial Audio, 3D Visualization</td>
-                            <td><span style="color:#10b981; font-weight:700;">97%</span></td>
-                            <td>Advanced</td>
-                            <td>98/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>👑 Stealth Luxury</strong></td>
-                            <td>High-Ticket D2C</td>
-                            <td>Obsidian Gold Hairpins &amp; Aristocratic Poise</td>
-                            <td>Yacht Charters, Private Banking, High Jewelry</td>
-                            <td><span style="color:#10b981; font-weight:700;">99%</span></td>
-                            <td>Masterclass</td>
-                            <td>99/100</td>
-                        </tr>
-                        <tr>
-                            <td><strong>🌌 Customized 3D</strong></td>
-                            <td>Bespoke Experiential</td>
-                            <td>Interactive Particle Canvas &amp; Dynamic Storytelling</td>
-                            <td>Flagship Brands, Global Conferences, Unicorns</td>
-                            <td><span style="color:#10b981; font-weight:700;">98%</span></td>
-                            <td>Bespoke</td>
-                            <td>97/100</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- INTERACTIVE STYLE MATCHMAKER QUIZ                                   -->
-    <!-- =================================================================== -->
-    <section class="matchmaker-section" id="matchmaker-section">
-        <div class="styles-container">
-            <div class="quiz-card">
-                <div style="text-align: center; margin-bottom: 2rem;">
-                    <span class="section-kicker">SMART MATCHMAKER</span>
-                    <h2 style="font-size: 2rem; font-weight: 800; margin: 0.5rem 0;">Find Your Brand's Ideal Design Architecture</h2>
-                    <p style="color: var(--clr-text-muted); font-size: 0.95rem;">Answer two quick questions to get an algorithmic recommendation tailored for your conversion goals.</p>
+        <!-- =============================================================== -->
+        <!-- 18 STYLES SHOWCASE DIRECTORY GRID                               -->
+        <!-- =============================================================== -->
+        <section class="styles-grid-section" id="styles-grid-section">
+            <div class="container">
+                <div class="section-intro-head">
+                    <div class="hero-badge" style="margin-bottom: 0.75rem;">
+                        <span class="pulse-dot"></span>
+                        <span>CURATED DIRECTORY</span>
+                    </div>
+                    <h2 style="font-family: var(--font-primary); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 0.75rem;">
+                        18 World-Class Design Systems
+                    </h2>
+                    <p style="font-family: var(--font-body); color: var(--text-muted); max-width: 680px; margin: 0 auto; font-size: 1.05rem;">
+                        Every card is rendered with real embedded CSS micro-components. Click on any preview to morph the live master sandbox, or click "Launch Demo" for a full-screen simulated experience.
+                    </p>
                 </div>
 
-                <!-- Step 1: Industry -->
-                <div style="margin-bottom: 2rem;">
-                    <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; color: #00f0ff;">1. What is your commercial industry vertical?</h4>
-                    <div class="quiz-options-grid">
-                        <button class="quiz-opt-btn" data-group="industry" data-val="dental">🦷 Dental &amp; Healthcare</button>
-                        <button class="quiz-opt-btn" data-group="industry" data-val="ai">🤖 AI &amp; Robotics</button>
-                        <button class="quiz-opt-btn" data-group="industry" data-val="agency">⚡ Digital Agency</button>
-                        <button class="quiz-opt-btn" data-group="industry" data-val="broker">🏢 Real Estate &amp; Broker</button>
-                        <button class="quiz-opt-btn" data-group="industry" data-val="education">🎓 EdTech &amp; Academy</button>
-                        <button class="quiz-opt-btn" data-group="industry" data-val="startups">🚀 SaaS &amp; Tech Startups</button>
-                        <button class="quiz-opt-btn" data-group="industry" data-val="social">📱 Social Media &amp; Creator</button>
-                        <button class="quiz-opt-btn" data-group="industry" data-val="ecommerce">💎 Luxury E-Commerce</button>
+                <!-- Dynamically populated by styles.js -->
+                <div class="styles-showcase-grid" id="styles-showcase-grid"></div>
+            </div>
+        </section>
+
+        <!-- =============================================================== -->
+        <!-- CROSS-INDUSTRY COMPARISON MATRIX TABLE                          -->
+        <!-- =============================================================== -->
+        <section class="matrix-section" id="matrix-section">
+            <div class="container">
+                <div class="section-intro-head">
+                    <div class="hero-badge" style="margin-bottom: 0.75rem;">
+                        <span class="pulse-dot"></span>
+                        <span>TECHNICAL EVALUATION</span>
+                    </div>
+                    <h2 style="font-family: var(--font-primary); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 0.75rem;">
+                        Architectural Comparison Matrix
+                    </h2>
+                    <p style="font-family: var(--font-body); color: var(--text-muted); max-width: 680px; margin: 0 auto; font-size: 1rem;">
+                        Analyze conversion psychology, engineering complexity, and brand impact across all 18 philosophies to select the ideal design stack for your commercial targets.
+                    </p>
+                </div>
+
+                <div class="matrix-table-wrap">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Style Philosophy</th>
+                                <th>Aesthetic Category</th>
+                                <th>Primary Emotional Vibe</th>
+                                <th>Prime Commercial Industries</th>
+                                <th>Conversion Score</th>
+                                <th>UX Complexity</th>
+                                <th>Speed / Vitals</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>🧊 Glassmorphism</strong></td>
+                                <td>Modern Tech</td>
+                                <td>Clinical Purity &amp; Futuristic Depth</td>
+                                <td>Dental, Clinics, Fintech, HealthTech</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">98%</span></td>
+                                <td>Moderate</td>
+                                <td>99/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🍱 Bento Grid UI</strong></td>
+                                <td>Modern Tech</td>
+                                <td>Structured Intelligence &amp; Modular Clarity</td>
+                                <td>AI Automation, SaaS, Startups, Hardware</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">99%</span></td>
+                                <td>High Utility</td>
+                                <td>100/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚡ Neo-Brutalism</strong></td>
+                                <td>Avant-Garde</td>
+                                <td>High-Voltage Contrast &amp; Rebel Energy</td>
+                                <td>Agencies, EdTech, D2C, Creator Media</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">96%</span></td>
+                                <td>Bold Simplicity</td>
+                                <td>100/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>⚪ Minimalism</strong></td>
+                                <td>Clean &amp; Direct</td>
+                                <td>Radical Clarity &amp; Zero Cognitive Friction</td>
+                                <td>Brokers, Wealth, Portfolios, Law</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">97%</span></td>
+                                <td>Effortless</td>
+                                <td>100/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>💥 Maximalism</strong></td>
+                                <td>Avant-Garde</td>
+                                <td>Sensory Overload &amp; Dynamic Bravado</td>
+                                <td>Music, Gaming, Festivals, Streetwear</td>
+                                <td><span style="color:var(--accent-amber); font-weight:700;">92%</span></td>
+                                <td>Intense</td>
+                                <td>94/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🔘 Neumorphism</strong></td>
+                                <td>Tactile &amp; Soft</td>
+                                <td>Soft Inset Extrusion &amp; Organic Tactility</td>
+                                <td>IoT, Smart Home, Health Trackers</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">90%</span></td>
+                                <td>High Precision</td>
+                                <td>98/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>☁️ Claymorphism</strong></td>
+                                <td>Playful 3D</td>
+                                <td>Friendly Inflatables &amp; Warm Approachability</td>
+                                <td>EdTech, Kids, Gamified SaaS, Pet Care</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">95%</span></td>
+                                <td>Balanced</td>
+                                <td>97/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🏗️ Brutalism</strong></td>
+                                <td>Raw Structural</td>
+                                <td>Unfiltered Concrete &amp; Anti-Decorative Truth</td>
+                                <td>Architecture, Independent Studios, Art</td>
+                                <td><span style="color:var(--accent-amber); font-weight:700;">88%</span></td>
+                                <td>Deliberate</td>
+                                <td>100/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🕰️ Skeuomorphism</strong></td>
+                                <td>Physical Realism</td>
+                                <td>Nostalgic Luxury &amp; Handcrafted Heritage</td>
+                                <td>Horology, Automotive, Audio Studios</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">93%</span></td>
+                                <td>Artisanal</td>
+                                <td>95/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>📐 Flat Design</strong></td>
+                                <td>Clean &amp; Direct</td>
+                                <td>Zero Distraction &amp; Pure Functional Speed</td>
+                                <td>Transportation, Logistics, Government</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">96%</span></td>
+                                <td>Low</td>
+                                <td>100/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🎨 Material 3</strong></td>
+                                <td>Standard / Adaptive</td>
+                                <td>Adaptive Surfaces &amp; Natural Ripple Physics</td>
+                                <td>Enterprise Dashboards, Multi-Screen Portals</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">98%</span></td>
+                                <td>Systematic</td>
+                                <td>99/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>💿 Y2K Design</strong></td>
+                                <td>Nostalgic Retro</td>
+                                <td>Chrome Liquidity &amp; Millennium Optimism</td>
+                                <td>Gen-Z Apparel, Nightlife, Record Labels</td>
+                                <td><span style="color:var(--accent-amber); font-weight:700;">91%</span></td>
+                                <td>Complex</td>
+                                <td>93/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🕹️ Retro Synthwave</strong></td>
+                                <td>Nostalgic Retro</td>
+                                <td>Neon CRT Gridlines &amp; Outrun Cyber-Glow</td>
+                                <td>Gaming, Podcasts, Retro Hardware, Arcades</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">94%</span></td>
+                                <td>Vibrant</td>
+                                <td>96/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🌆 Cyberpunk 2077</strong></td>
+                                <td>Futuristic Sci-Fi</td>
+                                <td>High-Density Neon Wireframes &amp; Glitch HUD</td>
+                                <td>Crypto, Web3, Esports, Cybersecurity</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">95%</span></td>
+                                <td>Intricate</td>
+                                <td>95/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>📰 Editorial Swiss</strong></td>
+                                <td>Typography First</td>
+                                <td>Literary Prestige &amp; Typographic Authority</td>
+                                <td>Publishing, Law, Private Equity, Architecture</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">97%</span></td>
+                                <td>Refined</td>
+                                <td>100/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🥽 Spatial Computing</strong></td>
+                                <td>Spatial / VisionOS</td>
+                                <td>Specular Lensing &amp; Floating Ambient Glass</td>
+                                <td>VR/AR, Spatial Audio, 3D Visualization</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">97%</span></td>
+                                <td>Advanced</td>
+                                <td>98/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>👑 Stealth Luxury</strong></td>
+                                <td>High-Ticket D2C</td>
+                                <td>Obsidian Gold Hairpins &amp; Aristocratic Poise</td>
+                                <td>Yacht Charters, Private Banking, High Jewelry</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">99%</span></td>
+                                <td>Masterclass</td>
+                                <td>99/100</td>
+                            </tr>
+                            <tr>
+                                <td><strong>🌌 Customized 3D</strong></td>
+                                <td>Bespoke Experiential</td>
+                                <td>Interactive Particle Canvas &amp; Dynamic Storytelling</td>
+                                <td>Flagship Brands, Global Conferences, Unicorns</td>
+                                <td><span style="color:var(--accent-emerald); font-weight:700;">98%</span></td>
+                                <td>Bespoke</td>
+                                <td>97/100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================================== -->
+        <!-- STYLE MATCHMAKER QUIZ                                           -->
+        <!-- =============================================================== -->
+        <section class="matchmaker-section" id="matchmaker-section">
+            <div class="container">
+                <div class="quiz-card">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div class="hero-badge" style="margin-bottom: 0.75rem;">
+                            <span class="pulse-dot"></span>
+                            <span>SMART MATCHMAKER</span>
+                        </div>
+                        <h2 style="font-family: var(--font-primary); font-size: 2rem; font-weight: 800; margin: 0.5rem 0;">Find Your Brand's Ideal Design Architecture</h2>
+                        <p style="font-family: var(--font-body); color: var(--text-muted); font-size: 0.95rem;">Answer two quick questions to get an algorithmic recommendation tailored for your conversion goals.</p>
+                    </div>
+
+                    <!-- Step 1: Industry -->
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-family: var(--font-primary); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent-cyan);">1. What is your commercial industry vertical?</h4>
+                        <div class="quiz-options-grid">
+                            <button class="quiz-opt-btn" data-group="industry" data-val="dental">🦷 Dental &amp; Healthcare</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="ai">🤖 AI &amp; Robotics</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="agency">⚡ Digital Agency</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="broker">🏢 Real Estate &amp; Broker</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="education">🎓 EdTech &amp; Academy</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="startups">🚀 SaaS &amp; Tech Startups</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="social">📱 Social Media &amp; Creator</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="ecommerce">💎 Luxury E-Commerce</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Desired Vibe -->
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-family: var(--font-primary); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent-purple);">2. What emotional brand impression do you want to convey?</h4>
+                        <div class="quiz-options-grid">
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="clean">🧊 Clean, Clinical, Translucent</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="hightech">🍱 High-Velocity Modular Tech</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="genz">⚡ Bold, Punchy, High-Contrast</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="luxury">👑 Ultra-Luxury, Understated Wealth</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="editorial">📰 Prestigious, Typographic, Editorial</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="custom">🌌 Bespoke 3D &amp; Experiential</button>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Results Container -->
+                    <div class="quiz-result-box" id="quiz-result" style="display: none; padding: 1.75rem; background: rgba(2, 132, 199, 0.08); border: 1.5px solid var(--accent-cyan); border-radius: 16px; text-align: center;">
+                        <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-cyan); margin-bottom: 0.5rem;">Recommended Design Architecture:</div>
+                        <div id="quiz-recommendation" style="font-family: var(--font-primary); font-size: 1.75rem; font-weight: 900; margin-bottom: 0.75rem;">🧊 Glassmorphism (#01)</div>
+                        <p id="quiz-reasoning" style="font-family: var(--font-body); font-size: 0.95rem; color: var(--text-muted); max-width: 640px; margin: 0 auto 1.5rem; line-height: 1.6;"></p>
+                        <button class="morph-btn" id="quiz-cta-btn" style="padding: 0.8rem 2rem; font-size: 1rem; margin: 0 auto; background: var(--grad-primary); color: #ffffff;">
+                            <span>🚀 Preview in Sandbox</span>
+                        </button>
                     </div>
                 </div>
-
-                <!-- Step 2: Desired Vibe -->
-                <div style="margin-bottom: 2rem;">
-                    <h4 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; color: #a855f7;">2. What emotional brand impression do you want to convey?</h4>
-                    <div class="quiz-options-grid">
-                        <button class="quiz-opt-btn" data-group="vibe" data-val="clean">🧊 Clean, Clinical, Translucent</button>
-                        <button class="quiz-opt-btn" data-group="vibe" data-val="hightech">🍱 High-Velocity Modular Tech</button>
-                        <button class="quiz-opt-btn" data-group="vibe" data-val="genz">⚡ Bold, Punchy, High-Contrast</button>
-                        <button class="quiz-opt-btn" data-group="vibe" data-val="luxury">👑 Ultra-Luxury, Understated Wealth</button>
-                        <button class="quiz-opt-btn" data-group="vibe" data-val="editorial">📰 Prestigious, Typographic, Editorial</button>
-                        <button class="quiz-opt-btn" data-group="vibe" data-val="custom">🌌 Bespoke 3D &amp; Experiential</button>
-                    </div>
-                </div>
-
-                <!-- Quiz Results Container -->
-                <div class="quiz-result-box" id="quiz-result" style="display: none; padding: 1.75rem; background: rgba(0, 240, 255, 0.05); border: 1.5px solid #00f0ff; border-radius: 16px; text-align: center;">
-                    <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #00f0ff; margin-bottom: 0.5rem;">Recommended Design Architecture:</div>
-                    <div id="quiz-recommendation" style="font-size: 1.75rem; font-weight: 900; margin-bottom: 0.75rem;">🧊 Glassmorphism (#01)</div>
-                    <p id="quiz-reasoning" style="font-size: 0.95rem; color: var(--clr-text-muted); max-width: 640px; margin: 0 auto 1.5rem; line-height: 1.6;"></p>
-                    <button class="morph-btn" id="quiz-cta-btn" style="padding: 0.8rem 2rem; font-size: 1rem; margin: 0 auto;">
-                        <span>🚀 Preview in Sandbox</span>
-                    </button>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </main>
 
     <!-- =================================================================== -->
     <!-- FULL-SCREEN INTERACTIVE DEMO MODAL                                  -->
@@ -540,18 +633,18 @@
             <div class="modal-header-toolbar">
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                     <button class="modal-close-btn" id="modal-close" title="Close Live Demo (Esc)">&times;</button>
-                    <span id="modal-bar-title" style="font-weight: 700; font-size: 0.95rem;">Interactive Live Experience</span>
+                    <span id="modal-bar-title" style="font-family: var(--font-primary); font-weight: 700; font-size: 0.95rem;">Interactive Live Experience</span>
                 </div>
 
-                <div class="sandbox-address-bar" id="modal-bar-address" style="flex: 1; max-width: 480px; margin: 0 1rem; display: none;">
+                <div class="browser-url-pill" id="modal-bar-address" style="flex: 1; max-width: 480px; margin: 0 1rem; display: none;">
                     https://demo.elavatex.com/live/glassmorphism
                 </div>
 
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <button class="view-toggle-btn modal-view-btn active" data-view="desktop" title="Desktop 100%">🖥️ Full</button>
-                    <button class="view-toggle-btn modal-view-btn" data-view="tablet" title="Tablet 768px">📱 Tab</button>
-                    <button class="view-toggle-btn modal-view-btn" data-view="mobile" title="Mobile 375px">📱 Mobile</button>
-                    <a href="https://wa.me/917676808068" target="_blank" class="btn-contact-top" id="modal-whatsapp-cta" style="padding: 0.4rem 0.9rem; font-size: 0.82rem;">
+                    <button class="viewport-toggle-btn modal-view-btn active" data-view="desktop" title="Desktop 100%">🖥️ Full</button>
+                    <button class="viewport-toggle-btn modal-view-btn" data-view="tablet" title="Tablet 768px">📱 Tab</button>
+                    <button class="viewport-toggle-btn modal-view-btn" data-view="mobile" title="Mobile 375px">📱 Mobile</button>
+                    <a href="https://wa.me/917676808068" target="_blank" class="btn-primary btn-sm" id="modal-whatsapp-cta" style="padding: 0.4rem 0.9rem; font-size: 0.82rem; text-decoration: none;">
                         <span>WhatsApp Lead Architect &rarr;</span>
                     </a>
                 </div>
@@ -563,65 +656,220 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- FOOTER                                                              -->
+    <!-- OFFICIAL FOOTER                                                     -->
     <!-- =================================================================== -->
-    <footer class="styles-footer">
-        <div class="styles-container">
-            <div class="footer-grid-main">
-                <div>
-                    <a href="index.html" class="brand-wrap" style="margin-bottom: 1rem;">
-                        <img src="favicon.png" alt="ElavateX Logo" class="brand-logo-img">
-                        <span class="brand-text">Elavate<span style="color: #00f0ff;">X</span></span>
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Col 1: Brand -->
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="brand-logo">
+                        <span class="logo-mark">
+                            <img src="favicon.png" alt="ElavateX Logo" class="brand-logo-img">
+                        </span>
+                        <span class="logo-text">Elavate<span class="accent-x">X</span></span>
                     </a>
-                    <p style="color: var(--clr-text-muted); font-size: 0.9rem; max-width: 320px; margin-bottom: 1.25rem;">
-                        Bengaluru's premier digital product studio. High-performance web development, mobile applications, autonomous AI systems, and bespoke digital experiences.
+                    <p class="footer-desc">
+                        Official digital agency portal: <strong>ElavateX.com</strong>.<br>
+                        Specializing in Web Development, Mobile Applications, and Social Media Management.
                     </p>
-                    <div style="font-size: 0.85rem; color: #00f0ff; font-weight: 600;">
-                        Official WhatsApp: +91 7676808068
+                    <div class="contact-meta">
+                        <div class="meta-item">
+                            <strong>WhatsApp / Call:</strong> <a href="https://wa.me/917676808068" target="_blank">+91 7676808068</a>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Engineering Desk:</strong> <a href="mailto:contact@elavatex.com">contact@elavatex.com</a>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Instagram:</strong> <a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank">@elavatex_dev</a>
+                        </div>
+                        <div class="meta-item">
+                            <strong>Web Domain:</strong> <a href="https://www.elavatex.com" target="_blank">ElavateX.com</a>
+                        </div>
                     </div>
                 </div>
 
-                <div>
-                    <h4 class="footer-heading">Design Architectures</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="#sandbox-section">Master Morphing Sandbox</a></li>
-                        <li><a href="#styles-grid-section">18 Visual Philosophies</a></li>
-                        <li><a href="#matrix-section">Comparison Matrix</a></li>
-                        <li><a href="#matchmaker-section">Style Matchmaker Quiz</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="footer-heading">Studio &amp; Capabilities</h4>
-                    <ul class="footer-links-list">
+                <!-- Col 2: Services -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
                         <li><a href="index.html#services-overview">Web Development</a></li>
-                        <li><a href="index.html#services-overview">Mobile Engineering</a></li>
-                        <li><a href="index.html#services-overview">AI &amp; Automation</a></li>
-                        <li><a href="brochure.html">Company Brochure (PDF)</a></li>
+                        <li><a href="index.html#services-overview">Application Development</a></li>
+                        <li><a href="index.html#services-overview">Social Media Management</a></li>
+                        <li><a href="index.html#services-overview">Meta & Google Paid Ads</a></li>
                     </ul>
                 </div>
 
-                <div>
-                    <h4 class="footer-heading">Registered Office</h4>
-                    <p class="footer-address-text">
-                        TF-1, Third Floor, Business Point, <br>
-                        137, Richmond Town, Ashok Nagar, <br>
-                        Bengaluru, Karnataka 560025, India
-                    </p>
-                    <a href="https://maps.app.goo.gl/PU1nFqvbbBd8SQRb7?g_st=aw" target="_blank" style="display: inline-flex; align-items: center; gap: 0.4rem; color: #00f0ff; text-decoration: none; font-size: 0.85rem; font-weight: 600; margin-top: 0.5rem;">
-                        <span>📍 Open on Google Maps &rarr;</span>
+                <!-- Col 3: Quick Action -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Quick Action</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="open-consultation-btn">Book a Call</a></li>
+                        <li><a href="#" class="open-consultation-btn">Get Free Consultation</a></li>
+                        <li><a href="styles.html" style="color: #00f0ff; font-weight: 700;">Design Styles &amp; Demos &rarr;</a></li>
+                        <li><a href="brochure.html" target="_blank" style="color: var(--accent-cyan); font-weight: 700;">Download Brochure (PDF) &rarr;</a></li>
+                        <li><a href="poster.html" target="_blank" style="color: #c084fc; font-weight: 700;">Social Media Posters &rarr;</a></li>
+                        <li><a href="https://wa.me/917676808068" target="_blank">WhatsApp Direct Chat</a></li>
+                        <li><a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank">Instagram (@elavatex_dev)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Social Media Icons -->
+                <div class="footer-col social-col">
+                    <h4 class="footer-heading">Connect With Us</h4>
+                    <p class="footer-social-desc">Follow our journey and stay updated with the latest digital trends.</p>
+
+                    <div class="social-icons-wrapper">
+                        <!-- Instagram (Given: elavatex_dev) -->
+                        <a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank" rel="noopener" class="social-icon-btn instagram" title="Instagram: @elavatex_dev">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+
+                        <!-- WhatsApp (Given: 7676808068) -->
+                        <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20reaching%20out%20from%20ElavateX.com" target="_blank" rel="noopener" class="social-icon-btn whatsapp" title="Connect on WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 5: Office Location & Clickable Google Maps -->
+                <div class="footer-col location-col">
+                    <h4 class="footer-heading">Office Location</h4>
+                    <div class="location-details">
+                        <p class="location-address">
+                            <strong>Address:</strong> TF-1, Third Floor, Business Point, 137, Richmond Town, Ashok Nagar, Bengaluru, Karnataka 560025
+                        </p>
+                    </div>
+                    <a href="https://maps.app.goo.gl/PU1nFqvbbBd8SQRb7?g_st=aw" target="_blank" rel="noopener" class="footer-map-card" title="Click to open ElavateX Office Location on Google Maps">
+                        <div class="map-badge">
+                            <span>Maps</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                        </div>
+                        <div class="map-canvas-preview">
+                            <div class="map-grid-pattern"></div>
+                            <div class="map-road road-1"></div>
+                            <div class="map-road road-2"></div>
+                            <div class="map-pin-pulse"></div>
+                            <div class="map-pin-marker">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="#ffffff"/></svg>
+                            </div>
+                            <div class="map-label-box">
+                                <span class="map-loc-name">ElavateX Office &bull; TF-1, 3rd Floor</span>
+                                <span class="map-loc-sub">Business Point, Richmond Town, Bengaluru 560025</span>
+                            </div>
+                        </div>
                     </a>
                 </div>
             </div>
 
-            <div class="footer-copyright-bar">
-                <div>&copy; 2026-2027 ElavateX. All rights reserved. Zero-Bloat Handwritten Production Code.</div>
-                <div>Bengaluru HQ &bull; Global Client Delivery</div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 <strong>ElavateX</strong> (ElavateX.com). All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="index.html">Privacy Policy</a> &bull; 
+                    <a href="index.html">Terms of Service</a> &bull; 
+                    <a href="https://www.instagram.com/elavatex_dev?igsh=cm5rd3JqdGQ2ZWo1" target="_blank">@elavatex_dev</a> &bull; 
+                    <a href="admin.html" class="admin-portal-link">⚙️ Admin Portal</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- =================================================================== -->
+    <!-- CONSULTATION & DISCOVERY SPRINT MODAL DIALOG                        -->
+    <!-- =================================================================== -->
+    <dialog class="glass-modal" id="consultation-modal">
+        <div class="modal-content">
+            <!-- Universal Close Button -->
+            <button class="modal-close" id="modal-close-btn" aria-label="Close Modal">&times;</button>
+            
+            <!-- Step 1: Channel Selector Screen -->
+            <div id="modal-step-selector" class="modal-step-container active">
+                <div class="modal-header">
+                    <div class="format-badge">CONSULTATION </div>
+                    <h3 class="modal-title">How would you like to connect?</h3>
+                    <p class="modal-subtitle">Select your preferred advisory channel below:</p>
+                </div>
+                
+                <div class="channel-options-grid">
+                    <!-- Option A: Direct Callback -->
+                    <div class="channel-card" id="channel-opt-callback">
+                        <div class="channel-icon phone-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="channel-details">
+                            <h4>Direct Phone Call Callback</h4>
+                            <p>Provide your contact details and our senior advisor will call you directly.</p>
+                        </div>
+                    </div>
+
+                    <!-- Option B: In-Person Advisory -->
+                    <div class="channel-card" id="channel-opt-reserved">
+                        <div class="channel-icon calendar-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                        </div>
+                        <div class="channel-details">
+                            <h4>In-Person Advisory / Reserved Slot</h4>
+                            <p>Pick an exact date, time slot, budget, and specific consultation requirements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Form Input Screen (starts hidden) -->
+            <div id="modal-step-form" class="modal-step-container">
+                <button class="modal-back-btn" id="modal-back-btn">&larr; Back to channels</button>
+                
+                <div class="modal-header">
+                    <div class="pill-tag text-purple" id="form-flow-badge">FREE CONSULTATION &amp; BOOKING</div>
+                    <h3 class="modal-title">Elevate Your Business With <span class="gradient-text">ElavateX</span></h3>
+                    <p class="modal-subtitle">Fill out your details below or book directly via WhatsApp.</p>
+                </div>
+
+                <form id="consultation-form" class="modal-form">
+                    <input type="hidden" id="form-channel" value="Direct Callback">
+
+                    <div class="form-group">
+                        <label for="form-name">Full Name *</label>
+                        <input type="text" id="form-name" required placeholder="Enter your name">
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="form-email">Email Address *</label>
+                            <input type="email" id="form-email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-phone">Phone / WhatsApp *</label>
+                            <input type="tel" id="form-phone" required placeholder="Enter 10-digit number">
+                        </div>
+                    </div>
+
+                    <div class="form-actions" style="margin-top: 1.5rem;">
+                        <button type="submit" class="btn-primary w-full" id="btn-submit-consultation">
+                            <span>Submit Request</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
     <!-- Scripts -->
-    <script src="styles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="main.js?v=3.1"></script>
+    <script src="styles.js?v=2.0"></script>
 </body>
 </html>
