@@ -25,7 +25,7 @@
     <!-- Master Brand Stylesheet -->
     <link rel="stylesheet" href="style.css?v=1.6">
     <!-- Showcase Extension Stylesheet -->
-    <link rel="stylesheet" href="styles-showcase.css?v=2.0">
+    <link rel="stylesheet" href="styles-showcase.css?v=2.1">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -83,7 +83,7 @@
             <nav class="nav-links">
                 <a href="index.html#about" class="nav-link">About</a>
                 <a href="index.html#services-overview" class="nav-link">Services</a>
-                <a href="styles.html" class="nav-link active" title="Web Design Styles &amp; Interactive Demos" style="color: var(--accent-cyan); font-weight: 700;">Styles ✨</a>
+                <a href="styles.html" class="nav-link active" title="Web Design Styles &amp; Interactive Demos">Styles</a>
                 <a href="index.html#mvp-demo" class="nav-link">Demo &amp; MVP</a>
                 <a href="index.html#execution-roadmap" class="nav-link">Roadmap</a>
                 <a href="index.html#portfolio" class="nav-link">Work</a>
@@ -132,7 +132,7 @@
         <div class="drawer-links">
             <a href="index.html#about" class="drawer-link">About</a>
             <a href="index.html#services-overview" class="drawer-link">Core Services</a>
-            <a href="styles.html" class="drawer-link" style="color: var(--accent-cyan); font-weight: 700;">Design Styles &amp; Demos Directory ✨</a>
+            <a href="styles.html" class="drawer-link active">Design Styles &amp; Demos Directory</a>
             <a href="index.html#knowledge-hub" class="drawer-link">Growth Frameworks</a>
             <a href="index.html#daily-journey" class="drawer-link">Daily Journey (BTS)</a>
             <a href="index.html#mvp-demo" class="drawer-link">Demo &amp; MVP Blueprint</a>
@@ -156,10 +156,34 @@
     <main class="styles-page-main">
 
         <!-- =============================================================== -->
-        <!-- HERO SECTION                                                    -->
+        <!-- ANIMATED HERO SECTION                                           -->
         <!-- =============================================================== -->
         <section class="styles-hero-section">
-            <div class="hero-glow-blob-styles"></div>
+            <!-- 60FPS Interactive Node Constellation Matrix Canvas -->
+            <canvas id="hero-matrix-canvas" class="hero-matrix-canvas"></canvas>
+
+            <!-- Volumetric Ambient Light & Orbital Rings -->
+            <div class="hero-stage-aura"></div>
+            <div class="hero-orbit-ring hero-ring-1"></div>
+            <div class="hero-orbit-ring hero-ring-2"></div>
+
+            <!-- Floating Design System Accent Badges (Desktop) -->
+            <div class="hero-floating-pill pill-float-1">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span>Glassmorphism 2.0</span>
+            </div>
+            <div class="hero-floating-pill pill-float-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+                <span>Bento Grid UI</span>
+            </div>
+            <div class="hero-floating-pill pill-float-3">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#facc15"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>Neo-Brutalism</span>
+            </div>
+            <div class="hero-floating-pill pill-float-4">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M21 9a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6v6a6 6 0 0 0 6 6h6a6 6 0 0 0 6-6V9z"/><circle cx="8.5" cy="12" r="2.5"/><circle cx="15.5" cy="12" r="2.5"/></svg>
+                <span>Spatial Computing</span>
+            </div>
 
             <div class="container" style="position: relative; z-index: 2;">
                 <div class="hero-badge">
@@ -169,7 +193,13 @@
 
                 <h1 style="font-family: var(--font-primary); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15; margin: 1.2rem 0;">
                     18 World-Class Web Design Philosophies <br>
-                    <span class="gradient-text">&amp; Live Interactive Demos</span>
+                    Engineered for 
+                    <span class="styles-hero-rotator" id="styles-hero-rotator">
+                        <span class="rotator-word active">MAXIMUM REVENUE.</span>
+                        <span class="rotator-word">CLINICAL AUTHORITY.</span>
+                        <span class="rotator-word">UNFAIR ADVANTAGE.</span>
+                        <span class="rotator-word">LUXURY PRESTIGE.</span>
+                    </span>
                 </h1>
 
                 <p style="font-family: var(--font-body); font-size: 1.1rem; max-width: 760px; margin: 0 auto 2.2rem; color: var(--text-muted); line-height: 1.6;">
@@ -206,7 +236,9 @@
                 <div class="filter-top-row">
                     <!-- Real-Time Search -->
                     <div class="search-field-box">
-                        <span class="search-field-icon">🔍</span>
+                        <span class="search-field-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        </span>
                         <input type="text" id="styles-search" class="search-field-input" placeholder="Search styles, traits, or keywords (e.g. Bento, Minimal, Glass, Cyber, Dental)..." autocomplete="off">
                     </div>
 
@@ -214,45 +246,102 @@
                     <div class="industry-select-wrap">
                         <label for="industry-filter" class="industry-select-label">Industry Preset:</label>
                         <select id="industry-filter" class="industry-select-dropdown">
-                            <option value="all">🌐 All Commercial Industries</option>
-                            <option value="dental">🦷 Dental, Clinics &amp; Healthcare</option>
-                            <option value="agency">⚡ Digital Agency &amp; Studios</option>
-                            <option value="broker">🏢 Real Estate Brokers &amp; Wealth</option>
-                            <option value="education">🎓 EdTech, Academies &amp; Learning</option>
-                            <option value="ai">🤖 AI Automation &amp; Robotics</option>
-                            <option value="transportation">🚢 Transportation &amp; Logistics</option>
-                            <option value="visa">🛂 Visa, Immigration &amp; Mobility</option>
-                            <option value="startups">🚀 High-Velocity SaaS &amp; Startups</option>
-                            <option value="portfolio">💼 Creator &amp; Founder Portfolios</option>
-                            <option value="social">📱 Social Media &amp; Creator Agencies</option>
-                            <option value="marketing">📈 Performance Marketing &amp; SEO</option>
-                            <option value="routines">⏰ Daily Routine &amp; Habit Apps</option>
-                            <option value="ecommerce">💎 Luxury D2C &amp; E-Commerce</option>
+                            <option value="all">All Commercial Industries</option>
+                            <option value="dental">Dental, Clinics &amp; Healthcare</option>
+                            <option value="agency">Digital Agency &amp; Studios</option>
+                            <option value="broker">Real Estate Brokers &amp; Wealth</option>
+                            <option value="education">EdTech, Academies &amp; Learning</option>
+                            <option value="ai">AI Automation &amp; Robotics</option>
+                            <option value="transportation">Transportation &amp; Logistics</option>
+                            <option value="visa">Visa, Immigration &amp; Mobility</option>
+                            <option value="startups">High-Velocity SaaS &amp; Startups</option>
+                            <option value="portfolio">Creator &amp; Founder Portfolios</option>
+                            <option value="social">Social Media &amp; Creator Agencies</option>
+                            <option value="marketing">Performance Marketing &amp; SEO</option>
+                            <option value="routines">Daily Routine &amp; Habit Apps</option>
+                            <option value="ecommerce">Luxury D2C &amp; E-Commerce</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Aesthetic Filter Pills Carousel -->
+                <!-- Aesthetic Filter Pills Carousel (With Official SVG Icons) -->
                 <div class="pills-scroll-track" id="aesthetic-pills-row">
-                    <button class="style-filter-btn active" data-filter="all">✨ All 18 Aesthetics</button>
-                    <button class="style-filter-btn" data-filter="glassmorphism">🧊 Glassmorphism</button>
-                    <button class="style-filter-btn" data-filter="bento">🍱 Bento Grid UI</button>
-                    <button class="style-filter-btn" data-filter="neobrutalism">⚡ Neo-Brutalism</button>
-                    <button class="style-filter-btn" data-filter="minimalism">⚪ Minimalism</button>
-                    <button class="style-filter-btn" data-filter="maximalism">💥 Maximalism</button>
-                    <button class="style-filter-btn" data-filter="neumorphism">🔘 Neumorphism</button>
-                    <button class="style-filter-btn" data-filter="claymorphism">☁️ Claymorphism</button>
-                    <button class="style-filter-btn" data-filter="brutalism">🏗️ Brutalism</button>
-                    <button class="style-filter-btn" data-filter="skeuomorphism">🕰️ Skeuomorphism</button>
-                    <button class="style-filter-btn" data-filter="flat">📐 Flat Design</button>
-                    <button class="style-filter-btn" data-filter="material">🎨 Material 3</button>
-                    <button class="style-filter-btn" data-filter="y2k">💿 Y2K Design</button>
-                    <button class="style-filter-btn" data-filter="retro">🕹️ Retro Synthwave</button>
-                    <button class="style-filter-btn" data-filter="cyberpunk">🌆 Cyberpunk 2077</button>
-                    <button class="style-filter-btn" data-filter="editorial">📰 Editorial Swiss</button>
-                    <button class="style-filter-btn" data-filter="spatial">🥽 Spatial Computing</button>
-                    <button class="style-filter-btn" data-filter="luxury">👑 Stealth Luxury</button>
-                    <button class="style-filter-btn" data-filter="customized">🌌 Customized 3D</button>
+                    <button class="style-filter-btn active" data-filter="all">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2"/></svg>
+                        <span>All 18 Aesthetics</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="glassmorphism">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        <span>Glassmorphism</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="bento">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+                        <span>Bento Grid UI</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="neobrutalism">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        <span>Neo-Brutalism</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="minimalism">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+                        <span>Minimalism</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="maximalism">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <span>Maximalism</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="neumorphism">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+                        <span>Neumorphism</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="claymorphism">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="6"/></svg>
+                        <span>Claymorphism</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="brutalism">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                        <span>Brutalism</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="skeuomorphism">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>Skeuomorphism</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="flat">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><rect x="2" y="14" width="20" height="6" rx="2"/></svg>
+                        <span>Flat Design</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="material">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        <span>Material 3</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="y2k">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>
+                        <span>Y2K Cyber</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="retro">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg>
+                        <span>Retro Synthwave</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="cyberpunk">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+                        <span>Cyberpunk</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="editorial">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        <span>Editorial Swiss</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="spatial">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 9a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6v6a6 6 0 0 0 6 6h6a6 6 0 0 0 6-6V9z"/><circle cx="8.5" cy="12" r="2.5"/><circle cx="15.5" cy="12" r="2.5"/></svg>
+                        <span>Spatial Computing</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="luxury">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2"/></svg>
+                        <span>Stealth Luxury</span>
+                    </button>
+                    <button class="style-filter-btn" data-filter="customized">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17 12 12 2 17"/></svg>
+                        <span>Customized 3D</span>
+                    </button>
                 </div>
             </div>
         </section>
@@ -291,13 +380,19 @@
                 <div class="sandbox-stage theme-glassmorphism" id="sandbox-stage">
                     <div class="stage-inner-grid">
                         <div>
-                            <div class="sandbox-tag" id="sandbox-tag">🧊 GLASSMORPHISM &bull; ELAVATEX ARCHITECTURE</div>
+                            <div class="sandbox-tag" id="sandbox-tag">
+                                <span style="display:inline-flex; align-items:center; gap:6px;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                    <span>GLASSMORPHISM &bull; ELAVATEX ARCHITECTURE</span>
+                                </span>
+                            </div>
                             <h2 class="sandbox-heading" id="sandbox-heading">Crystalline Precision for Modern Healthcare &amp; High-Tech Platforms.</h2>
                             <p class="sandbox-desc" id="sandbox-desc">Multi-layer translucent glass creates profound visual depth without cluttering user focus, delivering a sensation of clinical purity and cutting-edge software excellence.</p>
                             
                             <div class="sandbox-cta-row">
                                 <button class="morph-btn" id="sandbox-btn-cta">
-                                    <span>🚀 Launch Project in this Style</span>
+                                    <span>Launch Project in this Style</span>
+                                    <span class="arrow">&rarr;</span>
                                 </button>
                                 <button class="morph-btn" id="sandbox-btn-details" onclick="document.getElementById('styles-grid-section').scrollIntoView({ behavior: 'smooth' });">
                                     <span>Browse All 18 Variations &darr;</span>
@@ -399,7 +494,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>🧊 Glassmorphism</strong></td>
+                                <td><strong>Glassmorphism</strong></td>
                                 <td>Modern Tech</td>
                                 <td>Clinical Purity &amp; Futuristic Depth</td>
                                 <td>Dental, Clinics, Fintech, HealthTech</td>
@@ -408,7 +503,7 @@
                                 <td>99/100</td>
                             </tr>
                             <tr>
-                                <td><strong>🍱 Bento Grid UI</strong></td>
+                                <td><strong>Bento Grid UI</strong></td>
                                 <td>Modern Tech</td>
                                 <td>Structured Intelligence &amp; Modular Clarity</td>
                                 <td>AI Automation, SaaS, Startups, Hardware</td>
@@ -417,7 +512,7 @@
                                 <td>100/100</td>
                             </tr>
                             <tr>
-                                <td><strong>⚡ Neo-Brutalism</strong></td>
+                                <td><strong>Neo-Brutalism</strong></td>
                                 <td>Avant-Garde</td>
                                 <td>High-Voltage Contrast &amp; Rebel Energy</td>
                                 <td>Agencies, EdTech, D2C, Creator Media</td>
@@ -426,7 +521,7 @@
                                 <td>100/100</td>
                             </tr>
                             <tr>
-                                <td><strong>⚪ Minimalism</strong></td>
+                                <td><strong>Minimalism</strong></td>
                                 <td>Clean &amp; Direct</td>
                                 <td>Radical Clarity &amp; Zero Cognitive Friction</td>
                                 <td>Brokers, Wealth, Portfolios, Law</td>
@@ -435,7 +530,7 @@
                                 <td>100/100</td>
                             </tr>
                             <tr>
-                                <td><strong>💥 Maximalism</strong></td>
+                                <td><strong>Maximalism</strong></td>
                                 <td>Avant-Garde</td>
                                 <td>Sensory Overload &amp; Dynamic Bravado</td>
                                 <td>Music, Gaming, Festivals, Streetwear</td>
@@ -444,7 +539,7 @@
                                 <td>94/100</td>
                             </tr>
                             <tr>
-                                <td><strong>🔘 Neumorphism</strong></td>
+                                <td><strong>Neumorphism</strong></td>
                                 <td>Tactile &amp; Soft</td>
                                 <td>Soft Inset Extrusion &amp; Organic Tactility</td>
                                 <td>IoT, Smart Home, Health Trackers</td>
@@ -453,7 +548,7 @@
                                 <td>98/100</td>
                             </tr>
                             <tr>
-                                <td><strong>☁️ Claymorphism</strong></td>
+                                <td><strong>Claymorphism</strong></td>
                                 <td>Playful 3D</td>
                                 <td>Friendly Inflatables &amp; Warm Approachability</td>
                                 <td>EdTech, Kids, Gamified SaaS, Pet Care</td>
@@ -462,7 +557,7 @@
                                 <td>97/100</td>
                             </tr>
                             <tr>
-                                <td><strong>🏗️ Brutalism</strong></td>
+                                <td><strong>Brutalism</strong></td>
                                 <td>Raw Structural</td>
                                 <td>Unfiltered Concrete &amp; Anti-Decorative Truth</td>
                                 <td>Architecture, Independent Studios, Art</td>
@@ -471,7 +566,7 @@
                                 <td>100/100</td>
                             </tr>
                             <tr>
-                                <td><strong>🕰️ Skeuomorphism</strong></td>
+                                <td><strong>Skeuomorphism</strong></td>
                                 <td>Physical Realism</td>
                                 <td>Nostalgic Luxury &amp; Handcrafted Heritage</td>
                                 <td>Horology, Automotive, Audio Studios</td>
@@ -480,7 +575,7 @@
                                 <td>95/100</td>
                             </tr>
                             <tr>
-                                <td><strong>📐 Flat Design</strong></td>
+                                <td><strong>Flat Design</strong></td>
                                 <td>Clean &amp; Direct</td>
                                 <td>Zero Distraction &amp; Pure Functional Speed</td>
                                 <td>Transportation, Logistics, Government</td>
@@ -489,7 +584,7 @@
                                 <td>100/100</td>
                             </tr>
                             <tr>
-                                <td><strong>🎨 Material 3</strong></td>
+                                <td><strong>Material 3</strong></td>
                                 <td>Standard / Adaptive</td>
                                 <td>Adaptive Surfaces &amp; Natural Ripple Physics</td>
                                 <td>Enterprise Dashboards, Multi-Screen Portals</td>
@@ -498,7 +593,7 @@
                                 <td>99/100</td>
                             </tr>
                             <tr>
-                                <td><strong>💿 Y2K Design</strong></td>
+                                <td><strong>Y2K Cyber</strong></td>
                                 <td>Nostalgic Retro</td>
                                 <td>Chrome Liquidity &amp; Millennium Optimism</td>
                                 <td>Gen-Z Apparel, Nightlife, Record Labels</td>
@@ -507,7 +602,7 @@
                                 <td>93/100</td>
                             </tr>
                             <tr>
-                                <td><strong>🕹️ Retro Synthwave</strong></td>
+                                <td><strong>Retro Synthwave</strong></td>
                                 <td>Nostalgic Retro</td>
                                 <td>Neon CRT Gridlines &amp; Outrun Cyber-Glow</td>
                                 <td>Gaming, Podcasts, Retro Hardware, Arcades</td>
@@ -516,7 +611,7 @@
                                 <td>96/100</td>
                             </tr>
                             <tr>
-                                <td><strong>🌆 Cyberpunk 2077</strong></td>
+                                <td><strong>Cyberpunk 2077</strong></td>
                                 <td>Futuristic Sci-Fi</td>
                                 <td>High-Density Neon Wireframes &amp; Glitch HUD</td>
                                 <td>Crypto, Web3, Esports, Cybersecurity</td>
@@ -525,7 +620,7 @@
                                 <td>95/100</td>
                             </tr>
                             <tr>
-                                <td><strong>📰 Editorial Swiss</strong></td>
+                                <td><strong>Editorial Swiss</strong></td>
                                 <td>Typography First</td>
                                 <td>Literary Prestige &amp; Typographic Authority</td>
                                 <td>Publishing, Law, Private Equity, Architecture</td>
@@ -534,7 +629,7 @@
                                 <td>100/100</td>
                             </tr>
                             <tr>
-                                <td><strong>🥽 Spatial Computing</strong></td>
+                                <td><strong>Spatial Computing</strong></td>
                                 <td>Spatial / VisionOS</td>
                                 <td>Specular Lensing &amp; Floating Ambient Glass</td>
                                 <td>VR/AR, Spatial Audio, 3D Visualization</td>
@@ -543,7 +638,7 @@
                                 <td>98/100</td>
                             </tr>
                             <tr>
-                                <td><strong>👑 Stealth Luxury</strong></td>
+                                <td><strong>Stealth Luxury</strong></td>
                                 <td>High-Ticket D2C</td>
                                 <td>Obsidian Gold Hairpins &amp; Aristocratic Poise</td>
                                 <td>Yacht Charters, Private Banking, High Jewelry</td>
@@ -552,7 +647,7 @@
                                 <td>99/100</td>
                             </tr>
                             <tr>
-                                <td><strong>🌌 Customized 3D</strong></td>
+                                <td><strong>Customized 3D</strong></td>
                                 <td>Bespoke Experiential</td>
                                 <td>Interactive Particle Canvas &amp; Dynamic Storytelling</td>
                                 <td>Flagship Brands, Global Conferences, Unicorns</td>
@@ -585,14 +680,14 @@
                     <div style="margin-bottom: 2rem;">
                         <h4 style="font-family: var(--font-primary); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent-cyan);">1. What is your commercial industry vertical?</h4>
                         <div class="quiz-options-grid">
-                            <button class="quiz-opt-btn" data-group="industry" data-val="dental">🦷 Dental &amp; Healthcare</button>
-                            <button class="quiz-opt-btn" data-group="industry" data-val="ai">🤖 AI &amp; Robotics</button>
-                            <button class="quiz-opt-btn" data-group="industry" data-val="agency">⚡ Digital Agency</button>
-                            <button class="quiz-opt-btn" data-group="industry" data-val="broker">🏢 Real Estate &amp; Broker</button>
-                            <button class="quiz-opt-btn" data-group="industry" data-val="education">🎓 EdTech &amp; Academy</button>
-                            <button class="quiz-opt-btn" data-group="industry" data-val="startups">🚀 SaaS &amp; Tech Startups</button>
-                            <button class="quiz-opt-btn" data-group="industry" data-val="social">📱 Social Media &amp; Creator</button>
-                            <button class="quiz-opt-btn" data-group="industry" data-val="ecommerce">💎 Luxury E-Commerce</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="dental">Dental &amp; Healthcare</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="ai">AI &amp; Robotics</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="agency">Digital Agency</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="broker">Real Estate &amp; Broker</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="education">EdTech &amp; Academy</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="startups">SaaS &amp; Tech Startups</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="social">Social Media &amp; Creator</button>
+                            <button class="quiz-opt-btn" data-group="industry" data-val="ecommerce">Luxury E-Commerce</button>
                         </div>
                     </div>
 
@@ -600,22 +695,22 @@
                     <div style="margin-bottom: 2rem;">
                         <h4 style="font-family: var(--font-primary); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent-purple);">2. What emotional brand impression do you want to convey?</h4>
                         <div class="quiz-options-grid">
-                            <button class="quiz-opt-btn" data-group="vibe" data-val="clean">🧊 Clean, Clinical, Translucent</button>
-                            <button class="quiz-opt-btn" data-group="vibe" data-val="hightech">🍱 High-Velocity Modular Tech</button>
-                            <button class="quiz-opt-btn" data-group="vibe" data-val="genz">⚡ Bold, Punchy, High-Contrast</button>
-                            <button class="quiz-opt-btn" data-group="vibe" data-val="luxury">👑 Ultra-Luxury, Understated Wealth</button>
-                            <button class="quiz-opt-btn" data-group="vibe" data-val="editorial">📰 Prestigious, Typographic, Editorial</button>
-                            <button class="quiz-opt-btn" data-group="vibe" data-val="custom">🌌 Bespoke 3D &amp; Experiential</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="clean">Clean, Clinical, Translucent</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="hightech">High-Velocity Modular Tech</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="genz">Bold, Punchy, High-Contrast</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="luxury">Ultra-Luxury, Understated Wealth</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="editorial">Prestigious, Typographic, Editorial</button>
+                            <button class="quiz-opt-btn" data-group="vibe" data-val="custom">Bespoke 3D &amp; Experiential</button>
                         </div>
                     </div>
 
                     <!-- Quiz Results Container -->
                     <div class="quiz-result-box" id="quiz-result" style="display: none; padding: 1.75rem; background: rgba(2, 132, 199, 0.08); border: 1.5px solid var(--accent-cyan); border-radius: 16px; text-align: center;">
                         <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-cyan); margin-bottom: 0.5rem;">Recommended Design Architecture:</div>
-                        <div id="quiz-recommendation" style="font-family: var(--font-primary); font-size: 1.75rem; font-weight: 900; margin-bottom: 0.75rem;">🧊 Glassmorphism (#01)</div>
+                        <div id="quiz-recommendation" style="font-family: var(--font-primary); font-size: 1.75rem; font-weight: 900; margin-bottom: 0.75rem;">Glassmorphism (#01)</div>
                         <p id="quiz-reasoning" style="font-family: var(--font-body); font-size: 0.95rem; color: var(--text-muted); max-width: 640px; margin: 0 auto 1.5rem; line-height: 1.6;"></p>
                         <button class="morph-btn" id="quiz-cta-btn" style="padding: 0.8rem 2rem; font-size: 1rem; margin: 0 auto; background: var(--grad-primary); color: #ffffff;">
-                            <span>🚀 Preview in Sandbox</span>
+                            <span>Preview in Sandbox &rarr;</span>
                         </button>
                     </div>
                 </div>
@@ -706,7 +801,7 @@
                     <ul class="footer-links">
                         <li><a href="#" class="open-consultation-btn">Book a Call</a></li>
                         <li><a href="#" class="open-consultation-btn">Get Free Consultation</a></li>
-                        <li><a href="styles.html" style="color: #00f0ff; font-weight: 700;">Design Styles &amp; Demos &rarr;</a></li>
+                        <li><a href="styles.html">Design Styles &amp; Demos &rarr;</a></li>
                         <li><a href="brochure.html" target="_blank" style="color: var(--accent-cyan); font-weight: 700;">Download Brochure (PDF) &rarr;</a></li>
                         <li><a href="poster.html" target="_blank" style="color: #c084fc; font-weight: 700;">Social Media Posters &rarr;</a></li>
                         <li><a href="https://wa.me/917676808068" target="_blank">WhatsApp Direct Chat</a></li>
@@ -870,6 +965,6 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="main.js?v=3.1"></script>
-    <script src="styles.js?v=2.0"></script>
+    <script src="styles.js?v=2.1"></script>
 </body>
 </html>

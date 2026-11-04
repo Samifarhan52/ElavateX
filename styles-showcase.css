@@ -5,7 +5,7 @@
 
 /* Main Container & Section Spacing */
 .styles-page-main {
-  padding-top: 130px; /* Accounts for fixed ticker (38px) + fixed navbar (70px) + spacing */
+  padding-top: 130px;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -18,30 +18,166 @@
 }
 
 /* ------------------------------------------------------------------- */
-/* HERO SECTION                                                        */
+/* 1. HERO SECTION & ANIMATED MATRIX BACKGROUND                        */
 /* ------------------------------------------------------------------- */
 .styles-hero-section {
   text-align: center;
-  padding: 3rem 0 2.5rem;
+  padding: 3.5rem 0 3rem;
   position: relative;
+  overflow: hidden;
 }
 
-.hero-glow-blob-styles {
+/* 60FPS Interactive HTML5 Canvas Matrix */
+.hero-matrix-canvas {
   position: absolute;
-  top: 10%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ambient Holographic Orbit Rings & Volumetric Glow */
+.hero-stage-aura {
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   width: 650px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, rgba(168, 85, 247, 0.12) 50%, transparent 75%);
-  filter: blur(70px);
+  height: 380px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(168, 85, 247, 0.12) 50%, transparent 75%);
+  filter: blur(80px);
   pointer-events: none;
   z-index: 0;
 }
 
-[data-theme="light"] .hero-glow-blob-styles {
-  background: radial-gradient(circle, rgba(2, 132, 199, 0.15) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 75%);
-  filter: blur(60px);
+[data-theme="light"] .hero-stage-aura {
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.16) 0%, rgba(217, 119, 6, 0.1) 50%, transparent 75%);
+  filter: blur(70px);
+}
+
+.hero-orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-ring-1 {
+  width: 550px;
+  height: 550px;
+  border: 1px dashed rgba(99, 102, 241, 0.2);
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: heroOrbitClockwise 45s linear infinite;
+}
+
+.hero-ring-2 {
+  width: 750px;
+  height: 750px;
+  border: 1px solid rgba(168, 85, 247, 0.12);
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: heroOrbitCounter 60s linear infinite;
+}
+
+@keyframes heroOrbitClockwise {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes heroOrbitCounter {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+/* Floating Architectural Style Pills (Desktop Floating Accents) */
+.hero-floating-pill {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  z-index: 2;
+  transition: all var(--transition-smooth);
+}
+
+[data-theme="dark"] .hero-floating-pill {
+  background: rgba(24, 27, 36, 0.85);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.pill-float-1 {
+  top: 18%;
+  left: 6%;
+  animation: floatPillA 6s ease-in-out infinite;
+}
+
+.pill-float-2 {
+  top: 22%;
+  right: 6%;
+  animation: floatPillB 7s ease-in-out infinite 1s;
+}
+
+.pill-float-3 {
+  bottom: 12%;
+  left: 8%;
+  animation: floatPillB 8s ease-in-out infinite 0.5s;
+}
+
+.pill-float-4 {
+  bottom: 15%;
+  right: 8%;
+  animation: floatPillA 7.5s ease-in-out infinite 1.5s;
+}
+
+@keyframes floatPillA {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(1.5deg); }
+}
+
+@keyframes floatPillB {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-1.5deg); }
+}
+
+@media (max-width: 1024px) {
+  .hero-floating-pill { display: none !important; }
+}
+
+/* Kinetic Word Rotator in Headline */
+.styles-hero-rotator {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+  height: 1.25em;
+  overflow: hidden;
+}
+
+.rotator-word {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rotator-word.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-stats-deck {
@@ -84,7 +220,7 @@
 .dot-amber { background: var(--accent-amber); }
 
 /* ------------------------------------------------------------------- */
-/* FILTER & SEARCH COMMAND DECK                                        */
+/* 2. FILTER & SEARCH COMMAND DECK                                     */
 /* ------------------------------------------------------------------- */
 .filter-command-panel {
   background: var(--bg-surface);
@@ -181,7 +317,6 @@
   border-color: var(--accent-cyan);
 }
 
-/* Aesthetic Filter Pills Carousel */
 .pills-scroll-track {
   display: flex;
   align-items: center;
@@ -203,8 +338,8 @@
 .style-filter-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 1.1rem;
+  gap: 0.45rem;
+  padding: 0.5rem 1.15rem;
   border-radius: var(--radius-full);
   background: var(--bg-surface-subtle);
   border: 1px solid var(--border-glass);
@@ -231,7 +366,7 @@
 }
 
 /* ------------------------------------------------------------------- */
-/* MASTER MORPHING LIVE SANDBOX                                        */
+/* 3. MASTER MORPHING LIVE SANDBOX STAGE                               */
 /* ------------------------------------------------------------------- */
 .sandbox-deck-wrap {
   margin-bottom: 5rem;
@@ -319,10 +454,10 @@
   border-color: transparent;
 }
 
-/* Master Stage Canvas */
+/* Master Stage Canvas Container */
 .sandbox-stage {
   padding: 3.5rem 2.5rem;
-  min-height: 440px;
+  min-height: 460px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -346,6 +481,8 @@
   align-items: center;
   width: 100%;
   max-width: 1100px;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 900px) {
@@ -358,12 +495,12 @@
 .sandbox-tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 0.85rem;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .sandbox-heading {
@@ -401,13 +538,16 @@
   font-weight: 700;
   cursor: pointer;
   text-decoration: none;
-  transition: all var(--transition-fast);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .morph-card {
   padding: 1.8rem;
   border-radius: 20px;
-  transition: all var(--transition-fast);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
 .morph-form-row {
@@ -423,72 +563,86 @@
   font-family: var(--font-body);
   font-size: 0.85rem;
   outline: none;
+  transition: all var(--transition-fast);
 }
 
 /* ------------------------------------------------------------------- */
-/* THE 18 THEME STYLES (Accurate Aesthetic Blueprints)                 */
+/* 4. THE 18 THEME STYLES (Unique Buttons, Cards, Inputs, & Hover)     */
 /* ------------------------------------------------------------------- */
 
-/* 1. Glassmorphism */
+/* 1. GLASSMORPHISM */
 .theme-glassmorphism {
-  background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.35), rgba(15, 23, 42, 0.95) 70%);
+  background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.4), rgba(15, 23, 42, 0.95) 70%);
   color: #ffffff;
 }
 .theme-glassmorphism .morph-card {
   background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-  border-radius: 20px;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
   color: #ffffff;
 }
 .theme-glassmorphism .morph-btn {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 .theme-glassmorphism .morph-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.18) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 35px rgba(0, 240, 255, 0.35);
+  border-color: rgba(0, 240, 255, 0.7);
 }
 .theme-glassmorphism .morph-input {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
 }
+.theme-glassmorphism .morph-input:focus {
+  border-color: #00f0ff;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}
 
-/* 2. Bento Grid UI */
+/* 2. BENTO GRID UI */
 .theme-bento {
   background: #090b10;
   color: #f8fafc;
 }
 .theme-bento .morph-card {
-  background: #11141c;
-  border: 1px solid #1f2432;
+  background: #111520;
+  border: 1px solid #1e2638;
   border-radius: 18px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 14px 35px rgba(0, 0, 0, 0.5);
   color: #f8fafc;
 }
 .theme-bento .morph-btn {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: #171d2b;
+  border: 1px solid #2a364f;
   color: #38bdf8;
   border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
 }
 .theme-bento .morph-btn:hover {
-  background: #38bdf8;
-  color: #090b10;
+  background: #1e273a;
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), inset 0 0 10px rgba(56, 189, 248, 0.15);
+  transform: translateY(-2px);
 }
 .theme-bento .morph-input {
   background: #161b26;
   border: 1px solid #283144;
   color: #f8fafc;
+  font-family: var(--font-mono);
 }
 
-/* 3. Neo-Brutalism */
+/* 3. NEO-BRUTALISM */
 .theme-neobrutalism {
   background: #fff8eb;
   color: #000000;
@@ -496,29 +650,36 @@
 .theme-neobrutalism .morph-card {
   background: #ffffff;
   border: 3.5px solid #000000;
-  box-shadow: 6px 6px 0px #000000;
+  box-shadow: 8px 8px 0px #000000;
   border-radius: 12px;
   color: #000000;
 }
 .theme-neobrutalism .morph-btn {
-  background: #a3e635;
-  border: 3px solid #000000;
-  box-shadow: 4px 4px 0px #000000;
+  background: #bef264;
+  border: 3.5px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
   color: #000000;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 800;
+  text-transform: uppercase;
 }
 .theme-neobrutalism .morph-btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #000000;
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0px #000000;
+}
+.theme-neobrutalism .morph-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0px #000000;
 }
 .theme-neobrutalism .morph-input {
   background: #ffffff;
-  border: 2.5px solid #000000;
+  border: 3px solid #000000;
   color: #000000;
+  font-weight: 700;
 }
 
-/* 4. Minimalism */
+/* 4. MINIMALISM */
 .theme-minimalism {
   background: #ffffff;
   color: #0f172a;
@@ -532,102 +693,124 @@
 }
 .theme-minimalism .morph-btn {
   background: #0f172a;
-  border: none;
+  border: 1px solid #0f172a;
   color: #ffffff;
   border-radius: 0px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 .theme-minimalism .morph-btn:hover {
-  background: #334155;
+  background: transparent;
+  color: #0f172a;
 }
 .theme-minimalism .morph-input {
   background: #ffffff;
   border: 1px solid #cbd5e1;
+  border-radius: 0;
   color: #0f172a;
 }
 
-/* 5. Maximalism */
+/* 5. MAXIMALISM */
 .theme-maximalism {
   background: linear-gradient(135deg, #f43f5e 0%, #8b5cf6 50%, #06b6d4 100%);
   color: #ffffff;
 }
 .theme-maximalism .morph-card {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  border: 2px dashed #facc15;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  border: 3px dashed #facc15;
   border-radius: 28px;
   color: #ffffff;
 }
 .theme-maximalism .morph-btn {
-  background: #facc15;
-  color: #000000;
+  background: linear-gradient(90deg, #ec4899, #f59e0b, #10b981, #06b6d4, #ec4899);
+  background-size: 300% 100%;
+  color: #ffffff;
   border: 2px solid #ffffff;
   border-radius: 999px;
   font-weight: 900;
+  animation: rainbowFlow 4s linear infinite;
+}
+@keyframes rainbowFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.theme-maximalism .morph-btn:hover {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 15px 35px rgba(236, 72, 153, 0.6);
 }
 .theme-maximalism .morph-input {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   border: 2px solid #ffffff;
   color: #ffffff;
 }
 
-/* 6. Neumorphism */
+/* 6. NEUMORPHISM */
 .theme-neumorphism {
-  background: #e0e5ec;
+  background: #e6ecf4;
   color: #334155;
 }
 .theme-neumorphism .morph-card {
-  background: #e0e5ec;
-  border-radius: 22px;
-  box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
+  background: #e6ecf4;
+  border-radius: 28px;
+  box-shadow: 14px 14px 28px #c2c9d2, -14px -14px 28px #ffffff;
   border: none;
   color: #334155;
 }
 .theme-neumorphism .morph-btn {
-  background: #e0e5ec;
-  border-radius: 14px;
-  box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+  background: #e6ecf4;
+  border-radius: 18px;
+  box-shadow: 8px 8px 16px #c2c9d2, -8px -8px 16px #ffffff;
   color: #1e293b;
   border: none;
 }
 .theme-neumorphism .morph-btn:hover {
-  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+  box-shadow: 10px 10px 20px #b5bcc5, -10px -10px 20px #ffffff;
+  transform: translateY(-2px);
+}
+.theme-neumorphism .morph-btn:active {
+  box-shadow: inset 6px 6px 12px #c2c9d2, inset -6px -6px 12px #ffffff;
+  transform: translateY(0);
 }
 .theme-neumorphism .morph-input {
-  background: #e0e5ec;
+  background: #e6ecf4;
   border: none;
-  box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff;
+  box-shadow: inset 5px 5px 10px #c2c9d2, inset -5px -5px 10px #ffffff;
   color: #334155;
 }
 
-/* 7. Claymorphism */
+/* 7. CLAYMORPHISM */
 .theme-claymorphism {
   background: #e0f2fe;
   color: #0369a1;
 }
 .theme-claymorphism .morph-card {
   background: #bae6fd;
-  border-radius: 30px;
-  box-shadow: 12px 12px 24px rgba(14, 165, 233, 0.25), inset -8px -8px 16px rgba(2, 132, 199, 0.35), inset 8px 8px 16px rgba(255, 255, 255, 0.8);
+  border-radius: 36px;
+  box-shadow: 15px 15px 30px rgba(14, 165, 233, 0.25), inset -8px -8px 16px rgba(2, 132, 199, 0.3), inset 8px 8px 16px rgba(255, 255, 255, 0.85);
   border: none;
   color: #0369a1;
 }
 .theme-claymorphism .morph-btn {
   background: #38bdf8;
   color: #ffffff;
-  border-radius: 24px;
-  box-shadow: 6px 6px 14px rgba(14, 165, 233, 0.3), inset -4px -4px 8px rgba(2, 132, 199, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  box-shadow: 8px 8px 20px rgba(14, 165, 233, 0.35), inset -5px -5px 10px rgba(2, 132, 199, 0.4), inset 5px 5px 10px rgba(255, 255, 255, 0.8);
   border: none;
+}
+.theme-claymorphism .morph-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 12px 14px 25px rgba(14, 165, 233, 0.45);
 }
 .theme-claymorphism .morph-input {
   background: #e0f2fe;
   border: none;
-  box-shadow: inset 4px 4px 8px rgba(14, 165, 233, 0.2), inset -4px -4px 8px #ffffff;
+  box-shadow: inset 5px 5px 10px rgba(14, 165, 233, 0.25), inset -5px -5px 10px #ffffff;
   color: #0369a1;
 }
 
-/* 8. Brutalism */
+/* 8. BRUTALISM */
 .theme-brutalism {
   background: #111111;
   color: #e5e5e5;
@@ -643,9 +826,13 @@
   background: #ffffff;
   color: #000000;
   border-radius: 0;
-  border: none;
+  border: 2px solid #ffffff;
   font-family: var(--font-mono);
   font-weight: 800;
+}
+.theme-brutalism .morph-btn:hover {
+  background: #000000;
+  color: #ffffff;
 }
 .theme-brutalism .morph-input {
   background: #111111;
@@ -653,7 +840,7 @@
   color: #ffffff;
 }
 
-/* 9. Skeuomorphism */
+/* 9. SKEUOMORPHISM */
 .theme-skeuomorphism {
   background: #1c1d21;
   color: #d1d5db;
@@ -662,15 +849,23 @@
   background: linear-gradient(180deg, #2a2c33 0%, #1a1b1f 100%);
   border: 1px solid #3d404b;
   border-radius: 16px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 12px 28px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 15px 35px rgba(0, 0, 0, 0.7);
   color: #d1d5db;
 }
 .theme-skeuomorphism .morph-btn {
   background: linear-gradient(180deg, #4b5563 0%, #374151 100%);
   border: 1px solid #1f2937;
   border-radius: 10px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 6px 12px rgba(0, 0, 0, 0.5);
   color: #ffffff;
+}
+.theme-skeuomorphism .morph-btn:hover {
+  background: linear-gradient(180deg, #5b6575 0%, #475161 100%);
+  transform: translateY(-2px);
+}
+.theme-skeuomorphism .morph-btn:active {
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.8);
+  transform: translateY(1px);
 }
 .theme-skeuomorphism .morph-input {
   background: #141518;
@@ -679,7 +874,7 @@
   color: #ffffff;
 }
 
-/* 10. Flat Design */
+/* 10. FLAT DESIGN */
 .theme-flat {
   background: #f1f5f9;
   color: #1e293b;
@@ -688,7 +883,7 @@
   background: #ffffff;
   border-radius: 8px;
   box-shadow: none;
-  border: none;
+  border: 2px solid #e2e8f0;
   color: #1e293b;
 }
 .theme-flat .morph-btn {
@@ -696,7 +891,10 @@
   color: #ffffff;
   border-radius: 6px;
   border: none;
-  box-shadow: none;
+  font-weight: 700;
+}
+.theme-flat .morph-btn:hover {
+  background: #0369a1;
 }
 .theme-flat .morph-input {
   background: #f8fafc;
@@ -704,14 +902,14 @@
   color: #1e293b;
 }
 
-/* 11. Material Design (M3) */
+/* 11. MATERIAL 3 */
 .theme-material {
   background: #f7f9fc;
   color: #1a1c1e;
 }
 .theme-material .morph-card {
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 28px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid #e1e3e8;
   color: #1a1c1e;
@@ -719,8 +917,13 @@
 .theme-material .morph-btn {
   background: #006494;
   color: #ffffff;
-  border-radius: 20px;
+  border-radius: 999px;
   border: none;
+  box-shadow: 0 2px 6px rgba(0, 100, 148, 0.25);
+}
+.theme-material .morph-btn:hover {
+  box-shadow: 0 6px 16px rgba(0, 100, 148, 0.35);
+  transform: translateY(-2px);
 }
 .theme-material .morph-input {
   background: #eef2f6;
@@ -729,7 +932,7 @@
   color: #1a1c1e;
 }
 
-/* 12. Y2K Design */
+/* 12. Y2K CYBER */
 .theme-y2k {
   background: linear-gradient(135deg, #e0e7ff 0%, #fbcfe8 100%);
   color: #4338ca;
@@ -738,14 +941,19 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(224, 231, 255, 0.8) 100%);
   border: 2px solid #818cf8;
   border-radius: 32px;
-  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.25);
   color: #4338ca;
 }
 .theme-y2k .morph-btn {
-  background: linear-gradient(180deg, #ec4899 0%, #a855f7 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #d8b4fe 40%, #c084fc 60%, #ec4899 100%);
   color: #ffffff;
-  border-radius: 99px;
+  border-radius: 999px;
   border: 2px solid #ffffff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.theme-y2k .morph-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(236, 72, 153, 0.4);
 }
 .theme-y2k .morph-input {
   background: #ffffff;
@@ -753,7 +961,7 @@
   color: #4338ca;
 }
 
-/* 13. Retro Synthwave */
+/* 13. RETRO SYNTHWAVE */
 .theme-retro {
   background: #11052c;
   color: #f1f5f9;
@@ -762,15 +970,19 @@
   background: #1c0a3e;
   border: 1px solid #ec4899;
   border-radius: 16px;
-  box-shadow: 0 0 20px rgba(236, 72, 153, 0.35);
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.4);
   color: #f1f5f9;
 }
 .theme-retro .morph-btn {
-  background: linear-gradient(90deg, #ec4899 0%, #06b6d4 100%);
-  color: #ffffff;
+  background: #170836;
+  border: 2px solid #ec4899;
   border-radius: 8px;
-  border: none;
-  box-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
+  box-shadow: 0 0 15px rgba(236, 72, 153, 0.6), inset 0 0 8px rgba(6, 182, 212, 0.5);
+  color: #ffffff;
+}
+.theme-retro .morph-btn:hover {
+  box-shadow: 0 0 25px #ec4899, inset 0 0 12px #06b6d4;
+  transform: translateY(-2px);
 }
 .theme-retro .morph-input {
   background: #090217;
@@ -778,7 +990,7 @@
   color: #ffffff;
 }
 
-/* 14. Cyberpunk 2077 */
+/* 14. CYBERPUNK 2077 */
 .theme-cyberpunk {
   background: #0d0f14;
   color: #fcee0a;
@@ -797,9 +1009,14 @@
   background: #fcee0a;
   color: #000000;
   border-radius: 0px;
+  font-family: var(--font-mono);
   font-weight: 900;
   border: none;
-  clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+  clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+}
+.theme-cyberpunk .morph-btn:hover {
+  filter: drop-shadow(-3px 0 #00f0ff) drop-shadow(3px 0 #ff0055);
+  transform: translateY(-2px);
 }
 .theme-cyberpunk .morph-input {
   background: #0d0f14;
@@ -807,9 +1024,9 @@
   color: #fcee0a;
 }
 
-/* 15. Editorial Swiss */
+/* 15. EDITORIAL SWISS */
 .theme-editorial {
-  background: #fdfcf7;
+  background: #faf8f4;
   color: #1c1917;
   font-family: 'Playfair Display', serif;
 }
@@ -817,15 +1034,24 @@
   background: #ffffff;
   border: 1px solid #e7e5e4;
   border-radius: 0px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
   color: #1c1917;
 }
 .theme-editorial .morph-btn {
   background: #1c1917;
   color: #ffffff;
   border-radius: 0px;
-  font-family: var(--font-primary);
-  font-weight: 600;
+  border: 1px solid #1c1917;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  padding: 0.8rem 2.2rem;
+}
+.theme-editorial .morph-btn:hover {
+  background: #d4af37;
+  border-color: #d4af37;
+  color: #1c1917;
+  transform: translateY(-2px);
 }
 .theme-editorial .morph-input {
   background: #fafaf9;
@@ -833,65 +1059,80 @@
   color: #1c1917;
 }
 
-/* 16. Spatial Computing */
+/* 16. SPATIAL COMPUTING */
 .theme-spatial {
   background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #030712 100%);
   color: #ffffff;
 }
 .theme-spatial .morph-card {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   border-radius: 28px;
   color: #ffffff;
 }
 .theme-spatial .morph-btn {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   color: #ffffff;
-  border-radius: 99px;
+  border-radius: 999px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+.theme-spatial .morph-btn:hover {
+  transform: translateZ(20px) scale(1.05);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 .theme-spatial .morph-input {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
 
-/* 17. Stealth Luxury */
+/* 17. STEALTH LUXURY */
 .theme-luxury {
-  background: #0a0b0e;
+  background: #07080a;
   color: #f8fafc;
 }
 .theme-luxury .morph-card {
-  background: #101218;
-  border: 1px solid rgba(217, 119, 6, 0.3);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+  background: #0e1015;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
   border-radius: 18px;
   color: #f8fafc;
 }
 .theme-luxury .morph-btn {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-  color: #ffffff;
-  border-radius: 99px;
-  border: 1px solid #f59e0b;
+  background: linear-gradient(135deg, #d4af37 0%, #aa8214 100%);
+  color: #07080a;
+  border: 1px solid #f7df8c;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+}
+.theme-luxury .morph-btn:hover {
+  background: linear-gradient(135deg, #f7df8c 0%, #d4af37 100%);
+  box-shadow: 0 15px 35px rgba(212, 175, 55, 0.45);
+  transform: translateY(-3px);
 }
 .theme-luxury .morph-input {
-  background: #171922;
-  border: 1px solid rgba(217, 119, 6, 0.4);
+  background: #141720;
+  border: 1px solid rgba(212, 175, 55, 0.4);
   color: #f8fafc;
 }
 
-/* 18. Customized 3D */
+/* 18. CUSTOMIZED 3D EXPERIENTIAL */
 .theme-customized {
   background: radial-gradient(circle at 30% 70%, #312e81 0%, #0f172a 70%);
   color: #ffffff;
 }
 .theme-customized .morph-card {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(99, 102, 241, 0.35);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(99, 102, 241, 0.4);
   border-radius: 24px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   color: #ffffff;
@@ -899,17 +1140,22 @@
 .theme-customized .morph-btn {
   background: var(--grad-primary);
   color: #ffffff;
-  border-radius: 99px;
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+}
+.theme-customized .morph-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(168, 85, 247, 0.5);
 }
 .theme-customized .morph-input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
 }
 
 /* ------------------------------------------------------------------- */
-/* SHOWCASE DIRECTORY 18-GRID CARDS                                    */
+/* 5. SHOWCASE DIRECTORY GRID & CARDS                                  */
 /* ------------------------------------------------------------------- */
 .styles-grid-section {
   padding: 5rem 0;
@@ -1113,7 +1359,7 @@
 }
 
 /* ------------------------------------------------------------------- */
-/* COMPARISON MATRIX SECTION                                           */
+/* 6. COMPARISON MATRIX SECTION                                        */
 /* ------------------------------------------------------------------- */
 .matrix-section {
   padding: 5rem 0;
@@ -1162,7 +1408,7 @@
 }
 
 /* ------------------------------------------------------------------- */
-/* STYLE MATCHMAKER QUIZ                                               */
+/* 7. STYLE MATCHMAKER QUIZ                                            */
 /* ------------------------------------------------------------------- */
 .matchmaker-section {
   padding: 5rem 0;
@@ -1217,7 +1463,7 @@
 }
 
 /* ------------------------------------------------------------------- */
-/* FULL SCREEN INTERACTIVE DEMO MODAL                                  */
+/* 8. FULL SCREEN INTERACTIVE DEMO MODAL                               */
 /* ------------------------------------------------------------------- */
 .demo-modal-backdrop {
   position: fixed;

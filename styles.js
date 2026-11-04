@@ -1,11 +1,54 @@
 /**
  * ELAVATEX DESIGN STYLES SHOWCASE ENGINE (18 Philosophies x 14 Industry Verticals)
- * Powers real-time style morphing, live interactive demos, industry customization, and style matchmaker.
+ * Integrated with official ElavateX design system, SVG icon registry, and interactive hero canvas.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. COMPREHENSIVE 18 DESIGN STYLES DIRECTORY
+    // =========================================================================
+    // 1. OFFICIAL SCALABLE VECTOR ICON REGISTRY (Zero Text Emojis)
+    // =========================================================================
+    const STYLE_ICONS = {
+        glassmorphism: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
+        bento: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>`,
+        neobrutalism: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+        minimalism: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16"/><line x1="4" y1="12" x2="20" y2="12"/></svg>`,
+        maximalism: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+        neumorphism: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>`,
+        claymorphism: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="6"/><circle cx="8" cy="12" r="1.5" fill="currentColor"/></svg>`,
+        brutalism: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
+        skeuomorphism: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg>`,
+        flat: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><rect x="2" y="14" width="20" height="6" rx="2"/></svg>`,
+        material: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
+        y2k: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></svg>`,
+        retro: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/><line x1="10" y1="12" x2="14" y2="12"/></svg>`,
+        cyberpunk: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>`,
+        editorial: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+        spatial: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 9a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6v6a6 6 0 0 0 6 6h6a6 6 0 0 0 6-6V9z"/><circle cx="8.5" cy="12" r="2.5"/><circle cx="15.5" cy="12" r="2.5"/></svg>`,
+        luxury: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2"/></svg>`,
+        customized: `<svg class="style-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17 12 12 2 17"/></svg>`
+    };
+
+    const INDUSTRY_ICONS = {
+        all: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+        dental: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/><rect x="4" y="4" width="16" height="16" rx="4"/></svg>`,
+        ai: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>`,
+        agency: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>`,
+        broker: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M13 21V11l6 3v7"/></svg>`,
+        education: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+        transportation: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>`,
+        visa: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 17a5 5 0 0 1 10 0"/></svg>`,
+        startups: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>`,
+        portfolio: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+        social: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>`,
+        marketing: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+        routines: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+        ecommerce: `<svg class="ind-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6 2 18 2 22 6 12 22 2 6 6 2"/></svg>`
+    };
+
+    // =========================================================================
+    // 2. COMPREHENSIVE 18 DESIGN STYLES DIRECTORY
+    // =========================================================================
     const STYLES_DATABASE = [
         {
             id: 'glassmorphism',
@@ -13,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             themeClass: 'theme-glassmorphism',
             number: '01',
             badge: 'FROSTED DEPTH',
-            icon: '🧊',
+            iconSvg: STYLE_ICONS.glassmorphism,
             category: 'Modern Tech',
             bestFor: 'Dental, SaaS, Fintech, Clinics, Luxury Tech',
             conversionRate: '98%',
@@ -29,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             themeClass: 'theme-bento',
             number: '02',
             badge: 'MODULAR SYNERGY',
-            icon: '🍱',
+            iconSvg: STYLE_ICONS.bento,
             category: 'Modern Tech',
             bestFor: 'AI Automation, Startups, SaaS, Hardware, Portfolios',
             conversionRate: '99%',
@@ -45,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             themeClass: 'theme-neobrutalism',
             number: '03',
             badge: 'HIGH-VOLTAGE CONTRAST',
-            icon: '⚡',
+            iconSvg: STYLE_ICONS.neobrutalism,
             category: 'Avant-Garde',
             bestFor: 'Creative Agencies, EdTech, D2C Brands, Gen-Z Media',
             conversionRate: '96%',
@@ -60,80 +103,80 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Minimalism (Swiss Grid)',
             themeClass: 'theme-minimalism',
             number: '04',
-            badge: 'PURE ESSENCE',
-            icon: '⚪',
-            category: 'Clean & Editorial',
-            bestFor: 'Brokers, Architecture, Dental Clinics, Law, High Finance',
+            badge: 'RADICAL PURITY',
+            iconSvg: STYLE_ICONS.minimalism,
+            category: 'Clean & Direct',
+            bestFor: 'Real Estate Brokers, Wealth Advisory, Portfolios, Law Firms',
             conversionRate: '97%',
-            complexity: 'Disciplined',
-            philosophy: 'Rooted in the Swiss International Typographic Style and Dieter Rams principles: Less, but better. Radical elimination of ornamental fluff in favor of mathematical grid spacing and stark clarity.',
-            cssBlueprint: `background: #ffffff;\ncolor: #111827;\nborder: 1px solid #e5e7eb;\nborder-radius: 0px;\nletter-spacing: -0.02em;\nfont-feature-settings: 'cv02', 'cv03';`,
-            headline: 'Authoritative Clarity for Premier Institutions & Luxury Real Estate.',
-            desc: 'When every pixel is intentional, trust skyrockets. Maximum Core Web Vitals velocity, sub-second rendering, and timeless corporate gravitas.'
+            complexity: 'Effortless',
+            philosophy: 'Radical elimination of non-essential ornamentation. Prioritizes asymmetric whitespace, stark Swiss typographic contrast, and pure functional purpose.',
+            cssBlueprint: `background: #ffffff;\ncolor: #0f172a;\nborder: 1px solid #e2e8f0;\nborder-radius: 0;\nfont-family: 'Inter', sans-serif;\nletter-spacing: -0.02em;`,
+            headline: 'Unyielding Clarity That Commands Supreme Executive Trust.',
+            desc: 'When every superfluous pixel is purged, your value proposition stands out with absolute, undeniable authority. Zero visual friction guarantees maximum reading speed.'
         },
         {
             id: 'maximalism',
             name: 'Maximalism',
             themeClass: 'theme-maximalism',
             number: '05',
-            badge: 'SENSORY OVERLOAD',
-            icon: '🎨',
+            badge: 'DYNAMIC BRAVADO',
+            iconSvg: STYLE_ICONS.maximalism,
             category: 'Avant-Garde',
-            bestFor: 'Fashion, Entertainment, Festivals, Viral Agencies, Streetwear',
-            conversionRate: '94%',
-            complexity: 'Artistic Chaos',
-            philosophy: 'More is more. Clashing fluorescent palettes, aggressive typographic scale, overlapping collages, dynamic tilts, and raw kinetic rebellion against sterile corporate templates.',
-            cssBlueprint: `background: #ff0055;\nbackground-image: repeating-linear-gradient(45deg, #ff0055 0, #ff0055 20px, #e1004a 20px);\nborder: 5px solid #ffcc00;\nbox-shadow: 12px 12px 0px #7000ff;\ntransform: rotate(-1deg);`,
-            headline: 'Fearless Visual Impact for Cultural Disruptors & Entertainment.',
-            desc: 'Drives radical social sharing and memorable brand recall. Built for brands that demand to be talked about rather than blended in.'
+            bestFor: 'Music Festivals, Gaming, Streetwear, Entertainment, Nightlife',
+            conversionRate: '92%',
+            complexity: 'Intense',
+            philosophy: 'More is more. Kinetic typography, clashing gradients, dense layered stickers, saturated neon pigments, and rebellious visual bravado that demand complete attention.',
+            cssBlueprint: `background: linear-gradient(135deg, #f43f5e 0%, #8b5cf6 50%, #06b6d4 100%);\nborder: 2px dashed #facc15;\nborder-radius: 28px;\nfilter: saturate(140%);`,
+            headline: 'Electrifying Sensory Overdrive That Mesmerizes Audiences.',
+            desc: 'Breaks every corporate rule to spark visceral emotional resonance. Ideal for youth-first cultural platforms and brands with charismatic swagger.'
         },
         {
             id: 'neumorphism',
-            name: 'Neumorphism',
+            name: 'Neumorphism (Soft UI)',
             themeClass: 'theme-neumorphism',
             number: '06',
-            badge: 'TACTILE EXTRUSION',
-            icon: '🔘',
-            category: 'Tactile & 3D',
-            bestFor: 'Smart Home, Medical Devices, Audio Apps, IoT Dashboards',
-            conversionRate: '92%',
-            complexity: 'Precision Math',
-            philosophy: 'Simulates physical extruded plastic surfaces using mathematically synchronized dual light/shadow projections. Creates an organic, tactile, touch-friendly hardware feel.',
-            cssBlueprint: `background: #e0e5ec;\nborder-radius: 24px;\nbox-shadow: 9px 9px 18px #b8b9be, -9px -9px 18px #ffffff;\ntransition: box-shadow 0.2s ease;`,
-            headline: 'Organic Tactile Surfaces for Modern Devices & Hardware IoT.',
-            desc: 'Gives digital interfaces the physical warmth of premium consumer electronics. Outstanding for toggle controls, switches, and remote dashboards.'
+            badge: 'ORGANIC TACTILITY',
+            iconSvg: STYLE_ICONS.neumorphism,
+            category: 'Tactile & Soft',
+            bestFor: 'IoT Dashboards, Smart Home Apps, Health Trackers, Audio Controls',
+            conversionRate: '90%',
+            complexity: 'High Precision',
+            philosophy: 'Simulates physical extruded plastics. UI elements appear pushed out of or stamped into the background using dual-directional soft blurred shadows.',
+            cssBlueprint: `background: #e0e5ec;\nborder-radius: 20px;\nbox-shadow: 9px 9px 18px #bebebe, -9px -9px 18px #ffffff;\nborder: none;`,
+            headline: 'Silky Organic Surfaces That Beg to Be Pressed and Touched.',
+            desc: 'Blends screen hardware and UI software into an uninterrupted tactile plane. Gives digital controls the satisfying weight of physical instruments.'
         },
         {
             id: 'claymorphism',
-            name: 'Claymorphism',
+            name: 'Claymorphism (3D Soft)',
             themeClass: 'theme-claymorphism',
             number: '07',
-            badge: 'PLAYFUL 3D CLAY',
-            icon: '🧸',
-            category: 'Tactile & 3D',
-            bestFor: 'EdTech, Kids Learning, FinTech Apps, Onboarding, Productivity',
+            badge: 'PLAYFUL INFLATABLE',
+            iconSvg: STYLE_ICONS.claymorphism,
+            category: 'Playful 3D',
+            bestFor: 'EdTech, Gamified SaaS, Family Tech, Micro-SaaS, Web3 Games',
             conversionRate: '95%',
-            complexity: 'Soft 3D',
-            philosophy: 'Combines puffy 3D clay-like volumes, inner inset light bevels, and fluffy pastel drop-shadows. Warm, friendly, approachable, and disarming.',
-            cssBlueprint: `background: #ffffff;\nborder-radius: 32px;\nbox-shadow: inset -6px -6px 12px rgba(0,0,0,0.08), inset 6px 6px 12px rgba(255,255,255,0.9), 16px 16px 32px rgba(168,85,247,0.2);`,
-            headline: 'Approachable Human Delight for EdTech & Interactive Apps.',
-            desc: 'Soft pillowy forms eliminate friction in complex onboarding flows, making users feel comfortable, safe, and excited to interact.'
+            complexity: 'Balanced',
+            philosophy: 'Inflated, pillowy 3D clay figures with rounded geometry, inner shadow lighting, and floating blur shadows. Warm, friendly, inviting, and approachable.',
+            cssBlueprint: `background: #bae6fd;\nborder-radius: 30px;\nbox-shadow: 12px 12px 24px rgba(14, 165, 233, 0.25),\n  inset -8px -8px 16px rgba(2, 132, 199, 0.35),\n  inset 8px 8px 16px rgba(255, 255, 255, 0.8);`,
+            headline: 'Soft, Inflatable Joy That Makes Complex Software Addictive.',
+            desc: 'Removes the intimidation factor from enterprise workflows. Users feel welcome, curious, and instantly engaged from their very first interaction.'
         },
         {
             id: 'brutalism',
-            name: 'Web Brutalism',
+            name: 'Raw Architectural Brutalism',
             themeClass: 'theme-brutalism',
             number: '08',
-            badge: 'UNVARNISHED RAW',
-            icon: '🏗️',
-            category: 'Avant-Garde',
-            bestFor: 'Developer Tooling, Crypto/Web3, Underground Art, Architecture',
-            conversionRate: '93%',
-            complexity: 'Radical Pure',
-            philosophy: 'Raw architectural truth. System fonts (Courier), plain default HTML tags, stark black/white outlines, visible structural grid coordinates, and anti-decorative honesty.',
-            cssBlueprint: `font-family: 'Courier New', monospace;\nbackground: #ffffff;\ncolor: #000000;\nborder: 2px solid #000000;\nborder-radius: 0px;\nbox-shadow: none;`,
-            headline: 'Engineering Honesty & Raw Computational Utility.',
-            desc: 'Loved by senior developers, cryptographers, and architectural purists who value substance, zero loading overhead, and transparent systems.'
+            badge: 'UNFILTERED TRUTH',
+            iconSvg: STYLE_ICONS.brutalism,
+            category: 'Raw Structural',
+            bestFor: 'Architects, Independent Art Studios, Underground Culture, Hackers',
+            conversionRate: '88%',
+            complexity: 'Deliberate',
+            philosophy: 'Inspired by raw concrete brutalist architecture and early web design. Monospaced default system fonts, stark raw borders, visible HTML tables, and anti-decorative honesty.',
+            cssBlueprint: `background: #111111;\ncolor: #e5e5e5;\nborder: 1px solid #444444;\nborder-radius: 0;\nfont-family: 'JetBrains Mono', monospace;`,
+            headline: 'Exposed Structural Integrity Without Fake Corporate Polish.',
+            desc: 'Raw, uncompromising design that communicates total technical transparency and independent intellectual confidence.'
         },
         {
             id: 'skeuomorphism',
@@ -141,316 +184,309 @@ document.addEventListener('DOMContentLoaded', () => {
             themeClass: 'theme-skeuomorphism',
             number: '09',
             badge: 'PHYSICAL REALISM',
-            icon: '📻',
-            category: 'Tactile & 3D',
-            bestFor: 'Audio Production, Luxury Automotive, Watchmaking, Aviation',
-            conversionRate: '95%',
+            iconSvg: STYLE_ICONS.skeuomorphism,
+            category: 'Physical Realism',
+            bestFor: 'Luxury Horology, Professional Audio, Automotive, Fine Instruments',
+            conversionRate: '93%',
             complexity: 'Artisanal',
-            philosophy: 'The refined resurgence of tactile realism: brushed anodized titanium, realistic glass dials, micro-milled knurling, etched metallic bezels, and tactile physical feedback.',
-            cssBlueprint: `background: linear-gradient(to bottom, #3b4252 0%, #2e3440 100%);\nborder: 1px solid #4c566a;\nbox-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 10px 25px rgba(0,0,0,0.5);\ntext-shadow: 0 -1px 1px rgba(0,0,0,0.6);`,
-            headline: 'Artisanal Craftsmanship for Industrial & Luxury Precision.',
-            desc: 'Translates high-end hardware engineering into software. Evokes heritage, prestige, and tangible physical mastery.'
+            philosophy: 'The modern renaissance of physical materials: brushed titanium, hand-stitched leather, knurled dials, sapphire lens bevels, and micro-etched metallic textures.',
+            cssBlueprint: `background: linear-gradient(180deg, #2a2c33 0%, #1a1b1f 100%);\nborder: 1px solid #3d404b;\nborder-radius: 16px;\nbox-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 12px 28px rgba(0, 0, 0, 0.6);`,
+            headline: 'Masterclass Craftsmanship Evoking Centuries of Heritage.',
+            desc: 'For brands where physical pedigree, engineering mastery, and artisanal heritage are the primary purchasing criteria.'
         },
         {
             id: 'flat',
-            name: 'Flat Design 2.0',
+            name: 'Flat Design (Modern Clean)',
             themeClass: 'theme-flat',
             number: '10',
-            badge: 'GEOMETRIC CLARITY',
-            icon: '📐',
-            category: 'Clean & Editorial',
-            bestFor: 'Transportation, Logistics, Government, Utility Apps, Directory',
+            badge: 'ZERO DISTRACTION',
+            iconSvg: STYLE_ICONS.flat,
+            category: 'Clean & Direct',
+            bestFor: 'Transportation, Logistics, Government, Enterprise Portals',
             conversionRate: '96%',
-            complexity: 'Lightweight',
-            philosophy: 'Pure functional 2D geometry with subtle tonal depth in version 2.0. Clean primary palettes, zero heavy shadows, rapid cognitive scanning, and ultra-high mobile responsiveness.',
-            cssBlueprint: `background: #34495e;\ncolor: #ffffff;\nborder-radius: 6px;\nborder: none;\nbox-shadow: none;`,
-            headline: 'Uncluttered Speed for Logistics, Fleet & Global Infrastructure.',
-            desc: 'Zero rendering drag, immediate user comprehension, and flawless rendering on any mobile network or legacy hardware.'
+            complexity: 'Low',
+            philosophy: 'Zero drop shadows, zero bevels, zero gradients. Crisp solid color fills, clean vector typography, and instantaneous load times across all low-bandwidth environments.',
+            cssBlueprint: `background: #ffffff;\nborder-radius: 8px;\nborder: 2px solid #e2e8f0;\nbox-shadow: none;\nfont-family: 'Inter', sans-serif;`,
+            headline: 'Pure Information Velocity With Zero Cognitive Burden.',
+            desc: 'Engineered for instant scanning and rapid task completion. Perfect for dispatching fleets, managing visas, and processing millions of daily transactions.'
         },
         {
             id: 'material',
-            name: 'Material Design 3 (You)',
+            name: 'Material Design (M3 / You)',
             themeClass: 'theme-material',
             number: '11',
-            badge: 'DYNAMIC SURFACE',
-            icon: '📱',
-            category: 'Modern Tech',
-            bestFor: 'Android Ecosystems, Enterprise SaaS, Health Apps, Daily Tools',
+            badge: 'DYNAMIC SYSTEM',
+            iconSvg: STYLE_ICONS.material,
+            category: 'Standard / Adaptive',
+            bestFor: 'Enterprise Dashboards, Multi-Screen Portals, Android Apps',
             conversionRate: '98%',
             complexity: 'Systematic',
-            philosophy: 'Google Material You paradigm: dynamic tonal color palettes extracted from user preferences, fluid organic elevation surfaces, pill buttons, and responsive ripple physics.',
-            cssBlueprint: `background: #f3edf7;\nborder-radius: 28px;\nborder: none;\nbox-shadow: 0 4px 12px rgba(0,0,0,0.05);\ncolor: #1d1a20;`,
-            headline: 'Systematic Usability for Scalable Enterprise & Mobile SaaS.',
-            desc: 'Backed by millions of hours of Google human-interaction research. Familiar, intuitive, and accessible to universal demographics.'
+            philosophy: 'Google’s mature spatial metaphor. Surfaces float on defined elevation tokens (dp), responsive ripple touch physics, and dynamic color harmonization across themes.',
+            cssBlueprint: `background: #ffffff;\nborder-radius: 24px;\nbox-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);\nborder: 1px solid #e1e3e8;`,
+            headline: 'Battle-Tested Google Design Language at Scale.',
+            desc: 'Universally recognized navigation patterns that eliminate user onboarding friction across global consumer and enterprise platforms.'
         },
         {
             id: 'y2k',
-            name: 'Y2K Cyber Aesthetic',
+            name: 'Y2K Cyber Millennium',
             themeClass: 'theme-y2k',
             number: '12',
-            badge: 'MILLENNIAL MATRIX',
-            icon: '💿',
-            category: 'Retro & Cyber',
-            bestFor: 'Gen-Z Brands, Gaming Clans, Music Labels, Street Fashion',
-            conversionRate: '93%',
-            complexity: 'Stylized',
-            philosophy: 'The optimistic digital futurism of 1999–2003: chrome typography, iridescent holographic foil, matrix cyber glow, bubble vector badges, and techno-utopian energy.',
-            cssBlueprint: `background: radial-gradient(circle, rgba(168,85,247,0.25) 0%, rgba(13,2,33,0.85) 100%);\nborder: 2px solid #a855f7;\nbox-shadow: 0 0 25px rgba(168,85,247,0.4), inset 0 0 15px rgba(0,240,255,0.3);\nborder-radius: 20px;`,
-            headline: 'Nostalgic Cyber-Optics Captivating Today’s Gen-Z Culture.',
-            desc: 'Huge virality factor on TikTok and Instagram. Perfect for creative collectives, indie game releases, and apparel drops.'
+            badge: 'CHROME NOSTALGIA',
+            iconSvg: STYLE_ICONS.y2k,
+            category: 'Nostalgic Retro',
+            bestFor: 'Gen-Z Apparel, Streetwear, Record Labels, Music, Creative Studios',
+            conversionRate: '91%',
+            complexity: 'Complex',
+            philosophy: 'The turn-of-the-millennium cyber optimism. Liquid mercury chrome gradients, bubbly translucent capsules, celestial starbursts, and retro-futuristic techno-fonts.',
+            cssBlueprint: `background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(224, 231, 255, 0.8) 100%);\nborder: 2px solid #818cf8;\nborder-radius: 32px;\nbox-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);`,
+            headline: 'Liquid Chrome Euphoria for Forward-Thinking Creators.',
+            desc: 'Tapping into the dominant global aesthetic zeitgeist of creative youth culture, nightlife, and digital apparel.'
         },
         {
             id: 'retro',
-            name: 'Retro 80s/90s Synthwave',
+            name: 'Retro Synthwave (80s / 90s)',
             themeClass: 'theme-retro',
             number: '13',
-            badge: 'SYNTHWAVE ARCADE',
-            icon: '🕹️',
-            category: 'Retro & Cyber',
-            bestFor: 'Arcade Gaming, Podcasts, Vintage Collectibles, Nightlife',
+            badge: 'NEON HORIZON',
+            iconSvg: STYLE_ICONS.retro,
+            category: 'Nostalgic Retro',
+            bestFor: 'Gaming Studios, Podcasts, Hardware Enthusiasts, Arcades, Media',
             conversionRate: '94%',
-            complexity: 'Atmospheric',
-            philosophy: 'Warm CRT phosphor scanlines, neon magenta-to-sunset orange laser horizons, pixel-perfect 8-bit badges, and 1984 Outrun electronic rhythm.',
-            cssBlueprint: `background: #25094d;\nborder: 2px solid #f43a85;\nbox-shadow: 6px 6px 0px #ffe459;\nborder-radius: 4px;\ncolor: #ffe459;`,
-            headline: 'Electric Nostalgia Driving Passionate Community Engagement.',
-            desc: 'Evokes deep emotional resonance with tech enthusiasts and millennials. Powerful for creators, hardware modders, and gaming communities.'
+            complexity: 'Vibrant',
+            philosophy: 'Outrun neon horizons, glowing magenta wireframes, cyan laser rays, scanline CRT effects, and 80s arcade synth aesthetic.',
+            cssBlueprint: `background: #1c0a3e;\nborder: 1px solid #ec4899;\nborder-radius: 16px;\nbox-shadow: 0 0 20px rgba(236, 72, 153, 0.35);`,
+            headline: 'Laser-Charged Synthwave Nostalgia That Captivates.',
+            desc: 'Immediately triggers retro gaming excitement and late-night aesthetic energy for communities that celebrate digital nostalgia.'
         },
         {
             id: 'cyberpunk',
             name: 'Cyberpunk 2077 HUD',
             themeClass: 'theme-cyberpunk',
             number: '14',
-            badge: 'DYSTOPIAN NEON',
-            icon: '🤖',
-            category: 'Retro & Cyber',
-            bestFor: 'Robotics, AI Security, Esports, Defense Tech, Crypto Trading',
-            conversionRate: '96%',
-            complexity: 'High Tech',
-            philosophy: 'High-voltage neon cyan (#00ffcc) and electric magenta (#ff0055) cuts over deep obsidian. Chamfered polygon clipped borders, tactical HUD telemetry, and glitch dynamics.',
-            cssBlueprint: `background: #0d0d15;\nborder: 1px solid #00ffcc;\nclip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);\nbox-shadow: 0 0 25px rgba(0, 255, 204, 0.25);`,
-            headline: 'Uncompromising Power for Next-Gen Robotics & Autonomous AI.',
-            desc: 'Communicates advanced technological superiority, mission-critical resilience, and sub-millisecond execution.'
+            badge: 'DYSTOPIAN HUD',
+            iconSvg: STYLE_ICONS.cyberpunk,
+            category: 'Futuristic Sci-Fi',
+            bestFor: 'Web3, Cybersecurity, Crypto Trading, Esports, AI Hardware',
+            conversionRate: '95%',
+            complexity: 'Intricate',
+            philosophy: 'High-density terminal wireframes, neon yellow and cyan chromatic aberration, glitch scanlines, diagnostic HUD telemetry, and chamfered corner buttons.',
+            cssBlueprint: `background: #161922;\nborder-left: 4px solid #fcee0a;\nborder-top: 1px solid #00f0ff;\nborder-right: 1px solid #00f0ff;\nborder-bottom: 4px solid #00f0ff;\nborder-radius: 0;\nfont-family: 'JetBrains Mono', monospace;`,
+            headline: 'High-Density Diagnostic Power for Elite Technical Audiences.',
+            desc: 'Positions your platform as a mission-critical tactical instrument for engineers, traders, and cybersecurity operators.'
         },
         {
             id: 'editorial',
-            name: 'Editorial Magazine',
+            name: 'Editorial Magazine (Swiss)',
             themeClass: 'theme-editorial',
             number: '15',
-            badge: 'HAUTE COUTURE',
-            icon: '📰',
-            category: 'Clean & Editorial',
-            bestFor: 'Luxury Real Estate, High Fashion, Law Firms, Medical Spas',
+            badge: 'LITERARY PRESTIGE',
+            iconSvg: STYLE_ICONS.editorial,
+            category: 'Typography First',
+            bestFor: 'Publishing, High-End Law, Architecture, Private Equity, Think Tanks',
             conversionRate: '97%',
-            complexity: 'Sophisticated',
-            philosophy: 'The typographic poetry of Vogue and Kinfolk. Refined high-contrast serif headlines, asymmetric column pacing, oversized drop caps, and muted warm alabaster backgrounds.',
-            cssBlueprint: `font-family: 'Playfair Display', serif;\nbackground: #fbf9f5;\ncolor: #1a1815;\nborder-top: 2px solid #1a1815;\nborder-bottom: 1px solid #dcd7ce;`,
-            headline: 'Editorial Aristocracy for High-Net-Worth Clienteles.',
-            desc: 'Positions brands as industry tastemakers and cultural authorities. Unsurpassed for high-ticket consulting, prime real estate, and boutique law.'
+            complexity: 'Refined',
+            philosophy: 'The prestige of high-fashion print journalism. Sophisticated Playfair Display serifs, generous typographic margins, drop-caps, and refined editorial poise.',
+            cssBlueprint: `background: #ffffff;\nborder: 1px solid #e7e5e4;\nborder-radius: 0;\nbox-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);\nfont-family: 'Playfair Display', serif;`,
+            headline: 'Timeless Intellectual Prestige and Unshakable Authority.',
+            desc: 'Commands high-ticket retainer engagements and establishes your executive team as authoritative industry thought leaders.'
         },
         {
             id: 'spatial',
             name: 'Spatial Computing (VisionOS)',
             themeClass: 'theme-spatial',
             number: '16',
-            badge: 'IMMERSIVE GLASS',
-            icon: '🌌',
-            category: 'Modern Tech',
-            bestFor: 'VR/AR Apps, Spatial Audio, 3D Architecture, Future Tech',
-            conversionRate: '98%',
-            complexity: 'Cutting-Edge',
-            philosophy: 'Engineered for the post-screen era. Translucent physical glass cards floating in 3D space with specular edge highlights that react dynamically to cursor movement.',
-            cssBlueprint: `background: rgba(255, 255, 255, 0.12);\nbackdrop-filter: blur(40px) saturate(180%);\nborder: 1px solid rgba(255, 255, 255, 0.22);\nborder-radius: 30px;\nbox-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.4);`,
-            headline: 'Next-Generation Spatial Depth Ready for Tomorrow’s Web.',
-            desc: 'Brings Apple VisionOS polish to everyday web browsers. Highly aspirational and instantly captivating.'
+            badge: 'VISIONOS AMBIENCE',
+            iconSvg: STYLE_ICONS.spatial,
+            category: 'Spatial / VisionOS',
+            bestFor: 'AR/VR, Spatial Audio, 3D Visualization, Advanced Hardware',
+            conversionRate: '97%',
+            complexity: 'Advanced',
+            philosophy: 'Glass panels floating in true 3D spatial coordinate space with dynamic specular rim lighting that reacts to the cursor, depth lensing, and specular reflections.',
+            cssBlueprint: `background: rgba(255, 255, 255, 0.06);\nbackdrop-filter: blur(40px);\nborder: 1px solid rgba(255, 255, 255, 0.25);\nbox-shadow: 0 25px 60px rgba(0, 0, 0, 0.5),\n  inset 0 1px 0 rgba(255, 255, 255, 0.35);\nborder-radius: 28px;`,
+            headline: 'The Next Computing Frontier Rendered on the Open Web.',
+            desc: 'Future-proofs your brand for spatial headsets and holographic interfaces with fluid physics and ambient refractive depth.'
         },
         {
             id: 'luxury',
-            name: 'Dark Luxury / Stealth Wealth',
+            name: 'Dark Stealth Luxury',
             themeClass: 'theme-luxury',
             number: '17',
-            badge: 'TITANIUM & GOLD',
-            icon: '💎',
-            category: 'Clean & Editorial',
-            bestFor: 'Private Family Offices, Superyachts, Fine Jewelry, Private Jets',
+            badge: 'STEALTH WEALTH',
+            iconSvg: STYLE_ICONS.luxury,
+            category: 'High-Ticket D2C',
+            bestFor: 'Private Wealth, Supercars, High Jewelry, Concierge Services, Real Estate',
             conversionRate: '99%',
-            complexity: 'Ultra-Premium',
-            philosophy: 'Understated aristocratic power. Deepest obsidian black (#050608), hairline champagne gold accents (#d4af37), letter-spaced micro-typography, and zero loud animations.',
-            cssBlueprint: `background: #0b0d12;\nborder: 1px solid rgba(212, 175, 55, 0.3);\nborder-radius: 12px;\nbox-shadow: 0 15px 35px rgba(0,0,0,0.8), inset 0 1px 0 rgba(212,175,55,0.15);\ncolor: #f8fafc;`,
-            headline: 'Stealth Wealth Elegance for Ultra-High-Ticket Acquisitions.',
-            desc: 'Signals exclusivity, generational wealth, and bulletproof financial discretion. Ideal for private equity, luxury brokers, and bespoke ateliers.'
+            complexity: 'Masterclass',
+            philosophy: 'Deep obsidian titanium, brushed champagne gold hairline accents, whisper-quiet micro-interactions, and understated aristocratic poise.',
+            cssBlueprint: `background: #101218;\nborder: 1px solid rgba(217, 119, 6, 0.3);\nbox-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);\nborder-radius: 18px;`,
+            headline: 'Understated Aristocratic Poise for High-Net-Worth Acquisitions.',
+            desc: 'Speaks the quiet language of true luxury. Perfect for six-figure contracts, private jet charters, and flagship architectural estates.'
         },
         {
             id: 'customized',
-            name: 'Bespoke Experiential 3D',
+            name: 'Customized Experiential 3D',
             themeClass: 'theme-customized',
             number: '18',
-            badge: 'SIGNATURE HYBRID',
-            icon: '🚀',
-            category: 'Modern Tech',
-            bestFor: 'ElavateX Flagships, Funded Disruptors, Global Tech Studios',
-            conversionRate: '99%',
-            complexity: 'Signature Tier',
-            philosophy: 'The culmination of modern web engineering: custom WebGL 3D interaction, reactive particle physics, bespoke cursor vectoring, and fluid layout morphing tailored uniquely to your brand DNA.',
-            cssBlueprint: `background: radial-gradient(circle at 50% 50%, #171033 0%, #06050e 100%);\nbackdrop-filter: blur(20px);\nborder: 1px solid rgba(147, 51, 234, 0.4);\nbox-shadow: 0 20px 50px rgba(147, 51, 234, 0.25), 0 0 20px rgba(0, 240, 255, 0.2);\nborder-radius: 24px;`,
-            headline: 'Bespoke Kinetic Engineering Tailored to Your Brand DNA.',
-            desc: 'Zero off-the-shelf templates. Every transition, shader, and layout is custom engineered to create an undeniable competitive moat.'
+            badge: 'BESPOKE UNICORN',
+            iconSvg: STYLE_ICONS.customized,
+            category: 'Bespoke Experiential',
+            bestFor: 'Global Conferences, Flagship Tech Brands, High-Growth Unicorns',
+            conversionRate: '98%',
+            complexity: 'Bespoke',
+            philosophy: 'Bespoke WebGL particle shaders, dynamic interactive physics, scroll-linked storytelling, and custom brand design unconstrained by cookie-cutter templates.',
+            cssBlueprint: `background: rgba(15, 23, 42, 0.65);\nbackdrop-filter: blur(20px);\nborder: 1px solid rgba(99, 102, 241, 0.35);\nborder-radius: 24px;\nbox-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);`,
+            headline: 'Bespoke High-Stakes Storytelling Engineered for Market Dominance.',
+            desc: 'Tailor-built from the ground up for iconic launches that demand viral global recognition and peerless brand prestige.'
         }
     ];
 
-    // 2. 14 COMMERCIAL INDUSTRY VERTICALS REGISTRY
+    // =========================================================================
+    // 3. 14 COMMERCIAL INDUSTRY FRAMEWORKS
+    // =========================================================================
     const INDUSTRY_VERTICALS = {
         'all': {
             name: 'All Industries & Use-Cases',
-            icon: '🌐',
+            iconSvg: INDUSTRY_ICONS.all,
+            tag: 'GLOBAL DIGITAL ARCHITECTURE',
             headline: 'Architecting Unfair Digital Advantage for Every Industry.',
-            desc: 'Explore how high-end design philosophies translate into quantifiable conversion surges and market authority across every commercial domain.'
+            desc: 'Explore how high-end design philosophies translate into quantifiable conversion surges and market authority across every commercial domain.',
+            ctaText: 'Launch Project in this Style',
+            stat1Val: '99.8%', stat1Lbl: 'Client Satisfaction',
+            stat2Val: '100/100', stat2Lbl: 'Core Web Vitals'
         },
         'dental': {
             name: 'Dental, Clinics & Healthcare',
-            icon: '🦷',
-            headline: 'ApexSmile Studio • Premier Dental & Aesthetic Medicine',
+            iconSvg: INDUSTRY_ICONS.dental,
             tag: 'HEALTHCARE & CLINICAL EXCELLENCE',
+            headline: 'ApexSmile Studio • Premier Dental & Aesthetic Medicine',
+            desc: 'Transform patient anxiety into clinical confidence. High-trust medical UI with instantaneous online scheduling, virtual smile previews, and HIPAA-compliant patient intake.',
             ctaText: 'Book Clinical Consultation',
             stat1Val: '99.8%', stat1Lbl: 'Patient Satisfaction',
-            stat2Val: '15 Min', stat2Lbl: 'Avg Check-in Time',
-            price: '₹2,499 Comprehensive Consult',
-            service: 'Cosmetic Dentistry, Aligners & Oral Surgery'
+            stat2Val: '15 Min', stat2Lbl: 'Avg Check-in Time'
         },
         'ai': {
             name: 'AI Automation & Robotics',
-            icon: '🤖',
+            iconSvg: INDUSTRY_ICONS.ai,
+            tag: 'AUTONOMOUS WORKFLOWS & ROBOTICS',
             headline: 'Omnisyn Autonomous Workflows & Robotic Systems',
-            tag: 'NEXT-GEN ARTIFICIAL INTELLIGENCE',
+            desc: 'Real-time telemetry dashboards, sub-120ms inference visualizers, and mission-critical API documentation engineered for multi-agent enterprise deployments.',
             ctaText: 'Deploy Autonomous Pipeline',
             stat1Val: '10.4x', stat1Lbl: 'Throughput Multiplier',
-            stat2Val: '<120ms', stat2Lbl: 'Inference Latency',
-            price: 'API Plans from $499/mo',
-            service: 'Custom LLM Workflows, Computer Vision & Agents'
+            stat2Val: '<120ms', stat2Lbl: 'Inference Latency'
         },
         'agency': {
             name: 'Digital Agency & Product Studios',
-            icon: '💼',
-            headline: 'Kinetic Brand Labs • High-Velocity Digital Engineering',
-            tag: 'STUDIO & GROWTH ENGINE',
-            ctaText: 'Start a Sprint (2 Slots Left)',
-            stat1Val: '100/100', stat1Lbl: 'Core Web Vitals',
-            stat2Val: '2.8x', stat2Lbl: 'Conversion Lift',
-            price: 'Sprints from $4,500',
-            service: 'Full-Stack Web, Mobile Apps & Brand Strategy'
+            iconSvg: INDUSTRY_ICONS.agency,
+            tag: 'CREATIVE STUDIO & SPRINT ENGINE',
+            headline: 'Vanguard Studios • High-Velocity Digital Engineering',
+            desc: 'Showcase bold case studies, deterministic sprint guarantees, and interactive design deliverables that command premium enterprise retainer rates.',
+            ctaText: 'Reserve Engineering Sprint',
+            stat1Val: '21 Days', stat1Lbl: 'Avg Production Sprint',
+            stat2Val: '3.8x', stat2Lbl: 'Client Valuation Lift'
         },
         'broker': {
-            name: 'Real Estate & Financial Brokers',
-            icon: '🏢',
-            headline: 'Skyline Capital & Prime Residences Bangalore',
-            tag: 'LUXURY ASSETS & BROKERAGE',
-            ctaText: 'Schedule Private Viewing',
-            stat1Val: '₹140 Cr+', stat1Lbl: 'Assets Under Brokerage',
-            stat2Val: '48 Hrs', stat2Lbl: 'Avg Deal Closure',
-            price: 'Prime Estates from ₹4.5 Cr',
-            service: 'Commercial Portfolios, Villas & FinTech Escrow'
+            name: 'Real Estate Brokers & Wealth Advisory',
+            iconSvg: INDUSTRY_ICONS.broker,
+            tag: 'HIGH-TICKET PROPERTY & ADVISORY',
+            headline: 'Elysian Estates • Sovereign Realty & Private Wealth',
+            desc: 'Architectural property portfolios, virtual 3D floorplan walk-throughs, and discreet private investor portals for ultra-luxury residential and commercial acquisitions.',
+            ctaText: 'Access Private Catalog',
+            stat1Val: '₹140 Cr+', stat1Lbl: 'Portfolio Transacted',
+            stat2Val: '100%', stat2Lbl: 'Discreet Vetting'
         },
         'education': {
-            name: 'Education, EdTech & Academies',
-            icon: '🎓',
-            headline: 'ScholarSphere • Modern Learning & STEM Academy',
-            tag: 'EDTECH & GLOBAL CURRICULUM',
-            ctaText: 'Enroll in Masterclass',
-            stat1Val: '94%', stat1Lbl: 'Placement Rate',
-            stat2Val: '14,000+', stat2Lbl: 'Active Students',
-            price: 'Courses from ₹1,999/mo',
-            service: 'Interactive STEM, Coding Bootcamps & Degrees'
+            name: 'EdTech, Academies & Online Learning',
+            iconSvg: INDUSTRY_ICONS.education,
+            tag: 'IMMERSIVE LEARNING ECOSYSTEMS',
+            headline: 'Novus Academy • Next-Gen Digital Masterclasses',
+            desc: 'Gamified learning paths, interactive code editors, live Cohort leaderboards, and friction-free student admission funnels that maximize course completion rates.',
+            ctaText: 'Enroll in Sprint Cohort',
+            stat1Val: '94.2%', stat1Lbl: 'Course Completion',
+            stat2Val: '4.9/5', stat2Lbl: 'Learner Rating'
         },
         'transportation': {
-            name: 'Transportation, Logistics & Fleet',
-            icon: '🚚',
-            headline: 'HyperFreight Global • Autonomous Fleet Routing',
-            tag: 'SUPPLY CHAIN & LOGISTICS',
-            ctaText: 'Request Route Quotation',
-            stat1Val: '99.94%', stat1Lbl: 'On-Time Delivery',
-            stat2Val: '42 Countries', stat2Lbl: 'Global Network',
-            price: 'Freight Quotes in 60s',
-            service: 'Cold Chain, Air Cargo & AI Dispatch Routing'
+            name: 'Transportation & Global Logistics',
+            iconSvg: INDUSTRY_ICONS.transportation,
+            tag: 'SUPPLY CHAIN & FREIGHT NETWORK',
+            headline: 'OmniRoute Global • Autonomous Freight & Vessel Routing',
+            desc: 'Live container telemetry maps, automated freight quote calculators, and multi-modal fleet tracking portals optimized for zero-latency field operations.',
+            ctaText: 'Request Instant Freight Quote',
+            stat1Val: '99.98%', stat1Lbl: 'On-Time Dispatch',
+            stat2Val: '42 Countries', stat2Lbl: 'Global Active Ports'
         },
         'visa': {
             name: 'Visa, Immigration & Global Mobility',
-            icon: '✈️',
-            headline: 'GlobalPass Mobility • Express Residency & Visas',
-            tag: 'LEGAL IMMIGRATION & ADVISORY',
+            iconSvg: INDUSTRY_ICONS.visa,
+            tag: 'GLOBAL MOBILITY & CITIZENSHIP',
+            headline: 'Aethelgard Mobility • Golden Visa & Residency Advisory',
+            desc: 'Step-by-step points eligibility calculators, encrypted document vaults, and government submission tracking for international founders and investors.',
             ctaText: 'Check Visa Eligibility',
-            stat1Val: '98.6%', stat1Lbl: 'Approval Ratio',
-            stat2Val: '7,200+', stat2Lbl: 'Visas Processed',
-            price: 'Eligibility Check Free',
-            service: 'Golden Visas, Work Permits & Global Citizenship'
+            stat1Val: '99.4%', stat1Lbl: 'Petition Approval',
+            stat2Val: '48 Hrs', stat2Lbl: 'Legal Audit Speed'
         },
         'startups': {
-            name: 'Tech Startups & B2B SaaS',
-            icon: '⚡',
-            headline: 'DataVortex Cloud • Multi-Tenant Analytics Engine',
-            tag: 'ENTERPRISE B2B SAAS',
-            ctaText: 'Start 14-Day Free Trial',
-            stat1Val: '99.99%', stat1Lbl: 'Uptime SLA',
-            stat2Val: '4.9/5', stat2Lbl: 'G2 User Rating',
-            price: '$79 / seat / month',
-            service: 'Cloud Telemetry, Next.js Clusters & Webhooks'
+            name: 'High-Velocity SaaS & Tech Startups',
+            iconSvg: INDUSTRY_ICONS.startups,
+            tag: 'HIGH-VELOCITY PRODUCT ENGINE',
+            headline: 'HyperScale Cloud • The Developer-First Database',
+            desc: 'Bento-grid feature matrices, interactive code snippet playground, and self-serve onboarding funnels that drive high developer product adoption.',
+            ctaText: 'Start 14-Day Pro Trial',
+            stat1Val: '100/100', stat1Lbl: 'Core Web Vitals',
+            stat2Val: '3.2s', stat2Lbl: 'Time to First Value'
         },
         'portfolio': {
-            name: 'Creative Portfolio & Art Directors',
-            icon: '🎨',
-            headline: 'Kai Sterling • Executive Spatial & Brand Director',
-            tag: 'BESPOKE DESIGN DIRECTION',
-            ctaText: 'Inquire for Commission',
-            stat1Val: '14 Cannes', stat1Lbl: 'Industry Awards',
-            stat2Val: '42 Brands', stat2Lbl: 'Transformed',
-            price: 'Retainers from $6,000/mo',
-            service: 'Brand Direction, 3D Experiences & Identity'
+            name: 'Creator, Designer & Founder Portfolios',
+            iconSvg: INDUSTRY_ICONS.portfolio,
+            tag: 'EXECUTIVE BRAND & ADVISORY',
+            headline: 'Alexander Vance • Product Architect & Angel Partner',
+            desc: 'Minimalist editorial showcase highlighting high-stakes venture outcomes, design leadership, advisory slots, and curated speaking engagements.',
+            ctaText: 'Schedule Advisory Call',
+            stat1Val: '14 Exits', stat1Lbl: 'Advised Scaleups',
+            stat2Val: '$2.4B', stat2Lbl: 'Combined Value'
         },
         'social': {
             name: 'Social Media & Influencer Management',
-            icon: '📱',
-            headline: 'PulseFlow Media • Viral Growth & Creator Studio',
-            tag: 'SOCIAL DOMINANCE & ROAS',
-            ctaText: 'Audit My Social Reach',
-            stat1Val: '180M+', stat1Lbl: 'Monthly Impressions',
-            stat2Val: '4.6x', stat2Lbl: 'ROAS Delivered',
-            price: 'Packages from ₹24,999/mo',
-            service: 'Short-Form Reels, TikTok Dominance & Ad Funnels'
+            iconSvg: INDUSTRY_ICONS.social,
+            tag: 'VIRAL REACH & INFLUENCER TALENT',
+            headline: 'PulseSphere Talent • Roster of Premier Digital Creators',
+            desc: 'Dynamic media kits, verified audience demographic analytics, and rapid brand deal negotiation portals for top-tier creators and digital talent.',
+            ctaText: 'Inquire Talent Booking',
+            stat1Val: '42M+', stat1Lbl: 'Monthly Impressions',
+            stat2Val: '8.4%', stat2Lbl: 'Avg Engagement'
         },
         'marketing': {
-            name: 'Performance Digital Marketing & SEO',
-            icon: '📈',
-            headline: 'OmniRank • #1 Google Ranking & Acquisition Engine',
-            tag: 'SEARCH DOMINANCE & ADS',
-            ctaText: 'Claim Competitor SEO Audit',
-            stat1Val: '#1 Spot', stat1Lbl: 'Google Maps Pack',
-            stat2Val: '380%', stat2Lbl: 'Organic Lead Surges',
-            price: 'Custom Growth Plans',
-            service: 'Technical SEO, Meta & Google Paid Ads, Maps GBP'
+            name: 'Performance Marketing & SEO Agencies',
+            iconSvg: INDUSTRY_ICONS.marketing,
+            tag: 'HIGH-INTENT REVENUE GROWTH',
+            headline: 'ApexScale Growth • Performance Paid Media & SEO',
+            desc: 'Live ROAS dashboards, multi-touch attribution diagrams, and conversion rate optimization teardowns that justify high ad budget allocations.',
+            ctaText: 'Claim Growth Audit',
+            stat1Val: '4.8x', stat1Lbl: 'Average ROAS Lift',
+            stat2Val: '#1 Ranks', stat2Lbl: '92% Core Keywords'
         },
         'routines': {
-            name: 'Daily Routines, Habits & Wellness',
-            icon: '📅',
-            headline: 'Zenith LifeFlow • AI Habit & Cognitive Performance',
-            tag: 'WELLNESS & PRODUCTIVITY',
-            ctaText: 'Build My Daily Routine',
-            stat1Val: '84%', stat1Lbl: 'Habit Adherence',
-            stat2Val: '120k+', stat2Lbl: 'Active Users',
-            price: 'Free Core / Pro $9.99/mo',
-            service: 'Focus Timers, Routine Tracking & Smart Reminders'
+            name: 'Daily Routine, Health & Habit Apps',
+            iconSvg: INDUSTRY_ICONS.routines,
+            tag: 'DAILY HABITS & MINDFULNESS',
+            headline: 'Chronos HabitOS • Daily Peak Human Performance',
+            desc: 'Tactile habit rings, streak tracking, circular focus timers, and biometric health integrations designed for effortless daily micro-commitments.',
+            ctaText: 'Download for iOS & Android',
+            stat1Val: '4.9 Stars', stat1Lbl: 'App Store Rating',
+            stat2Val: '82%', stat2Lbl: 'Day-30 Retention'
         },
         'ecommerce': {
-            name: 'Luxury D2C & High-End E-Commerce',
-            icon: '🛍️',
-            headline: 'Aura Horology • Bespoke Swiss Automatic Timepieces',
-            tag: 'HAUTE HORLOGERIE & D2C',
-            ctaText: 'Explore Limited Collection',
-            stat1Val: 'Limited 100', stat1Lbl: 'Numbered Pieces',
-            stat2Val: 'Swiss Made', stat2Lbl: 'Chronometer Certified',
-            price: 'From $3,800',
-            service: 'Luxury Checkouts, Global Vault Delivery & Warranty'
+            name: 'Luxury D2C & Curated E-Commerce',
+            iconSvg: INDUSTRY_ICONS.ecommerce,
+            tag: 'FLAGSHIP CURATED COMMERCE',
+            headline: 'Atelier Maison • Handcrafted Objects of Desire',
+            desc: 'High-resolution full-bleed product showcases, bespoke unboxing narratives, and frictionless Apple Pay checkout flows for luxury consumers.',
+            ctaText: 'Explore Curated Collection',
+            stat1Val: '0.8s', stat1Lbl: 'Checkout Speed',
+            stat2Val: '99.2%', stat2Lbl: 'Flawless Delivery'
         }
     };
 
-    // State Variables
+    // State
     let currentSelectedStyle = STYLES_DATABASE[0];
     let currentSelectedIndustry = 'all';
     let currentActiveFilter = 'all';
@@ -478,7 +514,120 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalAddress = document.getElementById('modal-bar-address');
     const modalWhatsappBtn = document.getElementById('modal-whatsapp-cta');
 
-    // 3. RENDER ALL 18 SHOWCASE CARDS IN THE DIRECTORY
+    // =========================================================================
+    // 4. ANIMATED INTERACTIVE HERO BACKGROUND CANVAS (Geometric Constellation)
+    // =========================================================================
+    function initHeroMatrixCanvas() {
+        const canvas = document.getElementById('hero-matrix-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = canvas.parentElement.offsetWidth || window.innerWidth;
+        let height = canvas.height = canvas.parentElement.offsetHeight || 500;
+
+        let mouse = { x: -1000, y: -1000 };
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        window.addEventListener('resize', () => {
+            if (!canvas.parentElement) return;
+            width = canvas.width = canvas.parentElement.offsetWidth || window.innerWidth;
+            height = canvas.height = canvas.parentElement.offsetHeight || 500;
+            initNodes();
+        });
+
+        let nodes = [];
+        const nodeCount = Math.min(Math.floor(width / 24), 48);
+
+        function initNodes() {
+            nodes = [];
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.7,
+                    vy: (Math.random() - 0.5) * 0.7,
+                    radius: Math.random() * 2 + 1.5
+                });
+            }
+        }
+        initNodes();
+
+        function drawMatrix() {
+            ctx.clearRect(0, 0, width, height);
+
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || document.body.classList.contains('dark-theme');
+            const nodeColor = isDark ? 'rgba(99, 102, 241, 0.75)' : 'rgba(79, 70, 229, 0.55)';
+            const lineColor = isDark ? 'rgba(99, 102, 241, ' : 'rgba(79, 70, 229, ';
+
+            for (let i = 0; i < nodes.length; i++) {
+                const n = nodes[i];
+                n.x += n.vx;
+                n.y += n.vy;
+
+                if (n.x < 0 || n.x > width) n.vx *= -1;
+                if (n.y < 0 || n.y > height) n.vy *= -1;
+
+                // Mouse interaction
+                const dxm = mouse.x - n.x;
+                const dym = mouse.y - n.y;
+                const distMouse = Math.sqrt(dxm * dxm + dym * dym);
+                if (distMouse < 140) {
+                    n.x -= (dxm / distMouse) * 0.8;
+                    n.y -= (dym / distMouse) * 0.8;
+                }
+
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+                ctx.fillStyle = nodeColor;
+                ctx.fill();
+
+                // Draw filament connections
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const n2 = nodes[j];
+                    const dx = n.x - n2.x;
+                    const dy = n.y - n2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        const alpha = (1 - dist / 120) * 0.22;
+                        ctx.beginPath();
+                        ctx.moveTo(n.x, n.y);
+                        ctx.lineTo(n2.x, n2.y);
+                        ctx.strokeStyle = lineColor + alpha + ')';
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(drawMatrix);
+        }
+        requestAnimationFrame(drawMatrix);
+    }
+
+    // =========================================================================
+    // 5. KINETIC WORD ROTATOR IN HERO HEADLINE
+    // =========================================================================
+    function initHeroWordRotator() {
+        const rotator = document.getElementById('styles-hero-rotator');
+        if (!rotator) return;
+        const words = rotator.querySelectorAll('.rotator-word');
+        if (words.length <= 1) return;
+
+        let currentIndex = 0;
+        setInterval(() => {
+            words[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % words.length;
+            words[currentIndex].classList.add('active');
+        }, 2600);
+    }
+
+    // =========================================================================
+    // 6. RENDER ALL 18 SHOWCASE CARDS IN THE DIRECTORY (Official SVG Icons)
+    // =========================================================================
     function renderShowcaseCards() {
         if (!stylesGrid) return;
         stylesGrid.innerHTML = '';
@@ -489,7 +638,6 @@ document.addEventListener('DOMContentLoaded', () => {
             card.setAttribute('data-style-id', style.id);
             card.setAttribute('data-category', style.category);
 
-            // Generate card markup with real embedded styled mini-component
             card.innerHTML = `
                 <div class="card-preview-viewport ${style.themeClass}">
                     <div class="mini-preview-component morph-card">
@@ -500,7 +648,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="card-content-body">
                     <div class="card-tags-row">
-                        <span class="mini-tag">${style.icon} ${style.category}</span>
+                        <span class="mini-tag" style="display:inline-flex; align-items:center; gap:4px;">
+                            ${style.iconSvg} <span>${style.category}</span>
+                        </span>
                         <span class="mini-tag tag-industry">${style.bestFor.split(',')[0]}</span>
                         <span class="mini-tag">Conv: ${style.conversionRate}</span>
                     </div>
@@ -516,10 +666,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     </ul>
                     <div class="card-actions-footer">
                         <button class="btn-launch-demo" data-style-id="${style.id}">
-                            <span>🚀 Launch Demo</span>
+                            <span>Launch Live Demo &rarr;</span>
                         </button>
                         <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20am%20interested%20in%20building%20my%20website%20in%20the%20${encodeURIComponent(style.name)}%20style." target="_blank" class="btn-book-style" title="Book this style on WhatsApp">
-                            <span>💬 Book</span>
+                            <span>Book Consultation</span>
                         </a>
                     </div>
                 </div>
@@ -527,7 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stylesGrid.appendChild(card);
         });
 
-        // Attach listeners to new cards
+        // Click to launch full demo
         document.querySelectorAll('.btn-launch-demo').forEach(btn => {
             btn.addEventListener('click', () => {
                 const sId = btn.getAttribute('data-style-id');
@@ -550,7 +700,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. MASTER MORPHING SANDBOX ENGINE
+    // =========================================================================
+    // 7. MASTER MORPHING SANDBOX ENGINE (Instant Live Transformation)
+    // =========================================================================
     function morphSandbox(styleObj, industryKey = 'all') {
         if (!sandboxStage || !styleObj) return;
 
@@ -569,18 +721,28 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get Industry Content
         const indData = INDUSTRY_VERTICALS[industryKey] || INDUSTRY_VERTICALS['all'];
 
-        // Dynamic Text Insertion
-        if (sandboxTag) sandboxTag.textContent = `${styleObj.icon} ${styleObj.name.toUpperCase()} • ${indData.tag || 'ELAVATEX ARCHITECTURE'}`;
+        // Dynamic Text Insertion with Official SVG Icons
+        if (sandboxTag) {
+            sandboxTag.innerHTML = `
+                <span style="display:inline-flex; align-items:center; gap:6px;">
+                    ${styleObj.iconSvg} 
+                    <span>${styleObj.name.toUpperCase()} &bull; ${indData.tag || 'ELAVATEX ARCHITECTURE'}</span>
+                </span>
+            `;
+        }
+
         if (sandboxHeading) sandboxHeading.textContent = indData.headline || styleObj.headline;
         if (sandboxDesc) sandboxDesc.textContent = indData.desc || styleObj.desc;
-        if (sandboxBtnCta) sandboxBtnCta.textContent = indData.ctaText || 'Launch Project in this Style';
+        if (sandboxBtnCta) {
+            sandboxBtnCta.innerHTML = `<span>${indData.ctaText || 'Launch Project in this Style'}</span> <span class="arrow">&rarr;</span>`;
+        }
         
         if (sandboxStat1Val) sandboxStat1Val.textContent = indData.stat1Val || '99.8%';
         if (sandboxStat1Lbl) sandboxStat1Lbl.textContent = indData.stat1Lbl || 'User Engagement';
         if (sandboxStat2Val) sandboxStat2Val.textContent = indData.stat2Val || '100/100';
         if (sandboxStat2Lbl) sandboxStat2Lbl.textContent = indData.stat2Lbl || 'Core Web Vitals';
 
-        // Update WhatsApp links
+        // Update WhatsApp click handler
         const waText = encodeURIComponent(`Hello ElavateX, I am exploring your Styles page and want to architect my website in the ${styleObj.name} style for the ${indData.name} sector.`);
         if (sandboxBtnCta) {
             sandboxBtnCta.onclick = () => {
@@ -594,11 +756,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 5. FULL-SCREEN INTERACTIVE DEMO MODAL
+    // =========================================================================
+    // 8. FULL-SCREEN INTERACTIVE DEMO MODAL (Device Breakpoint Viewports)
+    // =========================================================================
     function openDemoModal(styleObj, industryKey = 'all') {
         if (!demoModal || !modalViewport) return;
 
-        const indData = INDUSTRY_VERTICALS[industryKey] || INDUSTRY_VERTICALS['dental']; // Default to high-converting dental if all
+        const indData = INDUSTRY_VERTICALS[industryKey] || INDUSTRY_VERTICALS['dental'];
 
         // Set simulated header
         if (modalTitle) modalTitle.textContent = `${styleObj.name} Live Interactive Experience (${indData.name})`;
@@ -614,7 +778,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- Simulated Top Nav -->
                 <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 3rem;">
                     <div style="display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 1.25rem;">
-                        <span>${indData.icon || '✦'}</span>
+                        <span style="display:inline-flex; align-items:center;">${indData.iconSvg}</span>
                         <span>${indData.name.split(',')[0]}</span>
                     </div>
                     <div style="display: flex; gap: 1rem; align-items: center;">
@@ -624,7 +788,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <!-- Hero Section -->
                 <div style="text-align: center; margin-bottom: 4rem;">
-                    <span style="font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85;">${styleObj.name} Architectural Showcase</span>
+                    <span style="display:inline-flex; align-items:center; gap:6px; font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85;">
+                        ${styleObj.iconSvg} <span>${styleObj.name} Architectural Showcase</span>
+                    </span>
                     <h1 style="font-size: clamp(2rem, 4.5vw, 3.6rem); font-weight: 900; line-height: 1.15; margin: 1rem 0 1.5rem;">
                         ${indData.headline}
                     </h1>
@@ -641,17 +807,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- Interactive 3-Card Value Grid -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem;">
                     <div class="morph-card">
-                        <div style="font-size: 1.8rem; margin-bottom: 0.75rem;">⚡</div>
+                        <div style="margin-bottom: 0.75rem; color: var(--accent-cyan);">${STYLE_ICONS.bento}</div>
                         <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">${indData.stat1Val || 'Sub-Second'} Velocity</h3>
                         <p style="font-size: 0.88rem; opacity: 0.8;">Engineered with Zero-Bloat code and instantaneous TTFB responses that maximize search rankings.</p>
                     </div>
                     <div class="morph-card">
-                        <div style="font-size: 1.8rem; margin-bottom: 0.75rem;">🎯</div>
+                        <div style="margin-bottom: 0.75rem; color: var(--accent-emerald);">${STYLE_ICONS.neobrutalism}</div>
                         <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">${indData.stat2Val || '100/100'} Performance</h3>
                         <p style="font-size: 0.88rem; opacity: 0.8;">Optimized user flows tailored specifically for high-intent customer acquisitions in ${indData.name.split(',')[0]}.</p>
                     </div>
                     <div class="morph-card">
-                        <div style="font-size: 1.8rem; margin-bottom: 0.75rem;">🛡️</div>
+                        <div style="margin-bottom: 0.75rem; color: var(--accent-purple);">${STYLE_ICONS.luxury}</div>
                         <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Enterprise Resilience</h3>
                         <p style="font-size: 0.88rem; opacity: 0.8;">Bulletproof security, multi-layered data encryption, and instant global CDN edge distribution.</p>
                     </div>
@@ -731,8 +897,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 6. FILTERING & SEARCH CONTROLS
-    // Aesthetic Carousel Filter Buttons
+    // =========================================================================
+    // 9. FILTERING & SEARCH CONTROLS
+    // =========================================================================
     document.querySelectorAll('.style-filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.style-filter-btn').forEach(b => b.classList.remove('active'));
@@ -817,7 +984,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. STYLE MATCHMAKER QUIZ CONTROLLER
+    // =========================================================================
+    // 10. STYLE MATCHMAKER QUIZ CONTROLLER
+    // =========================================================================
     const quizButtons = document.querySelectorAll('.quiz-opt-btn');
     const quizResult = document.getElementById('quiz-result');
     const quizRecommendation = document.getElementById('quiz-recommendation');
@@ -831,13 +1000,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const group = btn.getAttribute('data-group');
             const val = btn.getAttribute('data-val');
 
-            // De-select siblings in group
             document.querySelectorAll(`.quiz-opt-btn[data-group="${group}"]`).forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
 
             quizAnswers[group] = val;
 
-            // Check if both steps answered
             if (quizAnswers.industry && quizAnswers.vibe) {
                 calculateStyleMatch(quizAnswers.industry, quizAnswers.vibe);
             }
@@ -850,8 +1017,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (vibe === 'luxury') {
             recommendedStyleId = 'luxury';
-            matchReason = `For high-ticket ${industry.toUpperCase()} acquisitions, Stealth Luxury establishes instant credibility with champagne gold hairpins, deep obsidian titanium, and aristocratic poise.`;
-        } else if (vibe === 'hightech' || industry === 'ai' || industry === 'saas') {
+            matchReason = `For high-ticket acquisitions in ${industry.toUpperCase()}, Stealth Luxury establishes instant credibility with champagne gold hairpins, deep obsidian titanium, and aristocratic poise.`;
+        } else if (vibe === 'hightech' || industry === 'ai' || industry === 'startups') {
             recommendedStyleId = 'bento';
             matchReason = `Bento Grid UI organizes complex ${industry.toUpperCase()} architectures into modular, digestible micro-widgets with 100/100 Core Web Vitals performance.`;
         } else if (vibe === 'genz' || industry === 'social') {
@@ -859,7 +1026,7 @@ document.addEventListener('DOMContentLoaded', () => {
             matchReason = `Neo-Brutalism commands attention with high-contrast outlines and vivid pastel pops, perfect for engaging modern digital natives and creators.`;
         } else if (vibe === 'clean' || industry === 'dental') {
             recommendedStyleId = 'glassmorphism';
-            matchReason = `Glassmorphism delivers a sensation of clinical purity, multi-layer depth, and precision technology essential for medical and wellness trust.`;
+            matchReason = `Glassmorphism delivers a sensation of clinical purity, multi-layer depth, and precision technology essential for medical and healthcare trust.`;
         } else if (vibe === 'editorial') {
             recommendedStyleId = 'editorial';
             matchReason = `Editorial Magazine typography positions your ${industry.toUpperCase()} firm as a high-authority cultural powerhouse with timeless sophistication.`;
@@ -871,9 +1038,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const matchObj = STYLES_DATABASE.find(s => s.id === recommendedStyleId) || STYLES_DATABASE[0];
 
         if (quizResult && quizRecommendation && quizReasoning && quizCtaBtn) {
-            quizRecommendation.textContent = `${matchObj.icon} ${matchObj.name} (#${matchObj.number})`;
+            quizRecommendation.innerHTML = `<span style="display:inline-flex; align-items:center; gap:8px;">${matchObj.iconSvg} <span>${matchObj.name} (#${matchObj.number})</span></span>`;
             quizReasoning.textContent = matchReason;
-            quizCtaBtn.textContent = `🚀 Preview ${matchObj.name} for My Project`;
+            quizCtaBtn.innerHTML = `<span>Preview ${matchObj.name} for My Project &rarr;</span>`;
             quizCtaBtn.onclick = () => {
                 morphSandbox(matchObj, industry);
                 document.getElementById('sandbox-section').scrollIntoView({ behavior: 'smooth' });
@@ -882,19 +1049,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 8. INITIALIZE PAGE
+    // =========================================================================
+    // 11. INITIALIZE ENGINES
+    // =========================================================================
+    initHeroMatrixCanvas();
+    initHeroWordRotator();
     renderShowcaseCards();
     morphSandbox(STYLES_DATABASE[0], 'all');
-
-    // Theme Toggle Handler
-    const themeBtn = document.getElementById('styles-theme-toggle');
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', nextTheme);
-            localStorage.setItem('elavatex-theme', nextTheme);
-        });
-    }
 
 });
