@@ -7,14 +7,9 @@
     { "source": "/admin/", "destination": "/admin.html" },
     { "source": "/styles", "destination": "/styles.html" },
     { "source": "/brochure", "destination": "/brochure.html" },
-    { "source": "/web-development", "destination": "/services/web-development.html" },
-    { "source": "/web-development.html", "destination": "/services/web-development.html" },
-    { "source": "/app-development", "destination": "/services/mobile-app-development.html" },
-    { "source": "/mobile-app-development", "destination": "/services/mobile-app-development.html" },
-    { "source": "/mobile-app-development.html", "destination": "/services/mobile-app-development.html" },
-    { "source": "/social-media", "destination": "/services/social-media-management.html" },
-    { "source": "/social-media-management", "destination": "/services/social-media-management.html" },
-    { "source": "/social-media-management.html", "destination": "/services/social-media-management.html" }
+    { "source": "/web-development", "destination": "/services/web-development" },
+    { "source": "/app-development", "destination": "/services/mobile-app-development" },
+    { "source": "/social-media", "destination": "/services/social-media-management" }
   ],
   "headers": [
     {
