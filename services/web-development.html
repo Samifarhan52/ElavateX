@@ -20,6 +20,8 @@
 
     <!-- Unified CSS Stylesheet -->
     <link rel="stylesheet" href="../style.css?v=1.6">
+    <!-- Services Editorial Dark Theme & Navbar -->
+    <link rel="stylesheet" href="services-editorial.css?v=1.0">
 
     <!-- Dedicated Web Development Fixed Navbar & Page Styling -->
     <style>
@@ -784,38 +786,71 @@
     <!-- =================================================================== -->
     <!-- DEDICATED FIXED NAVBAR FOR WEBSITE DEVELOPMENT PAGE                 -->
     <!-- =================================================================== -->
-    <header class="dedicated-fixed-navbar" id="web-navbar">
+    <!-- =================================================================== -->
+    <!-- DEDICATED FIXED NAVBAR FOR WEBSITE DEVELOPMENT PAGE                 -->
+    <!-- =================================================================== -->
+    <header class="dedicated-fixed-navbar" id="navbar">
         <div class="dedicated-nav-container">
-            <!-- Left Side: Return Home & Service Badge -->
-            <div class="nav-left-group">
-                <a href="../index.html" class="back-home-pill">
-                    <span>&larr; Home</span>
-                </a>
-                <span class="nav-badge-tag">Website Development</span>
-                <a href="mobile-app-development.html" class="back-home-pill" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.3);" title="Switch to Mobile App Engineering">
-                    <span>📱 Mobile App</span>
-                </a>
-                <a href="social-media-management.html" class="back-home-pill" style="color: #ec4899; border-color: rgba(236, 72, 153, 0.3);" title="Switch to Social Media Growth">
-                    <span>🚀 Social Media</span>
-                </a>
+            <!-- Brand Logo on Left -->
+            <a href="../index.html" class="brand-logo-service" title="ElavateX Home">
+                <span class="logo-mark">
+                    <img src="../favicon.png" alt="ElavateX Logo" class="brand-logo-img">
+                </span>
+                <span class="logo-text">Elavate<span class="accent-x">X</span></span>
+            </a>
+
+            <!-- Service Switcher Pill & Dropdown -->
+            <div class="service-switcher-wrapper">
+                <button class="service-current-pill" id="service-switcher-btn" aria-haspopup="true" aria-expanded="false">
+                    <span class="service-pill-indicator"></span>
+                    <span class="service-pill-label">Website Development</span>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="service-switcher-dropdown">
+                    <a href="web-development.html" class="service-dropdown-item active">
+                        <span class="dropdown-item-icon">🌐</span>
+                        <div class="dropdown-item-info">
+                            <strong>Website Development</strong>
+                            <span>Custom Next.js 14, 100/100 Vitals &amp; SaaS</span>
+                        </div>
+                    </a>
+                    <a href="mobile-app-development.html" class="service-dropdown-item">
+                        <span class="dropdown-item-icon">📱</span>
+                        <div class="dropdown-item-info">
+                            <strong>Mobile App Engineering</strong>
+                            <span>iOS &amp; Android, 60 FPS Native, Offline Sync</span>
+                        </div>
+                    </a>
+                    <a href="social-media-management.html" class="service-dropdown-item">
+                        <span class="dropdown-item-icon">🚀</span>
+                        <div class="dropdown-item-info">
+                            <strong>Social Media Growth</strong>
+                            <span>Viral Short-Form Reels, Paid Meta Ads</span>
+                        </div>
+                    </a>
+                    <a href="../styles.html" class="service-dropdown-item">
+                        <span class="dropdown-item-icon">✨</span>
+                        <div class="dropdown-item-info">
+                            <strong>18 Web Design Styles &amp; Demos</strong>
+                            <span>Live Sandbox, Glassmorphism, Bento UI</span>
+                        </div>
+                    </a>
+                </div>
             </div>
 
             <!-- Center Column: Subnav Links -->
             <nav class="dedicated-nav-links" id="web-nav-links">
                 <a href="#web-hero" class="dedicated-nav-link active">Overview</a>
-                <a href="#web-what-we-build" class="dedicated-nav-link">What We Build</a>
-                <a href="#web-capabilities" class="dedicated-nav-link">Capabilities</a>
+                <a href="#web-what-we-build" class="dedicated-nav-link">Capabilities</a>
                 <a href="#web-projects" class="dedicated-nav-link">Our Work</a>
                 <a href="#web-process" class="dedicated-nav-link">Process</a>
-                <a href="#web-why-us" class="dedicated-nav-link">Why ElavateX</a>
                 <a href="#web-faq" class="dedicated-nav-link">FAQ</a>
-                <a href="../styles.html" class="dedicated-nav-link" style="color:var(--accent-cyan); font-weight:700;">Styles ✨</a>
-                <a href="../brochure.html" class="dedicated-nav-link" style="color:var(--accent-purple); font-weight:700;">Brochure</a>
+                <a href="../styles.html" class="dedicated-nav-link nav-styles-badge">Styles ✨</a>
             </nav>
 
-            <!-- Far Right Side: Actions & Official ElavateX Brand Logo at Top Right -->
+            <!-- Far Right Side: Actions -->
             <div class="nav-actions">
-                <button class="btn-primary btn-sm open-consultation-btn">Start a Project</button>
+                <button class="btn-service-cta open-consultation-btn">Start a Project</button>
 
                 <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Light and Dark Theme" title="Switch Light/Dark Mode">
                     <span class="theme-icon-sun">
@@ -825,14 +860,6 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     </span>
                 </button>
-
-                <!-- Official Logo at Far Top Right -->
-                <a href="../index.html" class="brand-logo logo-top-right">
-                    <span class="logo-mark">
-                        <img src="../favicon.png" alt="ElavateX Logo" class="brand-logo-img">
-                    </span>
-                    <span class="logo-text">Elavate<span class="accent-x">X</span></span>
-                </a>
 
                 <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Mobile Navigation Menu">
                     <span class="bar"></span>
@@ -846,17 +873,26 @@
     <!-- Mobile Navigation Drawer -->
     <div class="mobile-drawer" id="mobile-drawer">
         <div class="drawer-header">
-            <button class="theme-toggle-btn" id="drawer-theme-toggle" aria-label="Toggle Navigation Light and Dark Theme" title="Switch Light/Dark Mode">
-                <span class="theme-icon-sun">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="23" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                </span>
-                <span class="theme-icon-moon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                </span>
-            </button>
-            <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
+            <a href="../index.html" class="brand-logo-service" title="ElavateX Home">
+                <span class="logo-mark"><img src="../favicon.png" alt="ElavateX" class="brand-logo-img"></span>
+                <span class="logo-text">Elavate<span class="accent-x">X</span></span>
+            </a>
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+                <button class="theme-toggle-btn" id="drawer-theme-toggle" aria-label="Toggle Navigation Light and Dark Theme" title="Switch Light/Dark Mode">
+                    <span class="theme-icon-sun"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+                    <span class="theme-icon-moon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+                </button>
+                <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
+            </div>
         </div>
         <div class="drawer-links">
+            <div class="drawer-section-title">CORE SERVICES</div>
+            <a href="web-development.html" class="drawer-service-link active">🌐 Website Development</a>
+            <a href="mobile-app-development.html" class="drawer-service-link">📱 Mobile App Engineering</a>
+            <a href="social-media-management.html" class="drawer-service-link">🚀 Social Media Growth</a>
+            <a href="../styles.html" class="drawer-service-link" style="color: #FFC928;">✨ 18 Design Styles &amp; Demos</a>
+            <hr class="drawer-divider">
+            <div class="drawer-section-title">PAGE NAVIGATION</div>
             <a href="#web-hero" class="drawer-link">Overview</a>
             <a href="#web-what-we-build" class="drawer-link">What We Build</a>
             <a href="#web-capabilities" class="drawer-link">Capabilities</a>
@@ -865,43 +901,65 @@
             <a href="#web-why-us" class="drawer-link">Why ElavateX</a>
             <a href="#web-faq" class="drawer-link">FAQ</a>
             <hr class="drawer-divider">
-            <button class="btn-primary open-consultation-btn w-full">Start a Project</button>
+            <button class="btn-service-cta open-consultation-btn w-full">Start a Project</button>
+            <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20build%20a%20website" target="_blank" class="btn-whatsapp-outline w-full text-center" style="margin-top:0.6rem; display:block;">Connect via WhatsApp</a>
         </div>
     </div>
 
     <!-- MAIN CONTENT -->
-    <main style="padding-top: 70px;">
+    <main>
         
-        <!-- SECTION 1: HERO SECTION -->
-        <section class="hero-section" id="web-hero" style="padding: 6rem 0 4rem;">
-            <div class="hero-bg-lights">
-                <div class="light-orb orb-indigo"></div>
-                <div class="light-orb orb-violet"></div>
+        <!-- SECTION 1: CINEMATIC EDITORIAL HERO SECTION (Charcoal Grey, Moonlit Silver, Signal Red) -->
+        <section class="service-editorial-hero" id="web-hero">
+            <div class="service-editorial-bg" aria-hidden="true">
+                <div class="service-concrete-wall"></div>
+                <div class="service-spotlight-cone"></div>
+                <canvas id="service-matrix-canvas" class="service-ambient-canvas"></canvas>
             </div>
             <div class="container">
-                <div class="hero-two-col-layout">
-                    <!-- Left Column -->
-                    <div class="reveal-item">
-                        <div class="service-badge violet" style="margin-bottom: 1.2rem;">WEB ENGINEERING & ARCHITECTURE</div>
-                        <h1 class="hero-title" style="font-size: clamp(2.2rem, 4.5vw, 3.8rem); line-height: 1.12; margin-bottom: 1.2rem;">
-                            Architecting High-Performance Websites Built for <span class="gradient-text">Absolute Scale</span>
+                <div class="service-hero-grid">
+                    <!-- Left Column: Editorial Display Typography -->
+                    <div class="service-hero-text">
+                        <div class="service-kicker">
+                            <span class="service-kicker-words">DREAM &bull; PLAN &bull; ACHIEVE</span>
+                            <span class="service-kicker-bar"></span>
+                            <span class="service-kicker-chip">WEB ARCHITECTURE &bull; 100/100 VITALS</span>
+                        </div>
+                        <h1 class="service-headline">
+                            Turn Ideas <br>
+                            Into <span class="highlight-signal-red">Impact.</span>
                         </h1>
-                        <p class="hero-desc" style="font-size: 1.1rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 2rem;">
-                            Sub-second response times, interactive web platforms, and clean semantic structures engineered to capture leads and turn visitors into lifelong clients.
+                        <p class="service-subtext">
+                            A dedicated space to think deeper, create bolder, and engineer faster. Custom Next.js 14 platforms, sub-second TTFB, and flawless 100/100 Lighthouse vitals built to scale authority and convert enterprise deals.
                         </p>
-                        <div class="cta-btn-group">
-                            <button class="btn-glow btn-lg open-consultation-btn">
-                                <span>Start Your Project &rarr;</span>
-                            </button>
-                            <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20to%20build%20a%20website" target="_blank" class="btn-whatsapp-pill btn-lg">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                                <span>Connect via WhatsApp</span>
+                        <div class="service-cta-row">
+                            <a href="#web-what-we-build" class="service-btn-journey">
+                                <span class="btn-play-circle-red">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                </span>
+                                <span>Watch The Journey</span>
                             </a>
+                            <button class="service-btn-start open-consultation-btn">
+                                <span>Start a Project &rarr;</span>
+                            </button>
+                        </div>
+                        <div class="service-bottom-strip">
+                            <div class="service-scroll-prompt">
+                                <span class="prompt-bar-red"></span>
+                                <span>Scroll to explore</span>
+                            </div>
+                            <div class="service-slider-nav">
+                                <span class="service-slider-counter">01 &mdash; 03</span>
+                                <div class="service-nav-arrows">
+                                    <a href="social-media-management.html" class="service-arrow-btn" title="Previous Service: Social Media">&larr;</a>
+                                    <a href="mobile-app-development.html" class="service-arrow-btn" title="Next Service: Mobile App">&rarr;</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Right Column: macOS Interactive Showcase Frame -->
-                    <div class="web-hero-mockup-frame reveal-item">
+                    <div class="editorial-visual-stage web-hero-mockup-frame reveal-item">
                         <div class="floating-hero-badge badge-top-right">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                             <span style="color: #10b981;">100/100 Score</span> Lighthouse Speed
@@ -2040,5 +2098,7 @@ export default async function WebPlatform() {
             if (badge) badge.innerHTML = '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#10b981;margin-right:6px;"></span>0.18s LATENCY';
         }
     </script>
+    <!-- Services Editorial Interactive Engine -->
+    <script src="services-editorial.js?v=1.0"></script>
 </body>
 </html>

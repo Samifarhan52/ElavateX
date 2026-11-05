@@ -78,8 +78,18 @@
   text-shadow: 0 0 14px rgba(255, 201, 40, 0.6) !important;
 }
 
+.styles-hub-page .nav-links {
+  background: rgba(24, 25, 28, 0.88) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
 .styles-hub-page .nav-links .nav-link {
-  color: rgba(242, 244, 241, 0.82) !important;
+  color: #F2F4F1 !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
 }
 
 .styles-hub-page .nav-links .nav-link:hover {
@@ -90,6 +100,28 @@
   color: #FFC928 !important;
   font-weight: 750 !important;
   text-shadow: 0 0 14px rgba(255, 201, 40, 0.4) !important;
+}
+
+.styles-hub-page .mobile-drawer {
+  background: #1C1D20 !important;
+  border-left: 1px solid rgba(255, 201, 40, 0.25) !important;
+}
+
+.styles-hub-page .mobile-drawer .drawer-links .drawer-link {
+  color: #F2F4F1 !important;
+}
+
+.styles-hub-page .mobile-drawer .drawer-links .drawer-link:hover,
+.styles-hub-page .mobile-drawer .drawer-links .drawer-link.active {
+  color: #FFC928 !important;
+}
+
+.styles-hub-page .mobile-drawer .drawer-close {
+  color: #F2F4F1 !important;
+}
+
+.styles-hub-page .mobile-drawer .drawer-header {
+  border-bottom: 1px solid rgba(242, 244, 241, 0.1) !important;
 }
 
 .styles-hub-page .nav-dropdown-trigger {
@@ -3993,6 +4025,13 @@ body.dark-theme .spec-stat-card .spec-val {
 .glassy-consult-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5);
+}
+
+.glassy-viral-action-row {
+  margin-top: 2.2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 /* ------------------------------------------------------------- */

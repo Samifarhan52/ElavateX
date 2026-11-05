@@ -1833,329 +1833,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================
-    // 10. FLAGSHIP SHOWCASE 2: GLASSY LIQUID NAVIGATION LAB (V5)
+    // 10. FLAGSHIP SHOWCASE 2: VIRAL GLASSY NAVIGATION REEL (4 LIVE ARCHITECTURES)
     // =========================================================================
     function initGlassyNavLab() {
-        const archBtns = document.querySelectorAll('.glassy-arch-btn');
-        const barContainer = document.getElementById('glassy-bar-container');
-        const screenContent = document.getElementById('device-screen-content');
-        const archDescEl = document.getElementById('glassy-arch-desc');
-        const activeTabLbl = document.getElementById('glassy-active-tab-label');
-        const codePreEl = document.getElementById('glassy-code-content');
+        const stackItems = document.querySelectorAll('.glassy-stack-item');
+        if (!stackItems.length) return;
 
-        if (!barContainer) return;
+        // Make each stacked glassy bar directly interactive
+        stackItems.forEach(item => {
+            const arch = item.getAttribute('data-arch') || 'v1';
 
-        let currentArch = 'v1';
-        let currentTab = 'home';
+            // Click anywhere on item makes it the active stack card
+            item.addEventListener('click', () => {
+                stackItems.forEach(si => si.classList.remove('active'));
+                item.classList.add('active');
+            });
 
-        const ARCHITECTURES = {
-            v1: {
-                title: 'V1: Neo-Arc Center Curve (Neon Cyan)',
-                desc: 'Continuous translucent glass capsule with organic center curve cutout cradling a glowing cyan neon + Create action button.',
-                blur: '28px (Hardware GPU)',
-                glow: '100% Electric Cyan (#00f0ff)',
-                code: `// V1: Neo-Arc Glowing Center Glass Bar\n<nav className="relative flex items-center justify-between rounded-full bg-white/10 px-6 py-3 shadow-2xl backdrop-blur-xl border border-white/20">\n  <TabItem icon={Home} label="Home" active />\n  <TabItem icon={Search} label="Search" />\n  <CenterArcButton icon={Plus} label="Create" glowColor="#00f0ff" />\n  <TabItem icon={Inbox} label="Inbox" badge={2} />\n  <TabItem icon={Bookmark} label="Saved" />\n</nav>`
-            },
-            v2: {
-                title: 'V2: Holographic Spotlight Focus (From Images 1&2)',
-                desc: 'Translucent dark glass bar with a dynamic holographic light cone beam that tracks and illuminates the active tab with intense cyan radiance.',
-                blur: '32px (Spotlight Focus)',
-                glow: 'Dynamic Cone Radiance',
-                code: `// V2: Holographic Spotlight Beam Navigation\n<div className="relative flex items-center justify-around rounded-full bg-slate-900/80 p-3 backdrop-blur-2xl border border-white/10">\n  {/* Animated Light Cone Beam */}\n  <motion.div \n    className="absolute -top-6 h-12 w-14 bg-gradient-to-b from-cyan-400/60 to-transparent"\n    style={{ clipPath: 'polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%)' }}\n    animate={{ x: activeTabOffset }}\n  />\n  <TabButton icon={Home} active={tab==='home'} />\n  <TabButton icon={Heart} active={tab==='likes'} />\n  <TabButton icon={Plus} active={tab==='add'} />\n  <TabButton icon={User} active={tab==='profile'} />\n  <TabButton icon={Bell} active={tab==='alerts'} />\n</div>`
-            },
-            v3: {
-                title: 'V3: Liquid Droplet Morph',
-                desc: 'Organic liquid glass bar with a fluid morphing droplet pill that flows seamlessly across icons with spring damping physics.',
-                blur: '24px (Liquid Droplet)',
-                glow: 'Fluid Spring Physics',
-                code: `// V3: Liquid Droplet Morphing Navigation\n<nav className="relative flex items-center justify-between rounded-full bg-white/10 px-4 py-2 backdrop-blur-xl border border-white/20">\n  <motion.div \n    layoutId="liquidDroplet"\n    className="absolute h-10 w-10 rounded-full bg-sky-500/25 border border-sky-400 shadow-[0_0_15px_#38bdf8]"\n    transition={{ type: 'spring', stiffness: 350, damping: 25 }}\n  />\n  <TabItem icon={Home} />\n  <TabItem icon={Compass} />\n  <TabItem icon={Plus} />\n  <TabItem icon={MessageCircle} />\n  <TabItem icon={User} />\n</nav>`
-            },
-            v4: {
-                title: 'V4: Champagne Floating Island',
-                desc: 'Warm frosted glass capsule paired with an elevated detached circular action orb hovering above the navigation bar in 3D space.',
-                blur: '30px (Amber Frost)',
-                glow: 'Champagne Warmth (#f59e0b)',
-                code: `// V4: Champagne Floating Island Navigation\n<div className="relative flex items-center justify-between rounded-full bg-amber-100/30 px-6 py-2.5 backdrop-blur-2xl border border-white/50 text-stone-900">\n  <TabItem icon={Home} label="Home" />\n  <TabItem icon={Heart} label="Likes" />\n  {/* Floating Detached Orb */}\n  <div className="-mt-6 flex h-11 w-11 items-center justify-center rounded-full bg-amber-800 text-white shadow-lg border-2 border-white">\n    <Plus size={18} />\n  </div>\n  <TabItem icon={User} label="Profile" />\n  <TabItem icon={Bell} label="Alerts" />\n</div>`
-            }
-        };
+            // Individual tab button interactions inside this bar
+            const tabButtons = item.querySelectorAll('button[data-tab]');
+            const lightCone = item.querySelector('.holographic-light-cone');
 
-        const SCREENS = {
-            home: `
-                <div class="mini-dashboard-card" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.18);">
-                    <div style="font-size:0.72rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.4rem;">Curated Moodboards</div>
-                    <div style="font-size:0.95rem; font-weight:800; color:#ffffff; margin-bottom:0.4rem;">Glassmorphism 2.0</div>
-                    <div style="font-size:0.72rem; color:#cbd5e1; line-height:1.45; margin-bottom:0.6rem;">Hardware-accelerated 32px backdrop blur with continuous cyan perimeter radiance.</div>
-                    <div style="display:flex; gap:6px;">
-                        <span style="font-size:0.65rem; background:rgba(0,240,255,0.15); color:#00f0ff; border:1px solid rgba(0,240,255,0.3); padding:2px 8px; border-radius:999px; font-weight:700;">#MobileApp</span>
-                        <span style="font-size:0.65rem; background:rgba(255,255,255,0.08); color:#e2e8f0; padding:2px 8px; border-radius:999px;">#V5Tabs</span>
-                    </div>
-                </div>
-                <div class="mini-dashboard-card" style="background:rgba(15,23,42,0.6); border-color:rgba(255,255,255,0.12);">
-                    <div style="font-size:0.72rem; font-weight:800; color:#f59e0b; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.4rem;">Stealth Luxury Architecture</div>
-                    <div style="font-size:0.72rem; color:#cbd5e1; line-height:1.45;">Champagne tinted frosted glass with floating detached 3D circular action trigger.</div>
-                </div>
-            `,
-            search: `
-                <div class="mini-dashboard-card">
-                    <div style="font-weight:800; font-size:0.88rem; margin-bottom:0.6rem; color:#ffffff;">Aesthetic Style Filter</div>
-                    <div style="display:flex; flex-wrap:wrap; gap:5px; margin-bottom:0.8rem;">
-                        <span style="padding:3px 8px; border-radius:999px; background:rgba(0,240,255,0.18); border:1px solid #00f0ff; color:#00f0ff; font-size:0.68rem; font-weight:700;">#Glassmorphism</span>
-                        <span style="padding:3px 8px; border-radius:999px; background:rgba(255,255,255,0.08); font-size:0.68rem; color:#e2e8f0;">#BentoUI</span>
-                        <span style="padding:3px 8px; border-radius:999px; background:rgba(255,255,255,0.08); font-size:0.68rem; color:#e2e8f0;">#2026Closet</span>
-                        <span style="padding:3px 8px; border-radius:999px; background:rgba(255,255,255,0.08); font-size:0.68rem; color:#e2e8f0;">#Cyberpunk</span>
-                    </div>
-                    <div style="font-size:0.72rem; color:#94a3b8; line-height:1.4;">Tap any design category to preview live shaders and physics in our sandbox.</div>
-                </div>
-                <div class="mini-dashboard-card" style="background:rgba(2,132,199,0.12); border-color:rgba(2,132,199,0.3);">
-                    <div style="font-size:0.75rem; font-weight:700; color:#38bdf8; margin-bottom:0.25rem;">18 Verified Aesthetics</div>
-                    <div style="font-size:0.7rem; color:#cbd5e1;">Available for Healthcare, Clinics, FinTech, & E-Commerce.</div>
-                </div>
-            `,
-            create: `
-                <div class="mini-dashboard-card" style="text-align:center; padding:1.5rem 1rem;">
-                    <div style="width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg, #0284c7, #2563eb); color:#ffffff; display:flex; align-items:center; justify-content:center; margin:0 auto 0.6rem; box-shadow:0 0 15px rgba(2,132,199,0.5);">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    </div>
-                    <div style="font-weight:900; font-size:1rem; margin-bottom:0.3rem; color:#ffffff;">Deploy Custom MVP</div>
-                    <p style="font-size:0.72rem; opacity:0.85; margin-bottom:0.9rem; color:#cbd5e1;">Architect your platform with ElavateX engineering team in 48 hours.</p>
-                    <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20am%20testing%20your%20Glassy%20Navigation%20and%20want%20to%20launch%20my%20MVP." target="_blank" style="display:inline-block; font-size:0.75rem; font-weight:800; padding:0.5rem 1.2rem; background:#00f0ff; color:#0f172a; border-radius:999px; text-decoration:none; box-shadow:0 0 15px rgba(0,240,255,0.5);">Launch on WhatsApp &rarr;</a>
-                </div>
-            `,
-            inbox: `
-                <div class="mini-dashboard-card">
-                    <div style="font-weight:800; font-size:0.85rem; margin-bottom:0.6rem; color:#ffffff; display:flex; justify-content:space-between;">
-                        <span>Inbound Pipeline</span>
-                        <span style="font-size:0.68rem; color:#10b981; font-weight:700;">● Active</span>
-                    </div>
-                    <div style="font-size:0.72rem; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:6px; margin-bottom:6px;">
-                        <div style="font-weight:700; color:#38bdf8;">Dr. Miller • Dental Clinic</div>
-                        <div style="opacity:0.75; color:#cbd5e1;">"Requested Glassmorphism MVP consultation"</div>
-                    </div>
-                    <div style="font-size:0.72rem; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:6px; margin-bottom:6px;">
-                        <div style="font-weight:700; color:#10b981;">Apex Capital • Brokerage</div>
-                        <div style="opacity:0.75; color:#cbd5e1;">"Bento Grid UI review scheduled"</div>
-                    </div>
-                    <div style="font-size:0.72rem;">
-                        <div style="font-weight:700; color:#ec4899;">Vencedores • Atelier 2026</div>
-                        <div style="opacity:0.75; color:#cbd5e1;">"Virtual Closet 3D rail active"</div>
-                    </div>
-                </div>
-            `,
-            saved: `
-                <div class="mini-dashboard-card">
-                    <div style="font-weight:800; font-size:0.85rem; margin-bottom:0.6rem; color:#ffffff;">Curated Architectural Blueprints</div>
-                    <div style="display:flex; flex-direction:column; gap:6px; font-size:0.72rem;">
-                        <div style="background:rgba(255,255,255,0.05); padding:6px 8px; border-radius:6px; border:1px solid rgba(255,255,255,0.08);">
-                            <div style="font-weight:700; color:#38bdf8;">1. Glassmorphism 2.0</div>
-                            <div style="color:#94a3b8; font-size:0.66rem;">28px hardware-accelerated backdrop blur</div>
-                        </div>
-                        <div style="background:rgba(255,255,255,0.05); padding:6px 8px; border-radius:6px; border:1px solid rgba(255,255,255,0.08);">
-                            <div style="font-weight:700; color:#818cf8;">2. Bento Grid Enterprise</div>
-                            <div style="color:#94a3b8; font-size:0.66rem;">Modular high-concurrency SaaS dashboard</div>
-                        </div>
-                        <div style="background:rgba(255,255,255,0.05); padding:6px 8px; border-radius:6px; border:1px solid rgba(255,255,255,0.08);">
-                            <div style="font-weight:700; color:#f59e0b;">3. Clothes Closet 2026</div>
-                            <div style="color:#94a3b8; font-size:0.66rem;">3D horizontal rail e-commerce engine</div>
-                        </div>
-                    </div>
-                </div>
-            `
-        };
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    // Activate parent item
+                    stackItems.forEach(si => si.classList.remove('active'));
+                    item.classList.add('active');
 
-        function renderBar() {
-            if (currentArch === 'v1') {
-                barContainer.innerHTML = `
-                    <div class="glass-tab-bar-v1">
-                        <button class="v1-tab-btn ${currentTab === 'home' ? 'active' : ''}" data-tab="home">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                            <span>Home</span>
-                        </button>
-                        <button class="v1-tab-btn ${currentTab === 'search' ? 'active' : ''}" data-tab="search">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                            <span>Search</span>
-                        </button>
-                        <button class="v1-center-arc-btn" data-tab="create" title="Create New Project">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                        </button>
-                        <button class="v1-tab-btn ${currentTab === 'inbox' ? 'active' : ''}" data-tab="inbox">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                            <span>Inbox</span>
-                        </button>
-                        <button class="v1-tab-btn ${currentTab === 'saved' ? 'active' : ''}" data-tab="saved">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-                            <span>Saved</span>
-                        </button>
-                    </div>
-                `;
-            } else if (currentArch === 'v2') {
-                barContainer.innerHTML = `
-                    <div class="glass-tab-bar-v2" id="glass-bar-v2">
-                        <div class="holographic-light-cone" id="v2-light-cone" style="left: 18px;"></div>
-                        <button class="v2-tab-btn ${currentTab === 'home' ? 'active' : ''}" data-tab="home" title="Home">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                        </button>
-                        <button class="v2-tab-btn ${currentTab === 'search' ? 'active' : ''}" data-tab="search" title="Likes">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                        </button>
-                        <button class="v2-tab-btn ${currentTab === 'create' ? 'active' : ''}" data-tab="create" title="Add / Create">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                        </button>
-                        <button class="v2-tab-btn ${currentTab === 'inbox' ? 'active' : ''}" data-tab="inbox" title="Profile">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        </button>
-                        <button class="v2-tab-btn ${currentTab === 'saved' ? 'active' : ''}" data-tab="saved" title="Alerts">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                        </button>
-                    </div>
-                `;
-                updateV2LightCone();
-            } else if (currentArch === 'v3') {
-                barContainer.innerHTML = `
-                    <div class="glass-tab-bar-v3">
-                        <div class="liquid-droplet-pill" id="v3-droplet" style="left: 20px;"></div>
-                        <button class="v2-tab-btn ${currentTab === 'home' ? 'active' : ''}" data-tab="home">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                        </button>
-                        <button class="v2-tab-btn ${currentTab === 'search' ? 'active' : ''}" data-tab="search">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-                        </button>
-                        <button class="v2-tab-btn ${currentTab === 'create' ? 'active' : ''}" data-tab="create">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                        </button>
-                        <button class="v2-tab-btn ${currentTab === 'inbox' ? 'active' : ''}" data-tab="inbox">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        </button>
-                        <button class="v2-tab-btn ${currentTab === 'saved' ? 'active' : ''}" data-tab="saved">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        </button>
-                    </div>
-                `;
-            } else if (currentArch === 'v4') {
-                barContainer.innerHTML = `
-                    <div class="glass-tab-bar-v4">
-                        <button class="v4-tab-btn ${currentTab === 'home' ? 'active' : ''}" data-tab="home">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-                            <span>Home</span>
-                        </button>
-                        <button class="v4-tab-btn ${currentTab === 'search' ? 'active' : ''}" data-tab="search">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                            <span>Likes</span>
-                        </button>
-                        <button class="v4-floating-orb" data-tab="create" title="Add Action">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-                        </button>
-                        <button class="v4-tab-btn ${currentTab === 'inbox' ? 'active' : ''}" data-tab="inbox">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                            <span>Profile</span>
-                        </button>
-                        <button class="v4-tab-btn ${currentTab === 'saved' ? 'active' : ''}" data-tab="saved">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                            <span>Alerts</span>
-                        </button>
-                    </div>
-                `;
-            }
+                    // Set active tab on buttons within this bar
+                    tabButtons.forEach(tb => tb.classList.remove('active'));
+                    btn.classList.add('active');
 
-            barContainer.querySelectorAll('button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tabKey = btn.getAttribute('data-tab');
-                    if (tabKey) {
-                        currentTab = tabKey;
-                        renderScreenContent();
-                        renderBar();
+                    // If V2 Holographic Spotlight, dynamically reposition the light cone
+                    if (arch === 'v2' && lightCone) {
+                        const btnRect = btn.getBoundingClientRect();
+                        const parentRect = btn.parentElement.getBoundingClientRect();
+                        const centerOffset = (btnRect.left - parentRect.left) + (btnRect.width / 2) - 29;
+                        lightCone.style.left = centerOffset + 'px';
                     }
                 });
             });
-            updateTelemetry();
-        }
-
-        function updateTelemetry() {
-            const archData = ARCHITECTURES[currentArch] || ARCHITECTURES['v1'];
-            const activeArchPill = document.getElementById('glassy-active-arch-pill');
-            if (activeArchPill) {
-                activeArchPill.textContent = `ACTIVE VARIANT: ${archData.title.toUpperCase()}`;
-            }
-            const blurValEl = document.getElementById('spec-blur-val');
-            if (blurValEl) blurValEl.textContent = archData.blur || '28px Blur';
-            const glowValEl = document.getElementById('spec-glow-val');
-            if (glowValEl) glowValEl.textContent = archData.glow || 'Cyan (#00f0ff)';
-        }
-
-        function updateV2LightCone() {
-            setTimeout(() => {
-                const activeBtn = barContainer.querySelector(`.v2-tab-btn[data-tab="${currentTab}"]`);
-                const cone = document.getElementById('v2-light-cone');
-                const bar = document.getElementById('glass-bar-v2');
-                if (activeBtn && cone && bar) {
-                    const btnRect = activeBtn.getBoundingClientRect();
-                    const barRect = bar.getBoundingClientRect();
-                    const offsetLeft = (btnRect.left - barRect.left) + (btnRect.width / 2) - 29;
-                    cone.style.left = `${Math.max(10, offsetLeft)}px`;
-                }
-            }, 50);
-        }
-
-        function renderScreenContent() {
-            if (screenContent) {
-                screenContent.innerHTML = SCREENS[currentTab] || SCREENS['home'];
-            }
-        }
-
-        // Connect both selector pills and the 4-stack viral reel items
-        const stackItems = document.querySelectorAll('.glassy-stack-item');
-
-        function switchArch(newArch) {
-            currentArch = newArch;
-            archBtns.forEach(b => {
-                if (b.getAttribute('data-arch') === currentArch) b.classList.add('active');
-                else b.classList.remove('active');
-            });
-            stackItems.forEach(item => {
-                if (item.getAttribute('data-arch') === currentArch) item.classList.add('active');
-                else item.classList.remove('active');
-            });
-
-            const archData = ARCHITECTURES[currentArch] || ARCHITECTURES['v1'];
-            if (archDescEl) archDescEl.textContent = archData.desc;
-            if (codePreEl) codePreEl.textContent = archData.code;
-
-            renderBar();
-            updateTelemetry();
-        }
-
-        archBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const a = btn.getAttribute('data-arch') || 'v1';
-                switchArch(a);
-            });
         });
-
-        stackItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const a = item.getAttribute('data-arch') || 'v1';
-                switchArch(a);
-            });
-        });
-
-        // Copy Code Button functionality
-        const copyBtn = document.getElementById('btn-copy-glassy-code');
-        const copyText = document.getElementById('copy-code-text');
-        if (copyBtn && codePreEl) {
-            copyBtn.addEventListener('click', () => {
-                const codeToCopy = codePreEl.textContent || '';
-                navigator.clipboard.writeText(codeToCopy).then(() => {
-                    if (copyText) copyText.textContent = 'Copied! ✓';
-                    setTimeout(() => {
-                        if (copyText) copyText.textContent = 'Copy Code';
-                    }, 2200);
-                }).catch(() => {
-                    if (copyText) copyText.textContent = 'Copied! ✓';
-                });
-            });
-        }
-
-        renderScreenContent();
-        renderBar();
     }
 
     // =========================================================================
