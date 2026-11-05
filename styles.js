@@ -515,7 +515,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalWhatsappBtn = document.getElementById('modal-whatsapp-cta');
 
     // =========================================================================
-    // 4. ANIMATED INTERACTIVE HERO BACKGROUND CANVAS (Geometric Matrix & Video)
+    // 4. ANIMATED SUNSHINE DUST PARTICLES & CANVAS ENGINE (#FFC928 on #1C1D20)
     // =========================================================================
     function initHeroMatrixCanvas() {
         const canvas = document.getElementById('hero-matrix-canvas');
@@ -535,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
             canvas.style.width = width + 'px';
             canvas.style.height = height + 'px';
             ctx.scale(dpr, dpr);
-            initNodes();
+            initDust();
         }
 
         let mouse = { x: -1000, y: -1000, active: false };
@@ -552,33 +552,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('resize', resize);
 
-        let nodes = [];
-        const nodeCount = Math.min(Math.floor(window.innerWidth / 22), 52);
+        let dustMotes = [];
+        const dustCount = Math.min(Math.floor(window.innerWidth / 26), 46);
 
-        function initNodes() {
-            nodes = [];
-            for (let i = 0; i < nodeCount; i++) {
-                nodes.push({
+        function initDust() {
+            dustMotes = [];
+            for (let i = 0; i < dustCount; i++) {
+                dustMotes.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.75,
-                    vy: (Math.random() - 0.5) * 0.75,
-                    radius: Math.random() * 2 + 1.2,
-                    isCyan: Math.random() > 0.4,
-                    pulse: Math.random() * Math.PI * 2
+                    vx: (Math.random() - 0.3) * 0.45,
+                    vy: (Math.random() * 0.4 + 0.1),
+                    radius: Math.random() * 2 + 0.8,
+                    alpha: Math.random() * 0.45 + 0.15,
+                    pulse: Math.random() * Math.PI * 2,
+                    isYellow: Math.random() > 0.35
                 });
             }
         }
 
         resize();
-
-        // Autoplay guarantee for background video
-        const heroVideo = document.getElementById('styles-hero-video');
-        if (heroVideo) {
-            heroVideo.play().catch(() => {
-                // Autoplay blocked by browser power-saving; poster fallback active
-            });
-        }
 
         let isVisible = true;
         if ('IntersectionObserver' in window) {
@@ -589,80 +582,128 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         let frameId;
-        function drawMatrix() {
+        function drawDust() {
             if (!isVisible) {
-                frameId = requestAnimationFrame(drawMatrix);
+                frameId = requestAnimationFrame(drawDust);
                 return;
             }
 
             ctx.clearRect(0, 0, width, height);
 
-            // Connective filaments & glowing nodes
-            for (let i = 0; i < nodes.length; i++) {
-                const n = nodes[i];
-                n.x += n.vx;
-                n.y += n.vy;
-                n.pulse += 0.035;
+            for (let i = 0; i < dustMotes.length; i++) {
+                const m = dustMotes[i];
+                m.x += m.vx;
+                m.y += m.vy;
+                m.pulse += 0.025;
 
-                if (n.x < 0 || n.x > width) n.vx *= -1;
-                if (n.y < 0 || n.y > height) n.vy *= -1;
+                if (m.y > height) { m.y = 0; m.x = Math.random() * width; }
+                if (m.x < 0) m.x = width;
+                if (m.x > width) m.x = 0;
 
-                // Dynamic mouse interaction with magnetic repulsion
+                // Mouse interaction
                 if (mouse.active) {
-                    const dxm = mouse.x - n.x;
-                    const dym = mouse.y - n.y;
-                    const distMouse = Math.sqrt(dxm * dxm + dym * dym);
-                    if (distMouse < 160) {
-                        const force = (1 - distMouse / 160) * 1.4;
-                        n.x -= (dxm / distMouse) * force;
-                        n.y -= (dym / distMouse) * force;
+                    const dx = mouse.x - m.x;
+                    const dy = mouse.y - m.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        m.x -= (dx / dist) * 1.2;
+                        m.y -= (dy / dist) * 1.2;
                     }
                 }
 
-                // Node glow
-                const rad = n.radius + Math.sin(n.pulse) * 0.6;
+                const currentAlpha = m.alpha * (0.6 + Math.sin(m.pulse) * 0.4);
                 ctx.beginPath();
-                ctx.arc(n.x, n.y, Math.max(0.5, rad), 0, Math.PI * 2);
-                ctx.fillStyle = n.isCyan ? 'rgba(0, 240, 255, 0.85)' : 'rgba(168, 85, 247, 0.85)';
-                ctx.shadowColor = n.isCyan ? '#00f0ff' : '#a855f7';
-                ctx.shadowBlur = 10;
+                ctx.arc(m.x, m.y, m.radius, 0, Math.PI * 2);
+                ctx.fillStyle = m.isYellow ? `rgba(255, 201, 40, ${currentAlpha})` : `rgba(242, 244, 241, ${currentAlpha * 0.8})`;
+                ctx.shadowColor = m.isYellow ? '#FFC928' : '#F2F4F1';
+                ctx.shadowBlur = 8;
                 ctx.fill();
                 ctx.shadowBlur = 0;
-
-                // Filament connections
-                for (let j = i + 1; j < nodes.length; j++) {
-                    const n2 = nodes[j];
-                    const dx = n.x - n2.x;
-                    const dy = n.y - n2.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 135) {
-                        const alpha = (1 - dist / 135) * 0.28;
-                        ctx.beginPath();
-                        ctx.moveTo(n.x, n.y);
-                        ctx.lineTo(n2.x, n2.y);
-                        ctx.strokeStyle = n.isCyan ? `rgba(0, 240, 255, ${alpha})` : `rgba(168, 85, 247, ${alpha})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
             }
 
-            // Magnetic Cursor Spotlight Halo
+            // Magnetic Cursor Glow
             if (mouse.active) {
-                const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 160);
-                grad.addColorStop(0, 'rgba(0, 240, 255, 0.15)');
-                grad.addColorStop(0.5, 'rgba(99, 102, 241, 0.08)');
+                const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 140);
+                grad.addColorStop(0, 'rgba(255, 201, 40, 0.12)');
+                grad.addColorStop(0.6, 'rgba(28, 29, 32, 0.05)');
                 grad.addColorStop(1, 'transparent');
                 ctx.fillStyle = grad;
                 ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 160, 0, Math.PI * 2);
+                ctx.arc(mouse.x, mouse.y, 140, 0, Math.PI * 2);
                 ctx.fill();
             }
 
-            frameId = requestAnimationFrame(drawMatrix);
+            frameId = requestAnimationFrame(drawDust);
         }
-        frameId = requestAnimationFrame(drawMatrix);
+        frameId = requestAnimationFrame(drawDust);
+    }
+
+    // =========================================================================
+    // 4B. EDITORIAL HERO SURREAL HOTSPOTS & SLIDER ENGINE
+    // =========================================================================
+    function initEditorialHeroHotspots() {
+        const pins = document.querySelectorAll('.surreal-pin');
+        if (!pins || pins.length === 0) return;
+
+        pins.forEach(pin => {
+            const btn = pin.querySelector('.pin-marker');
+            if (btn) {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const wasActive = pin.classList.contains('active');
+                    pins.forEach(p => p.classList.remove('active'));
+                    if (!wasActive) {
+                        pin.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.surreal-pin')) {
+                pins.forEach(p => p.classList.remove('active'));
+            }
+        });
+
+        // Auto-showcase first pin initially to guide the user
+        setTimeout(() => {
+            if (pins[0] && !document.querySelector('.surreal-pin.active')) {
+                pins[0].classList.add('active');
+                setTimeout(() => {
+                    pins[0].classList.remove('active');
+                }, 3500);
+            }
+        }, 1200);
+    }
+
+    function initEditorialHeroSlider() {
+        let activeIdx = 0;
+        const counterEl = document.getElementById('hero-slider-counter');
+        const prevBtn = document.getElementById('hero-arrow-prev');
+        const nextBtn = document.getElementById('hero-arrow-next');
+
+        function updateSlider(newIdx) {
+            if (!STYLES_DATABASE || STYLES_DATABASE.length === 0) return;
+            activeIdx = (newIdx + STYLES_DATABASE.length) % STYLES_DATABASE.length;
+            if (counterEl) {
+                counterEl.textContent = `${String(activeIdx + 1).padStart(2, '0')} — ${String(STYLES_DATABASE.length).padStart(2, '0')}`;
+            }
+            morphSandbox(STYLES_DATABASE[activeIdx], 'all');
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                updateSlider(activeIdx - 1);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                updateSlider(activeIdx + 1);
+            });
+        }
     }
 
     // =========================================================================
@@ -1892,6 +1933,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================================================
     initHeroMatrixCanvas();
     initHeroWordRotator();
+    initEditorialHeroHotspots();
+    initEditorialHeroSlider();
     renderShowcaseCards();
     morphSandbox(STYLES_DATABASE[0], 'all');
     initClosetEcommerce();

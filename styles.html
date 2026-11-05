@@ -188,85 +188,166 @@
 
         <!-- =============================================================== -->
         <!-- =============================================================== -->
-        <!-- ANIMATED CINEMATIC HERO BANNER & 3D MATRIX ENGINE               -->
+        <!-- EDITORIAL GRAPHITE HERO BANNER (Surreal 3D Spotlight Stage)     -->
         <!-- =============================================================== -->
-        <section class="styles-hero-section" id="styles-hero-banner">
-            <!-- Full-Bleed Atmospheric Motion Video Banner Layer -->
-            <div class="hero-video-backdrop" aria-hidden="true">
-                <video id="styles-hero-video" class="hero-bg-video" autoplay loop muted playsinline preload="auto" poster="styles_hero_poster.jpg">
-                    <source src="styles_hero_bg.mp4" type="video/mp4">
-                </video>
-                <div class="hero-video-scrim-dark"></div>
-                <div class="hero-video-spotlight"></div>
-                <div class="hero-video-grid-pattern"></div>
+        <section class="styles-hero-section editorial-hero" id="styles-hero-banner">
+            <!-- Background Stage & Diagonal Architectural Spotlight -->
+            <div class="editorial-bg-stage" aria-hidden="true">
+                <div class="editorial-graphite-wall"></div>
+                <div class="editorial-spotlight-cone"></div>
+                <div class="editorial-dust-canvas-layer">
+                    <canvas id="hero-matrix-canvas" class="hero-matrix-canvas"></canvas>
+                </div>
                 <div class="hero-bottom-fade"></div>
             </div>
 
-            <!-- 60FPS Interactive Node Constellation Matrix Canvas -->
-            <canvas id="hero-matrix-canvas" class="hero-matrix-canvas"></canvas>
-
-            <!-- Volumetric Ambient Light & Orbital Laser Rings -->
-            <div class="hero-stage-aura"></div>
-            <div class="hero-orbit-ring hero-ring-1"></div>
-            <div class="hero-orbit-ring hero-ring-2"></div>
-
-            <!-- Floating Design System Accent Badges (Desktop) -->
-            <div class="hero-floating-pill pill-float-1">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span>Glassmorphism 2.0</span>
-            </div>
-            <div class="hero-floating-pill pill-float-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
-                <span>Bento Grid UI</span>
-            </div>
-            <div class="hero-floating-pill pill-float-3">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#facc15"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                <span>Neo-Brutalism</span>
-            </div>
-            <div class="hero-floating-pill pill-float-4">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2"><path d="M21 9a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6v6a6 6 0 0 0 6 6h6a6 6 0 0 0 6-6V9z"/><circle cx="8.5" cy="12" r="2.5"/><circle cx="15.5" cy="12" r="2.5"/></svg>
-                <span>Spatial Computing</span>
+            <!-- Vertical Scroll Indicator on Right Edge (matches reference) -->
+            <div class="editorial-scroll-track" aria-hidden="true">
+                <span class="editorial-track-line"></span>
+                <span class="editorial-track-thumb"></span>
             </div>
 
-            <div class="container hero-content-container" style="position: relative; z-index: 10;">
-                <div class="hero-badge">
-                    <span class="pulse-dot"></span>
-                    <span class="badge-text">ELAVATEX DESIGN ARCHITECTURES &bull; 2026-2027 MATRIX</span>
-                </div>
+            <div class="container editorial-hero-container">
+                <div class="editorial-hero-grid">
+                    
+                    <!-- LEFT COLUMN: EDITORIAL TYPOGRAPHY & CTAS -->
+                    <div class="editorial-text-col">
+                        <!-- Top Kicker Pill (matches reference) -->
+                        <div class="editorial-kicker">
+                            <span class="kicker-words">DREAM &bull; PLAN &bull; ACHIEVE</span>
+                            <span class="kicker-bar"></span>
+                            <span class="kicker-chip">18 ARCHITECTURAL STYLES</span>
+                        </div>
 
-                <h1 class="styles-hero-heading">
-                    18 World-Class <br class="mobile-break">Web Design Philosophies <br>
-                    Engineered for <br class="mobile-break">
-                    <span class="styles-hero-rotator" id="styles-hero-rotator">
-                        <span class="rotator-word active">MAXIMUM REVENUE.</span>
-                        <span class="rotator-word">CLINICAL AUTHORITY.</span>
-                        <span class="rotator-word">UNFAIR ADVANTAGE.</span>
-                        <span class="rotator-word">LUXURY PRESTIGE.</span>
-                    </span>
-                </h1>
+                        <!-- Main Display Headline (matches reference exactly) -->
+                        <h1 class="editorial-headline">
+                            Turn Ideas <br>
+                            Into <span class="highlight-yellow">Impact.</span>
+                        </h1>
 
-                <p class="styles-hero-sub">
-                    Explore how high-end aesthetics morph seamlessly across 14 commercial industries—from clinical Dental and AI Automation to Real Estate Brokers and Luxury Commerce. Experience production-grade handwritten CSS in action.
-                </p>
+                        <!-- Word Rotator Underline -->
+                        <div class="editorial-rotator-deck">
+                            <span class="rotator-prefix">ENGINEERED FOR:</span>
+                            <div class="styles-hero-rotator" id="styles-hero-rotator">
+                                <span class="rotator-word active">MAXIMUM REVENUE.</span>
+                                <span class="rotator-word">CLINICAL AUTHORITY.</span>
+                                <span class="rotator-word">UNFAIR ADVANTAGE.</span>
+                                <span class="rotator-word">LUXURY PRESTIGE.</span>
+                            </div>
+                        </div>
 
-                <!-- Stats Strip -->
-                <div class="hero-stats-deck">
-                    <div class="stat-chip-pill">
-                        <span class="dot dot-cyan"></span>
-                        <span><strong>18</strong> Visual Philosophies</span>
+                        <!-- Editorial Subtitle -->
+                        <p class="editorial-subtext">
+                            A space to think deeper, create bolder, and grow further. Explore 18 world-class web design philosophies engineered across 14 commercial industries—from clinical Dental to AI Automation. 100% handwritten zero-bloat CSS.
+                        </p>
+
+                        <!-- Action Deck (matches reference CTA buttons) -->
+                        <div class="editorial-cta-row">
+                            <a href="#styles-sandbox-section" class="editorial-btn-journey" data-jump="styles-sandbox-section">
+                                <span class="btn-play-circle">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                </span>
+                                <span>Watch The Journey</span>
+                            </a>
+                            <button class="editorial-btn-start open-consultation-btn">
+                                <span>Get Started &rarr;</span>
+                            </button>
+                        </div>
+
+                        <!-- Bottom Meta Strip (matches reference bottom bar) -->
+                        <div class="editorial-bottom-strip">
+                            <div class="editorial-scroll-prompt">
+                                <span class="prompt-bar"></span>
+                                <span>Scroll to explore</span>
+                            </div>
+                            <div class="editorial-slider-nav">
+                                <span class="slider-counter" id="hero-slider-counter">01 &mdash; 18</span>
+                                <div class="slider-arrows">
+                                    <button class="slider-arrow-btn" id="hero-arrow-prev" aria-label="Previous style">&larr;</button>
+                                    <button class="slider-arrow-btn" id="hero-arrow-next" aria-label="Next style">&rarr;</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-chip-pill">
-                        <span class="dot dot-purple"></span>
-                        <span><strong>14</strong> Commercial Industries</span>
+
+                    <!-- RIGHT COLUMN: SURREAL 3D SPOTLIGHT STAGE -->
+                    <div class="editorial-visual-col">
+                        <div class="surreal-stage-wrapper">
+                            <!-- High-Res Surreal 3D Artwork -->
+                            <div class="surreal-art-frame">
+                                <img src="elavatex_surreal_hero_opt.jpg" alt="ElavateX Surreal 3D Creative Hero - Cracked Golden Egg and Astronaut Developer" class="surreal-hero-img" id="surreal-hero-img">
+                                <div class="surreal-light-glare"></div>
+                            </div>
+
+                            <!-- Interactive Fun Hotspot Pins (Reveals Funny & Catchy Info Cards) -->
+                            <!-- Pin 1: The Egg -->
+                            <div class="surreal-pin pin-egg" data-pin="egg" style="top: 72%; left: 34%;">
+                                <button class="pin-marker" aria-label="Inspect generic template cracker">
+                                    <span class="pin-pulse"></span>
+                                    <span class="pin-icon">🥚</span>
+                                </button>
+                                <div class="pin-card">
+                                    <div class="pin-card-header">
+                                        <span class="pin-badge">SURREAL METAPHOR</span>
+                                        <strong>The Boring Template Cracker</strong>
+                                    </div>
+                                    <p>Say goodbye to generic WordPress themes. We crack open creative boundaries to hatch bespoke, revenue-generating digital architectures.</p>
+                                </div>
+                            </div>
+
+                            <!-- Pin 2: The Astronaut -->
+                            <div class="surreal-pin pin-astronaut" data-pin="astronaut" style="top: 34%; left: 51%;">
+                                <button class="pin-marker" aria-label="Inspect code astronaut">
+                                    <span class="pin-pulse"></span>
+                                    <span class="pin-icon">👨‍🚀</span>
+                                </button>
+                                <div class="pin-card">
+                                    <div class="pin-card-header">
+                                        <span class="pin-badge">ZERO BLOAT</span>
+                                        <strong>Senior Code Astronaut</strong>
+                                    </div>
+                                    <p>100% production-ready handwritten CSS &amp; Next.js 14 engineering. Running at fluid 60 FPS across every screen.</p>
+                                </div>
+                            </div>
+
+                            <!-- Pin 3: The Laptop with Code -->
+                            <div class="surreal-pin pin-laptop" data-pin="laptop" style="top: 38%; left: 63%;">
+                                <button class="pin-marker" aria-label="Inspect 100/100 Core Web Vitals">
+                                    <span class="pin-pulse"></span>
+                                    <span class="pin-icon">💻</span>
+                                </button>
+                                <div class="pin-card">
+                                    <div class="pin-card-header">
+                                        <span class="pin-badge">PERFORMANCE</span>
+                                        <strong>100/100 Core Web Vitals Ready</strong>
+                                    </div>
+                                    <p>Sub-second FCP and perfect SEO indexing scores. Google algorithms favor speed, and we engineer unfair digital advantage.</p>
+                                </div>
+                            </div>
+
+                            <!-- Pin 4: The Golden Rocket -->
+                            <div class="surreal-pin pin-rocket" data-pin="rocket" style="top: 22%; left: 66%;">
+                                <button class="pin-marker" aria-label="Inspect 14 Commercial Industries">
+                                    <span class="pin-pulse"></span>
+                                    <span class="pin-icon">🚀</span>
+                                </button>
+                                <div class="pin-card">
+                                    <div class="pin-card-header">
+                                        <span class="pin-badge">SCALE</span>
+                                        <strong>14 Commercial Verticals</strong>
+                                    </div>
+                                    <p>Clinical Dental to AI Automation, Real Estate, and Luxury Commerce. Instant custom deployment ready.</p>
+                                </div>
+                            </div>
+
+                            <!-- Live Interactive Fun Pill Tag -->
+                            <div class="surreal-badge-pill">
+                                <span class="badge-dot-yellow"></span>
+                                <span>Click pins to explore the creative mechanics &bull; 100% Custom 3D</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-chip-pill">
-                        <span class="dot dot-emerald"></span>
-                        <span><strong>100%</strong> Handwritten Zero-Bloat CSS</span>
-                    </div>
-                    <div class="stat-chip-pill">
-                        <span class="dot dot-amber"></span>
-                        <span><strong>100/100</strong> Core Web Vitals Ready</span>
-                    </div>
+
                 </div>
             </div>
         </section>
