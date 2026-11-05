@@ -1363,13 +1363,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function updateSlidePosition() {
-            const offset = -activeIdx * 290;
-            track.style.transform = `translateX(${offset}px)`;
+            if (!railViewport || !track) return;
+            const viewportWidth = railViewport.offsetWidth || window.innerWidth;
+            const isMobile = window.innerWidth <= 768;
+            const itemWidth = isMobile ? 180 : 240;
+            const itemGap = isMobile ? 20 : 30;
+            const stride = itemWidth + itemGap;
+            const centerOffset = (viewportWidth / 2) - ((activeIdx * stride) + (itemWidth / 2));
+            track.style.transform = `translateX(${centerOffset}px)`;
 
             document.querySelectorAll('.closet-garment-wrapper').forEach((el, idx) => {
                 el.classList.remove('garment-active', 'garment-step-1', 'garment-step-2');
-                if (idx === activeIdx) el.classList.add('garment-active');
-                else if (Math.abs(idx - activeIdx) === 1) el.classList.add('garment-step-1');
+                const diff = Math.abs(idx - activeIdx);
+                if (diff === 0) el.classList.add('garment-active');
+                else if (diff === 1) el.classList.add('garment-step-1');
                 else el.classList.add('garment-step-2');
 
                 if (idx === activeIdx && isBackView) {
@@ -1492,6 +1499,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { passive: true });
         }
 
+        window.addEventListener('resize', updateSlidePosition);
         renderRack();
     }
 
@@ -1515,21 +1523,29 @@ document.addEventListener('DOMContentLoaded', () => {
             v1: {
                 title: 'V1: Neo-Arc Center Curve (Neon Cyan)',
                 desc: 'Continuous translucent glass capsule with organic center curve cutout cradling a glowing cyan neon + Create action button.',
+                blur: '28px (Hardware GPU)',
+                glow: '100% Electric Cyan (#00f0ff)',
                 code: `// V1: Neo-Arc Glowing Center Glass Bar\n<nav className="relative flex items-center justify-between rounded-full bg-white/10 px-6 py-3 shadow-2xl backdrop-blur-xl border border-white/20">\n  <TabItem icon={Home} label="Home" active />\n  <TabItem icon={Search} label="Search" />\n  <CenterArcButton icon={Plus} label="Create" glowColor="#00f0ff" />\n  <TabItem icon={Inbox} label="Inbox" badge={2} />\n  <TabItem icon={Bookmark} label="Saved" />\n</nav>`
             },
             v2: {
                 title: 'V2: Holographic Spotlight Focus (From Images 1&2)',
                 desc: 'Translucent dark glass bar with a dynamic holographic light cone beam that tracks and illuminates the active tab with intense cyan radiance.',
+                blur: '32px (Spotlight Focus)',
+                glow: 'Dynamic Cone Radiance',
                 code: `// V2: Holographic Spotlight Beam Navigation\n<div className="relative flex items-center justify-around rounded-full bg-slate-900/80 p-3 backdrop-blur-2xl border border-white/10">\n  {/* Animated Light Cone Beam */}\n  <motion.div \n    className="absolute -top-6 h-12 w-14 bg-gradient-to-b from-cyan-400/60 to-transparent"\n    style={{ clipPath: 'polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%)' }}\n    animate={{ x: activeTabOffset }}\n  />\n  <TabButton icon={Home} active={tab==='home'} />\n  <TabButton icon={Heart} active={tab==='likes'} />\n  <TabButton icon={Plus} active={tab==='add'} />\n  <TabButton icon={User} active={tab==='profile'} />\n  <TabButton icon={Bell} active={tab==='alerts'} />\n</div>`
             },
             v3: {
                 title: 'V3: Liquid Droplet Morph',
                 desc: 'Organic liquid glass bar with a fluid morphing droplet pill that flows seamlessly across icons with spring damping physics.',
+                blur: '24px (Liquid Droplet)',
+                glow: 'Fluid Spring Physics',
                 code: `// V3: Liquid Droplet Morphing Navigation\n<nav className="relative flex items-center justify-between rounded-full bg-white/10 px-4 py-2 backdrop-blur-xl border border-white/20">\n  <motion.div \n    layoutId="liquidDroplet"\n    className="absolute h-10 w-10 rounded-full bg-sky-500/25 border border-sky-400 shadow-[0_0_15px_#38bdf8]"\n    transition={{ type: 'spring', stiffness: 350, damping: 25 }}\n  />\n  <TabItem icon={Home} />\n  <TabItem icon={Compass} />\n  <TabItem icon={Plus} />\n  <TabItem icon={MessageCircle} />\n  <TabItem icon={User} />\n</nav>`
             },
             v4: {
                 title: 'V4: Champagne Floating Island',
                 desc: 'Warm frosted glass capsule paired with an elevated detached circular action orb hovering above the navigation bar in 3D space.',
+                blur: '30px (Amber Frost)',
+                glow: 'Champagne Warmth (#f59e0b)',
                 code: `// V4: Champagne Floating Island Navigation\n<div className="relative flex items-center justify-between rounded-full bg-amber-100/30 px-6 py-2.5 backdrop-blur-2xl border border-white/50 text-stone-900">\n  <TabItem icon={Home} label="Home" />\n  <TabItem icon={Heart} label="Likes" />\n  {/* Floating Detached Orb */}\n  <div className="-mt-6 flex h-11 w-11 items-center justify-center rounded-full bg-amber-800 text-white shadow-lg border-2 border-white">\n    <Plus size={18} />\n  </div>\n  <TabItem icon={User} label="Profile" />\n  <TabItem icon={Bell} label="Alerts" />\n</div>`
             }
         };
@@ -1538,66 +1554,102 @@ document.addEventListener('DOMContentLoaded', () => {
             home: `
                 <div class="mini-dashboard-card">
                     <div class="card-stat-header">
-                        <span style="font-size:0.8rem; font-weight:700; color:#94a3b8;">Active Client Deployments</span>
-                        <span class="stat-pill-badge">+28% MoM</span>
+                        <span style="font-size:0.75rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1px;">Active Engine Telemetry</span>
+                        <span class="stat-pill-badge">+34% Lift</span>
                     </div>
-                    <div class="stat-main-number">12 Projects</div>
-                    <div style="font-size:0.75rem; color:#cbd5e1;">8 Production MVPs • 4 In Design Review</div>
+                    <div class="stat-main-number" style="font-size:1.6rem; color:#ffffff;">$64,850 ARR</div>
+                    <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:0.6rem;">14 Live Production Deployments • 100/100 Vitals</div>
+                    <div style="height:28px; display:flex; align-items:flex-end; gap:5px;">
+                        <div style="flex:1; height:35%; background:#818cf8; border-radius:3px;"></div>
+                        <div style="flex:1; height:55%; background:#818cf8; border-radius:3px;"></div>
+                        <div style="flex:1; height:45%; background:#818cf8; border-radius:3px;"></div>
+                        <div style="flex:1; height:75%; background:#818cf8; border-radius:3px;"></div>
+                        <div style="flex:1; height:65%; background:#818cf8; border-radius:3px;"></div>
+                        <div style="flex:1; height:90%; background:#38bdf8; border-radius:3px;"></div>
+                        <div style="flex:1; height:100%; background:#00f0ff; border-radius:3px; box-shadow:0 0 10px #00f0ff;"></div>
+                    </div>
                 </div>
-                <div class="mini-dashboard-card" style="background:rgba(99,102,241,0.12); border-color:rgba(99,102,241,0.3);">
-                    <div class="card-stat-header">
-                        <span style="font-size:0.8rem; font-weight:700; color:#c7d2fe;">Total ARR Engine</span>
-                        <span class="stat-pill-badge" style="background:rgba(99,102,241,0.25); color:#c7d2fe;">Verified</span>
-                    </div>
-                    <div class="stat-main-number" style="color:#ffffff;">$52,480</div>
-                    <div style="height:24px; display:flex; align-items:flex-end; gap:4px; margin-top:8px;">
-                        <div style="flex:1; height:40%; background:#818cf8; border-radius:2px;"></div>
-                        <div style="flex:1; height:60%; background:#818cf8; border-radius:2px;"></div>
-                        <div style="flex:1; height:50%; background:#818cf8; border-radius:2px;"></div>
-                        <div style="flex:1; height:80%; background:#818cf8; border-radius:2px;"></div>
-                        <div style="flex:1; height:70%; background:#818cf8; border-radius:2px;"></div>
-                        <div style="flex:1; height:100%; background:#00f0ff; border-radius:2px; box-shadow:0 0 8px #00f0ff;"></div>
+                <div class="mini-dashboard-card" style="background:rgba(15,23,42,0.6); border-color:rgba(255,255,255,0.12);">
+                    <div style="font-size:0.72rem; font-weight:800; color:#38bdf8; text-transform:uppercase; margin-bottom:0.4rem; letter-spacing:1px;">Core Service Modules</div>
+                    <div style="display:flex; flex-direction:column; gap:6px; font-size:0.72rem;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 6px; background:rgba(255,255,255,0.05); border-radius:6px;">
+                            <span style="color:#ffffff; font-weight:600;">🌐 Web Engineering</span>
+                            <span style="color:#10b981; font-weight:700;">100/100</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 6px; background:rgba(255,255,255,0.05); border-radius:6px;">
+                            <span style="color:#ffffff; font-weight:600;">📱 Mobile Apps</span>
+                            <span style="color:#38bdf8; font-weight:700;">60 FPS</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 6px; background:rgba(255,255,255,0.05); border-radius:6px;">
+                            <span style="color:#ffffff; font-weight:600;">🚀 Social Growth</span>
+                            <span style="color:#ec4899; font-weight:700;">+4.8x ROAS</span>
+                        </div>
                     </div>
                 </div>
             `,
             search: `
                 <div class="mini-dashboard-card">
-                    <div style="font-weight:800; font-size:0.92rem; margin-bottom:0.75rem; color:#ffffff;">Visual Design Explorer</div>
-                    <div style="display:flex; flex-wrap:wrap; gap:6px;">
-                        <span style="padding:4px 8px; border-radius:999px; background:rgba(0,240,255,0.15); border:1px solid #00f0ff; color:#00f0ff; font-size:0.7rem; font-weight:700;">#Glassmorphism</span>
-                        <span style="padding:4px 8px; border-radius:999px; background:rgba(255,255,255,0.08); font-size:0.7rem; color:#e2e8f0;">#BentoUI</span>
-                        <span style="padding:4px 8px; border-radius:999px; background:rgba(255,255,255,0.08); font-size:0.7rem; color:#e2e8f0;">#2026Closet</span>
-                        <span style="padding:4px 8px; border-radius:999px; background:rgba(255,255,255,0.08); font-size:0.7rem; color:#e2e8f0;">#Cyberpunk</span>
+                    <div style="font-weight:800; font-size:0.88rem; margin-bottom:0.6rem; color:#ffffff;">Aesthetic Style Filter</div>
+                    <div style="display:flex; flex-wrap:wrap; gap:5px; margin-bottom:0.8rem;">
+                        <span style="padding:3px 8px; border-radius:999px; background:rgba(0,240,255,0.18); border:1px solid #00f0ff; color:#00f0ff; font-size:0.68rem; font-weight:700;">#Glassmorphism</span>
+                        <span style="padding:3px 8px; border-radius:999px; background:rgba(255,255,255,0.08); font-size:0.68rem; color:#e2e8f0;">#BentoUI</span>
+                        <span style="padding:3px 8px; border-radius:999px; background:rgba(255,255,255,0.08); font-size:0.68rem; color:#e2e8f0;">#2026Closet</span>
+                        <span style="padding:3px 8px; border-radius:999px; background:rgba(255,255,255,0.08); font-size:0.68rem; color:#e2e8f0;">#Cyberpunk</span>
                     </div>
+                    <div style="font-size:0.72rem; color:#94a3b8; line-height:1.4;">Tap any design category to preview live shaders and physics in our sandbox.</div>
+                </div>
+                <div class="mini-dashboard-card" style="background:rgba(2,132,199,0.12); border-color:rgba(2,132,199,0.3);">
+                    <div style="font-size:0.75rem; font-weight:700; color:#38bdf8; margin-bottom:0.25rem;">18 Verified Aesthetics</div>
+                    <div style="font-size:0.7rem; color:#cbd5e1;">Available for Healthcare, Clinics, FinTech, & E-Commerce.</div>
                 </div>
             `,
             create: `
-                <div class="mini-dashboard-card" style="text-align:center; padding:1.8rem 1rem;">
-                    <div style="width:44px; height:44px; border-radius:50%; background:var(--grad-primary); color:#ffffff; display:flex; align-items:center; justify-content:center; margin:0 auto 0.75rem;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <div class="mini-dashboard-card" style="text-align:center; padding:1.5rem 1rem;">
+                    <div style="width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg, #0284c7, #2563eb); color:#ffffff; display:flex; align-items:center; justify-content:center; margin:0 auto 0.6rem; box-shadow:0 0 15px rgba(2,132,199,0.5);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                     </div>
-                    <div style="font-weight:900; font-size:1.05rem; margin-bottom:0.4rem; color:#ffffff;">Launch New MVP</div>
-                    <p style="font-size:0.78rem; opacity:0.8; margin-bottom:1rem; color:#cbd5e1;">Connect directly with our Lead Architect to prototype your vision in 48 hours.</p>
-                    <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20am%20testing%20your%20Glassy%20Navigation%20and%20want%20to%20launch%20my%20MVP." target="_blank" class="morph-btn" style="font-size:0.8rem; padding:0.5rem 1rem;">Launch Project &rarr;</a>
+                    <div style="font-weight:900; font-size:1rem; margin-bottom:0.3rem; color:#ffffff;">Deploy Custom MVP</div>
+                    <p style="font-size:0.72rem; opacity:0.85; margin-bottom:0.9rem; color:#cbd5e1;">Architect your platform with ElavateX engineering team in 48 hours.</p>
+                    <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20am%20testing%20your%20Glassy%20Navigation%20and%20want%20to%20launch%20my%20MVP." target="_blank" style="display:inline-block; font-size:0.75rem; font-weight:800; padding:0.5rem 1.2rem; background:#00f0ff; color:#0f172a; border-radius:999px; text-decoration:none; box-shadow:0 0 15px rgba(0,240,255,0.5);">Launch on WhatsApp &rarr;</a>
                 </div>
             `,
             inbox: `
                 <div class="mini-dashboard-card">
-                    <div style="font-weight:800; font-size:0.9rem; margin-bottom:0.75rem; color:#ffffff;">Live Leads & Inquiries</div>
-                    <div style="font-size:0.78rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px; margin-bottom:8px;">
-                        <div style="font-weight:700; color:#38bdf8;">Dr. Miller • Dental Clinic</div>
-                        <div style="opacity:0.7; color:#cbd5e1;">"Requested Glassmorphism MVP consultation"</div>
+                    <div style="font-weight:800; font-size:0.85rem; margin-bottom:0.6rem; color:#ffffff; display:flex; justify-content:space-between;">
+                        <span>Inbound Pipeline</span>
+                        <span style="font-size:0.68rem; color:#10b981; font-weight:700;">● Active</span>
                     </div>
-                    <div style="font-size:0.78rem;">
+                    <div style="font-size:0.72rem; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:6px; margin-bottom:6px;">
+                        <div style="font-weight:700; color:#38bdf8;">Dr. Miller • Dental Clinic</div>
+                        <div style="opacity:0.75; color:#cbd5e1;">"Requested Glassmorphism MVP consultation"</div>
+                    </div>
+                    <div style="font-size:0.72rem; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:6px; margin-bottom:6px;">
                         <div style="font-weight:700; color:#10b981;">Apex Capital • Brokerage</div>
-                        <div style="opacity:0.7; color:#cbd5e1;">"Bento Grid UI review scheduled"</div>
+                        <div style="opacity:0.75; color:#cbd5e1;">"Bento Grid UI review scheduled"</div>
+                    </div>
+                    <div style="font-size:0.72rem;">
+                        <div style="font-weight:700; color:#ec4899;">Vencedores • Atelier 2026</div>
+                        <div style="opacity:0.75; color:#cbd5e1;">"Virtual Closet 3D rail active"</div>
                     </div>
                 </div>
             `,
             saved: `
                 <div class="mini-dashboard-card">
-                    <div style="font-weight:800; font-size:0.9rem; margin-bottom:0.75rem; color:#ffffff;">Curated Moodboards</div>
-                    <div style="font-size:0.78rem; opacity:0.8; color:#cbd5e1;">3 saved design philosophies: Glassmorphism 2.0, Stealth Luxury, 3D Virtual Closet.</div>
+                    <div style="font-weight:800; font-size:0.85rem; margin-bottom:0.6rem; color:#ffffff;">Curated Architectural Blueprints</div>
+                    <div style="display:flex; flex-direction:column; gap:6px; font-size:0.72rem;">
+                        <div style="background:rgba(255,255,255,0.05); padding:6px 8px; border-radius:6px; border:1px solid rgba(255,255,255,0.08);">
+                            <div style="font-weight:700; color:#38bdf8;">1. Glassmorphism 2.0</div>
+                            <div style="color:#94a3b8; font-size:0.66rem;">28px hardware-accelerated backdrop blur</div>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.05); padding:6px 8px; border-radius:6px; border:1px solid rgba(255,255,255,0.08);">
+                            <div style="font-weight:700; color:#818cf8;">2. Bento Grid Enterprise</div>
+                            <div style="color:#94a3b8; font-size:0.66rem;">Modular high-concurrency SaaS dashboard</div>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.05); padding:6px 8px; border-radius:6px; border:1px solid rgba(255,255,255,0.08);">
+                            <div style="font-weight:700; color:#f59e0b;">3. Clothes Closet 2026</div>
+                            <div style="color:#94a3b8; font-size:0.66rem;">3D horizontal rail e-commerce engine</div>
+                        </div>
+                    </div>
                 </div>
             `
         };
@@ -1701,12 +1753,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tabKey = btn.getAttribute('data-tab');
                     if (tabKey) {
                         currentTab = tabKey;
-                        if (activeTabLbl) activeTabLbl.textContent = tabKey.toUpperCase();
                         renderScreenContent();
                         renderBar();
                     }
                 });
             });
+            updateTelemetry();
+        }
+
+        function updateTelemetry() {
+            const archData = ARCHITECTURES[currentArch] || ARCHITECTURES['v1'];
+            if (activeTabLbl) {
+                const tabNames = ['home', 'search', 'create', 'inbox', 'saved'];
+                const idx = tabNames.indexOf(currentTab);
+                const numStr = idx >= 0 ? `0${idx + 1}` : '01';
+                activeTabLbl.textContent = `${currentTab.toUpperCase()} (${numStr}/05)`;
+            }
+            const blurEl = document.getElementById('blur-val');
+            if (blurEl) blurEl.textContent = archData.blur || '28px (Hardware GPU)';
+            const glowEl = document.getElementById('glow-val');
+            if (glowEl) glowEl.textContent = archData.glow || '100% Cyan Active (#00f0ff)';
         }
 
         function updateV2LightCone() {
@@ -1740,6 +1806,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (codePreEl) codePreEl.textContent = archData.code;
 
                 renderBar();
+                updateTelemetry();
             });
         });
 

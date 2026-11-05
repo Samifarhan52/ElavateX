@@ -211,12 +211,48 @@
             </a>
             <nav class="nav-links">
                 <a href="#about" class="nav-link active">About</a>
-                <a href="#services-overview" class="nav-link">Services</a>
+                <div class="nav-dropdown-wrapper">
+                    <a href="#services-overview" class="nav-link nav-dropdown-trigger">
+                        <span>Services</span>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="services/web-development.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-icon" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">🌐</span>
+                            <div class="dropdown-item-info">
+                                <strong>Website Development</strong>
+                                <span>Custom Next.js 14, 100/100 Vitals &amp; SaaS</span>
+                            </div>
+                        </a>
+                        <a href="services/mobile-app-development.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📱</span>
+                            <div class="dropdown-item-info">
+                                <strong>Mobile App Development</strong>
+                                <span>iOS &amp; Android, 60 FPS Native, Offline Sync</span>
+                            </div>
+                        </a>
+                        <a href="services/social-media-management.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;">🚀</span>
+                            <div class="dropdown-item-info">
+                                <strong>Social Media Growth</strong>
+                                <span>Viral Short-Form Reels, Paid Meta Ads</span>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="styles.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-icon" style="background: rgba(6, 182, 212, 0.15); color: #06b6d4;">✨</span>
+                            <div class="dropdown-item-info">
+                                <strong>Design Styles &amp; Demos</strong>
+                                <span>18 Aesthetics, 2026 Closet &amp; Glassy UI</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
                 <a href="#mvp-demo" class="nav-link">Demo &amp; MVP</a>
                 <a href="#execution-roadmap" class="nav-link">Roadmap</a>
                 <a href="#portfolio" class="nav-link">Work</a>
                 <a href="#estimator" class="nav-link">Estimator</a>
-                <a href="styles.html" class="nav-link" title="Web Design Styles &amp; Interactive Demos">Styles</a>
+                <a href="styles.html" class="nav-link" style="color: var(--accent-cyan); font-weight: 700;" title="Web Design Styles &amp; Interactive Demos">Styles ✨</a>
                 <a href="brochure.html" class="nav-link" title="Company Brochure &amp; Capabilities Deck">Brochure</a>
             </nav>
 
@@ -258,7 +294,11 @@
         </div>
         <div class="drawer-links">
             <a href="#about" class="drawer-link">About</a>
-            <a href="#services-overview" class="drawer-link">Core Services</a>
+            <a href="#services-overview" class="drawer-link">Core Services (All)</a>
+            <a href="services/web-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #818cf8; font-size: 0.95rem;">↳ 🌐 Website Development Suite</a>
+            <a href="services/mobile-app-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #38bdf8; font-size: 0.95rem;">↳ 📱 Mobile App Engineering</a>
+            <a href="services/social-media-management.html" class="drawer-link" style="padding-left: 1.8rem; color: #ec4899; font-size: 0.95rem;">↳ 🚀 Social Media &amp; Viral Growth</a>
+            <a href="styles.html" class="drawer-link" style="color: var(--accent-cyan); font-weight: 700;">✨ Styles &amp; Interactive Demos</a>
             <a href="#knowledge-hub" class="drawer-link">Growth Frameworks</a>
             <a href="#daily-journey" class="drawer-link">Daily Journey (BTS)</a>
             <a href="#mvp-demo" class="drawer-link">Demo &amp; MVP Blueprint</a>
@@ -267,7 +307,6 @@
             <a href="#portfolio" class="drawer-link">Work &amp; Case Studies</a>
             <a href="#estimator" class="drawer-link">Project Scope Estimator</a>
             <a href="#testimonials" class="drawer-link">Client Reviews</a>
-            <a href="styles.html" class="drawer-link">Design Styles &amp; Demos Directory</a>
             <a href="brochure.html" class="drawer-link" style="color: var(--accent-purple); font-weight: 700;">Company Brochure (PDF &amp; Deck)</a>
             <hr class="drawer-divider">
             <button class="btn-primary open-consultation-btn w-full">Book a Call</button>
@@ -538,6 +577,20 @@
                     <p class="services-9-main-subtitle">
                         From custom mobile apps and full-stack SaaS portals to high-converting websites and performance marketing. We explain every capability in simple, transparent terms—no bloated jargon, just verified engineering and real revenue impact.
                     </p>
+                    <div class="dedicated-suites-banner reveal-item" style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                        <a href="services/web-development.html" class="suite-pill-btn suite-web">
+                            <span>🌐 Website Development Suite &rarr;</span>
+                        </a>
+                        <a href="services/mobile-app-development.html" class="suite-pill-btn suite-app">
+                            <span>📱 Mobile App Engineering &rarr;</span>
+                        </a>
+                        <a href="services/social-media-management.html" class="suite-pill-btn suite-smm">
+                            <span>🚀 Social Media &amp; Viral Ads &rarr;</span>
+                        </a>
+                        <a href="styles.html" class="suite-pill-btn suite-styles">
+                            <span>✨ 18 Design Aesthetics &amp; Demos &rarr;</span>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="services-9-grid">
@@ -558,7 +611,10 @@
                         </ul>
                         <div class="service-card-9-footer">
                             <span class="service-rate-badge">Starts from &#8377;14,999*</span>
-                            <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20interested%20in%20Mobile%20Application%20Development." target="_blank" class="service-link-cta">Inquire Scope &rarr;</a>
+                            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                <a href="services/mobile-app-development.html" class="service-page-btn" title="View Detailed Mobile App Suite">Full App Suite &rarr;</a>
+                                <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20interested%20in%20Mobile%20Application%20Development." target="_blank" class="service-link-cta">Inquire &rarr;</a>
+                            </div>
                         </div>
                     </div>
 
@@ -579,7 +635,10 @@
                         </ul>
                         <div class="service-card-9-footer">
                             <span class="service-rate-badge">Starts from &#8377;14,999*</span>
-                            <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20interested%20in%20Custom%20Web%20Application%20or%20SaaS%20Development." target="_blank" class="service-link-cta">Inquire Scope &rarr;</a>
+                            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                <a href="services/web-development.html" class="service-page-btn" title="View Detailed Web & SaaS Suite">Full SaaS Suite &rarr;</a>
+                                <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20interested%20in%20Custom%20Web%20Application%20or%20SaaS%20Development." target="_blank" class="service-link-cta">Inquire &rarr;</a>
+                            </div>
                         </div>
                     </div>
 
@@ -600,7 +659,10 @@
                         </ul>
                         <div class="service-card-9-footer">
                             <span class="service-rate-badge">Starts from &#8377;6,999*</span>
-                            <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20interested%20in%20Website%20Design%20%26%20Development." target="_blank" class="service-link-cta">Inquire Scope &rarr;</a>
+                            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                <a href="services/web-development.html" class="service-page-btn" title="View Detailed Website Development Suite">Full Web Suite &rarr;</a>
+                                <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20interested%20in%20Website%20Design%20%26%20Development." target="_blank" class="service-link-cta">Inquire &rarr;</a>
+                            </div>
                         </div>
                     </div>
 
@@ -705,7 +767,10 @@
                         </ul>
                         <div class="service-card-9-footer">
                             <span class="service-rate-badge">Starts from &#8377;3,999*</span>
-                            <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20interested%20in%20Social%20Media%20Growth." target="_blank" class="service-link-cta">Inquire Scope &rarr;</a>
+                            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                <a href="services/social-media-management.html" class="service-page-btn" title="View Detailed Social Media Growth Suite">Full SMM Suite &rarr;</a>
+                                <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20am%20interested%20in%20Social%20Media%20Growth." target="_blank" class="service-link-cta">Inquire &rarr;</a>
+                            </div>
                         </div>
                     </div>
 
@@ -726,7 +791,10 @@
                         </ul>
                         <div class="service-card-9-footer">
                             <span class="service-rate-badge">Starts from &#8377;2,999*</span>
-                            <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20Short-Form%20Video%20Editing%20and%20Branding." target="_blank" class="service-link-cta">Inquire Scope &rarr;</a>
+                            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                <a href="services/social-media-management.html" class="service-page-btn" title="View Detailed Video & Media Suite">Full Media Suite &rarr;</a>
+                                <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20want%20Short-Form%20Video%20Editing%20and%20Branding." target="_blank" class="service-link-cta">Inquire &rarr;</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2332,10 +2400,10 @@
                 <div class="footer-col">
                     <h4 class="footer-heading">Services</h4>
                     <ul class="footer-links">
-                        <li><a href="#services-overview">Web Development</a></li>
-                        <li><a href="#services-overview">Application Development</a></li>
-                        <li><a href="#services-overview">Social Media Management</a></li>
-                        <li><a href="#services-overview">Meta & Google Paid Ads</a></li>
+                        <li><a href="services/web-development.html">Website Development &rarr;</a></li>
+                        <li><a href="services/mobile-app-development.html">Application Development &rarr;</a></li>
+                        <li><a href="services/social-media-management.html">Social Media Management &rarr;</a></li>
+                        <li><a href="styles.html" style="color: var(--accent-cyan); font-weight: 700;">Design Styles &amp; 18 Demos &rarr;</a></li>
                     </ul>
                 </div>
 

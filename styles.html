@@ -25,7 +25,7 @@
     <!-- Master Brand Stylesheet -->
     <link rel="stylesheet" href="style.css?v=1.6">
     <!-- Showcase Extension Stylesheet -->
-    <link rel="stylesheet" href="styles-showcase.css?v=2.1">
+    <link rel="stylesheet" href="styles-showcase.css?v=2.2">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -82,8 +82,36 @@
             </a>
             <nav class="nav-links">
                 <a href="index.html#about" class="nav-link">About</a>
-                <a href="index.html#services-overview" class="nav-link">Services</a>
-                <a href="styles.html" class="nav-link active" title="Web Design Styles &amp; Interactive Demos">Styles</a>
+                <div class="nav-dropdown-wrapper">
+                    <a href="index.html#services-overview" class="nav-link nav-dropdown-trigger">
+                        <span>Services</span>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <a href="services/web-development.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-icon" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">🌐</span>
+                            <div class="dropdown-item-info">
+                                <strong>Website Development</strong>
+                                <span>Custom Next.js 14, 100/100 Vitals &amp; SaaS</span>
+                            </div>
+                        </a>
+                        <a href="services/mobile-app-development.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📱</span>
+                            <div class="dropdown-item-info">
+                                <strong>Mobile App Development</strong>
+                                <span>iOS &amp; Android, 60 FPS Native, Offline Sync</span>
+                            </div>
+                        </a>
+                        <a href="services/social-media-management.html" class="nav-dropdown-item">
+                            <span class="dropdown-item-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;">🚀</span>
+                            <div class="dropdown-item-info">
+                                <strong>Social Media Growth</strong>
+                                <span>Viral Short-Form Reels, Paid Meta Ads</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="styles.html" class="nav-link active" title="Web Design Styles &amp; Interactive Demos">Styles ✨</a>
                 <a href="index.html#mvp-demo" class="nav-link">Demo &amp; MVP</a>
                 <a href="index.html#execution-roadmap" class="nav-link">Roadmap</a>
                 <a href="index.html#portfolio" class="nav-link">Work</a>
@@ -131,8 +159,11 @@
         </div>
         <div class="drawer-links">
             <a href="index.html#about" class="drawer-link">About</a>
-            <a href="index.html#services-overview" class="drawer-link">Core Services</a>
-            <a href="styles.html" class="drawer-link active">Design Styles &amp; Demos Directory</a>
+            <a href="index.html#services-overview" class="drawer-link">Core Services (All)</a>
+            <a href="services/web-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #818cf8; font-size: 0.95rem;">↳ 🌐 Website Development</a>
+            <a href="services/mobile-app-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #38bdf8; font-size: 0.95rem;">↳ 📱 Mobile App Engineering</a>
+            <a href="services/social-media-management.html" class="drawer-link" style="padding-left: 1.8rem; color: #ec4899; font-size: 0.95rem;">↳ 🚀 Social Media Growth</a>
+            <a href="styles.html" class="drawer-link active" style="color: var(--accent-cyan); font-weight: 700;">✨ Design Styles &amp; Demos Directory</a>
             <a href="index.html#knowledge-hub" class="drawer-link">Growth Frameworks</a>
             <a href="index.html#daily-journey" class="drawer-link">Daily Journey (BTS)</a>
             <a href="index.html#mvp-demo" class="drawer-link">Demo &amp; MVP Blueprint</a>
@@ -560,7 +591,7 @@
                         <!-- Bottom Pricing & Action Row -->
                         <div class="closet-action-bar">
                             <div class="closet-price-display">
-                                <span class="price-val" id="closet-price-val"> USD</span>
+                                <span class="price-val" id="closet-price-val">$185 USD</span>
                                 <span class="price-inr" id="closet-price-inr">₹4,999 INR</span>
                             </div>
                             <div class="closet-btn-group">
@@ -1110,10 +1141,10 @@ export default function ClothesCloset2026({ garments }) {
                 <div class="footer-col">
                     <h4 class="footer-heading">Services</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html#services-overview">Web Development</a></li>
-                        <li><a href="index.html#services-overview">Application Development</a></li>
-                        <li><a href="index.html#services-overview">Social Media Management</a></li>
-                        <li><a href="index.html#services-overview">Meta & Google Paid Ads</a></li>
+                        <li><a href="services/web-development.html">Website Development &rarr;</a></li>
+                        <li><a href="services/mobile-app-development.html">Application Development &rarr;</a></li>
+                        <li><a href="services/social-media-management.html">Social Media Management &rarr;</a></li>
+                        <li><a href="styles.html" style="color: var(--accent-cyan); font-weight: 700;">Design Styles &amp; 18 Demos &rarr;</a></li>
                     </ul>
                 </div>
 
@@ -1287,6 +1318,6 @@ export default function ClothesCloset2026({ garments }) {
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="main.js?v=3.1"></script>
-    <script src="styles.js?v=2.1"></script>
+    <script src="styles.js?v=2.2"></script>
 </body>
 </html>
