@@ -2037,3 +2037,1157 @@
   padding: 3rem 2rem;
   transition: max-width 0.3s ease;
 }
+
+/* =================================================================== */
+/* 9. FLAGSHIP SHOWCASE: 2026 VIRTUAL CLOSET E-COMMERCE STUDIO         */
+/* Inspired by high-fashion 3D horizontal rail e-commerce              */
+/* =================================================================== */
+
+.closet-section {
+  padding: 5.5rem 0 4.5rem;
+  border-top: 1px solid var(--border-glass);
+  position: relative;
+  overflow: hidden;
+}
+
+.closet-telemetry-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+.telemetry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.closet-studio-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.08);
+  margin-top: 2.5rem;
+  position: relative;
+}
+
+[data-theme="dark"] .closet-studio-card {
+  background: #090b10;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Studio Header */
+.closet-studio-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  background: var(--bg-surface-subtle);
+  border-bottom: 1px solid var(--border-glass);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.closet-brand-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+
+.closet-brand-logo {
+  font-family: var(--font-primary);
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--text-main);
+}
+
+.closet-brand-sub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.closet-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.closet-view-code-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  font-family: var(--font-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.closet-view-code-btn:hover {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+}
+
+.closet-cart-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  background: var(--grad-primary);
+  color: #ffffff;
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.closet-cart-pill.cart-bump {
+  animation: cartBump 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cartBump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+  100% { transform: scale(1); }
+}
+
+/* 3D Rail Viewport */
+.closet-rail-viewport {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 3rem 1rem 2rem;
+  background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+}
+
+[data-theme="light"] .closet-rail-viewport {
+  background: radial-gradient(circle at 50% 30%, #ffffff 0%, #f1f5f9 100%);
+}
+
+/* Metallic Clothes Rail */
+.closet-metallic-rail {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, #475569 0%, #cbd5e1 15%, #ffffff 50%, #cbd5e1 85%, #475569 100%);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  z-index: 1;
+}
+
+.rail-left-mount,
+.rail-right-mount {
+  position: absolute;
+  top: -8px;
+  width: 24px;
+  height: 24px;
+  background: #334155;
+  border-radius: 4px;
+  border: 1px solid #64748b;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.rail-left-mount { left: 0; }
+.rail-right-mount { right: 0; }
+
+/* Sliding Hangers Track */
+.closet-hangers-track {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.5rem;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 2;
+  will-change: transform;
+  padding-top: 40px;
+}
+
+.closet-garment-wrapper {
+  flex-shrink: 0;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  perspective: 1200px;
+}
+
+.closet-garment-wrapper.garment-active {
+  transform: scale(1.16) translateY(14px);
+  filter: blur(0px) !important;
+  opacity: 1 !important;
+  z-index: 10;
+}
+
+.closet-garment-wrapper.garment-step-1 {
+  transform: scale(0.88) translateY(-4px);
+  filter: blur(2.5px);
+  opacity: 0.65;
+  z-index: 5;
+}
+
+.closet-garment-wrapper.garment-step-2 {
+  transform: scale(0.74) translateY(-14px);
+  filter: blur(5px);
+  opacity: 0.38;
+  z-index: 2;
+}
+
+/* Wooden Hanger & Metal Hook */
+.closet-hanger-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -10px;
+  position: relative;
+  z-index: 3;
+}
+
+.hanger-metal-hook {
+  width: 14px;
+  height: 28px;
+  border: 3px solid #cbd5e1;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  position: relative;
+  margin-bottom: -2px;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
+}
+
+.hanger-wooden-body {
+  width: 170px;
+  height: 22px;
+  background: linear-gradient(180deg, #b45309 0%, #78350f 100%);
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.hanger-wooden-notch {
+  width: 14px;
+  height: 14px;
+  background: #451a03;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Garment Texture 3D Card */
+.garment-flipper {
+  width: 240px;
+  height: 320px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.35));
+}
+
+.closet-garment-wrapper.is-back-view .garment-flipper {
+  transform: rotateY(180deg);
+}
+
+.garment-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.garment-face.face-back {
+  transform: rotateY(180deg);
+}
+
+.garment-svg-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+/* Hanging Color Tags On String */
+.hanging-tags-cluster {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  display: flex;
+  gap: 6px;
+  z-index: 12;
+}
+
+.tag-assembly {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+.tag-thread {
+  width: 1.5px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .tag-thread {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.tag-badge {
+  padding: 3px 7px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.tag-badge.tag-black { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.3); }
+.tag-badge.tag-blue { background: #1d4ed8; border: 1px solid rgba(255,255,255,0.4); }
+.tag-badge.tag-emerald { background: #059669; border: 1px solid rgba(255,255,255,0.4); }
+
+.tag-assembly:hover .tag-badge {
+  transform: translateY(2px) scale(1.08);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+}
+
+.tag-assembly.active-tag .tag-badge {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 1px;
+}
+
+.tag-assembly.swinging {
+  animation: tagSwing 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tagSwing {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(18deg); }
+  50% { transform: rotate(-14deg); }
+  75% { transform: rotate(8deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Rail Navigation Arrow Buttons */
+.closet-rail-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 15;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.closet-rail-arrow:hover {
+  background: var(--grad-primary);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.closet-rail-arrow.arrow-left { left: 1.5rem; }
+.closet-rail-arrow.arrow-right { right: 1.5rem; }
+
+/* Product Tray Controls & Micro-Interactions */
+.closet-product-tray {
+  padding: 2rem 2.5rem;
+  background: var(--bg-surface-subtle);
+  border-top: 1px solid var(--border-glass);
+  display: grid;
+  grid-template-columns: 1.4fr 1.3fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .closet-product-tray {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.closet-tags-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.closet-pill-category {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent-purple);
+  background: rgba(168, 85, 247, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.closet-stock-alert {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-amber);
+}
+
+.closet-product-title {
+  font-family: var(--font-primary);
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+
+.closet-product-desc {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.control-sublabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+.closet-controls-cluster {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hanging-color-tags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tray-color-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tray-color-pill.active {
+  border-color: var(--accent-cyan);
+  background: rgba(6, 182, 212, 0.12);
+  color: var(--accent-cyan);
+}
+
+.perspective-toggle-group {
+  display: inline-flex;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-full);
+  padding: 2px;
+}
+
+.perspective-btn {
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.perspective-btn.active {
+  background: var(--grad-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.size-pill-group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.size-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  color: var(--text-main);
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.size-btn:hover,
+.size-btn.active {
+  border-color: var(--text-main);
+  background: var(--text-main);
+  color: var(--bg-dark);
+}
+
+.closet-action-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.closet-price-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.price-val {
+  font-family: var(--font-primary);
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--text-main);
+}
+
+.price-inr {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.closet-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.closet-add-bag-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: var(--radius-full);
+  background: var(--grad-primary);
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.closet-add-bag-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(99, 102, 241, 0.5);
+}
+
+.closet-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #10b981;
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.closet-whatsapp-btn:hover {
+  background: #10b981;
+  color: #ffffff;
+}
+
+/* Motion Code Drawer */
+.closet-code-drawer {
+  background: #05070e;
+  border-top: 1px solid var(--border-glass);
+  padding: 1.5rem 2rem;
+}
+
+.code-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.code-badge-jsx {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.code-badge-tech {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.closet-code-snippet {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  line-height: 1.55;
+  overflow-x: auto;
+}
+
+/* =================================================================== */
+/* 10. FLAGSHIP SHOWCASE: GLASSY LIQUID NAVIGATION LAB (V5)            */
+/* Inspired by viral Glassy Navigation Tabs V5 with dynamic spotlights */
+/* =================================================================== */
+
+.glassy-lab-section {
+  padding: 5.5rem 0 4.5rem;
+  border-top: 1px solid var(--border-glass);
+  position: relative;
+  overflow: hidden;
+}
+
+.glassy-nav-selector-pills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+}
+
+.glassy-arch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.glassy-arch-btn .arch-number {
+  padding: 0.15rem 0.45rem;
+  background: var(--bg-surface-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-main);
+}
+
+.glassy-arch-btn:hover {
+  border-color: var(--accent-cyan);
+  color: var(--text-main);
+  transform: translateY(-2px);
+}
+
+.glassy-arch-btn.active {
+  background: var(--grad-primary);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 18px rgba(99, 102, 241, 0.4);
+}
+
+.glassy-arch-btn.active .arch-number {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* 2-Column Interactive Device Stage */
+.glassy-interactive-stage {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .glassy-interactive-stage {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Smartphone Chassis */
+.glassy-device-chassis {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  height: 640px;
+  background: #0f121a;
+  border: 10px solid #1e2433;
+  border-radius: 46px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.device-notch-bar {
+  padding: 0.75rem 1.4rem 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+  color: #ffffff;
+}
+
+.device-time {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.device-speaker-notch {
+  width: 90px;
+  height: 18px;
+  background: #000000;
+  border-radius: 12px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 8px;
+}
+
+.device-status-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Living Room Backdrop (Matches Video References) */
+.device-wallpaper-screen {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #181b24 0%, #10121a 40%, #0d0e14 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Ambient Visual Backdrop Texture simulating living room / media unit */
+.device-wallpaper-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 240px;
+  background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.device-screen-content {
+  flex: 1;
+  padding: 1.5rem 1.25rem;
+  overflow-y: auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* Dynamic Screen Cards */
+.mini-dashboard-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 1.2rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card-stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.stat-pill-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.stat-main-number {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 0.25rem;
+}
+
+.device-home-pill {
+  width: 120px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+}
+
+/* Glassy Bar Container at Bottom of Phone */
+.glassy-bar-container {
+  padding: 0 1rem 1.8rem;
+  position: relative;
+  z-index: 15;
+}
+
+/* ------------------------------------------------------------- */
+/* ARCHITECTURE 1: NEO-ARC CENTER CURVE (NEON CYAN)              */
+/* ------------------------------------------------------------- */
+.glass-tab-bar-v1 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(24, 27, 36, 0.65);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 0.65rem 0.5rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.v1-tab-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.v1-tab-btn:hover,
+.v1-tab-btn.active {
+  color: #ffffff;
+}
+
+.v1-center-arc-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #0f172a;
+  border: 2px solid #00f0ff;
+  color: #00f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -24px;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.75), inset 0 0 10px rgba(0, 240, 255, 0.35);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.v1-center-arc-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00f0ff;
+}
+
+/* ------------------------------------------------------------- */
+/* ARCHITECTURE 2: HOLOGRAPHIC SPOTLIGHT FOCUS (From Images 1&2) */
+/* ------------------------------------------------------------- */
+.glass-tab-bar-v2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(20, 23, 31, 0.75);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.75rem 0.5rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  overflow: visible;
+}
+
+.holographic-light-cone {
+  position: absolute;
+  top: -26px;
+  width: 58px;
+  height: 52px;
+  clip-path: polygon(36% 0%, 64% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(180deg, rgba(0, 240, 255, 0.65) 0%, rgba(0, 240, 255, 0.08) 80%, transparent 100%);
+  pointer-events: none;
+  transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.6));
+}
+
+.v2-tab-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.v2-tab-btn:hover,
+.v2-tab-btn.active {
+  color: #ffffff;
+  transform: translateY(-2px);
+  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.8));
+}
+
+/* ------------------------------------------------------------- */
+/* ARCHITECTURE 3: LIQUID DROPLET MORPH                          */
+/* ------------------------------------------------------------- */
+.glass-tab-bar-v3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.65rem 0.5rem;
+}
+
+.liquid-droplet-pill {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(14, 165, 233, 0.25);
+  border: 1px solid #38bdf8;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+  pointer-events: none;
+  transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ------------------------------------------------------------- */
+/* ARCHITECTURE 4: CHAMPAGNE FLOATING ISLAND                     */
+/* ------------------------------------------------------------- */
+.glass-tab-bar-v4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(235, 222, 206, 0.45);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  padding: 0.65rem 0.5rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.v4-tab-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #451a03;
+  cursor: pointer;
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.v4-floating-orb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #78350f;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -22px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 6px 16px rgba(120, 53, 15, 0.4);
+  cursor: pointer;
+}
+
+/* Glassy Specs Sidebar */
+.glassy-specs-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.glassy-control-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: 18px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.control-row label {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.active-tab-indicator,
+.glass-slider-val {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--accent-cyan);
+}
+
+.glassy-code-box {
+  background: #05070e;
+  border: 1px solid var(--border-glass);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.code-box-header {
+  padding: 0.75rem 1.2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #38bdf8;
+}
+
+.code-tag-react {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+.glassy-code-pre {
+  margin: 0;
+  padding: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.glassy-consult-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-full);
+  background: var(--grad-primary);
+  color: #ffffff;
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.glassy-consult-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.5);
+}
