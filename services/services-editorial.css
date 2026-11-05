@@ -873,3 +873,276 @@
     display: none !important;
   }
 }
+
+/* =================================================================== */
+/* 5. COMPREHENSIVE MOBILE RESPONSIVE ENGINE                          */
+/* =================================================================== */
+
+@media (max-width: 1024px) {
+  .dedicated-nav-links,
+  .service-switcher-wrapper {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: flex !important;
+  }
+  .service-scroll-track {
+    display: none !important;
+  }
+  .service-hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.8rem !important;
+    text-align: center;
+  }
+  .service-hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 680px;
+  }
+  .service-subtext {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .service-cta-row {
+    justify-content: center;
+  }
+  .service-bottom-strip {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-editorial-hero {
+    min-height: auto !important;
+    padding: 85px 0 3rem !important;
+  }
+  .service-headline {
+    font-size: clamp(2.1rem, 7.8vw, 2.9rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.035em !important;
+    margin-bottom: 1.1rem !important;
+  }
+  .service-subtext {
+    font-size: 0.98rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.6rem !important;
+    max-width: 92% !important;
+  }
+  .service-kicker {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.1rem;
+  }
+  .floating-telemetry-pill {
+    display: none !important;
+  }
+  .service-scroll-track {
+    display: none !important;
+  }
+
+  /* Reset 3D tilt & keyframe animations on mobile touch devices */
+  .phone-frame,
+  #insta-phone-chassis {
+    transform: none !important;
+    animation: none !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(225, 6, 0, 0.2) !important;
+  }
+  .web-hero-mockup-frame {
+    transform: none !important;
+    animation: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(225, 6, 0, 0.2) !important;
+  }
+  .app-phone-frame,
+  #app-phone-device {
+    transform: none !important;
+    animation: none !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(225, 6, 0, 0.2) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Navbar Compact Mobile Fitting */
+  .dedicated-nav-container {
+    width: 94%;
+    gap: 0.4rem;
+  }
+  .brand-logo-service {
+    font-size: 1.22rem;
+  }
+  .brand-logo-service .logo-mark {
+    width: 26px;
+    height: 26px;
+  }
+  .nav-actions {
+    gap: 0.35rem;
+  }
+  .btn-service-cta {
+    padding: 0.42rem 0.75rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+  }
+  .theme-toggle-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .mobile-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+  }
+
+  /* Hero Section on Phones */
+  .service-editorial-hero {
+    padding: 75px 0 2.2rem !important;
+  }
+  .service-headline {
+    font-size: clamp(1.85rem, 8.2vw, 2.35rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.03em !important;
+  }
+  .service-kicker-words {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+  .service-kicker-bar {
+    width: 18px;
+  }
+  .service-kicker-chip {
+    font-size: 0.62rem;
+    padding: 0.15rem 0.5rem;
+  }
+  .service-subtext {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1.4rem !important;
+  }
+  .service-cta-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.7rem;
+    margin-bottom: 1.6rem;
+  }
+  .service-btn-journey,
+  .service-btn-start {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1.2rem;
+    font-size: 0.88rem;
+  }
+  .service-bottom-strip {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1.2rem;
+  }
+
+  /* SMM Instagram Mockup scaling */
+  .phone-frame,
+  #insta-phone-chassis {
+    width: 286px !important;
+    height: 550px !important;
+    border-radius: 36px !important;
+    border-width: 6px !important;
+  }
+  .phone-dynamic-island {
+    width: 76px !important;
+    height: 18px !important;
+  }
+  .insta-story-item {
+    width: 50px;
+  }
+  .story-ring-wrap {
+    width: 42px;
+    height: 42px;
+  }
+  .hero-device-floor-shadow {
+    width: 220px !important;
+  }
+
+  /* Web Development Mockup scaling */
+  .browser-header-bar {
+    padding: 0.55rem 0.7rem;
+  }
+  .browser-dots {
+    gap: 4px;
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+  }
+  .browser-url-bar {
+    max-width: 125px;
+    padding: 0.25rem 0.45rem;
+    font-size: 0.68rem;
+  }
+  .viewport-mode-switcher {
+    gap: 2px;
+  }
+  .vp-btn {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.68rem;
+  }
+  .web-canvas-header {
+    padding: 0.7rem 0.8rem;
+  }
+  .perf-gauge-card {
+    padding: 0.8rem;
+  }
+  .lighthouse-score-row {
+    gap: 0.3rem;
+  }
+  .score-box {
+    padding: 0.35rem 0.2rem;
+  }
+  .score-val {
+    font-size: 1.1rem;
+  }
+  .score-lbl {
+    font-size: 0.55rem;
+  }
+
+  /* Mobile App Mockup scaling */
+  .app-phone-frame,
+  #app-phone-device {
+    max-width: 290px !important;
+    border-radius: 28px !important;
+    border-width: 3px !important;
+    padding: 0.9rem 0.7rem 0.5rem !important;
+  }
+  .app-phone-notch {
+    width: 80px !important;
+    height: 16px !important;
+  }
+
+  /* Mobile Drawer */
+  .mobile-drawer {
+    max-width: 85vw;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-logo-service {
+    font-size: 1.1rem;
+  }
+  .btn-service-cta {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.72rem;
+  }
+  .phone-frame,
+  #insta-phone-chassis {
+    width: 260px !important;
+    height: 500px !important;
+    border-radius: 28px !important;
+  }
+  .app-phone-frame,
+  #app-phone-device {
+    max-width: 260px !important;
+  }
+}

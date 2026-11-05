@@ -51,20 +51,44 @@
         }
 
         if (mobileToggle && mobileDrawer) {
-            mobileToggle.addEventListener('click', () => {
-                mobileDrawer.classList.add('open');
+            mobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileDrawer.classList.toggle('open');
+                document.body.style.overflow = mobileDrawer.classList.contains('open') ? 'hidden' : '';
             });
         }
 
         if (drawerClose && mobileDrawer) {
             drawerClose.addEventListener('click', () => {
                 mobileDrawer.classList.remove('open');
+                document.body.style.overflow = '';
             });
         }
 
+        // Tap outside drawer to close
+        document.addEventListener('click', (e) => {
+            if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+                if (!mobileDrawer.contains(e.target) && (!mobileToggle || !mobileToggle.contains(e.target))) {
+                    mobileDrawer.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+
+        // Escape key dismiss
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileDrawer && mobileDrawer.classList.contains('open')) {
+                mobileDrawer.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+
         drawerLinks.forEach(link => {
             link.addEventListener('click', () => {
-                if (mobileDrawer) mobileDrawer.classList.remove('open');
+                if (mobileDrawer) {
+                    mobileDrawer.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
             });
         });
     }
