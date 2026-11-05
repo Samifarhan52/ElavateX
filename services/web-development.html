@@ -914,7 +914,14 @@
             <div class="service-editorial-bg" aria-hidden="true">
                 <div class="service-concrete-wall"></div>
                 <div class="service-spotlight-cone"></div>
+                <div class="service-floor-contact"></div>
+                <div class="service-bottom-fade"></div>
                 <canvas id="service-matrix-canvas" class="service-ambient-canvas"></canvas>
+            </div>
+            <!-- Architectural Vertical Scroll Indicator on Right Screen Edge -->
+            <div class="service-scroll-track" aria-hidden="true">
+                <span class="service-track-line"></span>
+                <span class="service-track-thumb"></span>
             </div>
             <div class="container">
                 <div class="service-hero-grid">
@@ -959,15 +966,18 @@
                     </div>
 
                     <!-- Right Column: macOS Interactive Showcase Frame -->
-                    <div class="editorial-visual-stage web-hero-mockup-frame reveal-item">
-                        <div class="floating-hero-badge badge-top-right">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                            <span style="color: #10b981;">100/100 Score</span> Lighthouse Speed
+                    <div class="editorial-visual-stage reveal-item">
+                        <!-- Floating Holographic Telemetry Badges -->
+                        <div class="floating-telemetry-pill pill-pos-top-right">
+                            <span class="pill-indicator-dot pill-indicator-green"></span>
+                            <span>⚡ 100/100 Core Web Vitals &bull; 0.18s TTFB</span>
                         </div>
-                        <div class="floating-hero-badge badge-bottom-left">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                            <span style="color: #4f46e5;">Hardened</span> Enterprise SSL
+                        <div class="floating-telemetry-pill pill-pos-bottom-left">
+                            <span class="pill-indicator-dot"></span>
+                            <span>🛡️ Next.js 14 &bull; Enterprise Grade SSL</span>
                         </div>
+
+                        <div class="web-hero-mockup-frame">
 
                         <!-- macOS Window Header Bar -->
                         <div class="browser-header-bar">
@@ -1060,6 +1070,9 @@ export default async function WebPlatform() {
   return &lt;Hydrate speed="100" data={data} /&gt;;
 }</code></pre>
                         </div>
+                        </div>
+                        <!-- Realistic Floor Contact Shadow -->
+                        <div class="hero-device-floor-shadow" style="width: 440px;"></div>
                     </div>
                 </div>
             </div>
