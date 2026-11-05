@@ -18,17 +18,150 @@
 }
 
 /* ------------------------------------------------------------------- */
+/* DEDICATED GRAPHITE & SUNSHINE YELLOW HEADER INTEGRATION             */
+/* Seamless luxury header matching #1C1D20 & #FFC928 (Eliminates white gap) */
+/* ------------------------------------------------------------------- */
+.styles-hub-page .styles-page-main {
+  padding-top: 0 !important;
+}
+
+.styles-hub-page .top-offer-ticker-bar {
+  background: #141518 !important;
+  border-bottom: 1px solid rgba(255, 201, 40, 0.22) !important;
+  color: #F2F4F1 !important;
+}
+
+.styles-hub-page .top-offer-ticker-bar .offer-pill {
+  background: rgba(255, 201, 40, 0.14) !important;
+  color: #FFC928 !important;
+  border: 1px solid rgba(255, 201, 40, 0.35) !important;
+}
+
+.styles-hub-page .top-offer-ticker-bar .offer-text {
+  color: #F2F4F1 !important;
+}
+
+.styles-hub-page .top-offer-ticker-bar .offer-text strong {
+  color: #FFC928 !important;
+}
+
+.styles-hub-page .top-offer-ticker-bar .offer-action-btn {
+  background: rgba(255, 201, 40, 0.18) !important;
+  color: #FFC928 !important;
+  border: 1px solid rgba(255, 201, 40, 0.45) !important;
+}
+
+.styles-hub-page .top-offer-ticker-bar .offer-action-btn:hover {
+  background: #FFC928 !important;
+  color: #141518 !important;
+  box-shadow: 0 0 14px rgba(255, 201, 40, 0.6) !important;
+}
+
+.styles-hub-page .navbar-header {
+  background: rgba(28, 29, 32, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(242, 244, 241, 0.08) !important;
+}
+
+.styles-hub-page .navbar-header.scrolled {
+  background: rgba(22, 23, 26, 0.97) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65) !important;
+}
+
+.styles-hub-page .brand-logo .logo-text {
+  color: #F2F4F1 !important;
+}
+
+.styles-hub-page .brand-logo .accent-x {
+  color: #FFC928 !important;
+  text-shadow: 0 0 14px rgba(255, 201, 40, 0.6) !important;
+}
+
+.styles-hub-page .nav-links .nav-link {
+  color: rgba(242, 244, 241, 0.82) !important;
+}
+
+.styles-hub-page .nav-links .nav-link:hover {
+  color: #FFC928 !important;
+}
+
+.styles-hub-page .nav-links .nav-link.active {
+  color: #FFC928 !important;
+  font-weight: 750 !important;
+  text-shadow: 0 0 14px rgba(255, 201, 40, 0.4) !important;
+}
+
+.styles-hub-page .nav-dropdown-trigger {
+  color: rgba(242, 244, 241, 0.82) !important;
+}
+
+.styles-hub-page .nav-dropdown-trigger:hover {
+  color: #FFC928 !important;
+}
+
+.styles-hub-page .nav-dropdown-menu {
+  background: #1C1D20 !important;
+  border: 1px solid rgba(255, 201, 40, 0.25) !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7) !important;
+}
+
+.styles-hub-page .nav-dropdown-item {
+  color: #F2F4F1 !important;
+}
+
+.styles-hub-page .nav-dropdown-item:hover {
+  background: rgba(255, 201, 40, 0.12) !important;
+}
+
+.styles-hub-page .nav-dropdown-item .dropdown-item-info strong {
+  color: #F2F4F1 !important;
+}
+
+.styles-hub-page .nav-dropdown-item .dropdown-item-info span {
+  color: rgba(242, 244, 241, 0.65) !important;
+}
+
+.styles-hub-page .nav-actions .btn-primary {
+  background: #FFC928 !important;
+  color: #1C1D20 !important;
+  font-weight: 800 !important;
+  border: none !important;
+  box-shadow: 0 4px 20px rgba(255, 201, 40, 0.4) !important;
+}
+
+.styles-hub-page .nav-actions .btn-primary:hover {
+  background: #ffe066 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(255, 201, 40, 0.55) !important;
+}
+
+.styles-hub-page .theme-toggle-btn {
+  border-color: rgba(242, 244, 241, 0.2) !important;
+  color: #F2F4F1 !important;
+}
+
+.styles-hub-page .theme-toggle-btn:hover {
+  border-color: #FFC928 !important;
+  color: #FFC928 !important;
+}
+
+.styles-hub-page .mobile-toggle .bar {
+  background: #F2F4F1 !important;
+}
+
+/* ------------------------------------------------------------------- */
 /* 1. EDITORIAL GRAPHITE HERO BANNER (Graphite #1C1D20 & Yellow #FFC928) */
 /* ------------------------------------------------------------------- */
 .editorial-hero {
   background: #1C1D20;
   color: #F2F4F1;
-  min-height: 86vh;
+  min-height: calc(100vh - 20px);
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 4.5rem 0 3.8rem;
+  padding: calc(38px + 72px + 1.2rem) 0 2rem;
   border-bottom: 1px solid rgba(242, 244, 241, 0.08);
 }
 
@@ -193,10 +326,10 @@
 
 .editorial-headline {
   font-family: var(--font-primary);
-  font-size: clamp(2.8rem, 5.2vw, 4.6rem);
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
   font-weight: 850;
   line-height: 1.08;
-  margin: 0.8rem 0 1.2rem;
+  margin: 0.5rem 0 0.8rem;
   color: #F2F4F1;
   letter-spacing: -0.035em;
 }
@@ -212,10 +345,10 @@
   align-items: center;
   gap: 0.65rem;
   font-family: var(--font-mono);
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 700;
   color: rgba(242, 244, 241, 0.6);
-  margin-bottom: 1.6rem;
+  margin-bottom: 1rem;
 }
 
 .rotator-prefix {
@@ -250,20 +383,20 @@
 
 .editorial-subtext {
   font-family: var(--font-body);
-  font-size: 1.1rem;
-  line-height: 1.68;
+  font-size: 1.02rem;
+  line-height: 1.58;
   color: rgba(242, 244, 241, 0.82);
-  max-width: 530px;
-  margin-bottom: 2.4rem;
+  max-width: 520px;
+  margin-bottom: 1.8rem;
 }
 
 /* Action CTAs (Matching reference design) */
 .editorial-cta-row {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.4rem;
   flex-wrap: wrap;
-  margin-bottom: 3.2rem;
+  margin-bottom: 2rem;
 }
 
 .editorial-btn-journey {
@@ -329,7 +462,7 @@
   justify-content: space-between;
   max-width: 530px;
   border-top: 1px solid rgba(242, 244, 241, 0.1);
-  padding-top: 1.6rem;
+  padding-top: 1.1rem;
   color: rgba(242, 244, 241, 0.65);
   font-family: var(--font-primary);
   font-size: 0.84rem;
@@ -391,6 +524,7 @@
 
 /* ------------------------------------------------------------------- */
 /* RIGHT COLUMN: SURREAL 3D SPOTLIGHT STAGE                            */
+/* Organic unboxed visual merging seamlessly into #1C1D20 backdrop     */
 /* ------------------------------------------------------------------- */
 .editorial-visual-col {
   position: relative;
@@ -401,18 +535,22 @@
 .surreal-stage-wrapper {
   position: relative;
   width: 100%;
-  max-width: 620px;
-  border-radius: 24px;
+  max-width: 630px;
+  border-radius: 28px;
   overflow: visible;
+  perspective: 1200px;
 }
 
 .surreal-art-frame {
   position: relative;
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 45px rgba(255, 201, 40, 0.12);
-  border: 1px solid rgba(242, 244, 241, 0.12);
-  background: #161719;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  /* Organic vignette edge blending so concrete floor & yellow splash flow seamlessly */
+  -webkit-mask-image: radial-gradient(ellipse 95% 88% at 50% 50%, black 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse 95% 88% at 50% 50%, black 70%, transparent 100%);
 }
 
 .surreal-hero-img {
@@ -420,6 +558,7 @@
   height: auto;
   display: block;
   object-fit: cover;
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.95));
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -433,7 +572,7 @@
   right: 0;
   width: 70%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(255, 201, 40, 0.1) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(255, 201, 40, 0.12) 0%, transparent 60%);
   pointer-events: none;
 }
 

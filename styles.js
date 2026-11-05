@@ -515,14 +515,278 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalWhatsappBtn = document.getElementById('modal-whatsapp-cta');
 
     // =========================================================================
-    // 4. ANIMATED SUNSHINE DUST PARTICLES & CANVAS ENGINE (#FFC928 on #1C1D20)
+    // 4. THREE.JS SURREAL 3D INTERACTIVE HERO ENGINE (#1C1D20, #FFC928, #F2F4F1)
+    // Real-time 3D Wireframe Icosahedrons, Floating Cyber Cubes & Parallax Motes
     // =========================================================================
     function initHeroMatrixCanvas() {
         const canvas = document.getElementById('hero-matrix-canvas');
         if (!canvas) return;
+
+        // Fallback to 2D Canvas if Three.js is not present or WebGL unavailable
+        if (typeof THREE === 'undefined') {
+            init2DFallbackDust(canvas);
+            return;
+        }
+
+        try {
+            const parent = canvas.parentElement || document.body;
+            let width = parent.offsetWidth || window.innerWidth;
+            let height = parent.offsetHeight || 680;
+
+            // 1. WebGL Renderer with High-Precision Alpha Translucency
+            const renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                alpha: true,
+                antialias: true,
+                powerPreference: 'high-performance'
+            });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+            renderer.setClearColor(0x000000, 0);
+
+            // 2. Perspective Camera & Scene
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+            camera.position.set(0, 0, 16);
+
+            // 3. Cinematic Studio Lighting Rig (Sunshine Yellow #FFC928 + Soft White)
+            const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+            scene.add(ambientLight);
+
+            const sunLight = new THREE.DirectionalLight(0xFFC928, 2.8);
+            sunLight.position.set(12, 16, 10);
+            scene.add(sunLight);
+
+            const rimLight = new THREE.DirectionalLight(0xF2F4F1, 1.6);
+            rimLight.position.set(-10, -8, -6);
+            scene.add(rimLight);
+
+            const pointLight = new THREE.PointLight(0xFFC928, 2.2, 35);
+            pointLight.position.set(4, 2, 5);
+            scene.add(pointLight);
+
+            // 4. Floating 3D Architectural Geometries Group
+            const hero3DGroup = new THREE.Group();
+            scene.add(hero3DGroup);
+
+            // A) Large Wireframe Icosahedron (Top Right Accent in Sunshine Yellow)
+            const icoGeom1 = new THREE.IcosahedronGeometry(1.9, 0);
+            const icoMat1 = new THREE.MeshStandardMaterial({
+                color: 0xFFC928,
+                wireframe: true,
+                roughness: 0.18,
+                metalness: 0.95,
+                emissive: 0x4a3400
+            });
+            const icoMesh1 = new THREE.Mesh(icoGeom1, icoMat1);
+            icoMesh1.position.set(7.8, 3.2, -1.5);
+            hero3DGroup.add(icoMesh1);
+
+            // B) Medium Wireframe Icosahedron (Bottom Left Anchor in Cloud White)
+            const icoGeom2 = new THREE.IcosahedronGeometry(1.15, 0);
+            const icoMat2 = new THREE.MeshStandardMaterial({
+                color: 0xF2F4F1,
+                wireframe: true,
+                roughness: 0.25,
+                metalness: 0.8,
+                emissive: 0x1a1a1a
+            });
+            const icoMesh2 = new THREE.Mesh(icoGeom2, icoMat2);
+            icoMesh2.position.set(-8.5, -2.6, -1);
+            hero3DGroup.add(icoMesh2);
+
+            // C) Floating Translucent Cyber Code Cube 1 (Right Lower Stage)
+            const cubeGroup1 = new THREE.Group();
+            const cubeGeom1 = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+            const cubeEdges1 = new THREE.EdgesGeometry(cubeGeom1);
+            const cubeLine1 = new THREE.LineSegments(cubeEdges1, new THREE.LineBasicMaterial({
+                color: 0xFFC928,
+                linewidth: 2
+            }));
+            const cubeSolidMat1 = new THREE.MeshPhysicalMaterial({
+                color: 0x1C1D20,
+                roughness: 0.1,
+                metalness: 0.1,
+                transmission: 0.85,
+                transparent: true,
+                opacity: 0.72
+            });
+            const cubeSolidMesh1 = new THREE.Mesh(cubeGeom1, cubeSolidMat1);
+            cubeGroup1.add(cubeSolidMesh1);
+            cubeGroup1.add(cubeLine1);
+            cubeGroup1.position.set(8.2, -3.6, 1.2);
+            hero3DGroup.add(cubeGroup1);
+
+            // D) Floating Mini Code Cube 2 (Left Upper Accent)
+            const cubeGeom2 = new THREE.BoxGeometry(0.9, 0.9, 0.9);
+            const cubeEdges2 = new THREE.EdgesGeometry(cubeGeom2);
+            const cubeLine2 = new THREE.LineSegments(cubeEdges2, new THREE.LineBasicMaterial({
+                color: 0xFFC928
+            }));
+            cubeLine2.position.set(-7.2, 3.4, 0.5);
+            hero3DGroup.add(cubeLine2);
+
+            // E) Orbiting Gyro Torus Ring (Encircling Focal Energy)
+            const torusGeom = new THREE.TorusGeometry(3.0, 0.04, 16, 100);
+            const torusMat = new THREE.MeshStandardMaterial({
+                color: 0xFFC928,
+                roughness: 0.15,
+                metalness: 0.96,
+                emissive: 0x553d00
+            });
+            const torusMesh = new THREE.Mesh(torusGeom, torusMat);
+            torusMesh.position.set(6.5, 0.4, -3.2);
+            torusMesh.rotation.x = Math.PI / 3;
+            torusMesh.rotation.y = Math.PI / 5;
+            hero3DGroup.add(torusMesh);
+
+            // F) 3D Luminous Particle Stardust Cloud (240 Sunshine & White Motes)
+            const particleCount = 240;
+            const particleGeom = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+
+            const yellowColor = new THREE.Color(0xFFC928);
+            const whiteColor = new THREE.Color(0xF2F4F1);
+
+            for (let i = 0; i < particleCount; i++) {
+                const i3 = i * 3;
+                positions[i3] = (Math.random() - 0.5) * 28;
+                positions[i3 + 1] = (Math.random() - 0.5) * 18;
+                positions[i3 + 2] = (Math.random() - 0.5) * 16;
+
+                const c = Math.random() > 0.4 ? yellowColor : whiteColor;
+                colors[i3] = c.r;
+                colors[i3 + 1] = c.g;
+                colors[i3 + 2] = c.b;
+            }
+
+            particleGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            particleGeom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            // Custom in-memory soft glowing dot texture
+            function createParticleTexture() {
+                const pCanvas = document.createElement('canvas');
+                pCanvas.width = 32;
+                pCanvas.height = 32;
+                const pCtx = pCanvas.getContext('2d');
+                const grad = pCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+                grad.addColorStop(0.3, 'rgba(255, 201, 40, 0.8)');
+                grad.addColorStop(0.8, 'rgba(255, 201, 40, 0.15)');
+                grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                pCtx.fillStyle = grad;
+                pCtx.beginPath();
+                pCtx.arc(16, 16, 16, 0, Math.PI * 2);
+                pCtx.fill();
+                const tex = new THREE.Texture(pCanvas);
+                tex.needsUpdate = true;
+                return tex;
+            }
+
+            const particleMat = new THREE.PointsMaterial({
+                size: 0.32,
+                map: createParticleTexture(),
+                transparent: true,
+                vertexColors: true,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+
+            const particles = new THREE.Points(particleGeom, particleMat);
+            hero3DGroup.add(particles);
+
+            // 5. Smooth Cursor Parallax with Damping Lerp
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetMouseX = 0;
+            let targetMouseY = 0;
+
+            window.addEventListener('mousemove', (e) => {
+                targetMouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                targetMouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+            }, { passive: true });
+
+            window.addEventListener('mouseleave', () => {
+                targetMouseX = 0;
+                targetMouseY = 0;
+            });
+
+            // 6. Responsive Window Resize Handler
+            function handleResize() {
+                width = parent.offsetWidth || window.innerWidth;
+                height = parent.offsetHeight || 680;
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                renderer.setSize(width, height);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+            }
+            window.addEventListener('resize', handleResize, { passive: true });
+
+            // 7. Viewport Observer for 0% Background CPU Consumption
+            let isVisible = true;
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    isVisible = entries[0].isIntersecting;
+                }, { threshold: 0.05 });
+                observer.observe(parent);
+            }
+
+            // 8. 60 FPS Render Loop with Organic Micro-Animations
+            let animTime = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                if (!isVisible) return;
+
+                animTime += 0.016;
+
+                // Smooth camera parallax
+                mouseX += (targetMouseX - mouseX) * 0.045;
+                mouseY += (targetMouseY - mouseY) * 0.045;
+                camera.position.x = mouseX * 2.0;
+                camera.position.y = mouseY * 1.4;
+                camera.lookAt(0, 0, 0);
+
+                // Rotations
+                icoMesh1.rotation.x += 0.005;
+                icoMesh1.rotation.y += 0.008;
+                icoMesh1.position.y = 3.2 + Math.sin(animTime * 1.2) * 0.28;
+
+                icoMesh2.rotation.x -= 0.006;
+                icoMesh2.rotation.z += 0.005;
+                icoMesh2.position.y = -2.6 + Math.cos(animTime * 1.1) * 0.22;
+
+                cubeGroup1.rotation.x += 0.006;
+                cubeGroup1.rotation.y += 0.009;
+                cubeGroup1.position.y = -3.6 + Math.cos(animTime * 1.4) * 0.25;
+
+                cubeLine2.rotation.y += 0.007;
+                cubeLine2.rotation.z -= 0.006;
+                cubeLine2.position.y = 3.4 + Math.sin(animTime * 1.3) * 0.2;
+
+                torusMesh.rotation.z += 0.004;
+                torusMesh.rotation.x += 0.002;
+                torusMesh.position.y = 0.4 + Math.sin(animTime * 0.9) * 0.18;
+
+                // Gentle particle drift
+                particles.rotation.y = animTime * 0.02;
+                particles.rotation.x = animTime * 0.01;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+        } catch (err) {
+            console.warn('Three.js hero matrix engine initialization error, activating fallback:', err);
+            init2DFallbackDust(canvas);
+        }
+    }
+
+    // Graceful 2D Fallback Particle Engine
+    function init2DFallbackDust(canvas) {
         const ctx = canvas.getContext('2d');
+        if (!ctx) return;
         const parent = canvas.parentElement || document.body;
-        
         let width = 0;
         let height = 0;
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -546,10 +810,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mouse.active = (mouse.x >= 0 && mouse.x <= width && mouse.y >= 0 && mouse.y <= height);
         });
 
-        window.addEventListener('mouseleave', () => {
-            mouse.active = false;
-        });
-
+        window.addEventListener('mouseleave', () => { mouse.active = false; });
         window.addEventListener('resize', resize);
 
         let dustMotes = [];
@@ -581,13 +842,11 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(parent);
         }
 
-        let frameId;
         function drawDust() {
             if (!isVisible) {
-                frameId = requestAnimationFrame(drawDust);
+                requestAnimationFrame(drawDust);
                 return;
             }
-
             ctx.clearRect(0, 0, width, height);
 
             for (let i = 0; i < dustMotes.length; i++) {
@@ -595,47 +854,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 m.x += m.vx;
                 m.y += m.vy;
                 m.pulse += 0.025;
-
                 if (m.y > height) { m.y = 0; m.x = Math.random() * width; }
                 if (m.x < 0) m.x = width;
                 if (m.x > width) m.x = 0;
-
-                // Mouse interaction
-                if (mouse.active) {
-                    const dx = mouse.x - m.x;
-                    const dy = mouse.y - m.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 120) {
-                        m.x -= (dx / dist) * 1.2;
-                        m.y -= (dy / dist) * 1.2;
-                    }
-                }
 
                 const currentAlpha = m.alpha * (0.6 + Math.sin(m.pulse) * 0.4);
                 ctx.beginPath();
                 ctx.arc(m.x, m.y, m.radius, 0, Math.PI * 2);
                 ctx.fillStyle = m.isYellow ? `rgba(255, 201, 40, ${currentAlpha})` : `rgba(242, 244, 241, ${currentAlpha * 0.8})`;
-                ctx.shadowColor = m.isYellow ? '#FFC928' : '#F2F4F1';
-                ctx.shadowBlur = 8;
-                ctx.fill();
-                ctx.shadowBlur = 0;
-            }
-
-            // Magnetic Cursor Glow
-            if (mouse.active) {
-                const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 140);
-                grad.addColorStop(0, 'rgba(255, 201, 40, 0.12)');
-                grad.addColorStop(0.6, 'rgba(28, 29, 32, 0.05)');
-                grad.addColorStop(1, 'transparent');
-                ctx.fillStyle = grad;
-                ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 140, 0, Math.PI * 2);
                 ctx.fill();
             }
-
-            frameId = requestAnimationFrame(drawDust);
+            requestAnimationFrame(drawDust);
         }
-        frameId = requestAnimationFrame(drawDust);
+        drawDust();
     }
 
     // =========================================================================
