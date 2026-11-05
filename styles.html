@@ -187,24 +187,36 @@
     <main class="styles-page-main">
 
         <!-- =============================================================== -->
-        <!-- ANIMATED HERO SECTION                                           -->
         <!-- =============================================================== -->
-        <section class="styles-hero-section">
+        <!-- ANIMATED CINEMATIC HERO BANNER & 3D MATRIX ENGINE               -->
+        <!-- =============================================================== -->
+        <section class="styles-hero-section" id="styles-hero-banner">
+            <!-- Full-Bleed Atmospheric Motion Video Banner Layer -->
+            <div class="hero-video-backdrop" aria-hidden="true">
+                <video id="styles-hero-video" class="hero-bg-video" autoplay loop muted playsinline preload="auto" poster="styles_hero_poster.jpg">
+                    <source src="styles_hero_bg.mp4" type="video/mp4">
+                </video>
+                <div class="hero-video-scrim-dark"></div>
+                <div class="hero-video-spotlight"></div>
+                <div class="hero-video-grid-pattern"></div>
+                <div class="hero-bottom-fade"></div>
+            </div>
+
             <!-- 60FPS Interactive Node Constellation Matrix Canvas -->
             <canvas id="hero-matrix-canvas" class="hero-matrix-canvas"></canvas>
 
-            <!-- Volumetric Ambient Light & Orbital Rings -->
+            <!-- Volumetric Ambient Light & Orbital Laser Rings -->
             <div class="hero-stage-aura"></div>
             <div class="hero-orbit-ring hero-ring-1"></div>
             <div class="hero-orbit-ring hero-ring-2"></div>
 
             <!-- Floating Design System Accent Badges (Desktop) -->
             <div class="hero-floating-pill pill-float-1">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00f0ff" stroke-width="2.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 <span>Glassmorphism 2.0</span>
             </div>
             <div class="hero-floating-pill pill-float-2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2.2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
                 <span>Bento Grid UI</span>
             </div>
             <div class="hero-floating-pill pill-float-3">
@@ -212,19 +224,19 @@
                 <span>Neo-Brutalism</span>
             </div>
             <div class="hero-floating-pill pill-float-4">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M21 9a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6v6a6 6 0 0 0 6 6h6a6 6 0 0 0 6-6V9z"/><circle cx="8.5" cy="12" r="2.5"/><circle cx="15.5" cy="12" r="2.5"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2"><path d="M21 9a6 6 0 0 0-6-6H9a6 6 0 0 0-6 6v6a6 6 0 0 0 6 6h6a6 6 0 0 0 6-6V9z"/><circle cx="8.5" cy="12" r="2.5"/><circle cx="15.5" cy="12" r="2.5"/></svg>
                 <span>Spatial Computing</span>
             </div>
 
-            <div class="container" style="position: relative; z-index: 2;">
+            <div class="container hero-content-container" style="position: relative; z-index: 10;">
                 <div class="hero-badge">
                     <span class="pulse-dot"></span>
-                    <span>ELAVATEX DESIGN ARCHITECTURES &bull; 2026-2027 MATRIX</span>
+                    <span class="badge-text">ELAVATEX DESIGN ARCHITECTURES &bull; 2026-2027 MATRIX</span>
                 </div>
 
-                <h1 style="font-family: var(--font-primary); font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15; margin: 1.2rem 0;">
-                    18 World-Class Web Design Philosophies <br>
-                    Engineered for 
+                <h1 class="styles-hero-heading">
+                    18 World-Class <br class="mobile-break">Web Design Philosophies <br>
+                    Engineered for <br class="mobile-break">
                     <span class="styles-hero-rotator" id="styles-hero-rotator">
                         <span class="rotator-word active">MAXIMUM REVENUE.</span>
                         <span class="rotator-word">CLINICAL AUTHORITY.</span>
@@ -233,7 +245,7 @@
                     </span>
                 </h1>
 
-                <p style="font-family: var(--font-body); font-size: 1.1rem; max-width: 760px; margin: 0 auto 2.2rem; color: var(--text-muted); line-height: 1.6;">
+                <p class="styles-hero-sub">
                     Explore how high-end aesthetics morph seamlessly across 14 commercial industries—from clinical Dental and AI Automation to Real Estate Brokers and Luxury Commerce. Experience production-grade handwritten CSS in action.
                 </p>
 

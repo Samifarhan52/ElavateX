@@ -515,31 +515,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalWhatsappBtn = document.getElementById('modal-whatsapp-cta');
 
     // =========================================================================
-    // 4. ANIMATED INTERACTIVE HERO BACKGROUND CANVAS (Geometric Constellation)
+    // 4. ANIMATED INTERACTIVE HERO BACKGROUND CANVAS (Geometric Matrix & Video)
     // =========================================================================
     function initHeroMatrixCanvas() {
         const canvas = document.getElementById('hero-matrix-canvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
-        let width = canvas.width = canvas.parentElement.offsetWidth || window.innerWidth;
-        let height = canvas.height = canvas.parentElement.offsetHeight || 500;
+        const parent = canvas.parentElement || document.body;
+        
+        let width = 0;
+        let height = 0;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-        let mouse = { x: -1000, y: -1000 };
+        function resize() {
+            width = parent.offsetWidth || window.innerWidth;
+            height = parent.offsetHeight || 560;
+            canvas.width = Math.floor(width * dpr);
+            canvas.height = Math.floor(height * dpr);
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+            ctx.scale(dpr, dpr);
+            initNodes();
+        }
+
+        let mouse = { x: -1000, y: -1000, active: false };
         window.addEventListener('mousemove', (e) => {
             const rect = canvas.getBoundingClientRect();
             mouse.x = e.clientX - rect.left;
             mouse.y = e.clientY - rect.top;
+            mouse.active = (mouse.x >= 0 && mouse.x <= width && mouse.y >= 0 && mouse.y <= height);
         });
 
-        window.addEventListener('resize', () => {
-            if (!canvas.parentElement) return;
-            width = canvas.width = canvas.parentElement.offsetWidth || window.innerWidth;
-            height = canvas.height = canvas.parentElement.offsetHeight || 500;
-            initNodes();
+        window.addEventListener('mouseleave', () => {
+            mouse.active = false;
         });
+
+        window.addEventListener('resize', resize);
 
         let nodes = [];
-        const nodeCount = Math.min(Math.floor(width / 24), 48);
+        const nodeCount = Math.min(Math.floor(window.innerWidth / 22), 52);
 
         function initNodes() {
             nodes = [];
@@ -547,65 +561,108 @@ document.addEventListener('DOMContentLoaded', () => {
                 nodes.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.7,
-                    vy: (Math.random() - 0.5) * 0.7,
-                    radius: Math.random() * 2 + 1.5
+                    vx: (Math.random() - 0.5) * 0.75,
+                    vy: (Math.random() - 0.5) * 0.75,
+                    radius: Math.random() * 2 + 1.2,
+                    isCyan: Math.random() > 0.4,
+                    pulse: Math.random() * Math.PI * 2
                 });
             }
         }
-        initNodes();
 
+        resize();
+
+        // Autoplay guarantee for background video
+        const heroVideo = document.getElementById('styles-hero-video');
+        if (heroVideo) {
+            heroVideo.play().catch(() => {
+                // Autoplay blocked by browser power-saving; poster fallback active
+            });
+        }
+
+        let isVisible = true;
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                isVisible = entries[0].isIntersecting;
+            }, { threshold: 0.05 });
+            observer.observe(parent);
+        }
+
+        let frameId;
         function drawMatrix() {
+            if (!isVisible) {
+                frameId = requestAnimationFrame(drawMatrix);
+                return;
+            }
+
             ctx.clearRect(0, 0, width, height);
 
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || document.body.classList.contains('dark-theme');
-            const nodeColor = isDark ? 'rgba(99, 102, 241, 0.75)' : 'rgba(79, 70, 229, 0.55)';
-            const lineColor = isDark ? 'rgba(99, 102, 241, ' : 'rgba(79, 70, 229, ';
-
+            // Connective filaments & glowing nodes
             for (let i = 0; i < nodes.length; i++) {
                 const n = nodes[i];
                 n.x += n.vx;
                 n.y += n.vy;
+                n.pulse += 0.035;
 
                 if (n.x < 0 || n.x > width) n.vx *= -1;
                 if (n.y < 0 || n.y > height) n.vy *= -1;
 
-                // Mouse interaction
-                const dxm = mouse.x - n.x;
-                const dym = mouse.y - n.y;
-                const distMouse = Math.sqrt(dxm * dxm + dym * dym);
-                if (distMouse < 140) {
-                    n.x -= (dxm / distMouse) * 0.8;
-                    n.y -= (dym / distMouse) * 0.8;
+                // Dynamic mouse interaction with magnetic repulsion
+                if (mouse.active) {
+                    const dxm = mouse.x - n.x;
+                    const dym = mouse.y - n.y;
+                    const distMouse = Math.sqrt(dxm * dxm + dym * dym);
+                    if (distMouse < 160) {
+                        const force = (1 - distMouse / 160) * 1.4;
+                        n.x -= (dxm / distMouse) * force;
+                        n.y -= (dym / distMouse) * force;
+                    }
                 }
 
+                // Node glow
+                const rad = n.radius + Math.sin(n.pulse) * 0.6;
                 ctx.beginPath();
-                ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-                ctx.fillStyle = nodeColor;
+                ctx.arc(n.x, n.y, Math.max(0.5, rad), 0, Math.PI * 2);
+                ctx.fillStyle = n.isCyan ? 'rgba(0, 240, 255, 0.85)' : 'rgba(168, 85, 247, 0.85)';
+                ctx.shadowColor = n.isCyan ? '#00f0ff' : '#a855f7';
+                ctx.shadowBlur = 10;
                 ctx.fill();
+                ctx.shadowBlur = 0;
 
-                // Draw filament connections
+                // Filament connections
                 for (let j = i + 1; j < nodes.length; j++) {
                     const n2 = nodes[j];
                     const dx = n.x - n2.x;
                     const dy = n.y - n2.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
-                    if (dist < 120) {
-                        const alpha = (1 - dist / 120) * 0.22;
+                    if (dist < 135) {
+                        const alpha = (1 - dist / 135) * 0.28;
                         ctx.beginPath();
                         ctx.moveTo(n.x, n.y);
                         ctx.lineTo(n2.x, n2.y);
-                        ctx.strokeStyle = lineColor + alpha + ')';
+                        ctx.strokeStyle = n.isCyan ? `rgba(0, 240, 255, ${alpha})` : `rgba(168, 85, 247, ${alpha})`;
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }
                 }
             }
 
-            requestAnimationFrame(drawMatrix);
+            // Magnetic Cursor Spotlight Halo
+            if (mouse.active) {
+                const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 160);
+                grad.addColorStop(0, 'rgba(0, 240, 255, 0.15)');
+                grad.addColorStop(0.5, 'rgba(99, 102, 241, 0.08)');
+                grad.addColorStop(1, 'transparent');
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(mouse.x, mouse.y, 160, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            frameId = requestAnimationFrame(drawMatrix);
         }
-        requestAnimationFrame(drawMatrix);
+        frameId = requestAnimationFrame(drawMatrix);
     }
 
     // =========================================================================
