@@ -782,30 +782,94 @@ export default function ClothesCloset2026({ garments }) {
                     </div>
                 </div>
 
-                <!-- Glassy Navigation Lab Architecture Switcher -->
-                <div class="glassy-nav-selector-pills">
-                    <button class="glassy-arch-btn active" data-arch="v1">
-                        <span class="arch-number">V1</span>
-                        <span>Neo-Arc Center Curve (Neon Cyan)</span>
-                    </button>
-                    <button class="glassy-arch-btn" data-arch="v2">
-                        <span class="arch-number">V2</span>
-                        <span>Holographic Spotlight Focus</span>
-                    </button>
-                    <button class="glassy-arch-btn" data-arch="v3">
-                        <span class="arch-number">V3</span>
-                        <span>Liquid Droplet Morph</span>
-                    </button>
-                    <button class="glassy-arch-btn" data-arch="v4">
-                        <span class="arch-number">V4</span>
-                        <span>Champagne Floating Island</span>
-                    </button>
+                <!-- =========================================================== -->
+                <!-- VIRAL SHOWCASE: 4 GLASSY NAVIGATION BARS STACKED (INSTAGRAM REEL) -->
+                <!-- =========================================================== -->
+                <div class="glassy-viral-reel-wrapper">
+                    <div class="glassy-viral-card">
+                        <div class="glassy-viral-header">
+                            <span class="viral-reel-tag">VIRAL UI/UX • 4 PRODUCTION ARCHITECTURES</span>
+                            <h3 class="viral-reel-title">Glassy Navigation Tabs <span class="highlight-cyan">V5</span></h3>
+                            <p class="viral-reel-sub">Click any navigation bar below to test live interactive states, liquid springs, and neon luminescence</p>
+                        </div>
+
+                        <!-- 4 Floating Glassy Bars Stacked (Directly Matching Instagram Reference) -->
+                        <div class="glassy-bars-showcase-stack" id="glassy-bars-showcase-stack">
+                            
+                            <!-- BAR 1: NEO-ARC CENTER CURVE (NEON CYAN) -->
+                            <div class="glassy-stack-item active" data-arch="v1" title="Click to test V1">
+                                <span class="stack-item-label">V1 • Neo-Arc Center Curve (Neon Cyan)</span>
+                                <div class="glass-tab-bar-v1 preview-bar">
+                                    <button class="v1-tab-btn active" data-tab="home">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                                        <span>Home</span>
+                                    </button>
+                                    <button class="v1-tab-btn" data-tab="search">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                        <span>Search</span>
+                                    </button>
+                                    <button class="v1-center-arc-btn" data-tab="create" title="Create New">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    </button>
+                                    <button class="v1-tab-btn" data-tab="inbox">
+                                        <div style="position:relative; display:inline-block;">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                            <span class="tab-notification-dot"></span>
+                                        </div>
+                                        <span>Inbox</span>
+                                    </button>
+                                    <button class="v1-tab-btn" data-tab="saved">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                                        <span>Saved</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- BAR 2: HOLOGRAPHIC SPOTLIGHT FOCUS -->
+                            <div class="glassy-stack-item" data-arch="v2" title="Click to test V2">
+                                <span class="stack-item-label">V2 • Holographic Spotlight Focus</span>
+                                <div class="glass-tab-bar-v2 preview-bar">
+                                    <div class="holographic-light-cone" style="left: calc(50% - 29px);"></div>
+                                    <button class="v2-tab-btn" data-tab="home"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></button>
+                                    <button class="v2-tab-btn" data-tab="likes"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                    <button class="v2-tab-btn active" data-tab="create"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>
+                                    <button class="v2-tab-btn" data-tab="profile"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+                                    <button class="v2-tab-btn" data-tab="alerts"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+                                </div>
+                            </div>
+
+                            <!-- BAR 3: LIQUID DROPLET MORPH -->
+                            <div class="glassy-stack-item" data-arch="v3" title="Click to test V3">
+                                <span class="stack-item-label">V3 • Liquid Droplet Extrusion</span>
+                                <div class="glass-tab-bar-v3 preview-bar">
+                                    <button class="v2-tab-btn" data-tab="home"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></button>
+                                    <button class="v2-tab-btn" data-tab="likes"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                    <button class="v3-center-pill active" data-tab="create"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>
+                                    <button class="v2-tab-btn" data-tab="profile"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+                                    <button class="v2-tab-btn" data-tab="alerts"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+                                </div>
+                            </div>
+
+                            <!-- BAR 4: CHAMPAGNE FLOATING ISLAND -->
+                            <div class="glassy-stack-item" data-arch="v4" title="Click to test V4">
+                                <span class="stack-item-label">V4 • Champagne Floating Island</span>
+                                <div class="glass-tab-bar-v4 preview-bar">
+                                    <button class="v4-tab-btn" data-tab="home"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>Home</span></button>
+                                    <button class="v4-tab-btn" data-tab="likes"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>Likes</span></button>
+                                    <button class="v4-floating-orb" data-tab="create" title="Add Action"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></button>
+                                    <button class="v4-tab-btn" data-tab="profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></button>
+                                    <button class="v4-tab-btn" data-tab="alerts"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>Alerts</span></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
-                <!-- The Interactive Glassy Mobile Device Stage -->
+                <!-- 2-COLUMN SIMULATOR & PRODUCTION CODE INSPECTOR -->
                 <div class="glassy-interactive-stage">
+                    <!-- LEFT COLUMN: LIVE SMARTPHONE APP SIMULATOR -->
                     <div class="glassy-device-chassis">
-                        <!-- Device Screen Top Bar -->
                         <div class="device-notch-bar">
                             <span class="device-time">11:34</span>
                             <div class="device-speaker-notch"></div>
@@ -815,55 +879,65 @@ export default function ClothesCloset2026({ garments }) {
                             </div>
                         </div>
 
-                        <!-- Simulated Living Room Wallpaper Background (Matches Video References) -->
                         <div class="device-wallpaper-screen" id="device-wallpaper-screen">
-                            <!-- Dynamic Screen Content Body -->
                             <div class="device-screen-content" id="device-screen-content">
-                                <!-- Dynamic View Injected by JS (Home, Search, Create, Inbox, Saved) -->
+                                <!-- Dynamic Moodboard Screen Content Injected by JS -->
                             </div>
 
-                            <!-- The Live Glassy Tab Bar Viewport (Switches between V1, V2, V3, V4) -->
                             <div class="glassy-bar-container" id="glassy-bar-container">
-                                <!-- Rendered by JS -->
+                                <!-- Active Glassy Navigation Bar Rendered by JS -->
                             </div>
                         </div>
 
-                        <!-- Home Indicator Bar -->
                         <div class="device-home-pill"></div>
                     </div>
 
-                    <!-- Code & Specs Control Sidebar -->
+                    <!-- RIGHT COLUMN: SPECS DASHBOARD & PRODUCTION REACT BLUEPRINT -->
                     <div class="glassy-specs-sidebar">
                         <div class="sidebar-header">
-                            <h4 style="font-family: var(--font-primary); font-size: 1.25rem; font-weight: 800; margin-bottom: 0.4rem; color: var(--text-main);">
-                                Interactive Architecture Specs
+                            <div class="spec-kicker-pill" id="glassy-active-arch-pill">
+                                <span>ACTIVE VARIANT: V1 NEO-ARC CYAN</span>
+                            </div>
+                            <h4 class="spec-heading">
+                                Interactive Architecture Blueprint
                             </h4>
-                            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;" id="glassy-arch-desc">
-                                Neo-Arc glass structure with organic continuous center extrusion and glowing cyan neon perimeter contour.
+                            <p class="spec-desc" id="glassy-arch-desc">
+                                Continuous translucent glass capsule with organic center curve cutout cradling a glowing cyan neon + Create action button.
                             </p>
                         </div>
 
-                        <!-- Live Control Form -->
-                        <div class="glassy-control-box">
-                            <div class="control-row">
-                                <label>Active Tab:</label>
-                                <span class="active-tab-indicator" id="glassy-active-tab-label">Home</span>
+                        <!-- 3-Pill Bulletproof Specs Dashboard (Zero Clipping) -->
+                        <div class="glassy-specs-grid">
+                            <div class="spec-stat-card">
+                                <span class="spec-label">Backdrop Filter</span>
+                                <strong class="spec-val" id="spec-blur-val">28px Blur</strong>
+                                <span class="spec-sub">Hardware GPU</span>
                             </div>
-                            <div class="control-row">
-                                <label>Glass Blur Intensity:</label>
-                                <span class="glass-slider-val" id="blur-val">28px</span>
+                            <div class="spec-stat-card">
+                                <span class="spec-label">Luminescence</span>
+                                <strong class="spec-val" id="spec-glow-val">Cyan (#00f0ff)</strong>
+                                <span class="spec-sub">Sub-pixel Glow</span>
                             </div>
-                            <div class="control-row">
-                                <label>Neon Luminescence:</label>
-                                <span class="glass-slider-val" id="glow-val">Active (Cyan 400)</span>
+                            <div class="spec-stat-card">
+                                <span class="spec-label">Touch Latency</span>
+                                <strong class="spec-val">0.2ms</strong>
+                                <span class="spec-sub">Native 60 FPS</span>
                             </div>
                         </div>
 
-                        <!-- Collapsible Component Blueprint -->
+                        <!-- Production Code Window with Copy Action -->
                         <div class="glassy-code-box">
                             <div class="code-box-header">
-                                <span>GlassyTabNavigation.jsx</span>
-                                <span class="code-tag-react">React + Tailwind Glass</span>
+                                <div class="code-dots">
+                                    <span class="dot dot-red"></span>
+                                    <span class="dot dot-yellow"></span>
+                                    <span class="dot dot-green"></span>
+                                    <span class="code-filename">GlassyTabNavigation.jsx</span>
+                                </div>
+                                <button class="btn-copy-code" id="btn-copy-glassy-code" title="Copy Component Code">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                    <span id="copy-code-text">Copy Code</span>
+                                </button>
                             </div>
                             <pre class="glassy-code-pre"><code id="glassy-code-content">// V1: Neo-Arc Glowing Center Glass Bar
 &lt;nav className="relative flex items-center justify-between rounded-full bg-white/10 px-6 py-3 shadow-2xl backdrop-blur-xl border border-white/20"&gt;
@@ -875,10 +949,10 @@ export default function ClothesCloset2026({ garments }) {
 &lt;/nav&gt;</code></pre>
                         </div>
 
-                        <!-- Direct CTA -->
-                        <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20am%20exploring%20your%20Glassy%20Navigation%20Tabs%20V5%20lab%20and%20want%20this%20built%20for%20my%20app." target="_blank" class="glassy-consult-btn">
+                        <!-- Direct Consultation CTA -->
+                        <button class="glassy-consult-btn open-consultation-btn">
                             <span>Build This Glassy UI For My App &rarr;</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1881,39 +1881,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const SCREENS = {
             home: `
-                <div class="mini-dashboard-card">
-                    <div class="card-stat-header">
-                        <span style="font-size:0.75rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1px;">Active Engine Telemetry</span>
-                        <span class="stat-pill-badge">+34% Lift</span>
-                    </div>
-                    <div class="stat-main-number" style="font-size:1.6rem; color:#ffffff;">$64,850 ARR</div>
-                    <div style="font-size:0.72rem; color:#cbd5e1; margin-bottom:0.6rem;">14 Live Production Deployments • 100/100 Vitals</div>
-                    <div style="height:28px; display:flex; align-items:flex-end; gap:5px;">
-                        <div style="flex:1; height:35%; background:#818cf8; border-radius:3px;"></div>
-                        <div style="flex:1; height:55%; background:#818cf8; border-radius:3px;"></div>
-                        <div style="flex:1; height:45%; background:#818cf8; border-radius:3px;"></div>
-                        <div style="flex:1; height:75%; background:#818cf8; border-radius:3px;"></div>
-                        <div style="flex:1; height:65%; background:#818cf8; border-radius:3px;"></div>
-                        <div style="flex:1; height:90%; background:#38bdf8; border-radius:3px;"></div>
-                        <div style="flex:1; height:100%; background:#00f0ff; border-radius:3px; box-shadow:0 0 10px #00f0ff;"></div>
+                <div class="mini-dashboard-card" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.18);">
+                    <div style="font-size:0.72rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.4rem;">Curated Moodboards</div>
+                    <div style="font-size:0.95rem; font-weight:800; color:#ffffff; margin-bottom:0.4rem;">Glassmorphism 2.0</div>
+                    <div style="font-size:0.72rem; color:#cbd5e1; line-height:1.45; margin-bottom:0.6rem;">Hardware-accelerated 32px backdrop blur with continuous cyan perimeter radiance.</div>
+                    <div style="display:flex; gap:6px;">
+                        <span style="font-size:0.65rem; background:rgba(0,240,255,0.15); color:#00f0ff; border:1px solid rgba(0,240,255,0.3); padding:2px 8px; border-radius:999px; font-weight:700;">#MobileApp</span>
+                        <span style="font-size:0.65rem; background:rgba(255,255,255,0.08); color:#e2e8f0; padding:2px 8px; border-radius:999px;">#V5Tabs</span>
                     </div>
                 </div>
                 <div class="mini-dashboard-card" style="background:rgba(15,23,42,0.6); border-color:rgba(255,255,255,0.12);">
-                    <div style="font-size:0.72rem; font-weight:800; color:#38bdf8; text-transform:uppercase; margin-bottom:0.4rem; letter-spacing:1px;">Core Service Modules</div>
-                    <div style="display:flex; flex-direction:column; gap:6px; font-size:0.72rem;">
-                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 6px; background:rgba(255,255,255,0.05); border-radius:6px;">
-                            <span style="color:#ffffff; font-weight:600;">🌐 Web Engineering</span>
-                            <span style="color:#10b981; font-weight:700;">100/100</span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 6px; background:rgba(255,255,255,0.05); border-radius:6px;">
-                            <span style="color:#ffffff; font-weight:600;">📱 Mobile Apps</span>
-                            <span style="color:#38bdf8; font-weight:700;">60 FPS</span>
-                        </div>
-                        <div style="display:flex; justify-content:space-between; align-items:center; padding:4px 6px; background:rgba(255,255,255,0.05); border-radius:6px;">
-                            <span style="color:#ffffff; font-weight:600;">🚀 Social Growth</span>
-                            <span style="color:#ec4899; font-weight:700;">+4.8x ROAS</span>
-                        </div>
-                    </div>
+                    <div style="font-size:0.72rem; font-weight:800; color:#f59e0b; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.4rem;">Stealth Luxury Architecture</div>
+                    <div style="font-size:0.72rem; color:#cbd5e1; line-height:1.45;">Champagne tinted frosted glass with floating detached 3D circular action trigger.</div>
                 </div>
             `,
             search: `
@@ -2092,16 +2071,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function updateTelemetry() {
             const archData = ARCHITECTURES[currentArch] || ARCHITECTURES['v1'];
-            if (activeTabLbl) {
-                const tabNames = ['home', 'search', 'create', 'inbox', 'saved'];
-                const idx = tabNames.indexOf(currentTab);
-                const numStr = idx >= 0 ? `0${idx + 1}` : '01';
-                activeTabLbl.textContent = `${currentTab.toUpperCase()} (${numStr}/05)`;
+            const activeArchPill = document.getElementById('glassy-active-arch-pill');
+            if (activeArchPill) {
+                activeArchPill.textContent = `ACTIVE VARIANT: ${archData.title.toUpperCase()}`;
             }
-            const blurEl = document.getElementById('blur-val');
-            if (blurEl) blurEl.textContent = archData.blur || '28px (Hardware GPU)';
-            const glowEl = document.getElementById('glow-val');
-            if (glowEl) glowEl.textContent = archData.glow || '100% Cyan Active (#00f0ff)';
+            const blurValEl = document.getElementById('spec-blur-val');
+            if (blurValEl) blurValEl.textContent = archData.blur || '28px Blur';
+            const glowValEl = document.getElementById('spec-glow-val');
+            if (glowValEl) glowValEl.textContent = archData.glow || 'Cyan (#00f0ff)';
         }
 
         function updateV2LightCone() {
@@ -2124,20 +2101,58 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Connect both selector pills and the 4-stack viral reel items
+        const stackItems = document.querySelectorAll('.glassy-stack-item');
+
+        function switchArch(newArch) {
+            currentArch = newArch;
+            archBtns.forEach(b => {
+                if (b.getAttribute('data-arch') === currentArch) b.classList.add('active');
+                else b.classList.remove('active');
+            });
+            stackItems.forEach(item => {
+                if (item.getAttribute('data-arch') === currentArch) item.classList.add('active');
+                else item.classList.remove('active');
+            });
+
+            const archData = ARCHITECTURES[currentArch] || ARCHITECTURES['v1'];
+            if (archDescEl) archDescEl.textContent = archData.desc;
+            if (codePreEl) codePreEl.textContent = archData.code;
+
+            renderBar();
+            updateTelemetry();
+        }
+
         archBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                archBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentArch = btn.getAttribute('data-arch') || 'v1';
-
-                const archData = ARCHITECTURES[currentArch];
-                if (archDescEl) archDescEl.textContent = archData.desc;
-                if (codePreEl) codePreEl.textContent = archData.code;
-
-                renderBar();
-                updateTelemetry();
+                const a = btn.getAttribute('data-arch') || 'v1';
+                switchArch(a);
             });
         });
+
+        stackItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const a = item.getAttribute('data-arch') || 'v1';
+                switchArch(a);
+            });
+        });
+
+        // Copy Code Button functionality
+        const copyBtn = document.getElementById('btn-copy-glassy-code');
+        const copyText = document.getElementById('copy-code-text');
+        if (copyBtn && codePreEl) {
+            copyBtn.addEventListener('click', () => {
+                const codeToCopy = codePreEl.textContent || '';
+                navigator.clipboard.writeText(codeToCopy).then(() => {
+                    if (copyText) copyText.textContent = 'Copied! ✓';
+                    setTimeout(() => {
+                        if (copyText) copyText.textContent = 'Copy Code';
+                    }, 2200);
+                }).catch(() => {
+                    if (copyText) copyText.textContent = 'Copied! ✓';
+                });
+            });
+        }
 
         renderScreenContent();
         renderBar();

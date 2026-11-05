@@ -3694,49 +3694,250 @@
   gap: 1.5rem;
 }
 
-.glassy-control-box {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-glass);
-  border-radius: 18px;
-  padding: 1.25rem;
+/* ------------------------------------------------------------- */
+/* VIRAL REEL 4-STACK SHOWCASE CONTAINER (Matching Instagram)     */
+/* ------------------------------------------------------------- */
+.glassy-viral-reel-wrapper {
+  max-width: 980px;
+  margin: 0 auto 3.2rem;
+}
+
+.glassy-viral-card {
+  background: linear-gradient(145deg, #161822 0%, #0d0f15 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  padding: 2.5rem 2rem 2.8rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.glassy-viral-card::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(6, 182, 212, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.viral-reel-tag {
+  display: inline-block;
+  font-family: var(--font-primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 0.8rem;
+}
+
+.viral-reel-title {
+  font-family: var(--font-primary);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 850;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+}
+
+.viral-reel-title .highlight-cyan {
+  color: #00f0ff;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+.viral-reel-sub {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  max-width: 620px;
+  margin: 0 auto 2.2rem;
+  line-height: 1.55;
+}
+
+/* 4 Bars Stack */
+.glassy-bars-showcase-stack {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.6rem;
+  max-width: 580px;
+  margin: 0 auto;
 }
 
-.control-row {
+.glassy-stack-item {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85rem;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
-.control-row label {
-  color: var(--text-muted);
-  font-weight: 600;
+.glassy-stack-item:hover,
+.glassy-stack-item.active {
+  transform: scale(1.02);
 }
 
-.active-tab-indicator,
-.glass-slider-val {
+.stack-item-label {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  padding-left: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.glassy-stack-item:hover .stack-item-label,
+.glassy-stack-item.active .stack-item-label {
+  color: #00f0ff;
+}
+
+.tab-notification-dot {
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  width: 7px;
+  height: 7px;
+  background: #ef4444;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ef4444;
+}
+
+/* ------------------------------------------------------------- */
+/* SPECS DASHBOARD & BLUEPRINT CARD (Right Column)              */
+/* ------------------------------------------------------------- */
+.spec-kicker-pill {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 800;
-  color: #0369a1;
+  color: #0284c7;
   background: rgba(2, 132, 199, 0.1);
-  padding: 0.25rem 0.65rem;
-  border-radius: 6px;
   border: 1px solid rgba(2, 132, 199, 0.25);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+}
+
+[data-theme="dark"] .spec-kicker-pill,
+body.dark-theme .spec-kicker-pill {
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.1);
+  border-color: rgba(0, 240, 255, 0.3);
+}
+
+.spec-heading {
+  font-family: var(--font-primary);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.spec-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 1.4rem;
+}
+
+/* 3-Card Bulletproof Specs Grid */
+.glassy-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.4rem;
+}
+
+.spec-stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  padding: 0.85rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.spec-stat-card .spec-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.spec-stat-card .spec-val {
+  font-family: var(--font-mono);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #0284c7;
+}
+
+[data-theme="dark"] .spec-stat-card .spec-val,
+body.dark-theme .spec-stat-card .spec-val {
+  color: #00f0ff;
+}
+
+.spec-stat-card .spec-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+/* Code Box Header Dots & Copy Button */
+.code-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   display: inline-block;
 }
 
-[data-theme="dark"] .active-tab-indicator,
-[data-theme="dark"] .glass-slider-val,
-body.dark-theme .active-tab-indicator,
-body.dark-theme .glass-slider-val {
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.code-filename {
+  margin-left: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: #cbd5e1;
+}
+
+.btn-copy-code {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-copy-code:hover {
+  background: rgba(0, 240, 255, 0.15);
   color: #00f0ff;
-  background: rgba(0, 240, 255, 0.12);
-  border-color: rgba(0, 240, 255, 0.35);
-  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+  border-color: rgba(0, 240, 255, 0.4);
 }
 
 .glassy-code-box {
