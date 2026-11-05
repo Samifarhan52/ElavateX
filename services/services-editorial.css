@@ -412,6 +412,7 @@
   overflow: hidden;
   padding: 95px 0 3.5rem;
   box-sizing: border-box;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Background Architectural Concrete Stage */
@@ -471,14 +472,14 @@
   pointer-events: none;
 }
 
-/* Seamless Bottom Gradient Transition (Eliminates harsh white cutoffs) */
+/* Seamless Bottom Vignette Transition inside Hero */
 .service-bottom-fade {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 140px;
-  background: linear-gradient(to bottom, transparent 0%, rgba(13, 14, 17, 0.75) 50%, rgba(18, 19, 22, 1) 100%);
+  height: 80px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(18, 19, 22, 0.4) 65%, rgba(18, 19, 22, 0.85) 100%);
   pointer-events: none;
   z-index: 3;
 }
@@ -553,7 +554,8 @@
     gap: 2.5rem;
   }
   .service-editorial-hero {
-    min-height: auto;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
     padding: 95px 0 4rem;
   }
 }
@@ -870,19 +872,4 @@
   .service-scroll-track {
     display: none !important;
   }
-}
-
-/* =================================================================== */
-/* 5. SEAMLESS ARCHITECTURAL SECTION CONNECTORS                        */
-/* =================================================================== */
-.smm-platforms,
-.web-redesign-section,
-#app-what-we-build {
-  background-color: var(--charcoal-deep) !important;
-  color: var(--moonlit-silver) !important;
-}
-
-.web-redesign-section.alt-bg,
-#app-services {
-  background-color: var(--charcoal-grey) !important;
 }
