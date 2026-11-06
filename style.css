@@ -1259,7 +1259,7 @@ button, input, select, textarea {
 .hero-visual-stage {
   position: relative;
   width: 100%;
-  min-height: 600px;
+  min-height: 520px;
   perspective: 1200px;
   display: flex;
   align-items: center;
@@ -1270,32 +1270,33 @@ button, input, select, textarea {
 .interactive-robot-container {
   position: relative;
   width: 100%;
-  max-width: 660px;
-  min-height: 600px;
+  max-width: 620px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   user-select: none;
   z-index: 2;
+  margin: 0 auto;
 }
 
 /* Ambient Pulsing Aura & 3D Gyro Orbit Rings */
 .robot-stage-aura {
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 520px;
+  height: 520px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(2, 132, 199, 0.32) 0%, rgba(99, 102, 241, 0.2) 40%, rgba(6, 182, 212, 0.1) 60%, transparent 75%);
-  filter: blur(55px);
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.28) 0%, rgba(99, 102, 241, 0.18) 40%, rgba(6, 182, 212, 0.08) 60%, transparent 75%);
+  filter: blur(50px);
   z-index: 0;
   pointer-events: none;
   animation: auraPulse 6s ease-in-out infinite alternate;
 }
 
 @keyframes auraPulse {
-  0% { transform: scale(0.9); opacity: 0.75; }
-  100% { transform: scale(1.15); opacity: 1; }
+  0% { transform: scale(0.92); opacity: 0.75; }
+  100% { transform: scale(1.12); opacity: 1; }
 }
 
 .robot-orbit-ring {
@@ -1306,18 +1307,18 @@ button, input, select, textarea {
 }
 
 .robot-orbit-ring.ring-outer {
-  width: 540px;
-  height: 540px;
-  border: 1.5px dashed rgba(56, 189, 248, 0.35);
-  box-shadow: 0 0 25px rgba(56, 189, 248, 0.12);
+  width: 460px;
+  height: 460px;
+  border: 1.5px dashed rgba(56, 189, 248, 0.32);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
   animation: orbitSpin 30s linear infinite;
 }
 
 .robot-orbit-ring.ring-inner {
-  width: 440px;
-  height: 440px;
-  border: 1px solid rgba(168, 85, 247, 0.3);
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.12);
+  width: 380px;
+  height: 380px;
+  border: 1px solid rgba(168, 85, 247, 0.28);
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.1);
   animation: orbitSpinRev 20s linear infinite;
 }
 
@@ -1334,27 +1335,29 @@ button, input, select, textarea {
 /* Interactive Speech Bubble */
 .robot-speech-bubble {
   position: relative;
-  background: rgba(15, 18, 28, 0.9);
+  background: rgba(15, 18, 28, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.35);
   border-radius: 999px;
-  padding: 0.65rem 1.35rem;
-  margin-bottom: 0.8rem;
+  padding: 0.5rem 1.15rem;
+  margin: 0 auto 0.5rem auto;
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(56, 189, 248, 0.15);
+  justify-content: center;
+  gap: 0.6rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 12px rgba(56, 189, 248, 0.12);
   z-index: 10;
+  width: 100%;
   max-width: 520px;
   text-align: center;
   transition: all 0.3s ease;
 }
 
 [data-theme="light"] .robot-speech-bubble {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(56, 189, 248, 0.35);
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08), 0 0 12px rgba(56, 189, 248, 0.12);
+  background: #ffffff;
+  border: 1px solid rgba(2, 132, 199, 0.3);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08), 0 0 10px rgba(2, 132, 199, 0.1);
 }
 
 .speech-pulse {
@@ -1374,7 +1377,7 @@ button, input, select, textarea {
 
 .speech-text {
   font-family: var(--font-primary);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-main);
   line-height: 1.35;
@@ -1382,6 +1385,7 @@ button, input, select, textarea {
 
 [data-theme="light"] .speech-text {
   color: #0f172a;
+  font-weight: 600;
 }
 
 /* 3D WebGL CyberBot Canvas Stage */
@@ -1392,14 +1396,14 @@ button, input, select, textarea {
 .robot-canvas-stage {
   position: relative;
   width: 100%;
-  max-width: 720px;
-  height: 560px;
+  max-width: 580px;
+  height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: grab;
   user-select: none;
-  touch-action: pan-y !important; /* Critical: allows seamless vertical page scroll on mobile */
+  touch-action: pan-y !important;
   overflow: visible;
   z-index: 3;
 }
@@ -1415,7 +1419,7 @@ button, input, select, textarea {
   outline: none;
   background: transparent !important;
   touch-action: pan-y !important;
-  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.45));
 }
 
 [data-theme="light"] #robot-webgl-canvas {
@@ -1445,35 +1449,38 @@ button, input, select, textarea {
 .robot-interactive-actions {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.35rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 1.2rem;
+  margin-top: 0.55rem;
   z-index: 10;
+  width: 100%;
+  max-width: 560px;
 }
 
 .robot-act-btn {
-  background: rgba(15, 18, 28, 0.85);
+  background: rgba(15, 18, 28, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  padding: 0.45rem 0.85rem;
+  padding: 0.32rem 0.65rem;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="light"] .robot-act-btn {
   background: #ffffff;
-  border-color: rgba(226, 232, 240, 0.95);
+  border: 1px solid rgba(203, 213, 225, 0.9);
   color: #0f172a;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
 }
 
 .robot-act-btn:hover,
@@ -1481,13 +1488,17 @@ button, input, select, textarea {
   background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   color: #ffffff !important;
   border-color: transparent;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+  transform: translateY(-1.5px);
+  box-shadow: 0 5px 14px rgba(37, 99, 235, 0.3);
 }
 
 .robot-act-btn.btn-chat-link {
   background: rgba(37, 211, 102, 0.12);
-  border-color: rgba(37, 211, 102, 0.3);
+  border-color: rgba(37, 211, 102, 0.35);
+  color: #16a34a !important;
+}
+
+[data-theme="dark"] .robot-act-btn.btn-chat-link {
   color: #25d366 !important;
 }
 
@@ -1499,11 +1510,11 @@ button, input, select, textarea {
 /* ROBOT INTERACTIVE LIVE CHAT CONSOLE */
 .robot-chat-console {
   width: 100%;
-  max-width: 580px;
+  max-width: 540px;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
-  margin-top: 0.95rem;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
   z-index: 10;
   position: relative;
 }
@@ -1513,17 +1524,17 @@ button, input, select, textarea {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .chat-prompt-pill {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--text-muted);
   font-family: var(--font-primary);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  padding: 0.28rem 0.7rem;
+  padding: 0.22rem 0.6rem;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1531,23 +1542,23 @@ button, input, select, textarea {
 }
 
 .chat-prompt-pill:hover {
-  background: rgba(56, 189, 248, 0.14);
-  border-color: rgba(56, 189, 248, 0.45);
+  background: rgba(56, 189, 248, 0.16);
+  border-color: rgba(56, 189, 248, 0.5);
   color: #38bdf8;
-  transform: translateY(-1.5px);
-  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(56, 189, 248, 0.18);
 }
 
 [data-theme="light"] .chat-prompt-pill {
   background: #ffffff;
-  border-color: rgba(226, 232, 240, 0.95);
-  color: #475569;
+  border: 1px solid rgba(203, 213, 225, 0.9);
+  color: #334155;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
 }
 
 [data-theme="light"] .chat-prompt-pill:hover {
   background: #f0f9ff;
-  border-color: #38bdf8;
+  border-color: #0284c7;
   color: #0284c7;
 }
 
@@ -1558,35 +1569,35 @@ button, input, select, textarea {
 .robot-chat-input-row {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background: rgba(15, 23, 42, 0.85);
+  gap: 0.45rem;
+  background: rgba(15, 23, 42, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 999px;
-  padding: 0.28rem 0.38rem 0.28rem 0.95rem;
+  padding: 0.22rem 0.32rem 0.22rem 0.85rem;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
   transition: all 0.25s ease;
 }
 
 .robot-chat-input-row:focus-within {
   border-color: #38bdf8;
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.28), 0 4px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25), 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="light"] .robot-chat-input-row {
   background: #ffffff;
-  border-color: rgba(226, 232, 240, 0.95);
+  border: 1px solid rgba(203, 213, 225, 0.95);
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
 }
 
 [data-theme="light"] .robot-chat-input-row:focus-within {
   border-color: #0284c7;
-  box-shadow: 0 0 16px rgba(2, 132, 199, 0.2);
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.22);
 }
 
 .robot-chat-input-icon {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   opacity: 0.85;
   user-select: none;
 }
@@ -1597,7 +1608,7 @@ button, input, select, textarea {
   border: none;
   outline: none;
   font-family: var(--font-primary);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: var(--text-main);
   min-width: 0;
@@ -1606,7 +1617,7 @@ button, input, select, textarea {
 .robot-chat-input::placeholder {
   color: var(--text-muted);
   opacity: 0.75;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
 }
 
 [data-theme="light"] .robot-chat-input {
@@ -1616,24 +1627,24 @@ button, input, select, textarea {
 .robot-chat-submit-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
   background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   color: #ffffff;
   border: none;
   border-radius: 999px;
-  padding: 0.42rem 0.95rem;
+  padding: 0.36rem 0.85rem;
   font-family: var(--font-primary);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
-  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
 }
 
 .robot-chat-submit-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
   filter: brightness(1.1);
 }
 
@@ -1647,12 +1658,12 @@ button, input, select, textarea {
   }
   .interactive-robot-container {
     min-height: auto;
-    margin-top: 1.2rem;
+    margin-top: 1rem;
     max-width: 100%;
     touch-action: pan-y !important;
   }
   .robot-canvas-stage {
-    height: 440px;
+    height: 360px;
     max-width: 100%;
     touch-action: pan-y !important;
   }
@@ -1661,16 +1672,16 @@ button, input, select, textarea {
 @media (max-width: 768px) {
   .hero-visual-stage {
     min-height: auto;
-    margin-top: 0.8rem;
+    margin-top: 0.5rem;
   }
   .interactive-robot-container {
     min-height: auto;
-    margin-top: 0.8rem;
+    margin-top: 0.5rem;
     max-width: 100%;
     touch-action: pan-y !important;
   }
   .robot-canvas-stage {
-    height: 350px !important;
+    height: 310px !important;
     max-width: 100%;
     touch-action: pan-y !important;
   }
@@ -1678,47 +1689,47 @@ button, input, select, textarea {
     touch-action: pan-y !important;
   }
   .robot-stage-aura {
-    width: 340px;
-    height: 340px;
+    width: 320px;
+    height: 320px;
     filter: blur(35px);
   }
   .robot-orbit-ring.ring-outer {
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 300px;
   }
   .robot-orbit-ring.ring-inner {
-    width: 250px;
-    height: 250px;
+    width: 240px;
+    height: 240px;
   }
   .robot-speech-bubble {
-    padding: 0.45rem 0.95rem;
-    font-size: 0.75rem;
-    margin-bottom: 0.45rem;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.72rem;
+    margin-bottom: 0.35rem;
     max-width: 95%;
   }
   .speech-text {
-    font-size: 0.74rem;
+    font-size: 0.72rem;
   }
   .robot-interactive-actions {
-    gap: 0.35rem;
-    margin-top: 0.85rem;
-    padding: 0.2rem 0;
+    gap: 0.25rem;
+    margin-top: 0.45rem;
+    padding: 0.1rem 0;
   }
   .robot-act-btn {
-    font-size: 0.72rem;
-    padding: 0.38rem 0.65rem;
+    font-size: 0.68rem;
+    padding: 0.26rem 0.55rem;
   }
   .robot-chat-console {
     max-width: 100%;
-    margin-top: 0.75rem;
-    gap: 0.45rem;
+    margin-top: 0.45rem;
+    gap: 0.4rem;
   }
   .chat-prompt-pill {
     font-size: 0.68rem;
-    padding: 0.22rem 0.55rem;
+    padding: 0.2rem 0.55rem;
   }
   .robot-chat-input-row {
-    padding: 0.22rem 0.3rem 0.22rem 0.75rem;
+    padding: 0.2rem 0.3rem 0.2rem 0.75rem;
   }
   .robot-chat-input {
     font-size: 0.76rem;
