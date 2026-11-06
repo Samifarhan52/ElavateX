@@ -2178,13 +2178,16 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // APEX-X QUANTUM CYBER MECHA (MULTICOLOR ELAVATEX BRAND PALETTE: INDIGO, PURPLE, CYAN, GOLD)
+    // NASA VALKYRIE R5 SPACE HUMANOID (WHITE COMPOSITE ARMOR, GOLD ACCENTS, GLOWING BLUE REACTOR)
     // -------------------------------------------------------------------------
     function initCyberBot() {
         const canvas = document.getElementById('robot-webgl-canvas');
         const container = document.getElementById('robot-canvas-stage');
         const speechText = document.getElementById('robot-speech-text');
         const actButtons = document.querySelectorAll('.robot-act-btn[data-action]');
+        const chatForm = document.getElementById('robot-chat-form');
+        const chatInput = document.getElementById('robot-chat-input');
+        const promptPills = document.querySelectorAll('.chat-prompt-pill');
 
         if (!canvas || !container || typeof THREE === 'undefined') return;
 
@@ -2200,11 +2203,11 @@ Would you like to start a project inquiry right now?`;
         });
         renderer.setSize(width, height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setClearColor(0x000000, 0); // 100% TRANSLUCENT BACKGROUND
+        renderer.setClearColor(0x000000, 0); // 100% Translucent Background
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.45;
+        renderer.toneMappingExposure = 1.4;
 
-        // 2. Camera Framing (Athletic Full-Body Studio Stance - Mobile-Aware)
+        // 2. Camera Framing (Athletic Full-Body Stance - Mobile-Aware)
         const scene = new THREE.Scene();
         const isMobileInit = width < 640;
         const initFov = isMobileInit ? 38 : (width < 1024 ? 36 : 35);
@@ -2214,75 +2217,42 @@ Would you like to start a project inquiry right now?`;
         camera.position.set(0, initY, initZ);
         camera.lookAt(0, 1.15, 0);
 
-        // 3. Cinematic Multicolor Studio Lighting Rig (Matching ElavateX Brand)
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.6);
+        // 3. Cinematic Studio Lighting Rig (Clean Space-Mission Aesthetic)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.7);
         scene.add(ambientLight);
 
-        const keyLight = new THREE.DirectionalLight(0xffffff, 2.8);
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2.9);
         keyLight.position.set(4, 8, 5);
         scene.add(keyLight);
 
-        // ElavateX Cyan Fill Light
-        const fillLight = new THREE.DirectionalLight(0x06b6d4, 2.2);
+        const fillLight = new THREE.DirectionalLight(0x38bdf8, 2.0); // Cyan Fill
         fillLight.position.set(-5, 4, 3);
         scene.add(fillLight);
 
-        // ElavateX Purple/Indigo Rim Light
-        const rimLight = new THREE.DirectionalLight(0xa855f7, 2.8);
+        const rimLight = new THREE.DirectionalLight(0xf59e0b, 2.4); // NASA Sunset Amber Rim
         rimLight.position.set(0, 7, -5);
         scene.add(rimLight);
 
-        // Ground Neon Cyan Bounce Light
-        const groundLight = new THREE.PointLight(0x00f0ff, 2.2, 6);
+        const groundLight = new THREE.PointLight(0x00f0ff, 2.0, 6);
         groundLight.position.set(0, 0.15, 0);
         scene.add(groundLight);
 
-        // 4. Multicolor ElavateX Brand Materials & Shaders
-        // 1) Crisp Pearlescent White Ceramic Shell (Base structure)
-        const matWhiteArmor = new THREE.MeshPhysicalMaterial({
-            color: 0xf8fafc,
-            roughness: 0.11,
+        // 4. Authentic NASA Valkyrie R5 Space Materials & Shaders
+        // 1) Clean White Spacesuit Composite Ceramic Armor
+        const matValkyrieWhite = new THREE.MeshPhysicalMaterial({
+            color: 0xf4f6f8,
+            roughness: 0.22,
             metalness: 0.08,
-            clearcoat: 1.0,
-            clearcoatRoughness: 0.05,
-            reflectivity: 0.96
-        });
-
-        // 2) Electric Royal Indigo Armor (ElavateX Primary Indigo #4f46e5 / #6366f1)
-        const matIndigoArmor = new THREE.MeshPhysicalMaterial({
-            color: 0x4f46e5,
-            roughness: 0.14,
-            metalness: 0.28,
-            clearcoat: 1.0,
-            clearcoatRoughness: 0.06,
-            reflectivity: 0.94
-        });
-
-        // 3) Cyber Violet / Purple Armor (ElavateX Brand Purple #9333ea / #a855f7)
-        const matPurpleArmor = new THREE.MeshPhysicalMaterial({
-            color: 0x9333ea,
-            roughness: 0.14,
-            metalness: 0.28,
-            clearcoat: 1.0,
-            clearcoatRoughness: 0.06,
-            reflectivity: 0.94
-        });
-
-        // 4) Electric Ocean Cyan Armor (ElavateX Brand Cyan #0284c7 / #38bdf8)
-        const matCyanArmor = new THREE.MeshPhysicalMaterial({
-            color: 0x0284c7,
-            roughness: 0.12,
-            metalness: 0.32,
-            clearcoat: 1.0,
-            clearcoatRoughness: 0.05,
+            clearcoat: 0.85,
+            clearcoatRoughness: 0.08,
             reflectivity: 0.95
         });
 
-        // 5) Warm Amber Gold Metallic Rotary Actuators (ElavateX Accent Amber #f59e0b / #d97706)
-        const matGoldActuator = new THREE.MeshStandardMaterial({
+        // 2) NASA Sunset Amber / Gold Metallic Rotary Actuators & Accents
+        const matValkyrieGold = new THREE.MeshStandardMaterial({
             color: 0xd97706,
-            roughness: 0.16,
-            metalness: 0.96
+            roughness: 0.18,
+            metalness: 0.95
         });
 
         const matGoldBezel = new THREE.MeshStandardMaterial({
@@ -2291,41 +2261,53 @@ Would you like to start a project inquiry right now?`;
             metalness: 0.96
         });
 
-        // 6) Dark Gunmetal / Carbon-Fiber Inner Skeletal Mechanics
-        const matDarkSkeleton = new THREE.MeshStandardMaterial({
-            color: 0x090d16,
-            roughness: 0.22,
-            metalness: 0.94
+        // 3) Carbon-Fiber Inner Skeletal Mechanics & Joint Liners
+        const matValkyrieDark = new THREE.MeshStandardMaterial({
+            color: 0x0e1320,
+            roughness: 0.25,
+            metalness: 0.92
         });
 
-        // 7) High-Specular Deep Obsidian Visor Glass
+        // 4) NASA Royal Blue Chest Emblem Insignia Disc
+        const matNasaBlue = new THREE.MeshStandardMaterial({
+            color: 0x1d4ed8,
+            roughness: 0.28,
+            metalness: 0.35
+        });
+
+        // 5) High-Gloss Obsidian Aerodynamic Helmet Visor Glass
         const matVisorGlass = new THREE.MeshPhysicalMaterial({
-            color: 0x020617,
-            roughness: 0.03,
+            color: 0x04060d,
+            roughness: 0.02,
             metalness: 0.98,
             clearcoat: 1.0,
             clearcoatRoughness: 0.02
         });
 
-        // 8) Mirror Chrome Hydraulic Piston Rods
+        // 6) Mirror Chrome Hydraulic Piston Rods
         const matChromeRod = new THREE.MeshStandardMaterial({
             color: 0xf1f5f9,
             roughness: 0.04,
             metalness: 0.98
         });
 
+        // 7) Dark Rubber Grip Soles
+        const matRubberSole = new THREE.MeshStandardMaterial({
+            color: 0x1e293b,
+            roughness: 0.75,
+            metalness: 0.1
+        });
+
         // Emissive Neon Highlights
         const matCyanGlow = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
-        const matPurpleGlow = new THREE.MeshBasicMaterial({ color: 0xa855f7 });
-        const matIndigoGlow = new THREE.MeshBasicMaterial({ color: 0x6366f1 });
-        const matGoldGlow = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
+        const matAmberGlow = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
         const matCoreReactor = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
 
         // 5. Master Robot Hierarchy
         const robotMasterGroup = new THREE.Group();
         scene.add(robotMasterGroup);
 
-        // Holographic Gyro Pedestal at Feet (Dual Cyan & Violet Neon Rings, 100% Translucent Dais)
+        // Holographic Gyro Pedestal at Feet (Dual Cyan & Amber Rings, 100% Translucent Dais)
         const platformGeo = new THREE.CylinderGeometry(1.65, 1.75, 0.02, 48);
         const platformMat = new THREE.MeshStandardMaterial({
             color: 0x38bdf8,
@@ -2345,7 +2327,7 @@ Would you like to start a project inquiry right now?`;
         robotMasterGroup.add(ring);
 
         const innerRingGeo = new THREE.TorusGeometry(1.38, 0.012, 16, 48);
-        const innerRing = new THREE.Mesh(innerRingGeo, matPurpleGlow);
+        const innerRing = new THREE.Mesh(innerRingGeo, matAmberGlow);
         innerRing.rotation.x = Math.PI / 2;
         innerRing.position.y = 0.02;
         robotMasterGroup.add(innerRing);
@@ -2355,13 +2337,13 @@ Would you like to start a project inquiry right now?`;
         platform.add(techMarksGroup);
         for (let m = 0; m < 8; m++) {
             const angle = (m / 8) * Math.PI * 2;
-            const marker = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.01, 0.03), m % 2 === 0 ? matCyanGlow : matPurpleGlow);
+            const marker = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.01, 0.03), m % 2 === 0 ? matCyanGlow : matAmberGlow);
             marker.position.set(Math.cos(angle) * 1.5, 0.05, Math.sin(angle) * 1.5);
             marker.rotation.y = -angle;
             techMarksGroup.add(marker);
         }
 
-        // Floating Multicolor Quantum Particle Field (Cyan & Golden Embers)
+        // Floating Quantum Particle Field (Cyan & Golden Embers)
         const particleGeo = new THREE.BufferGeometry();
         const particleCount = 65;
         const particlePositions = new Float32Array(particleCount * 3);
@@ -2381,7 +2363,7 @@ Would you like to start a project inquiry right now?`;
         const particleField = new THREE.Points(particleGeo, particleMat);
         robotMasterGroup.add(particleField);
 
-        // Dynamic Soft Contact Shadow (Scales & fades during Jumps!)
+        // Dynamic Soft Contact Shadow
         const shadowCanvas = document.createElement('canvas');
         shadowCanvas.width = 128;
         shadowCanvas.height = 128;
@@ -2401,31 +2383,31 @@ Would you like to start a project inquiry right now?`;
         groundShadow.position.y = 0.005;
         robotMasterGroup.add(groundShadow);
 
-        // 6. Sculpted Humanoid Mecha Anatomy (Multicolor Brand Styling)
+        // 6. NASA Valkyrie R5 Humanoid Anatomy
         const robotBody = new THREE.Group();
         robotMasterGroup.add(robotBody);
 
-        // Pelvis & Hip Chassis (White Ceramic with Electric Indigo Center Buckle)
+        // Pelvis & Hip Chassis (White Composite with Gold & Dark Joints)
         const pelvisGroup = new THREE.Group();
         pelvisGroup.position.y = 0.95;
         robotBody.add(pelvisGroup);
 
-        const pelvisShield = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.22, 0.18, 24), matWhiteArmor);
+        const pelvisShield = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.22, 0.18, 24), matValkyrieWhite);
         pelvisGroup.add(pelvisShield);
 
-        const pelvisBuckle = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.12, 0.28), matIndigoArmor);
-        pelvisGroup.add(pelvisBuckle);
+        const pelvisCenterCap = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.12, 0.28), matValkyrieDark);
+        pelvisGroup.add(pelvisCenterCap);
 
-        const pelvisCore = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.14, 0.26), matDarkSkeleton);
+        const pelvisCore = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.14, 0.26), matValkyrieDark);
         pelvisGroup.add(pelvisCore);
 
         // Amber Gold Hip Actuator Rings
-        const hipRingL = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.022, 16, 28), matGoldActuator);
+        const hipRingL = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.022, 16, 28), matValkyrieGold);
         hipRingL.rotation.y = Math.PI / 2;
         hipRingL.position.set(-0.25, 0, 0);
         pelvisGroup.add(hipRingL);
 
-        const hipPinL = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.06, 20), matDarkSkeleton);
+        const hipPinL = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.06, 20), matValkyrieDark);
         hipPinL.rotation.z = Math.PI / 2;
         hipPinL.position.set(-0.25, 0, 0);
         pelvisGroup.add(hipPinL);
@@ -2433,29 +2415,23 @@ Would you like to start a project inquiry right now?`;
         const hipRingR = hipRingL.clone(); hipRingR.position.x = 0.25; pelvisGroup.add(hipRingR);
         const hipPinR = hipPinL.clone(); hipPinR.position.x = 0.25; pelvisGroup.add(hipPinR);
 
-        // Segmented Hydraulic Spine & Flank Ribs with Cyan Light Channels
+        // Segmented Spine & Flank Ribs with Hydraulic Pistons
         const spineGroup = new THREE.Group();
         pelvisGroup.add(spineGroup);
         for (let i = 0; i < 4; i++) {
-            const vertebra = new THREE.Mesh(new THREE.CylinderGeometry(0.13 - i * 0.01, 0.14 - i * 0.01, 0.065, 16), matDarkSkeleton);
+            const vertebra = new THREE.Mesh(new THREE.CylinderGeometry(0.13 - i * 0.01, 0.14 - i * 0.01, 0.065, 16), matValkyrieDark);
             vertebra.position.y = 0.09 + i * 0.075;
             spineGroup.add(vertebra);
 
-            // Left & Right Titanium Flank Ribs with Cyan Light Channels
-            const ribL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.03, 0.16), matDarkSkeleton);
+            const ribL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.03, 0.16), matValkyrieDark);
             ribL.position.set(-0.16, 0.09 + i * 0.075, 0);
             ribL.rotation.z = -0.15;
             spineGroup.add(ribL);
 
-            const ribGlowL = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.015, 0.12), matCyanGlow);
-            ribGlowL.position.set(-0.19, 0.09 + i * 0.075, 0);
-            spineGroup.add(ribGlowL);
-
             const ribR = ribL.clone(); ribR.position.x = 0.16; ribR.rotation.z = 0.15; spineGroup.add(ribR);
-            const ribGlowR = ribGlowL.clone(); ribGlowR.position.x = 0.19; spineGroup.add(ribGlowR);
         }
 
-        // Dual Vertical Hydraulic Actuator Rods on Back Spine
+        // Dual Chrome Vertical Hydraulic Actuator Rods on Back Spine
         const spineRodL = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.32, 12), matChromeRod);
         spineRodL.position.set(-0.06, 0.22, -0.11);
         spineGroup.add(spineRodL);
@@ -2464,147 +2440,137 @@ Would you like to start a project inquiry right now?`;
         spineRodR.position.x = 0.06;
         spineGroup.add(spineRodR);
 
-        // Segmented Ceramic Abdominal Armor (Alternating White & Indigo)
-        const abPlateUpper = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.09, 0.18), matIndigoArmor);
+        // Segmented White Abdominal Armor
+        const abPlateUpper = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.09, 0.18), matValkyrieWhite);
         abPlateUpper.position.set(0, 0.24, 0.08);
         spineGroup.add(abPlateUpper);
 
-        const abPlateLower = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.08, 0.16), matWhiteArmor);
+        const abPlateLower = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.08, 0.16), matValkyrieWhite);
         abPlateLower.position.set(0, 0.13, 0.09);
         spineGroup.add(abPlateLower);
 
-        // Upper Torso & Chest Armor Chassis (Athletic V-Taper)
+        // Upper Torso & Chest Armor Chassis (NASA Valkyrie V-Taper)
         const torsoGroup = new THREE.Group();
         torsoGroup.position.y = 0.38;
         pelvisGroup.add(torsoGroup);
 
-        // MULTICOLOR PECTORAL ARMOR (Left: Electric Indigo, Right: Cyber Purple - matching ElavateX gradient!)
-        const chestL = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.38, 0.28), matIndigoArmor);
+        // White Spacesuit Composite Pectoral Armor
+        const chestL = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.38, 0.28), matValkyrieWhite);
         chestL.position.set(-0.14, 0.22, 0.08);
         chestL.rotation.y = 0.12;
         torsoGroup.add(chestL);
 
-        const chestR = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.38, 0.28), matPurpleArmor);
+        const chestR = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.38, 0.28), matValkyrieWhite);
         chestR.position.set(0.14, 0.22, 0.08);
         chestR.rotation.y = -0.12;
         torsoGroup.add(chestR);
 
-        // Chest Inset Cyan Neon Seams
-        const seamL = new THREE.Mesh(new THREE.BoxGeometry(0.015, 0.32, 0.02), matCyanGlow);
-        seamL.position.set(-0.03, 0.22, 0.22);
-        torsoGroup.add(seamL);
-        const seamR = seamL.clone(); seamR.position.x = 0.03; torsoGroup.add(seamR);
+        // NASA Valkyrie Golden Diagonal Harness Lines
+        const harnessL = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.36, 0.02), matValkyrieGold);
+        harnessL.position.set(-0.16, 0.24, 0.22);
+        harnessL.rotation.z = -0.22;
+        torsoGroup.add(harnessL);
 
-        // Lower Pectoral Ocean Cyan Bevel Accents
-        const chestBevelL = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.06, 0.04), matCyanArmor);
-        chestBevelL.position.set(-0.14, 0.05, 0.21);
-        torsoGroup.add(chestBevelL);
+        const harnessR = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.36, 0.02), matValkyrieGold);
+        harnessR.position.set(0.16, 0.24, 0.22);
+        harnessR.rotation.z = 0.22;
+        torsoGroup.add(harnessR);
 
-        const chestBevelR = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.06, 0.04), matCyanArmor);
-        chestBevelR.position.set(0.14, 0.05, 0.21);
-        torsoGroup.add(chestBevelR);
+        // Dual Circular Recessed Lower Chest Utility Ports (Valkyrie Reference Photo!)
+        const ventL = new THREE.Mesh(new THREE.CylinderGeometry(0.038, 0.038, 0.04, 16), matValkyrieDark);
+        ventL.rotation.x = Math.PI / 2;
+        ventL.position.set(-0.1, 0.08, 0.22);
+        torsoGroup.add(ventL);
 
-        // Back Armor Shell with Exhaust Louvers
-        const backShell = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.36, 0.22), matWhiteArmor);
-        backShell.position.set(0, 0.22, -0.06);
-        torsoGroup.add(backShell);
+        const ventRingL = new THREE.Mesh(new THREE.TorusGeometry(0.04, 0.008, 12, 20), matValkyrieGold);
+        ventRingL.position.set(-0.1, 0.08, 0.24);
+        torsoGroup.add(ventRingL);
 
-        // MULTICOLOR TWIN QUANTUM BACK THRUSTER WINGS (Left: Electric Indigo, Right: Cyber Purple)
-        const wingGroupL = new THREE.Group();
-        wingGroupL.position.set(-0.24, 0.3, -0.15);
-        torsoGroup.add(wingGroupL);
+        const ventR = ventL.clone(); ventR.position.x = 0.1; torsoGroup.add(ventR);
+        const ventRingR = ventRingL.clone(); ventRingR.position.x = 0.1; torsoGroup.add(ventRingR);
 
-        const wingBladeL = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.45, 0.18), matIndigoArmor);
-        wingBladeL.rotation.x = -0.25;
-        wingBladeL.rotation.z = 0.3;
-        wingBladeL.position.set(-0.08, 0.12, 0);
-        wingGroupL.add(wingBladeL);
+        // Valkyrie Rear Life-Support Avionics Backpack (Clean White Housing + Black Louvers)
+        const backpackGroup = new THREE.Group();
+        backpackGroup.position.set(0, 0.22, -0.15);
+        torsoGroup.add(backpackGroup);
 
-        const wingEdgeL = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.42, 0.03), matCyanGlow);
-        wingEdgeL.rotation.x = -0.25;
-        wingEdgeL.rotation.z = 0.3;
-        wingEdgeL.position.set(-0.14, 0.12, 0.08);
-        wingGroupL.add(wingEdgeL);
+        const packMain = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.42, 0.16), matValkyrieWhite);
+        backpackGroup.add(packMain);
 
-        const wingGroupR = new THREE.Group();
-        wingGroupR.position.set(0.24, 0.3, -0.15);
-        torsoGroup.add(wingGroupR);
+        const packLouver = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.22, 0.04), matValkyrieDark);
+        packLouver.position.set(0, 0.02, -0.09);
+        backpackGroup.add(packLouver);
 
-        const wingBladeR = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.45, 0.18), matPurpleArmor);
-        wingBladeR.rotation.x = -0.25;
-        wingBladeR.rotation.z = -0.3;
-        wingBladeR.position.set(0.08, 0.12, 0);
-        wingGroupR.add(wingBladeR);
+        // Twin Micro Thruster Nozzles on Backpack
+        const nozzleL = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.045, 0.08, 16), matValkyrieGold);
+        nozzleL.rotation.x = -Math.PI / 2;
+        nozzleL.position.set(-0.12, -0.15, -0.08);
+        backpackGroup.add(nozzleL);
 
-        const wingEdgeR = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.42, 0.03), matCyanGlow);
-        wingEdgeR.rotation.x = -0.25;
-        wingEdgeR.rotation.z = -0.3;
-        wingEdgeR.position.set(0.14, 0.12, 0.08);
-        wingGroupR.add(wingEdgeR);
+        const nozzleR = nozzleL.clone(); nozzleR.position.x = 0.12; backpackGroup.add(nozzleR);
 
         // Clavicle Yoke with Chrome Hydraulics
-        const clavicle = new THREE.Mesh(new THREE.BoxGeometry(0.54, 0.08, 0.16), matDarkSkeleton);
+        const clavicle = new THREE.Mesh(new THREE.BoxGeometry(0.54, 0.08, 0.16), matValkyrieDark);
         clavicle.position.set(0, 0.42, 0.02);
         torsoGroup.add(clavicle);
 
-        // Quantum Arc Reactor Core (Gold Bezel + Multicolor Pulsating Core!)
+        // NASA Chest Insignia & Glowing Reactor Core
         const coreGroup = new THREE.Group();
-        coreGroup.position.set(0, 0.22, 0.22);
+        coreGroup.position.set(0, 0.25, 0.22);
         torsoGroup.add(coreGroup);
 
-        const coreBronzeRing = new THREE.Mesh(new THREE.TorusGeometry(0.1, 0.022, 16, 32), matGoldActuator);
-        coreGroup.add(coreBronzeRing);
+        const nasaDisc = new THREE.Mesh(new THREE.CylinderGeometry(0.105, 0.105, 0.025, 32), matNasaBlue);
+        nasaDisc.rotation.x = Math.PI / 2;
+        coreGroup.add(nasaDisc);
 
-        const coreGoldRim = new THREE.Mesh(new THREE.TorusGeometry(0.082, 0.012, 16, 24), matGoldBezel);
+        const coreGoldRim = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.015, 16, 32), matValkyrieGold);
+        coreGoldRim.position.z = 0.015;
         coreGroup.add(coreGoldRim);
 
-        const coreDarkBezel = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.085, 0.035, 24), matDarkSkeleton);
-        coreDarkBezel.rotation.x = Math.PI / 2;
-        coreGroup.add(coreDarkBezel);
+        const coreInnerBezel = new THREE.Mesh(new THREE.TorusGeometry(0.075, 0.01, 16, 24), matGoldBezel);
+        coreInnerBezel.position.z = 0.02;
+        coreGroup.add(coreInnerBezel);
 
-        const coreLed = new THREE.Mesh(new THREE.SphereGeometry(0.048, 16, 16), matCoreReactor);
-        coreLed.position.z = 0.02;
+        const coreLed = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 16), matCoreReactor);
+        coreLed.position.z = 0.025;
         coreGroup.add(coreLed);
 
-        // 3 Floating Counter-Rotating Quantum Micro-Rings inside Core (Cyan, Purple, Gold!)
-        const coreOrbitRing1 = new THREE.Mesh(new THREE.TorusGeometry(0.062, 0.005, 12, 24), matCyanGlow);
-        coreGroup.add(coreOrbitRing1);
-
-        const coreOrbitRing2 = new THREE.Mesh(new THREE.TorusGeometry(0.044, 0.005, 12, 24), matPurpleGlow);
-        coreGroup.add(coreOrbitRing2);
-
-        const coreOrbitRing3 = new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.004, 12, 20), matGoldGlow);
-        coreGroup.add(coreOrbitRing3);
-
-        const corePointLight = new THREE.PointLight(0x00f0ff, 1.8, 3.2);
+        const corePointLight = new THREE.PointLight(0x00f0ff, 2.0, 3.5);
         corePointLight.position.set(0, 0, 0.12);
         coreGroup.add(corePointLight);
 
-        // MULTICOLOR SHOULDER PAULDRONS (Left: Electric Indigo, Right: Cyber Purple)
-        const pauldronL = new THREE.Mesh(new THREE.SphereGeometry(0.19, 20, 20), matIndigoArmor);
+        // White Shoulder Pauldrons with Gold Trim & NASA Mission Accents
+        const pauldronL = new THREE.Mesh(new THREE.SphereGeometry(0.19, 20, 20), matValkyrieWhite);
         pauldronL.scale.set(1.25, 0.85, 1.15);
         pauldronL.position.set(-0.36, 0.38, 0.02);
         torsoGroup.add(pauldronL);
 
-        const pauldronGlowL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.02, 0.14), matCyanGlow);
-        pauldronGlowL.position.set(-0.36, 0.44, 0.02);
-        torsoGroup.add(pauldronGlowL);
+        const pauldronTrimL = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.015, 12, 24), matValkyrieGold);
+        pauldronTrimL.position.set(-0.36, 0.38, 0.02);
+        pauldronTrimL.rotation.y = Math.PI / 2;
+        torsoGroup.add(pauldronTrimL);
 
-        const pauldronR = new THREE.Mesh(new THREE.SphereGeometry(0.19, 20, 20), matPurpleArmor);
+        const pauldronR = new THREE.Mesh(new THREE.SphereGeometry(0.19, 20, 20), matValkyrieWhite);
         pauldronR.scale.set(1.25, 0.85, 1.15);
         pauldronR.position.set(0.36, 0.38, 0.02);
         torsoGroup.add(pauldronR);
 
-        const pauldronGlowR = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.02, 0.14), matPurpleGlow);
-        pauldronGlowR.position.set(0.36, 0.44, 0.02);
-        torsoGroup.add(pauldronGlowR);
+        const pauldronTrimR = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.015, 12, 24), matValkyrieGold);
+        pauldronTrimR.position.set(0.36, 0.38, 0.02);
+        pauldronTrimR.rotation.y = Math.PI / 2;
+        torsoGroup.add(pauldronTrimR);
 
-        // Neck Assembly with Dual Chrome Hydraulic Pistons
+        // Mission Flag Stripe on Shoulder
+        const flagDecal = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.04, 0.02), matNasaBlue);
+        flagDecal.position.set(0.36, 0.44, 0.05);
+        torsoGroup.add(flagDecal);
+
+        // Neck Assembly with Chrome Hydraulic Pistons
         const neckGroup = new THREE.Group();
         neckGroup.position.y = 0.48;
         torsoGroup.add(neckGroup);
 
-        const neckPiston = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.13, 0.16, 20), matDarkSkeleton);
+        const neckPiston = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.13, 0.16, 20), matValkyrieDark);
         neckGroup.add(neckPiston);
 
         const neckHydraulicL = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.14, 12), matChromeRod);
@@ -2614,137 +2580,105 @@ Would you like to start a project inquiry right now?`;
 
         const neckHydraulicR = neckHydraulicL.clone(); neckHydraulicR.position.x = 0.06; neckHydraulicR.rotation.z = 0.15; neckGroup.add(neckHydraulicR);
 
-        // Sculpted Sci-Fi Mecha Head (Multicolor Accents & Dual-Tone Halo)
+        // NASA Valkyrie Space Helmet
         const headGroup = new THREE.Group();
         headGroup.position.y = 0.2;
         neckGroup.add(headGroup);
 
-        // Sleek White Ceramic Cranium Shell
-        const craniumGeo = new THREE.SphereGeometry(0.34, 36, 32);
+        // Aerodynamic White Ceramic Cranium Shell
+        const craniumGeo = new THREE.SphereGeometry(0.33, 36, 32);
         craniumGeo.scale(0.96, 1.12, 1.05);
-        const cranium = new THREE.Mesh(craniumGeo, matWhiteArmor);
+        const cranium = new THREE.Mesh(craniumGeo, matValkyrieWhite);
         headGroup.add(cranium);
 
-        // Floating Holographic Sensory Halo above Head (Cyan & Violet Gradient Tone)
-        const haloRing = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.008, 16, 48), matCyanGlow);
-        haloRing.rotation.x = Math.PI / 2;
-        haloRing.position.set(0, 0.44, 0);
-        headGroup.add(haloRing);
+        // NASA Gold Brow Forehead Rim (Prominent Valkyrie Feature!)
+        const browRim = new THREE.Mesh(new THREE.TorusGeometry(0.31, 0.025, 16, 36, Math.PI * 0.72), matValkyrieGold);
+        browRim.rotation.x = -Math.PI / 2.3;
+        browRim.rotation.z = -Math.PI * 0.36;
+        browRim.position.set(0, 0.16, 0.06);
+        headGroup.add(browRim);
 
-        // MULTICOLOR CYBER CREST HORNS (Left: Electric Indigo, Right: Cyber Purple with Cyan Tips!)
-        const hornGeo = new THREE.ConeGeometry(0.04, 0.32, 12);
-        const hornL = new THREE.Mesh(hornGeo, matIndigoArmor);
-        hornL.rotation.z = 0.45;
-        hornL.rotation.x = -0.35;
-        hornL.position.set(-0.24, 0.3, -0.06);
-        headGroup.add(hornL);
+        // Top Cranium Sensor Ridge
+        const crownFin = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.05, 0.32), matValkyrieGold);
+        crownFin.position.set(0, 0.38, -0.04);
+        headGroup.add(crownFin);
 
-        const hornGlowL = new THREE.Mesh(new THREE.ConeGeometry(0.02, 0.18, 10), matCyanGlow);
-        hornGlowL.rotation.z = 0.45;
-        hornGlowL.rotation.x = -0.35;
-        hornGlowL.position.set(-0.27, 0.36, -0.08);
-        headGroup.add(hornGlowL);
-
-        const hornR = new THREE.Mesh(hornGeo, matPurpleArmor);
-        hornR.rotation.z = -0.45;
-        hornR.rotation.x = -0.35;
-        hornR.position.set(0.24, 0.3, -0.06);
-        headGroup.add(hornR);
-
-        const hornGlowR = new THREE.Mesh(new THREE.ConeGeometry(0.02, 0.18, 10), matCyanGlow);
-        hornGlowR.rotation.z = -0.45;
-        hornGlowR.rotation.x = -0.35;
-        hornGlowR.position.set(0.27, 0.36, -0.08);
-        headGroup.add(hornGlowR);
-
-        // Sculpted Athletic Jawline & Chin Guard with Cyan Chevron
-        const jawPlate = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.18, 0.22, 24, 1, false, -Math.PI / 2.6, Math.PI / 1.3), matWhiteArmor);
+        // Sculpted White Astronaut Chin Guard with Microphone Vents
+        const jawPlate = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.18, 0.22, 24, 1, false, -Math.PI / 2.6, Math.PI / 1.3), matValkyrieWhite);
         jawPlate.rotation.y = Math.PI / 2;
         jawPlate.position.set(0, -0.06, 0.14);
         headGroup.add(jawPlate);
 
-        const chinChevron = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.03, 0.03), matCyanArmor);
-        chinChevron.position.set(0, -0.15, 0.22);
-        headGroup.add(chinChevron);
+        // Microphone Sensor Slots on Chin
+        for (let v = 0; v < 3; v++) {
+            const micSlot = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.012, 0.02), matValkyrieDark);
+            micSlot.position.set(-0.06 + v * 0.06, -0.12, 0.23);
+            headGroup.add(micSlot);
+        }
 
-        // Glossy Curved Visor Face Shield
+        // Glossy Obsidian Panoramic Visor Shield
         const visorGeo = new THREE.SphereGeometry(0.31, 32, 24, 0, Math.PI, 0, Math.PI * 0.52);
         const visorMask = new THREE.Mesh(visorGeo, matVisorGlass);
         visorMask.rotation.x = -Math.PI / 2.2;
         visorMask.position.set(0, 0.04, 0.06);
         headGroup.add(visorMask);
 
-        // Dual Optical Camera Eyes (Left & Right with Concentric Cyber Reticle Rings)
+        // Dual Optical Camera Eyes Inside Visor
         const eyeGroup = new THREE.Group();
         eyeGroup.position.set(0, 0.06, 0.3);
         headGroup.add(eyeGroup);
 
-        // Left Eye Assembly
-        const eyeSocketL = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 0.04, 24), matDarkSkeleton);
+        const eyeSocketL = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 0.04, 24), matValkyrieDark);
         eyeSocketL.rotation.x = Math.PI / 2;
-        eyeSocketL.position.set(-0.125, 0, 0);
+        eyeSocketL.position.set(-0.11, 0, 0);
         eyeGroup.add(eyeSocketL);
 
-        const eyeIrisRingL = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.008, 16, 24), matCyanGlow);
-        eyeIrisRingL.position.set(-0.125, 0, 0.02);
-        eyeGroup.add(eyeIrisRingL);
-
-        const eyeLensL = new THREE.Mesh(new THREE.SphereGeometry(0.06, 20, 20), matVisorGlass);
-        eyeLensL.position.set(-0.125, 0, 0.015);
-        eyeGroup.add(eyeLensL);
-
-        const pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.026, 16, 16), matCyanGlow);
-        pupilL.position.set(-0.125, 0, 0.055);
+        const pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 16), matCyanGlow);
+        pupilL.position.set(-0.11, 0, 0.04);
         eyeGroup.add(pupilL);
 
-        // Right Eye Assembly (Purple Accent Iris)
-        const eyeSocketR = eyeSocketL.clone(); eyeSocketR.position.x = 0.125; eyeGroup.add(eyeSocketR);
-        const eyeIrisRingR = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.008, 16, 24), matPurpleGlow);
-        eyeIrisRingR.position.set(0.125, 0, 0.02);
-        eyeGroup.add(eyeIrisRingR);
-        const eyeLensR = eyeLensL.clone(); eyeLensR.position.x = 0.125; eyeGroup.add(eyeLensR);
-        const pupilR = pupilL.clone(); pupilR.position.x = 0.125; eyeGroup.add(pupilR);
+        const eyeSocketR = eyeSocketL.clone(); eyeSocketR.position.x = 0.11; eyeGroup.add(eyeSocketR);
+        const pupilR = pupilL.clone(); pupilR.position.x = 0.11; eyeGroup.add(pupilR);
 
-        // Audio Visualizer Cyber Mouth Line
-        const mouthBar = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.012, 0.02), matCyanGlow);
-        mouthBar.position.set(0, -0.12, 0.28);
+        // Audio Visualizer Mouth Sensor
+        const mouthBar = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.012, 0.02), matCyanGlow);
+        mouthBar.position.set(0, -0.08, 0.27);
         headGroup.add(mouthBar);
 
-        // Amber Gold Rotary Ear Actuators
+        // NASA Communications Ear Pods (White Cylindrical Housing with Gold Outer Rings)
         const earL = new THREE.Group();
-        earL.position.set(-0.35, 0.02, 0);
+        earL.position.set(-0.34, 0.02, 0);
         headGroup.add(earL);
 
-        const earBaseL = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.06, 24), matDarkSkeleton);
+        const earBaseL = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.06, 24), matValkyrieWhite);
         earBaseL.rotation.z = Math.PI / 2;
         earL.add(earBaseL);
 
-        const earBronzeL = new THREE.Mesh(new THREE.TorusGeometry(0.115, 0.018, 16, 24), matGoldActuator);
-        earBronzeL.rotation.y = Math.PI / 2;
-        earBronzeL.position.x = -0.04;
-        earL.add(earBronzeL);
+        const earGoldL = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.018, 16, 24), matValkyrieGold);
+        earGoldL.rotation.y = Math.PI / 2;
+        earGoldL.position.x = -0.04;
+        earL.add(earGoldL);
 
         const earR = new THREE.Group();
-        earR.position.set(0.35, 0.02, 0);
+        earR.position.set(0.34, 0.02, 0);
         headGroup.add(earR);
 
         const earBaseR = earBaseL.clone(); earR.add(earBaseR);
-        const earBronzeR = earBronzeL.clone(); earBronzeR.position.x = 0.04; earR.add(earBronzeR);
+        const earGoldR = earGoldL.clone(); earGoldR.position.x = 0.04; earR.add(earGoldR);
 
-        // Left Arm Assembly (Ball Shoulder, Bicep, Rotary Elbow, Ocean Cyan Gauntlet, 5-Finger Hand)
+        // Left Arm Assembly (White Spacesuit Arm with Gold Actuators)
         const leftArm = new THREE.Group();
         leftArm.position.set(-0.46, 0.38, 0);
         torsoGroup.add(leftArm);
 
-        const lShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 20), matDarkSkeleton);
+        const lShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 20), matValkyrieDark);
         leftArm.add(lShoulderJoint);
 
-        const lShoulderBronze = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 16, 24), matGoldActuator);
-        lShoulderBronze.position.set(-0.02, 0, 0);
-        leftArm.add(lShoulderBronze);
+        const lShoulderGold = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 16, 24), matValkyrieGold);
+        lShoulderGold.position.set(-0.02, 0, 0);
+        leftArm.add(lShoulderGold);
 
-        // Sculpted Bicep Armor with Chrome Cylinder
-        const lBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.36, 20), matWhiteArmor);
+        const lBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.36, 20), matValkyrieWhite);
         lBicep.position.y = -0.22;
         leftArm.add(lBicep);
 
@@ -2752,61 +2686,59 @@ Would you like to start a project inquiry right now?`;
         lBicepRod.position.set(0.04, -0.22, 0.02);
         leftArm.add(lBicepRod);
 
-        // Elbow Rotary Joint with Gold Ring
         const lForearm = new THREE.Group();
         lForearm.position.y = -0.42;
         leftArm.add(lForearm);
 
-        const lElbowBronze = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.018, 16, 24), matGoldActuator);
-        lElbowBronze.rotation.y = Math.PI / 2;
-        lForearm.add(lElbowBronze);
+        const lElbowGold = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.018, 16, 24), matValkyrieGold);
+        lElbowGold.rotation.y = Math.PI / 2;
+        lForearm.add(lElbowGold);
 
-        const lElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.08, 20), matDarkSkeleton);
+        const lElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.08, 20), matValkyrieDark);
         lElbowJoint.rotation.z = Math.PI / 2;
         lForearm.add(lElbowJoint);
 
-        // Forearm Gauntlet (Ocean Cyan Armor with Cyan Telemetry Strip)
-        const lForearmArmor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.34, 20), matCyanArmor);
+        const lForearmArmor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.34, 20), matValkyrieWhite);
         lForearmArmor.position.y = -0.2;
         lForearm.add(lForearmArmor);
 
-        const lStatusStripe = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.24, 0.02), matCyanGlow);
-        lStatusStripe.position.set(-0.07, -0.2, 0);
-        lForearm.add(lStatusStripe);
+        const lWristRing = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.012, 12, 20), matValkyrieGold);
+        lWristRing.position.y = -0.36;
+        lForearm.add(lWristRing);
 
-        // Articulated 5-Finger Cybernetic Hand
+        // Articulated 5-Finger Spacesuit Glove Hand
         const lHand = new THREE.Group();
         lHand.position.set(0, -0.4, 0);
         lForearm.add(lHand);
 
-        const lPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matWhiteArmor);
+        const lPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matValkyrieWhite);
         lHand.add(lPalm);
 
         const lFingers = [];
         for (let f = 0; f < 4; f++) {
-            const finger = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.1, 10), matWhiteArmor);
+            const finger = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.1, 10), matValkyrieWhite);
             finger.position.set(-0.035 + f * 0.024, -0.06, 0.03);
             lHand.add(finger);
             lFingers.push(finger);
         }
-        const lThumb = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.013, 0.08, 10), matWhiteArmor);
+        const lThumb = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.013, 0.08, 10), matValkyrieWhite);
         lThumb.position.set(0.05, -0.03, -0.02);
         lThumb.rotation.z = -0.5;
         lHand.add(lThumb);
 
-        // Right Arm Assembly (Ocean Cyan Gauntlet with Purple Status Stripe)
+        // Right Arm Assembly
         const rightArm = new THREE.Group();
         rightArm.position.set(0.46, 0.38, 0);
         torsoGroup.add(rightArm);
 
-        const rShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 20), matDarkSkeleton);
+        const rShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 20), matValkyrieDark);
         rightArm.add(rShoulderJoint);
 
-        const rShoulderBronze = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 16, 24), matGoldActuator);
-        rShoulderBronze.position.set(0.02, 0, 0);
-        rightArm.add(rShoulderBronze);
+        const rShoulderGold = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 16, 24), matValkyrieGold);
+        rShoulderGold.position.set(0.02, 0, 0);
+        rightArm.add(rShoulderGold);
 
-        const rBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.36, 20), matWhiteArmor);
+        const rBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.36, 20), matValkyrieWhite);
         rBicep.position.y = -0.22;
         rightArm.add(rBicep);
 
@@ -2818,118 +2750,98 @@ Would you like to start a project inquiry right now?`;
         rForearm.position.y = -0.42;
         rightArm.add(rForearm);
 
-        const rElbowBronze = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.018, 16, 24), matGoldActuator);
-        rElbowBronze.rotation.y = Math.PI / 2;
-        rForearm.add(rElbowBronze);
+        const rElbowGold = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.018, 16, 24), matValkyrieGold);
+        rElbowGold.rotation.y = Math.PI / 2;
+        rForearm.add(rElbowGold);
 
-        const rElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.08, 20), matDarkSkeleton);
+        const rElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.08, 20), matValkyrieDark);
         rElbowJoint.rotation.z = Math.PI / 2;
         rForearm.add(rElbowJoint);
 
-        const rForearmArmor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.34, 20), matCyanArmor);
+        const rForearmArmor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.34, 20), matValkyrieWhite);
         rForearmArmor.position.y = -0.2;
         rForearm.add(rForearmArmor);
 
-        const rStatusStripe = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.24, 0.02), matPurpleGlow);
-        rStatusStripe.position.set(0.07, -0.2, 0);
-        rForearm.add(rStatusStripe);
+        const rWristRing = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.012, 12, 20), matValkyrieGold);
+        rWristRing.position.y = -0.36;
+        rForearm.add(rWristRing);
 
         const rHand = new THREE.Group();
         rHand.position.set(0, -0.4, 0);
         rForearm.add(rHand);
 
-        const rPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matWhiteArmor);
+        const rPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matValkyrieWhite);
         rHand.add(rPalm);
 
         const rFingers = [];
         for (let f = 0; f < 4; f++) {
-            const finger = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.1, 10), matWhiteArmor);
+            const finger = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.1, 10), matValkyrieWhite);
             finger.position.set(-0.035 + f * 0.024, -0.06, 0.03);
             rHand.add(finger);
             rFingers.push(finger);
         }
-        const rThumb = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.013, 0.08, 10), matWhiteArmor);
+        const rThumb = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.013, 0.08, 10), matValkyrieWhite);
         rThumb.position.set(-0.05, -0.03, -0.02);
         rThumb.rotation.z = 0.5;
         rHand.add(rThumb);
 
-        // MULTICOLOR LEGS (Left: Electric Indigo Thigh, Right: Cyber Purple Thigh)
+        // Legs & Space Boots
         const leftLeg = new THREE.Group();
         leftLeg.position.set(-0.25, 0, 0);
         pelvisGroup.add(leftLeg);
 
-        // Contoured Quadricep Armor in Electric Indigo with Ocean Cyan Ridge
-        const lThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.46, 24), matIndigoArmor);
+        const lThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.46, 24), matValkyrieWhite);
         lThigh.position.y = -0.24;
         leftLeg.add(lThigh);
-
-        const lThighRidge = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.4, 0.03), matCyanArmor);
-        lThighRidge.position.set(0, -0.24, 0.095);
-        leftLeg.add(lThighRidge);
 
         const lHamstringRod = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.36, 12), matChromeRod);
         lHamstringRod.position.set(0, -0.24, -0.08);
         leftLeg.add(lHamstringRod);
 
-        // Knee Group with Amber Gold Rotary Actuator
         const lKnee = new THREE.Group();
         lKnee.position.y = -0.48;
         leftLeg.add(lKnee);
 
-        const lKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.095, 20), matDarkSkeleton);
+        const lKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.095, 20), matValkyrieDark);
         lKneeJoint.rotation.z = Math.PI / 2;
         lKnee.add(lKneeJoint);
 
-        const lKneeBronze = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.022, 16, 28), matGoldActuator);
-        lKneeBronze.rotation.y = Math.PI / 2;
-        lKnee.add(lKneeBronze);
+        const lKneeGold = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.022, 16, 28), matValkyrieGold);
+        lKneeGold.rotation.y = Math.PI / 2;
+        lKnee.add(lKneeGold);
 
-        // Rear Knee Damping Piston
         const lKneePiston = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.16, 10), matChromeRod);
         lKneePiston.position.set(0, 0.02, -0.07);
         lKnee.add(lKneePiston);
 
-        // Sculpted White Ceramic Shin Guard with Cyan Light Stripe
-        const lShin = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.075, 0.46, 24), matWhiteArmor);
+        const lShin = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.075, 0.46, 24), matValkyrieWhite);
         lShin.position.y = -0.24;
         lKnee.add(lShin);
 
-        const lShinGlow = new THREE.Mesh(new THREE.BoxGeometry(0.016, 0.3, 0.02), matCyanGlow);
-        lShinGlow.position.set(0, -0.24, 0.085);
-        lKnee.add(lShinGlow);
-
-        // Athletic Robotic Running Shoe (White Body, Indigo Heel, Cyan Thruster Sole)
+        // Valkyrie Space Exploration Boot (White Body with Black Grip Sole)
         const lFoot = new THREE.Group();
         lFoot.position.set(0, -0.48, 0.04);
         lKnee.add(lFoot);
 
-        const lShoeBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.1, 0.32), matWhiteArmor);
-        lFoot.add(lShoeBody);
+        const lBootBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.11, 0.32), matValkyrieWhite);
+        lFoot.add(lBootBody);
 
-        const lShoeHeel = new THREE.Mesh(new THREE.BoxGeometry(0.185, 0.09, 0.12), matIndigoArmor);
-        lShoeHeel.position.set(0, 0.01, -0.09);
-        lFoot.add(lShoeHeel);
+        const lAnkleRing = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.014, 12, 20), matValkyrieGold);
+        lAnkleRing.position.set(0, 0.06, 0);
+        lFoot.add(lAnkleRing);
 
-        const lShoeSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.34), matDarkSkeleton);
-        lShoeSole.position.y = -0.06;
-        lFoot.add(lShoeSole);
+        const lBootSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.34), matRubberSole);
+        lBootSole.position.y = -0.065;
+        lFoot.add(lBootSole);
 
-        const lToeAccent = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.06, 0.08), matCyanGlow);
-        lToeAccent.position.set(0, -0.02, 0.14);
-        lFoot.add(lToeAccent);
-
-        // Right Leg Assembly (Cyber Purple Thigh with Ocean Cyan Ridge)
+        // Right Leg Assembly
         const rightLeg = new THREE.Group();
         rightLeg.position.set(0.25, 0, 0);
         pelvisGroup.add(rightLeg);
 
-        const rThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.46, 24), matPurpleArmor);
+        const rThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.46, 24), matValkyrieWhite);
         rThigh.position.y = -0.24;
         rightLeg.add(rThigh);
-
-        const rThighRidge = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.4, 0.03), matCyanArmor);
-        rThighRidge.position.set(0, -0.24, 0.095);
-        rightLeg.add(rThighRidge);
 
         const rHamstringRod = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.36, 12), matChromeRod);
         rHamstringRod.position.set(0, -0.24, -0.08);
@@ -2939,46 +2851,38 @@ Would you like to start a project inquiry right now?`;
         rKnee.position.y = -0.48;
         rightLeg.add(rKnee);
 
-        const rKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.095, 20), matDarkSkeleton);
+        const rKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.095, 20), matValkyrieDark);
         rKneeJoint.rotation.z = Math.PI / 2;
         rKnee.add(rKneeJoint);
 
-        const rKneeBronze = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.022, 16, 28), matGoldActuator);
-        rKneeBronze.rotation.y = Math.PI / 2;
-        rKnee.add(rKneeBronze);
+        const rKneeGold = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.022, 16, 28), matValkyrieGold);
+        rKneeGold.rotation.y = Math.PI / 2;
+        rKnee.add(rKneeGold);
 
         const rKneePiston = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.16, 10), matChromeRod);
         rKneePiston.position.set(0, 0.02, -0.07);
         rKnee.add(rKneePiston);
 
-        const rShin = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.075, 0.46, 24), matWhiteArmor);
+        const rShin = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.075, 0.46, 24), matValkyrieWhite);
         rShin.position.y = -0.24;
         rKnee.add(rShin);
-
-        const rShinGlow = new THREE.Mesh(new THREE.BoxGeometry(0.016, 0.3, 0.02), matPurpleGlow);
-        rShinGlow.position.set(0, -0.24, 0.085);
-        rKnee.add(rShinGlow);
 
         const rFoot = new THREE.Group();
         rFoot.position.set(0, -0.48, 0.04);
         rKnee.add(rFoot);
 
-        const rShoeBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.1, 0.32), matWhiteArmor);
-        rFoot.add(rShoeBody);
+        const rBootBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.11, 0.32), matValkyrieWhite);
+        rFoot.add(rBootBody);
 
-        const rShoeHeel = new THREE.Mesh(new THREE.BoxGeometry(0.185, 0.09, 0.12), matPurpleArmor);
-        rShoeHeel.position.set(0, 0.01, -0.09);
-        rFoot.add(rShoeHeel);
+        const rAnkleRing = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.014, 12, 20), matValkyrieGold);
+        rAnkleRing.position.set(0, 0.06, 0);
+        rFoot.add(rAnkleRing);
 
-        const rShoeSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.34), matDarkSkeleton);
-        rShoeSole.position.y = -0.06;
-        rFoot.add(rShoeSole);
+        const rBootSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.34), matRubberSole);
+        rBootSole.position.y = -0.065;
+        rFoot.add(rBootSole);
 
-        const rToeAccent = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.06, 0.08), matCyanGlow);
-        rToeAccent.position.set(0, -0.02, 0.14);
-        rFoot.add(rToeAccent);
-
-        // 7. Live User-Tracking Engine ("see what user do and where he goes")
+        // 7. Live User-Tracking Engine
         let mouseX = 0;
         let mouseY = 0;
         let scrollRatio = 0;
@@ -2986,7 +2890,6 @@ Would you like to start a project inquiry right now?`;
         let prevMouseX = 0;
         let userInteracted = false;
 
-        // Mouse cursor tracking
         window.addEventListener('mousemove', (e) => {
             const rect = container.getBoundingClientRect();
             const cx = rect.left + rect.width / 2;
@@ -2997,9 +2900,9 @@ Would you like to start a project inquiry right now?`;
             // Pupil offset tracking cursor
             const pX = Math.max(-0.02, Math.min(0.02, mouseX * 0.02));
             const pY = Math.max(-0.02, Math.min(0.02, -mouseY * 0.02));
-            pupilL.position.x = -0.125 + pX;
+            pupilL.position.x = -0.11 + pX;
             pupilL.position.y = pY;
-            pupilR.position.x = 0.125 + pX;
+            pupilR.position.x = 0.11 + pX;
             pupilR.position.y = pY;
 
             if (isDragging) {
@@ -3010,7 +2913,6 @@ Would you like to start a project inquiry right now?`;
             }
         });
 
-        // Window scroll tracking (Robot looks down to follow reading position)
         window.addEventListener('scroll', () => {
             const docH = document.documentElement.scrollHeight - window.innerHeight;
             scrollRatio = docH > 0 ? window.scrollY / docH : 0;
@@ -3023,7 +2925,7 @@ Would you like to start a project inquiry right now?`;
         });
         window.addEventListener('mouseup', () => { isDragging = false; });
 
-        // Intelligent Mobile Touch Support (Prevents scroll trap; passes vertical swipes to browser)
+        // Touch handling (Prevents scroll lock; passes vertical swipes to browser)
         let touchStartX = 0;
         let touchStartY = 0;
         let isHorizontalSwipe = false;
@@ -3046,14 +2948,11 @@ Would you like to start a project inquiry right now?`;
                 const deltaX = currentX - touchStartX;
                 const deltaY = currentY - touchStartY;
 
-                // Gesture intent discrimination:
                 if (!isHorizontalSwipe && !isDragging) {
-                    // Vertical gesture intent: user is scrolling down/up the webpage!
                     if (Math.abs(deltaY) > Math.abs(deltaX)) {
                         isDragging = false;
-                        return; // Let browser natively scroll smoothly without obstruction
+                        return;
                     }
-                    // Deliberate horizontal gesture intent: user is rotating the robot!
                     if (Math.abs(deltaX) > Math.abs(deltaY) + 6) {
                         isHorizontalSwipe = true;
                         isDragging = true;
@@ -3079,31 +2978,49 @@ Would you like to start a project inquiry right now?`;
             isHorizontalSwipe = false;
         });
 
-        // 8. 6 Interactive Actions Controller (Walk, Sprint, Jump, Wave, Greet, Dance)
+        // 8. Kinematic Actions Controller (Walk, Wave, Handshake, Jump, Run, Sleep, Patrol)
         let currentActionName = 'Walking';
         let actionTimer = 0;
+        let typewriterTimer = null;
+        let isSpeaking = false;
 
         const speechMessages = {
-            Walking: '🚶 Apex-X Sentinel: Autonomous scanning & system architecture monitoring active.',
-            Running: '⚡ Quantum Sprint: Sub-second TTFB & 100/100 Core Web Vitals engaged.',
-            Jump: '🦘 Thruster Jump: Vertical thrust vectoring & acrobatic zero-g articulation.',
-            Wave: '👋 Hello! Welcome to ElavateX engineering studio! How can we scale your vision today?',
-            Greet: '🤝 Executive Welcome: Ready to architect your web platform, mobile app, or AI agents.',
-            Dance: '🎉 Cyber Groove: Delivering unfair competitive advantage and market dominance.'
+            Walking: '🚶 Valkyrie R5: Autonomous bipedal locomotion & environmental telemetry active.',
+            Wave: '👋 Greetings! Welcome to ElavateX engineering studio! How can we scale your vision today?',
+            Handshake: '🤝 Delighted to connect! Ready to architect world-class web, mobile, and AI solutions together.',
+            Jump: '🦘 Thruster Leap: Acrobatic vertical leap with reaction thruster stabilization.',
+            Running: '⚡ High-Speed Sprint: 60 FPS fluid rendering & sub-200ms latency engaged.',
+            Sleep: '😴 Low-Power Standby: Systems idling at 0.5 Hz breathing cycle. Click any action to wake me up!',
+            Patrol: '🔄 Perimeter Patrol: Orbiting platform coordinates and scanning workspace.'
         };
 
-        function setSpeech(text) {
+        // Smooth Typewriter Speech Renderer
+        function streamSpeech(text) {
             if (!speechText) return;
-            speechText.style.opacity = '0';
-            setTimeout(() => {
-                speechText.textContent = text;
-                speechText.style.opacity = '1';
-            }, 180);
+            if (typewriterTimer) clearInterval(typewriterTimer);
+            isSpeaking = true;
+            speechText.textContent = '';
+            let charIndex = 0;
+            typewriterTimer = setInterval(() => {
+                if (charIndex < text.length) {
+                    speechText.textContent += text.charAt(charIndex);
+                    charIndex++;
+                } else {
+                    clearInterval(typewriterTimer);
+                    typewriterTimer = null;
+                    isSpeaking = false;
+                }
+            }, 18);
         }
 
         function triggerAction(actionName, fromClick = true) {
             currentActionName = actionName;
             actionTimer = 0;
+
+            // Reset master offset if switching away from Patrol
+            if (actionName !== 'Patrol') {
+                robotMasterGroup.position.set(0, 0, 0);
+            }
 
             actButtons.forEach(btn => {
                 if (btn.getAttribute('data-action') === actionName) {
@@ -3114,22 +3031,28 @@ Would you like to start a project inquiry right now?`;
             });
 
             if (speechMessages[actionName]) {
-                setSpeech(speechMessages[actionName]);
+                streamSpeech(speechMessages[actionName]);
             }
 
-            // Temporary auto-reverts for single-shot moves
+            // Auto-revert single-shot moves back to Walk
             if (actionName === 'Jump') {
                 setTimeout(() => {
                     if (currentActionName === 'Jump') {
                         triggerAction('Walking', false);
                     }
                 }, 3200);
-            } else if (actionName === 'Greet' || actionName === 'Wave') {
+            } else if (actionName === 'Handshake') {
                 setTimeout(() => {
-                    if (currentActionName === actionName) {
+                    if (currentActionName === 'Handshake') {
                         triggerAction('Walking', false);
                     }
-                }, 4500);
+                }, 5200);
+            } else if (actionName === 'Wave') {
+                setTimeout(() => {
+                    if (currentActionName === 'Wave') {
+                        triggerAction('Walking', false);
+                    }
+                }, 4800);
             }
         }
 
@@ -3142,7 +3065,83 @@ Would you like to start a project inquiry right now?`;
             });
         });
 
-        // 9. Kinematic Physics & Animation Loop (60 FPS)
+        // 9. Interactive Live Text Chat Engine (Q&A + Voice Commands)
+        function processUserQuery(rawText) {
+            if (!rawText || !rawText.trim()) return;
+            const query = rawText.trim().toLowerCase();
+            userInteracted = true;
+
+            // Command Trigger Matching
+            if (query.includes('walk') || query.includes('walk around')) {
+                triggerAction('Walking', false);
+                streamSpeech('🚶 Executing bipedal stride: Monitoring system architecture!');
+                return;
+            }
+            if (query.includes('wave') || query.includes('say hi') || query.includes('hello') || query.includes('hey')) {
+                triggerAction('Wave', false);
+                streamSpeech('👋 Hello! Great to meet you! How can our engineering team help accelerate your roadmap?');
+                return;
+            }
+            if (query.includes('shake') || query.includes('handshake') || query.includes('meet') || query.includes('partner')) {
+                triggerAction('Handshake', false);
+                streamSpeech('🤝 Pleasure to partner with you! Let’s engineer an unfair advantage for your brand.');
+                return;
+            }
+            if (query.includes('jump') || query.includes('leap') || query.includes('hop')) {
+                triggerAction('Jump', false);
+                streamSpeech('🦘 Engaging high-altitude thruster leap! Zero-G mechanics locked.');
+                return;
+            }
+            if (query.includes('run') || query.includes('sprint') || query.includes('fast')) {
+                triggerAction('Running', false);
+                streamSpeech('🏃 Sprinting into hyperdrive! Delivering sub-second Core Web Vitals.');
+                return;
+            }
+            if (query.includes('sleep') || query.includes('rest') || query.includes('standby') || query.includes('idle')) {
+                triggerAction('Sleep', false);
+                streamSpeech('😴 Entering low-power standby mode. Core reactor breathing at 0.5 Hz.');
+                return;
+            }
+            if (query.includes('move') || query.includes('patrol') || query.includes('around') || query.includes('turn')) {
+                triggerAction('Patrol', false);
+                streamSpeech('🔄 Orbital patrol perimeter engaged: Scanning 360° workspace!');
+                return;
+            }
+
+            // Contextual Q&A Matching
+            if (query.includes('what do you build') || query.includes('service') || query.includes('stack') || query.includes('offer')) {
+                streamSpeech('🛠️ ElavateX engineers Custom Next.js 14 web platforms, Flutter & Swift 60 FPS mobile apps, and high-conversion SaaS architectures.');
+            } else if (query.includes('speed') || query.includes('fast') || query.includes('performance') || query.includes('vital')) {
+                streamSpeech('⚡ Every module is 100% custom handwritten—achieving audited 100/100 Core Web Vitals, <0.2s load speeds, and zero bloat.');
+            } else if (query.includes('quote') || query.includes('cost') || query.includes('price') || query.includes('pricing') || query.includes('estimate')) {
+                streamSpeech('💰 Tiered pricing starts from $499 for websites, $1,499 for SaaS portals, and custom mobile suites. Check our Estimator or WhatsApp us for a custom quote!');
+            } else if (query.includes('start') || query.includes('hire') || query.includes('work') || query.includes('contact')) {
+                streamSpeech('🚀 Ready to build? Tap "Get Free Consultation" in the nav, or click WhatsApp below to connect with our senior lead engineers in under 5 minutes!');
+            } else if (query.includes('who are you') || query.includes('valkyrie') || query.includes('robot') || query.includes('name')) {
+                streamSpeech('🤖 I am Valkyrie R5, ElavateX’s autonomous NASA-grade space humanoid! I run on Three.js WebGL and monitor platform telemetry.');
+            } else {
+                streamSpeech(`✨ "${rawText.trim()}": Got it! Click WhatsApp to speak directly with our senior developers, or test my actions above!`);
+            }
+        }
+
+        if (chatForm && chatInput) {
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const val = chatInput.value;
+                chatInput.value = '';
+                processUserQuery(val);
+            });
+        }
+
+        promptPills.forEach(pill => {
+            pill.addEventListener('click', (e) => {
+                e.preventDefault();
+                const q = pill.getAttribute('data-query');
+                if (q) processUserQuery(q);
+            });
+        });
+
+        // 10. Kinematic Physics & Animation Loop (60 FPS)
         const clock = new THREE.Clock();
         let animTime = 0;
         let blinkTimer = 0;
@@ -3156,45 +3155,48 @@ Would you like to start a project inquiry right now?`;
 
             // Optical Sensor Blinking
             blinkTimer += delta;
-            if (blinkTimer > 3.6) {
-                const blinkProgress = (blinkTimer - 3.6) / 0.2;
-                if (blinkProgress < 0.5) {
-                    pupilL.scale.y = 0.1; pupilR.scale.y = 0.1;
-                } else {
-                    pupilL.scale.y = 1.0; pupilR.scale.y = 1.0;
+            if (currentActionName !== 'Sleep') {
+                if (blinkTimer > 3.6) {
+                    const blinkProgress = (blinkTimer - 3.6) / 0.2;
+                    if (blinkProgress < 0.5) {
+                        pupilL.scale.y = 0.1; pupilR.scale.y = 0.1;
+                    } else {
+                        pupilL.scale.y = 1.0; pupilR.scale.y = 1.0;
+                    }
+                    if (blinkTimer > 3.8) blinkTimer = 0;
                 }
-                if (blinkTimer > 3.8) blinkTimer = 0;
+            } else {
+                // Sleep: Slumbering eyelids closed
+                pupilL.scale.set(0.3, 0.1, 0.3);
+                pupilR.scale.set(0.3, 0.1, 0.3);
             }
 
-            // Real-Time Head & Neck User Tracking (Follows cursor + scroll position)
-            const targetHeadY = mouseX * 0.45;
-            const targetHeadX = -mouseY * 0.25 - scrollRatio * 0.28;
-            headGroup.rotation.y = THREE.MathUtils.lerp(headGroup.rotation.y, targetHeadY, 0.08);
-            headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, targetHeadX, 0.08);
-            torsoGroup.rotation.y = THREE.MathUtils.lerp(torsoGroup.rotation.y, mouseX * 0.15, 0.06);
+            // Real-Time Head & Neck User Tracking (unless sleeping or patrolling)
+            if (currentActionName !== 'Sleep' && currentActionName !== 'Patrol') {
+                const targetHeadY = mouseX * 0.45;
+                const targetHeadX = -mouseY * 0.25 - scrollRatio * 0.28;
+                headGroup.rotation.y = THREE.MathUtils.lerp(headGroup.rotation.y, targetHeadY, 0.08);
+                headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, targetHeadX, 0.08);
+                torsoGroup.rotation.y = THREE.MathUtils.lerp(torsoGroup.rotation.y, mouseX * 0.15, 0.06);
+            }
 
-            // Floating Halo Gyro Motion
-            haloRing.rotation.z = animTime * 0.8;
-            haloRing.position.y = 0.44 + Math.sin(animTime * 2.5) * 0.02;
+            // NASA BLUE & CYAN REACTOR CORE (Dynamic Breathing & Speech Modulation)
+            if (currentActionName === 'Sleep') {
+                const sleepPulse = 0.4 + Math.sin(animTime * 1.5) * 0.25; // 0.5 Hz deep sleep breath
+                corePointLight.intensity = sleepPulse;
+                mouthBar.scale.x = 0.3;
+            } else {
+                const reactorPulse = 1.8 + Math.sin(animTime * 4.0) * 0.4;
+                corePointLight.intensity = reactorPulse;
+                // Audio visualizer mouth pulses when speaking
+                if (isSpeaking) {
+                    mouthBar.scale.x = 0.9 + Math.sin(animTime * 18) * 0.5;
+                } else {
+                    mouthBar.scale.x = 0.6 + Math.sin(animTime * 4) * 0.2;
+                }
+            }
 
-            // MULTICOLOR QUANTUM PLASMA CORE (Smoothly shifts between ElavateX Cyan & Purple!)
-            const colorT = (Math.sin(animTime * 2.2) + 1) * 0.5; // 0 to 1
-            corePointLight.color.setHSL(0.52 + colorT * 0.22, 1.0, 0.6); // Cyan (0.52) to Purple (0.74)
-            const reactorPulse = 1.6 + Math.sin(animTime * 3.5) * 0.4;
-            corePointLight.intensity = reactorPulse;
-
-            // Counter-Rotating Quantum Micro-Rings inside Core
-            coreOrbitRing1.rotation.x = animTime * 2.2;
-            coreOrbitRing1.rotation.y = animTime * 1.8;
-            coreOrbitRing2.rotation.y = -animTime * 2.6;
-            coreOrbitRing2.rotation.z = animTime * 1.5;
-            coreOrbitRing3.rotation.x = -animTime * 1.6;
-            coreOrbitRing3.rotation.z = animTime * 2.1;
-
-            // Audio Visualizer mouth pulse
-            mouthBar.scale.x = 0.8 + Math.sin(animTime * 8) * 0.3;
-
-            // Floating Quantum Particles Motion
+            // Floating Particles Motion
             const positions = particleGeo.attributes.position.array;
             for (let i = 0; i < particleCount; i++) {
                 positions[i * 3 + 1] += 0.0035;
@@ -3204,10 +3206,7 @@ Would you like to start a project inquiry right now?`;
             }
             particleGeo.attributes.position.needsUpdate = true;
 
-            // Default wing positions (folded in aerodynamic cruise mode)
-            let targetWingAngle = 0;
-
-            // 6 HIGH-IMPACT DYNAMIC KINEMATIC ACTIONS (Walk, Sprint, Jump, Wave, Greet, Dance)
+            // 7 DYNAMIC ACTIONS KINEMATICS (Walk, Wave, Handshake, Jump, Run, Sleep, Patrol)
             if (currentActionName === 'Walking') {
                 const step = Math.sin(animTime * 4.2);
                 leftLeg.rotation.x = step * 0.42;
@@ -3215,110 +3214,23 @@ Would you like to start a project inquiry right now?`;
                 lKnee.rotation.x = Math.max(0, -step * 0.48);
                 rKnee.rotation.x = Math.max(0, step * 0.48);
 
-                leftArm.rotation.x = -step * 0.4;
-                rightArm.rotation.x = step * 0.4;
+                leftArm.rotation.x = -step * 0.38;
+                rightArm.rotation.x = step * 0.38;
                 leftArm.rotation.z = 0.16;
                 rightArm.rotation.z = -0.16;
                 lForearm.rotation.x = -0.22;
                 rForearm.rotation.x = -0.22;
+                rForearm.rotation.y = 0;
+                rightArm.rotation.y = 0;
 
                 robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.abs(Math.sin(animTime * 4.2)) * 0.06, 0.15);
                 robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.1);
                 robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
-                rightArm.rotation.y = 0;
 
                 groundShadow.scale.set(1, 1, 1);
                 groundShadow.material.opacity = 1;
-            } else if (currentActionName === 'Running') {
-                // Athletic High-Knee Sprint with Flared Thruster Wings
-                const runStep = Math.sin(animTime * 8.5);
-                leftLeg.rotation.x = runStep * 0.85;
-                rightLeg.rotation.x = -runStep * 0.85;
-                lKnee.rotation.x = Math.max(0, -runStep * 0.95);
-                rKnee.rotation.x = Math.max(0, runStep * 0.95);
-
-                leftArm.rotation.x = -runStep * 0.88;
-                rightArm.rotation.x = runStep * 0.88;
-                leftArm.rotation.z = 0.22;
-                rightArm.rotation.z = -0.22;
-                lForearm.rotation.x = -0.68;
-                rForearm.rotation.x = -0.68;
-
-                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.abs(Math.sin(animTime * 8.5)) * 0.14, 0.2);
-                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.32, 0.15); // Forward athletic runner's lean
-                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
-
-                targetWingAngle = 0.45; // Wings flare open!
-                groundShadow.scale.set(0.9, 0.9, 0.9);
-                groundShadow.material.opacity = 0.85;
-            } else if (currentActionName === 'Jump') {
-                // Multi-Phase Acrobatic Thruster Jump (Anticipation -> Explosive Launch -> Apex -> Landing Rebound)
-                const jumpCycle = actionTimer % 2.6;
-
-                if (jumpCycle < 0.45) {
-                    // Phase 1: Deep Crouch Anticipation
-                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.24, 0.2);
-                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.28, 0.2);
-                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, -0.55, 0.2);
-                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, -0.55, 0.2);
-                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.95, 0.2);
-                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.95, 0.2);
-                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.65, 0.2);
-                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.65, 0.2);
-                    targetWingAngle = 0;
-                    groundShadow.scale.set(1.15, 1.15, 1.15);
-                    groundShadow.material.opacity = 1;
-                } else if (jumpCycle < 1.4) {
-                    // Phase 2: Explosive Launch & Mid-Air Flight!
-                    const flightP = (jumpCycle - 0.45) / 0.95;
-                    const flightArc = Math.sin(flightP * Math.PI);
-                    robotBody.position.y = flightArc * 0.92;
-                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, -0.15, 0.15);
-
-                    // Acrobatic mid-air tuck
-                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0.25, 0.15);
-                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0.45, 0.15);
-                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.4, 0.15);
-                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.65, 0.15);
-
-                    // Arms thrust upward toward sky
-                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, -1.8, 0.18);
-                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -1.8, 0.18);
-                    leftArm.rotation.z = 0.4;
-                    rightArm.rotation.z = -0.4;
-
-                    targetWingAngle = 0.65; // Wings flare fully open!
-                    groundShadow.scale.set(0.45, 0.45, 0.45);
-                    groundShadow.material.opacity = 0.35;
-                } else if (jumpCycle < 1.95) {
-                    // Phase 3: Shock-Absorbing Landing
-                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.22, 0.25);
-                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.32, 0.25);
-                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, -0.5, 0.25);
-                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, -0.5, 0.25);
-                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.9, 0.25);
-                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.9, 0.25);
-                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.2, 0.2);
-                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.2, 0.2);
-                    targetWingAngle = 0.2;
-                    groundShadow.scale.set(1.2, 1.2, 1.2);
-                    groundShadow.material.opacity = 1;
-                } else {
-                    // Phase 4: Spring Rebound back to Standing
-                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, 0, 0.12);
-                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.12);
-                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.12);
-                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0, 0.12);
-                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0, 0.12);
-                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0, 0.12);
-                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0, 0.12);
-                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0, 0.12);
-                    targetWingAngle = 0;
-                    groundShadow.scale.set(1, 1, 1);
-                    groundShadow.material.opacity = 1;
-                }
             } else if (currentActionName === 'Wave') {
-                // PERFECT WARM & LIFELIKE WAVE (Body weight shifts, head tilts happily, fluid pendulum hand wave)
+                // Friendly Lifelike Overhead Wave
                 robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0.08, 0.1);
                 robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.sin(animTime * 3) * 0.02, 0.1);
                 robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.1);
@@ -3332,8 +3244,9 @@ Would you like to start a project inquiry right now?`;
                 leftArm.rotation.z = THREE.MathUtils.lerp(leftArm.rotation.z, 0.22, 0.1);
                 lForearm.rotation.x = THREE.MathUtils.lerp(lForearm.rotation.x, -0.15, 0.1);
 
-                rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -0.2, 0.12);
+                rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -0.25, 0.12);
                 rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -2.15, 0.12);
+                rightArm.rotation.y = 0;
 
                 const waveWave = Math.sin(animTime * 7.5);
                 rForearm.rotation.z = -0.45 + waveWave * 0.48;
@@ -3345,71 +3258,180 @@ Would you like to start a project inquiry right now?`;
 
                 groundShadow.scale.set(1, 1, 1);
                 groundShadow.material.opacity = 1;
-            } else if (currentActionName === 'Greet') {
-                // Dignified Executive Cyber Bow & Salutation
+            } else if (currentActionName === 'Handshake') {
+                // Professional Executive Handshake
+                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.1, 0.1);
+                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
+                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, 0, 0.1);
+
                 leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.1);
                 rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0, 0.1);
                 lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0, 0.1);
                 rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0, 0.1);
-                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, 0, 0.1);
-                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
 
-                // Respectful bow (18 degrees)
-                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.26, 0.08);
+                leftArm.rotation.set(0.12, 0, 0.18);
+                lForearm.rotation.set(-0.15, 0, 0);
 
-                leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.15, 0.1);
-                leftArm.rotation.z = THREE.MathUtils.lerp(leftArm.rotation.z, 0.25, 0.1);
-                lForearm.rotation.x = 0;
+                // Reaches right arm forward towards the user
+                rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -1.52, 0.12);
+                rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -0.05, 0.12);
+                rightArm.rotation.y = THREE.MathUtils.lerp(rightArm.rotation.y, 0.12, 0.12);
 
-                // Right hand placed over glowing Arc Reactor
-                rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -0.95, 0.1);
-                rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -0.4, 0.1);
-                rForearm.rotation.y = THREE.MathUtils.lerp(rForearm.rotation.y, 0.8, 0.1);
-                rForearm.rotation.x = THREE.MathUtils.lerp(rForearm.rotation.x, -0.5, 0.1);
+                const shakePump = Math.sin(animTime * 6.0) * 0.08;
+                rForearm.rotation.x = THREE.MathUtils.lerp(rForearm.rotation.x, -0.38 + shakePump, 0.15);
+                rForearm.rotation.y = THREE.MathUtils.lerp(rForearm.rotation.y, 0.6, 0.12);
                 rForearm.rotation.z = 0;
+
+                rHand.rotation.x = shakePump * 0.5;
+                rThumb.rotation.z = 0.8; // Thumb up in greeting
+                rFingers.forEach(f => { f.rotation.x = -0.2; });
+
+                // Warm head nod in greeting
+                headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, 0.12 + Math.sin(animTime * 6.0) * 0.05, 0.12);
 
                 groundShadow.scale.set(1, 1, 1);
                 groundShadow.material.opacity = 1;
-            } else if (currentActionName === 'Dance') {
-                // PERFECT CYBER BREAKDANCE GROOVE (120 BPM Bounce, Hip Roll, Popping Arms)
-                const beat = animTime * 6.8;
+            } else if (currentActionName === 'Jump') {
+                // Multi-Phase Acrobatic Thruster Jump
+                const jumpCycle = actionTimer % 2.6;
 
-                const bounce = Math.abs(Math.sin(beat));
-                robotBody.position.y = bounce * 0.16;
+                if (jumpCycle < 0.45) {
+                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.24, 0.2);
+                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.28, 0.2);
+                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, -0.55, 0.2);
+                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, -0.55, 0.2);
+                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.95, 0.2);
+                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.95, 0.2);
+                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.65, 0.2);
+                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.65, 0.2);
+                    groundShadow.scale.set(1.15, 1.15, 1.15);
+                    groundShadow.material.opacity = 1;
+                } else if (jumpCycle < 1.4) {
+                    const flightP = (jumpCycle - 0.45) / 0.95;
+                    const flightArc = Math.sin(flightP * Math.PI);
+                    robotBody.position.y = flightArc * 0.92;
+                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, -0.15, 0.15);
 
-                robotBody.rotation.z = Math.sin(beat * 0.5) * 0.16;
-                robotBody.rotation.x = Math.cos(beat * 0.5) * 0.12;
-                torsoGroup.rotation.y = Math.sin(beat * 0.5) * 0.38;
+                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0.25, 0.15);
+                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0.45, 0.15);
+                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.4, 0.15);
+                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.65, 0.15);
 
-                lKnee.rotation.x = (1 - bounce) * 0.45;
-                rKnee.rotation.x = bounce * 0.45;
-                leftLeg.rotation.x = -Math.sin(beat * 0.5) * 0.25;
-                rightLeg.rotation.x = Math.sin(beat * 0.5) * 0.25;
+                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, -1.8, 0.18);
+                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -1.8, 0.18);
+                    leftArm.rotation.z = 0.4;
+                    rightArm.rotation.z = -0.4;
 
-                leftArm.rotation.z = 1.25 + Math.sin(beat) * 0.55;
-                rightArm.rotation.z = -1.25 - Math.sin(beat + 1.2) * 0.55;
-                leftArm.rotation.x = Math.cos(beat) * 0.45;
-                rightArm.rotation.x = -Math.cos(beat) * 0.45;
-                lForearm.rotation.x = -0.3 + Math.sin(beat * 2) * 0.35;
-                rForearm.rotation.x = -0.3 + Math.cos(beat * 2) * 0.35;
+                    groundShadow.scale.set(0.45, 0.45, 0.45);
+                    groundShadow.material.opacity = 0.35;
+                } else if (jumpCycle < 1.95) {
+                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.22, 0.25);
+                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.32, 0.25);
+                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, -0.5, 0.25);
+                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, -0.5, 0.25);
+                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.9, 0.25);
+                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.9, 0.25);
+                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.2, 0.2);
+                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.2, 0.2);
+                    groundShadow.scale.set(1.2, 1.2, 1.2);
+                    groundShadow.material.opacity = 1;
+                } else {
+                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, 0, 0.12);
+                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.12);
+                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.12);
+                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0, 0.12);
+                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0, 0.12);
+                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0, 0.12);
+                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0, 0.12);
+                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0, 0.12);
+                    groundShadow.scale.set(1, 1, 1);
+                    groundShadow.material.opacity = 1;
+                }
+            } else if (currentActionName === 'Running') {
+                // Athletic High-Knee Sprint
+                const runStep = Math.sin(animTime * 8.5);
+                leftLeg.rotation.x = runStep * 0.85;
+                rightLeg.rotation.x = -runStep * 0.85;
+                lKnee.rotation.x = Math.max(0, -runStep * 0.95);
+                rKnee.rotation.x = Math.max(0, runStep * 0.95);
 
-                targetWingAngle = 0.25 + bounce * 0.3;
+                leftArm.rotation.x = -runStep * 0.88;
+                rightArm.rotation.x = runStep * 0.88;
+                leftArm.rotation.z = 0.22;
+                rightArm.rotation.z = -0.22;
+                lForearm.rotation.x = -0.68;
+                rForearm.rotation.x = -0.68;
+                rightArm.rotation.y = 0;
 
-                groundShadow.scale.set(1 - bounce * 0.15, 1 - bounce * 0.15, 1 - bounce * 0.15);
-                groundShadow.material.opacity = 0.95;
+                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.abs(Math.sin(animTime * 8.5)) * 0.14, 0.2);
+                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.32, 0.15); // Forward lean
+                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
+
+                groundShadow.scale.set(0.9, 0.9, 0.9);
+                groundShadow.material.opacity = 0.85;
+            } else if (currentActionName === 'Sleep') {
+                // Low-Power Standby Sleep Mode
+                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.04, 0.08);
+                robotBody.rotation.set(0, 0, 0);
+
+                headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, 0.36, 0.08); // Head drops forward
+                headGroup.rotation.y = THREE.MathUtils.lerp(headGroup.rotation.y, 0, 0.08);
+
+                leftLeg.rotation.set(0, 0, 0);
+                rightLeg.rotation.set(0, 0, 0);
+                lKnee.rotation.set(0, 0, 0);
+                rKnee.rotation.set(0, 0, 0);
+
+                leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.08, 0.08);
+                leftArm.rotation.z = THREE.MathUtils.lerp(leftArm.rotation.z, 0.12, 0.08);
+                rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.08, 0.08);
+                rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -0.12, 0.08);
+                rightArm.rotation.y = 0;
+                lForearm.rotation.set(-0.05, 0, 0);
+                rForearm.rotation.set(-0.05, 0, 0);
+
+                groundShadow.scale.set(1.05, 1.05, 1.05);
+                groundShadow.material.opacity = 1;
+            } else if (currentActionName === 'Patrol') {
+                // Autonomous Circular Perimeter Patrol ("Move Around")
+                const patrolSpeed = 0.75;
+                const patrolRadius = 0.65;
+                const pAngle = animTime * patrolSpeed;
+
+                robotMasterGroup.position.x = Math.sin(pAngle) * patrolRadius;
+                robotMasterGroup.position.z = Math.cos(pAngle) * (patrolRadius * 0.6);
+                robotMasterGroup.rotation.y = pAngle + Math.PI / 2;
+
+                const step = Math.sin(animTime * 5.0);
+                leftLeg.rotation.x = step * 0.44;
+                rightLeg.rotation.x = -step * 0.44;
+                lKnee.rotation.x = Math.max(0, -step * 0.5);
+                rKnee.rotation.x = Math.max(0, step * 0.5);
+
+                leftArm.rotation.x = -step * 0.38;
+                rightArm.rotation.x = step * 0.38;
+                leftArm.rotation.z = 0.16;
+                rightArm.rotation.z = -0.16;
+                lForearm.rotation.x = -0.22;
+                rForearm.rotation.x = -0.22;
+                rightArm.rotation.y = 0;
+
+                // Valkyrie actively scans perimeter while patrolling
+                headGroup.rotation.y = Math.sin(animTime * 2.2) * 0.35;
+                headGroup.rotation.x = 0.05;
+
+                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.abs(Math.sin(animTime * 5.0)) * 0.05, 0.15);
+                groundShadow.scale.set(1, 1, 1);
+                groundShadow.material.opacity = 1;
             }
-
-            // Smooth Interpolation of Aero Wings
-            wingGroupL.rotation.y = THREE.MathUtils.lerp(wingGroupL.rotation.y, targetWingAngle, 0.1);
-            wingGroupR.rotation.y = THREE.MathUtils.lerp(wingGroupR.rotation.y, -targetWingAngle, 0.1);
 
             // Platform Gyro Rotations
             ring.rotation.z = animTime * 0.35;
             innerRing.rotation.z = -animTime * 0.25;
             platform.rotation.y = -animTime * 0.12;
 
-            // Idle smooth return
-            if (!isDragging) {
+            // Idle smooth return to center facing if not patrolling or dragging
+            if (!isDragging && currentActionName !== 'Patrol') {
                 robotMasterGroup.rotation.y = THREE.MathUtils.lerp(robotMasterGroup.rotation.y, mouseX * 0.18, 0.04);
             }
 
@@ -3417,7 +3439,7 @@ Would you like to start a project inquiry right now?`;
         }
         animate();
 
-        // 10. Responsive Viewport Resize Observer (Mobile Adaptive Framing)
+        // 11. Responsive Viewport Resize Observer
         function onWindowResize() {
             if (!container || !renderer || !camera) return;
             width = container.clientWidth || 720;
@@ -3438,16 +3460,15 @@ Would you like to start a project inquiry right now?`;
         }
         window.addEventListener('resize', onWindowResize);
 
-        // 11. Auto-Idle Demonstration Loop (Showcases all moves seamlessly!)
-        const autoCycle = ['Walking', 'Run', 'Jump', 'Wave', 'Greet', 'Walking', 'Dance'];
+        // 12. Auto-Demonstration Loop (Demonstrates Walk, Wave, Handshake, Jump, Run, Patrol)
+        const autoCycle = ['Walking', 'Wave', 'Walking', 'Handshake', 'Running', 'Walking', 'Patrol'];
         let cycleIdx = 0;
         setInterval(() => {
-            if (!userInteracted) {
+            if (!userInteracted && currentActionName !== 'Sleep') {
                 cycleIdx = (cycleIdx + 1) % autoCycle.length;
-                const act = autoCycle[cycleIdx] === 'Run' ? 'Running' : autoCycle[cycleIdx];
-                triggerAction(act, false);
+                triggerAction(autoCycle[cycleIdx], false);
             }
-        }, 9500);
+        }, 11000);
     }
     initCyberBot();
 });
