@@ -134,8 +134,17 @@
 
 .styles-hub-page .nav-dropdown-menu {
   background: #1C1D20 !important;
-  border: 1px solid rgba(255, 201, 40, 0.25) !important;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7) !important;
+  border: 1px solid rgba(255, 201, 40, 0.3) !important;
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 201, 40, 0.15) !important;
+}
+
+.styles-hub-page .nav-dropdown-menu::before {
+  background: linear-gradient(90deg, #FFC928, #f59e0b, #FFC928) !important;
+  box-shadow: 0 0 14px rgba(255, 201, 40, 0.6) !important;
+}
+
+.styles-hub-page .dropdown-header-kicker {
+  color: #FFC928 !important;
 }
 
 .styles-hub-page .nav-dropdown-item {
@@ -143,7 +152,7 @@
 }
 
 .styles-hub-page .nav-dropdown-item:hover {
-  background: rgba(255, 201, 40, 0.12) !important;
+  background: rgba(255, 201, 40, 0.08) !important;
 }
 
 .styles-hub-page .nav-dropdown-item .dropdown-item-info strong {
@@ -152,6 +161,12 @@
 
 .styles-hub-page .nav-dropdown-item .dropdown-item-info span {
   color: rgba(242, 244, 241, 0.65) !important;
+}
+
+.styles-hub-page .dropdown-footer-link {
+  color: #FFC928 !important;
+  background: rgba(255, 201, 40, 0.1) !important;
+  border-color: rgba(255, 201, 40, 0.3) !important;
 }
 
 .styles-hub-page .nav-actions .btn-primary {

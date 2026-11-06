@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
 
     <!-- Master Brand Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=1.6">
+    <link rel="stylesheet" href="style.css?v=1.7">
     <!-- Showcase Extension Stylesheet -->
     <link rel="stylesheet" href="styles-showcase.css?v=2.3">
 
@@ -83,32 +83,117 @@
             <nav class="nav-links">
                 <a href="index.html#about" class="nav-link">About</a>
                 <div class="nav-dropdown-wrapper">
-                    <a href="index.html#services-overview" class="nav-link nav-dropdown-trigger">
+                    <a href="index.html#services-overview" class="nav-link nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
                         <span>Services</span>
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                        <svg class="dropdown-chevron-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                     </a>
-                    <div class="nav-dropdown-menu">
-                        <a href="services/web-development.html" class="nav-dropdown-item">
-                            <span class="dropdown-item-icon" style="background: rgba(99, 102, 241, 0.15); color: #818cf8;">🌐</span>
-                            <div class="dropdown-item-info">
-                                <strong>Website Development</strong>
-                                <span>Custom Next.js 14, 100/100 Vitals &amp; SaaS</span>
+                    <div class="nav-dropdown-menu" role="menu">
+                        <!-- Dropdown Top Meta Header -->
+                        <div class="dropdown-header-strip">
+                            <span class="dropdown-header-kicker">Core Service Platforms</span>
+                            <span class="dropdown-header-status">
+                                <span class="pulse-dot-green"></span> Booking Open
+                            </span>
+                        </div>
+
+                        <!-- Service 1: Website Development -->
+                        <a href="services/web-development.html" class="nav-dropdown-item" role="menuitem">
+                            <div class="dropdown-item-icon icon-badge-web">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                    <path d="m10 9-2 2 2 2"/>
+                                    <path d="m14 9 2 2-2 2"/>
+                                </svg>
                             </div>
-                        </a>
-                        <a href="services/mobile-app-development.html" class="nav-dropdown-item">
-                            <span class="dropdown-item-icon" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8;">📱</span>
                             <div class="dropdown-item-info">
-                                <strong>Mobile App Development</strong>
-                                <span>iOS &amp; Android, 60 FPS Native, Offline Sync</span>
+                                <div class="item-title-row">
+                                    <strong>Website Development</strong>
+                                    <span class="dropdown-tag tag-web">NEXT.JS 14</span>
+                                </div>
+                                <span>Custom Next.js 14, 100/100 Vitals &amp; SaaS Architecture</span>
                             </div>
+                            <span class="dropdown-arrow-indicator" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                            </span>
                         </a>
-                        <a href="services/social-media-management.html" class="nav-dropdown-item">
-                            <span class="dropdown-item-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;">🚀</span>
+
+                        <!-- Service 2: Mobile App Development -->
+                        <a href="services/mobile-app-development.html" class="nav-dropdown-item" role="menuitem">
+                            <div class="dropdown-item-icon icon-badge-app">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="5" y="2" width="14" height="20" rx="3"/>
+                                    <path d="M12 18h.01"/>
+                                    <path d="M10 5h4"/>
+                                </svg>
+                            </div>
                             <div class="dropdown-item-info">
-                                <strong>Social Media Growth</strong>
-                                <span>Viral Short-Form Reels, Paid Meta Ads</span>
+                                <div class="item-title-row">
+                                    <strong>Mobile App Development</strong>
+                                    <span class="dropdown-tag tag-app">60 FPS</span>
+                                </div>
+                                <span>iOS &amp; Android Native, Offline Sync &amp; Flutter Gestures</span>
                             </div>
+                            <span class="dropdown-arrow-indicator" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                            </span>
                         </a>
+
+                        <!-- Service 3: Social Media Management -->
+                        <a href="services/social-media-management.html" class="nav-dropdown-item" role="menuitem">
+                            <div class="dropdown-item-icon icon-badge-smm">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                                    <path d="M9 12H4s.55-3.03 2-4.5c1.62-1.63 5-2.5 5-2.5"/>
+                                    <path d="M12 15v5s3.03-.55 4.5-2c1.63-1.62 2.5-5 2.5-5"/>
+                                </svg>
+                            </div>
+                            <div class="dropdown-item-info">
+                                <div class="item-title-row">
+                                    <strong>Social Media Growth</strong>
+                                    <span class="dropdown-tag tag-smm">VIRAL</span>
+                                </div>
+                                <span>Viral Short-Form Reels, Paid Meta Ads &amp; Funnels</span>
+                            </div>
+                            <span class="dropdown-arrow-indicator" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                            </span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <!-- Service 4: Design Styles & Demos -->
+                        <a href="styles.html" class="nav-dropdown-item" role="menuitem">
+                            <div class="dropdown-item-icon icon-badge-styles">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                                    <path d="M5 3v4"/>
+                                    <path d="M19 17v4"/>
+                                    <path d="M3 5h4"/>
+                                    <path d="M17 19h4"/>
+                                </svg>
+                            </div>
+                            <div class="dropdown-item-info">
+                                <div class="item-title-row">
+                                    <strong>Design Styles &amp; Demos</strong>
+                                    <span class="dropdown-tag tag-styles">18 STYLES</span>
+                                </div>
+                                <span>18 Visual Philosophies, 2026 Closet &amp; Glassy Navigation</span>
+                            </div>
+                            <span class="dropdown-arrow-indicator" aria-hidden="true">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                            </span>
+                        </a>
+
+                        <!-- Dropdown Bottom Action Strip -->
+                        <div class="dropdown-footer-strip">
+                            <a href="index.html#estimator" class="dropdown-footer-link">
+                                <span>⚡ Calculate Project Budget in Scope Estimator</span>
+                                <span class="footer-arrow">&rarr;</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <a href="styles.html" class="nav-link active" title="Web Design Styles &amp; Interactive Demos">Styles ✨</a>
@@ -160,10 +245,22 @@
         <div class="drawer-links">
             <a href="index.html#about" class="drawer-link">About</a>
             <a href="index.html#services-overview" class="drawer-link">Core Services (All)</a>
-            <a href="services/web-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #818cf8; font-size: 0.95rem;">↳ 🌐 Website Development</a>
-            <a href="services/mobile-app-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #38bdf8; font-size: 0.95rem;">↳ 📱 Mobile App Engineering</a>
-            <a href="services/social-media-management.html" class="drawer-link" style="padding-left: 1.8rem; color: #ec4899; font-size: 0.95rem;">↳ 🚀 Social Media Growth</a>
-            <a href="styles.html" class="drawer-link active" style="color: var(--accent-cyan); font-weight: 700;">✨ Design Styles &amp; Demos Directory</a>
+            <a href="services/web-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #818cf8; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="m10 9-2 2 2 2"/><path d="m14 9 2 2-2 2"/></svg>
+                <span>Website Development</span>
+            </a>
+            <a href="services/mobile-app-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #38bdf8; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/><path d="M10 5h4"/></svg>
+                <span>Mobile App Engineering</span>
+            </a>
+            <a href="services/social-media-management.html" class="drawer-link" style="padding-left: 1.8rem; color: #ec4899; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+                <span>Social Media Growth</span>
+            </a>
+            <a href="styles.html" class="drawer-link active" style="padding-left: 1.8rem; color: var(--accent-cyan); font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                <span>Design Styles &amp; Demos Directory</span>
+            </a>
             <a href="index.html#knowledge-hub" class="drawer-link">Growth Frameworks</a>
             <a href="index.html#daily-journey" class="drawer-link">Daily Journey (BTS)</a>
             <a href="index.html#mvp-demo" class="drawer-link">Demo &amp; MVP Blueprint</a>
