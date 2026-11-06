@@ -108,7 +108,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=4.0">
+    <link rel="stylesheet" href="style.css?v=4.5">
 </head>
 <body class="light-theme">
 
@@ -503,67 +503,41 @@
                         <div class="robot-orbit-ring ring-outer"></div>
                         <div class="robot-orbit-ring ring-inner"></div>
 
-                        <!-- Interactive Robot Container -->
+                        <!-- Interactive Iron Man Mark 85 Container -->
                         <div class="interactive-robot-container" id="interactive-robot-container">
                             
-                            <!-- Interactive Speech / Telemetry Bubble -->
-                            <div class="robot-speech-bubble" id="robot-speech-bubble">
-                                <span class="speech-pulse"></span>
-                                <span class="speech-text" id="robot-speech-text">🚀 Valkyrie R5 Space Humanoid Online: Standby for commands. Click an action or ask me anything below:</span>
+                            <!-- Stark Industries Telemetry Status Pill -->
+                            <div class="ironman-hud-badge" id="ironman-hud-badge">
+                                <span class="hud-reactor-pulse"></span>
+                                <span class="hud-status-text" id="ironman-status-text">STARK MK-85 • ARC REACTOR 100% ONLINE</span>
                             </div>
 
-                            <!-- 3D WebGL CyberBot Stage -->
-                            <div class="robot-canvas-stage" id="robot-canvas-stage" title="Click or drag to interact with NASA Valkyrie R5 Space Humanoid!">
+                            <!-- 3D WebGL Iron Man Stage -->
+                            <div class="robot-canvas-stage" id="robot-canvas-stage" title="Click or drag to interact with Iron Man Mark 85!">
                                 <canvas id="robot-webgl-canvas"></canvas>
                                 <div class="canvas-ambient-pedestal"></div>
                             </div>
 
-                            <!-- Interactive Robot Action Controls (Walk, Wave, Shake Hand, Jump, Run, Sleep, Move Around + WhatsApp) -->
+                            <!-- Sleek Iron Man Action Dock (Fly, Suit Up, Blast, Walk, Orbit + WhatsApp) -->
                             <div class="robot-interactive-actions" id="robot-interactive-actions">
-                                <button type="button" class="robot-act-btn active" id="btn-act-walk" data-action="Walking" title="Humanoid Bipedal Walk">
+                                <button type="button" class="robot-act-btn active" id="btn-act-fly" data-action="Fly" title="Repulsor Hover Flight">
+                                    <span>🚀 Fly</span>
+                                </button>
+                                <button type="button" class="robot-act-btn" id="btn-act-suitup" data-action="SuitUp" title="Nanotech Armor Assembly">
+                                    <span>⚡ Suit Up</span>
+                                </button>
+                                <button type="button" class="robot-act-btn" id="btn-act-blast" data-action="Blast" title="Repulsor Cannon Blast">
+                                    <span>💥 Blast</span>
+                                </button>
+                                <button type="button" class="robot-act-btn" id="btn-act-walk" data-action="Walk" title="Armored Walk">
                                     <span>🚶 Walk</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-wave" data-action="Wave" title="Friendly Warm Wave">
-                                    <span>👋 Wave</span>
+                                <button type="button" class="robot-act-btn" id="btn-act-patrol" data-action="Patrol" title="Supersonic Flight Orbit">
+                                    <span>🔄 Orbit</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-shake" data-action="Handshake" title="Executive Handshake">
-                                    <span>🤝 Shake Hand</span>
-                                </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-jump" data-action="Jump" title="Acrobatic Thruster Jump">
-                                    <span>🦘 Jump</span>
-                                </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-run" data-action="Running" title="Athletic High-Speed Sprint">
-                                    <span>🏃 Run</span>
-                                </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-sleep" data-action="Sleep" title="Low-Power Standby Sleep">
-                                    <span>😴 Sleep</span>
-                                </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-patrol" data-action="Patrol" title="Autonomous Perimeter Patrol">
-                                    <span>🔄 Move Around</span>
-                                </button>
-                                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20interacted%20with%20your%203D%20Valkyrie%20Robot%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="robot-act-btn btn-chat-link" id="btn-act-chat" title="Chat Directly on WhatsApp">
+                                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20saw%20your%203D%20Iron%20Man%20experience%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="robot-act-btn btn-chat-link" id="btn-act-chat" title="Chat on WhatsApp">
                                     <span>💬 WhatsApp</span>
                                 </a>
-                            </div>
-
-                            <!-- Interactive Live Text Chat Console -->
-                            <div class="robot-chat-console" id="robot-chat-console">
-                                <div class="robot-chat-prompts">
-                                    <button type="button" class="chat-prompt-pill" data-query="What do you build?">💡 What do you build?</button>
-                                    <button type="button" class="chat-prompt-pill" data-query="How fast is your code?">⚡ How fast is your code?</button>
-                                    <button type="button" class="chat-prompt-pill" data-query="Can I get a quote?">💰 Can I get a quote?</button>
-                                    <button type="button" class="chat-prompt-pill" data-query="How do we start?">🚀 How do we start?</button>
-                                </div>
-                                <form class="robot-chat-form" id="robot-chat-form">
-                                    <div class="robot-chat-input-row">
-                                        <span class="robot-chat-input-icon">💬</span>
-                                        <input type="text" id="robot-chat-input" class="robot-chat-input" placeholder="Type a message to Valkyrie... (or say 'shake hand', 'jump')" autocomplete="off" maxlength="140" />
-                                        <button type="submit" id="robot-chat-submit" class="robot-chat-submit-btn" aria-label="Send message to Valkyrie">
-                                            <span>Send</span>
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                                        </button>
-                                    </div>
-                                </form>
                             </div>
 
                         </div>
@@ -3190,6 +3164,6 @@
     <!-- GSAP Libraries CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- JS Script -->
-    <script src="main.js?v=4.0"></script>
+    <script src="main.js?v=4.5"></script>
 </body>
 </html>
