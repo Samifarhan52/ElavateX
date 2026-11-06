@@ -2178,7 +2178,7 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // NASA VALKYRIE R5 SPACE HUMANOID (WHITE COMPOSITE ARMOR, GOLD ACCENTS, GLOWING BLUE REACTOR)
+    // NASA VALKYRIE R5 HUMANOID (RIGGED SKINNED GLTF 3D CHARACTER WITH 14 SKELETAL CLIPS)
     // -------------------------------------------------------------------------
     function initCyberBot() {
         const canvas = document.getElementById('robot-webgl-canvas');
@@ -2205,105 +2205,45 @@ Would you like to start a project inquiry right now?`;
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         renderer.setClearColor(0x000000, 0); // 100% Translucent Background
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.4;
+        renderer.toneMappingExposure = 1.35;
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
         // 2. Camera Framing (Athletic Full-Body Stance - Mobile-Aware)
         const scene = new THREE.Scene();
         const isMobileInit = width < 640;
-        const initFov = isMobileInit ? 38 : (width < 1024 ? 36 : 35);
-        const initZ = isMobileInit ? 4.8 : (width < 1024 ? 4.5 : 4.3);
-        const initY = isMobileInit ? 1.25 : 1.35;
+        const initFov = isMobileInit ? 40 : (width < 1024 ? 38 : 36);
+        const initZ = isMobileInit ? 5.2 : (width < 1024 ? 4.9 : 4.6);
+        const initY = isMobileInit ? 1.45 : 1.65;
         const camera = new THREE.PerspectiveCamera(initFov, width / height, 0.1, 100);
         camera.position.set(0, initY, initZ);
-        camera.lookAt(0, 1.15, 0);
+        camera.lookAt(0, 1.35, 0);
 
         // 3. Cinematic Studio Lighting Rig (Clean Space-Mission Aesthetic)
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.7);
         scene.add(ambientLight);
 
-        const keyLight = new THREE.DirectionalLight(0xffffff, 2.9);
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2.6);
         keyLight.position.set(4, 8, 5);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 1024;
+        keyLight.shadow.mapSize.height = 1024;
+        keyLight.shadow.bias = -0.001;
         scene.add(keyLight);
 
-        const fillLight = new THREE.DirectionalLight(0x38bdf8, 2.0); // Cyan Fill
+        const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.8); // Cyan Fill
         fillLight.position.set(-5, 4, 3);
         scene.add(fillLight);
 
-        const rimLight = new THREE.DirectionalLight(0xf59e0b, 2.4); // NASA Sunset Amber Rim
+        const rimLight = new THREE.DirectionalLight(0xf59e0b, 2.2); // NASA Sunset Amber Rim
         rimLight.position.set(0, 7, -5);
         scene.add(rimLight);
 
-        const groundLight = new THREE.PointLight(0x00f0ff, 2.0, 6);
-        groundLight.position.set(0, 0.15, 0);
+        const groundLight = new THREE.PointLight(0x00f0ff, 1.8, 6);
+        groundLight.position.set(0, 0.15, 1.0);
         scene.add(groundLight);
 
-        // 4. Authentic NASA Valkyrie R5 Space Materials & Shaders
-        // 1) Clean White Spacesuit Composite Ceramic Armor
-        const matValkyrieWhite = new THREE.MeshPhysicalMaterial({
-            color: 0xf4f6f8,
-            roughness: 0.22,
-            metalness: 0.08,
-            clearcoat: 0.85,
-            clearcoatRoughness: 0.08,
-            reflectivity: 0.95
-        });
-
-        // 2) NASA Sunset Amber / Gold Metallic Rotary Actuators & Accents
-        const matValkyrieGold = new THREE.MeshStandardMaterial({
-            color: 0xd97706,
-            roughness: 0.18,
-            metalness: 0.95
-        });
-
-        const matGoldBezel = new THREE.MeshStandardMaterial({
-            color: 0xf59e0b,
-            roughness: 0.18,
-            metalness: 0.96
-        });
-
-        // 3) Carbon-Fiber Inner Skeletal Mechanics & Joint Liners
-        const matValkyrieDark = new THREE.MeshStandardMaterial({
-            color: 0x0e1320,
-            roughness: 0.25,
-            metalness: 0.92
-        });
-
-        // 4) NASA Royal Blue Chest Emblem Insignia Disc
-        const matNasaBlue = new THREE.MeshStandardMaterial({
-            color: 0x1d4ed8,
-            roughness: 0.28,
-            metalness: 0.35
-        });
-
-        // 5) High-Gloss Obsidian Aerodynamic Helmet Visor Glass
-        const matVisorGlass = new THREE.MeshPhysicalMaterial({
-            color: 0x04060d,
-            roughness: 0.02,
-            metalness: 0.98,
-            clearcoat: 1.0,
-            clearcoatRoughness: 0.02
-        });
-
-        // 6) Mirror Chrome Hydraulic Piston Rods
-        const matChromeRod = new THREE.MeshStandardMaterial({
-            color: 0xf1f5f9,
-            roughness: 0.04,
-            metalness: 0.98
-        });
-
-        // 7) Dark Rubber Grip Soles
-        const matRubberSole = new THREE.MeshStandardMaterial({
-            color: 0x1e293b,
-            roughness: 0.75,
-            metalness: 0.1
-        });
-
-        // Emissive Neon Highlights
-        const matCyanGlow = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
-        const matAmberGlow = new THREE.MeshBasicMaterial({ color: 0xf59e0b });
-        const matCoreReactor = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
-
-        // 5. Master Robot Hierarchy
+        // 4. Master Robot Hierarchy & Platform
         const robotMasterGroup = new THREE.Group();
         scene.add(robotMasterGroup);
 
@@ -2321,13 +2261,13 @@ Would you like to start a project inquiry right now?`;
         robotMasterGroup.add(platform);
 
         const ringGeo = new THREE.TorusGeometry(1.72, 0.018, 16, 64);
-        const ring = new THREE.Mesh(ringGeo, matCyanGlow);
+        const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: 0x00f0ff }));
         ring.rotation.x = Math.PI / 2;
         ring.position.y = 0.02;
         robotMasterGroup.add(ring);
 
         const innerRingGeo = new THREE.TorusGeometry(1.38, 0.012, 16, 48);
-        const innerRing = new THREE.Mesh(innerRingGeo, matAmberGlow);
+        const innerRing = new THREE.Mesh(innerRingGeo, new THREE.MeshBasicMaterial({ color: 0xf59e0b }));
         innerRing.rotation.x = Math.PI / 2;
         innerRing.position.y = 0.02;
         robotMasterGroup.add(innerRing);
@@ -2337,7 +2277,10 @@ Would you like to start a project inquiry right now?`;
         platform.add(techMarksGroup);
         for (let m = 0; m < 8; m++) {
             const angle = (m / 8) * Math.PI * 2;
-            const marker = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.01, 0.03), m % 2 === 0 ? matCyanGlow : matAmberGlow);
+            const marker = new THREE.Mesh(
+                new THREE.BoxGeometry(0.18, 0.01, 0.03),
+                m % 2 === 0 ? new THREE.MeshBasicMaterial({ color: 0x00f0ff }) : new THREE.MeshBasicMaterial({ color: 0xf59e0b })
+            );
             marker.position.set(Math.cos(angle) * 1.5, 0.05, Math.sin(angle) * 1.5);
             marker.rotation.y = -angle;
             techMarksGroup.add(marker);
@@ -2345,11 +2288,11 @@ Would you like to start a project inquiry right now?`;
 
         // Floating Quantum Particle Field (Cyan & Golden Embers)
         const particleGeo = new THREE.BufferGeometry();
-        const particleCount = 65;
+        const particleCount = 55;
         const particlePositions = new Float32Array(particleCount * 3);
         for (let p = 0; p < particleCount; p++) {
             particlePositions[p * 3] = (Math.random() - 0.5) * 3.6;
-            particlePositions[p * 3 + 1] = Math.random() * 2.8;
+            particlePositions[p * 3 + 1] = Math.random() * 3.2;
             particlePositions[p * 3 + 2] = (Math.random() - 0.5) * 3.6;
         }
         particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
@@ -2357,7 +2300,7 @@ Would you like to start a project inquiry right now?`;
             color: 0x38bdf8,
             size: 0.04,
             transparent: true,
-            opacity: 0.8,
+            opacity: 0.75,
             blending: THREE.AdditiveBlending
         });
         const particleField = new THREE.Points(particleGeo, particleMat);
@@ -2377,612 +2320,32 @@ Would you like to start a project inquiry right now?`;
         const shadowTexture = new THREE.CanvasTexture(shadowCanvas);
 
         const shadowGeo = new THREE.PlaneGeometry(3.2, 3.2);
-        const shadowMat = new THREE.MeshBasicMaterial({ map: shadowTexture, transparent: true });
+        const shadowMat = new THREE.MeshBasicMaterial({ map: shadowTexture, transparent: true, depthWrite: false });
         const groundShadow = new THREE.Mesh(shadowGeo, shadowMat);
         groundShadow.rotation.x = -Math.PI / 2;
         groundShadow.position.y = 0.005;
         robotMasterGroup.add(groundShadow);
 
-        // 6. NASA Valkyrie R5 Humanoid Anatomy
-        const robotBody = new THREE.Group();
-        robotMasterGroup.add(robotBody);
+        // 5. Model State & Skeletal Animation Manager
+        let mixer = null;
+        let robotModel = null;
+        let headBone = null;
+        let corePointLight = null;
+        let coreMesh = null;
+        const actions = {};
+        let activeAction = null;
+        let currentActionName = 'Walking';
+        let userInteracted = false;
+        let userInteractTimeout = null;
+        let isSpeaking = false;
+        let typewriterTimer = null;
+        const clock = new THREE.Clock();
 
-        // Pelvis & Hip Chassis (White Composite with Gold & Dark Joints)
-        const pelvisGroup = new THREE.Group();
-        pelvisGroup.position.y = 0.95;
-        robotBody.add(pelvisGroup);
-
-        const pelvisShield = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.22, 0.18, 24), matValkyrieWhite);
-        pelvisGroup.add(pelvisShield);
-
-        const pelvisCenterCap = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.12, 0.28), matValkyrieDark);
-        pelvisGroup.add(pelvisCenterCap);
-
-        const pelvisCore = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.14, 0.26), matValkyrieDark);
-        pelvisGroup.add(pelvisCore);
-
-        // Amber Gold Hip Actuator Rings
-        const hipRingL = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.022, 16, 28), matValkyrieGold);
-        hipRingL.rotation.y = Math.PI / 2;
-        hipRingL.position.set(-0.25, 0, 0);
-        pelvisGroup.add(hipRingL);
-
-        const hipPinL = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.06, 20), matValkyrieDark);
-        hipPinL.rotation.z = Math.PI / 2;
-        hipPinL.position.set(-0.25, 0, 0);
-        pelvisGroup.add(hipPinL);
-
-        const hipRingR = hipRingL.clone(); hipRingR.position.x = 0.25; pelvisGroup.add(hipRingR);
-        const hipPinR = hipPinL.clone(); hipPinR.position.x = 0.25; pelvisGroup.add(hipPinR);
-
-        // Segmented Spine & Flank Ribs with Hydraulic Pistons
-        const spineGroup = new THREE.Group();
-        pelvisGroup.add(spineGroup);
-        for (let i = 0; i < 4; i++) {
-            const vertebra = new THREE.Mesh(new THREE.CylinderGeometry(0.13 - i * 0.01, 0.14 - i * 0.01, 0.065, 16), matValkyrieDark);
-            vertebra.position.y = 0.09 + i * 0.075;
-            spineGroup.add(vertebra);
-
-            const ribL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.03, 0.16), matValkyrieDark);
-            ribL.position.set(-0.16, 0.09 + i * 0.075, 0);
-            ribL.rotation.z = -0.15;
-            spineGroup.add(ribL);
-
-            const ribR = ribL.clone(); ribR.position.x = 0.16; ribR.rotation.z = 0.15; spineGroup.add(ribR);
-        }
-
-        // Dual Chrome Vertical Hydraulic Actuator Rods on Back Spine
-        const spineRodL = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.32, 12), matChromeRod);
-        spineRodL.position.set(-0.06, 0.22, -0.11);
-        spineGroup.add(spineRodL);
-
-        const spineRodR = spineRodL.clone();
-        spineRodR.position.x = 0.06;
-        spineGroup.add(spineRodR);
-
-        // Segmented White Abdominal Armor
-        const abPlateUpper = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.09, 0.18), matValkyrieWhite);
-        abPlateUpper.position.set(0, 0.24, 0.08);
-        spineGroup.add(abPlateUpper);
-
-        const abPlateLower = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.08, 0.16), matValkyrieWhite);
-        abPlateLower.position.set(0, 0.13, 0.09);
-        spineGroup.add(abPlateLower);
-
-        // Upper Torso & Chest Armor Chassis (NASA Valkyrie V-Taper)
-        const torsoGroup = new THREE.Group();
-        torsoGroup.position.y = 0.38;
-        pelvisGroup.add(torsoGroup);
-
-        // White Spacesuit Composite Pectoral Armor
-        const chestL = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.38, 0.28), matValkyrieWhite);
-        chestL.position.set(-0.14, 0.22, 0.08);
-        chestL.rotation.y = 0.12;
-        torsoGroup.add(chestL);
-
-        const chestR = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.38, 0.28), matValkyrieWhite);
-        chestR.position.set(0.14, 0.22, 0.08);
-        chestR.rotation.y = -0.12;
-        torsoGroup.add(chestR);
-
-        // NASA Valkyrie Golden Diagonal Harness Lines
-        const harnessL = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.36, 0.02), matValkyrieGold);
-        harnessL.position.set(-0.16, 0.24, 0.22);
-        harnessL.rotation.z = -0.22;
-        torsoGroup.add(harnessL);
-
-        const harnessR = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.36, 0.02), matValkyrieGold);
-        harnessR.position.set(0.16, 0.24, 0.22);
-        harnessR.rotation.z = 0.22;
-        torsoGroup.add(harnessR);
-
-        // Dual Circular Recessed Lower Chest Utility Ports (Valkyrie Reference Photo!)
-        const ventL = new THREE.Mesh(new THREE.CylinderGeometry(0.038, 0.038, 0.04, 16), matValkyrieDark);
-        ventL.rotation.x = Math.PI / 2;
-        ventL.position.set(-0.1, 0.08, 0.22);
-        torsoGroup.add(ventL);
-
-        const ventRingL = new THREE.Mesh(new THREE.TorusGeometry(0.04, 0.008, 12, 20), matValkyrieGold);
-        ventRingL.position.set(-0.1, 0.08, 0.24);
-        torsoGroup.add(ventRingL);
-
-        const ventR = ventL.clone(); ventR.position.x = 0.1; torsoGroup.add(ventR);
-        const ventRingR = ventRingL.clone(); ventRingR.position.x = 0.1; torsoGroup.add(ventRingR);
-
-        // Valkyrie Rear Life-Support Avionics Backpack (Clean White Housing + Black Louvers)
-        const backpackGroup = new THREE.Group();
-        backpackGroup.position.set(0, 0.22, -0.15);
-        torsoGroup.add(backpackGroup);
-
-        const packMain = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.42, 0.16), matValkyrieWhite);
-        backpackGroup.add(packMain);
-
-        const packLouver = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.22, 0.04), matValkyrieDark);
-        packLouver.position.set(0, 0.02, -0.09);
-        backpackGroup.add(packLouver);
-
-        // Twin Micro Thruster Nozzles on Backpack
-        const nozzleL = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.045, 0.08, 16), matValkyrieGold);
-        nozzleL.rotation.x = -Math.PI / 2;
-        nozzleL.position.set(-0.12, -0.15, -0.08);
-        backpackGroup.add(nozzleL);
-
-        const nozzleR = nozzleL.clone(); nozzleR.position.x = 0.12; backpackGroup.add(nozzleR);
-
-        // Clavicle Yoke with Chrome Hydraulics
-        const clavicle = new THREE.Mesh(new THREE.BoxGeometry(0.54, 0.08, 0.16), matValkyrieDark);
-        clavicle.position.set(0, 0.42, 0.02);
-        torsoGroup.add(clavicle);
-
-        // NASA Chest Insignia & Glowing Reactor Core
-        const coreGroup = new THREE.Group();
-        coreGroup.position.set(0, 0.25, 0.22);
-        torsoGroup.add(coreGroup);
-
-        const nasaDisc = new THREE.Mesh(new THREE.CylinderGeometry(0.105, 0.105, 0.025, 32), matNasaBlue);
-        nasaDisc.rotation.x = Math.PI / 2;
-        coreGroup.add(nasaDisc);
-
-        const coreGoldRim = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.015, 16, 32), matValkyrieGold);
-        coreGoldRim.position.z = 0.015;
-        coreGroup.add(coreGoldRim);
-
-        const coreInnerBezel = new THREE.Mesh(new THREE.TorusGeometry(0.075, 0.01, 16, 24), matGoldBezel);
-        coreInnerBezel.position.z = 0.02;
-        coreGroup.add(coreInnerBezel);
-
-        const coreLed = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 16), matCoreReactor);
-        coreLed.position.z = 0.025;
-        coreGroup.add(coreLed);
-
-        const corePointLight = new THREE.PointLight(0x00f0ff, 2.0, 3.5);
-        corePointLight.position.set(0, 0, 0.12);
-        coreGroup.add(corePointLight);
-
-        // White Shoulder Pauldrons with Gold Trim & NASA Mission Accents
-        const pauldronL = new THREE.Mesh(new THREE.SphereGeometry(0.19, 20, 20), matValkyrieWhite);
-        pauldronL.scale.set(1.25, 0.85, 1.15);
-        pauldronL.position.set(-0.36, 0.38, 0.02);
-        torsoGroup.add(pauldronL);
-
-        const pauldronTrimL = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.015, 12, 24), matValkyrieGold);
-        pauldronTrimL.position.set(-0.36, 0.38, 0.02);
-        pauldronTrimL.rotation.y = Math.PI / 2;
-        torsoGroup.add(pauldronTrimL);
-
-        const pauldronR = new THREE.Mesh(new THREE.SphereGeometry(0.19, 20, 20), matValkyrieWhite);
-        pauldronR.scale.set(1.25, 0.85, 1.15);
-        pauldronR.position.set(0.36, 0.38, 0.02);
-        torsoGroup.add(pauldronR);
-
-        const pauldronTrimR = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.015, 12, 24), matValkyrieGold);
-        pauldronTrimR.position.set(0.36, 0.38, 0.02);
-        pauldronTrimR.rotation.y = Math.PI / 2;
-        torsoGroup.add(pauldronTrimR);
-
-        // Mission Flag Stripe on Shoulder
-        const flagDecal = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.04, 0.02), matNasaBlue);
-        flagDecal.position.set(0.36, 0.44, 0.05);
-        torsoGroup.add(flagDecal);
-
-        // Neck Assembly with Chrome Hydraulic Pistons
-        const neckGroup = new THREE.Group();
-        neckGroup.position.y = 0.48;
-        torsoGroup.add(neckGroup);
-
-        const neckPiston = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.13, 0.16, 20), matValkyrieDark);
-        neckGroup.add(neckPiston);
-
-        const neckHydraulicL = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.14, 12), matChromeRod);
-        neckHydraulicL.position.set(-0.06, 0.02, 0.04);
-        neckHydraulicL.rotation.z = -0.15;
-        neckGroup.add(neckHydraulicL);
-
-        const neckHydraulicR = neckHydraulicL.clone(); neckHydraulicR.position.x = 0.06; neckHydraulicR.rotation.z = 0.15; neckGroup.add(neckHydraulicR);
-
-        // NASA Valkyrie Space Helmet
-        const headGroup = new THREE.Group();
-        headGroup.position.y = 0.2;
-        neckGroup.add(headGroup);
-
-        // Aerodynamic White Ceramic Cranium Shell
-        const craniumGeo = new THREE.SphereGeometry(0.33, 36, 32);
-        craniumGeo.scale(0.96, 1.12, 1.05);
-        const cranium = new THREE.Mesh(craniumGeo, matValkyrieWhite);
-        headGroup.add(cranium);
-
-        // NASA Gold Brow Forehead Rim (Prominent Valkyrie Feature!)
-        const browRim = new THREE.Mesh(new THREE.TorusGeometry(0.31, 0.025, 16, 36, Math.PI * 0.72), matValkyrieGold);
-        browRim.rotation.x = -Math.PI / 2.3;
-        browRim.rotation.z = -Math.PI * 0.36;
-        browRim.position.set(0, 0.16, 0.06);
-        headGroup.add(browRim);
-
-        // Top Cranium Sensor Ridge
-        const crownFin = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.05, 0.32), matValkyrieGold);
-        crownFin.position.set(0, 0.38, -0.04);
-        headGroup.add(crownFin);
-
-        // Sculpted White Astronaut Chin Guard with Microphone Vents
-        const jawPlate = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.18, 0.22, 24, 1, false, -Math.PI / 2.6, Math.PI / 1.3), matValkyrieWhite);
-        jawPlate.rotation.y = Math.PI / 2;
-        jawPlate.position.set(0, -0.06, 0.14);
-        headGroup.add(jawPlate);
-
-        // Microphone Sensor Slots on Chin
-        for (let v = 0; v < 3; v++) {
-            const micSlot = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.012, 0.02), matValkyrieDark);
-            micSlot.position.set(-0.06 + v * 0.06, -0.12, 0.23);
-            headGroup.add(micSlot);
-        }
-
-        // Glossy Obsidian Panoramic Visor Shield
-        const visorGeo = new THREE.SphereGeometry(0.31, 32, 24, 0, Math.PI, 0, Math.PI * 0.52);
-        const visorMask = new THREE.Mesh(visorGeo, matVisorGlass);
-        visorMask.rotation.x = -Math.PI / 2.2;
-        visorMask.position.set(0, 0.04, 0.06);
-        headGroup.add(visorMask);
-
-        // Dual Optical Camera Eyes Inside Visor
-        const eyeGroup = new THREE.Group();
-        eyeGroup.position.set(0, 0.06, 0.3);
-        headGroup.add(eyeGroup);
-
-        const eyeSocketL = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 0.04, 24), matValkyrieDark);
-        eyeSocketL.rotation.x = Math.PI / 2;
-        eyeSocketL.position.set(-0.11, 0, 0);
-        eyeGroup.add(eyeSocketL);
-
-        const pupilL = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 16), matCyanGlow);
-        pupilL.position.set(-0.11, 0, 0.04);
-        eyeGroup.add(pupilL);
-
-        const eyeSocketR = eyeSocketL.clone(); eyeSocketR.position.x = 0.11; eyeGroup.add(eyeSocketR);
-        const pupilR = pupilL.clone(); pupilR.position.x = 0.11; eyeGroup.add(pupilR);
-
-        // Audio Visualizer Mouth Sensor
-        const mouthBar = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.012, 0.02), matCyanGlow);
-        mouthBar.position.set(0, -0.08, 0.27);
-        headGroup.add(mouthBar);
-
-        // NASA Communications Ear Pods (White Cylindrical Housing with Gold Outer Rings)
-        const earL = new THREE.Group();
-        earL.position.set(-0.34, 0.02, 0);
-        headGroup.add(earL);
-
-        const earBaseL = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.06, 24), matValkyrieWhite);
-        earBaseL.rotation.z = Math.PI / 2;
-        earL.add(earBaseL);
-
-        const earGoldL = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.018, 16, 24), matValkyrieGold);
-        earGoldL.rotation.y = Math.PI / 2;
-        earGoldL.position.x = -0.04;
-        earL.add(earGoldL);
-
-        const earR = new THREE.Group();
-        earR.position.set(0.34, 0.02, 0);
-        headGroup.add(earR);
-
-        const earBaseR = earBaseL.clone(); earR.add(earBaseR);
-        const earGoldR = earGoldL.clone(); earGoldR.position.x = 0.04; earR.add(earGoldR);
-
-        // Left Arm Assembly (White Spacesuit Arm with Gold Actuators)
-        const leftArm = new THREE.Group();
-        leftArm.position.set(-0.46, 0.38, 0);
-        torsoGroup.add(leftArm);
-
-        const lShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 20), matValkyrieDark);
-        leftArm.add(lShoulderJoint);
-
-        const lShoulderGold = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 16, 24), matValkyrieGold);
-        lShoulderGold.position.set(-0.02, 0, 0);
-        leftArm.add(lShoulderGold);
-
-        const lBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.36, 20), matValkyrieWhite);
-        lBicep.position.y = -0.22;
-        leftArm.add(lBicep);
-
-        const lBicepRod = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.28, 10), matChromeRod);
-        lBicepRod.position.set(0.04, -0.22, 0.02);
-        leftArm.add(lBicepRod);
-
-        const lForearm = new THREE.Group();
-        lForearm.position.y = -0.42;
-        leftArm.add(lForearm);
-
-        const lElbowGold = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.018, 16, 24), matValkyrieGold);
-        lElbowGold.rotation.y = Math.PI / 2;
-        lForearm.add(lElbowGold);
-
-        const lElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.08, 20), matValkyrieDark);
-        lElbowJoint.rotation.z = Math.PI / 2;
-        lForearm.add(lElbowJoint);
-
-        const lForearmArmor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.34, 20), matValkyrieWhite);
-        lForearmArmor.position.y = -0.2;
-        lForearm.add(lForearmArmor);
-
-        const lWristRing = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.012, 12, 20), matValkyrieGold);
-        lWristRing.position.y = -0.36;
-        lForearm.add(lWristRing);
-
-        // Articulated 5-Finger Spacesuit Glove Hand
-        const lHand = new THREE.Group();
-        lHand.position.set(0, -0.4, 0);
-        lForearm.add(lHand);
-
-        const lPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matValkyrieWhite);
-        lHand.add(lPalm);
-
-        const lFingers = [];
-        for (let f = 0; f < 4; f++) {
-            const finger = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.1, 10), matValkyrieWhite);
-            finger.position.set(-0.035 + f * 0.024, -0.06, 0.03);
-            lHand.add(finger);
-            lFingers.push(finger);
-        }
-        const lThumb = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.013, 0.08, 10), matValkyrieWhite);
-        lThumb.position.set(0.05, -0.03, -0.02);
-        lThumb.rotation.z = -0.5;
-        lHand.add(lThumb);
-
-        // Right Arm Assembly
-        const rightArm = new THREE.Group();
-        rightArm.position.set(0.46, 0.38, 0);
-        torsoGroup.add(rightArm);
-
-        const rShoulderJoint = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 20), matValkyrieDark);
-        rightArm.add(rShoulderJoint);
-
-        const rShoulderGold = new THREE.Mesh(new THREE.TorusGeometry(0.11, 0.02, 16, 24), matValkyrieGold);
-        rShoulderGold.position.set(0.02, 0, 0);
-        rightArm.add(rShoulderGold);
-
-        const rBicep = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.07, 0.36, 20), matValkyrieWhite);
-        rBicep.position.y = -0.22;
-        rightArm.add(rBicep);
-
-        const rBicepRod = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.28, 10), matChromeRod);
-        rBicepRod.position.set(-0.04, -0.22, 0.02);
-        rightArm.add(rBicepRod);
-
-        const rForearm = new THREE.Group();
-        rForearm.position.y = -0.42;
-        rightArm.add(rForearm);
-
-        const rElbowGold = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.018, 16, 24), matValkyrieGold);
-        rElbowGold.rotation.y = Math.PI / 2;
-        rForearm.add(rElbowGold);
-
-        const rElbowJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.08, 20), matValkyrieDark);
-        rElbowJoint.rotation.z = Math.PI / 2;
-        rForearm.add(rElbowJoint);
-
-        const rForearmArmor = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.065, 0.34, 20), matValkyrieWhite);
-        rForearmArmor.position.y = -0.2;
-        rForearm.add(rForearmArmor);
-
-        const rWristRing = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.012, 12, 20), matValkyrieGold);
-        rWristRing.position.y = -0.36;
-        rForearm.add(rWristRing);
-
-        const rHand = new THREE.Group();
-        rHand.position.set(0, -0.4, 0);
-        rForearm.add(rHand);
-
-        const rPalm = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.06, 0.06), matValkyrieWhite);
-        rHand.add(rPalm);
-
-        const rFingers = [];
-        for (let f = 0; f < 4; f++) {
-            const finger = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.1, 10), matValkyrieWhite);
-            finger.position.set(-0.035 + f * 0.024, -0.06, 0.03);
-            rHand.add(finger);
-            rFingers.push(finger);
-        }
-        const rThumb = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.013, 0.08, 10), matValkyrieWhite);
-        rThumb.position.set(-0.05, -0.03, -0.02);
-        rThumb.rotation.z = 0.5;
-        rHand.add(rThumb);
-
-        // Legs & Space Boots
-        const leftLeg = new THREE.Group();
-        leftLeg.position.set(-0.25, 0, 0);
-        pelvisGroup.add(leftLeg);
-
-        const lThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.46, 24), matValkyrieWhite);
-        lThigh.position.y = -0.24;
-        leftLeg.add(lThigh);
-
-        const lHamstringRod = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.36, 12), matChromeRod);
-        lHamstringRod.position.set(0, -0.24, -0.08);
-        leftLeg.add(lHamstringRod);
-
-        const lKnee = new THREE.Group();
-        lKnee.position.y = -0.48;
-        leftLeg.add(lKnee);
-
-        const lKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.095, 20), matValkyrieDark);
-        lKneeJoint.rotation.z = Math.PI / 2;
-        lKnee.add(lKneeJoint);
-
-        const lKneeGold = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.022, 16, 28), matValkyrieGold);
-        lKneeGold.rotation.y = Math.PI / 2;
-        lKnee.add(lKneeGold);
-
-        const lKneePiston = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.16, 10), matChromeRod);
-        lKneePiston.position.set(0, 0.02, -0.07);
-        lKnee.add(lKneePiston);
-
-        const lShin = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.075, 0.46, 24), matValkyrieWhite);
-        lShin.position.y = -0.24;
-        lKnee.add(lShin);
-
-        // Valkyrie Space Exploration Boot (White Body with Black Grip Sole)
-        const lFoot = new THREE.Group();
-        lFoot.position.set(0, -0.48, 0.04);
-        lKnee.add(lFoot);
-
-        const lBootBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.11, 0.32), matValkyrieWhite);
-        lFoot.add(lBootBody);
-
-        const lAnkleRing = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.014, 12, 20), matValkyrieGold);
-        lAnkleRing.position.set(0, 0.06, 0);
-        lFoot.add(lAnkleRing);
-
-        const lBootSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.34), matRubberSole);
-        lBootSole.position.y = -0.065;
-        lFoot.add(lBootSole);
-
-        // Right Leg Assembly
-        const rightLeg = new THREE.Group();
-        rightLeg.position.set(0.25, 0, 0);
-        pelvisGroup.add(rightLeg);
-
-        const rThigh = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.09, 0.46, 24), matValkyrieWhite);
-        rThigh.position.y = -0.24;
-        rightLeg.add(rThigh);
-
-        const rHamstringRod = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.36, 12), matChromeRod);
-        rHamstringRod.position.set(0, -0.24, -0.08);
-        rightLeg.add(rHamstringRod);
-
-        const rKnee = new THREE.Group();
-        rKnee.position.y = -0.48;
-        rightLeg.add(rKnee);
-
-        const rKneeJoint = new THREE.Mesh(new THREE.CylinderGeometry(0.095, 0.095, 0.095, 20), matValkyrieDark);
-        rKneeJoint.rotation.z = Math.PI / 2;
-        rKnee.add(rKneeJoint);
-
-        const rKneeGold = new THREE.Mesh(new THREE.TorusGeometry(0.105, 0.022, 16, 28), matValkyrieGold);
-        rKneeGold.rotation.y = Math.PI / 2;
-        rKnee.add(rKneeGold);
-
-        const rKneePiston = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.16, 10), matChromeRod);
-        rKneePiston.position.set(0, 0.02, -0.07);
-        rKnee.add(rKneePiston);
-
-        const rShin = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.075, 0.46, 24), matValkyrieWhite);
-        rShin.position.y = -0.24;
-        rKnee.add(rShin);
-
-        const rFoot = new THREE.Group();
-        rFoot.position.set(0, -0.48, 0.04);
-        rKnee.add(rFoot);
-
-        const rBootBody = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.11, 0.32), matValkyrieWhite);
-        rFoot.add(rBootBody);
-
-        const rAnkleRing = new THREE.Mesh(new THREE.TorusGeometry(0.09, 0.014, 12, 20), matValkyrieGold);
-        rAnkleRing.position.set(0, 0.06, 0);
-        rFoot.add(rAnkleRing);
-
-        const rBootSole = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.04, 0.34), matRubberSole);
-        rBootSole.position.y = -0.065;
-        rFoot.add(rBootSole);
-
-        // 7. Live User-Tracking Engine
         let mouseX = 0;
         let mouseY = 0;
         let scrollRatio = 0;
         let isDragging = false;
         let prevMouseX = 0;
-        let userInteracted = false;
-
-        window.addEventListener('mousemove', (e) => {
-            const rect = container.getBoundingClientRect();
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + rect.height / 2;
-            mouseX = (e.clientX - cx) / (window.innerWidth / 2);
-            mouseY = (e.clientY - cy) / (window.innerHeight / 2);
-
-            // Pupil offset tracking cursor
-            const pX = Math.max(-0.02, Math.min(0.02, mouseX * 0.02));
-            const pY = Math.max(-0.02, Math.min(0.02, -mouseY * 0.02));
-            pupilL.position.x = -0.11 + pX;
-            pupilL.position.y = pY;
-            pupilR.position.x = 0.11 + pX;
-            pupilR.position.y = pY;
-
-            if (isDragging) {
-                const deltaX = e.clientX - prevMouseX;
-                robotMasterGroup.rotation.y += deltaX * 0.008;
-                prevMouseX = e.clientX;
-                userInteracted = true;
-            }
-        });
-
-        window.addEventListener('scroll', () => {
-            const docH = document.documentElement.scrollHeight - window.innerHeight;
-            scrollRatio = docH > 0 ? window.scrollY / docH : 0;
-        }, { passive: true });
-
-        container.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            prevMouseX = e.clientX;
-            userInteracted = true;
-        });
-        window.addEventListener('mouseup', () => { isDragging = false; });
-
-        // Touch handling (Prevents scroll lock; passes vertical swipes to browser)
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let isHorizontalSwipe = false;
-
-        container.addEventListener('touchstart', (e) => {
-            if (e.touches.length === 1) {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-                prevMouseX = touchStartX;
-                isHorizontalSwipe = false;
-                isDragging = false;
-                userInteracted = true;
-            }
-        }, { passive: true });
-
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length === 1) {
-                const currentX = e.touches[0].clientX;
-                const currentY = e.touches[0].clientY;
-                const deltaX = currentX - touchStartX;
-                const deltaY = currentY - touchStartY;
-
-                if (!isHorizontalSwipe && !isDragging) {
-                    if (Math.abs(deltaY) > Math.abs(deltaX)) {
-                        isDragging = false;
-                        return;
-                    }
-                    if (Math.abs(deltaX) > Math.abs(deltaY) + 6) {
-                        isHorizontalSwipe = true;
-                        isDragging = true;
-                        prevMouseX = currentX;
-                    }
-                }
-
-                if (isDragging) {
-                    const stepX = currentX - prevMouseX;
-                    robotMasterGroup.rotation.y += stepX * 0.008;
-                    prevMouseX = currentX;
-                }
-            }
-        }, { passive: true });
-
-        window.addEventListener('touchend', () => {
-            isDragging = false;
-            isHorizontalSwipe = false;
-        });
-
-        window.addEventListener('touchcancel', () => {
-            isDragging = false;
-            isHorizontalSwipe = false;
-        });
-
-        // 8. Kinematic Actions Controller (Walk, Wave, Handshake, Jump, Run, Sleep, Patrol)
-        let currentActionName = 'Walking';
-        let actionTimer = 0;
-        let typewriterTimer = null;
-        let isSpeaking = false;
 
         const speechMessages = {
             Walking: '🚶 Valkyrie R5: Autonomous bipedal locomotion & environmental telemetry active.',
@@ -2994,7 +2357,6 @@ Would you like to start a project inquiry right now?`;
             Patrol: '🔄 Perimeter Patrol: Orbiting platform coordinates and scanning workspace.'
         };
 
-        // Smooth Typewriter Speech Renderer
         function streamSpeech(text) {
             if (!speechText) return;
             if (typewriterTimer) clearInterval(typewriterTimer);
@@ -3013,59 +2375,303 @@ Would you like to start a project inquiry right now?`;
             }, 18);
         }
 
+        function fadeToAction(name, duration = 0.28, isSingleShot = false) {
+            const previousAction = activeAction;
+            activeAction = actions[name];
+
+            if (!activeAction) return;
+
+            if (previousAction && previousAction !== activeAction) {
+                previousAction.fadeOut(duration);
+            }
+
+            activeAction
+                .reset()
+                .setEffectiveTimeScale(1)
+                .setEffectiveWeight(1)
+                .fadeIn(duration);
+
+            if (isSingleShot) {
+                activeAction.setLoop(THREE.LoopOnce, 1);
+                activeAction.clampWhenFinished = true;
+            } else {
+                activeAction.setLoop(THREE.LoopRepeat);
+            }
+
+            activeAction.play();
+        }
+
         function triggerAction(actionName, fromClick = true) {
             currentActionName = actionName;
-            actionTimer = 0;
+
+            if (fromClick) {
+                userInteracted = true;
+                clearTimeout(userInteractTimeout);
+                userInteractTimeout = setTimeout(() => {
+                    userInteracted = false;
+                }, 16000);
+            }
 
             // Reset master offset if switching away from Patrol
             if (actionName !== 'Patrol') {
                 robotMasterGroup.position.set(0, 0, 0);
+                robotMasterGroup.rotation.y = 0;
             }
 
             actButtons.forEach(btn => {
-                if (btn.getAttribute('data-action') === actionName) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                btn.classList.toggle('active', btn.getAttribute('data-action') === actionName);
             });
 
             if (speechMessages[actionName]) {
                 streamSpeech(speechMessages[actionName]);
             }
 
-            // Auto-revert single-shot moves back to Walk
-            if (actionName === 'Jump') {
-                setTimeout(() => {
-                    if (currentActionName === 'Jump') {
-                        triggerAction('Walking', false);
+            // Map requested actions to model's skeletal clips
+            switch (actionName) {
+                case 'Walking':
+                    fadeToAction('Walking', 0.3, false);
+                    break;
+                case 'Running':
+                    fadeToAction('Running', 0.25, false);
+                    break;
+                case 'Wave':
+                    fadeToAction('Wave', 0.25, true);
+                    break;
+                case 'Handshake':
+                    // ThumbsUp / Executive Greeting Handshake
+                    fadeToAction('ThumbsUp', 0.28, true);
+                    break;
+                case 'Jump':
+                    fadeToAction('Jump', 0.2, true);
+                    break;
+                case 'Sleep':
+                    // Death / Low-Power Standby Sleep
+                    fadeToAction('Death', 0.5, true);
+                    break;
+                case 'Patrol':
+                    fadeToAction('Walking', 0.3, false);
+                    break;
+                default:
+                    if (actions[actionName]) {
+                        fadeToAction(actionName, 0.3, false);
                     }
-                }, 3200);
-            } else if (actionName === 'Handshake') {
-                setTimeout(() => {
-                    if (currentActionName === 'Handshake') {
-                        triggerAction('Walking', false);
-                    }
-                }, 5200);
-            } else if (actionName === 'Wave') {
-                setTimeout(() => {
-                    if (currentActionName === 'Wave') {
-                        triggerAction('Walking', false);
-                    }
-                }, 4800);
             }
         }
 
         actButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                userInteracted = true;
                 const action = btn.getAttribute('data-action');
                 triggerAction(action, true);
             });
         });
 
-        // 9. Interactive Live Text Chat Engine (Q&A + Voice Commands)
+        // 6. NASA Valkyrie Model Initialization & Customization
+        function initModel(gltf) {
+            robotModel = gltf.scene;
+
+            // Humanoid Stance & Scale
+            robotModel.position.set(0, 0, 0);
+            robotModel.scale.set(0.78, 0.78, 0.78);
+
+            // Traverse and apply NASA Valkyrie Space Suit Materials
+            robotModel.traverse((child) => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                    if (child.material) {
+                        if (child.material.name === 'Main') {
+                            // Clean Pearlescent NASA Spacesuit White Ceramic
+                            child.material.roughness = 0.22;
+                            child.material.metalness = 0.08;
+                            child.material.color.setHex(0xf4f6f8);
+                            if (child.material.clearcoat !== undefined) child.material.clearcoat = 0.85;
+                        } else if (child.material.name === 'Grey') {
+                            // NASA Sunset Amber / Gold Metallic Rotary Actuators & Joints
+                            child.material.roughness = 0.16;
+                            child.material.metalness = 0.96;
+                            child.material.color.setHex(0xd97706);
+                        } else if (child.material.name === 'Black') {
+                            // Deep Obsidian Visor & Carbon-Fiber Liners
+                            child.material.roughness = 0.04;
+                            child.material.metalness = 0.95;
+                            child.material.color.setHex(0x060912);
+                            if (child.material.clearcoat !== undefined) child.material.clearcoat = 1.0;
+                        }
+                    }
+                }
+            });
+
+            headBone = robotModel.getObjectByName('Head');
+            const torsoBone = robotModel.getObjectByName('Torso') || robotModel.getObjectByName('Body');
+
+            // 1. NASA Royal Blue Chest Emblem with Glowing Cyan Reactor Core
+            if (torsoBone) {
+                const nasaEmblem = new THREE.Group();
+                nasaEmblem.position.set(0, 0.44, 0.36);
+
+                // Royal blue circular mission disc
+                const discGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.02, 32);
+                discGeo.rotateX(Math.PI / 2);
+                const disc = new THREE.Mesh(discGeo, new THREE.MeshStandardMaterial({
+                    color: 0x1d4ed8,
+                    roughness: 0.25,
+                    metalness: 0.4
+                }));
+                nasaEmblem.add(disc);
+
+                // Gold outer rim
+                const goldRim = new THREE.Mesh(
+                    new THREE.TorusGeometry(0.12, 0.016, 16, 32),
+                    new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.18, metalness: 0.95 })
+                );
+                goldRim.position.z = 0.012;
+                nasaEmblem.add(goldRim);
+
+                // Luminous cyan reactor core
+                coreMesh = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.048, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: 0x00f0ff })
+                );
+                coreMesh.position.z = 0.024;
+                nasaEmblem.add(coreMesh);
+
+                // Dynamic Core Point Light
+                corePointLight = new THREE.PointLight(0x00f0ff, 2.2, 4.5);
+                corePointLight.position.set(0, 0, 0.14);
+                nasaEmblem.add(corePointLight);
+
+                // Dual lower chest recessed ports (from Valkyrie photo)
+                const portL = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.035, 0.035, 0.03, 16),
+                    new THREE.MeshStandardMaterial({ color: 0x060912, roughness: 0.4, metalness: 0.9 })
+                );
+                portL.rotation.x = Math.PI / 2;
+                portL.position.set(-0.16, -0.22, 0.32);
+                torsoBone.add(portL);
+
+                const portR = portL.clone();
+                portR.position.x = 0.16;
+                torsoBone.add(portR);
+
+                // NASA Life-Support Avionics Backpack Module
+                const packGroup = new THREE.Group();
+                packGroup.position.set(0, 0.35, -0.32);
+
+                const packBody = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.48, 0.52, 0.2),
+                    new THREE.MeshPhysicalMaterial({ color: 0xf4f6f8, roughness: 0.22, metalness: 0.08, clearcoat: 0.8 })
+                );
+                packGroup.add(packBody);
+
+                const packLouver = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.34, 0.28, 0.04),
+                    new THREE.MeshStandardMaterial({ color: 0x060912, roughness: 0.3, metalness: 0.85 })
+                );
+                packLouver.position.set(0, 0.04, -0.11);
+                packGroup.add(packLouver);
+
+                // Micro thruster nozzles
+                const nozzleL = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.04, 0.05, 0.08, 16),
+                    new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.2, metalness: 0.95 })
+                );
+                nozzleL.rotation.x = -Math.PI / 2;
+                nozzleL.position.set(-0.14, -0.22, -0.09);
+                packGroup.add(nozzleL);
+
+                const nozzleR = nozzleL.clone();
+                nozzleR.position.x = 0.14;
+                packGroup.add(nozzleR);
+
+                torsoBone.add(packGroup);
+                torsoBone.add(nasaEmblem);
+            }
+
+            // 2. NASA Valkyrie Golden Brow Forehead Visor Arch on Head
+            if (headBone) {
+                const browArch = new THREE.Mesh(
+                    new THREE.TorusGeometry(0.35, 0.026, 16, 36, Math.PI * 0.75),
+                    new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.18, metalness: 0.95 })
+                );
+                browArch.rotation.x = -Math.PI / 2.3;
+                browArch.rotation.z = -Math.PI * 0.375;
+                browArch.position.set(0, 0.2, 0.08);
+                headBone.add(browArch);
+            }
+
+            // Set up Animation Mixer
+            mixer = new THREE.AnimationMixer(robotModel);
+            gltf.animations.forEach((clip) => {
+                actions[clip.name] = mixer.clipAction(clip);
+            });
+
+            // Revert single-shot animations back to Walking
+            mixer.addEventListener('finished', (e) => {
+                if (
+                    e.action === actions['Jump'] ||
+                    e.action === actions['ThumbsUp'] ||
+                    e.action === actions['Wave'] ||
+                    e.action === actions['Punch']
+                ) {
+                    setTimeout(() => {
+                        if (currentActionName !== 'Sleep' && currentActionName !== 'Patrol') {
+                            triggerAction('Walking', false);
+                        }
+                    }, 400);
+                }
+            });
+
+            robotMasterGroup.add(robotModel);
+
+            // Initial animation: Walking
+            triggerAction('Walking', false);
+        }
+
+        // 7. Robust Model Loading Pipeline (Instant in-memory base64 with direct fetch fallback)
+        function loadModel() {
+            if (typeof THREE.GLTFLoader === 'undefined') {
+                console.error('GLTFLoader not found!');
+                return;
+            }
+            const loader = new THREE.GLTFLoader();
+
+            function tryParseBase64() {
+                if (window.ROBOT_MODEL_BASE64) {
+                    try {
+                        const binary = atob(window.ROBOT_MODEL_BASE64);
+                        const len = binary.length;
+                        const bytes = new Uint8Array(len);
+                        for (let i = 0; i < len; i++) {
+                            bytes[i] = binary.charCodeAt(i);
+                        }
+                        loader.parse(bytes.buffer, '', (gltf) => {
+                            initModel(gltf);
+                        }, (parseErr) => {
+                            console.error('Base64 parse failed:', parseErr);
+                        });
+                    } catch (e) {
+                        console.error('Error decoding base64:', e);
+                    }
+                }
+            }
+
+            // Direct fetch or in-memory fallback
+            loader.load(
+                'RobotExpressive.glb',
+                (gltf) => {
+                    initModel(gltf);
+                },
+                undefined,
+                (err) => {
+                    console.warn('Direct fetch failed, parsing in-memory base64 model:', err);
+                    tryParseBase64();
+                }
+            );
+        }
+        loadModel();
+
+        // 8. Interactive Live Text Chat Engine (Q&A + Voice Commands)
         function processUserQuery(rawText) {
             if (!rawText || !rawText.trim()) return;
             const query = rawText.trim().toLowerCase();
@@ -3141,58 +2747,117 @@ Would you like to start a project inquiry right now?`;
             });
         });
 
+        // 9. Live User-Tracking Engine
+        window.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            mouseX = (e.clientX - cx) / (window.innerWidth / 2);
+            mouseY = (e.clientY - cy) / (window.innerHeight / 2);
+
+            if (isDragging) {
+                const deltaX = e.clientX - prevMouseX;
+                robotMasterGroup.rotation.y += deltaX * 0.008;
+                prevMouseX = e.clientX;
+                userInteracted = true;
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const docH = document.documentElement.scrollHeight - window.innerHeight;
+            scrollRatio = docH > 0 ? window.scrollY / docH : 0;
+        }, { passive: true });
+
+        container.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            prevMouseX = e.clientX;
+            userInteracted = true;
+        });
+        window.addEventListener('mouseup', () => { isDragging = false; });
+
+        // Touch gesture discrimination (Preserves smooth webpage scroll)
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isHorizontalSwipe = false;
+
+        container.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                prevMouseX = touchStartX;
+                isHorizontalSwipe = false;
+                isDragging = false;
+                userInteracted = true;
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1) {
+                const currentX = e.touches[0].clientX;
+                const currentY = e.touches[0].clientY;
+                const deltaX = currentX - touchStartX;
+                const deltaY = currentY - touchStartY;
+
+                if (!isHorizontalSwipe && !isDragging) {
+                    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+                        isDragging = false;
+                        return;
+                    }
+                    if (Math.abs(deltaX) > Math.abs(deltaY) + 6) {
+                        isHorizontalSwipe = true;
+                        isDragging = true;
+                        prevMouseX = currentX;
+                    }
+                }
+
+                if (isDragging) {
+                    const stepX = currentX - prevMouseX;
+                    robotMasterGroup.rotation.y += stepX * 0.008;
+                    prevMouseX = currentX;
+                }
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+            isHorizontalSwipe = false;
+        });
+
+        window.addEventListener('touchcancel', () => {
+            isDragging = false;
+            isHorizontalSwipe = false;
+        });
+
         // 10. Kinematic Physics & Animation Loop (60 FPS)
-        const clock = new THREE.Clock();
         let animTime = 0;
-        let blinkTimer = 0;
 
         function animate() {
             requestAnimationFrame(animate);
 
             const delta = clock.getDelta();
             animTime += delta;
-            actionTimer += delta;
 
-            // Optical Sensor Blinking
-            blinkTimer += delta;
-            if (currentActionName !== 'Sleep') {
-                if (blinkTimer > 3.6) {
-                    const blinkProgress = (blinkTimer - 3.6) / 0.2;
-                    if (blinkProgress < 0.5) {
-                        pupilL.scale.y = 0.1; pupilR.scale.y = 0.1;
-                    } else {
-                        pupilL.scale.y = 1.0; pupilR.scale.y = 1.0;
-                    }
-                    if (blinkTimer > 3.8) blinkTimer = 0;
-                }
-            } else {
-                // Sleep: Slumbering eyelids closed
-                pupilL.scale.set(0.3, 0.1, 0.3);
-                pupilR.scale.set(0.3, 0.1, 0.3);
+            // Update Skeletal Animation Mixer
+            if (mixer) {
+                mixer.update(delta);
             }
 
-            // Real-Time Head & Neck User Tracking (unless sleeping or patrolling)
-            if (currentActionName !== 'Sleep' && currentActionName !== 'Patrol') {
-                const targetHeadY = mouseX * 0.45;
-                const targetHeadX = -mouseY * 0.25 - scrollRatio * 0.28;
-                headGroup.rotation.y = THREE.MathUtils.lerp(headGroup.rotation.y, targetHeadY, 0.08);
-                headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, targetHeadX, 0.08);
-                torsoGroup.rotation.y = THREE.MathUtils.lerp(torsoGroup.rotation.y, mouseX * 0.15, 0.06);
+            // Real-Time Head User Tracking
+            if (headBone && currentActionName !== 'Sleep' && currentActionName !== 'Patrol') {
+                const targetHeadY = mouseX * 0.35;
+                const targetHeadX = -mouseY * 0.2 - scrollRatio * 0.22;
+                headBone.rotation.y = THREE.MathUtils.lerp(headBone.rotation.y, targetHeadY, 0.08);
+                headBone.rotation.x = THREE.MathUtils.lerp(headBone.rotation.x, targetHeadX, 0.08);
             }
 
-            // NASA BLUE & CYAN REACTOR CORE (Dynamic Breathing & Speech Modulation)
-            if (currentActionName === 'Sleep') {
-                const sleepPulse = 0.4 + Math.sin(animTime * 1.5) * 0.25; // 0.5 Hz deep sleep breath
-                corePointLight.intensity = sleepPulse;
-                mouthBar.scale.x = 0.3;
-            } else {
-                const reactorPulse = 1.8 + Math.sin(animTime * 4.0) * 0.4;
-                corePointLight.intensity = reactorPulse;
-                // Audio visualizer mouth pulses when speaking
-                if (isSpeaking) {
-                    mouthBar.scale.x = 0.9 + Math.sin(animTime * 18) * 0.5;
+            // Core Reactor Light Modulation
+            if (corePointLight) {
+                if (currentActionName === 'Sleep') {
+                    corePointLight.intensity = 0.4 + Math.sin(animTime * 1.5) * 0.25; // 0.5 Hz breathing sleep
+                } else if (isSpeaking) {
+                    corePointLight.intensity = 2.2 + Math.sin(animTime * 16) * 0.8; // Speaking frequency
                 } else {
-                    mouthBar.scale.x = 0.6 + Math.sin(animTime * 4) * 0.2;
+                    corePointLight.intensity = 2.0 + Math.sin(animTime * 3.5) * 0.35;
                 }
             }
 
@@ -3200,200 +2865,14 @@ Would you like to start a project inquiry right now?`;
             const positions = particleGeo.attributes.position.array;
             for (let i = 0; i < particleCount; i++) {
                 positions[i * 3 + 1] += 0.0035;
-                if (positions[i * 3 + 1] > 3.0) {
+                if (positions[i * 3 + 1] > 3.2) {
                     positions[i * 3 + 1] = 0.1;
                 }
             }
             particleGeo.attributes.position.needsUpdate = true;
 
-            // 7 DYNAMIC ACTIONS KINEMATICS (Walk, Wave, Handshake, Jump, Run, Sleep, Patrol)
-            if (currentActionName === 'Walking') {
-                const step = Math.sin(animTime * 4.2);
-                leftLeg.rotation.x = step * 0.42;
-                rightLeg.rotation.x = -step * 0.42;
-                lKnee.rotation.x = Math.max(0, -step * 0.48);
-                rKnee.rotation.x = Math.max(0, step * 0.48);
-
-                leftArm.rotation.x = -step * 0.38;
-                rightArm.rotation.x = step * 0.38;
-                leftArm.rotation.z = 0.16;
-                rightArm.rotation.z = -0.16;
-                lForearm.rotation.x = -0.22;
-                rForearm.rotation.x = -0.22;
-                rForearm.rotation.y = 0;
-                rightArm.rotation.y = 0;
-
-                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.abs(Math.sin(animTime * 4.2)) * 0.06, 0.15);
-                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.1);
-                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
-
-                groundShadow.scale.set(1, 1, 1);
-                groundShadow.material.opacity = 1;
-            } else if (currentActionName === 'Wave') {
-                // Friendly Lifelike Overhead Wave
-                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0.08, 0.1);
-                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.sin(animTime * 3) * 0.02, 0.1);
-                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.1);
-
-                leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.1);
-                rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0.08, 0.1);
-                lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0, 0.1);
-                rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.1, 0.1);
-
-                leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.1, 0.1);
-                leftArm.rotation.z = THREE.MathUtils.lerp(leftArm.rotation.z, 0.22, 0.1);
-                lForearm.rotation.x = THREE.MathUtils.lerp(lForearm.rotation.x, -0.15, 0.1);
-
-                rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -0.25, 0.12);
-                rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -2.15, 0.12);
-                rightArm.rotation.y = 0;
-
-                const waveWave = Math.sin(animTime * 7.5);
-                rForearm.rotation.z = -0.45 + waveWave * 0.48;
-                rForearm.rotation.x = waveWave * 0.12;
-
-                rFingers.forEach((f, idx) => {
-                    f.rotation.z = Math.sin(animTime * 7.5 + idx * 0.2) * 0.15;
-                });
-
-                groundShadow.scale.set(1, 1, 1);
-                groundShadow.material.opacity = 1;
-            } else if (currentActionName === 'Handshake') {
-                // Professional Executive Handshake
-                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.1, 0.1);
-                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
-                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, 0, 0.1);
-
-                leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.1);
-                rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0, 0.1);
-                lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0, 0.1);
-                rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0, 0.1);
-
-                leftArm.rotation.set(0.12, 0, 0.18);
-                lForearm.rotation.set(-0.15, 0, 0);
-
-                // Reaches right arm forward towards the user
-                rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -1.52, 0.12);
-                rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -0.05, 0.12);
-                rightArm.rotation.y = THREE.MathUtils.lerp(rightArm.rotation.y, 0.12, 0.12);
-
-                const shakePump = Math.sin(animTime * 6.0) * 0.08;
-                rForearm.rotation.x = THREE.MathUtils.lerp(rForearm.rotation.x, -0.38 + shakePump, 0.15);
-                rForearm.rotation.y = THREE.MathUtils.lerp(rForearm.rotation.y, 0.6, 0.12);
-                rForearm.rotation.z = 0;
-
-                rHand.rotation.x = shakePump * 0.5;
-                rThumb.rotation.z = 0.8; // Thumb up in greeting
-                rFingers.forEach(f => { f.rotation.x = -0.2; });
-
-                // Warm head nod in greeting
-                headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, 0.12 + Math.sin(animTime * 6.0) * 0.05, 0.12);
-
-                groundShadow.scale.set(1, 1, 1);
-                groundShadow.material.opacity = 1;
-            } else if (currentActionName === 'Jump') {
-                // Multi-Phase Acrobatic Thruster Jump
-                const jumpCycle = actionTimer % 2.6;
-
-                if (jumpCycle < 0.45) {
-                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.24, 0.2);
-                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.28, 0.2);
-                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, -0.55, 0.2);
-                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, -0.55, 0.2);
-                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.95, 0.2);
-                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.95, 0.2);
-                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.65, 0.2);
-                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.65, 0.2);
-                    groundShadow.scale.set(1.15, 1.15, 1.15);
-                    groundShadow.material.opacity = 1;
-                } else if (jumpCycle < 1.4) {
-                    const flightP = (jumpCycle - 0.45) / 0.95;
-                    const flightArc = Math.sin(flightP * Math.PI);
-                    robotBody.position.y = flightArc * 0.92;
-                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, -0.15, 0.15);
-
-                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0.25, 0.15);
-                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0.45, 0.15);
-                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.4, 0.15);
-                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.65, 0.15);
-
-                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, -1.8, 0.18);
-                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, -1.8, 0.18);
-                    leftArm.rotation.z = 0.4;
-                    rightArm.rotation.z = -0.4;
-
-                    groundShadow.scale.set(0.45, 0.45, 0.45);
-                    groundShadow.material.opacity = 0.35;
-                } else if (jumpCycle < 1.95) {
-                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.22, 0.25);
-                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.32, 0.25);
-                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, -0.5, 0.25);
-                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, -0.5, 0.25);
-                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0.9, 0.25);
-                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0.9, 0.25);
-                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.2, 0.2);
-                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.2, 0.2);
-                    groundShadow.scale.set(1.2, 1.2, 1.2);
-                    groundShadow.material.opacity = 1;
-                } else {
-                    robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, 0, 0.12);
-                    robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0, 0.12);
-                    leftLeg.rotation.x = THREE.MathUtils.lerp(leftLeg.rotation.x, 0, 0.12);
-                    rightLeg.rotation.x = THREE.MathUtils.lerp(rightLeg.rotation.x, 0, 0.12);
-                    lKnee.rotation.x = THREE.MathUtils.lerp(lKnee.rotation.x, 0, 0.12);
-                    rKnee.rotation.x = THREE.MathUtils.lerp(rKnee.rotation.x, 0, 0.12);
-                    leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0, 0.12);
-                    rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0, 0.12);
-                    groundShadow.scale.set(1, 1, 1);
-                    groundShadow.material.opacity = 1;
-                }
-            } else if (currentActionName === 'Running') {
-                // Athletic High-Knee Sprint
-                const runStep = Math.sin(animTime * 8.5);
-                leftLeg.rotation.x = runStep * 0.85;
-                rightLeg.rotation.x = -runStep * 0.85;
-                lKnee.rotation.x = Math.max(0, -runStep * 0.95);
-                rKnee.rotation.x = Math.max(0, runStep * 0.95);
-
-                leftArm.rotation.x = -runStep * 0.88;
-                rightArm.rotation.x = runStep * 0.88;
-                leftArm.rotation.z = 0.22;
-                rightArm.rotation.z = -0.22;
-                lForearm.rotation.x = -0.68;
-                rForearm.rotation.x = -0.68;
-                rightArm.rotation.y = 0;
-
-                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.abs(Math.sin(animTime * 8.5)) * 0.14, 0.2);
-                robotBody.rotation.x = THREE.MathUtils.lerp(robotBody.rotation.x, 0.32, 0.15); // Forward lean
-                robotBody.rotation.z = THREE.MathUtils.lerp(robotBody.rotation.z, 0, 0.1);
-
-                groundShadow.scale.set(0.9, 0.9, 0.9);
-                groundShadow.material.opacity = 0.85;
-            } else if (currentActionName === 'Sleep') {
-                // Low-Power Standby Sleep Mode
-                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, -0.04, 0.08);
-                robotBody.rotation.set(0, 0, 0);
-
-                headGroup.rotation.x = THREE.MathUtils.lerp(headGroup.rotation.x, 0.36, 0.08); // Head drops forward
-                headGroup.rotation.y = THREE.MathUtils.lerp(headGroup.rotation.y, 0, 0.08);
-
-                leftLeg.rotation.set(0, 0, 0);
-                rightLeg.rotation.set(0, 0, 0);
-                lKnee.rotation.set(0, 0, 0);
-                rKnee.rotation.set(0, 0, 0);
-
-                leftArm.rotation.x = THREE.MathUtils.lerp(leftArm.rotation.x, 0.08, 0.08);
-                leftArm.rotation.z = THREE.MathUtils.lerp(leftArm.rotation.z, 0.12, 0.08);
-                rightArm.rotation.x = THREE.MathUtils.lerp(rightArm.rotation.x, 0.08, 0.08);
-                rightArm.rotation.z = THREE.MathUtils.lerp(rightArm.rotation.z, -0.12, 0.08);
-                rightArm.rotation.y = 0;
-                lForearm.rotation.set(-0.05, 0, 0);
-                rForearm.rotation.set(-0.05, 0, 0);
-
-                groundShadow.scale.set(1.05, 1.05, 1.05);
-                groundShadow.material.opacity = 1;
-            } else if (currentActionName === 'Patrol') {
-                // Autonomous Circular Perimeter Patrol ("Move Around")
+            // Move Around (Patrol) Orbit Dynamics
+            if (currentActionName === 'Patrol') {
                 const patrolSpeed = 0.75;
                 const patrolRadius = 0.65;
                 const pAngle = animTime * patrolSpeed;
@@ -3402,38 +2881,17 @@ Would you like to start a project inquiry right now?`;
                 robotMasterGroup.position.z = Math.cos(pAngle) * (patrolRadius * 0.6);
                 robotMasterGroup.rotation.y = pAngle + Math.PI / 2;
 
-                const step = Math.sin(animTime * 5.0);
-                leftLeg.rotation.x = step * 0.44;
-                rightLeg.rotation.x = -step * 0.44;
-                lKnee.rotation.x = Math.max(0, -step * 0.5);
-                rKnee.rotation.x = Math.max(0, step * 0.5);
-
-                leftArm.rotation.x = -step * 0.38;
-                rightArm.rotation.x = step * 0.38;
-                leftArm.rotation.z = 0.16;
-                rightArm.rotation.z = -0.16;
-                lForearm.rotation.x = -0.22;
-                rForearm.rotation.x = -0.22;
-                rightArm.rotation.y = 0;
-
-                // Valkyrie actively scans perimeter while patrolling
-                headGroup.rotation.y = Math.sin(animTime * 2.2) * 0.35;
-                headGroup.rotation.x = 0.05;
-
-                robotBody.position.y = THREE.MathUtils.lerp(robotBody.position.y, Math.abs(Math.sin(animTime * 5.0)) * 0.05, 0.15);
-                groundShadow.scale.set(1, 1, 1);
-                groundShadow.material.opacity = 1;
+                if (headBone) {
+                    headBone.rotation.y = Math.sin(animTime * 2.2) * 0.35;
+                }
+            } else if (!isDragging) {
+                robotMasterGroup.rotation.y = THREE.MathUtils.lerp(robotMasterGroup.rotation.y, mouseX * 0.15, 0.04);
             }
 
             // Platform Gyro Rotations
             ring.rotation.z = animTime * 0.35;
             innerRing.rotation.z = -animTime * 0.25;
             platform.rotation.y = -animTime * 0.12;
-
-            // Idle smooth return to center facing if not patrolling or dragging
-            if (!isDragging && currentActionName !== 'Patrol') {
-                robotMasterGroup.rotation.y = THREE.MathUtils.lerp(robotMasterGroup.rotation.y, mouseX * 0.18, 0.04);
-            }
 
             renderer.render(scene, camera);
         }
@@ -3446,21 +2904,21 @@ Would you like to start a project inquiry right now?`;
             height = container.clientHeight || 560;
             camera.aspect = width / height;
             if (width < 640) {
-                camera.fov = 38;
-                camera.position.set(0, 1.25, 4.8);
+                camera.fov = 40;
+                camera.position.set(0, 1.45, 5.2);
             } else if (width < 1024) {
-                camera.fov = 36;
-                camera.position.set(0, 1.3, 4.5);
+                camera.fov = 38;
+                camera.position.set(0, 1.55, 4.9);
             } else {
-                camera.fov = 35;
-                camera.position.set(0, 1.35, 4.3);
+                camera.fov = 36;
+                camera.position.set(0, 1.65, 4.6);
             }
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
         }
         window.addEventListener('resize', onWindowResize);
 
-        // 12. Auto-Demonstration Loop (Demonstrates Walk, Wave, Handshake, Jump, Run, Patrol)
+        // 12. Auto-Demonstration Loop
         const autoCycle = ['Walking', 'Wave', 'Walking', 'Handshake', 'Running', 'Walking', 'Patrol'];
         let cycleIdx = 0;
         setInterval(() => {
