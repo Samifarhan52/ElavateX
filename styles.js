@@ -1693,7 +1693,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function updateSlidePosition() {
             if (!railViewport || !track) return;
-            const viewportWidth = railViewport.offsetWidth || window.innerWidth;
+            const viewportWidth = railViewport.clientWidth || railViewport.offsetWidth || window.innerWidth;
             const isMobile = window.innerWidth <= 768;
             const itemWidth = isMobile ? 180 : 240;
             const itemGap = isMobile ? 20 : 30;
@@ -1829,7 +1829,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         window.addEventListener('resize', updateSlidePosition);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updateSlidePosition, 100);
+        });
         renderRack();
+        requestAnimationFrame(updateSlidePosition);
+        setTimeout(updateSlidePosition, 150);
+        setTimeout(updateSlidePosition, 400);
     }
 
     // =========================================================================
