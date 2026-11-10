@@ -2283,6 +2283,53 @@ Would you like to start a project inquiry right now?`;
         ringTicks.position.y = 0.024;
         daisGroup.add(ringTicks);
 
+        // Dynamic Dual-Theme Lighting & Dais Synchronization
+        function syncThreeTheme() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || document.body.classList.contains('dark-theme');
+            if (isDark) {
+                keyLight.color.setHex(0xffffff);
+                keyLight.intensity = 1.45;
+                fillLight.color.setHex(0x94a3b8);
+                fillLight.intensity = 0.65;
+                rimLight.color.setHex(0x00f0ff);
+                rimLight.intensity = 1.85;
+                bottomGlow.color.setHex(0x0284c7);
+                bottomGlow.intensity = 1.3;
+                hemiLight.color.setHex(0xffffff);
+                hemiLight.groundColor.setHex(0x0f172a);
+                hemiLight.intensity = 0.65;
+                daisBase.material.color.setHex(0x0f172a);
+                ringOuter.material.color.setHex(0x00f0ff);
+                ringOuter.material.opacity = 0.75;
+                ringInner.material.color.setHex(0x38bdf8);
+                ringTicks.material.color.setHex(0x00f0ff);
+            } else {
+                keyLight.color.setHex(0xffffff);
+                keyLight.intensity = 1.30;
+                fillLight.color.setHex(0xcfd8dc);
+                fillLight.intensity = 0.75;
+                rimLight.color.setHex(0x0284c7);
+                rimLight.intensity = 1.40;
+                bottomGlow.color.setHex(0x00d2ff);
+                bottomGlow.intensity = 0.95;
+                hemiLight.color.setHex(0xffffff);
+                hemiLight.groundColor.setHex(0xe2e8f0);
+                hemiLight.intensity = 0.85;
+                daisBase.material.color.setHex(0x1e293b);
+                ringOuter.material.color.setHex(0x0284c7);
+                ringOuter.material.opacity = 0.85;
+                ringInner.material.color.setHex(0x00b4d8);
+                ringTicks.material.color.setHex(0x0284c7);
+            }
+        }
+        syncThreeTheme();
+
+        if (typeof MutationObserver !== 'undefined') {
+            const themeObserver = new MutationObserver(() => syncThreeTheme());
+            themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+        }
+        window.addEventListener('themeChanged', () => syncThreeTheme());
+
         // 5. Build AgiBot Raise A1 Humanoid Character
         function createAgiBotModel() {
             const robot = new THREE.Group();
