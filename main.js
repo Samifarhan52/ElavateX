@@ -2942,40 +2942,61 @@ Would you like to start a project inquiry right now?`;
                 bot.leftLeg.ankle.rotation.x = -legSwing * 0.5;
                 bot.rightLeg.ankle.rotation.x = legSwing * 0.5;
 
-                // Arms reciprocal swing
+                // Arms reciprocal swing with natural slight elbow flexion
                 bot.leftArm.shoulder.rotation.x = -armSwing;
+                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0, 0.15);
                 bot.leftArm.shoulder.rotation.z = -0.15;
-                bot.leftArm.elbow.rotation.x = 0.25 + Math.max(0, -armSwing * 0.3);
+                bot.leftArm.elbow.rotation.x = -0.25 - Math.max(0, -armSwing * 0.35);
+                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0, 0.15);
+                bot.leftArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.x, 0, 0.15);
+                bot.leftArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.z, 0, 0.15);
+                bot.leftArm.hand.rotation.set(0, 0, 0);
 
                 bot.rightArm.shoulder.rotation.x = armSwing;
+                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, 0, 0.15);
                 bot.rightArm.shoulder.rotation.z = 0.15;
-                bot.rightArm.elbow.rotation.x = 0.25 + Math.max(0, armSwing * 0.3);
+                bot.rightArm.elbow.rotation.x = -0.25 - Math.max(0, armSwing * 0.35);
+                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, 0, 0.15);
+                bot.rightArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.x, 0, 0.15);
+                bot.rightArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.z, 0, 0.15);
+                bot.rightArm.hand.rotation.set(0, 0, 0);
 
             } else if (currentAction === 'Wave') {
-                // FIXED FORWARD WAVE: Waving hand strictly IN FRONT of robot facing user!
-                const waveCycle = Math.sin(time * 6.5);
+                // NATURAL HUMAN WAVE: Upper arm raised outward & forward, forearm vertical beside head, hand waving side-to-side facing user
+                const waveCycle = Math.sin(time * 7.5);
                 bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.1);
-                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw, 0.10);
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw + 0.05, 0.10);
                 bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.02, 0.10);
-                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, -0.04, 0.10); // weight shift
+                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, -0.05, 0.10); // subtle weight balance shift
 
-                // Right Arm: Raised high, angled outward, FOREARM IN FRONT (+Z)
-                const targetRShoulderX = -1.80;
+                // Right Arm: Shoulder abducts upper arm out and forward beside the head
+                const targetRShoulderX = -1.50;
                 const targetRShoulderY = -0.60;
-                const targetRShoulderZ = 0.75 + waveCycle * 0.18;
-                const targetRElbowX = 0.45;
-                const targetRHandZ = waveCycle * 0.30;
+                const targetRShoulderZ = 1.10;
+                // Elbow flexes forearm UPWARDS beside head at eye level
+                const targetRElbowX = -1.15;
+                const targetRElbowZ = waveCycle * 0.25; // wave forearm oscillation
+                const targetRWristZ = waveCycle * 0.35;  // hand waving side-to-side
+                const targetRHandZ = waveCycle * 0.15;
 
                 bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, targetRShoulderX, 0.15);
                 bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, targetRShoulderY, 0.15);
                 bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, targetRShoulderZ, 0.15);
                 bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, targetRElbowX, 0.15);
-                bot.rightArm.hand.rotation.z = targetRHandZ;
+                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, targetRElbowZ, 0.25);
+                bot.rightArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.x, 0, 0.15);
+                bot.rightArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.z, targetRWristZ, 0.25);
+                bot.rightArm.hand.rotation.set(0, 0, targetRHandZ);
 
-                // Left Arm: Relaxed at side with subtle balance sway
-                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, 0.08, 0.1);
-                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.15, 0.1);
-                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, 0.18, 0.1);
+                // Left Arm: Relaxed at side with natural elbow flexion
+                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, 0.06, 0.1);
+                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0, 0.1);
+                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.14, 0.1);
+                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, -0.22, 0.1);
+                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0, 0.1);
+                bot.leftArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.x, 0, 0.1);
+                bot.leftArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.z, 0, 0.1);
+                bot.leftArm.hand.rotation.set(0, 0, 0);
 
                 // Legs neutral balanced stance
                 bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, 0, 0.1);
@@ -2984,32 +3005,42 @@ Would you like to start a project inquiry right now?`;
                 bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 0.05, 0.1);
 
             } else if (currentAction === 'Greet') {
-                // FIXED FORWARD GREETING / HANDSHAKE: Extends hand directly forward (+Z) toward user!
-                const shakeCycle = Math.sin(actionElapsed * 6.0) * 0.08;
+                // AUTHENTIC EXECUTIVE HANDSHAKE: Upper arm stays naturally at side, elbow bends 90 deg forward, hand extends toward user and shakes
+                const shakeCycle = Math.sin(actionElapsed * 6.5) * 0.08;
                 bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.1);
 
                 // Polite upper torso forward inclination
-                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.08, 0.12);
-                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw + 0.05, 0.10);
+                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.09, 0.12);
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw + 0.06, 0.10);
                 bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, 0, 0.10);
 
-                // Right Arm: Reaching straight out toward camera
-                const targetRShoulderX = -1.45 + shakeCycle;
-                const targetRShoulderY = 0.10;
-                const targetRShoulderZ = -0.15;
-                const targetRElbowX = 0.20;
+                // Right Arm: Shoulder keeps upper arm down and slightly forward
+                const targetRShoulderX = -0.28;
+                const targetRShoulderY = -0.12;
+                const targetRShoulderZ = 0.14;
+                // Elbow bends ~90 deg forward with gentle handshake pump
+                const targetRElbowX = -1.45 + shakeCycle;
+                const targetRWristX = -shakeCycle * 0.4;
+                const targetRWristZ = -0.25; // thumb up neutral handshake angle
 
                 bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, targetRShoulderX, 0.15);
                 bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, targetRShoulderY, 0.15);
                 bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, targetRShoulderZ, 0.15);
-                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, targetRElbowX, 0.15);
-                bot.rightArm.hand.rotation.x = -0.10;
-                bot.rightArm.hand.rotation.y = 0.15;
+                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, targetRElbowX, 0.20);
+                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, 0, 0.15);
+                bot.rightArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.x, targetRWristX, 0.20);
+                bot.rightArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.z, targetRWristZ, 0.15);
+                bot.rightArm.hand.rotation.set(0, 0, 0);
 
-                // Left Arm: Tucked neatly at side
-                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, 0.05, 0.1);
-                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.14, 0.1);
-                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, 0.15, 0.1);
+                // Left Arm: Relaxed at side with subtle elbow flexion
+                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, 0.08, 0.1);
+                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0, 0.1);
+                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.12, 0.1);
+                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, -0.22, 0.1);
+                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0, 0.1);
+                bot.leftArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.x, 0, 0.1);
+                bot.leftArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.z, 0, 0.1);
+                bot.leftArm.hand.rotation.set(0, 0, 0);
 
                 // Legs firm grounded stance
                 bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, 0, 0.1);
