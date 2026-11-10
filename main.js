@@ -2178,18 +2178,17 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // IRON MAN MARK 85 (HIGH-DEFINITION 3D SUPERHERO ARMOR & KINEMATICS ENGINE)
+    // AGIBOT RAISE A1 (PREMIUM BIPEDAL HUMANOID ROBOT & KINEMATICS ENGINE)
     // -------------------------------------------------------------------------
     function initCyberBot() {
         const canvas = document.getElementById('robot-webgl-canvas');
         const container = document.getElementById('robot-canvas-stage');
-        const hudStatus = document.getElementById('ironman-status-text');
         const actButtons = document.querySelectorAll('.robot-act-btn[data-action]');
 
         if (!canvas || !container || typeof THREE === 'undefined') return;
 
         let width = container.clientWidth || 600;
-        let height = container.clientHeight || 440;
+        let height = container.clientHeight || 480;
 
         // 1. Crystal-Clear Transparent WebGL Renderer
         const renderer = new THREE.WebGLRenderer({
@@ -2200,945 +2199,904 @@ Would you like to start a project inquiry right now?`;
         });
         renderer.setSize(width, height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setClearColor(0x000000, 0); // 100% Translucent Background
+        renderer.setClearColor(0x000000, 0);
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.45;
+        renderer.toneMappingExposure = 1.35;
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-        // 2. Camera Framing (Frames Iron Man in Dynamic Superhero Stance)
+        // 2. Camera Framing (Frames AgiBot Humanoid in dynamic studio composition)
         const scene = new THREE.Scene();
         const isMobileInit = width < 640;
-        const initFov = isMobileInit ? 38 : (width < 1024 ? 36 : 34);
-        const initZ = isMobileInit ? 4.7 : (width < 1024 ? 4.5 : 4.3);
-        const initY = 1.15;
+        const initFov = isMobileInit ? 36 : (width < 1024 ? 33 : 30);
+        const initZ = isMobileInit ? 4.3 : (width < 1024 ? 4.1 : 3.8);
         const camera = new THREE.PerspectiveCamera(initFov, width / height, 0.1, 100);
-        camera.position.set(0, initY, initZ);
-        camera.lookAt(0, 1.0, 0);
+        camera.position.set(0, 1.05, initZ);
+        camera.lookAt(0, 0.95, 0);
 
-        // 3. Cinematic Studio Lighting Rig (Hot-Rod Crimson & Stark Gold Specularity)
-        const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
-        scene.add(ambientLight);
+        // 3. Cinematic Studio Lighting (Matching AgiBot Raise A1 Reference)
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x1e293b, 0.75);
+        scene.add(hemiLight);
 
-        const keyLight = new THREE.DirectionalLight(0xffffff, 3.2);
-        keyLight.position.set(4, 8, 5);
+        // Key light (soft white front-right)
+        const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+        keyLight.position.set(2.8, 3.8, 3.2);
         keyLight.castShadow = true;
         keyLight.shadow.mapSize.width = 1024;
         keyLight.shadow.mapSize.height = 1024;
-        keyLight.shadow.bias = -0.001;
+        keyLight.shadow.bias = -0.0005;
         scene.add(keyLight);
 
-        const fillLight = new THREE.DirectionalLight(0x00f0ff, 2.2); // Arc Reactor Cyan Fill
-        fillLight.position.set(-5, 4, 3);
+        // Fill light (cool slate front-left)
+        const fillLight = new THREE.DirectionalLight(0x94a3b8, 0.65);
+        fillLight.position.set(-3.0, 2.2, 2.5);
         scene.add(fillLight);
 
-        const rimLight = new THREE.DirectionalLight(0xf59e0b, 2.8); // Stark Gold Metallic Rim
-        rimLight.position.set(0, 7, -5);
+        // Cyan Rim / Kicker Light (Gives the signature AgiBot rim glow on helmet and shoulders)
+        const rimLight = new THREE.DirectionalLight(0x00f0ff, 1.7);
+        rimLight.position.set(1.5, 2.8, -2.8);
         scene.add(rimLight);
 
-        const groundLight = new THREE.PointLight(0x00f0ff, 2.0, 6);
-        groundLight.position.set(0, 0.1, 1.0);
-        scene.add(groundLight);
+        // Subtle bottom blue glow
+        const bottomGlow = new THREE.PointLight(0x0284c7, 1.2, 6);
+        bottomGlow.position.set(0, 0.1, 0.5);
+        scene.add(bottomGlow);
 
-        // 4. Master Robot Hierarchy & Platform
-        const robotMasterGroup = new THREE.Group();
-        scene.add(robotMasterGroup);
+        // 4. Futuristic Ground Dais / Calibration Rings
+        const daisGroup = new THREE.Group();
+        daisGroup.position.y = 0.02;
+        scene.add(daisGroup);
 
-        // Stark Holographic Dais at Feet (Dual Cyan & Gold Rings)
-        const platformGeo = new THREE.CylinderGeometry(1.4, 1.5, 0.02, 48);
-        const platformMat = new THREE.MeshStandardMaterial({
-            color: 0x38bdf8,
-            transparent: true,
-            opacity: 0.06,
-            metalness: 0.8,
-            roughness: 0.2
-        });
-        const platform = new THREE.Mesh(platformGeo, platformMat);
-        platform.position.y = -0.01;
-        robotMasterGroup.add(platform);
+        const daisBase = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.85, 0.92, 0.04, 36),
+            new THREE.MeshStandardMaterial({
+                color: 0x0f172a,
+                roughness: 0.6,
+                metalness: 0.5
+            })
+        );
+        daisBase.receiveShadow = true;
+        daisGroup.add(daisBase);
 
-        const ringGeo = new THREE.TorusGeometry(1.45, 0.018, 16, 64);
-        const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: 0x00f0ff }));
-        ring.rotation.x = Math.PI / 2;
-        ring.position.y = 0.02;
-        robotMasterGroup.add(ring);
+        // Concentric Holographic Rings
+        const ringOuter = new THREE.Mesh(
+            new THREE.RingGeometry(0.72, 0.74, 48),
+            new THREE.MeshBasicMaterial({ color: 0x00f0ff, side: THREE.DoubleSide, transparent: true, opacity: 0.65 })
+        );
+        ringOuter.rotation.x = Math.PI * 0.5;
+        ringOuter.position.y = 0.022;
+        daisGroup.add(ringOuter);
 
-        const innerRingGeo = new THREE.TorusGeometry(1.18, 0.014, 16, 48);
-        const innerRing = new THREE.Mesh(innerRingGeo, new THREE.MeshBasicMaterial({ color: 0xeab308 }));
-        innerRing.rotation.x = Math.PI / 2;
-        innerRing.position.y = 0.02;
-        robotMasterGroup.add(innerRing);
+        const ringInner = new THREE.Mesh(
+            new THREE.RingGeometry(0.50, 0.52, 36),
+            new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.85 })
+        );
+        ringInner.rotation.x = Math.PI * 0.5;
+        ringInner.position.y = 0.023;
+        daisGroup.add(ringInner);
 
-        // Holographic Radial Tech Markers on Floor
-        const techMarksGroup = new THREE.Group();
-        platform.add(techMarksGroup);
-        for (let m = 0; m < 8; m++) {
-            const angle = (m / 8) * Math.PI * 2;
-            const marker = new THREE.Mesh(
-                new THREE.BoxGeometry(0.14, 0.01, 0.025),
-                m % 2 === 0 ? new THREE.MeshBasicMaterial({ color: 0x00f0ff }) : new THREE.MeshBasicMaterial({ color: 0xeab308 })
-            );
-            marker.position.set(Math.cos(angle) * 1.3, 0.05, Math.sin(angle) * 1.3);
-            marker.rotation.y = -angle;
-            techMarksGroup.add(marker);
-        }
+        const ringTicks = new THREE.Mesh(
+            new THREE.RingGeometry(0.28, 0.29, 24),
+            new THREE.MeshBasicMaterial({ color: 0x00f0ff, side: THREE.DoubleSide, transparent: true, opacity: 0.7 })
+        );
+        ringTicks.rotation.x = Math.PI * 0.5;
+        ringTicks.position.y = 0.024;
+        daisGroup.add(ringTicks);
 
-        // Floating Quantum Particle Field (Arc Reactor Cyan & Stark Gold Embers)
-        const particleGeo = new THREE.BufferGeometry();
-        const particleCount = 55;
-        const particlePositions = new Float32Array(particleCount * 3);
-        for (let p = 0; p < particleCount; p++) {
-            particlePositions[p * 3] = (Math.random() - 0.5) * 3.4;
-            particlePositions[p * 3 + 1] = Math.random() * 3.0;
-            particlePositions[p * 3 + 2] = (Math.random() - 0.5) * 3.4;
-        }
-        particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-        const particleMat = new THREE.PointsMaterial({
-            color: 0x38bdf8,
-            size: 0.038,
-            transparent: true,
-            opacity: 0.8,
-            blending: THREE.AdditiveBlending
-        });
-        const particleField = new THREE.Points(particleGeo, particleMat);
-        robotMasterGroup.add(particleField);
+        // 5. Build AgiBot Raise A1 Humanoid Character
+        function createAgiBotModel() {
+            const robot = new THREE.Group();
+            robot.name = 'AgiBot_Raise_A1';
 
-        // Dynamic Soft Contact Shadow
-        const shadowCanvas = document.createElement('canvas');
-        shadowCanvas.width = 128;
-        shadowCanvas.height = 128;
-        const sCtx = shadowCanvas.getContext('2d');
-        const sGrad = sCtx.createRadialGradient(64, 64, 0, 64, 64, 64);
-        sGrad.addColorStop(0, 'rgba(0, 0, 0, 0.6)');
-        sGrad.addColorStop(0.5, 'rgba(0, 0, 0, 0.2)');
-        sGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        sCtx.fillStyle = sGrad;
-        sCtx.fillRect(0, 0, 128, 128);
-        const shadowTexture = new THREE.CanvasTexture(shadowCanvas);
+            // Premium PBR Materials matching AgiBot Raise A1 reference photo
+            const whiteArmorMat = new THREE.MeshStandardMaterial({
+                color: 0xf8fafc,
+                roughness: 0.22,
+                metalness: 0.15
+            });
 
-        const shadowGeo = new THREE.PlaneGeometry(2.8, 2.8);
-        const shadowMat = new THREE.MeshBasicMaterial({ map: shadowTexture, transparent: true, depthWrite: false });
-        const groundShadow = new THREE.Mesh(shadowGeo, shadowMat);
-        groundShadow.rotation.x = -Math.PI / 2;
-        groundShadow.position.y = 0.005;
-        robotMasterGroup.add(groundShadow);
+            const blackChassisMat = new THREE.MeshStandardMaterial({
+                color: 0x16181d,
+                roughness: 0.55,
+                metalness: 0.45
+            });
 
-        // 5. IRON MAN MARK 85 PROCEDURAL ARMOR GENERATOR
-        function createIronManArmor() {
+            const darkJointMat = new THREE.MeshStandardMaterial({
+                color: 0x22262e,
+                roughness: 0.4,
+                metalness: 0.7
+            });
+
+            const chromeMat = new THREE.MeshStandardMaterial({
+                color: 0xdde3ea,
+                roughness: 0.15,
+                metalness: 0.95
+            });
+
+            const cyanGlowMat = new THREE.MeshBasicMaterial({
+                color: 0x00f0ff
+            });
+
+            // Root node for vertical jumping and global offset
             const root = new THREE.Group();
-            root.name = 'IronMan_Mark85';
+            robot.add(root);
 
-            // High-Tech Stark Metallic Armor Materials
-            const matRed = new THREE.MeshStandardMaterial({
-                color: 0x99000a,
-                metalness: 0.88,
-                roughness: 0.18
-            });
-            const matGold = new THREE.MeshStandardMaterial({
-                color: 0xe5a910,
-                metalness: 0.94,
-                roughness: 0.15
-            });
-            const matTitanium = new THREE.MeshStandardMaterial({
-                color: 0x111827,
-                metalness: 0.92,
-                roughness: 0.35
-            });
-            const matArcReactor = new THREE.MeshBasicMaterial({ color: 0xffffff });
-            const matCyanGlow = new THREE.MeshBasicMaterial({ color: 0x00f0ff });
-            const matEyeGlow = new THREE.MeshBasicMaterial({ color: 0xe0f7fa });
-            const matThrusterPlume = new THREE.MeshBasicMaterial({
-                color: 0x38bdf8,
-                transparent: true,
-                opacity: 0.85
-            });
-
-            function createRotaryHub(radius, thickness) {
-                const g = new THREE.Group();
-                const rim = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, thickness, 24), matGold);
-                rim.castShadow = true;
-                g.add(rim);
-                const core = new THREE.Mesh(new THREE.CylinderGeometry(radius * 0.6, radius * 0.6, thickness + 0.004, 20), matTitanium);
-                g.add(core);
-                const bolt = new THREE.Mesh(new THREE.CylinderGeometry(radius * 0.2, radius * 0.2, thickness + 0.008, 12), matGold);
-                g.add(bolt);
-                return g;
-            }
-
-            // 1. Pelvis & Hips
+            // Pelvis & Hip Core
             const pelvis = new THREE.Group();
-            pelvis.position.set(0, 0.96, 0);
+            pelvis.position.y = 0.96;
             root.add(pelvis);
 
-            const pelvicGirdle = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.16, 0.20), matRed);
-            pelvicGirdle.castShadow = true;
-            pelvis.add(pelvicGirdle);
+            const pelvisCore = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.12, 0.10, 0.14, 16),
+                blackChassisMat
+            );
+            pelvis.add(pelvisCore);
 
-            const groinArmor = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.14, 0.18), matGold);
-            groinArmor.position.set(0, -0.02, 0.04);
-            pelvis.add(groinArmor);
+            // White hip fairing plates
+            const hipLeftPlate = new THREE.Mesh(
+                new THREE.BoxGeometry(0.06, 0.12, 0.14),
+                whiteArmorMat
+            );
+            hipLeftPlate.position.set(-0.13, 0.01, 0);
+            pelvis.add(hipLeftPlate);
 
-            const hipHubL = createRotaryHub(0.075, 0.04);
-            hipHubL.rotation.z = Math.PI / 2;
-            hipHubL.position.set(-0.15, -0.02, 0);
-            pelvis.add(hipHubL);
+            const hipRightPlate = hipLeftPlate.clone();
+            hipRightPlate.position.x = 0.13;
+            pelvis.add(hipRightPlate);
 
-            const hipHubR = hipHubL.clone();
-            hipHubR.position.x = 0.15;
-            pelvis.add(hipHubR);
-
-            // 2. Torso (Spine pivot at pelvis)
+            // Torso Group (Pivots from waist)
             const torso = new THREE.Group();
-            torso.position.set(0, 0.10, 0);
+            torso.position.y = 0.08;
             pelvis.add(torso);
 
-            const absCore = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.14, 0.14, 20), matTitanium);
-            absCore.position.set(0, 0.07, 0);
-            absCore.castShadow = true;
-            torso.add(absCore);
-
-            // Abdominal gold flex plates
-            for (let a = 0; a < 3; a++) {
-                const abPlate = new THREE.Mesh(new THREE.BoxGeometry(0.18 - a * 0.02, 0.032, 0.19), matGold);
-                abPlate.position.set(0, 0.03 + a * 0.042, 0.02);
-                torso.add(abPlate);
+            // Abdominal Spine Articulation (matte black segmented spine)
+            for (let i = 0; i < 3; i++) {
+                const spineSegment = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.09 - i * 0.005, 0.10 - i * 0.005, 0.045, 14),
+                    blackChassisMat
+                );
+                spineSegment.position.y = 0.04 + i * 0.05;
+                torso.add(spineSegment);
             }
 
-            const chestVest = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.38, 0.24), matRed);
-            chestVest.position.set(0, 0.30, 0);
-            chestVest.castShadow = true;
-            chestVest.receiveShadow = true;
-            torso.add(chestVest);
+            // Chest & Ribcage Armor Structure
+            const chestGroup = new THREE.Group();
+            chestGroup.position.y = 0.22;
+            torso.add(chestGroup);
 
-            // Gold collar highlights
-            const collarL = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.04, 0.22), matGold);
-            collarL.position.set(-0.12, 0.46, 0.02);
-            torso.add(collarL);
+            // Inner Black Chassis Ribs
+            const chestCore = new THREE.Mesh(
+                new THREE.BoxGeometry(0.26, 0.24, 0.18),
+                blackChassisMat
+            );
+            chestGroup.add(chestCore);
 
-            const collarR = collarL.clone();
-            collarR.position.x = 0.12;
-            torso.add(collarR);
+            // Outer Aerodynamic White Chest Armor Plate
+            const chestPlate = new THREE.Mesh(
+                new THREE.BoxGeometry(0.28, 0.22, 0.12),
+                whiteArmorMat
+            );
+            chestPlate.position.set(0, 0.02, 0.05);
+            chestGroup.add(chestPlate);
 
-            // Arc Reactor
-            const reactorBezel = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.02, 32), matTitanium);
-            reactorBezel.rotation.x = Math.PI / 2;
-            reactorBezel.position.set(0, 0.34, 0.124);
-            torso.add(reactorBezel);
+            // Chest Brand Accent Ridge
+            const chestRidge = new THREE.Mesh(
+                new THREE.BoxGeometry(0.18, 0.04, 0.02),
+                darkJointMat
+            );
+            chestRidge.position.set(0, 0.08, 0.115);
+            chestGroup.add(chestRidge);
 
-            const reactorGoldRim = new THREE.Mesh(new THREE.TorusGeometry(0.075, 0.01, 16, 32), matGold);
-            reactorGoldRim.position.set(0, 0.34, 0.132);
-            torso.add(reactorGoldRim);
+            // Iconic Cyan LED Lower Chest Arc / Glow Strip
+            const chestLedStrip = new THREE.Mesh(
+                new THREE.TorusGeometry(0.10, 0.009, 8, 24, Math.PI * 0.8),
+                cyanGlowMat
+            );
+            chestLedStrip.rotation.x = Math.PI * 0.5;
+            chestLedStrip.rotation.z = Math.PI * 0.6;
+            chestLedStrip.position.set(0, -0.05, 0.112);
+            chestGroup.add(chestLedStrip);
 
-            const reactorCore = new THREE.Mesh(new THREE.CylinderGeometry(0.052, 0.052, 0.022, 32), matArcReactor);
-            reactorCore.rotation.x = Math.PI / 2;
-            reactorCore.position.set(0, 0.34, 0.138);
-            torso.add(reactorCore);
+            // Back Battery / Pack Housing
+            const backPack = new THREE.Mesh(
+                new THREE.BoxGeometry(0.22, 0.20, 0.08),
+                whiteArmorMat
+            );
+            backPack.position.set(0, 0.02, -0.10);
+            chestGroup.add(backPack);
 
-            const reactorAura = new THREE.Mesh(new THREE.SphereGeometry(0.028, 16, 16), matCyanGlow);
-            reactorAura.position.set(0, 0.34, 0.145);
-            torso.add(reactorAura);
+            // Neck Assembly & Dual Hydraulic Cylinders
+            const neck = new THREE.Group();
+            neck.position.y = 0.16;
+            chestGroup.add(neck);
 
-            const coreLight = new THREE.PointLight(0x00f0ff, 3.2, 5.0);
-            coreLight.position.set(0, 0.34, 0.22);
-            torso.add(coreLight);
+            const neckPivot = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.04, 0.045, 0.08, 12),
+                blackChassisMat
+            );
+            neck.add(neckPivot);
 
-            // Deployable Nano-Flight Flaps (Wings on the back)
-            const flapL = new THREE.Group();
-            flapL.position.set(-0.12, 0.38, -0.13);
-            const flapFinL = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.28, 0.02), matGold);
-            flapFinL.position.set(-0.06, 0.12, 0);
-            flapFinL.rotation.z = -0.2;
-            flapL.add(flapFinL);
-            torso.add(flapL);
+            // Dual Hydraulic Actuators
+            const neckHydroL = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.01, 0.01, 0.07, 8),
+                chromeMat
+            );
+            neckHydroL.position.set(-0.035, 0, 0.015);
+            neck.add(neckHydroL);
 
-            const flapR = new THREE.Group();
-            flapR.position.set(0.12, 0.38, -0.13);
-            const flapFinR = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.28, 0.02), matGold);
-            flapFinR.position.set(0.06, 0.12, 0);
-            flapFinR.rotation.z = 0.2;
-            flapR.add(flapFinR);
-            torso.add(flapR);
+            const neckHydroR = neckHydroL.clone();
+            neckHydroR.position.x = 0.035;
+            neck.add(neckHydroR);
 
-            // 3. Head & Iron Man Helmet
+            // Head Group (Smooth tracking pivot)
             const head = new THREE.Group();
-            head.position.set(0, 0.52, 0.02);
-            torso.add(head);
+            head.position.y = 0.07;
+            neck.add(head);
 
-            const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.08, 20), matTitanium);
-            neck.position.set(0, 0.04, 0);
-            neck.castShadow = true;
-            head.add(neck);
+            // Obsidian Dark Face Helmet (AgiBot Head Profile)
+            const helmetCranium = new THREE.Mesh(
+                new THREE.SphereGeometry(0.095, 24, 20),
+                blackChassisMat
+            );
+            helmetCranium.scale.set(1.0, 1.25, 1.15);
+            head.add(helmetCranium);
 
-            const cranium = new THREE.Mesh(new THREE.SphereGeometry(0.15, 32, 24), matRed);
-            cranium.scale.set(1.0, 1.12, 1.05);
-            cranium.position.set(0, 0.16, 0);
-            cranium.castShadow = true;
-            head.add(cranium);
+            // Aerodynamic Rear Head Shell (White Top / Back Accent)
+            const helmetRearPlate = new THREE.Mesh(
+                new THREE.SphereGeometry(0.098, 20, 16, 0, Math.PI * 2, 0, Math.PI * 0.45),
+                whiteArmorMat
+            );
+            helmetRearPlate.position.set(0, 0.02, -0.02);
+            head.add(helmetRearPlate);
 
-            // Gold Faceplate
-            const faceplateBrow = new THREE.Mesh(new THREE.BoxGeometry(0.17, 0.05, 0.07), matGold);
-            faceplateBrow.rotation.x = 0.25;
-            faceplateBrow.position.set(0, 0.21, 0.08);
-            head.add(faceplateBrow);
+            // Curved Glossy Obsidian Visor Face Plate
+            const visorMesh = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.072, 0.065, 0.14, 16, 1, false, -Math.PI * 0.35, Math.PI * 0.7),
+                new THREE.MeshStandardMaterial({
+                    color: 0x08090c,
+                    roughness: 0.1,
+                    metalness: 0.8
+                })
+            );
+            visorMesh.position.set(0, 0.01, 0.05);
+            head.add(visorMesh);
 
-            const faceplateCheekL = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.11, 0.05), matGold);
-            faceplateCheekL.rotation.z = -0.15;
-            faceplateCheekL.position.set(-0.06, 0.14, 0.09);
-            head.add(faceplateCheekL);
+            // TWO VERTICAL CYAN LED SLIT EYES (Iconic AgiBot Raise A1 signature: ||)
+            const leftEye = new THREE.Mesh(
+                new THREE.BoxGeometry(0.013, 0.046, 0.01),
+                cyanGlowMat
+            );
+            leftEye.position.set(-0.032, 0.018, 0.108);
+            leftEye.rotation.y = -0.12;
+            head.add(leftEye);
 
-            const faceplateCheekR = faceplateCheekL.clone();
-            faceplateCheekR.rotation.z = 0.15;
-            faceplateCheekR.position.x = 0.06;
-            head.add(faceplateCheekR);
+            const rightEye = new THREE.Mesh(
+                new THREE.BoxGeometry(0.013, 0.046, 0.01),
+                cyanGlowMat
+            );
+            rightEye.position.set(0.032, 0.018, 0.108);
+            rightEye.rotation.y = 0.12;
+            head.add(rightEye);
 
-            const chin = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.05, 0.07), matGold);
-            chin.position.set(0, 0.08, 0.095);
-            head.add(chin);
+            // Ear Pod Sensor Rings
+            const leftEar = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.024, 0.024, 0.012, 16),
+                darkJointMat
+            );
+            leftEar.rotation.z = Math.PI * 0.5;
+            leftEar.position.set(-0.102, 0.01, 0.01);
+            head.add(leftEar);
 
-            // Glowing White-Cyan Eye Slits
-            const eyeL = new THREE.Mesh(new THREE.BoxGeometry(0.042, 0.012, 0.02), matEyeGlow);
-            eyeL.rotation.z = 0.18;
-            eyeL.position.set(-0.045, 0.175, 0.125);
-            head.add(eyeL);
+            const leftEarLight = new THREE.Mesh(
+                new THREE.RingGeometry(0.012, 0.020, 16),
+                cyanGlowMat
+            );
+            leftEarLight.rotation.y = -Math.PI * 0.5;
+            leftEarLight.position.set(-0.109, 0.01, 0.01);
+            head.add(leftEarLight);
 
-            const eyeR = eyeL.clone();
-            eyeR.rotation.z = -0.18;
-            eyeR.position.x = 0.045;
-            head.add(eyeR);
+            const rightEar = leftEar.clone();
+            rightEar.position.x = 0.102;
+            head.add(rightEar);
 
-            const eyeLight = new THREE.PointLight(0x00f0ff, 1.4, 1.8);
-            eyeLight.position.set(0, 0.175, 0.18);
-            head.add(eyeLight);
+            const rightEarLight = leftEarLight.clone();
+            rightEarLight.rotation.y = Math.PI * 0.5;
+            rightEarLight.position.x = 0.109;
+            head.add(rightEarLight);
 
-            // 4. Arms & Repulsor Palms
-            function buildArm(isRight) {
-                const side = isRight ? 1 : -1;
-                const shoulder = new THREE.Group();
-                shoulder.position.set(side * 0.26, 0.44, 0);
-                torso.add(shoulder);
+            // LIMBS FUNCTION: Arms (5-Finger Dexterous Hands)
+            function buildArm(isLeft) {
+                const side = isLeft ? -1 : 1;
+                const shoulderPivot = new THREE.Group();
+                shoulderPivot.position.set(side * 0.20, 0.12, 0);
 
-                const pauldron = new THREE.Mesh(new THREE.SphereGeometry(0.09, 20, 16), matRed);
-                pauldron.scale.set(1.15, 0.9, 1.15);
-                pauldron.castShadow = true;
-                shoulder.add(pauldron);
+                // Shoulder Ball Joint
+                const shoulderBall = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.052, 16, 14),
+                    darkJointMat
+                );
+                shoulderPivot.add(shoulderBall);
 
-                const sHub = createRotaryHub(0.065, 0.04);
-                sHub.rotation.z = Math.PI / 2;
-                sHub.position.x = side * 0.06;
-                shoulder.add(sHub);
+                // White Deltoid Cowl
+                const shoulderCowl = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.065, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.6),
+                    whiteArmorMat
+                );
+                shoulderCowl.position.set(side * 0.015, 0.02, 0);
+                shoulderPivot.add(shoulderCowl);
 
-                const bicep = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.052, 0.22, 20), matGold);
-                bicep.position.y = -0.11;
-                bicep.castShadow = true;
-                shoulder.add(bicep);
+                // Upper Arm
+                const upperArm = new THREE.Group();
+                shoulderPivot.add(upperArm);
 
-                const elbow = new THREE.Group();
-                elbow.position.set(0, -0.22, 0);
-                shoulder.add(elbow);
+                const bicepCore = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.038, 0.034, 0.18, 12),
+                    blackChassisMat
+                );
+                bicepCore.position.y = -0.10;
+                upperArm.add(bicepCore);
 
-                const eHub = createRotaryHub(0.052, 0.04);
-                eHub.rotation.z = Math.PI / 2;
-                elbow.add(eHub);
+                // White Armor Plate on Bicep
+                const bicepArmor = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.055, 0.14, 0.06),
+                    whiteArmorMat
+                );
+                bicepArmor.position.set(side * 0.015, -0.10, 0.01);
+                upperArm.add(bicepArmor);
 
-                const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.052, 0.046, 0.20, 20), matRed);
-                forearm.position.y = -0.10;
-                forearm.castShadow = true;
-                elbow.add(forearm);
+                // Elbow Joint
+                const elbowPivot = new THREE.Group();
+                elbowPivot.position.y = -0.21;
+                upperArm.add(elbowPivot);
 
-                const wristGoldRing = new THREE.Mesh(new THREE.TorusGeometry(0.048, 0.008, 16, 24), matGold);
-                wristGoldRing.rotation.x = Math.PI / 2;
-                wristGoldRing.position.y = -0.20;
-                elbow.add(wristGoldRing);
+                const elbowDisc = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.038, 0.038, 0.05, 14),
+                    darkJointMat
+                );
+                elbowDisc.rotation.z = Math.PI * 0.5;
+                elbowPivot.add(elbowDisc);
 
-                const wrist = new THREE.Group();
-                wrist.position.set(0, -0.20, 0);
-                elbow.add(wrist);
+                // Forearm Group
+                const forearm = new THREE.Group();
+                elbowPivot.add(forearm);
 
+                const forearmCore = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.034, 0.028, 0.18, 12),
+                    blackChassisMat
+                );
+                forearmCore.position.y = -0.10;
+                forearm.add(forearmCore);
+
+                // Aerodynamic White Forearm Shell
+                const forearmArmor = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.054, 0.15, 0.056),
+                    whiteArmorMat
+                );
+                forearmArmor.position.set(side * 0.01, -0.10, 0.01);
+                forearm.add(forearmArmor);
+
+                // Wrist Joint
+                const wristPivot = new THREE.Group();
+                wristPivot.position.y = -0.20;
+                forearm.add(wristPivot);
+
+                const wristRing = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.025, 0.025, 0.03, 12),
+                    darkJointMat
+                );
+                wristPivot.add(wristRing);
+
+                // Hand Group (5 Articulated Dexterous Fingers)
                 const hand = new THREE.Group();
-                wrist.add(hand);
+                wristPivot.add(hand);
 
-                const palm = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.075, 0.03), matRed);
-                palm.position.set(0, -0.04, 0);
-                palm.castShadow = true;
+                // Palm Core
+                const palm = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.046, 0.055, 0.022),
+                    blackChassisMat
+                );
+                palm.position.y = -0.035;
                 hand.add(palm);
 
-                // Palm Repulsor Emitter (Center of Palm)
-                const repulsorBezel = new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.024, 0.01, 16), matGold);
-                repulsorBezel.rotation.x = Math.PI / 2;
-                repulsorBezel.position.set(0, -0.04, 0.016);
-                hand.add(repulsorBezel);
-
-                const repulsorLens = new THREE.Mesh(new THREE.SphereGeometry(0.018, 16, 16), matArcReactor);
-                repulsorLens.position.set(0, -0.04, 0.02);
-                hand.add(repulsorLens);
-
-                const repulsorLight = new THREE.PointLight(0x00f0ff, 0, 3.5);
-                repulsorLight.position.set(0, -0.04, 0.1);
-                hand.add(repulsorLight);
-
-                // Repulsor blast flare cone (visible during blast / flight)
-                const blastCone = new THREE.Mesh(new THREE.ConeGeometry(0.08, 0.45, 16), matThrusterPlume);
-                blastCone.rotation.x = -Math.PI / 2;
-                blastCone.position.set(0, -0.04, 0.24);
-                blastCone.visible = false;
-                hand.add(blastCone);
-
-                const thumb = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.045, 0.02), matGold);
-                thumb.position.set(side * 0.038, -0.03, 0.015);
-                thumb.rotation.z = side * 0.4;
-                hand.add(thumb);
-
-                const fingers = [];
+                // Fingers (Thumb + 4 Fingers)
                 for (let f = 0; f < 4; f++) {
-                    const fMesh = new THREE.Mesh(new THREE.BoxGeometry(0.014, 0.05, 0.014), matGold);
-                    fMesh.position.set((f - 1.5) * 0.018, -0.09, 0);
-                    hand.add(fMesh);
-                    fingers.push(fMesh);
+                    const fx = (f - 1.5) * 0.011;
+                    const fingerLen = (f === 1 || f === 2) ? 0.042 : 0.036;
+
+                    const fingerBase = new THREE.Mesh(
+                        new THREE.BoxGeometry(0.008, fingerLen * 0.55, 0.009),
+                        darkJointMat
+                    );
+                    fingerBase.position.set(fx, -0.065 - fingerLen * 0.25, 0);
+                    hand.add(fingerBase);
+
+                    const fingerTip = new THREE.Mesh(
+                        new THREE.BoxGeometry(0.007, fingerLen * 0.45, 0.008),
+                        blackChassisMat
+                    );
+                    fingerTip.position.set(fx, -0.065 - fingerLen * 0.75, 0.002);
+                    hand.add(fingerTip);
                 }
 
-                return { shoulder, elbow, wrist, hand, palm, repulsorLens, repulsorLight, blastCone, thumb, fingers };
+                // Thumb
+                const thumbGroup = new THREE.Group();
+                thumbGroup.position.set(side * 0.024, -0.04, 0.006);
+                thumbGroup.rotation.z = side * 0.45;
+                thumbGroup.rotation.y = side * 0.35;
+                hand.add(thumbGroup);
+
+                const thumbPhalange = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.008, 0.032, 0.009),
+                    darkJointMat
+                );
+                thumbPhalange.position.y = -0.016;
+                thumbGroup.add(thumbPhalange);
+
+                return {
+                    shoulder: shoulderPivot,
+                    upperArm: upperArm,
+                    elbow: elbowPivot,
+                    forearm: forearm,
+                    wrist: wristPivot,
+                    hand: hand
+                };
             }
 
-            const leftArm = buildArm(false);
-            const rightArm = buildArm(true);
+            const leftArm = buildArm(true);
+            chestGroup.add(leftArm.shoulder);
 
-            // 5. Legs & Boot Thrusters
-            function buildLeg(isRight) {
-                const side = isRight ? 1 : -1;
-                const hip = new THREE.Group();
-                hip.position.set(side * 0.13, -0.04, 0);
-                pelvis.add(hip);
+            const rightArm = buildArm(false);
+            chestGroup.add(rightArm.shoulder);
 
-                const thigh = new THREE.Mesh(new THREE.CylinderGeometry(0.078, 0.068, 0.34, 20), matGold);
-                thigh.position.y = -0.17;
-                thigh.castShadow = true;
-                hip.add(thigh);
+            // LIMBS FUNCTION: Legs with Rear Hydraulic Damper Struts
+            function buildLeg(isLeft) {
+                const side = isLeft ? -1 : 1;
+                const hipPivot = new THREE.Group();
+                hipPivot.position.set(side * 0.11, -0.06, 0);
 
-                const thighTrim = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.28, 0.12), matRed);
-                thighTrim.position.set(side * 0.06, -0.17, 0);
-                hip.add(thighTrim);
+                // Hip Joint
+                const hipBall = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.058, 16, 14),
+                    darkJointMat
+                );
+                hipPivot.add(hipBall);
 
-                const knee = new THREE.Group();
-                knee.position.set(0, -0.34, 0);
-                hip.add(knee);
+                // Thigh
+                const thighGroup = new THREE.Group();
+                hipPivot.add(thighGroup);
 
-                const kHub = createRotaryHub(0.065, 0.05);
-                kHub.rotation.z = Math.PI / 2;
-                knee.add(kHub);
+                const thighCore = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.052, 0.045, 0.36, 14),
+                    blackChassisMat
+                );
+                thighCore.position.y = -0.20;
+                thighGroup.add(thighCore);
 
-                const kneeArmor = new THREE.Mesh(new THREE.BoxGeometry(0.075, 0.09, 0.04), matRed);
-                kneeArmor.position.set(0, 0, 0.045);
-                knee.add(kneeArmor);
+                // Athletic Pearlescent White Front & Outer Armor Shell
+                const thighPlate = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.09, 0.34, 0.10),
+                    whiteArmorMat
+                );
+                thighPlate.position.set(side * 0.01, -0.20, 0.02);
+                thighGroup.add(thighPlate);
 
-                const shin = new THREE.Mesh(new THREE.CylinderGeometry(0.068, 0.062, 0.32, 20), matRed);
-                shin.position.y = -0.16;
-                shin.castShadow = true;
-                knee.add(shin);
+                // Knee Joint
+                const kneePivot = new THREE.Group();
+                kneePivot.position.y = -0.40;
+                thighGroup.add(kneePivot);
 
-                const shinPlate = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.24, 0.03), matGold);
-                shinPlate.position.set(0, -0.16, 0.05);
-                knee.add(shinPlate);
+                const kneeCap = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.048, 0.048, 0.07, 16),
+                    darkJointMat
+                );
+                kneeCap.rotation.z = Math.PI * 0.5;
+                kneePivot.add(kneeCap);
 
+                const kneePuck = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.06, 0.06, 0.04),
+                    whiteArmorMat
+                );
+                kneePuck.position.set(0, 0, 0.04);
+                kneePivot.add(kneePuck);
+
+                // Calf / Lower Leg
+                const calfGroup = new THREE.Group();
+                kneePivot.add(calfGroup);
+
+                const calfCore = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.042, 0.035, 0.38, 14),
+                    blackChassisMat
+                );
+                calfCore.position.y = -0.20;
+                calfGroup.add(calfCore);
+
+                // Slender White Shin Guard Armor
+                const shinArmor = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.075, 0.34, 0.08),
+                    whiteArmorMat
+                );
+                shinArmor.position.set(0, -0.19, 0.025);
+                calfGroup.add(shinArmor);
+
+                // REAR HYDRAULIC DAMPER STRUT RODS (AgiBot Photo Signature Detail!)
+                const damperRodUpper = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.007, 0.007, 0.22, 8),
+                    chromeMat
+                );
+                damperRodUpper.position.set(side * 0.02, -0.16, -0.05);
+                calfGroup.add(damperRodUpper);
+
+                const damperSleeve = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.012, 0.012, 0.12, 8),
+                    darkJointMat
+                );
+                damperSleeve.position.set(side * 0.02, -0.25, -0.05);
+                calfGroup.add(damperSleeve);
+
+                // Ankle & Foot
+                const anklePivot = new THREE.Group();
+                anklePivot.position.y = -0.42;
+                calfGroup.add(anklePivot);
+
+                const ankleJoint = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.035, 12, 10),
+                    darkJointMat
+                );
+                anklePivot.add(ankleJoint);
+
+                // Foot / Robotic Boot
                 const foot = new THREE.Group();
-                foot.position.set(0, -0.32, 0);
-                knee.add(foot);
+                foot.position.set(0, -0.02, 0.02);
+                anklePivot.add(foot);
 
-                const ankleHub = createRotaryHub(0.05, 0.03);
-                ankleHub.rotation.z = Math.PI / 2;
-                foot.add(ankleHub);
+                const footBase = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.08, 0.045, 0.19),
+                    blackChassisMat
+                );
+                footBase.position.set(0, -0.02, 0.03);
+                foot.add(footBase);
 
-                const boot = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.09, 0.22), matRed);
-                boot.position.set(0, -0.045, 0.04);
-                boot.castShadow = true;
-                foot.add(boot);
+                const footTopFairing = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.074, 0.035, 0.12),
+                    whiteArmorMat
+                );
+                footTopFairing.position.set(0, 0.005, 0.02);
+                foot.add(footTopFairing);
 
-                const bootGoldCap = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.04, 0.08), matGold);
-                bootGoldCap.position.set(0, -0.03, 0.12);
-                foot.add(bootGoldCap);
-
-                const sole = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.025, 0.25), matTitanium);
-                sole.position.set(0, -0.095, 0.04);
-                sole.receiveShadow = true;
-                foot.add(sole);
-
-                // Boot Thruster Flames (Visible during Fly / Jump)
-                const thrusterCone = new THREE.Mesh(new THREE.ConeGeometry(0.065, 0.38, 16), matThrusterPlume);
-                thrusterCone.position.set(0, -0.28, 0.04);
-                thrusterCone.visible = false;
-                foot.add(thrusterCone);
-
-                const thrusterLight = new THREE.PointLight(0x00f0ff, 0, 3.5);
-                thrusterLight.position.set(0, -0.22, 0.04);
-                foot.add(thrusterLight);
-
-                return { hip, knee, foot, boot, thrusterCone, thrusterLight };
+                return {
+                    hip: hipPivot,
+                    thigh: thighGroup,
+                    knee: kneePivot,
+                    calf: calfGroup,
+                    ankle: anklePivot,
+                    foot: foot
+                };
             }
 
-            const leftLeg = buildLeg(false);
-            const rightLeg = buildLeg(true);
+            const leftLeg = buildLeg(true);
+            pelvis.add(leftLeg.hip);
+
+            const rightLeg = buildLeg(false);
+            pelvis.add(rightLeg.hip);
 
             return {
+                robot,
                 root,
                 pelvis,
                 torso,
+                chestGroup,
+                neck,
                 head,
+                leftEye,
+                rightEye,
                 leftArm,
                 rightArm,
                 leftLeg,
-                rightLeg,
-                coreLight,
-                eyeLight,
-                flapL,
-                flapR
+                rightLeg
             };
         }
 
-        // Instantiate Iron Man Mark 85
-        const ironMan = createIronManArmor();
-        robotMasterGroup.add(ironMan.root);
+        const bot = createAgiBotModel();
+        scene.add(bot.robot);
 
-        // 6. Action State Manager (Fly, Suit Up, Blast, Walk, Patrol)
-        let currentActionName = 'Fly';
+        // 6. Kinematic State Machine
+        let currentAction = 'Walk';
         let actionElapsed = 0;
         let userInteracted = false;
-        let userInteractTimeout = null;
-        const clock = new THREE.Clock();
 
-        let mouseX = 0;
-        let mouseY = 0;
-        let scrollRatio = 0;
-        let isDragging = false;
-        let prevMouseX = 0;
-
-        const hudStatusMessages = {
-            Fly: 'STARK MK-85 • REPULSOR FLIGHT ENGAGED • ALT: 120M',
-            SuitUp: 'STARK MK-85 • NANOTECH ARMOR LOCK • ONLINE',
-            Blast: 'STARK MK-85 • REPULSOR BEAM DISCHARGE',
-            Walk: 'STARK MK-85 • BIPEDAL COMBAT STANCE',
-            Patrol: 'STARK MK-85 • SUPERSONIC ORBIT PATROL'
-        };
-
-        function triggerAction(actionName, fromClick = true) {
-            currentActionName = actionName;
+        function setAction(name) {
+            currentAction = name;
             actionElapsed = 0;
-
-            if (fromClick) {
-                userInteracted = true;
-                clearTimeout(userInteractTimeout);
-                userInteractTimeout = setTimeout(() => {
-                    userInteracted = false;
-                }, 16000);
-            }
-
-            // Reset master offset if switching away from Patrol
-            if (actionName !== 'Patrol') {
-                ironMan.root.position.set(0, 0, 0);
-                ironMan.root.rotation.set(0, 0, 0);
-            }
-
             actButtons.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-action') === actionName);
+                const act = btn.getAttribute('data-action');
+                if (act === name) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
             });
-
-            if (hudStatus && hudStatusMessages[actionName]) {
-                hudStatus.textContent = hudStatusMessages[actionName];
-            }
         }
 
         actButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                const action = btn.getAttribute('data-action');
-                triggerAction(action, true);
+                userInteracted = true;
+                const act = btn.getAttribute('data-action');
+                if (act) setAction(act);
             });
         });
 
-        // 7. Interactive User Dragging & Mouse Tracking
-        window.addEventListener('mousemove', (e) => {
-            const rect = container.getBoundingClientRect();
-            const cx = rect.left + rect.width / 2;
-            const cy = rect.top + rect.height / 2;
-            mouseX = (e.clientX - cx) / (window.innerWidth / 2);
-            mouseY = (e.clientY - cy) / (window.innerHeight / 2);
+        // 7. Interactive Mouse / Touch Drag Orbit
+        let isDragging = false;
+        let prevMouseX = 0;
+        let orbitYaw = 0;
+        let orbitVel = 0;
+
+        // Cursor Tracking Variables (Head moves smoothly with mouse cursor)
+        let mouseNormX = 0;
+        let mouseNormY = 0;
+        let targetHeadYaw = 0;
+        let targetHeadPitch = 0;
+
+        function onPointerMove(e) {
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            // Update normalized cursor position (-1 to +1)
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width > 0 && rect.height > 0) {
+                mouseNormX = ((clientX - rect.left) / rect.width) * 2 - 1;
+                mouseNormY = ((clientY - rect.top) / rect.height) * 2 - 1;
+            } else {
+                mouseNormX = (clientX / window.innerWidth) * 2 - 1;
+                mouseNormY = (clientY / window.innerHeight) * 2 - 1;
+            }
+
+            // Clamp values
+            mouseNormX = Math.max(-1.5, Math.min(1.5, mouseNormX));
+            mouseNormY = Math.max(-1.5, Math.min(1.5, mouseNormY));
 
             if (isDragging) {
-                const deltaX = e.clientX - prevMouseX;
-                robotMasterGroup.rotation.y += deltaX * 0.008;
-                prevMouseX = e.clientX;
-                userInteracted = true;
+                const deltaX = clientX - prevMouseX;
+                orbitVel = deltaX * 0.007;
+                orbitYaw += orbitVel;
+                prevMouseX = clientX;
             }
-        });
+        }
 
-        window.addEventListener('scroll', () => {
-            const docH = document.documentElement.scrollHeight - window.innerHeight;
-            scrollRatio = docH > 0 ? window.scrollY / docH : 0;
-        }, { passive: true });
-
-        container.addEventListener('mousedown', (e) => {
+        function onPointerDown(e) {
             isDragging = true;
-            prevMouseX = e.clientX;
             userInteracted = true;
-        });
-        window.addEventListener('mouseup', () => { isDragging = false; });
+            prevMouseX = e.touches ? e.touches[0].clientX : e.clientX;
+        }
 
-        // Touch gesture discrimination (Preserves smooth page scroll)
-        let touchStartX = 0;
-        let touchStartY = 0;
-        let isHorizontalSwipe = false;
-
-        container.addEventListener('touchstart', (e) => {
-            if (e.touches.length === 1) {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-                prevMouseX = touchStartX;
-                isHorizontalSwipe = false;
-                isDragging = false;
-                userInteracted = true;
-            }
-        }, { passive: true });
-
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length === 1) {
-                const currentX = e.touches[0].clientX;
-                const currentY = e.touches[0].clientY;
-                const deltaX = currentX - touchStartX;
-                const deltaY = currentY - touchStartY;
-
-                if (!isHorizontalSwipe && !isDragging) {
-                    if (Math.abs(deltaY) > Math.abs(deltaX)) {
-                        isDragging = false;
-                        return;
-                    }
-                    if (Math.abs(deltaX) > Math.abs(deltaY) + 6) {
-                        isHorizontalSwipe = true;
-                        isDragging = true;
-                        prevMouseX = currentX;
-                    }
-                }
-
-                if (isDragging) {
-                    const stepX = currentX - prevMouseX;
-                    robotMasterGroup.rotation.y += stepX * 0.008;
-                    prevMouseX = currentX;
-                }
-            }
-        }, { passive: true });
-
-        window.addEventListener('touchend', () => {
+        function onPointerUp() {
             isDragging = false;
-            isHorizontalSwipe = false;
-        });
+        }
 
-        window.addEventListener('touchcancel', () => {
-            isDragging = false;
-            isHorizontalSwipe = false;
-        });
+        window.addEventListener('mousemove', onPointerMove, { passive: true });
+        window.addEventListener('touchmove', onPointerMove, { passive: true });
+        container.addEventListener('mousedown', onPointerDown);
+        window.addEventListener('mouseup', onPointerUp);
+        container.addEventListener('touchstart', onPointerDown, { passive: true });
+        window.addEventListener('touchend', onPointerUp, { passive: true });
 
-        // 8. High-Fidelity 60 FPS Iron Man Kinematics Loop
-        let animTime = 0;
-        let walkPhase = 0;
+        // 8. Real-time Animation & Kinematics Loop
+        const clock = new THREE.Clock();
 
         function animate() {
             requestAnimationFrame(animate);
 
             const delta = Math.min(clock.getDelta(), 0.1);
-            animTime += delta;
+            const time = clock.getElapsedTime();
             actionElapsed += delta;
 
-            const pelvis = ironMan.pelvis;
-            const torso = ironMan.torso;
-            const head = ironMan.head;
-            const leftArm = ironMan.leftArm;
-            const rightArm = ironMan.rightArm;
-            const leftLeg = ironMan.leftLeg;
-            const rightLeg = ironMan.rightLeg;
-            const coreLight = ironMan.coreLight;
-            const eyeLight = ironMan.eyeLight;
-            const flapL = ironMan.flapL;
-            const flapR = ironMan.flapR;
-
-            // Target transformation defaults
-            let targetPelvisY = 0.96;
-            let targetPelvisZ = 0;
-            let targetTorsoX = 0;
-            let targetTorsoY = 0;
-            let targetHeadX = 0;
-            let targetHeadY = 0;
-            let targetHeadZ = 0;
-
-            let targetLShoulderX = 0;
-            let targetLShoulderY = 0;
-            let targetLShoulderZ = 0.14;
-            let targetLElbowX = 0.28;
-            let targetLElbowY = 0;
-            let targetLElbowZ = 0;
-
-            let targetRShoulderX = 0;
-            let targetRShoulderY = 0;
-            let targetRShoulderZ = -0.14;
-            let targetRElbowX = 0.28;
-            let targetRElbowY = 0;
-            let targetRElbowZ = 0;
-
-            let targetLHipX = 0;
-            let targetLKneeX = 0.04;
-            let targetLFootX = 0;
-
-            let targetRHipX = 0;
-            let targetRKneeX = 0.04;
-            let targetRFootX = 0;
-
-            let targetFlapAngle = 0;
-            let bootThrustersOn = false;
-            let repulsorsOn = false;
-            let rightBlastOn = false;
-
-            // Kinematic Action Calculations
-            switch (currentActionName) {
-                case 'Fly':
-                    // Iconic Iron Man Hovering Flight
-                    const hoverBob = Math.sin(animTime * 3.2) * 0.08;
-                    targetPelvisY = 1.35 + hoverBob;
-                    targetTorsoX = 0.28; // Sleek forward flight lean
-
-                    // Deploy Nano-Flight Flaps
-                    targetFlapAngle = 0.55;
-
-                    // Arms back & downward with palm repulsors stabilizing
-                    targetLShoulderX = 0.45;
-                    targetLShoulderZ = 0.32;
-                    targetLElbowX = 0.15;
-                    targetRShoulderX = 0.45;
-                    targetRShoulderZ = -0.32;
-                    targetRElbowX = 0.15;
-
-                    // Legs trailing in flight pose
-                    targetLHipX = 0.15;
-                    targetRHipX = 0.15;
-                    targetLKneeX = 0.25;
-                    targetRKneeX = 0.25;
-                    targetLFootX = 0.45; // Pointed toes
-                    targetRFootX = 0.45;
-
-                    bootThrustersOn = true;
-                    repulsorsOn = true;
-
-                    // Flickering flame effect
-                    const flicker = 1.0 + Math.sin(animTime * 35) * 0.15;
-                    leftLeg.thrusterCone.scale.set(flicker, flicker * 1.1, flicker);
-                    rightLeg.thrusterCone.scale.set(flicker, flicker * 1.1, flicker);
-                    break;
-
-                case 'SuitUp':
-                    // Nanotech Armor Assembly Sequence (2.4s)
-                    const sTime = actionElapsed % 2.4;
-                    if (sTime < 0.8) {
-                        // Phase 1: Nanotech energy surge
-                        const p = sTime / 0.8;
-                        targetPelvisY = 0.90;
-                        targetTorsoX = 0.12;
-                        targetLShoulderX = 0.3;
-                        targetRShoulderX = 0.3;
-                        targetFlapAngle = Math.sin(sTime * 12) * 0.6;
-                        coreLight.intensity = 5.5 + Math.sin(sTime * 25) * 2.0; // Blinding energy surge
-                        eyeLight.intensity = 3.5;
-                    } else if (sTime < 1.6) {
-                        // Phase 2: Clenching fists & power lock
-                        targetPelvisY = 0.96;
-                        targetTorsoX = -0.08;
-                        targetLShoulderZ = 0.45;
-                        targetRShoulderZ = -0.45;
-                        targetLElbowX = 1.2;
-                        targetRElbowX = 1.2;
-                        targetFlapAngle = 0.4;
-                        repulsorsOn = true;
-                        coreLight.intensity = 4.0;
-                    } else {
-                        // Phase 3: Battle ready lock
-                        targetPelvisY = 0.96;
-                        targetFlapAngle = 0;
-                        coreLight.intensity = 3.2;
-                    }
-                    break;
-
-                case 'Blast':
-                    // Repulsor Cannon Discharge Aimed at User
-                    targetPelvisY = 0.94;
-                    targetPelvisZ = 0.08;
-                    targetLHipX = 0.18;
-                    targetRHipX = -0.18;
-                    targetRKneeX = 0.15;
-
-                    // Right arm raises straight forward at camera
-                    targetRShoulderX = -1.55;
-                    targetRShoulderY = 0.15;
-                    targetRShoulderZ = -0.12;
-                    targetRElbowX = -0.15;
-                    rightBlastOn = true;
-
-                    // Recoil oscillation
-                    const blastPulse = Math.sin(actionElapsed * 8.0);
-                    targetRShoulderX += blastPulse * 0.08;
-
-                    // Left arm steadying at side
-                    targetLShoulderZ = 0.28;
-                    targetLElbowX = 0.4;
-                    break;
-
-                case 'Walk':
-                    // Armored Tony Stark Walk
-                    walkPhase += delta * 4.2;
-                    targetLHipX = Math.sin(walkPhase) * 0.45;
-                    targetRHipX = -Math.sin(walkPhase) * 0.45;
-                    targetLKneeX = Math.max(0.04, -Math.sin(walkPhase) * 0.55);
-                    targetRKneeX = Math.max(0.04, Math.sin(walkPhase) * 0.55);
-                    targetLFootX = -targetLHipX * 0.6;
-                    targetRFootX = -targetRHipX * 0.6;
-
-                    targetPelvisY = 0.96 + Math.abs(Math.sin(walkPhase * 2)) * 0.025;
-                    pelvis.rotation.y = Math.sin(walkPhase) * 0.04;
-                    targetTorsoY = -pelvis.rotation.y * 0.8;
-
-                    targetLShoulderX = -Math.sin(walkPhase) * 0.38;
-                    targetRShoulderX = Math.sin(walkPhase) * 0.38;
-                    targetLElbowX = 0.32;
-                    targetRElbowX = 0.32;
-                    break;
-
-                case 'Patrol':
-                    // Supersonic Banking Flight Orbit
-                    const orbitAngle = animTime * 0.95;
-                    ironMan.root.position.x = Math.sin(orbitAngle) * 0.85;
-                    ironMan.root.position.z = Math.cos(orbitAngle) * 0.52;
-                    ironMan.root.position.y = 1.15 + Math.sin(animTime * 3.5) * 0.08;
-                    ironMan.root.rotation.y = orbitAngle + Math.PI / 2;
-                    ironMan.root.rotation.z = -0.28; // Banking into the turn!
-
-                    targetTorsoX = 0.35;
-                    targetFlapAngle = 0.6;
-                    targetLShoulderX = 0.5;
-                    targetRShoulderX = 0.5;
-                    targetLFootX = 0.4;
-                    targetRFootX = 0.4;
-
-                    bootThrustersOn = true;
-                    repulsorsOn = true;
-                    break;
+            // Inertia decay for horizontal drag orbit
+            if (!isDragging) {
+                orbitVel *= 0.92;
+                orbitYaw += orbitVel;
             }
+            bot.robot.rotation.y = orbitYaw;
 
-            // Real-Time Head Tracking for Mouse Cursor
-            if (currentActionName !== 'Patrol') {
-                targetHeadY += mouseX * 0.42;
-                targetHeadX += -mouseY * 0.24 - scrollRatio * 0.2;
-            }
+            // Dais subtle holographic rotation & pulse
+            ringOuter.rotation.z = time * 0.15;
+            ringInner.rotation.z = -time * 0.22;
+            const eyeGlow = 0.85 + Math.sin(time * 3.5) * 0.15;
+            bot.leftEye.scale.set(1.0, eyeGlow, 1.0);
+            bot.rightEye.scale.set(1.0, eyeGlow, 1.0);
 
-            // Smooth 60 FPS Joint Interpolations (Lerp)
-            pelvis.position.y = THREE.MathUtils.lerp(pelvis.position.y, targetPelvisY, 0.12);
-            pelvis.position.z = THREE.MathUtils.lerp(pelvis.position.z, targetPelvisZ, 0.1);
+            // CURSOR-DRIVEN HEAD & NECK TRACKING
+            // User requested: "its heads should move or rotate along with the cursor"
+            targetHeadYaw = mouseNormX * 0.65;     // Horizontal yaw up to ~37 degrees
+            targetHeadPitch = mouseNormY * 0.35;   // Vertical pitch up to ~20 degrees
+            const targetHeadRoll = -mouseNormX * 0.10;
 
-            torso.rotation.x = THREE.MathUtils.lerp(torso.rotation.x, targetTorsoX, 0.1);
-            torso.rotation.y = THREE.MathUtils.lerp(torso.rotation.y, targetTorsoY, 0.1);
+            bot.head.rotation.y = THREE.MathUtils.lerp(bot.head.rotation.y, targetHeadYaw, 0.10);
+            bot.head.rotation.x = THREE.MathUtils.lerp(bot.head.rotation.x, targetHeadPitch, 0.10);
+            bot.head.rotation.z = THREE.MathUtils.lerp(bot.head.rotation.z, targetHeadRoll, 0.10);
 
-            head.rotation.x = THREE.MathUtils.lerp(head.rotation.x, targetHeadX, 0.12);
-            head.rotation.y = THREE.MathUtils.lerp(head.rotation.y, targetHeadY, 0.12);
-            head.rotation.z = THREE.MathUtils.lerp(head.rotation.z, targetHeadZ, 0.12);
+            // Gentle upper body torso assist following cursor
+            const targetTorsoYaw = mouseNormX * 0.20;
 
-            leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(leftArm.shoulder.rotation.x, targetLShoulderX, 0.12);
-            leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(leftArm.shoulder.rotation.y, targetLShoulderY, 0.12);
-            leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(leftArm.shoulder.rotation.z, targetLShoulderZ, 0.12);
-            leftArm.elbow.rotation.x = THREE.MathUtils.lerp(leftArm.elbow.rotation.x, targetLElbowX, 0.12);
+            // KINEMATICS ACCORDING TO ACTION
+            if (currentAction === 'Walk') {
+                // Natural Humanoid Bipedal Stride
+                const walkFreq = 3.6;
+                const w = time * walkFreq;
+                const legSwing = Math.sin(w) * 0.45;
+                const armSwing = Math.sin(w) * 0.38;
 
-            rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(rightArm.shoulder.rotation.x, targetRShoulderX, 0.12);
-            rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(rightArm.shoulder.rotation.y, targetRShoulderY, 0.12);
-            rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(rightArm.shoulder.rotation.z, targetRShoulderZ, 0.12);
-            rightArm.elbow.rotation.x = THREE.MathUtils.lerp(rightArm.elbow.rotation.x, targetRElbowX, 0.12);
-            rightArm.elbow.rotation.y = THREE.MathUtils.lerp(rightArm.elbow.rotation.y, targetRElbowY, 0.12);
-            rightArm.elbow.rotation.z = THREE.MathUtils.lerp(rightArm.elbow.rotation.z, targetRElbowZ, 0.12);
+                // Pelvis natural bounce & hips counter-oscillation
+                bot.root.position.y = Math.abs(Math.sin(w)) * 0.035;
+                bot.pelvis.rotation.z = Math.sin(w) * 0.03;
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw - Math.sin(w) * 0.08, 0.12);
+                bot.torso.rotation.x = 0.04; // subtle forward athletic lean
 
-            leftLeg.hip.rotation.x = THREE.MathUtils.lerp(leftLeg.hip.rotation.x, targetLHipX, 0.14);
-            leftLeg.knee.rotation.x = THREE.MathUtils.lerp(leftLeg.knee.rotation.x, targetLKneeX, 0.14);
-            leftLeg.foot.rotation.x = THREE.MathUtils.lerp(leftLeg.foot.rotation.x, targetLFootX, 0.14);
+                // Legs kinematics
+                bot.leftLeg.hip.rotation.x = legSwing;
+                bot.rightLeg.hip.rotation.x = -legSwing;
 
-            rightLeg.hip.rotation.x = THREE.MathUtils.lerp(rightLeg.hip.rotation.x, targetRHipX, 0.14);
-            rightLeg.knee.rotation.x = THREE.MathUtils.lerp(rightLeg.knee.rotation.x, targetRKneeX, 0.14);
-            rightLeg.foot.rotation.x = THREE.MathUtils.lerp(rightLeg.foot.rotation.x, targetRFootX, 0.14);
+                bot.leftLeg.knee.rotation.x = Math.max(0, -Math.cos(w) * 0.58);
+                bot.rightLeg.knee.rotation.x = Math.max(0, Math.cos(w) * 0.58);
 
-            // Nano-Flight Flaps Deployment
-            flapL.rotation.y = THREE.MathUtils.lerp(flapL.rotation.y, targetFlapAngle, 0.12);
-            flapR.rotation.y = THREE.MathUtils.lerp(flapR.rotation.y, -targetFlapAngle, 0.12);
+                bot.leftLeg.ankle.rotation.x = -legSwing * 0.5;
+                bot.rightLeg.ankle.rotation.x = legSwing * 0.5;
 
-            // Thruster Plume & Light Updates
-            leftLeg.thrusterCone.visible = bootThrustersOn;
-            rightLeg.thrusterCone.visible = bootThrustersOn;
-            leftLeg.thrusterLight.intensity = bootThrustersOn ? 3.5 : 0;
-            rightLeg.thrusterLight.intensity = bootThrustersOn ? 3.5 : 0;
+                // Arms reciprocal swing
+                bot.leftArm.shoulder.rotation.x = -armSwing;
+                bot.leftArm.shoulder.rotation.z = -0.15;
+                bot.leftArm.elbow.rotation.x = 0.25 + Math.max(0, -armSwing * 0.3);
 
-            leftArm.repulsorLight.intensity = repulsorsOn ? 2.5 : 0;
-            rightArm.repulsorLight.intensity = (repulsorsOn || rightBlastOn) ? 4.0 : 0;
-            rightArm.blastCone.visible = rightBlastOn;
-            if (rightBlastOn) {
-                const bFlicker = 1.0 + Math.sin(animTime * 40) * 0.2;
-                rightArm.blastCone.scale.set(bFlicker, bFlicker * 1.5, bFlicker);
-            }
+                bot.rightArm.shoulder.rotation.x = armSwing;
+                bot.rightArm.shoulder.rotation.z = 0.15;
+                bot.rightArm.elbow.rotation.x = 0.25 + Math.max(0, armSwing * 0.3);
 
-            // Arc Reactor Idle Pulse
-            if (currentActionName !== 'SuitUp') {
-                coreLight.intensity = 3.0 + Math.sin(animTime * 4.0) * 0.4;
-            }
+            } else if (currentAction === 'Wave') {
+                // FIXED FORWARD WAVE: Waving hand strictly IN FRONT of robot facing user!
+                const waveCycle = Math.sin(time * 6.5);
+                bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.1);
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw, 0.10);
+                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.02, 0.10);
+                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, -0.04, 0.10); // weight shift
 
-            // Floating Particles Motion
-            const positions = particleGeo.attributes.position.array;
-            for (let i = 0; i < particleCount; i++) {
-                positions[i * 3 + 1] += 0.004;
-                if (positions[i * 3 + 1] > 3.0) {
-                    positions[i * 3 + 1] = 0.1;
+                // Right Arm: Raised high, angled outward, FOREARM IN FRONT (+Z)
+                const targetRShoulderX = -1.80;
+                const targetRShoulderY = -0.60;
+                const targetRShoulderZ = 0.75 + waveCycle * 0.18;
+                const targetRElbowX = 0.45;
+                const targetRHandZ = waveCycle * 0.30;
+
+                bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, targetRShoulderX, 0.15);
+                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, targetRShoulderY, 0.15);
+                bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, targetRShoulderZ, 0.15);
+                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, targetRElbowX, 0.15);
+                bot.rightArm.hand.rotation.z = targetRHandZ;
+
+                // Left Arm: Relaxed at side with subtle balance sway
+                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, 0.08, 0.1);
+                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.15, 0.1);
+                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, 0.18, 0.1);
+
+                // Legs neutral balanced stance
+                bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, 0, 0.1);
+                bot.rightLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.hip.rotation.x, 0, 0.1);
+                bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 0.05, 0.1);
+                bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 0.05, 0.1);
+
+            } else if (currentAction === 'Greet') {
+                // FIXED FORWARD GREETING / HANDSHAKE: Extends hand directly forward (+Z) toward user!
+                const shakeCycle = Math.sin(actionElapsed * 6.0) * 0.08;
+                bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.1);
+
+                // Polite upper torso forward inclination
+                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.08, 0.12);
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw + 0.05, 0.10);
+                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, 0, 0.10);
+
+                // Right Arm: Reaching straight out toward camera
+                const targetRShoulderX = -1.45 + shakeCycle;
+                const targetRShoulderY = 0.10;
+                const targetRShoulderZ = -0.15;
+                const targetRElbowX = 0.20;
+
+                bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, targetRShoulderX, 0.15);
+                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, targetRShoulderY, 0.15);
+                bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, targetRShoulderZ, 0.15);
+                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, targetRElbowX, 0.15);
+                bot.rightArm.hand.rotation.x = -0.10;
+                bot.rightArm.hand.rotation.y = 0.15;
+
+                // Left Arm: Tucked neatly at side
+                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, 0.05, 0.1);
+                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.14, 0.1);
+                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, 0.15, 0.1);
+
+                // Legs firm grounded stance
+                bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, 0, 0.1);
+                bot.rightLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.hip.rotation.x, 0, 0.1);
+                bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 0.05, 0.1);
+                bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 0.05, 0.1);
+
+            } else if (currentAction === 'Jump') {
+                // Athletic Humanoid Leap & Cushion
+                const jumpPeriod = 1.6;
+                const phase = (actionElapsed % jumpPeriod) / jumpPeriod;
+
+                if (phase < 0.25) {
+                    // Crouch prepare
+                    const p = phase / 0.25;
+                    bot.root.position.y = -0.12 * Math.sin(p * Math.PI);
+                    bot.leftLeg.hip.rotation.x = -0.35 * p;
+                    bot.rightLeg.hip.rotation.x = -0.35 * p;
+                    bot.leftLeg.knee.rotation.x = 0.65 * p;
+                    bot.rightLeg.knee.rotation.x = 0.65 * p;
+                    bot.leftArm.shoulder.rotation.x = 0.4 * p;
+                    bot.rightArm.shoulder.rotation.x = 0.4 * p;
+                } else if (phase < 0.70) {
+                    // Airborne Jump Peak
+                    const p = (phase - 0.25) / 0.45;
+                    const jumpHeight = Math.sin(p * Math.PI) * 0.48;
+                    bot.root.position.y = jumpHeight;
+
+                    bot.leftLeg.hip.rotation.x = 0.25;
+                    bot.rightLeg.hip.rotation.x = -0.15;
+                    bot.leftLeg.knee.rotation.x = 0.35;
+                    bot.rightLeg.knee.rotation.x = 0.45;
+
+                    // Arms flared for aerodynamic balance
+                    bot.leftArm.shoulder.rotation.z = -0.7;
+                    bot.rightArm.shoulder.rotation.z = 0.7;
+                    bot.leftArm.shoulder.rotation.x = -0.3;
+                    bot.rightArm.shoulder.rotation.x = -0.3;
+                } else {
+                    // Landing cushion
+                    const p = (phase - 0.70) / 0.30;
+                    bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.2);
+                    bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, 0, 0.2);
+                    bot.rightLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.hip.rotation.x, 0, 0.2);
+                    bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 0.05, 0.2);
+                    bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 0.05, 0.2);
+                    bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.15, 0.2);
+                    bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, 0.15, 0.2);
                 }
-            }
-            particleGeo.attributes.position.needsUpdate = true;
-
-            // Platform Gyro Rotations
-            ring.rotation.z = animTime * 0.35;
-            innerRing.rotation.z = -animTime * 0.25;
-            platform.rotation.y = -animTime * 0.12;
-
-            if (currentActionName !== 'Patrol' && !isDragging) {
-                robotMasterGroup.rotation.y = THREE.MathUtils.lerp(robotMasterGroup.rotation.y, mouseX * 0.15, 0.04);
             }
 
             renderer.render(scene, camera);
         }
+
         animate();
 
-        // 9. Responsive Viewport Resize Observer
+        // 9. Dynamic Responsive Resize Handler
         function onWindowResize() {
-            if (!container || !renderer || !camera) return;
+            if (!container) return;
             width = container.clientWidth || 600;
-            height = container.clientHeight || 440;
+            height = container.clientHeight || 480;
+
             camera.aspect = width / height;
             if (width < 640) {
-                camera.fov = 38;
-                camera.position.set(0, 1.15, 4.7);
-            } else if (width < 1024) {
                 camera.fov = 36;
-                camera.position.set(0, 1.15, 4.5);
+                camera.position.set(0, 1.05, 4.3);
+            } else if (width < 1024) {
+                camera.fov = 33;
+                camera.position.set(0, 1.05, 4.1);
             } else {
-                camera.fov = 34;
-                camera.position.set(0, 1.15, 4.3);
+                camera.fov = 30;
+                camera.position.set(0, 1.05, 3.8);
             }
             camera.updateProjectionMatrix();
             renderer.setSize(width, height);
         }
         window.addEventListener('resize', onWindowResize);
 
-        // 10. Auto-Demonstration Loop
-        const autoCycle = ['Fly', 'SuitUp', 'Blast', 'Fly', 'Walk', 'Patrol'];
+        // 10. Auto-Demonstration Loop (Walk -> Wave -> Greet -> Jump)
+        const autoCycle = ['Walk', 'Wave', 'Greet', 'Jump'];
         let cycleIdx = 0;
         setInterval(() => {
             if (!userInteracted) {
                 cycleIdx = (cycleIdx + 1) % autoCycle.length;
-                triggerAction(autoCycle[cycleIdx], false);
+                setAction(autoCycle[cycleIdx]);
             }
-        }, 12000);
+        }, 9000);
     }
     initCyberBot();
 });

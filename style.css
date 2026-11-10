@@ -1332,60 +1332,7 @@ button, input, select, textarea {
   to { transform: rotate(0deg); }
 }
 
-/* Stark Industries Telemetry HUD Status Badge */
-.ironman-hud-badge {
-  position: relative;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  border-radius: 999px;
-  padding: 0.32rem 0.95rem;
-  margin: 0 auto 0.45rem auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 12px rgba(56, 189, 248, 0.15);
-  z-index: 10;
-  transition: all 0.3s ease;
-}
-
-[data-theme="light"] .ironman-hud-badge {
-  background: #ffffff;
-  border: 1px solid rgba(203, 213, 225, 0.95);
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06), 0 0 10px rgba(2, 132, 199, 0.1);
-}
-
-.hud-reactor-pulse {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #00f0ff;
-  box-shadow: 0 0 8px #00f0ff;
-  flex-shrink: 0;
-  animation: arcReactorPulse 1.4s ease-in-out infinite alternate;
-}
-
-@keyframes arcReactorPulse {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  100% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 14px #00f0ff; }
-}
-
-.hud-status-text {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--text-main);
-  text-transform: uppercase;
-}
-
-[data-theme="light"] .hud-status-text {
-  color: #0f172a;
-}
-
-/* 3D WebGL Iron Man Canvas Stage */
+/* 3D WebGL Humanoid Robot Canvas Stage */
 .interactive-robot-container {
   touch-action: pan-y !important;
 }
@@ -1393,8 +1340,8 @@ button, input, select, textarea {
 .robot-canvas-stage {
   position: relative;
   width: 100%;
-  max-width: 600px;
-  height: 440px;
+  max-width: 620px;
+  height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1421,7 +1368,7 @@ button, input, select, textarea {
 
 [data-theme="light"] #robot-webgl-canvas {
   background: transparent !important;
-  filter: drop-shadow(0 20px 45px rgba(185, 28, 28, 0.16));
+  filter: drop-shadow(0 20px 45px rgba(15, 23, 42, 0.14));
 }
 
 .canvas-ambient-pedestal {
@@ -1430,7 +1377,7 @@ button, input, select, textarea {
   width: 520px;
   height: 42px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(0, 240, 255, 0.55) 0%, rgba(234, 179, 8, 0.35) 45%, transparent 75%);
+  background: radial-gradient(ellipse, rgba(0, 240, 255, 0.55) 0%, rgba(37, 99, 235, 0.35) 45%, transparent 75%);
   filter: blur(16px);
   pointer-events: none;
   z-index: 1;
@@ -1446,47 +1393,47 @@ button, input, select, textarea {
 .robot-interactive-actions {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 0.65rem;
+  margin-top: 0.75rem;
   z-index: 10;
   width: 100%;
   max-width: 560px;
 }
 
 .robot-act-btn {
-  background: rgba(15, 18, 28, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: var(--text-main);
   font-family: var(--font-primary);
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  padding: 0.36rem 0.75rem;
+  padding: 0.42rem 0.95rem;
   border-radius: 999px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
 [data-theme="light"] .robot-act-btn {
   background: #ffffff;
   border: 1px solid rgba(203, 213, 225, 0.95);
   color: #0f172a;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
 }
 
 .robot-act-btn:hover,
 .robot-act-btn.active {
-  background: linear-gradient(135deg, #b91c1c 0%, #d97706 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   color: #ffffff !important;
   border-color: transparent;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(185, 28, 28, 0.4), 0 0 10px rgba(217, 119, 6, 0.3);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45), 0 0 12px rgba(0, 240, 255, 0.3);
 }
 
 .robot-act-btn.btn-chat-link {
@@ -1567,21 +1514,15 @@ button, input, select, textarea {
 
 @media (max-width: 480px) {
   .robot-canvas-stage {
-    height: 330px !important;
+    height: 350px !important;
     touch-action: pan-y !important;
   }
-  .ironman-hud-badge {
-    padding: 0.26rem 0.75rem;
-  }
-  .hud-status-text {
-    font-size: 0.66rem;
-  }
   .robot-interactive-actions {
-    gap: 0.25rem;
+    gap: 0.3rem;
   }
   .robot-act-btn {
-    font-size: 0.65rem;
-    padding: 0.26rem 0.52rem;
+    font-size: 0.70rem;
+    padding: 0.32rem 0.65rem;
   }
 }
 

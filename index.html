@@ -108,7 +108,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=4.5">
+    <link rel="stylesheet" href="style.css?v=5.0">
 </head>
 <body class="light-theme">
 
@@ -503,39 +503,30 @@
                         <div class="robot-orbit-ring ring-outer"></div>
                         <div class="robot-orbit-ring ring-inner"></div>
 
-                        <!-- Interactive Iron Man Mark 85 Container -->
+                        <!-- Interactive Humanoid Robot Container -->
                         <div class="interactive-robot-container" id="interactive-robot-container">
                             
-                            <!-- Stark Industries Telemetry Status Pill -->
-                            <div class="ironman-hud-badge" id="ironman-hud-badge">
-                                <span class="hud-reactor-pulse"></span>
-                                <span class="hud-status-text" id="ironman-status-text">STARK MK-85 • ARC REACTOR 100% ONLINE</span>
-                            </div>
-
-                            <!-- 3D WebGL Iron Man Stage -->
-                            <div class="robot-canvas-stage" id="robot-canvas-stage" title="Click or drag to interact with Iron Man Mark 85!">
+                            <!-- 3D WebGL Humanoid Robot Stage -->
+                            <div class="robot-canvas-stage" id="robot-canvas-stage" title="Click or drag to rotate and interact with the Humanoid Robot!">
                                 <canvas id="robot-webgl-canvas"></canvas>
                                 <div class="canvas-ambient-pedestal"></div>
                             </div>
 
-                            <!-- Sleek Iron Man Action Dock (Fly, Suit Up, Blast, Walk, Orbit + WhatsApp) -->
+                            <!-- Sleek Action Controls (Walk, Wave, Greet, Jump + WhatsApp) -->
                             <div class="robot-interactive-actions" id="robot-interactive-actions">
-                                <button type="button" class="robot-act-btn active" id="btn-act-fly" data-action="Fly" title="Repulsor Hover Flight">
-                                    <span>🚀 Fly</span>
-                                </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-suitup" data-action="SuitUp" title="Nanotech Armor Assembly">
-                                    <span>⚡ Suit Up</span>
-                                </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-blast" data-action="Blast" title="Repulsor Cannon Blast">
-                                    <span>💥 Blast</span>
-                                </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-walk" data-action="Walk" title="Armored Walk">
+                                <button type="button" class="robot-act-btn active" id="btn-act-walk" data-action="Walk" title="Bipedal Humanoid Locomotion">
                                     <span>🚶 Walk</span>
                                 </button>
-                                <button type="button" class="robot-act-btn" id="btn-act-patrol" data-action="Patrol" title="Supersonic Flight Orbit">
-                                    <span>🔄 Orbit</span>
+                                <button type="button" class="robot-act-btn" id="btn-act-wave" data-action="Wave" title="Friendly Warm Hand Wave">
+                                    <span>👋 Wave</span>
                                 </button>
-                                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20saw%20your%203D%20Iron%20Man%20experience%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="robot-act-btn btn-chat-link" id="btn-act-chat" title="Chat on WhatsApp">
+                                <button type="button" class="robot-act-btn" id="btn-act-greet" data-action="Greet" title="Executive Welcome Handshake">
+                                    <span>🤝 Greet</span>
+                                </button>
+                                <button type="button" class="robot-act-btn" id="btn-act-jump" data-action="Jump" title="Athletic Dynamic Jump">
+                                    <span>🦘 Jump</span>
+                                </button>
+                                <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20interacted%20with%20your%203D%20Humanoid%20Robot%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="robot-act-btn btn-chat-link" id="btn-act-chat" title="Chat on WhatsApp">
                                     <span>💬 WhatsApp</span>
                                 </a>
                             </div>
@@ -3164,6 +3155,6 @@
     <!-- GSAP Libraries CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- JS Script -->
-    <script src="main.js?v=4.5"></script>
+    <script src="main.js?v=5.0"></script>
 </body>
 </html>
