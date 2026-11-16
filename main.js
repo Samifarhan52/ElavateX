@@ -357,13 +357,33 @@ document.addEventListener('DOMContentLoaded', () => {
             particles.push(new SmokeParticle());
         }
 
+        let isSmokeVisible = true;
+        let smokeAnimating = true;
+
         function animateSmoke() {
+            if (!isSmokeVisible) {
+                smokeAnimating = false;
+                return;
+            }
             ctx.clearRect(0, 0, width, height);
             particles.forEach(p => {
                 p.update();
                 p.draw();
             });
             requestAnimationFrame(animateSmoke);
+        }
+
+        if ('IntersectionObserver' in window && smokeCanvas.parentElement) {
+            const smokeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    isSmokeVisible = entry.isIntersecting;
+                    if (isSmokeVisible && !smokeAnimating) {
+                        smokeAnimating = true;
+                        requestAnimationFrame(animateSmoke);
+                    }
+                });
+            }, { threshold: 0.05 });
+            smokeObserver.observe(smokeCanvas.parentElement);
         }
 
         animateSmoke();
@@ -519,142 +539,25 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('elavatex_theme', theme);
     }
 
-    // Celestial Micro-Spark Burst Particle Generator
-    function createMicroSparks(x, y, isTargetDark) {
-        const colors = isTargetDark 
-            ? ['#6366f1', '#38bdf8', '#a855f7', '#818cf8', '#c084fc']
-            : ['#f59e0b', '#fbbf24', '#d97706', '#fcd34d', '#fef08a'];
-        
-        for (let i = 0; i < 8; i++) {
-            const spark = document.createElement('span');
-            spark.className = 'theme-spark-particle';
-            const angle = (Math.PI * 2 / 8) * i + (Math.random() * 0.3 - 0.15);
-            const dist = 34 + Math.random() * 24;
-            const tx = Math.cos(angle) * dist;
-            const ty = Math.sin(angle) * dist;
-            const size = 3 + Math.random() * 4;
-
-            spark.style.width = `${size}px`;
-            spark.style.height = `${size}px`;
-            spark.style.backgroundColor = colors[i % colors.length];
-            spark.style.boxShadow = `0 0 10px ${colors[i % colors.length]}`;
-            spark.style.left = `${x}px`;
-            spark.style.top = `${y}px`;
-            spark.style.setProperty('--spark-tx', `${tx}px`);
-            spark.style.setProperty('--spark-ty', `${ty}px`);
-
-            document.body.appendChild(spark);
-            setTimeout(() => spark.remove(), 700);
-        }
-    }
-
     function executeThemeTransition(e, triggerBtn) {
         if (isThemeTransitioning) return;
         isThemeTransitioning = true;
 
         const currentTheme = htmlEl.getAttribute('data-theme') || 'light';
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        const isTargetDark = newTheme === 'dark';
 
-        // Animate button bounce physics
+        // Animate button bounce physics briskly
         if (triggerBtn) {
             triggerBtn.classList.add('btn-bouncing');
-            setTimeout(() => triggerBtn.classList.remove('btn-bouncing'), 350);
+            setTimeout(() => triggerBtn.classList.remove('btn-bouncing'), 200);
         }
 
-        // Determine transition origin coordinates
-        let x, y;
-        if (e && typeof e.clientX === 'number' && e.clientX > 0) {
-            x = e.clientX;
-            y = e.clientY;
-        } else if (triggerBtn) {
-            const rect = triggerBtn.getBoundingClientRect();
-            x = rect.left + rect.width / 2;
-            y = rect.top + rect.height / 2;
-        } else {
-            x = window.innerWidth / 2;
-            y = 50;
-        }
+        // Switch theme instantly
+        setTheme(newTheme);
 
-        // Spawn celestial micro-sparks from button position
-        createMicroSparks(x, y, isTargetDark);
-
-        // Calculate max radius needed to cover the furthest corner of viewport
-        const endRadius = Math.hypot(
-            Math.max(x, window.innerWidth - x),
-            Math.max(y, window.innerHeight - y)
-        );
-
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // Synchronize all CSS variables during the sweep
-        htmlEl.classList.add('theme-switching');
         setTimeout(() => {
-            htmlEl.classList.remove('theme-switching');
             isThemeTransitioning = false;
-        }, 700);
-
-        // Option A: Modern Browser View Transitions API with circular clip-path reveal
-        if (!prefersReducedMotion && document.startViewTransition) {
-            try {
-                const transition = document.startViewTransition(() => {
-                    setTheme(newTheme);
-                });
-
-                transition.ready.then(() => {
-                    try {
-                        document.documentElement.animate(
-                            {
-                                clipPath: [
-                                    `circle(0px at ${x}px ${y}px)`,
-                                    `circle(${endRadius}px at ${x}px ${y}px)`
-                                ]
-                            },
-                            {
-                                duration: 620,
-                                easing: 'cubic-bezier(0.2, 0, 0, 1)',
-                                pseudoElement: '::view-transition-new(root)'
-                            }
-                        );
-                    } catch (animErr) {
-                        // Animation error fallback
-                    }
-                }).catch(() => {
-                    // Ready error fallback
-                });
-                return;
-            } catch (err) {
-                // If startViewTransition throws, fallback to Option B below
-            }
-        }
-
-        // Option B: High-Performance Hardware Accelerated Radial Ripple Fallback
-        if (!prefersReducedMotion) {
-            const diameter = endRadius * 2.2;
-            const ripple = document.createElement('div');
-            ripple.className = 'theme-transition-fallback-ripple';
-            ripple.style.left = `${x}px`;
-            ripple.style.top = `${y}px`;
-            ripple.style.width = `${diameter}px`;
-            ripple.style.height = `${diameter}px`;
-            ripple.style.backgroundColor = isTargetDark ? '#0f1117' : '#f6f1eb';
-            ripple.style.opacity = '1';
-
-            document.body.appendChild(ripple);
-
-            requestAnimationFrame(() => {
-                ripple.style.transform = 'translate(-50%, -50%) scale(1)';
-            });
-
-            setTimeout(() => {
-                setTheme(newTheme);
-                ripple.style.opacity = '0';
-                setTimeout(() => ripple.remove(), 400);
-            }, 300);
-        } else {
-            // Option C: Instant with reduced motion
-            setTheme(newTheme);
-        }
+        }, 150);
     }
 
     // Attach to all theme buttons across the site
@@ -2885,15 +2788,23 @@ Would you like to start a project inquiry right now?`;
         let targetHeadYaw = 0;
         let targetHeadPitch = 0;
 
+        // Cached Canvas Geometry (Prevents forced synchronous reflow on every mousemove)
+        let canvasRect = null;
+        function updateCanvasRect() {
+            if (canvas) canvasRect = canvas.getBoundingClientRect();
+        }
+        updateCanvasRect();
+        window.addEventListener('resize', updateCanvasRect, { passive: true });
+        window.addEventListener('scroll', updateCanvasRect, { passive: true });
+
         function onPointerMove(e) {
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-            // Update normalized cursor position (-1 to +1)
-            const rect = canvas.getBoundingClientRect();
-            if (rect.width > 0 && rect.height > 0) {
-                mouseNormX = ((clientX - rect.left) / rect.width) * 2 - 1;
-                mouseNormY = ((clientY - rect.top) / rect.height) * 2 - 1;
+            if (!canvasRect) updateCanvasRect();
+            if (canvasRect && canvasRect.width > 0 && canvasRect.height > 0) {
+                mouseNormX = ((clientX - canvasRect.left) / canvasRect.width) * 2 - 1;
+                mouseNormY = ((clientY - canvasRect.top) / canvasRect.height) * 2 - 1;
             } else {
                 mouseNormX = (clientX / window.innerWidth) * 2 - 1;
                 mouseNormY = (clientY / window.innerHeight) * 2 - 1;
@@ -2928,10 +2839,16 @@ Would you like to start a project inquiry right now?`;
         container.addEventListener('touchstart', onPointerDown, { passive: true });
         window.addEventListener('touchend', onPointerUp, { passive: true });
 
-        // 8. Real-time Animation & Kinematics Loop
+        // 8. Real-time Animation & Kinematics Loop with Viewport Throttling
         const clock = new THREE.Clock();
+        let isBotVisible = true;
+        let isBotAnimating = true;
 
         function animate() {
+            if (!isBotVisible) {
+                isBotAnimating = false;
+                return;
+            }
             requestAnimationFrame(animate);
 
             const delta = Math.min(clock.getDelta(), 0.1);
@@ -3140,6 +3057,21 @@ Would you like to start a project inquiry right now?`;
             }
 
             renderer.render(scene, camera);
+        }
+
+        // Viewport Intersection Throttling (Halts Three.js rendering when scrolled away)
+        if ('IntersectionObserver' in window && container) {
+            const botObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    isBotVisible = entry.isIntersecting;
+                    if (isBotVisible && !isBotAnimating) {
+                        isBotAnimating = true;
+                        clock.getDelta();
+                        requestAnimationFrame(animate);
+                    }
+                });
+            }, { threshold: 0.05 });
+            botObserver.observe(container);
         }
 
         animate();

@@ -112,37 +112,15 @@
   will-change: transform, opacity;
 }
 
-/* Global Synchronized Color Interpolation During Switch */
-html.theme-switching,
-html.theme-switching *,
-html.theme-switching *::before,
-html.theme-switching *::after {
-  transition: background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              background 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-              fill 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-/* Micro Spark Particles on Theme Toggle */
-.theme-spark-particle {
-  position: fixed;
-  pointer-events: none;
-  z-index: 10000000;
-  border-radius: 50%;
-  animation: sparkFloat 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes sparkFloat {
-  0% {
-    opacity: 1;
-    transform: translate(-50%, -50%) translate(0, 0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) translate(var(--spark-tx), var(--spark-ty)) scale(0);
-  }
+/* Optimized Responsive Theme Transitions - Targeted & Instant (Zero Jank) */
+body,
+.navbar,
+.footer-section,
+.hero-section,
+.bento-card,
+.modern-service-card,
+.deck-card {
+  transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease;
 }
 
 /* --------------------------------------------------------------------------
