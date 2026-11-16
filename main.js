@@ -431,6 +431,14 @@ document.addEventListener('DOMContentLoaded', () => {
             rating: 5,
             comment: "The education portals built by ElavateX completely revolutionized our student counseling workflow. Responsive college matching, lightning-fast search filters, and seamless admissions inquiries.",
             date: "Verified Client"
+        },
+        {
+            id: 5,
+            name: "Roohi Mohamed & Executive Team",
+            company: "Azalea Tourism & Consultancy (azaleaconsultancy.com • Doha, Qatar)",
+            rating: 5,
+            comment: "ElavateX engineered our certified visa & relocation portal with exceptional precision. Fast loading across the GCC, integrated WhatsApp client routing, and seamless multi-pathway immigration funnels.",
+            date: "Verified Enterprise Client"
         }
     ];
 
@@ -610,6 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
         projects: [
             { name: "TRAIT Innovation", url: "https://traitinnovation.com", category: "Enterprise AI & Deep Tech Platform" },
             { name: "HelloBotz", url: "https://hellobotz.com", category: "WhatsApp Marketing & Automation Platform" },
+            { name: "Azalea Tourism & Consultancy", url: "https://azaleaconsultancy.com", category: "Global Visa, Relocation & Corporate Immigration Advisory (Doha, Qatar)" },
             { name: "The Edu Consultant - Admissions", url: "https://theeduconsultant.com", category: "Higher Education Direct Admissions & Quota Portal" },
             { name: "The Edu Consultant - Bengaluru", url: "https://bangalore.theeduconsultant.com", category: "Bengaluru Schools & Colleges Discovery Engine" },
             { name: "The Edu Consultant - Study Abroad", url: "https://theeduconsultant.in", category: "Global Study Abroad & Overseas Education Portal" },
