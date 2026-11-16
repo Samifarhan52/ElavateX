@@ -2081,12 +2081,11 @@ Would you like to start a project inquiry right now?`;
     initHeroWordRotator();
 
     // -------------------------------------------------------------------------
-    // AGIBOT RAISE A1 (PREMIUM BIPEDAL HUMANOID ROBOT & KINEMATICS ENGINE)
+    // SOPHISTICATED HYBRID HUMAN-HUMANOID ANDROID (AUTONOMOUS EMOTIONAL LIFECYCLE)
     // -------------------------------------------------------------------------
     function initCyberBot() {
         const canvas = document.getElementById('robot-webgl-canvas');
         const container = document.getElementById('robot-canvas-stage');
-        const actButtons = document.querySelectorAll('.robot-act-btn[data-action]');
 
         if (!canvas || !container || typeof THREE === 'undefined') return;
 
@@ -2108,7 +2107,7 @@ Would you like to start a project inquiry right now?`;
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-        // 2. Camera Framing (Frames AgiBot Humanoid in dynamic studio composition)
+        // 2. Camera Framing (Frames Android Humanoid in dynamic studio composition)
         const scene = new THREE.Scene();
         const isMobileInit = width < 640;
         const initFov = isMobileInit ? 36 : (width < 1024 ? 33 : 30);
@@ -2117,12 +2116,12 @@ Would you like to start a project inquiry right now?`;
         camera.position.set(0, 1.05, initZ);
         camera.lookAt(0, 0.95, 0);
 
-        // 3. Cinematic Studio Lighting (Matching AgiBot Raise A1 Reference)
-        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x1e293b, 0.75);
+        // 3. Cinematic Studio Lighting (Warm Key + Porcelain Fill + Cyan Cyber Edge)
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x1e293b, 0.85);
         scene.add(hemiLight);
 
-        // Key light (soft white front-right)
-        const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+        // Key light (soft warm white front-right)
+        const keyLight = new THREE.DirectionalLight(0xfffbf5, 1.5);
         keyLight.position.set(2.8, 3.8, 3.2);
         keyLight.castShadow = true;
         keyLight.shadow.mapSize.width = 1024;
@@ -2130,17 +2129,17 @@ Would you like to start a project inquiry right now?`;
         keyLight.shadow.bias = -0.0005;
         scene.add(keyLight);
 
-        // Fill light (cool slate front-left)
-        const fillLight = new THREE.DirectionalLight(0x94a3b8, 0.65);
+        // Fill light (porcelain skin compliment slate front-left)
+        const fillLight = new THREE.DirectionalLight(0xd9e2ec, 0.75);
         fillLight.position.set(-3.0, 2.2, 2.5);
         scene.add(fillLight);
 
-        // Cyan Rim / Kicker Light (Gives the signature AgiBot rim glow on helmet and shoulders)
-        const rimLight = new THREE.DirectionalLight(0x00f0ff, 1.7);
+        // Cyan Rim / Cyber Backlight (Signature luminescent android silhouette)
+        const rimLight = new THREE.DirectionalLight(0x00d2ff, 1.85);
         rimLight.position.set(1.5, 2.8, -2.8);
         scene.add(rimLight);
 
-        // Subtle bottom blue glow
+        // Subtle bottom blue ground glow
         const bottomGlow = new THREE.PointLight(0x0284c7, 1.2, 6);
         bottomGlow.position.set(0, 0.1, 0.5);
         scene.add(bottomGlow);
@@ -2190,17 +2189,17 @@ Would you like to start a project inquiry right now?`;
         function syncThreeTheme() {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || document.body.classList.contains('dark-theme');
             if (isDark) {
-                keyLight.color.setHex(0xffffff);
-                keyLight.intensity = 1.45;
+                keyLight.color.setHex(0xfffbf5);
+                keyLight.intensity = 1.50;
                 fillLight.color.setHex(0x94a3b8);
                 fillLight.intensity = 0.65;
-                rimLight.color.setHex(0x00f0ff);
-                rimLight.intensity = 1.85;
+                rimLight.color.setHex(0x00d2ff);
+                rimLight.intensity = 1.90;
                 bottomGlow.color.setHex(0x0284c7);
                 bottomGlow.intensity = 1.3;
                 hemiLight.color.setHex(0xffffff);
                 hemiLight.groundColor.setHex(0x0f172a);
-                hemiLight.intensity = 0.65;
+                hemiLight.intensity = 0.70;
                 daisBase.material.color.setHex(0x0f172a);
                 ringOuter.material.color.setHex(0x00f0ff);
                 ringOuter.material.opacity = 0.75;
@@ -2208,16 +2207,16 @@ Would you like to start a project inquiry right now?`;
                 ringTicks.material.color.setHex(0x00f0ff);
             } else {
                 keyLight.color.setHex(0xffffff);
-                keyLight.intensity = 1.30;
+                keyLight.intensity = 1.35;
                 fillLight.color.setHex(0xcfd8dc);
-                fillLight.intensity = 0.75;
+                fillLight.intensity = 0.80;
                 rimLight.color.setHex(0x0284c7);
-                rimLight.intensity = 1.40;
+                rimLight.intensity = 1.45;
                 bottomGlow.color.setHex(0x00d2ff);
                 bottomGlow.intensity = 0.95;
                 hemiLight.color.setHex(0xffffff);
                 hemiLight.groundColor.setHex(0xe2e8f0);
-                hemiLight.intensity = 0.85;
+                hemiLight.intensity = 0.90;
                 daisBase.material.color.setHex(0x1e293b);
                 ringOuter.material.color.setHex(0x0284c7);
                 ringOuter.material.opacity = 0.85;
@@ -2233,275 +2232,430 @@ Would you like to start a project inquiry right now?`;
         }
         window.addEventListener('themeChanged', () => syncThreeTheme());
 
-        // 5. Build AgiBot Raise A1 Humanoid Character
-        function createAgiBotModel() {
+        // 5. Build Sophisticated Human-Humanoid Android Character (Photo Reference Match)
+        function createAndroidHumanoidModel() {
             const robot = new THREE.Group();
-            robot.name = 'AgiBot_Raise_A1';
+            robot.name = 'Humanoid_Android';
 
-            // Premium PBR Materials matching AgiBot Raise A1 reference photo
-            const whiteArmorMat = new THREE.MeshStandardMaterial({
-                color: 0xf8fafc,
-                roughness: 0.22,
-                metalness: 0.15
+            // Premium PBR Materials matching Photo Reference (media_1794818827155_e79cd8e8.jpg)
+            const porcelainSkinMat = new THREE.MeshStandardMaterial({
+                color: 0xf3efe8, // Warm porcelain cyber skin
+                roughness: 0.38,
+                metalness: 0.08
             });
 
-            const blackChassisMat = new THREE.MeshStandardMaterial({
-                color: 0x16181d,
-                roughness: 0.55,
-                metalness: 0.45
+            const whiteCeramicMat = new THREE.MeshStandardMaterial({
+                color: 0xf8fafc, // High-gloss ceramic white armor plating
+                roughness: 0.20,
+                metalness: 0.18
             });
 
-            const darkJointMat = new THREE.MeshStandardMaterial({
-                color: 0x22262e,
-                roughness: 0.4,
-                metalness: 0.7
+            const blackCarbonMat = new THREE.MeshStandardMaterial({
+                color: 0x12151c, // Matte black carbon fiber under-chassis
+                roughness: 0.58,
+                metalness: 0.40
+            });
+
+            const darkTitaniumMat = new THREE.MeshStandardMaterial({
+                color: 0x222632, // Dark gunmetal titanium joint pivots
+                roughness: 0.35,
+                metalness: 0.80
             });
 
             const chromeMat = new THREE.MeshStandardMaterial({
-                color: 0xdde3ea,
-                roughness: 0.15,
-                metalness: 0.95
+                color: 0xe2e8f0, // Polished mirror chrome hydraulic rods & vertebrae
+                roughness: 0.10,
+                metalness: 0.98
             });
 
-            const cyanGlowMat = new THREE.MeshBasicMaterial({
-                color: 0x00f0ff
+            const lipMat = new THREE.MeshStandardMaterial({
+                color: 0xc4b2a2, // Delicate natural human lips
+                roughness: 0.42,
+                metalness: 0.04
             });
 
-            // Root node for vertical jumping and global offset
+            const eyeWhiteMat = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                roughness: 0.12,
+                metalness: 0.08
+            });
+
+            const eyeIrisMat = new THREE.MeshStandardMaterial({
+                color: 0x00d2ff, // Luminous android iris
+                roughness: 0.20,
+                emissive: 0x00b4d8,
+                emissiveIntensity: 0.55
+            });
+
+            const eyePupilMat = new THREE.MeshBasicMaterial({
+                color: 0x05070d
+            });
+
+            const statusLedMat = new THREE.MeshBasicMaterial({
+                color: 0x00f0ff // Status core LED (cyan in calm, amber/red in anger)
+            });
+
+            const deskMat = new THREE.MeshStandardMaterial({
+                color: 0x0f172a,
+                roughness: 0.12,
+                metalness: 0.85,
+                transparent: true,
+                opacity: 0.88
+            });
+
+            // Root node for vertical elevation, sitting and global offset
             const root = new THREE.Group();
             robot.add(root);
 
-            // Pelvis & Hip Core
+            // Pelvis & Hip Structure
             const pelvis = new THREE.Group();
             pelvis.position.y = 0.96;
             root.add(pelvis);
 
             const pelvisCore = new THREE.Mesh(
-                new THREE.CylinderGeometry(0.12, 0.10, 0.14, 16),
-                blackChassisMat
+                new THREE.CylinderGeometry(0.11, 0.09, 0.14, 16),
+                blackCarbonMat
             );
             pelvis.add(pelvisCore);
 
-            // White hip fairing plates
             const hipLeftPlate = new THREE.Mesh(
-                new THREE.BoxGeometry(0.06, 0.12, 0.14),
-                whiteArmorMat
+                new THREE.BoxGeometry(0.055, 0.12, 0.14),
+                whiteCeramicMat
             );
-            hipLeftPlate.position.set(-0.13, 0.01, 0);
+            hipLeftPlate.position.set(-0.125, 0.01, 0);
             pelvis.add(hipLeftPlate);
 
             const hipRightPlate = hipLeftPlate.clone();
-            hipRightPlate.position.x = 0.13;
+            hipRightPlate.position.x = 0.125;
             pelvis.add(hipRightPlate);
 
-            // Torso Group (Pivots from waist)
+            // Torso Group (Pivots from waist for human expressive posturing)
             const torso = new THREE.Group();
             torso.position.y = 0.08;
             pelvis.add(torso);
 
-            // Abdominal Spine Articulation (matte black segmented spine)
+            // Abdominal Segmented Cyber-Spine
             for (let i = 0; i < 3; i++) {
                 const spineSegment = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.09 - i * 0.005, 0.10 - i * 0.005, 0.045, 14),
-                    blackChassisMat
+                    new THREE.CylinderGeometry(0.085 - i * 0.005, 0.095 - i * 0.005, 0.045, 14),
+                    blackCarbonMat
                 );
                 spineSegment.position.y = 0.04 + i * 0.05;
                 torso.add(spineSegment);
             }
 
-            // Chest & Ribcage Armor Structure
+            // Chest & Clavicle Group
             const chestGroup = new THREE.Group();
             chestGroup.position.y = 0.22;
             torso.add(chestGroup);
 
-            // Inner Black Chassis Ribs
+            // Internal Carbon Chassis Core
             const chestCore = new THREE.Mesh(
-                new THREE.BoxGeometry(0.26, 0.24, 0.18),
-                blackChassisMat
+                new THREE.BoxGeometry(0.25, 0.23, 0.17),
+                blackCarbonMat
             );
             chestGroup.add(chestCore);
 
-            // Outer Aerodynamic White Chest Armor Plate
-            const chestPlate = new THREE.Mesh(
-                new THREE.BoxGeometry(0.28, 0.22, 0.12),
-                whiteArmorMat
+            // Ergonomic White Ceramic Chest Armor (Left & Right Pectorals)
+            const leftPectoral = new THREE.Mesh(
+                new THREE.BoxGeometry(0.125, 0.19, 0.10),
+                whiteCeramicMat
             );
-            chestPlate.position.set(0, 0.02, 0.05);
-            chestGroup.add(chestPlate);
+            leftPectoral.position.set(-0.068, 0.02, 0.055);
+            chestGroup.add(leftPectoral);
 
-            // Chest Brand Accent Ridge
-            const chestRidge = new THREE.Mesh(
-                new THREE.BoxGeometry(0.18, 0.04, 0.02),
-                darkJointMat
+            const rightPectoral = new THREE.Mesh(
+                new THREE.BoxGeometry(0.125, 0.19, 0.10),
+                whiteCeramicMat
             );
-            chestRidge.position.set(0, 0.08, 0.115);
-            chestGroup.add(chestRidge);
+            rightPectoral.position.set(0.068, 0.02, 0.055);
+            chestGroup.add(rightPectoral);
 
-            // Iconic Cyan LED Lower Chest Arc / Glow Strip
-            const chestLedStrip = new THREE.Mesh(
-                new THREE.TorusGeometry(0.10, 0.009, 8, 24, Math.PI * 0.8),
-                cyanGlowMat
+            // Collarbone / Clavicle Arch
+            const clavicleBar = new THREE.Mesh(
+                new THREE.BoxGeometry(0.24, 0.035, 0.08),
+                whiteCeramicMat
             );
-            chestLedStrip.rotation.x = Math.PI * 0.5;
-            chestLedStrip.rotation.z = Math.PI * 0.6;
-            chestLedStrip.position.set(0, -0.05, 0.112);
-            chestGroup.add(chestLedStrip);
+            clavicleBar.position.set(0, 0.115, 0.05);
+            chestGroup.add(clavicleBar);
 
-            // Back Battery / Pack Housing
-            const backPack = new THREE.Mesh(
+            // Central Sternum Status Core (Luminescent Gem / Eye)
+            const sternumCore = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.022, 0.022, 0.012, 16),
+                statusLedMat
+            );
+            sternumCore.rotation.x = Math.PI * 0.5;
+            sternumCore.position.set(0, 0.03, 0.11);
+            chestGroup.add(sternumCore);
+
+            // Ergonomic White Backplate
+            const backArmor = new THREE.Mesh(
                 new THREE.BoxGeometry(0.22, 0.20, 0.08),
-                whiteArmorMat
+                whiteCeramicMat
             );
-            backPack.position.set(0, 0.02, -0.10);
-            chestGroup.add(backPack);
+            backArmor.position.set(0, 0.02, -0.095);
+            chestGroup.add(backArmor);
 
-            // Neck Assembly & Dual Hydraulic Cylinders
+            // Cervical Spine Neck Assembly
             const neck = new THREE.Group();
             neck.position.y = 0.16;
             chestGroup.add(neck);
 
-            const neckPivot = new THREE.Mesh(
-                new THREE.CylinderGeometry(0.04, 0.045, 0.08, 12),
-                blackChassisMat
-            );
-            neck.add(neckPivot);
-
-            // Dual Hydraulic Actuators
-            const neckHydroL = new THREE.Mesh(
-                new THREE.CylinderGeometry(0.01, 0.01, 0.07, 8),
+            // Central Vertebrae
+            const cervicalColumn = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.032, 0.038, 0.085, 14),
                 chromeMat
             );
-            neckHydroL.position.set(-0.035, 0, 0.015);
+            neck.add(cervicalColumn);
+
+            // Exposed Neck Cables & Hydraulic Actuators (Matching Photo)
+            const neckHydroL = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.009, 0.009, 0.075, 8),
+                chromeMat
+            );
+            neckHydroL.position.set(-0.032, 0, 0.015);
             neck.add(neckHydroL);
 
             const neckHydroR = neckHydroL.clone();
-            neckHydroR.position.x = 0.035;
+            neckHydroR.position.x = 0.032;
             neck.add(neckHydroR);
 
-            // Head Group (Smooth tracking pivot)
+            const neckCableL = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.006, 0.006, 0.08, 8),
+                blackCarbonMat
+            );
+            neckCableL.position.set(-0.025, 0, -0.025);
+            neckCableL.rotation.z = 0.12;
+            neck.add(neckCableL);
+
+            const neckCableR = neckCableL.clone();
+            neckCableR.position.x = 0.025;
+            neckCableR.rotation.z = -0.12;
+            neck.add(neckCableR);
+
+            // -------------------------------------------------------------
+            // HEAD & SCULPTED HUMAN-HUMANOID FACE (Photo Match)
+            // -------------------------------------------------------------
             const head = new THREE.Group();
-            head.position.y = 0.07;
+            head.position.y = 0.075;
             neck.add(head);
 
-            // Obsidian Dark Face Helmet (AgiBot Head Profile)
-            const helmetCranium = new THREE.Mesh(
-                new THREE.SphereGeometry(0.095, 24, 20),
-                blackChassisMat
+            // 1. Ceramic White Cranium / Skull Helmet (Top, back and temples)
+            const skullHelmet = new THREE.Mesh(
+                new THREE.SphereGeometry(0.096, 24, 20),
+                whiteCeramicMat
             );
-            helmetCranium.scale.set(1.0, 1.25, 1.15);
-            head.add(helmetCranium);
+            skullHelmet.scale.set(0.96, 1.25, 1.10);
+            head.add(skullHelmet);
 
-            // Aerodynamic Rear Head Shell (White Top / Back Accent)
-            const helmetRearPlate = new THREE.Mesh(
-                new THREE.SphereGeometry(0.098, 20, 16, 0, Math.PI * 2, 0, Math.PI * 0.45),
-                whiteArmorMat
+            // 2. Sculpted Porcelain Human Face Group
+            const faceGroup = new THREE.Group();
+            faceGroup.position.set(0, -0.005, 0.025);
+            head.add(faceGroup);
+
+            // Smooth Facial Base (Cheeks, Temples & Forehead)
+            const faceBase = new THREE.Mesh(
+                new THREE.SphereGeometry(0.085, 22, 18, 0, Math.PI, 0, Math.PI),
+                porcelainSkinMat
             );
-            helmetRearPlate.position.set(0, 0.02, -0.02);
-            head.add(helmetRearPlate);
+            faceBase.rotation.y = -Math.PI * 0.5;
+            faceBase.scale.set(0.95, 1.18, 0.95);
+            faceGroup.add(faceBase);
 
-            // Curved Glossy Obsidian Visor Face Plate
-            const visorMesh = new THREE.Mesh(
-                new THREE.CylinderGeometry(0.072, 0.065, 0.14, 16, 1, false, -Math.PI * 0.35, Math.PI * 0.7),
-                new THREE.MeshStandardMaterial({
-                    color: 0x08090c,
-                    roughness: 0.1,
-                    metalness: 0.8
-                })
+            // Sculpted Tapered Chin & Jawline
+            const jawChin = new THREE.Mesh(
+                new THREE.ConeGeometry(0.055, 0.08, 16),
+                porcelainSkinMat
             );
-            visorMesh.position.set(0, 0.01, 0.05);
-            head.add(visorMesh);
+            jawChin.rotation.x = Math.PI;
+            jawChin.scale.set(0.95, 0.85, 0.58);
+            jawChin.position.set(0, -0.076, 0.038);
+            faceGroup.add(jawChin);
 
-            // TWO VERTICAL CYAN LED SLIT EYES (Iconic AgiBot Raise A1 signature: ||)
-            const leftEye = new THREE.Mesh(
-                new THREE.BoxGeometry(0.013, 0.046, 0.01),
-                cyanGlowMat
+            // Defined Cheekbone Contours
+            const cheekL = new THREE.Mesh(
+                new THREE.BoxGeometry(0.032, 0.038, 0.025),
+                porcelainSkinMat
             );
-            leftEye.position.set(-0.032, 0.018, 0.108);
-            leftEye.rotation.y = -0.12;
-            head.add(leftEye);
+            cheekL.position.set(-0.042, -0.012, 0.072);
+            cheekL.rotation.y = 0.3;
+            faceGroup.add(cheekL);
 
-            const rightEye = new THREE.Mesh(
-                new THREE.BoxGeometry(0.013, 0.046, 0.01),
-                cyanGlowMat
+            const cheekR = cheekL.clone();
+            cheekR.position.x = 0.042;
+            cheekR.rotation.y = -0.3;
+            faceGroup.add(cheekR);
+
+            // Sculpted Human Nose
+            const noseBridge = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.004, 0.009, 0.044, 8),
+                porcelainSkinMat
             );
-            rightEye.position.set(0.032, 0.018, 0.108);
-            rightEye.rotation.y = 0.12;
-            head.add(rightEye);
+            noseBridge.rotation.x = -0.32;
+            noseBridge.position.set(0, 0.008, 0.092);
+            faceGroup.add(noseBridge);
 
-            // Ear Pod Sensor Rings
-            const leftEar = new THREE.Mesh(
-                new THREE.CylinderGeometry(0.024, 0.024, 0.012, 16),
-                darkJointMat
+            const noseTip = new THREE.Mesh(
+                new THREE.SphereGeometry(0.0075, 12, 10),
+                porcelainSkinMat
             );
-            leftEar.rotation.z = Math.PI * 0.5;
-            leftEar.position.set(-0.102, 0.01, 0.01);
-            head.add(leftEar);
+            noseTip.position.set(0, -0.012, 0.104);
+            faceGroup.add(noseTip);
 
-            const leftEarLight = new THREE.Mesh(
-                new THREE.RingGeometry(0.012, 0.020, 16),
-                cyanGlowMat
+            // Sculpted Human Lips
+            const upperLip = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.0035, 0.0035, 0.026, 8),
+                lipMat
             );
-            leftEarLight.rotation.y = -Math.PI * 0.5;
-            leftEarLight.position.set(-0.109, 0.01, 0.01);
-            head.add(leftEarLight);
+            upperLip.rotation.z = Math.PI * 0.5;
+            upperLip.position.set(0, -0.036, 0.088);
+            faceGroup.add(upperLip);
 
-            const rightEar = leftEar.clone();
-            rightEar.position.x = 0.102;
-            head.add(rightEar);
+            const lowerLip = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.0045, 0.0045, 0.022, 8),
+                lipMat
+            );
+            lowerLip.rotation.z = Math.PI * 0.5;
+            lowerLip.position.set(0, -0.046, 0.085);
+            faceGroup.add(lowerLip);
 
-            const rightEarLight = leftEarLight.clone();
-            rightEarLight.rotation.y = Math.PI * 0.5;
-            rightEarLight.position.x = 0.109;
-            head.add(rightEarLight);
+            // Synthetic Eyebrow Lines
+            const browL = new THREE.Mesh(
+                new THREE.BoxGeometry(0.030, 0.003, 0.004),
+                darkTitaniumMat
+            );
+            browL.position.set(-0.034, 0.045, 0.084);
+            browL.rotation.z = -0.08;
+            faceGroup.add(browL);
 
-            // LIMBS FUNCTION: Arms (5-Finger Dexterous Hands)
+            const browR = browL.clone();
+            browR.position.x = 0.034;
+            browR.rotation.z = 0.08;
+            faceGroup.add(browR);
+
+            // 3. Humanoid Android Eyes (Realistic Iris & Sclera, as seen in photo)
+            function buildEye(isLeft) {
+                const eyeGroup = new THREE.Group();
+                const side = isLeft ? -1 : 1;
+                eyeGroup.position.set(side * 0.033, 0.022, 0.076);
+
+                // White Sclera
+                const sclera = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.015, 16, 12),
+                    eyeWhiteMat
+                );
+                eyeGroup.add(sclera);
+
+                // Glowing Cyan Iris Disc
+                const iris = new THREE.Mesh(
+                    new THREE.CircleGeometry(0.0085, 16),
+                    eyeIrisMat
+                );
+                iris.position.z = 0.0145;
+                eyeGroup.add(iris);
+
+                // Deep Black Pupil
+                const pupil = new THREE.Mesh(
+                    new THREE.CircleGeometry(0.0042, 12),
+                    eyePupilMat
+                );
+                pupil.position.z = 0.0148;
+                eyeGroup.add(pupil);
+
+                // Synthetic Upper Eyelid Frame (Lash line contour)
+                const eyelidUpper = new THREE.Mesh(
+                    new THREE.TorusGeometry(0.014, 0.0022, 6, 16, Math.PI),
+                    darkTitaniumMat
+                );
+                eyelidUpper.rotation.z = Math.PI;
+                eyelidUpper.position.set(0, 0.002, 0.0135);
+                eyeGroup.add(eyelidUpper);
+
+                return { eyeGroup, iris, pupil };
+            }
+
+            const leftEyeObj = buildEye(true);
+            faceGroup.add(leftEyeObj.eyeGroup);
+
+            const rightEyeObj = buildEye(false);
+            faceGroup.add(rightEyeObj.eyeGroup);
+
+            // 4. Mechanical Ear Pods with Glowing Rings (Matching Photo)
+            function buildEarPod(isLeft) {
+                const earGroup = new THREE.Group();
+                const side = isLeft ? -1 : 1;
+                earGroup.position.set(side * 0.098, 0.012, 0.005);
+
+                const earHub = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.022, 0.022, 0.015, 16),
+                    darkTitaniumMat
+                );
+                earHub.rotation.z = Math.PI * 0.5;
+                earGroup.add(earHub);
+
+                const earRingLight = new THREE.Mesh(
+                    new THREE.RingGeometry(0.011, 0.018, 16),
+                    statusLedMat
+                );
+                earRingLight.rotation.y = side * -Math.PI * 0.5;
+                earRingLight.position.x = side * 0.0085;
+                earGroup.add(earRingLight);
+
+                return earGroup;
+            }
+
+            head.add(buildEarPod(true));
+            head.add(buildEarPod(false));
+
+            // -------------------------------------------------------------
+            // LIMBS: Arms with Articulated 5-Finger Dexterous Hands
+            // -------------------------------------------------------------
             function buildArm(isLeft) {
                 const side = isLeft ? -1 : 1;
                 const shoulderPivot = new THREE.Group();
-                shoulderPivot.position.set(side * 0.20, 0.12, 0);
+                shoulderPivot.position.set(side * 0.19, 0.12, 0.01);
 
-                // Shoulder Ball Joint
+                // Shoulder Articulated Titanium Ball
                 const shoulderBall = new THREE.Mesh(
-                    new THREE.SphereGeometry(0.052, 16, 14),
-                    darkJointMat
+                    new THREE.SphereGeometry(0.050, 16, 14),
+                    darkTitaniumMat
                 );
                 shoulderPivot.add(shoulderBall);
 
-                // White Deltoid Cowl
+                // White Ceramic Deltoid Shell
                 const shoulderCowl = new THREE.Mesh(
-                    new THREE.SphereGeometry(0.065, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.6),
-                    whiteArmorMat
+                    new THREE.SphereGeometry(0.062, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.6),
+                    whiteCeramicMat
                 );
-                shoulderCowl.position.set(side * 0.015, 0.02, 0);
+                shoulderCowl.position.set(side * 0.014, 0.02, 0);
                 shoulderPivot.add(shoulderCowl);
 
-                // Upper Arm
+                // Upper Arm Group
                 const upperArm = new THREE.Group();
                 shoulderPivot.add(upperArm);
 
                 const bicepCore = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.038, 0.034, 0.18, 12),
-                    blackChassisMat
+                    new THREE.CylinderGeometry(0.036, 0.032, 0.18, 12),
+                    blackCarbonMat
                 );
-                bicepCore.position.y = -0.10;
+                bicepCore.position.y = -0.095;
                 upperArm.add(bicepCore);
 
-                // White Armor Plate on Bicep
                 const bicepArmor = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.055, 0.14, 0.06),
-                    whiteArmorMat
+                    new THREE.BoxGeometry(0.052, 0.14, 0.055),
+                    whiteCeramicMat
                 );
-                bicepArmor.position.set(side * 0.015, -0.10, 0.01);
+                bicepArmor.position.set(side * 0.015, -0.095, 0.01);
                 upperArm.add(bicepArmor);
 
-                // Elbow Joint
+                // Elbow Joint Group
                 const elbowPivot = new THREE.Group();
-                elbowPivot.position.y = -0.21;
+                elbowPivot.position.y = -0.20;
                 upperArm.add(elbowPivot);
 
                 const elbowDisc = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.038, 0.038, 0.05, 14),
-                    darkJointMat
+                    new THREE.CylinderGeometry(0.032, 0.032, 0.05, 14),
+                    chromeMat
                 );
                 elbowDisc.rotation.z = Math.PI * 0.5;
                 elbowPivot.add(elbowDisc);
@@ -2511,84 +2665,81 @@ Would you like to start a project inquiry right now?`;
                 elbowPivot.add(forearm);
 
                 const forearmCore = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.034, 0.028, 0.18, 12),
-                    blackChassisMat
+                    new THREE.CylinderGeometry(0.030, 0.024, 0.18, 12),
+                    blackCarbonMat
                 );
-                forearmCore.position.y = -0.10;
+                forearmCore.position.y = -0.095;
                 forearm.add(forearmCore);
 
-                // Aerodynamic White Forearm Shell
                 const forearmArmor = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.054, 0.15, 0.056),
-                    whiteArmorMat
+                    new THREE.BoxGeometry(0.046, 0.14, 0.050),
+                    whiteCeramicMat
                 );
-                forearmArmor.position.set(side * 0.01, -0.10, 0.01);
+                forearmArmor.position.set(side * 0.008, -0.095, 0.012);
                 forearm.add(forearmArmor);
 
-                // Wrist Joint
+                // Wrist Group
                 const wristPivot = new THREE.Group();
                 wristPivot.position.y = -0.20;
                 forearm.add(wristPivot);
 
                 const wristRing = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.025, 0.025, 0.03, 12),
-                    darkJointMat
+                    new THREE.CylinderGeometry(0.022, 0.022, 0.02, 12),
+                    darkTitaniumMat
                 );
                 wristPivot.add(wristRing);
 
-                // Hand Group (5 Articulated Dexterous Fingers)
+                // Hand Group & Palm
                 const hand = new THREE.Group();
+                hand.position.y = -0.018;
                 wristPivot.add(hand);
 
-                // Palm Core
                 const palm = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.046, 0.055, 0.022),
-                    blackChassisMat
+                    new THREE.BoxGeometry(0.044, 0.055, 0.018),
+                    whiteCeramicMat
                 );
-                palm.position.y = -0.035;
+                palm.position.y = -0.028;
                 hand.add(palm);
 
-                // Fingers (Thumb + 4 Fingers)
-                for (let f = 0; f < 4; f++) {
-                    const fx = (f - 1.5) * 0.011;
-                    const fingerLen = (f === 1 || f === 2) ? 0.042 : 0.036;
+                // 5 Articulated Fingers (Thumb, Index, Middle, Ring, Pinky)
+                const fingers = [];
+                const fingerConfigs = [
+                    { x: side * 0.022, y: -0.018, z: 0.008, len: 0.025, isThumb: true },
+                    { x: -0.015, y: -0.056, z: 0, len: 0.030 },
+                    { x: -0.005, y: -0.058, z: 0, len: 0.033 },
+                    { x: 0.006, y: -0.056, z: 0, len: 0.029 },
+                    { x: 0.016, y: -0.052, z: 0, len: 0.024 }
+                ];
 
-                    const fingerBase = new THREE.Mesh(
-                        new THREE.BoxGeometry(0.008, fingerLen * 0.55, 0.009),
-                        darkJointMat
-                    );
-                    fingerBase.position.set(fx, -0.065 - fingerLen * 0.25, 0);
+                fingerConfigs.forEach((cfg) => {
+                    const fingerBase = new THREE.Group();
+                    fingerBase.position.set(cfg.x, cfg.y, cfg.z);
                     hand.add(fingerBase);
 
-                    const fingerTip = new THREE.Mesh(
-                        new THREE.BoxGeometry(0.007, fingerLen * 0.45, 0.008),
-                        blackChassisMat
+                    const knuckle = new THREE.Mesh(
+                        new THREE.SphereGeometry(0.005, 8, 8),
+                        darkTitaniumMat
                     );
-                    fingerTip.position.set(fx, -0.065 - fingerLen * 0.75, 0.002);
-                    hand.add(fingerTip);
-                }
+                    fingerBase.add(knuckle);
 
-                // Thumb
-                const thumbGroup = new THREE.Group();
-                thumbGroup.position.set(side * 0.024, -0.04, 0.006);
-                thumbGroup.rotation.z = side * 0.45;
-                thumbGroup.rotation.y = side * 0.35;
-                hand.add(thumbGroup);
+                    const seg = new THREE.Mesh(
+                        new THREE.CylinderGeometry(0.004, 0.0035, cfg.len, 6),
+                        whiteCeramicMat
+                    );
+                    seg.position.y = -cfg.len * 0.5;
+                    fingerBase.add(seg);
 
-                const thumbPhalange = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.008, 0.032, 0.009),
-                    darkJointMat
-                );
-                thumbPhalange.position.y = -0.016;
-                thumbGroup.add(thumbPhalange);
+                    fingers.push(fingerBase);
+                });
 
                 return {
                     shoulder: shoulderPivot,
-                    upperArm: upperArm,
+                    upperArm,
                     elbow: elbowPivot,
-                    forearm: forearm,
+                    forearm,
                     wrist: wristPivot,
-                    hand: hand
+                    hand,
+                    fingers
                 };
             }
 
@@ -2598,128 +2749,94 @@ Would you like to start a project inquiry right now?`;
             const rightArm = buildArm(false);
             chestGroup.add(rightArm.shoulder);
 
-            // LIMBS FUNCTION: Legs with Rear Hydraulic Damper Struts
+            // -------------------------------------------------------------
+            // LEGS & BIPEDAL MOBILITY
+            // -------------------------------------------------------------
             function buildLeg(isLeft) {
                 const side = isLeft ? -1 : 1;
                 const hipPivot = new THREE.Group();
                 hipPivot.position.set(side * 0.11, -0.06, 0);
 
-                // Hip Joint
-                const hipBall = new THREE.Mesh(
-                    new THREE.SphereGeometry(0.058, 16, 14),
-                    darkJointMat
+                const hipJoint = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.048, 16, 14),
+                    darkTitaniumMat
                 );
-                hipPivot.add(hipBall);
+                hipPivot.add(hipJoint);
 
-                // Thigh
-                const thighGroup = new THREE.Group();
-                hipPivot.add(thighGroup);
+                // Thigh Group
+                const thigh = new THREE.Group();
+                hipPivot.add(thigh);
 
                 const thighCore = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.052, 0.045, 0.36, 14),
-                    blackChassisMat
+                    new THREE.CylinderGeometry(0.042, 0.036, 0.38, 14),
+                    blackCarbonMat
                 );
                 thighCore.position.y = -0.20;
-                thighGroup.add(thighCore);
+                thigh.add(thighCore);
 
-                // Athletic Pearlescent White Front & Outer Armor Shell
-                const thighPlate = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.09, 0.34, 0.10),
-                    whiteArmorMat
+                const thighArmorFront = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.068, 0.30, 0.065),
+                    whiteCeramicMat
                 );
-                thighPlate.position.set(side * 0.01, -0.20, 0.02);
-                thighGroup.add(thighPlate);
+                thighArmorFront.position.set(0, -0.19, 0.022);
+                thigh.add(thighArmorFront);
 
-                // Knee Joint
+                // Knee Joint Group
                 const kneePivot = new THREE.Group();
                 kneePivot.position.y = -0.40;
-                thighGroup.add(kneePivot);
+                thigh.add(kneePivot);
 
-                const kneeCap = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.048, 0.048, 0.07, 16),
-                    darkJointMat
-                );
-                kneeCap.rotation.z = Math.PI * 0.5;
-                kneePivot.add(kneeCap);
-
-                const kneePuck = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.06, 0.06, 0.04),
-                    whiteArmorMat
-                );
-                kneePuck.position.set(0, 0, 0.04);
-                kneePivot.add(kneePuck);
-
-                // Calf / Lower Leg
-                const calfGroup = new THREE.Group();
-                kneePivot.add(calfGroup);
-
-                const calfCore = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.042, 0.035, 0.38, 14),
-                    blackChassisMat
-                );
-                calfCore.position.y = -0.20;
-                calfGroup.add(calfCore);
-
-                // Slender White Shin Guard Armor
-                const shinArmor = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.075, 0.34, 0.08),
-                    whiteArmorMat
-                );
-                shinArmor.position.set(0, -0.19, 0.025);
-                calfGroup.add(shinArmor);
-
-                // REAR HYDRAULIC DAMPER STRUT RODS (AgiBot Photo Signature Detail!)
-                const damperRodUpper = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.007, 0.007, 0.22, 8),
+                const kneeDisc = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.038, 0.038, 0.055, 16),
                     chromeMat
                 );
-                damperRodUpper.position.set(side * 0.02, -0.16, -0.05);
-                calfGroup.add(damperRodUpper);
+                kneeDisc.rotation.z = Math.PI * 0.5;
+                kneePivot.add(kneeDisc);
 
-                const damperSleeve = new THREE.Mesh(
-                    new THREE.CylinderGeometry(0.012, 0.012, 0.12, 8),
-                    darkJointMat
+                // Calf / Shin Group
+                const calf = new THREE.Group();
+                kneePivot.add(calf);
+
+                const shinCore = new THREE.Mesh(
+                    new THREE.CylinderGeometry(0.032, 0.028, 0.38, 14),
+                    blackCarbonMat
                 );
-                damperSleeve.position.set(side * 0.02, -0.25, -0.05);
-                calfGroup.add(damperSleeve);
+                shinCore.position.y = -0.20;
+                calf.add(shinCore);
+
+                const shinArmor = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.062, 0.30, 0.058),
+                    whiteCeramicMat
+                );
+                shinArmor.position.set(0, -0.19, 0.02);
+                calf.add(shinArmor);
 
                 // Ankle & Foot
                 const anklePivot = new THREE.Group();
-                anklePivot.position.y = -0.42;
-                calfGroup.add(anklePivot);
+                anklePivot.position.y = -0.40;
+                calf.add(anklePivot);
 
-                const ankleJoint = new THREE.Mesh(
-                    new THREE.SphereGeometry(0.035, 12, 10),
-                    darkJointMat
+                const foot = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.065, 0.042, 0.16),
+                    darkTitaniumMat
                 );
-                anklePivot.add(ankleJoint);
-
-                // Foot / Robotic Boot
-                const foot = new THREE.Group();
-                foot.position.set(0, -0.02, 0.02);
+                foot.position.set(0, -0.025, 0.035);
                 anklePivot.add(foot);
 
-                const footBase = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.08, 0.045, 0.19),
-                    blackChassisMat
+                const footArmor = new THREE.Mesh(
+                    new THREE.BoxGeometry(0.060, 0.025, 0.09),
+                    whiteCeramicMat
                 );
-                footBase.position.set(0, -0.02, 0.03);
-                foot.add(footBase);
-
-                const footTopFairing = new THREE.Mesh(
-                    new THREE.BoxGeometry(0.074, 0.035, 0.12),
-                    whiteArmorMat
-                );
-                footTopFairing.position.set(0, 0.005, 0.02);
-                foot.add(footTopFairing);
+                footArmor.position.set(0, -0.015, 0.02);
+                anklePivot.add(footArmor);
 
                 return {
                     hip: hipPivot,
-                    thigh: thighGroup,
+                    thigh,
                     knee: kneePivot,
-                    calf: calfGroup,
+                    calf,
                     ankle: anklePivot,
-                    foot: foot
+                    foot
                 };
             }
 
@@ -2729,6 +2846,35 @@ Would you like to start a project inquiry right now?`;
             const rightLeg = buildLeg(false);
             pelvis.add(rightLeg.hip);
 
+            // -------------------------------------------------------------
+            // MINIMALIST MODERN OFFICE / STUDIO CONSOLE (Matching Photo Desk)
+            // -------------------------------------------------------------
+            const deskGroup = new THREE.Group();
+            deskGroup.position.set(0, 0.62, 0.28);
+            robot.add(deskGroup);
+
+            const deskTop = new THREE.Mesh(
+                new THREE.BoxGeometry(0.72, 0.024, 0.32),
+                deskMat
+            );
+            deskTop.castShadow = true;
+            deskTop.receiveShadow = true;
+            deskGroup.add(deskTop);
+
+            // Holographic Keyboard & Workspace Grid Strip
+            const holoGrid = new THREE.Mesh(
+                new THREE.PlaneGeometry(0.42, 0.16),
+                new THREE.MeshBasicMaterial({
+                    color: 0x00d2ff,
+                    transparent: true,
+                    opacity: 0.35,
+                    side: THREE.DoubleSide
+                })
+            );
+            holoGrid.rotation.x = -Math.PI * 0.5;
+            holoGrid.position.set(0, 0.013, 0.02);
+            deskGroup.add(holoGrid);
+
             return {
                 robot,
                 root,
@@ -2737,44 +2883,45 @@ Would you like to start a project inquiry right now?`;
                 chestGroup,
                 neck,
                 head,
-                leftEye,
-                rightEye,
+                leftEye: leftEyeObj,
+                rightEye: rightEyeObj,
+                statusLedMat,
+                eyeIrisMat,
                 leftArm,
                 rightArm,
                 leftLeg,
-                rightLeg
+                rightLeg,
+                deskGroup
             };
         }
 
-        const bot = createAgiBotModel();
+        const bot = createAndroidHumanoidModel();
         scene.add(bot.robot);
 
-        // 6. Kinematic State Machine
-        let currentAction = 'Walk';
+        // 6. Kinematic State Machine & Autonomous Lifecycle
+        // Cycles smoothly through: Sit -> Bored -> Greet -> Happy -> Walk -> Jump -> Anger -> Sit
+        const emotionsCycle = ['Sit', 'Bored', 'Greet', 'Happy', 'Walk', 'Jump', 'Anger'];
+        let currentEmotionIdx = 0;
+        let currentAction = 'Sit';
         let actionElapsed = 0;
-        let userInteracted = false;
 
         function setAction(name) {
             currentAction = name;
             actionElapsed = 0;
-            actButtons.forEach(btn => {
-                const act = btn.getAttribute('data-action');
-                if (act === name) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
         }
 
-        actButtons.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                userInteracted = true;
-                const act = btn.getAttribute('data-action');
-                if (act) setAction(act);
-            });
-        });
+        // Color definitions for sentient emotional LED modulation
+        const calmIrisColor = new THREE.Color(0x00d2ff);
+        const calmIrisEmissive = new THREE.Color(0x00b4d8);
+        const calmLedColor = new THREE.Color(0x00f0ff);
+
+        const angryIrisColor = new THREE.Color(0xff3b30);
+        const angryIrisEmissive = new THREE.Color(0xff453a);
+        const angryLedColor = new THREE.Color(0xff2d55);
+
+        const boredIrisColor = new THREE.Color(0x0284c7);
+        const boredIrisEmissive = new THREE.Color(0x0369a1);
+        const boredLedColor = new THREE.Color(0x0ea5e9);
 
         // 7. Interactive Mouse / Touch Drag Orbit
         let isDragging = false;
@@ -2782,13 +2929,13 @@ Would you like to start a project inquiry right now?`;
         let orbitYaw = 0;
         let orbitVel = 0;
 
-        // Cursor Tracking Variables (Head moves smoothly with mouse cursor)
+        // Cursor Tracking Variables (Head & eyes smoothly track cursor position)
         let mouseNormX = 0;
         let mouseNormY = 0;
         let targetHeadYaw = 0;
         let targetHeadPitch = 0;
 
-        // Cached Canvas Geometry (Prevents forced synchronous reflow on every mousemove)
+        // Cached Canvas Geometry (Prevents forced synchronous reflow)
         let canvasRect = null;
         function updateCanvasRect() {
             if (canvas) canvasRect = canvas.getBoundingClientRect();
@@ -2824,7 +2971,6 @@ Would you like to start a project inquiry right now?`;
 
         function onPointerDown(e) {
             isDragging = true;
-            userInteracted = true;
             prevMouseX = e.touches ? e.touches[0].clientX : e.clientX;
         }
 
@@ -2865,155 +3011,307 @@ Would you like to start a project inquiry right now?`;
             // Dais subtle holographic rotation & pulse
             ringOuter.rotation.z = time * 0.15;
             ringInner.rotation.z = -time * 0.22;
-            const eyeGlow = 0.85 + Math.sin(time * 3.5) * 0.15;
-            bot.leftEye.scale.set(1.0, eyeGlow, 1.0);
-            bot.rightEye.scale.set(1.0, eyeGlow, 1.0);
 
-            // CURSOR-DRIVEN HEAD & NECK TRACKING
-            // User requested: "its heads should move or rotate along with the cursor"
-            targetHeadYaw = mouseNormX * 0.65;     // Horizontal yaw up to ~37 degrees
-            targetHeadPitch = mouseNormY * 0.35;   // Vertical pitch up to ~20 degrees
-            const targetHeadRoll = -mouseNormX * 0.10;
+            // SENTIENT EMOTIONAL COLOR & LIGHT MODULATION
+            let targetIrisCol = calmIrisColor;
+            let targetIrisEmissive = calmIrisEmissive;
+            let targetLedCol = calmLedColor;
+            let targetEmissiveIntensity = 0.55;
 
-            bot.head.rotation.y = THREE.MathUtils.lerp(bot.head.rotation.y, targetHeadYaw, 0.10);
-            bot.head.rotation.x = THREE.MathUtils.lerp(bot.head.rotation.x, targetHeadPitch, 0.10);
-            bot.head.rotation.z = THREE.MathUtils.lerp(bot.head.rotation.z, targetHeadRoll, 0.10);
+            if (currentAction === 'Anger') {
+                targetIrisCol = angryIrisColor;
+                targetIrisEmissive = angryIrisEmissive;
+                targetLedCol = angryLedColor;
+                targetEmissiveIntensity = 0.85 + Math.sin(time * 8.0) * 0.25;
+            } else if (currentAction === 'Bored') {
+                targetIrisCol = boredIrisColor;
+                targetIrisEmissive = boredIrisEmissive;
+                targetLedCol = boredLedColor;
+                targetEmissiveIntensity = 0.30;
+            } else if (currentAction === 'Happy') {
+                targetIrisCol = calmIrisColor;
+                targetIrisEmissive = calmIrisEmissive;
+                targetLedCol = calmLedColor;
+                targetEmissiveIntensity = 0.75 + Math.sin(time * 9.0) * 0.25;
+            }
 
-            // Gentle upper body torso assist following cursor
-            const targetTorsoYaw = mouseNormX * 0.20;
+            bot.eyeIrisMat.color.lerp(targetIrisCol, 0.08);
+            bot.eyeIrisMat.emissive.lerp(targetIrisEmissive, 0.08);
+            bot.eyeIrisMat.emissiveIntensity = THREE.MathUtils.lerp(bot.eyeIrisMat.emissiveIntensity, targetEmissiveIntensity, 0.08);
+            bot.statusLedMat.color.lerp(targetLedCol, 0.08);
 
-            // KINEMATICS ACCORDING TO ACTION
-            if (currentAction === 'Walk') {
-                // Natural Humanoid Bipedal Stride
+            // CURSOR-DRIVEN HEAD & EYE TRACKING (Smooth lifelike response)
+            targetHeadYaw = mouseNormX * 0.65;
+            targetHeadPitch = mouseNormY * 0.35;
+            let targetHeadRoll = -mouseNormX * 0.10;
+            const targetTorsoYaw = mouseNormX * 0.18;
+
+            // DESK DYNAMIC ELEVATION & SLIDE (In sit/bored, desk glides up; in standing, it sinks flush into dais)
+            const isSeated = (currentAction === 'Sit' || currentAction === 'Bored');
+            const targetDeskY = isSeated ? 0.62 : -0.50;
+            bot.deskGroup.position.y = THREE.MathUtils.lerp(bot.deskGroup.position.y, targetDeskY, 0.12);
+            bot.deskGroup.visible = (bot.deskGroup.position.y > -0.35);
+
+            // -----------------------------------------------------------------
+            // KINEMATICS ACCORDING TO EMOTIONAL ACTION
+            // -----------------------------------------------------------------
+            if (currentAction === 'Sit') {
+                // FOCUSED CYBER WORK / RAPID CODING & TYPING
+                bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, -0.24, 0.12);
+                bot.pelvis.rotation.z = THREE.MathUtils.lerp(bot.pelvis.rotation.z, 0, 0.12);
+
+                // Torso slight forward lean with gentle natural breathing
+                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.08 + Math.sin(time * 2.2) * 0.015, 0.12);
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw * 0.5, 0.12);
+                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, 0, 0.12);
+
+                // Seated Legs (thighs horizontal, knees 90 deg down, feet flat)
+                bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, -1.48, 0.12);
+                bot.rightLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.hip.rotation.x, -1.48, 0.12);
+                bot.leftLeg.hip.rotation.y = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.y, -0.06, 0.12);
+                bot.rightLeg.hip.rotation.y = THREE.MathUtils.lerp(bot.rightLeg.hip.rotation.y, 0.06, 0.12);
+                bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 1.54, 0.12);
+                bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 1.54, 0.12);
+                bot.leftLeg.ankle.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.ankle.rotation.x, -0.08, 0.12);
+                bot.rightLeg.ankle.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.ankle.rotation.x, -0.08, 0.12);
+
+                // Arms: Forearms over desk, hands typing on holographic keys
+                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, -0.42, 0.15);
+                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0.18, 0.15);
+                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.15, 0.15);
+                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, -1.25, 0.15);
+                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0.15, 0.15);
+                bot.leftArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.x, -0.12, 0.15);
+
+                bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, -0.42, 0.15);
+                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, -0.18, 0.15);
+                bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, 0.15, 0.15);
+                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, -1.25, 0.15);
+                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, -0.15, 0.15);
+                bot.rightArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.x, -0.12, 0.15);
+
+                // Dexterous 10-Finger Sinusoidal Typing Motion
+                for (let f = 0; f < 5; f++) {
+                    bot.leftArm.fingers[f].rotation.x = Math.sin(time * 14.0 + f * 1.3) * 0.22;
+                    bot.rightArm.fingers[f].rotation.x = Math.sin(time * 14.0 + (f + 2.5) * 1.3) * 0.22;
+                }
+
+                // Head focused on workspace with cursor glance
+                targetHeadPitch += 0.12;
+
+            } else if (currentAction === 'Bored') {
+                // BORED: CHIN RESTING ON PALM, LAZY FINGER TAPPING & DEEP SIGHS
+                bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, -0.24, 0.12);
+                bot.pelvis.rotation.z = THREE.MathUtils.lerp(bot.pelvis.rotation.z, 0, 0.12);
+
+                // Slight slouch and lean onto left elbow with slow deep breathing cycle
+                const slowSigh = Math.sin(time * 1.2) * 0.025;
+                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.06 + slowSigh, 0.10);
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw * 0.3 - 0.05, 0.10);
+                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, -0.06, 0.10);
+
+                // Seated Legs
+                bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, -1.48, 0.12);
+                bot.rightLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.hip.rotation.x, -1.48, 0.12);
+                bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 1.54, 0.12);
+                bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 1.54, 0.12);
+
+                // Left Arm: Elbow firmly propped on desk, hand supporting chin
+                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, -0.55, 0.12);
+                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0.22, 0.12);
+                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.28, 0.12);
+                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, -1.82, 0.12);
+                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0.38, 0.12);
+                bot.leftArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.x, -0.30, 0.12);
+                bot.leftArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.z, -0.25, 0.12);
+
+                for (let f = 0; f < 5; f++) {
+                    bot.leftArm.fingers[f].rotation.x = 0.25; // gently curled palm
+                }
+
+                // Head tilted against left hand with wandering gaze
+                targetHeadRoll = -0.22;
+                targetHeadPitch = mouseNormY * 0.25 + 0.05;
+                targetHeadYaw = mouseNormX * 0.40 - 0.10;
+
+                // Right Arm: Resting lazily on desk, fingers tapping lazily in sequence
+                bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, -0.38, 0.12);
+                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, -0.12, 0.12);
+                bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, 0.22, 0.12);
+                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, -1.05, 0.12);
+                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, -0.20, 0.12);
+                bot.rightArm.wrist.rotation.set(0, 0, 0);
+
+                for (let f = 0; f < 5; f++) {
+                    bot.rightArm.fingers[f].rotation.x = Math.max(0, Math.sin(time * 3.2 - f * 0.8)) * 0.35;
+                }
+
+            } else if (currentAction === 'Greet') {
+                // GREET: COURTEOUS EXECUTIVE BOW & NATURAL HUMAN HAND WAVE BESIDE HEAD
+                const waveCycle = Math.sin(time * 6.5);
+                bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.12);
+
+                // Polite upper torso forward inclination
+                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.08, 0.12);
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw + 0.05, 0.10);
+                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, -0.04, 0.10);
+
+                // Right Arm: Shoulder abducts upper arm outward and forward beside head
+                bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, -1.50, 0.15);
+                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, -0.60, 0.15);
+                bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, 1.10, 0.15);
+                // Forearm vertical beside temple waving side-to-side
+                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, -1.15, 0.15);
+                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, waveCycle * 0.25, 0.25);
+                bot.rightArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.x, 0, 0.15);
+                bot.rightArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.z, waveCycle * 0.35, 0.25);
+
+                for (let f = 0; f < 5; f++) {
+                    bot.rightArm.fingers[f].rotation.x = 0.08; // natural open wave hand
+                }
+
+                // Left Arm: Relaxed at side with natural elbow flexion
+                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, 0.06, 0.12);
+                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0, 0.12);
+                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.14, 0.12);
+                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, -0.22, 0.12);
+                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0, 0.12);
+                bot.leftArm.wrist.rotation.set(0, 0, 0);
+
+                for (let f = 0; f < 5; f++) {
+                    bot.leftArm.fingers[f].rotation.x = 0.05;
+                }
+
+                // Standing Legs
+                bot.leftLeg.hip.rotation.set(0, 0, 0);
+                bot.rightLeg.hip.rotation.set(0, 0, 0);
+                bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 0.05, 0.12);
+                bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 0.05, 0.12);
+                bot.leftLeg.ankle.rotation.set(0, 0, 0);
+                bot.rightLeg.ankle.rotation.set(0, 0, 0);
+
+            } else if (currentAction === 'Happy') {
+                // HAPPY / EXCITEMENT: CELEBRATORY GESTURES, ENERGETIC HEAD NODS & PULSING GLOW
+                const happyBounce = Math.abs(Math.sin(time * 4.5)) * 0.04;
+                bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, happyBounce, 0.15);
+
+                // Energetic upright torso with lively sway
+                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, -0.05, 0.12);
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw + Math.sin(time * 4.5) * 0.06, 0.12);
+                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, Math.sin(time * 3.0) * 0.03, 0.12);
+
+                // Both arms raised cheerfully in celebratory welcoming posture
+                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, -0.65, 0.15);
+                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0.30, 0.15);
+                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.75, 0.15);
+                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, -0.95, 0.15);
+                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0, 0.15);
+
+                bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, -0.65, 0.15);
+                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, -0.30, 0.15);
+                bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, 0.75, 0.15);
+                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, -0.95, 0.15);
+                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, 0, 0.15);
+
+                for (let f = 0; f < 5; f++) {
+                    bot.leftArm.fingers[f].rotation.x = -0.15; // splayed open joyful palms
+                    bot.rightArm.fingers[f].rotation.x = -0.15;
+                }
+
+                // Cheerful head nod & tilt
+                targetHeadPitch += Math.sin(time * 5.0) * 0.09;
+                targetHeadRoll += Math.cos(time * 2.5) * 0.07;
+
+                // Standing Legs
+                bot.leftLeg.hip.rotation.set(0, 0, 0);
+                bot.rightLeg.hip.rotation.set(0, 0, 0);
+                bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 0.05, 0.12);
+                bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 0.05, 0.12);
+
+            } else if (currentAction === 'Anger') {
+                // ANGER: CROSSED ARMS, HEAD SHAKE DISAPPROVAL, IMPATIENT FOOT TAPPING & RED GLOW
+                bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.12);
+
+                // Rigid stern torso posture
+                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, -0.04, 0.12);
+                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, 0, 0.12);
+                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, 0.04, 0.12);
+
+                // Arms tightly crossed across chest
+                // Left arm crossed over
+                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, -0.68, 0.15);
+                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0.48, 0.15);
+                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.58, 0.15);
+                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, -1.78, 0.15);
+                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0.55, 0.15);
+
+                // Right arm crossed under
+                bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, -0.62, 0.15);
+                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, -0.48, 0.15);
+                bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, 0.58, 0.15);
+                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, -1.72, 0.15);
+                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, -0.55, 0.15);
+
+                for (let f = 0; f < 5; f++) {
+                    bot.leftArm.fingers[f].rotation.x = 0.4; // folded hands
+                    bot.rightArm.fingers[f].rotation.x = 0.4;
+                }
+
+                // Head shakes side-to-side in stern disapproval
+                targetHeadYaw += Math.sin(time * 5.5) * 0.22;
+
+                // Right foot taps impatiently on the dais floor
+                const footTap = Math.max(0, Math.sin(time * 8.5)) * 0.16;
+                bot.rightLeg.ankle.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.ankle.rotation.x, footTap, 0.35);
+                bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 0.05 + footTap * 0.25, 0.35);
+
+                bot.leftLeg.hip.rotation.set(0, 0, 0);
+                bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 0.05, 0.12);
+                bot.leftLeg.ankle.rotation.set(0, 0, 0);
+
+            } else if (currentAction === 'Walk') {
+                // WALK: NATURAL HUMANOID BIPEDAL STRIDE
                 const walkFreq = 3.6;
                 const w = time * walkFreq;
                 const legSwing = Math.sin(w) * 0.45;
                 const armSwing = Math.sin(w) * 0.38;
 
-                // Pelvis natural bounce & hips counter-oscillation
+                // Pelvis bounce & hips counter-oscillation
                 bot.root.position.y = Math.abs(Math.sin(w)) * 0.035;
                 bot.pelvis.rotation.z = Math.sin(w) * 0.03;
                 bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw - Math.sin(w) * 0.08, 0.12);
-                bot.torso.rotation.x = 0.04; // subtle forward athletic lean
+                bot.torso.rotation.x = 0.04;
 
                 // Legs kinematics
                 bot.leftLeg.hip.rotation.x = legSwing;
                 bot.rightLeg.hip.rotation.x = -legSwing;
-
                 bot.leftLeg.knee.rotation.x = Math.max(0, -Math.cos(w) * 0.58);
                 bot.rightLeg.knee.rotation.x = Math.max(0, Math.cos(w) * 0.58);
-
                 bot.leftLeg.ankle.rotation.x = -legSwing * 0.5;
                 bot.rightLeg.ankle.rotation.x = legSwing * 0.5;
 
-                // Arms reciprocal swing with natural slight elbow flexion
+                // Arms reciprocal swing
                 bot.leftArm.shoulder.rotation.x = -armSwing;
                 bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0, 0.15);
                 bot.leftArm.shoulder.rotation.z = -0.15;
                 bot.leftArm.elbow.rotation.x = -0.25 - Math.max(0, -armSwing * 0.35);
                 bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0, 0.15);
-                bot.leftArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.x, 0, 0.15);
-                bot.leftArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.z, 0, 0.15);
-                bot.leftArm.hand.rotation.set(0, 0, 0);
+                bot.leftArm.wrist.rotation.set(0, 0, 0);
 
                 bot.rightArm.shoulder.rotation.x = armSwing;
                 bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, 0, 0.15);
                 bot.rightArm.shoulder.rotation.z = 0.15;
                 bot.rightArm.elbow.rotation.x = -0.25 - Math.max(0, armSwing * 0.35);
                 bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, 0, 0.15);
-                bot.rightArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.x, 0, 0.15);
-                bot.rightArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.z, 0, 0.15);
-                bot.rightArm.hand.rotation.set(0, 0, 0);
+                bot.rightArm.wrist.rotation.set(0, 0, 0);
 
-            } else if (currentAction === 'Wave') {
-                // NATURAL HUMAN WAVE: Upper arm raised outward & forward, forearm vertical beside head, hand waving side-to-side facing user
-                const waveCycle = Math.sin(time * 7.5);
-                bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.1);
-                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw + 0.05, 0.10);
-                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.02, 0.10);
-                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, -0.05, 0.10); // subtle weight balance shift
-
-                // Right Arm: Shoulder abducts upper arm out and forward beside the head
-                const targetRShoulderX = -1.50;
-                const targetRShoulderY = -0.60;
-                const targetRShoulderZ = 1.10;
-                // Elbow flexes forearm UPWARDS beside head at eye level
-                const targetRElbowX = -1.15;
-                const targetRElbowZ = waveCycle * 0.25; // wave forearm oscillation
-                const targetRWristZ = waveCycle * 0.35;  // hand waving side-to-side
-                const targetRHandZ = waveCycle * 0.15;
-
-                bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, targetRShoulderX, 0.15);
-                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, targetRShoulderY, 0.15);
-                bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, targetRShoulderZ, 0.15);
-                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, targetRElbowX, 0.15);
-                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, targetRElbowZ, 0.25);
-                bot.rightArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.x, 0, 0.15);
-                bot.rightArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.z, targetRWristZ, 0.25);
-                bot.rightArm.hand.rotation.set(0, 0, targetRHandZ);
-
-                // Left Arm: Relaxed at side with natural elbow flexion
-                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, 0.06, 0.1);
-                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0, 0.1);
-                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.14, 0.1);
-                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, -0.22, 0.1);
-                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0, 0.1);
-                bot.leftArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.x, 0, 0.1);
-                bot.leftArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.z, 0, 0.1);
-                bot.leftArm.hand.rotation.set(0, 0, 0);
-
-                // Legs neutral balanced stance
-                bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, 0, 0.1);
-                bot.rightLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.hip.rotation.x, 0, 0.1);
-                bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 0.05, 0.1);
-                bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 0.05, 0.1);
-
-            } else if (currentAction === 'Greet') {
-                // AUTHENTIC EXECUTIVE HANDSHAKE: Upper arm stays naturally at side, elbow bends 90 deg forward, hand extends toward user and shakes
-                const shakeCycle = Math.sin(actionElapsed * 6.5) * 0.08;
-                bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.1);
-
-                // Polite upper torso forward inclination
-                bot.torso.rotation.x = THREE.MathUtils.lerp(bot.torso.rotation.x, 0.09, 0.12);
-                bot.torso.rotation.y = THREE.MathUtils.lerp(bot.torso.rotation.y, targetTorsoYaw + 0.06, 0.10);
-                bot.torso.rotation.z = THREE.MathUtils.lerp(bot.torso.rotation.z, 0, 0.10);
-
-                // Right Arm: Shoulder keeps upper arm down and slightly forward
-                const targetRShoulderX = -0.28;
-                const targetRShoulderY = -0.12;
-                const targetRShoulderZ = 0.14;
-                // Elbow bends ~90 deg forward with gentle handshake pump
-                const targetRElbowX = -1.45 + shakeCycle;
-                const targetRWristX = -shakeCycle * 0.4;
-                const targetRWristZ = -0.25; // thumb up neutral handshake angle
-
-                bot.rightArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.x, targetRShoulderX, 0.15);
-                bot.rightArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.y, targetRShoulderY, 0.15);
-                bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, targetRShoulderZ, 0.15);
-                bot.rightArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.x, targetRElbowX, 0.20);
-                bot.rightArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.rightArm.elbow.rotation.z, 0, 0.15);
-                bot.rightArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.x, targetRWristX, 0.20);
-                bot.rightArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.rightArm.wrist.rotation.z, targetRWristZ, 0.15);
-                bot.rightArm.hand.rotation.set(0, 0, 0);
-
-                // Left Arm: Relaxed at side with subtle elbow flexion
-                bot.leftArm.shoulder.rotation.x = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.x, 0.08, 0.1);
-                bot.leftArm.shoulder.rotation.y = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.y, 0, 0.1);
-                bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.12, 0.1);
-                bot.leftArm.elbow.rotation.x = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.x, -0.22, 0.1);
-                bot.leftArm.elbow.rotation.z = THREE.MathUtils.lerp(bot.leftArm.elbow.rotation.z, 0, 0.1);
-                bot.leftArm.wrist.rotation.x = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.x, 0, 0.1);
-                bot.leftArm.wrist.rotation.z = THREE.MathUtils.lerp(bot.leftArm.wrist.rotation.z, 0, 0.1);
-                bot.leftArm.hand.rotation.set(0, 0, 0);
-
-                // Legs firm grounded stance
-                bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, 0, 0.1);
-                bot.rightLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.hip.rotation.x, 0, 0.1);
-                bot.leftLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.knee.rotation.x, 0.05, 0.1);
-                bot.rightLeg.knee.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.knee.rotation.x, 0.05, 0.1);
+                for (let f = 0; f < 5; f++) {
+                    bot.leftArm.fingers[f].rotation.x = 0.10;
+                    bot.rightArm.fingers[f].rotation.x = 0.10;
+                }
 
             } else if (currentAction === 'Jump') {
-                // Athletic Humanoid Leap & Cushion
+                // JUMP: ATHLETIC HUMANOID LEAP & CUSHION
                 const jumpPeriod = 1.6;
                 const phase = (actionElapsed % jumpPeriod) / jumpPeriod;
 
@@ -3045,7 +3343,6 @@ Would you like to start a project inquiry right now?`;
                     bot.rightArm.shoulder.rotation.x = -0.3;
                 } else {
                     // Landing cushion
-                    const p = (phase - 0.70) / 0.30;
                     bot.root.position.y = THREE.MathUtils.lerp(bot.root.position.y, 0, 0.2);
                     bot.leftLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.leftLeg.hip.rotation.x, 0, 0.2);
                     bot.rightLeg.hip.rotation.x = THREE.MathUtils.lerp(bot.rightLeg.hip.rotation.x, 0, 0.2);
@@ -3054,7 +3351,17 @@ Would you like to start a project inquiry right now?`;
                     bot.leftArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.leftArm.shoulder.rotation.z, -0.15, 0.2);
                     bot.rightArm.shoulder.rotation.z = THREE.MathUtils.lerp(bot.rightArm.shoulder.rotation.z, 0.15, 0.2);
                 }
+
+                for (let f = 0; f < 5; f++) {
+                    bot.leftArm.fingers[f].rotation.x = 0.10;
+                    bot.rightArm.fingers[f].rotation.x = 0.10;
+                }
             }
+
+            // Head and Neck Smooth Cursor Tracking (Applied dynamically across all actions)
+            bot.head.rotation.y = THREE.MathUtils.lerp(bot.head.rotation.y, targetHeadYaw, 0.10);
+            bot.head.rotation.x = THREE.MathUtils.lerp(bot.head.rotation.x, targetHeadPitch, 0.10);
+            bot.head.rotation.z = THREE.MathUtils.lerp(bot.head.rotation.z, targetHeadRoll, 0.10);
 
             renderer.render(scene, camera);
         }
@@ -3098,15 +3405,12 @@ Would you like to start a project inquiry right now?`;
         }
         window.addEventListener('resize', onWindowResize);
 
-        // 10. Auto-Demonstration Loop (Walk -> Wave -> Greet -> Jump)
-        const autoCycle = ['Walk', 'Wave', 'Greet', 'Jump'];
-        let cycleIdx = 0;
+        // 10. Autonomous Sentient Emotional Lifecycle
+        // Seamlessly cycles every 6.5s: Sit -> Bored -> Greet -> Happy -> Walk -> Jump -> Anger -> Sit
         setInterval(() => {
-            if (!userInteracted) {
-                cycleIdx = (cycleIdx + 1) % autoCycle.length;
-                setAction(autoCycle[cycleIdx]);
-            }
-        }, 9000);
+            currentEmotionIdx = (currentEmotionIdx + 1) % emotionsCycle.length;
+            setAction(emotionsCycle[currentEmotionIdx]);
+        }, 6500);
     }
     initCyberBot();
 });
