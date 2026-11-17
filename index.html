@@ -108,7 +108,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=6.2">
+    <link rel="stylesheet" href="style.css?v=6.3">
 
     <!-- Meta Pixel Code -->
     <script>
@@ -346,7 +346,7 @@
                 <a href="#portfolio" class="nav-link">Work</a>
                 <a href="#testimonials" class="nav-link">Reviews</a>
                 <a href="brochure.html" class="nav-link" title="Company Brochure &amp; Capabilities Deck">Brochure</a>
-                <a href="#contact" class="nav-link nav-contact-highlight">Contact Us 💬</a>
+                <a href="contact.html" class="nav-link nav-contact-highlight">Contact Us 💬</a>
             </nav>
 
             <div class="nav-actions">
@@ -400,7 +400,7 @@
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
                 <span>Performance Growth &amp; Ads</span>
             </a>
-            <a href="#contact" class="drawer-link" style="color:#25d366; font-weight:700;">Direct Contact &amp; Quote 💬</a>
+            <a href="contact.html" class="drawer-link" style="color:#25d366; font-weight:700;">Direct Contact Desk 💬</a>
             <a href="#portfolio" class="drawer-link">Featured Work</a>
             <a href="#testimonials" class="drawer-link">Why Choose Us</a>
             <a href="#testimonials" class="drawer-link">Client Reviews</a>
@@ -1026,31 +1026,48 @@
                         </div>
 
                         <form id="inpage-contact-form" class="inpage-project-form">
-                            <div class="form-group">
-                                <label for="inp-name">Your Full Name *</label>
-                                <input type="text" id="inp-name" required placeholder="e.g. Alex Morgan" class="inpage-input">
-                            </div>
+                            <input type="hidden" id="inp-selected-service" name="service" value="Custom Web &amp; SaaS Development">
+                            <input type="hidden" id="inp-selected-budget" name="budget" value="₹1.5 Lakh – ₹4 Lakh">
+                            <input type="hidden" id="inp-selected-timeline" name="timeline" value="1 – 2 Months">
 
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="inp-phone">WhatsApp / Phone Number *</label>
-                                    <input type="tel" id="inp-phone" required placeholder="Enter your 10-digit WhatsApp number" class="inpage-input">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inp-service">Service Requested *</label>
-                                    <select id="inp-service" required class="inpage-input">
-                                        <option value="Custom Web App &amp; SaaS">Custom Web Application &amp; SaaS</option>
-                                        <option value="Mobile App (iOS &amp; Android)">Mobile App Development</option>
-                                        <option value="Performance Growth &amp; Ads">Performance Growth &amp; Ads</option>
-                                        <option value="Dedicated Dev Retainer &amp; SLA">Dedicated Dev Retainer &amp; SLA</option>
-                                        <option value="Full Stack &amp; Complete Ecosystem">Full Stack Ecosystem</option>
-                                    </select>
+                            <!-- Step 1: Service Pillar Chips -->
+                            <div class="form-step-block" style="margin-bottom:1.2rem;">
+                                <label style="display:block; font-size:0.84rem; font-weight:700; margin-bottom:0.55rem; color:var(--text-primary);">1. What service do you need?</label>
+                                <div class="chips-cluster">
+                                    <button type="button" class="interactive-chip active" data-group="service" data-val="Custom Web &amp; SaaS Development">🌐 Web &amp; SaaS</button>
+                                    <button type="button" class="interactive-chip" data-group="service" data-val="Mobile App Development (iOS &amp; Android)">📱 Mobile App</button>
+                                    <button type="button" class="interactive-chip" data-group="service" data-val="Performance Growth &amp; Ads">🚀 Growth &amp; Ads</button>
+                                    <button type="button" class="interactive-chip" data-group="service" data-val="Dedicated Senior Developer Retainer">🛠️ Retainer</button>
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <!-- Step 2: Budget Chips -->
+                            <div class="form-step-block" style="margin-bottom:1.2rem;">
+                                <label style="display:block; font-size:0.84rem; font-weight:700; margin-bottom:0.55rem; color:var(--text-primary);">2. Approximate budget range</label>
+                                <div class="chips-cluster">
+                                    <button type="button" class="interactive-chip" data-group="budget" data-val="Under ₹50,000 / ">&lt; ₹50K</button>
+                                    <button type="button" class="interactive-chip" data-group="budget" data-val="₹50,000 – ₹1.5 Lakh /  – ,800">₹50K &ndash; ₹1.5L</button>
+                                    <button type="button" class="interactive-chip active" data-group="budget" data-val="₹1.5 Lakh – ₹4 Lakh / ,800 – ,000">₹1.5L &ndash; ₹4L</button>
+                                    <button type="button" class="interactive-chip" data-group="budget" data-val="₹4 Lakh+ / ,000+">₹4L+</button>
+                                    <button type="button" class="interactive-chip" data-group="budget" data-val="Flexible / Discuss Scope">Flexible</button>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: Contact Inputs -->
+                            <div class="contact-user-grid" style="margin-bottom:1rem;">
+                                <div class="form-field-group">
+                                    <label for="inp-name">Your Full Name *</label>
+                                    <input type="text" id="inp-name" name="name" required placeholder="e.g. Alex Morgan" class="inpage-input">
+                                </div>
+                                <div class="form-field-group">
+                                    <label for="inp-phone">WhatsApp Number *</label>
+                                    <input type="tel" id="inp-phone" name="phone" required placeholder="10-digit number" class="inpage-input">
+                                </div>
+                            </div>
+
+                            <div class="form-field-group" style="margin-bottom:1.2rem;">
                                 <label for="inp-message">Brief Project Overview (Optional)</label>
-                                <textarea id="inp-message" rows="3" placeholder="Describe your product vision, timeline, or key features..." class="inpage-input"></textarea>
+                                <textarea id="inp-message" name="message" rows="2" placeholder="Describe your product vision or key features..." class="inpage-input"></textarea>
                             </div>
 
                             <button type="submit" class="btn-creative-primary w-full inpage-submit-btn">
@@ -1059,6 +1076,10 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
                                 </span>
                             </button>
+
+                            <div style="margin-top:0.85rem; text-align:center; font-size:0.78rem; color:var(--text-muted);">
+                                Prefer detailed consultation? <a href="contact.html" style="color:var(--accent-purple); font-weight:700; text-decoration:underline;">Open Full Contact Page &rarr;</a>
+                            </div>
 
                             <div id="inpage-form-status" style="display:none; text-align:center; margin-top:1rem; font-size:0.9rem; font-weight:600; color:#10b981;">
                                 ✓ Form submitted! Connecting you to WhatsApp...
@@ -1812,6 +1833,6 @@
     <!-- GSAP Libraries CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- JS Script -->
-    <script src="main.js?v=6.2"></script>
+    <script src="main.js?v=6.3"></script>
 </body>
 </html>

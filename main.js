@@ -1382,36 +1382,89 @@ Would you like to start a project inquiry right now?`;
         });
     }
 
-    // In-Page Fast Contact Form Handler
-    const inpageContactForm = document.getElementById('inpage-contact-form');
-    if (inpageContactForm) {
-        const inpPhone = document.getElementById('inp-phone');
-        if (inpPhone) {
-            inpPhone.addEventListener('input', (e) => {
+    // ----------------------------------------------------------------------
+    // 9. INTERACTIVE PROJECT DISCOVERY CHIP SYSTEM & FORM ROUTER
+    // ----------------------------------------------------------------------
+    function initInteractiveChips() {
+        const allChips = document.querySelectorAll('.interactive-chip');
+        allChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const group = chip.getAttribute('data-group');
+                const val = chip.getAttribute('data-val');
+                const form = chip.closest('form');
+                if (!form) return;
+
+                const siblings = form.querySelectorAll(`.interactive-chip[data-group="${group}"]`);
+                siblings.forEach(s => s.classList.remove('active'));
+                chip.classList.add('active');
+
+                const hiddenInput = form.querySelector(`input[name="${group}"], input#inp-selected-${group}, input#inp-${group}`);
+                if (hiddenInput) {
+                    hiddenInput.value = val;
+                }
+            });
+        });
+    }
+    initInteractiveChips();
+
+    function setupUniversalProjectForm(formId, isPageMode) {
+        const form = document.getElementById(formId);
+        if (!form) return;
+
+        const phoneInput = form.querySelector('input[type="tel"]');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', (e) => {
                 e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
             });
         }
 
-        inpageContactForm.addEventListener('submit', (e) => {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const name = document.getElementById('inp-name').value.trim();
-            const phone = document.getElementById('inp-phone').value.trim();
-            const service = document.getElementById('inp-service').value;
-            const message = document.getElementById('inp-message') ? document.getElementById('inp-message').value.trim() : '';
-            const statusEl = document.getElementById('inpage-form-status');
 
-            if (phone.length !== 10) {
-                alert('Please enter a valid 10-digit WhatsApp/phone number.');
+            const name = (form.querySelector('input[name="name"], #inp-name') || {}).value || '';
+            const phone = (form.querySelector('input[name="phone"], #inp-phone') || {}).value || '';
+            const email = (form.querySelector('input[name="email"], #inp-email') || {}).value || 'N/A';
+            
+            let service = '';
+            const activeServiceChip = form.querySelector('.interactive-chip[data-group="service"].active');
+            if (activeServiceChip) {
+                service = activeServiceChip.getAttribute('data-val') || activeServiceChip.textContent.trim();
+            } else {
+                const serviceSelect = form.querySelector('#inp-service, select[name="service"]');
+                service = serviceSelect ? serviceSelect.value : 'Custom Web & SaaS Development';
+            }
+
+            let budget = 'Flexible / Discuss Scope';
+            const activeBudgetChip = form.querySelector('.interactive-chip[data-group="budget"].active');
+            if (activeBudgetChip) {
+                budget = activeBudgetChip.getAttribute('data-val') || activeBudgetChip.textContent.trim();
+            }
+
+            let timeline = 'Standard (1-2 Months)';
+            const activeTimelineChip = form.querySelector('.interactive-chip[data-group="timeline"].active');
+            if (activeTimelineChip) {
+                timeline = activeTimelineChip.getAttribute('data-val') || activeTimelineChip.textContent.trim();
+            }
+
+            const message = (form.querySelector('textarea[name="message"], #inp-message') || {}).value || 'N/A';
+            const statusEl = form.querySelector('.form-status-alert, #inpage-form-status');
+            const successCard = document.getElementById('discovery-form-success');
+
+            if (phone.trim().length !== 10) {
+                alert('Please enter a valid 10-digit WhatsApp number (e.g. 9876543210).');
                 return;
             }
 
             const leadObj = {
                 id: Date.now(),
-                name,
-                phone,
-                service,
-                message: message || 'N/A',
-                channel: 'In-Page Quick Lead',
+                name: name.trim(),
+                phone: phone.trim(),
+                email: email.trim(),
+                service: service.trim(),
+                budget: budget.trim(),
+                timeline: timeline.trim(),
+                message: message.trim(),
+                channel: isPageMode ? 'Dedicated Contact Page' : 'Homepage Discovery Hub',
                 timestamp: new Date().toLocaleString()
             };
 
@@ -1430,13 +1483,23 @@ Would you like to start a project inquiry right now?`;
                 statusEl.textContent = '✓ Connecting you to WhatsApp with your project specifications...';
             }
 
+            if (successCard) {
+                form.style.display = 'none';
+                successCard.style.display = 'block';
+                const successName = successCard.querySelector('.client-name-slot');
+                if (successName) successName.textContent = name.trim();
+            }
+
             const waText = encodeURIComponent(
-                `*New Project Inquiry (ElavateX.com)*\n\n` +
-                `*Client Name:* ${name}\n` +
-                `*WhatsApp / Phone:* ${phone}\n` +
-                `*Service Needed:* ${service}\n` +
-                `*Project Overview:* ${message || 'N/A'}\n\n` +
-                `_Sent directly via ElavateX.com Project Form_`
+                `*New Project Discovery Brief (ElavateX.com)*\n\n` +
+                `*Client Name:* ${name.trim()}\n` +
+                `*WhatsApp / Phone:* ${phone.trim()}\n` +
+                (email !== 'N/A' && email ? `*Email:* ${email.trim()}\n` : '') +
+                `*Service Needed:* ${service.trim()}\n` +
+                `*Approx. Budget:* ${budget.trim()}\n` +
+                `*Target Timeline:* ${timeline.trim()}\n` +
+                `*Project Overview:* ${message.trim() || 'N/A'}\n\n` +
+                `_Sent directly via ElavateX Discovery Desk_`
             );
 
             const whatsappUrl = `https://wa.me/917676808068?text=${waText}`;
@@ -1446,6 +1509,9 @@ Would you like to start a project inquiry right now?`;
             }, 800);
         });
     }
+
+    setupUniversalProjectForm('inpage-contact-form', false);
+    setupUniversalProjectForm('project-discovery-form', true);
 
     // ----------------------------------------------------------------------
     // 10. Header Navbar Scroll & Mobile Menu Drawer
