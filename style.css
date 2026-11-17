@@ -6418,20 +6418,28 @@ body.light-theme .dedicated-fixed-navbar,
   gap: 1rem;
 }
 
-.brand-logo-service {
+.brand-logo-service,
+.dedicated-fixed-navbar .brand-logo {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-primary);
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--text-main);
+  color: #ffffff !important;
   text-decoration: none;
   flex-shrink: 0;
   white-space: nowrap;
 }
 
-.brand-logo-service .logo-text { font-size: 1.15rem; }
+.brand-logo-service .logo-text,
+.dedicated-fixed-navbar .brand-logo .logo-text,
+body.light-theme .dedicated-fixed-navbar .brand-logo .logo-text,
+[data-theme="light"] .dedicated-fixed-navbar .brand-logo .logo-text {
+  color: #ffffff !important;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
 
 .nav-left-group {
   display: flex;
