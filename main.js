@@ -1382,6 +1382,71 @@ Would you like to start a project inquiry right now?`;
         });
     }
 
+    // In-Page Fast Contact Form Handler
+    const inpageContactForm = document.getElementById('inpage-contact-form');
+    if (inpageContactForm) {
+        const inpPhone = document.getElementById('inp-phone');
+        if (inpPhone) {
+            inpPhone.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+            });
+        }
+
+        inpageContactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('inp-name').value.trim();
+            const phone = document.getElementById('inp-phone').value.trim();
+            const service = document.getElementById('inp-service').value;
+            const message = document.getElementById('inp-message') ? document.getElementById('inp-message').value.trim() : '';
+            const statusEl = document.getElementById('inpage-form-status');
+
+            if (phone.length !== 10) {
+                alert('Please enter a valid 10-digit WhatsApp/phone number.');
+                return;
+            }
+
+            const leadObj = {
+                id: Date.now(),
+                name,
+                phone,
+                service,
+                message: message || 'N/A',
+                channel: 'In-Page Quick Lead',
+                timestamp: new Date().toLocaleString()
+            };
+
+            dispatchLeadToFirebase(leadObj);
+
+            try {
+                const storedLeads = JSON.parse(localStorage.getItem('elavatex_leads') || '[]');
+                storedLeads.unshift(leadObj);
+                localStorage.setItem('elavatex_leads', JSON.stringify(storedLeads));
+            } catch (err) {
+                console.error('Lead storage error:', err);
+            }
+
+            if (statusEl) {
+                statusEl.style.display = 'block';
+                statusEl.textContent = '✓ Connecting you to WhatsApp with your project specifications...';
+            }
+
+            const waText = encodeURIComponent(
+                `*New Project Inquiry (ElavateX.com)*\n\n` +
+                `*Client Name:* ${name}\n` +
+                `*WhatsApp / Phone:* ${phone}\n` +
+                `*Service Needed:* ${service}\n` +
+                `*Project Overview:* ${message || 'N/A'}\n\n` +
+                `_Sent directly via ElavateX.com Project Form_`
+            );
+
+            const whatsappUrl = `https://wa.me/917676808068?text=${waText}`;
+
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 800);
+        });
+    }
+
     // ----------------------------------------------------------------------
     // 10. Header Navbar Scroll & Mobile Menu Drawer
     // ----------------------------------------------------------------------
