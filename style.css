@@ -1,3 +1,13 @@
+
+/* Smooth Anchor Navigation Clearance */
+#hero,
+#services,
+#portfolio,
+#testimonials,
+#faq,
+#contact {
+  scroll-margin-top: 90px;
+}
 /* ==========================================================================
    ElavateX - Master Client Stylesheet (Warm Editorial Beige & Dual Theme Edition)
  * Domain: ElavateX.com | Brand: ElavateX | Instagram: @elavatex_dev
@@ -36,6 +46,8 @@
   --text-main: #111827;        /* Rich Deep Charcoal */
   --text-muted: #4b5563;       /* Slate Muted */
   --text-subtle: #6b7280;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
 
   /* Shadows & Depth */
   --glow-indigo: 0 10px 25px rgba(15, 23, 42, 0.15);
@@ -76,6 +88,8 @@
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --text-subtle: #64748b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
 
   --glow-indigo: 0 0 30px rgba(99, 102, 241, 0.35);
   --glow-cyan: 0 0 30px rgba(6, 182, 212, 0.35);
@@ -10212,9 +10226,223 @@ body.light-theme .dropdown-footer-link,
 }
 
 [data-theme="light"] .floating-bar-inner {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(226, 232, 240, 0.95);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
+  background: rgba(255, 255, 255, 0.98) !important;
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15) !important;
+}
+
+/* ==========================================================================
+   HIGH CONTRAST & VISIBILITY ENHANCEMENTS FOR ALL SCREENS & THEMES
+   ========================================================================== */
+
+/* Universal Heading & Subtitle Contrast */
+body.light-theme .contact-hub-title,
+[data-theme="light"] .contact-hub-title,
+body.light-theme .services-compact-title,
+[data-theme="light"] .services-compact-title,
+body.light-theme .portfolio-main-title,
+[data-theme="light"] .portfolio-main-title,
+body.light-theme .pillar-title,
+[data-theme="light"] .pillar-title,
+body.light-theme .compact-project-body h3,
+[data-theme="light"] .compact-project-body h3,
+body.light-theme .inpage-form-header h3,
+[data-theme="light"] .inpage-form-header h3,
+body.light-theme .direct-wa-card h3,
+[data-theme="light"] .direct-wa-card h3 {
+  color: #0f172a !important;
+  font-weight: 800;
+}
+
+body.light-theme .contact-hub-subtitle,
+[data-theme="light"] .contact-hub-subtitle,
+body.light-theme .services-compact-subtitle,
+[data-theme="light"] .services-compact-subtitle,
+body.light-theme .portfolio-main-subtitle,
+[data-theme="light"] .portfolio-main-subtitle,
+body.light-theme .pillar-desc,
+[data-theme="light"] .pillar-desc,
+body.light-theme .compact-project-body p,
+[data-theme="light"] .compact-project-body p,
+body.light-theme .inpage-form-header p,
+[data-theme="light"] .inpage-form-header p,
+body.light-theme .direct-wa-card p,
+[data-theme="light"] .direct-wa-card p,
+body.light-theme .c-step-item p,
+[data-theme="light"] .c-step-item p {
+  color: #475569 !important;
+}
+
+/* Light Theme Direct WhatsApp Card - High Visibility & Contrast */
+body.light-theme .direct-wa-card,
+[data-theme="light"] .direct-wa-card {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(37, 211, 102, 0.45) !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06) !important;
+}
+
+body.light-theme .direct-wa-card:hover,
+[data-theme="light"] .direct-wa-card:hover {
+  border-color: #25d366 !important;
+  box-shadow: 0 16px 40px rgba(37, 211, 102, 0.2) !important;
+}
+
+body.light-theme .wa-status-pill,
+[data-theme="light"] .wa-status-pill {
+  background: rgba(37, 211, 102, 0.12) !important;
+  border: 1px solid rgba(37, 211, 102, 0.35) !important;
+  color: #15803d !important;
+}
+
+body.light-theme .wa-phone-number,
+[data-theme="light"] .wa-phone-number {
+  color: #16a34a !important;
+  font-weight: 700 !important;
+}
+
+/* Light Theme Contact Form Card - Crisp Borders & Clear Inputs */
+body.light-theme .contact-form-side,
+[data-theme="light"] .contact-form-side {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 15px 40px rgba(15, 23, 42, 0.06) !important;
+}
+
+body.light-theme .inpage-project-form label,
+[data-theme="light"] .inpage-project-form label {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  font-size: 0.88rem !important;
+}
+
+body.light-theme .inpage-input,
+[data-theme="light"] .inpage-input {
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+
+body.light-theme .inpage-input:focus,
+[data-theme="light"] .inpage-input:focus {
+  background: #ffffff !important;
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18) !important;
+}
+
+body.light-theme .inpage-input::placeholder,
+[data-theme="light"] .inpage-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Light Theme Contact Method Rows */
+body.light-theme .contact-method-row,
+[data-theme="light"] .contact-method-row {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03) !important;
+}
+
+body.light-theme .contact-method-row:hover,
+[data-theme="light"] .contact-method-row:hover {
+  border-color: #4f46e5 !important;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.1) !important;
+}
+
+body.light-theme .method-icon-box,
+[data-theme="light"] .method-icon-box {
+  background: rgba(99, 102, 241, 0.08) !important;
+  color: #4f46e5 !important;
+}
+
+body.light-theme .method-label,
+[data-theme="light"] .method-label {
+  color: #64748b !important;
+}
+
+body.light-theme .method-val,
+[data-theme="light"] .method-val {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+/* Light Theme Trust Guarantees */
+body.light-theme .guarantee-chip,
+[data-theme="light"] .guarantee-chip {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  color: #047857 !important;
+}
+
+/* Light Theme Floating Quick Bar */
+body.light-theme .floating-bar-inner,
+[data-theme="light"] .floating-bar-inner {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border: 1px solid rgba(15, 23, 42, 0.14) !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15) !important;
+}
+
+body.light-theme .floating-status-text,
+[data-theme="light"] .floating-status-text {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+body.light-theme .floating-quote-btn,
+[data-theme="light"] .floating-quote-btn {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* Light Theme Hero Hotline Phone */
+body.light-theme .hotline-badge.phone,
+[data-theme="light"] .hotline-badge.phone {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.15) !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+}
+
+/* Light Theme Portfolio Frame Bar */
+body.light-theme .compact-project-frame,
+[data-theme="light"] .compact-project-frame {
+  background: #f1f5f9 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+body.light-theme .compact-frame-url,
+[data-theme="light"] .compact-frame-url {
+  color: #64748b !important;
+}
+
+body.light-theme .compact-project-link,
+[data-theme="light"] .compact-project-link {
+  color: #4f46e5 !important;
+}
+
+/* Navbar Contact Us Link Highlight */
+.nav-contact-highlight {
+  background: rgba(37, 211, 102, 0.12) !important;
+  color: #25d366 !important;
+  border: 1px solid rgba(37, 211, 102, 0.3) !important;
+  padding: 0.35rem 0.85rem !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  transition: all 0.25s ease !important;
+}
+
+.nav-contact-highlight:hover {
+  background: rgba(37, 211, 102, 0.22) !important;
+  border-color: #25d366 !important;
+  transform: translateY(-1px) !important;
+}
+
+body.light-theme .nav-contact-highlight,
+[data-theme="light"] .nav-contact-highlight {
+  background: rgba(37, 211, 102, 0.14) !important;
+  color: #15803d !important;
+  border-color: rgba(37, 211, 102, 0.4) !important;
 }
 
 /* Responsive Rules for Mobile */
@@ -10265,3 +10493,24 @@ body.light-theme .dropdown-footer-link,
 
 
 
+
+
+.service-badge-pill.emerald {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #059669;
+}
+[data-theme="dark"] .service-badge-pill.emerald,
+body.dark-theme .service-badge-pill.emerald {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #34d399;
+}
+.live-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  animation: pulse-ring 2s infinite;
+}

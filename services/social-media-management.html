@@ -4116,7 +4116,7 @@
                             <div class="form-grid-2">
                                 <div class="form-group">
                                     <label for="form-phone">WhatsApp Number (10 Digits) *</label>
-                                    <input type="tel" id="form-phone" required placeholder="e.g. 7676808068" maxlength="10">
+                                    <input type="tel" id="form-phone" required placeholder="Enter 10-digit number" maxlength="10">
                                 </div>
                                 <div class="form-group">
                                     <label for="form-email">Business Email *</label>
@@ -4863,7 +4863,7 @@
                         return;
                     }
                     if (phone.length !== 10) {
-                        alert("Please enter a valid 10-digit WhatsApp phone number (e.g., 7676808068).");
+                        alert("Please enter a valid 10-digit WhatsApp phone number.");
                         return;
                     }
                     if (!email || !email.includes('@')) {

@@ -863,7 +863,7 @@ Share a few quick details about your project and I can get you an accurate quote
         // 7. Contact Info & Consultation
         if (query.includes('contact') || query.includes('phone') || query.includes('call') || query.includes('number') || query.includes('whatsapp') || query.includes('email') || query.includes('reach') || query.includes('hire')) {
             reply.text = `You can connect directly with the ElavateX team:<br><br>
-• **WhatsApp / Direct Line**: +91 7676808068<br>
+• **WhatsApp Desk**: <a href="https://wa.me/917676808068" target="_blank" style="color:#25d366; font-weight:700;">Connect on WhatsApp Directly &rarr;</a><br>
 • **Instagram**: @elavatex_dev<br>
 • **Official Website**: ElavateX.com<br><br>
 Would you like to start a project inquiry right now?`;
