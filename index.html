@@ -108,7 +108,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="style.css?v=6.3">
+    <link rel="stylesheet" href="style.css?v=6.4">
 
     <!-- Meta Pixel Code -->
     <script>
@@ -346,7 +346,10 @@
                 <a href="#portfolio" class="nav-link">Work</a>
                 <a href="#testimonials" class="nav-link">Reviews</a>
                 <a href="brochure.html" class="nav-link" title="Company Brochure &amp; Capabilities Deck">Brochure</a>
-                <a href="contact.html" class="nav-link nav-contact-highlight">Contact Us 💬</a>
+                <a href="contact.html" class="nav-link nav-contact-highlight">
+                    <span>Contact Desk</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
             </nav>
 
             <div class="nav-actions">
@@ -364,52 +367,116 @@
 
                 <!-- Mobile Menu Button Drawer Trigger -->
                 <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Mobile Navigation Menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="vertical-align:middle;"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    <span style="font-weight:700; font-size:0.8rem; margin-left:4px;">Menu</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Navigation Drawer -->
+    <!-- Mobile Navigation Drawer Sheet -->
     <div class="mobile-drawer" id="mobile-drawer">
-        <div class="drawer-header">
-            <button class="theme-toggle-btn" id="drawer-theme-toggle" aria-label="Toggle Navigation Light and Dark Theme" title="Switch Light/Dark Mode">
-                <span class="theme-icon-sun">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                </span>
-                <span class="theme-icon-moon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                </span>
-            </button>
-            <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
-        </div>
-        <div class="drawer-links">
-            <a href="#services" class="drawer-link">Services &amp; Retainers</a>
-            <a href="#portfolio" class="drawer-link">Featured Work</a>
-            <a href="services/web-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #818cf8; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="m10 9-2 2 2 2"/><path d="m14 9 2 2-2 2"/></svg>
-                <span>Website &amp; SaaS Development</span>
-            </a>
-            <a href="services/mobile-app-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #38bdf8; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/><path d="M10 5h4"/></svg>
-                <span>Mobile App Engineering</span>
-            </a>
-            <a href="services/social-media-management.html" class="drawer-link" style="padding-left: 1.8rem; color: #ec4899; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
-                <span>Performance Growth &amp; Ads</span>
-            </a>
-            <a href="contact.html" class="drawer-link" style="color:#25d366; font-weight:700;">Direct Contact Desk 💬</a>
-            <a href="#portfolio" class="drawer-link">Featured Work</a>
-            <a href="#testimonials" class="drawer-link">Why Choose Us</a>
-            <a href="#testimonials" class="drawer-link">Client Reviews</a>
-            <a href="brochure.html" class="drawer-link" style="color: var(--accent-purple); font-weight: 700;">Company Capabilities Deck (PDF)</a>
-            <hr class="drawer-divider">
-            <button class="btn-primary open-consultation-btn w-full">Start a Project</button>
-            <a href="https://wa.me/917676808068" target="_blank" class="btn-whatsapp-outline w-full text-center margin-top-sm">
-                <span>Chat on WhatsApp</span>
-            </a>
+        <div class="drawer-backdrop" id="drawer-backdrop"></div>
+        <div class="drawer-sheet">
+            <div class="drawer-header">
+                <a href="#hero" class="brand-logo" style="text-decoration:none;">
+                    <span class="logo-text" style="font-size:1.25rem;">Elavate<span class="accent-x">X</span></span>
+                </a>
+                <div class="drawer-header-actions">
+                    <button class="theme-toggle-btn" id="drawer-theme-toggle" aria-label="Toggle Navigation Light and Dark Theme" title="Switch Light/Dark Mode">
+                        <span class="theme-icon-sun">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        </span>
+                        <span class="theme-icon-moon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        </span>
+                    </button>
+                    <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
+                </div>
+            </div>
+
+            <div class="drawer-status-card">
+                <div class="drawer-status-top">
+                    <span class="pulse-dot" style="background:#10b981;"></span>
+                    <span class="drawer-status-title">Principal Engineering Desk Online</span>
+                </div>
+                <span class="drawer-status-subtitle">Bangalore &bull; Doha &bull; Direct Senior Dev Access</span>
+            </div>
+
+            <span class="drawer-section-label">Navigation</span>
+            <div class="drawer-links-stack">
+                <a href="#services" class="drawer-link-item">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>Capabilities &amp; Retainers</strong>
+                        <span>Web, Apps, AI &amp; Performance Growth</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+                <a href="#portfolio" class="drawer-link-item">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>Featured Case Studies</strong>
+                        <span>Production Systems &amp; Live Client Work</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+                <a href="#testimonials" class="drawer-link-item">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>Client Reviews &amp; Trust</strong>
+                        <span>Verified Feedback from Founders</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+                <a href="styles.html" class="drawer-link-item">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>Interactive Styles Sandbox</strong>
+                        <span>18 Design Philosophies &amp; Aesthetic Systems</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+                <a href="brochure.html" class="drawer-link-item">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>Capabilities Deck</strong>
+                        <span>Overview PDF &amp; Technical Capabilities</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+                <a href="contact.html" class="drawer-link-item">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>Direct Contact Desk</strong>
+                        <span>Send Scope &amp; Book Engineering Call</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+            </div>
+
+            <div class="drawer-footer-actions">
+                <a href="#contact" class="drawer-cta-primary open-consultation-btn">
+                    <span>Start a Project Brief</span>
+                    <span>&rarr;</span>
+                </a>
+                <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20would%20like%20to%20discuss%20a%20new%20project." target="_blank" rel="noopener" class="drawer-cta-whatsapp">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+                    <span>Chat on WhatsApp Directly</span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -1833,6 +1900,46 @@
     <!-- GSAP Libraries CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <!-- JS Script -->
-    <script src="main.js?v=6.3"></script>
+    <script src="main.js?v=6.4"></script>
+
+    <!-- MOBILE BOTTOM DOCK (Sticky ergonomic touch navigation on mobile) -->
+    <nav class="mobile-bottom-dock" id="mobile-bottom-dock" aria-label="Mobile Navigation Dock">
+        <a href="#hero" class="dock-item active" data-dock="home" aria-label="Home">
+            <span class="dock-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            <span class="dock-label">Home</span>
+        </a>
+        <a href="#services" class="dock-item" data-dock="services" aria-label="Services">
+            <span class="dock-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </span>
+            <span class="dock-label">Services</span>
+        </a>
+        <a href="#portfolio" class="dock-item" data-dock="portfolio" aria-label="Work">
+            <span class="dock-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </span>
+            <span class="dock-label">Work</span>
+        </a>
+        <a href="contact.html" class="dock-item highlight" data-dock="contact" aria-label="Contact">
+            <span class="dock-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span class="dock-label">Contact</span>
+        </a>
+        <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20would%20like%20to%20discuss%20a%20new%20project." target="_blank" rel="noopener" class="dock-item dock-whatsapp" data-dock="whatsapp" aria-label="WhatsApp">
+            <span class="dock-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+            </span>
+            <span class="dock-label">WhatsApp</span>
+        </a>
+        <button class="dock-item" id="bottom-dock-menu-btn" data-dock="menu" aria-label="Menu">
+            <span class="dock-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </span>
+            <span class="dock-label">Menu</span>
+        </button>
+    </nav>
 </body>
 </html>

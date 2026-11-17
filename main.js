@@ -1514,13 +1514,15 @@ Would you like to start a project inquiry right now?`;
     setupUniversalProjectForm('project-discovery-form', true);
 
     // ----------------------------------------------------------------------
-    // 10. Header Navbar Scroll & Mobile Menu Drawer
+    // 10. Header Navbar Scroll, Mobile Menu Drawer & Bottom Dock Router
     // ----------------------------------------------------------------------
     const navbar = document.getElementById('navbar');
     const mobileToggle = document.getElementById('mobile-toggle');
     const mobileDrawer = document.getElementById('mobile-drawer');
     const drawerClose = document.getElementById('drawer-close');
-    const drawerLinks = document.querySelectorAll('.drawer-link');
+    const drawerBackdrop = document.getElementById('drawer-backdrop');
+    const drawerLinks = document.querySelectorAll('.drawer-link, .drawer-link-item');
+    const bottomDockMenuBtn = document.getElementById('bottom-dock-menu-btn');
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 40) {
@@ -1528,23 +1530,73 @@ Would you like to start a project inquiry right now?`;
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
 
-    if (mobileToggle && mobileDrawer) {
-        mobileToggle.addEventListener('click', () => {
+        // Active Bottom Dock Item Sync
+        const dockItems = document.querySelectorAll('.mobile-bottom-dock .dock-item[data-dock]');
+        if (dockItems.length > 0) {
+            const scrollPos = window.scrollY + 200;
+            const sections = [
+                { id: 'hero', key: 'home' },
+                { id: 'services', key: 'services' },
+                { id: 'portfolio', key: 'portfolio' },
+                { id: 'contact', key: 'contact' }
+            ];
+
+            let currentKey = 'home';
+            sections.forEach(sec => {
+                const el = document.getElementById(sec.id);
+                if (el && el.offsetTop <= scrollPos) {
+                    currentKey = sec.key;
+                }
+            });
+
+            dockItems.forEach(item => {
+                if (item.getAttribute('data-dock') === currentKey) {
+                    item.classList.add('active');
+                } else if (item.getAttribute('data-dock') !== 'whatsapp' && item.getAttribute('data-dock') !== 'menu') {
+                    item.classList.remove('active');
+                }
+            });
+        }
+    }, { passive: true });
+
+    function openMobileDrawer() {
+        if (mobileDrawer) {
             mobileDrawer.classList.add('open');
-        });
+            document.body.style.overflow = 'hidden';
+        }
     }
 
-    if (drawerClose && mobileDrawer) {
-        drawerClose.addEventListener('click', () => {
+    function closeMobileDrawer() {
+        if (mobileDrawer) {
             mobileDrawer.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', openMobileDrawer);
+    }
+    if (bottomDockMenuBtn) {
+        bottomDockMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+                closeMobileDrawer();
+            } else {
+                openMobileDrawer();
+            }
         });
+    }
+    if (drawerClose) {
+        drawerClose.addEventListener('click', closeMobileDrawer);
+    }
+    if (drawerBackdrop) {
+        drawerBackdrop.addEventListener('click', closeMobileDrawer);
     }
 
     drawerLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (mobileDrawer) mobileDrawer.classList.remove('open');
+            closeMobileDrawer();
         });
     });
 
