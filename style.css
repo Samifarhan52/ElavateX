@@ -5452,6 +5452,17 @@ html, body {
     justify-content: center !important;
     padding: 0.95rem 1.4rem !important;
   }
+  .nav-actions .btn-smm-primary,
+  .nav-actions .btn-smm-secondary,
+  .nav-actions .btn-primary,
+  .nav-actions .btn-secondary,
+  .navbar-header .btn-primary,
+  .navbar-header .btn-secondary,
+  .dedicated-fixed-navbar .btn-primary,
+  .dedicated-fixed-navbar .btn-secondary {
+    width: auto !important;
+    padding: 0.45rem 0.9rem !important;
+  }
   .hero-button-group {
     flex-direction: column !important;
     width: 100% !important;
@@ -9009,8 +9020,8 @@ body.light-theme .icon-badge-styles,
   transition: color 0.2s ease;
 }
 
-body.light-theme .dropdown-item-info strong,
-[data-theme="light"] .dropdown-item-info strong {
+body.light-theme .nav-dropdown-item .dropdown-item-info strong,
+[data-theme="light"] .nav-dropdown-item .dropdown-item-info strong {
   color: #0f172a;
 }
 
@@ -9087,8 +9098,8 @@ body.light-theme .tag-styles,
   margin-top: 2px;
 }
 
-body.light-theme .dropdown-item-info span,
-[data-theme="light"] .dropdown-item-info span {
+body.light-theme .nav-dropdown-item .dropdown-item-info span,
+[data-theme="light"] .nav-dropdown-item .dropdown-item-info span {
   color: #64748b;
 }
 
