@@ -1128,7 +1128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
                     <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
                         <a href="https://wa.me/917676808068?text=Hello%20ElavateX%2C%20I%20am%20in%20love%20with%20the%20${encodeURIComponent(styleObj.name)}%20demo%20for%20${encodeURIComponent(indData.name)}%20and%20want%20this%20built." target="_blank" class="morph-btn" style="font-size: 1rem; padding: 0.85rem 2rem;">
-                            <span>💬 Build This For My Brand</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Build This For My Brand</span>
                         </a>
                     </div>
                 </div>
@@ -1305,10 +1305,10 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleCodeBtn.addEventListener('click', () => {
             if (sandboxCodeDrawer.style.display === 'none' || !sandboxCodeDrawer.style.display) {
                 sandboxCodeDrawer.style.display = 'block';
-                toggleCodeBtn.textContent = 'Hide CSS Formula ✕';
+                toggleCodeBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle; margin-right:4px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Hide CSS Formula';
             } else {
                 sandboxCodeDrawer.style.display = 'none';
-                toggleCodeBtn.textContent = 'Inspect CSS Formula ⚙';
+                toggleCodeBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle; margin-right:4px;"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Inspect CSS Formula';
             }
         });
     }
@@ -1416,7 +1416,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cat: 'SUMMER 2026 RUNWAY',
                 priceUsd: '$185 USD',
                 priceInr: '₹4,999 INR',
-                stock: '⚡ Only 3 units remaining in vault',
+                stock: 'Only 3 units remaining in vault',
                 desc: 'Micro-perforated 320 GSM polyester basketball jersey with authentic team crest, contrast rib-knit armholes, and hanging physical colorway tags.',
                 colors: {
                     black: { hex: '#0a0a0a', trim: '#ffffff', label: 'Black' },
@@ -1469,7 +1469,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cat: 'LUXURY TAILORING 2026',
                 priceUsd: '$420 USD',
                 priceInr: '₹11,999 INR',
-                stock: '⚡ Only 4 units remaining in Tokyo salon',
+                stock: 'Only 4 units remaining in Tokyo salon',
                 desc: 'Brushed Italian goat suede tailored overshirt with horn buttons, crisp folded collar, and dual flap utility chest pockets.',
                 colors: {
                     camel: { hex: '#9a5c2b', trim: '#fef3c7', label: 'Camel Tan' },
@@ -1508,7 +1508,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cat: 'TECHWEAR 2026 CAPSULE',
                 priceUsd: '$310 USD',
                 priceInr: '₹8,499 INR',
-                stock: '⚡ High velocity drop • Ships in 24h',
+                stock: 'High velocity drop • Ships in 24h',
                 desc: '3-Layer GORE-TEX waterproof shell with asymmetric neon heat-taped zippers, storm hood, and high-visibility reflective bands.',
                 colors: {
                     black: { hex: '#0f141c', trim: '#00f0ff', label: 'Obsidian Cyan' },
@@ -1543,7 +1543,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cat: 'ESSENTIAL STREETWEAR',
                 priceUsd: '$220 USD',
                 priceInr: '₹5,999 INR',
-                stock: '⚡ Vault low • 3 pieces remaining',
+                stock: 'Vault low • 3 pieces remaining',
                 desc: 'Custom 500 GSM French Terry cotton hoodie with vintage acid stone enzyme wash, clean seamless hood, and kangaroo pouch pocket.',
                 colors: {
                     indigo: { hex: '#312e81', trim: '#c7d2fe', label: 'Vintage Indigo' },
@@ -1573,7 +1573,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cat: 'COUTURE ATELIER EXCLUSIVE',
                 priceUsd: '$540 USD',
                 priceInr: '₹14,999 INR',
-                stock: '⚡ Made to order • Hand-finished in atelier',
+                stock: 'Made to order • Hand-finished in atelier',
                 desc: 'Fluid asymmetric double jersey with sculptural draped collar, raw-cut high-contrast hemline, and red carpet presence.',
                 colors: {
                     crimson: { hex: '#dc2626', trim: '#ffffff', label: 'Crimson Scarlet' },
@@ -1601,7 +1601,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cat: 'AERODYNAMIC MOBILITY 2026',
                 priceUsd: '$165 USD',
                 priceInr: '₹4,499 INR',
-                stock: '⚡ In stock • Immediate dispatch',
+                stock: 'In stock • Immediate dispatch',
                 desc: 'Quarter-zip technical training top with laser-cut underarm ventilation, geometric paneling, and brushed moisture-wicking fleece lining.',
                 colors: {
                     cobalt: { hex: '#1e40af', trim: '#38bdf8', label: 'Cobalt Blue' },
@@ -1793,7 +1793,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cartCountEl.textContent = cartTotal;
                 cartPill.classList.add('cart-bump');
                 const origText = addBagBtn.innerHTML;
-                addBagBtn.innerHTML = `<span>Added to Wardrobe! ✓</span>`;
+                addBagBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle; margin-right:4px;"><polyline points="20 6 9 17 4 12"/></svg><span>Added to Wardrobe!</span>`;
                 addBagBtn.style.background = '#10b981';
 
                 setTimeout(() => {

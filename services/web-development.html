@@ -590,9 +590,15 @@
         }
 
         .project-features-list li::before {
-            content: "✓";
-            font-weight: 800;
-            color: var(--accent-emerald);
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 9px;
+            border: solid var(--accent-emerald);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            margin-right: 4px;
+            flex-shrink: 0;
         }
 
         .project-visual-side {
@@ -826,28 +832,36 @@
                 </button>
                 <div class="service-switcher-dropdown">
                     <a href="web-development.html" class="service-dropdown-item active">
-                        <span class="dropdown-item-icon">🌐</span>
+                        <span class="dropdown-item-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </span>
                         <div class="dropdown-item-info">
                             <strong>Website Development</strong>
                             <span>Custom Next.js 14, 100/100 Vitals &amp; SaaS</span>
                         </div>
                     </a>
                     <a href="mobile-app-development.html" class="service-dropdown-item">
-                        <span class="dropdown-item-icon">📱</span>
+                        <span class="dropdown-item-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg>
+                        </span>
                         <div class="dropdown-item-info">
                             <strong>Mobile App Engineering</strong>
                             <span>iOS &amp; Android, 60 FPS Native, Offline Sync</span>
                         </div>
                     </a>
                     <a href="social-media-management.html" class="service-dropdown-item">
-                        <span class="dropdown-item-icon">🚀</span>
+                        <span class="dropdown-item-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                        </span>
                         <div class="dropdown-item-info">
                             <strong>Social Media Growth</strong>
                             <span>Viral Short-Form Reels, Paid Meta Ads</span>
                         </div>
                     </a>
                     <a href="../styles.html" class="service-dropdown-item">
-                        <span class="dropdown-item-icon">✨</span>
+                        <span class="dropdown-item-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+                        </span>
                         <div class="dropdown-item-info">
                             <strong>18 Web Design Styles &amp; Demos</strong>
                             <span>Live Sandbox, Glassmorphism, Bento UI</span>
@@ -863,7 +877,7 @@
                 <a href="#web-projects" class="dedicated-nav-link">Our Work</a>
                 <a href="#web-process" class="dedicated-nav-link">Process</a>
                 <a href="#web-faq" class="dedicated-nav-link">FAQ</a>
-                <a href="../styles.html" class="dedicated-nav-link nav-styles-badge">Styles ✨</a>
+                <a href="../styles.html" class="dedicated-nav-link nav-styles-badge">Styles</a>
             </nav>
 
             <!-- Far Right Side: Actions -->
@@ -905,10 +919,18 @@
         </div>
         <div class="drawer-links">
             <div class="drawer-section-title">CORE SERVICES</div>
-            <a href="web-development.html" class="drawer-service-link active">🌐 Website Development</a>
-            <a href="mobile-app-development.html" class="drawer-service-link">📱 Mobile App Engineering</a>
-            <a href="social-media-management.html" class="drawer-service-link">🚀 Social Media Growth</a>
-            <a href="../styles.html" class="drawer-service-link" style="color: #FFC928;">✨ 18 Design Styles &amp; Demos</a>
+            <a href="web-development.html" class="drawer-service-link active">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Website Development
+            </a>
+            <a href="mobile-app-development.html" class="drawer-service-link">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg>Mobile App Engineering
+            </a>
+            <a href="social-media-management.html" class="drawer-service-link">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Social Media Growth
+            </a>
+            <a href="../styles.html" class="drawer-service-link" style="color: #FFC928;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>18 Design Styles &amp; Demos
+            </a>
             <hr class="drawer-divider">
             <div class="drawer-section-title">PAGE NAVIGATION</div>
             <a href="#web-hero" class="drawer-link">Overview</a>
@@ -988,11 +1010,11 @@
                         <!-- Floating Holographic Telemetry Badges -->
                         <div class="floating-telemetry-pill pill-pos-top-right">
                             <span class="pill-indicator-dot pill-indicator-green"></span>
-                            <span>⚡ 100/100 Core Web Vitals &bull; 0.18s TTFB</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>100/100 Core Web Vitals &bull; 0.18s TTFB</span>
                         </div>
                         <div class="floating-telemetry-pill pill-pos-bottom-left">
                             <span class="pill-indicator-dot"></span>
-                            <span>🛡️ Next.js 14 &bull; Enterprise Grade SSL</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle; margin-right:4px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Next.js 14 &bull; Enterprise Grade SSL</span>
                         </div>
 
                         <div class="web-hero-mockup-frame">
@@ -1079,7 +1101,7 @@
                         <div class="code-terminal-drawer" id="code-terminal-drawer">
                             <div class="terminal-header">
                                 <span>TERMINAL &bull; Next.js 14 Production Output</span>
-                                <span style="color:#10b981;">✔ Compiled 42ms</span>
+                                <span style="color:#10b981;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle; margin-right:3px;"><polyline points="20 6 9 17 4 12"/></svg>Compiled 42ms</span>
                             </div>
                             <pre style="margin:0; line-height:1.5; color:#a5f3fc;"><code>import { Hydrate, ServerRender } from '@elavatex/core';
 
@@ -1894,7 +1916,7 @@ export default async function WebPlatform() {
     <div id="chatbot-container" class="chatbot-container buddy-mode">
         <!-- Floating Teaser Tooltip -->
         <div class="chatbot-tooltip" id="chatbot-tooltip">
-            ✨ Ask ElavateX AI
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:middle; margin-right:3px;"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>Ask ElavateX AI
         </div>
 
         <!-- AI Trigger Button -->
@@ -2139,7 +2161,7 @@ export default async function WebPlatform() {
             if (urlText) {
                 navigator.clipboard.writeText(urlText.textContent).then(() => {
                     const orig = urlText.textContent;
-                    urlText.textContent = 'Copied to Clipboard! ✔';
+                    urlText.textContent = 'Copied to Clipboard!';
                     setTimeout(() => urlText.textContent = orig, 1800);
                 }).catch(() => {
                     alert('URL: https://elavatex.com/demo');
