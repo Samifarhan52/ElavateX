@@ -240,9 +240,8 @@
 
                 <!-- Mobile Menu Button Drawer Trigger -->
                 <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Mobile Navigation Menu">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="vertical-align:middle;"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    <span style="font-weight:700; font-size:0.8rem; margin-left:4px;">Menu</span>
                 </button>
             </div>
         </div>
@@ -252,50 +251,86 @@
     <!-- OFFICIAL MOBILE NAVIGATION DRAWER                                   -->
     <!-- =================================================================== -->
     <div class="mobile-drawer" id="mobile-drawer">
-        <div class="drawer-header">
-            <button class="theme-toggle-btn" id="drawer-theme-toggle" aria-label="Toggle Navigation Light and Dark Theme" title="Switch Light/Dark Mode">
-                <span class="theme-icon-sun">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-                </span>
-                <span class="theme-icon-moon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                </span>
-            </button>
-            <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
-        </div>
-        <div class="drawer-links">
-            <a href="index.html#about" class="drawer-link">About</a>
-            <a href="index.html#services-overview" class="drawer-link">Core Services (All)</a>
-            <a href="services/web-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #818cf8; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="m10 9-2 2 2 2"/><path d="m14 9 2 2-2 2"/></svg>
-                <span>Website Development</span>
-            </a>
-            <a href="services/mobile-app-development.html" class="drawer-link" style="padding-left: 1.8rem; color: #38bdf8; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/><path d="M10 5h4"/></svg>
-                <span>Mobile App Engineering</span>
-            </a>
-            <a href="services/social-media-management.html" class="drawer-link" style="padding-left: 1.8rem; color: #ec4899; font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
-                <span>Social Media Growth</span>
-            </a>
-            <a href="styles.html" class="drawer-link active" style="padding-left: 1.8rem; color: var(--accent-cyan); font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                <span>Design Styles &amp; Demos Directory</span>
-            </a>
-            <a href="index.html#knowledge-hub" class="drawer-link">Growth Frameworks</a>
-            <a href="index.html#daily-journey" class="drawer-link">Daily Journey (BTS)</a>
-            <a href="index.html#mvp-demo" class="drawer-link">Demo &amp; MVP Blueprint</a>
-            <a href="index.html#free-assets" class="drawer-link" style="color: var(--accent-cyan); font-weight: 600;">Free Valuable Assets</a>
-            <a href="index.html#execution-roadmap" class="drawer-link">Master Roadmap</a>
-            <a href="index.html#portfolio" class="drawer-link">Work &amp; Case Studies</a>
-            <a href="index.html#estimator" class="drawer-link">Project Scope Estimator</a>
-            <a href="index.html#testimonials" class="drawer-link">Client Reviews</a>
-            <a href="brochure.html" class="drawer-link" style="color: var(--accent-purple); font-weight: 700;">Company Brochure (PDF &amp; Deck)</a>
-            <hr class="drawer-divider">
-            <button class="btn-primary open-consultation-btn w-full">Book a Call</button>
-            <a href="https://wa.me/917676808068" target="_blank" class="btn-whatsapp-outline w-full text-center margin-top-sm">
-                <span>Connect via WhatsApp</span>
-            </a>
+        <div class="drawer-sheet">
+            <div class="drawer-header">
+                <a href="index.html" class="brand-logo" style="text-decoration:none;">
+                    <span class="logo-text" style="font-size:1.25rem;">Elavate<span class="accent-x">X</span></span>
+                </a>
+                <div class="drawer-header-actions">
+                    <button class="theme-toggle-btn" id="drawer-theme-toggle" aria-label="Toggle Navigation Light and Dark Theme" title="Switch Light/Dark Mode">
+                        <span class="theme-icon-sun">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        </span>
+                        <span class="theme-icon-moon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        </span>
+                    </button>
+                    <button class="drawer-close" id="drawer-close" aria-label="Close Navigation Menu">&times;</button>
+                </div>
+            </div>
+
+            <div class="drawer-status-card">
+                <div class="drawer-status-top">
+                    <span class="pulse-dot" style="background:#10b981;"></span>
+                    <span class="drawer-status-title">Direct Call: +91 7676808068</span>
+                </div>
+                <span class="drawer-status-subtitle">Bengaluru, India &bull; Direct Senior Dev Access</span>
+            </div>
+
+            <span class="drawer-section-label">Navigation</span>
+            <div class="drawer-links-stack">
+                <a href="index.html#services" class="drawer-link-item">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>Capabilities &amp; Retainers</strong>
+                        <span>Web, Apps, AI &amp; Performance Growth</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+                <a href="index.html#portfolio" class="drawer-link-item">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>Featured Case Studies</strong>
+                        <span>Production Systems &amp; Live Client Work</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+                <a href="styles.html" class="drawer-link-item active">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>18 Web Design Styles</strong>
+                        <span>Live Sandbox &amp; Industry Systems</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+                <a href="contact.html" class="drawer-link-item">
+                    <div class="drawer-link-icon-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div class="drawer-link-meta">
+                        <strong>Direct Contact Desk</strong>
+                        <span>Send Scope &amp; Book Engineering Call</span>
+                    </div>
+                    <span class="drawer-link-arrow">&rarr;</span>
+                </a>
+            </div>
+
+            <div class="drawer-footer-actions">
+                <a href="contact.html" class="drawer-cta-primary">
+                    <span>Start a Project Brief</span>
+                    <span>&rarr;</span>
+                </a>
+                <a href="https://wa.me/917676808068?text=Hi%20ElavateX%2C%20I%20would%20like%20to%20discuss%20a%20new%20project." target="_blank" rel="noopener" class="drawer-cta-whatsapp">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+                    <span>Chat on WhatsApp Directly</span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -339,13 +374,13 @@
 
                         <!-- Main Display Headline (matches reference exactly) -->
                         <h1 class="editorial-headline">
-                            Turn Ideas <br>
-                            Into <span class="highlight-yellow">Impact.</span>
+                            18 Web Design Styles. <br>
+                            <span class="highlight-yellow">Built to Convert.</span>
                         </h1>
 
                         <!-- Word Rotator Underline -->
                         <div class="editorial-rotator-deck">
-                            <span class="rotator-prefix">ENGINEERED FOR:</span>
+                            <span class="rotator-prefix">TAILORED FOR:</span>
                             <div class="styles-hero-rotator" id="styles-hero-rotator">
                                 <span class="rotator-word active">MAXIMUM REVENUE.</span>
                                 <span class="rotator-word">CLINICAL AUTHORITY.</span>
@@ -356,7 +391,7 @@
 
                         <!-- Editorial Subtitle -->
                         <p class="editorial-subtext">
-                            A space to think deeper, create bolder, and grow further. Explore 18 world-class web design philosophies engineered across 14 commercial industries—from clinical Dental to AI Automation. 100% handwritten zero-bloat CSS.
+                            Explore 18 living web design aesthetics across 14 commercial industries. Interactive live sandboxes, handwritten zero-bloat CSS, and production-ready formulas built for high-end digital authority.
                         </p>
 
                         <!-- Action Deck (matches reference CTA buttons) -->

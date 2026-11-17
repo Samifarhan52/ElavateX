@@ -4388,16 +4388,22 @@ body.light-theme .buddy-icon-dark { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   
   /* Header Optimization: Hide bulky desktop links and desktop CTA buttons */
-  .nav-links { display: none !important; }
+  .nav-links,
+  .dedicated-nav-links,
+  .service-switcher-wrapper { display: none !important; }
   .nav-actions .btn-primary,
   .nav-actions .btn-sm,
   .nav-actions .open-consultation-btn,
   .nav-actions a.btn-primary,
   .nav-actions .btn-deck,
+  .nav-actions .btn-service-cta,
+  .btn-service-cta,
   .desktop-only { display: none !important; }
   .mobile-toggle { display: inline-flex !important; }
-  .navbar-header { height: 60px; padding: 0 0.8rem; }
-  .nav-container { width: 100%; justify-content: space-between; }
+  .navbar-header,
+  .dedicated-fixed-navbar { height: 60px !important; padding: 0 0.8rem !important; }
+  .nav-container,
+  .dedicated-nav-container { width: 100% !important; justify-content: space-between !important; }
   .nav-actions { gap: 0.5rem; }
 }
 
@@ -6400,6 +6406,21 @@ body.light-theme .dedicated-fixed-navbar,
   flex-wrap: nowrap;
   gap: 1rem;
 }
+
+.brand-logo-service {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  text-decoration: none;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.brand-logo-service .logo-text { font-size: 1.15rem; }
 
 .nav-left-group {
   display: flex;
