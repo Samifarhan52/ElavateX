@@ -11,8 +11,7 @@
       gtag('config', 'AW-18551332425');
     </script>
 
-    <!-- Event snippet for Contact conversion page
-    In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <!-- Event snippet for Contact & Lead Form conversion -->
     <script>
     function gtag_report_conversion(url) {
       var callback = function () {
@@ -20,10 +19,17 @@
           window.location = url;
         }
       };
-      gtag('event', 'conversion', {
-          'send_to': 'AW-18551332425/S5AzCLXB07odEMm8-41F',
-          'event_callback': callback
-      });
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+            'send_to': 'AW-18551332425/S5AzCLXB07odEMm8-41F',
+            'event_callback': callback
+        });
+        gtag('event', 'conversion', {
+            'send_to': 'AW-18551332425/mdeNCP3Sz7odEMm8-41F'
+        });
+      } else {
+        callback();
+      }
       return false;
     }
     </script>
