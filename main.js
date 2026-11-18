@@ -1347,6 +1347,11 @@ Would you like to start a project inquiry right now?`;
 
             dispatchLeadToFirebase(leadObj);
 
+            // Trigger Google Ads Contact Conversion
+            if (typeof window.gtag_report_conversion === 'function') {
+                window.gtag_report_conversion();
+            }
+
             // Save lead locally for Admin Dashboard
             try {
                 const storedLeads = JSON.parse(localStorage.getItem('elavatex_leads') || '[]');
@@ -1470,6 +1475,11 @@ Would you like to start a project inquiry right now?`;
 
             dispatchLeadToFirebase(leadObj);
 
+            // Trigger Google Ads Contact Conversion
+            if (typeof window.gtag_report_conversion === 'function') {
+                window.gtag_report_conversion();
+            }
+
             try {
                 const storedLeads = JSON.parse(localStorage.getItem('elavatex_leads') || '[]');
                 storedLeads.unshift(leadObj);
@@ -1512,6 +1522,17 @@ Would you like to start a project inquiry right now?`;
 
     setupUniversalProjectForm('inpage-contact-form', false);
     setupUniversalProjectForm('project-discovery-form', true);
+
+    // ----------------------------------------------------------------------
+    // 9b. Universal Google Ads Contact Conversion Tracking
+    // Fires conversion event on phone calls, WhatsApp clicks, and contact actions
+    // ----------------------------------------------------------------------
+    document.addEventListener('click', (e) => {
+        const contactTarget = e.target.closest('a[href^="tel:"], a[href*="wa.me"], a[href*="whatsapp.com"], a[href^="whatsapp:"], .btn-whatsapp, .btn-submit-discovery, .drawer-cta-whatsapp');
+        if (contactTarget && typeof window.gtag_report_conversion === 'function') {
+            window.gtag_report_conversion();
+        }
+    }, { capture: true });
 
     // ----------------------------------------------------------------------
     // 10. Header Navbar Scroll, Mobile Menu Drawer & Bottom Dock Router

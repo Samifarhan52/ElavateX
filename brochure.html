@@ -7,6 +7,24 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+      gtag('config', 'AW-18551332425');
+    </script>
+
+    <!-- Event snippet for Contact conversion page
+    In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-18551332425/S5AzCLXB07odEMm8-41F',
+          'event_callback': callback
+      });
+      return false;
+    }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -1866,6 +1884,14 @@
                     window.print();
                 });
             }
+
+            // Universal Google Ads Contact Conversion Tracking
+            document.addEventListener('click', (e) => {
+                const contactTarget = e.target.closest('a[href^="tel:"], a[href*="wa.me"], a[href*="whatsapp.com"], a[href^="whatsapp:"], .playbook-contact-btn, .btn-deck-whatsapp');
+                if (contactTarget && typeof window.gtag_report_conversion === 'function') {
+                    window.gtag_report_conversion();
+                }
+            }, { capture: true });
         });
     </script>
 </body>
