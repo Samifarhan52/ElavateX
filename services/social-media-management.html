@@ -28,7 +28,7 @@
     <!-- Unified CSS Stylesheet -->
     <link rel="stylesheet" href="../style.css?v=6.7">
     <!-- Services Editorial Dark Theme & Navbar -->
-    <link rel="stylesheet" href="services-editorial.css?v=2.1">
+    <link rel="stylesheet" href="services-editorial.css?v=2.2">
 
     <!-- Handcrafted UI/UX Styles (Awwwards/Cuberto Inspired) -->
     <style>
@@ -2074,7 +2074,7 @@
 
         /* ------------------ Section 9: Final CTA ------------------ */
         .smm-cta {
-            padding: 7rem 0;
+            padding: 3.5rem 0 1.5rem;
             border-top: 1px solid var(--border-glass);
             position: relative;
             background: radial-gradient(circle at bottom right, rgba(236,72,153,0.04) 0%, transparent 60%);
@@ -2084,7 +2084,7 @@
             background: var(--bg-surface);
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-lg);
-            padding: 5rem 4rem;
+            padding: 3rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -2107,13 +2107,13 @@
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -1.5px;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .smm-cta-subtitle {
             font-size: 1.15rem;
             color: var(--text-muted);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -2343,120 +2343,6 @@
         [data-theme="light"] .smm-subnav-link.active {
             color: #ffffff;
             background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
-        }
-
-        /* ------------------ Smart Floating "Explore Plans" CTA Popup ------------------ */
-        .smm-floating-cta {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            z-index: 999;
-            max-width: 320px;
-            width: calc(100% - 40px);
-            background: rgba(15, 17, 23, 0.88);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(236, 72, 153, 0.35);
-            border-radius: 18px;
-            padding: 1.25rem 1.4rem;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 25px rgba(236, 72, 153, 0.2);
-            transform: translateY(120px) scale(0.92);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        opacity 0.4s ease, 
-                        visibility 0.4s ease, 
-                        background 0.3s ease, 
-                        border-color 0.3s ease;
-        }
-
-        body.light-theme .smm-floating-cta,
-        [data-theme="light"] .smm-floating-cta {
-            background: rgba(255, 255, 255, 0.94);
-            border: 1px solid rgba(236, 72, 153, 0.35);
-            box-shadow: 0 16px 40px rgba(236, 72, 153, 0.18), 0 4px 15px rgba(0, 0, 0, 0.06);
-        }
-
-        .smm-floating-cta.visible {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-
-        .smm-floating-cta-close {
-            position: absolute;
-            top: 10px;
-            right: 12px;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        body.light-theme .smm-floating-cta-close,
-        [data-theme="light"] .smm-floating-cta-close {
-            background: rgba(0, 0, 0, 0.05);
-            border-color: rgba(0, 0, 0, 0.1);
-            color: #4b5563;
-        }
-
-        .smm-floating-cta-close:hover {
-            background: rgba(236, 72, 153, 0.2);
-            color: var(--accent-pink);
-            transform: scale(1.1);
-        }
-
-        .smm-floating-cta-badge {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--accent-pink);
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .smm-floating-cta-title {
-            font-family: var(--font-display);
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-            line-height: 1.35;
-            margin-bottom: 0.85rem;
-        }
-
-        .smm-floating-cta-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 0.65rem 1.2rem;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: #ffffff !important;
-            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
-            border-radius: var(--radius-full);
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.35);
-            transition: all 0.3s ease;
-        }
-
-        .smm-floating-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.5);
         }
 
         @media (max-width: 768px) {
@@ -3979,9 +3865,6 @@
 
     </main>
 
-    <!-- =================================================================== -->
-    <!-- FOOTER                                                              -->
-    <!-- =================================================================== -->
     <!-- FOOTER -->
     <footer class="footer-section">
         <div class="container">
@@ -4705,13 +4588,8 @@
                 });
             });
 
-            // ------------------ 5. SMM Sticky Nav & Explore Plans Floating CTA Logic ------------------
-            const exploreCta = document.getElementById('smm-explore-plans-cta');
-            const exploreCtaCloseBtn = document.getElementById('smm-cta-close-btn');
-            const explorePlansBtn = document.getElementById('smm-explore-plans-btn');
+            // ------------------ 5. SMM Sticky Nav Smooth Scroll ------------------
             const pricingSection = document.getElementById('pricing-anchor');
-
-            let isCtaDismissed = false; // Tracks manual dismissal by user during current session
 
             // Smooth scroll helper considering single sticky navbar offset (~65px)
             const smoothScrollToSection = (targetId) => {
@@ -4738,47 +4616,9 @@
                 });
             });
 
-            // Bind smooth scroll to Explore Plans CTA button
-            if (explorePlansBtn) {
-                explorePlansBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    smoothScrollToSection('#pricing-anchor');
-                });
-            }
-
-            // Close button handler for floating CTA
-            if (exploreCtaCloseBtn) {
-                exploreCtaCloseBtn.addEventListener('click', () => {
-                    isCtaDismissed = true;
-                    if (exploreCta) exploreCta.classList.remove('visible');
-                });
-            }
-
-            // Scroll listener for Trigger & Pricing Visibility & Active Nav Link
+            // Scroll listener for Active Nav Link
             const updateSmmScrollState = () => {
                 const scrollY = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
-
-                // 1. Check if user is inside pricing section
-                let isPricingInView = false;
-                if (pricingSection) {
-                    const rect = pricingSection.getBoundingClientRect();
-                    // pricing section is in view if top is in viewport area and bottom is visible
-                    isPricingInView = rect.top <= (window.innerHeight * 0.75) && rect.bottom >= 100;
-                }
-
-                // 2. Floating CTA visibility logic:
-                // - User has scrolled approx 40-50% (scrollPercent >= 0.40)
-                // - NOT currently inside pricing section
-                // - NOT manually closed by user
-                if (exploreCta) {
-                    if (scrollPercent >= 0.40 && !isPricingInView && !isCtaDismissed) {
-                        exploreCta.classList.add('visible');
-                    } else {
-                        exploreCta.classList.remove('visible');
-                    }
-                }
 
                 // 3. Highlight active sticky nav link based on current section
                 const sectionItems = [
@@ -5011,18 +4851,6 @@
 
         });
     </script>
-
-    <!-- Smart Floating Explore Plans CTA -->
-    <div id="smm-explore-plans-cta" class="smm-floating-cta" role="dialog" aria-label="Explore Plans">
-        <button id="smm-cta-close-btn" class="smm-floating-cta-close" aria-label="Close Explore Plans popup">&times;</button>
-        <div class="smm-floating-cta-content">
-            <div class="smm-floating-cta-badge">Ready to grow your brand?</div>
-            <div class="smm-floating-cta-title">Explore our social media plans</div>
-            <a href="#pricing-anchor" id="smm-explore-plans-btn" class="smm-floating-cta-btn">
-                <span>Explore Plans &rarr;</span>
-            </a>
-        </div>
-    </div>
 
     <!-- Unified JS Script -->
     <script src="../main.js?v=6.7"></script>

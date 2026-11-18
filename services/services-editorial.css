@@ -1482,3 +1482,234 @@ body.dark-theme .mobile-tech-footer-strip {
   border-top-color: rgba(255, 255, 255, 0.08);
   color: #94a3b8;
 }
+
+/* =================================================================== */
+/* BULLETPROOF UNIFIED FOOTER FOR SERVICE PAGES                       */
+/* =================================================================== */
+.footer-section {
+  position: relative !important;
+  z-index: 10 !important;
+  padding: 4.5rem 0 6rem !important;
+  background: #fbf9f6 !important;
+  border-top: 1px solid rgba(27, 26, 23, 0.08) !important;
+}
+
+[data-theme="dark"] .footer-section,
+body.dark-theme .footer-section {
+  background: #0d0e12 !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.footer-section .footer-grid {
+  display: grid !important;
+  grid-template-columns: 1.6fr 0.95fr 0.95fr 1.1fr 1.6fr !important;
+  gap: 2.2rem !important;
+  margin-bottom: 3rem !important;
+}
+
+@media (max-width: 1024px) {
+  .footer-section .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-section .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.8rem !important;
+  }
+}
+
+.footer-section .footer-heading {
+  font-size: 1.05rem !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  margin-bottom: 1.2rem !important;
+  letter-spacing: -0.01em !important;
+}
+
+[data-theme="dark"] .footer-section .footer-heading,
+body.dark-theme .footer-section .footer-heading {
+  color: #ffffff !important;
+}
+
+.footer-section .footer-links {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.65rem !important;
+}
+
+.footer-section .footer-links a {
+  color: #475569 !important;
+  text-decoration: none !important;
+  font-size: 0.88rem !important;
+  transition: color 0.2s ease, transform 0.2s ease !important;
+  display: inline-block !important;
+}
+
+[data-theme="dark"] .footer-section .footer-links a,
+body.dark-theme .footer-section .footer-links a {
+  color: #94a3b8 !important;
+}
+
+.footer-section .footer-links a:hover {
+  color: #e10600 !important;
+  transform: translateX(3px) !important;
+}
+
+.footer-section .contact-meta {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.5rem !important;
+  margin-top: 1.2rem !important;
+}
+
+.footer-section .meta-item {
+  font-size: 0.84rem !important;
+  color: #475569 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  flex-wrap: wrap !important;
+}
+
+[data-theme="dark"] .footer-section .meta-item,
+body.dark-theme .footer-section .meta-item {
+  color: #94a3b8 !important;
+}
+
+.footer-section .meta-item strong {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="dark"] .footer-section .meta-item strong,
+body.dark-theme .footer-section .meta-item strong {
+  color: #e2e8f0 !important;
+}
+
+.footer-section .meta-item a {
+  color: #0284c7 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .footer-section .meta-item a,
+body.dark-theme .footer-section .meta-item a {
+  color: #38bdf8 !important;
+}
+
+.footer-section .social-icons-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  margin-top: 1rem !important;
+  flex-wrap: wrap !important;
+}
+
+.footer-section .social-icon-btn {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #334155 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  text-decoration: none !important;
+}
+
+[data-theme="dark"] .footer-section .social-icon-btn,
+body.dark-theme .footer-section .social-icon-btn {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #f1f5f9 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.footer-section .social-icon-btn:hover {
+  background: #e10600 !important;
+  border-color: #e10600 !important;
+  color: #ffffff !important;
+  transform: translateY(-3px) scale(1.05) !important;
+  box-shadow: 0 8px 20px rgba(225, 6, 0, 0.35) !important;
+}
+
+.footer-section .footer-map-card {
+  display: block !important;
+  position: relative !important;
+  margin-top: 0.85rem !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
+  text-decoration: none !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+[data-theme="dark"] .footer-section .footer-map-card,
+body.dark-theme .footer-section .footer-map-card {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.footer-section .footer-map-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15) !important;
+}
+
+.footer-section .footer-bottom {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+  padding-top: 2rem !important;
+  font-size: 0.84rem !important;
+  color: #64748b !important;
+  flex-wrap: wrap !important;
+  gap: 1rem !important;
+}
+
+[data-theme="dark"] .footer-section .footer-bottom,
+body.dark-theme .footer-section .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+  color: #94a3b8 !important;
+}
+
+.footer-section .footer-bottom strong {
+  color: #0f172a !important;
+}
+
+[data-theme="dark"] .footer-section .footer-bottom strong,
+body.dark-theme .footer-section .footer-bottom strong {
+  color: #ffffff !important;
+}
+
+.footer-section .footer-legal {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  flex-wrap: wrap !important;
+}
+
+.footer-section .footer-legal a {
+  color: #64748b !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+[data-theme="dark"] .footer-section .footer-legal a,
+body.dark-theme .footer-section .footer-legal a {
+  color: #94a3b8 !important;
+}
+
+.footer-section .footer-legal a:hover {
+  color: #e10600 !important;
+}
