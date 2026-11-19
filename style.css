@@ -9840,13 +9840,17 @@ body.light-theme .dropdown-footer-link,
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: #000;
+  background: var(--bg-card, #11141e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .compact-project-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
   transition: transform 0.5s ease;
 }
 

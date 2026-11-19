@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: "The Edu Consultant - Bengaluru", url: "https://bangalore.theeduconsultant.com", category: "Bengaluru Schools & Colleges Discovery Engine" },
             { name: "The Edu Consultant - Study Abroad", url: "https://theeduconsultant.in", category: "Global Study Abroad & Overseas Education Portal" },
             { name: "Shelter Hunt Consultants", url: "https://shelterhuntconsultants.com", category: "Real Estate Portal" },
-            { name: "Online Gaming Tournaments", url: "https://sp-three-liart.vercel.app", category: "Esports Competition Platform" },
+            { name: "Online Gaming Tournaments", url: "https://elavatex.com/styles", category: "Esports Competition Platform" },
             { name: "Farhanulla Portfolio", url: "https://farhanulla.me", category: "Showcase Platform" }
         ],
         contact: {
@@ -836,7 +836,7 @@ document.addEventListener('DOMContentLoaded', () => {
 • **The Edu Consultant (Bengaluru)**: Institutions & college search engine ([bangalore.theeduconsultant.com](https://bangalore.theeduconsultant.com))<br>
 • **The Edu Consultant (Study Abroad)**: Global overseas education consultancy ([theeduconsultant.in](https://theeduconsultant.in))<br>
 • **Shelter Hunt Consultants**: Real estate portal ([shelterhuntconsultants.com](https://shelterhuntconsultants.com))<br>
-• **Online Gaming Tournaments**: Esports competition platform ([sp-three-liart.vercel.app](https://sp-three-liart.vercel.app))<br>
+• **Online Gaming Tournaments**: Esports competition platform ([elavatex.com/styles](https://elavatex.com/styles))<br>
 • **Farhanulla Portfolio**: Showcase platform ([farhanulla.me](https://farhanulla.me))<br><br>
 Would you like to build something similar for your business?`;
             reply.buttons = [
